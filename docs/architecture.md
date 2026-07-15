@@ -1,4 +1,4 @@
-# Sluice — Architecture Decision Record
+# Goldproof — Architecture Decision Record
 
 > **Status:** Phase 1 (Recon) complete — awaiting review before build.
 > **Date:** 2026-07-15
@@ -8,16 +8,18 @@
 
 ## 0. TL;DR (plain English)
 
-**Sluice** is a Claude Code skill. You give it a loose prompt — a topic, a pain point, or
+**Goldproof** is a Claude Code skill. You give it a loose prompt — a topic, a pain point, or
 "things I think my build could do better." It fans out research **sub-agents** that pull knowledge
 from **YouTube transcripts** (and, only if you opt in, **X/Twitter posts**), boils the raw firehose
 down to a handful of **sourced, confidence-graded findings**, and turns those into **actionable
 changes to your own tooling**: things to integrate now, new skills to scaffold, and
 `CLAUDE.md` / behavior edits — proposed as **diffs you approve**, never written silently.
 
-The name: a *sluice box* runs raw slurry through and catches the gold while the gravel washes away.
-That is exactly this pipeline — **fetch → filter → distill → propose**. It also ties into the gold
-design system (Phase 4). Alternate names if rejected: **Assay** / **Paydirt**. One-word change.
+The name: it joins the **`-proof` family** (DATproof, Modelproof). "Proof" is load-bearing here, not
+decorative — *proving* gold means assaying its purity, and a *proof* is the highest-grade strike. That
+is exactly what this pipeline does to every finding: source it, grade its purity (confidence), discard
+the dross. It also welds to the gold design system (Phase 4). Fallbacks if rejected: **Toolproof** /
+**Stackproof**. One-word change.
 
 **Two corrections to the original brief surfaced during recon — read §8 before approving.**
 
@@ -188,16 +190,16 @@ files only behind explicit per-diff approval.
 
 ```
 # Transcript
-SLUICE_TRANSCRIPT_BACKEND      local | hosted        (default: local)
-SLUICE_TRANSCRIPT_API_KEY      key for hosted backend
-SLUICE_TRANSCRIPT_HOSTED_PROVIDER  supadata | youtube-transcript-io   (default: supadata)
+GOLDPROOF_TRANSCRIPT_BACKEND      local | hosted        (default: local)
+GOLDPROOF_TRANSCRIPT_API_KEY      key for hosted backend
+GOLDPROOF_TRANSCRIPT_HOSTED_PROVIDER  supadata | youtube-transcript-io   (default: supadata)
 # Discovery (optional)
-SLUICE_YOUTUBE_DATA_API_KEY    richer video discovery; falls back to WebSearch if unset
+GOLDPROOF_YOUTUBE_DATA_API_KEY    richer video discovery; falls back to WebSearch if unset
 # X (all optional; absent key ⇒ X skipped silently)
-SLUICE_X_API_KEY               TwitterAPI.io key
-SLUICE_X_MAX_READS             hard per-run cap (default: 200 ≈ $0.03); run refuses to exceed
+GOLDPROOF_X_API_KEY               TwitterAPI.io key
+GOLDPROOF_X_MAX_READS             hard per-run cap (default: 200 ≈ $0.03); run refuses to exceed
 # Caps
-SLUICE_MAX_YOUTUBE / SLUICE_MAX_WEB   source-count caps (default 8 / 5)
+GOLDPROOF_MAX_YOUTUBE / GOLDPROOF_MAX_WEB   source-count caps (default 8 / 5)
 ```
 Flags: `--include-x` (required to touch X at all) · `--max-x-reads N` · `--backend local|hosted` ·
 `--apply` (off by default = dry-run).
@@ -208,6 +210,9 @@ Flags: `--include-x` (required to touch X at all) · `--max-x-reads N` · `--bac
 
 1. **Cloud-IP blocking (YouTube).** `local` dies on datacenter IPs. → pluggable `hosted` backend;
    residential-proxy option for `local`; on block, **fall back / skip the source — never fabricate**.
+   *(Verified live 2026-07-15: from this cloud container the local fetch fails with a `ProxyError`
+   before even reaching YouTube — egress is restricted — so the shipped example uses harness
+   `WebSearch`/`WebFetch` retrieval, and YouTube-transcript findings are for residential runs.)*
 2. **X cost blowout.** → OFF by default; `--include-x` required; **hard `--max-x-reads` enforced
    *before* any read** (refuse to exceed, log skipped); no key ⇒ skip silently.
 3. **Context bloat.** → sub-agent isolation + source-count caps + short evidence quotes.
@@ -225,7 +230,7 @@ Flags: `--include-x` (required to touch X at all) · `--max-x-reads N` · `--bac
 ## 7. Repo layout (proposed)
 
 ```
-sluice/
+goldproof/
 ├── SKILL.md                     # frontmatter (trigger) + orchestration instructions
 ├── scripts/
 │   ├── fetch_transcript.py      # local + hosted backends behind one interface
@@ -270,10 +275,13 @@ sluice/
 Runs end-to-end on one sample topic → a sourced report + ≥1 skill-candidate stub + ≥1 CLAUDE.md diff;
 every claim carries source + confidence; **X disabled; dry-run by default.**
 
-## 10. Open decisions for you
+## 10. Decisions (resolved 2026-07-15)
 
-- **Name:** Sluice (rec) / Assay / Paydirt / keep skill-scout?
-- **Correction #1** (library-first, MCP-optional) — OK to proceed?
-- **Sample topic** for the end-to-end example — suggest **"making Claude Code sub-agents more
-  token-efficient"** (dogfoods the tool on itself). Your pick?
-- **New GitHub repo** — create `sluice` under your account when we hit Phase 4? (public, MIT)
+- **Name:** ✅ **Goldproof** (joins the `-proof` family; fallbacks Toolproof/Stackproof).
+- **Correction #1** (library-first, MCP-optional): ✅ approved — this is the default.
+- **Correction #2** (X pricing = official API's numbers; third-party is 33× cheaper): ✅ acknowledged.
+- **Sample topics — TWO example runs:**
+  1. **"Make Claude Code sub-agents more token-efficient"** — dogfoods Goldproof on its own architecture.
+  2. **"Best web-design / UI component libraries & animation techniques"** (headline showcase) — surfaces
+     UI libraries, components, and motion patterns to de-stale real sites. Broad appeal beyond the author.
+- **New GitHub repo** — create `goldproof` (public, MIT) at Phase 4, pending an explicit "yes" then.
