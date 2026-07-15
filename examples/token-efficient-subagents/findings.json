@@ -1,0 +1,164 @@
+{
+  "run": {
+    "topic": "make my Claude Code sub-agents (and sessions) more token-efficient",
+    "generated": "2026-07-15",
+    "sources": { "web": 8, "youtube": 0, "x": "off" },
+    "backend": "local",
+    "dry_run": true,
+    "stack_context": "Claude Code power user; also runs Modelproof (informed model selection)",
+    "coverage_notes": [
+      "This run dogfoods Goldproof: it researches how to make sub-agents token-efficient — which is exactly Goldproof's own architecture.",
+      "All 8 sources are official Anthropic / Claude Code docs. Three practitioner blogs (hackernoon, amitkoth, richsnapp) were egress-blocked (403) and excluded rather than guessed.",
+      "YouTube 0 — local backend IP-blocked from this cloud container (documented caveat). A residential run adds creator-video findings with timestamps.",
+      "2 claims were corroborated by ≥2 independent official pages (delegate-verbose-to-subagent; route-mechanical-subagents-to-haiku) — confidence held at high with both sources cited."
+    ],
+    "counts": { "kept": 16, "merged_corroborated": 2, "dropped_no_source": 0, "fabricated": 0 }
+  },
+  "do_this_first": ["f-07", "f-08", "f-01", "f-11", "f-12", "f-02", "f-04"],
+  "findings": [
+    {
+      "id": "f-01", "dedup_key": "route-subagents-to-haiku", "classification": "integrate-now",
+      "claim": "Give every mechanical sub-agent (search, extract, format, dedup, fetch-and-distill) a `model: haiku` line in its frontmatter — the `model` field defaults to `inherit` (your expensive main-session model) if omitted, and Claude Code lists cost control via cheaper models as an explicit sub-agent purpose.",
+      "confidence": "high", "impact": "high", "effort": "trivial", "priority": 9.0,
+      "source": { "type": "web", "url": "https://code.claude.com/docs/en/sub-agents", "timestamp": null, "title": "Create custom subagents — Claude Code Docs", "author": "Anthropic" },
+      "evidence_quote": "by routing tasks to faster, cheaper models like Haiku",
+      "corroborating_sources": [ { "type": "web", "url": "https://code.claude.com/docs/en/costs", "title": "Manage costs effectively — Claude Code Docs", "quote": "For simple subagent tasks, specify `model: haiku`" } ],
+      "payload": { "action": "config-edit", "target": "~/.claude/agents/<agent>.md", "change": "add `model: haiku` to the frontmatter of mechanical sub-agents", "note": "Corroborated by the sub-agents and costs docs." }
+    },
+    {
+      "id": "f-02", "dedup_key": "explore-agent-to-haiku", "classification": "integrate-now",
+      "claim": "Shadow the built-in Explore agent with your own `~/.claude/agents/Explore.md` that sets `model: haiku`, so codebase search/exploration stops piggybacking on whatever pricey model your main session runs (Explore just inherits it, capped at Opus).",
+      "confidence": "high", "impact": "med", "effort": "trivial", "priority": 6.0,
+      "source": { "type": "web", "url": "https://code.claude.com/docs/en/sub-agents", "timestamp": null, "title": "Create custom subagents — Claude Code Docs", "author": "Anthropic" },
+      "evidence_quote": "define one with `model: haiku` to keep exploration on a lower-cost model",
+      "corroborating_sources": [],
+      "payload": { "action": "config-edit", "target": "~/.claude/agents/Explore.md", "change": "create with frontmatter `model: haiku`", "note": "Overrides the built-in Explore's inherited (up-to-Opus) model." }
+    },
+    {
+      "id": "f-03", "dedup_key": "scope-mcp-servers-to-subagent", "classification": "integrate-now",
+      "claim": "For an MCP server only one sub-agent needs (a Playwright or a heavy DB server), define it inline in that sub-agent's `mcpServers` frontmatter instead of `.mcp.json`, so its tool descriptions never load into — or tax — your main conversation's context.",
+      "confidence": "high", "impact": "med", "effort": "moderate", "priority": 3.0,
+      "source": { "type": "web", "url": "https://code.claude.com/docs/en/sub-agents", "timestamp": null, "title": "Create custom subagents — Claude Code Docs", "author": "Anthropic" },
+      "evidence_quote": "define it inline here rather than in `.mcp.json`. The subagent gets the tools; the parent conversation doesn't.",
+      "corroborating_sources": [],
+      "payload": { "action": "config-edit", "target": "~/.claude/agents/<agent>.md", "change": "add an `mcpServers:` block to the sub-agent frontmatter instead of the global .mcp.json" }
+    },
+    {
+      "id": "f-04", "dedup_key": "opusplan-plan-opus-execute-sonnet", "classification": "integrate-now",
+      "claim": "For your own interactive sessions, run the `opusplan` model setting: it uses Opus during plan mode and auto-switches to Sonnet for execution, so you pay Opus rates only for reasoning-heavy planning, not the bulk implementation tokens.",
+      "confidence": "high", "impact": "med", "effort": "trivial", "priority": 6.0,
+      "source": { "type": "web", "url": "https://code.claude.com/docs/en/model-config", "timestamp": null, "title": "Model configuration — Claude Code Docs", "author": "Anthropic" },
+      "evidence_quote": "Special mode that uses `opus` during plan mode, then switches to `sonnet` for execution",
+      "corroborating_sources": [],
+      "payload": { "action": "command", "command": "/model opusplan", "target": "Claude Code session", "note": "Or set it in settings for a standing default." }
+    },
+    {
+      "id": "f-05", "dedup_key": "move-claudemd-workflows-to-skills", "classification": "integrate-now",
+      "claim": "Move workflow-specific instructions (PR-review steps, migration playbooks, deploy rules) out of CLAUDE.md into on-demand skills, and keep each CLAUDE.md under 200 lines — everything in CLAUDE.md loads into context every session even when irrelevant to the task.",
+      "confidence": "high", "impact": "high", "effort": "moderate", "priority": 4.5,
+      "source": { "type": "web", "url": "https://code.claude.com/docs/en/costs", "timestamp": null, "title": "Manage costs effectively — Claude Code Docs", "author": "Anthropic" },
+      "evidence_quote": "moving specialized instructions into skills keeps your base context smaller. Aim to keep CLAUDE.md under 200 lines by including only essentials.",
+      "corroborating_sources": [],
+      "payload": { "action": "command", "command": "move per-workflow rules → ~/.claude/skills/<name>/SKILL.md; trim CLAUDE.md to essentials", "target": "CLAUDE.md + skills" }
+    },
+    {
+      "id": "f-06", "dedup_key": "trim-unused-mcp-servers", "classification": "integrate-now",
+      "claim": "Trim connected MCP servers — run `/mcp` and disable any you're not actively using, prefer CLI tools (like `gh`) over MCP where possible, and run `/context` to see exactly what's consuming your window before real work.",
+      "confidence": "high", "impact": "high", "effort": "moderate", "priority": 4.5,
+      "source": { "type": "web", "url": "https://code.claude.com/docs/en/costs", "timestamp": null, "title": "Manage costs effectively — Claude Code Docs", "author": "Anthropic" },
+      "evidence_quote": "Run `/mcp` to see configured servers and disable any you're not actively using.",
+      "corroborating_sources": [],
+      "payload": { "action": "command", "command": "/mcp   # disable unused    ·    /context   # inspect the window", "target": "Claude Code session" }
+    },
+    {
+      "id": "f-07", "dedup_key": "delegate-verbose-ops-to-subagents", "classification": "behavior-change",
+      "claim": "Delegate verbose or research-heavy work (reading many files, running tests, fetching docs) to a sub-agent so the bulky output stays in the sub-agent's separate context and only a short summary returns — the single biggest lever for keeping your main context clean.",
+      "confidence": "high", "impact": "high", "effort": "trivial", "priority": 9.0,
+      "source": { "type": "web", "url": "https://code.claude.com/docs/en/sub-agents", "timestamp": null, "title": "Create custom subagents — Claude Code Docs", "author": "Anthropic" },
+      "evidence_quote": "the verbose output stays in the subagent's context while only the relevant summary returns to your main conversation.",
+      "corroborating_sources": [ { "type": "web", "url": "https://code.claude.com/docs/en/costs", "title": "Manage costs effectively — Claude Code Docs", "quote": "so the verbose output stays in the subagent's context while only a summary returns to your main conversation." } ],
+      "payload": { "target": "~/.claude/CLAUDE.md", "section": "Sub-agent & token hygiene", "diff": "+ - Delegate verbose/research-heavy work (many file reads, test runs, doc fetches) to a sub-agent;\n+   only a short summary returns to the main thread. [corroborated: sub-agents + costs docs]" }
+    },
+    {
+      "id": "f-08", "dedup_key": "subagent-return-compact-summary", "classification": "behavior-change",
+      "claim": "Always tell a sub-agent exactly what compact output to return (e.g. \"report only the failing tests with their error messages\") — its full result is pasted back into your main conversation, so several sub-agents each returning walls of text bloat context as badly as not delegating.",
+      "confidence": "high", "impact": "high", "effort": "trivial", "priority": 9.0,
+      "source": { "type": "web", "url": "https://code.claude.com/docs/en/sub-agents", "timestamp": null, "title": "Create custom subagents — Claude Code Docs", "author": "Anthropic" },
+      "evidence_quote": "Running many subagents that each return detailed results can consume significant context.",
+      "corroborating_sources": [],
+      "payload": { "target": "~/.claude/CLAUDE.md", "section": "Sub-agent & token hygiene", "diff": "+ - Every sub-agent prompt must specify the compact output to return; never let it dump raw walls of text back." }
+    },
+    {
+      "id": "f-09", "dedup_key": "dont-delegate-quick-lookups", "classification": "behavior-change",
+      "claim": "Don't spawn a sub-agent for a quick single-fact lookup or a small targeted edit — a sub-agent starts with a fresh, empty context and adds latency, so for anything fast just do it inline.",
+      "confidence": "high", "impact": "med", "effort": "trivial", "priority": 6.0,
+      "source": { "type": "web", "url": "https://code.claude.com/docs/en/sub-agents", "timestamp": null, "title": "Create custom subagents — Claude Code Docs", "author": "Anthropic" },
+      "evidence_quote": "Latency matters. Subagents start fresh and may need time to gather context",
+      "corroborating_sources": [],
+      "payload": { "target": "~/.claude/CLAUDE.md", "section": "Sub-agent & token hygiene", "diff": "+ - Don't delegate quick single-fact lookups or small edits — sub-agents start empty + add latency; do those inline." }
+    },
+    {
+      "id": "f-10", "dedup_key": "parallel-fanout-multiplies-tokens", "classification": "behavior-change",
+      "claim": "Remember parallel fan-out isn't free: every concurrent agent keeps its own context window, so running many at once multiplies spend (agent teams burn ~7× a normal session). On a tight budget, run explorations sequentially and keep any parallel batch small.",
+      "confidence": "high", "impact": "med", "effort": "trivial", "priority": 6.0,
+      "source": { "type": "web", "url": "https://code.claude.com/docs/en/costs", "timestamp": null, "title": "Manage costs effectively — Claude Code Docs", "author": "Anthropic" },
+      "evidence_quote": "Agent teams use approximately 7x more tokens than standard sessions when teammates run in plan mode, because each teammate maintains its own context window",
+      "corroborating_sources": [],
+      "payload": { "target": "~/.claude/CLAUDE.md", "section": "Sub-agent & token hygiene", "diff": "+ - Parallel fan-out multiplies tokens (each agent has its own window; agent teams ≈ 7×). Keep batches small on a tight budget." }
+    },
+    {
+      "id": "f-11", "dedup_key": "reserve-opus-for-synthesis", "classification": "behavior-change",
+      "claim": "Make this your standing routing default: Haiku for simple/mechanical tasks, Sonnet for most day-to-day work, Opus only for the hardest synthesis/reasoning. Never burn Opus on mechanical sub-agent work.",
+      "confidence": "high", "impact": "high", "effort": "trivial", "priority": 9.0,
+      "source": { "type": "web", "url": "https://platform.claude.com/docs/en/about-claude/pricing", "timestamp": null, "title": "Pricing — Claude Platform Docs", "author": "Anthropic" },
+      "evidence_quote": "Choose Haiku for simple tasks, Sonnet for most production workloads, and Opus for the most complex reasoning",
+      "corroborating_sources": [],
+      "payload": { "target": "~/.claude/CLAUDE.md", "section": "Model routing", "diff": "+ - Routing default: Haiku = simple/mechanical, Sonnet = most work, Opus = hardest synthesis only. Never Opus on grunt work." }
+    },
+    {
+      "id": "f-12", "dedup_key": "tune-effort-not-model", "classification": "behavior-change",
+      "claim": "Before reaching for a bigger model, tune the effort level instead — Anthropic says effort is often the better lever. Add `effort:` to sub-agent frontmatter: `low`/`medium` for cheap mechanical workers, `xhigh` for hard coding/agentic work.",
+      "confidence": "high", "impact": "high", "effort": "trivial", "priority": 9.0,
+      "source": { "type": "web", "url": "https://platform.claude.com/docs/en/about-claude/models/choosing-a-model", "timestamp": null, "title": "Choosing the right model — Claude Platform Docs", "author": "Anthropic" },
+      "evidence_quote": "Tuning effort is often a better lever than switching models.",
+      "corroborating_sources": [],
+      "payload": { "target": "~/.claude/CLAUDE.md", "section": "Model routing", "diff": "+ - Before switching to a bigger model, tune effort (low/medium mechanical, xhigh hard work) — often the better lever." }
+    },
+    {
+      "id": "f-13", "dedup_key": "haiku-vs-opus-5x-price-anchor", "classification": "behavior-change",
+      "claim": "Anchor Modelproof's routing math to the real gap: Haiku 4.5 is $1/$5 per MTok (in/out) vs Opus 4.8 at $5/$25 — a flat 5× on both — so moving high-volume mechanical sub-agent work off Opus cuts that slice of spend by ~80%.",
+      "confidence": "high", "impact": "med", "effort": "trivial", "priority": 6.0,
+      "source": { "type": "web", "url": "https://platform.claude.com/docs/en/about-claude/pricing", "timestamp": null, "title": "Pricing — Claude Platform Docs", "author": "Anthropic" },
+      "evidence_quote": "Using Claude Haiku 4.5 at $1/MTok input, $5/MTok output",
+      "corroborating_sources": [],
+      "payload": { "target": "modelproof + ~/.claude/CLAUDE.md", "section": "Model routing", "diff": "+ - Price anchor: Haiku 4.5 $1/$5 vs Opus 4.8 $5/$25 per MTok (5×). Mechanical volume off Opus ≈ 80% cheaper for that slice." }
+    },
+    {
+      "id": "f-14", "dedup_key": "prune-claudemd-per-line-test", "classification": "behavior-change",
+      "claim": "Prune CLAUDE.md ruthlessly: for each line ask \"would removing this cause Claude to make mistakes?\" and cut it if not. Bloat isn't just wasted tokens — an over-long CLAUDE.md makes Claude ignore your real instructions because they get buried.",
+      "confidence": "high", "impact": "med", "effort": "moderate", "priority": 3.0,
+      "source": { "type": "web", "url": "https://code.claude.com/docs/en/best-practices", "timestamp": null, "title": "Best practices for Claude Code — Claude Code Docs", "author": "Anthropic" },
+      "evidence_quote": "If not, cut it. Bloated CLAUDE.md files cause Claude to ignore your actual instructions!",
+      "corroborating_sources": [],
+      "payload": { "target": "~/.claude/CLAUDE.md", "section": "Context hygiene", "diff": "+ - Prune CLAUDE.md per line: \"would removing this cause a mistake?\" If not, cut it — bloat buries the real rules." }
+    },
+    {
+      "id": "f-15", "dedup_key": "compact-with-focus-before-long-task", "classification": "behavior-change",
+      "claim": "Before starting a long new task mid-session, run `/compact` with a focus (e.g. `/compact focus on the auth bug fix`) instead of waiting for auto-compaction to guess what to keep; add a standing compact directive to CLAUDE.md for priorities you always want preserved.",
+      "confidence": "high", "impact": "med", "effort": "trivial", "priority": 6.0,
+      "source": { "type": "web", "url": "https://code.claude.com/docs/en/context-window", "timestamp": null, "title": "Explore the context window — Claude Code Docs", "author": "Anthropic" },
+      "evidence_quote": "run `/compact` with instructions, like `/compact focus on the auth bug fix`, before starting a long new task.",
+      "corroborating_sources": [],
+      "payload": { "target": "~/.claude/CLAUDE.md", "section": "Context hygiene", "diff": "+ - Before a long new task mid-session, `/compact` with a focus rather than waiting for auto-compaction." }
+    },
+    {
+      "id": "f-16", "dedup_key": "preserve-prompt-cache-stable-tools", "classification": "behavior-change",
+      "claim": "Lean on prompt caching (automatic; cache reads ≈ a tenth of fresh-input cost) but don't invalidate the cached prefix mid-session — changing tool definitions (e.g. connecting/disconnecting an MCP server) wipes the entire cache. Keep your MCP/tool set stable within a session.",
+      "confidence": "moderate", "impact": "med", "effort": "trivial", "priority": 4.0,
+      "source": { "type": "web", "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-caching", "timestamp": null, "title": "Prompt caching — Claude Platform Docs", "author": "Anthropic" },
+      "evidence_quote": "Modifying tool definitions (names, descriptions, parameters) invalidates the entire cache",
+      "corroborating_sources": [],
+      "payload": { "target": "~/.claude/CLAUDE.md", "section": "Context hygiene", "diff": "+ - Keep the MCP/tool set stable within a session — changing tool definitions invalidates the whole prompt cache." }
+    }
+  ]
+}

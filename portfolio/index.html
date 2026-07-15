@@ -268,9 +268,9 @@
 <!-- SAMPLE RUN -->
 <section id="run">
   <div class="wrap">
-    <span class="eyebrow rise">A real run</span>
-    <h2 class="rise" style="margin:18px 0 8px;font-size:clamp(1.8rem,4vw,2.8rem)">“De-stale my sites.” → 18 sourced moves.</h2>
-    <p class="lead rise" style="margin-bottom:30px">Actual output on a Next.js + Tailwind stack. Every claim below links to a page that was really fetched.</p>
+    <span class="eyebrow rise">Real runs</span>
+    <h2 class="rise" style="margin:18px 0 8px;font-size:clamp(1.8rem,4vw,2.8rem)">Two prompts. 34 sourced moves.</h2>
+    <p class="lead rise" style="margin-bottom:30px">Actual output — every claim links to a page that was really fetched. <strong style="color:var(--ink)">1 — “de-stale my sites”</strong> on a Next.js + Tailwind stack:</p>
     <div class="glass report rise">
       <div class="rhead">
         <div class="t"><span class="metal">✦ Goldproof report</span> — UI libraries &amp; animation</div>
@@ -304,7 +304,36 @@
       </div>
       <p style="margin-top:18px;font-size:.78rem;color:var(--muted);font-family:var(--mono)">* YouTube 0 — the local backend is IP-blocked from cloud IPs (the documented caveat, demonstrated). Residential runs add creator-video findings with timestamps.</p>
     </div>
-    <div style="margin-top:22px" class="rise"><a class="btn btn-ghost" href="../examples/ui-libraries-and-animation/report.md">Read the full report →</a></div>
+    <div style="margin-top:22px" class="rise"><a class="btn btn-ghost" href="../examples/ui-libraries-and-animation/report.md">Read the full UI report →</a></div>
+
+    <p class="lead rise" style="margin:52px 0 30px"><strong style="color:var(--ink)">2 — “make my sub-agents token-efficient”</strong> — Goldproof pointed at its own architecture. All 8 sources are official Claude docs; the model-routing findings feed straight into <span style="color:var(--gold-hi)">Modelproof</span>.</p>
+    <div class="glass report rise">
+      <div class="rhead">
+        <div class="t"><span class="metal">✦ Goldproof report</span> — token-efficient sub-agents</div>
+        <div class="meta">Web <b>8</b> · YouTube <b>0</b>* · X <b>off</b><br>16 kept · <b>2 corroborated</b> · dry-run</div>
+      </div>
+      <div class="flist">
+        <div class="fitem">
+          <div class="top"><span class="chip hi">high</span><span class="chip tag">integrate-now</span><span class="chip tag" style="background:rgba(143,208,138,.1);border-color:rgba(143,208,138,.3);color:#9fd89a">✓ 2 sources</span></div>
+          <div class="claim">Give every mechanical sub-agent <code style="font-family:var(--mono);color:var(--gold-hi)">model: haiku</code> — the field defaults to your expensive main-session model if you omit it.</div>
+          <div class="src">◦ Claude Code docs (sub-agents + costs) — <a href="#">“routing tasks to faster, cheaper models like Haiku”</a></div>
+        </div>
+        <div class="fitem">
+          <div class="top"><span class="chip hi">high</span><span class="chip tag">behavior-change</span></div>
+          <div class="claim">Price anchor for Modelproof: Haiku 4.5 <code style="font-family:var(--mono);color:var(--gold-hi)">$1/$5</code> vs Opus 4.8 <code style="font-family:var(--mono);color:var(--gold-hi)">$5/$25</code> per MTok (5×) — mechanical volume off Opus ≈ 80% cheaper.</div>
+          <div class="src">◦ Claude Platform docs (pricing) — <a href="#">“Haiku 4.5 at $1/MTok input, $5/MTok output”</a></div>
+        </div>
+      </div>
+      <div class="first">
+        <h4>▶ Do this first</h4>
+        <ol>
+          <li><code style="font-family:var(--mono);color:var(--gold-hi)">model: haiku</code> on every mechanical sub-agent<span class="sc">9.0</span></li>
+          <li>Tell each sub-agent the compact output to return<span class="sc">9.0</span></li>
+          <li>Routing default: Haiku → Sonnet → Opus (Opus only for hard synthesis)<span class="sc">9.0</span></li>
+        </ol>
+      </div>
+    </div>
+    <div style="margin-top:22px" class="rise"><a class="btn btn-ghost" href="../examples/token-efficient-subagents/report.md">Read the full token report →</a></div>
   </div>
 </section>
 
