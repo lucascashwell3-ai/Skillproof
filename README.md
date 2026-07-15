@@ -12,6 +12,8 @@ proposed as diffs you approve. Dry-run by default.
 
 `MIT` · a Claude Code Skill · part of the `-proof` family (DATproof · Modelproof)
 
+<img src="portfolio/preview.png" alt="Goldproof — cosmic-gold showcase page: metallic wordmark on a dark starfield" width="840">
+
 </div>
 
 ---
@@ -113,7 +115,11 @@ Each run writes a human `report.md` (optionally a themed `report.html`) and a ma
 `findings.json`. The full schema — Finding object, confidence rubric, classification rules, per-tag
 payloads, and the "Do this first" ranking — is in
 [`references/output-contract.md`](references/output-contract.md). A complete real run is in
-[`examples/`](examples/).
+[`examples/`](examples/) — [`report.md`](examples/ui-libraries-and-animation/report.md),
+[`findings.json`](examples/ui-libraries-and-animation/findings.json), and a themed
+[`report.html`](examples/ui-libraries-and-animation/report.html) produced by
+`python3 scripts/render_report.py findings.json -o report.html`. A self-contained
+[portfolio showcase page](portfolio/index.html) presents the whole thing.
 
 ## Safety
 
@@ -128,12 +134,14 @@ goldproof/
 ├── SKILL.md                     # the orchestrator (trigger + procedure + guardrails)
 ├── scripts/
 │   ├── fetch_transcript.py      # local + hosted transcript backends, one interface
-│   └── x_read.py                # TwitterAPI.io reader with a hard read cap
+│   ├── x_read.py                # TwitterAPI.io reader with a hard read cap
+│   └── render_report.py         # findings.json → themed HTML report (optional output)
 ├── references/
 │   ├── output-contract.md       # the report schema (the differentiator)
 │   ├── query-generation.md      # loose prompt → search plan
 │   └── subagent-prompts.md      # fetch/distill templates (quote-or-drop)
-├── examples/                    # one real end-to-end run
+├── examples/                    # one real end-to-end run (report.md · report.html · findings.json)
+├── portfolio/index.html         # self-contained cosmic-gold showcase page
 ├── docs/architecture.md         # the decision record (recon + design)
 └── .env.example · LICENSE
 ```

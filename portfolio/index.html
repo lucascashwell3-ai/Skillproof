@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Goldproof — proven, sourced upgrades to your Claude Code setup</title>
+<meta name="description" content="A Claude Code skill that mines YouTube (and optionally X) for sourced, confidence-graded upgrades to your own tooling — integrate-now changes, skills to scaffold, and CLAUDE.md edits. Dry-run by default.">
+<style>
+  :root{
+    --bg:#07070c; --bg-2:#0b0b13; --ink:#e7e2d6; --ink-soft:#b7b2c0; --muted:#8a8598;
+    --gold-shadow:#957C51; --gold-mid:#B09D6B; --gold-hi:#CAB77D; --gold-accent:#DDB947; --gold-spark:#F6ECC9;
+    --violet:#7b5cc4; --violet-soft:rgba(123,92,196,.16);
+    --glass:rgba(255,255,255,.035); --glass-brd:rgba(202,183,125,.16); --glass-brd-strong:rgba(202,183,125,.34);
+    --z-base:0; --z-raise:10; --z-sticky:100; --z-overlay:1000;
+    --edge:clamp(20px,5vw,88px);
+    --sans:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",system-ui,sans-serif;
+    --serif:ui-serif,"New York",Georgia,"Times New Roman",serif;
+    --mono:ui-monospace,"SF Mono","Cascadia Code",Menlo,Consolas,monospace;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg); color:var(--ink); font-family:var(--sans);
+    line-height:1.6; -webkit-font-smoothing:antialiased; overflow-x:hidden;
+    font-size:clamp(16px,1.05vw,17px);
+  }
+  /* ---------- cosmic backdrop ---------- */
+  .sky{position:fixed;inset:0;z-index:-2;overflow:hidden;background:
+    radial-gradient(120% 90% at 78% -8%, rgba(123,92,196,.22), transparent 55%),
+    radial-gradient(90% 70% at 12% 8%, rgba(221,185,71,.10), transparent 50%),
+    radial-gradient(140% 120% at 50% 120%, rgba(123,92,196,.12), transparent 60%),
+    linear-gradient(180deg,#07070c,#090910 40%,#07070b);}
+  .sky::before{content:"";position:absolute;inset:-50%;background-image:
+    radial-gradient(1px 1px at 20% 30%,rgba(255,255,255,.7),transparent),
+    radial-gradient(1px 1px at 70% 65%,rgba(255,255,255,.5),transparent),
+    radial-gradient(1px 1px at 45% 85%,rgba(255,255,255,.55),transparent),
+    radial-gradient(1.4px 1.4px at 85% 20%,rgba(246,236,201,.7),transparent),
+    radial-gradient(1px 1px at 33% 55%,rgba(255,255,255,.45),transparent),
+    radial-gradient(1px 1px at 60% 10%,rgba(255,255,255,.5),transparent),
+    radial-gradient(1.2px 1.2px at 12% 72%,rgba(202,183,125,.6),transparent);
+    background-size:100% 100%;opacity:.9}
+  .stars{position:fixed;inset:0;z-index:-1;pointer-events:none}
+  .stars i{position:absolute;width:2px;height:2px;border-radius:50%;
+    background:radial-gradient(circle,#fff,rgba(255,255,255,0));animation:tw var(--d,4s) ease-in-out infinite;animation-delay:var(--dl,0s)}
+  @keyframes tw{0%,100%{opacity:.15;transform:scale(.7)}50%{opacity:1;transform:scale(1.15)}}
+
+  /* ---------- shared ---------- */
+  .wrap{max-width:1120px;margin-inline:auto;padding-inline:var(--edge)}
+  section{position:relative;padding-block:clamp(72px,11vw,150px)}
+  .metal{
+    background:linear-gradient(100deg,var(--gold-shadow) 0%,var(--gold-mid) 18%,var(--gold-hi) 34%,var(--gold-spark) 47%,var(--gold-accent) 53%,var(--gold-hi) 66%,var(--gold-shadow) 100%);
+    background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;
+    animation:sheen 8s linear infinite;
+  }
+  @keyframes sheen{to{background-position:250% 0}}
+  h1,h2,h3{font-weight:640;letter-spacing:-.03em;text-wrap:balance;line-height:1.05}
+  .eyebrow{display:inline-flex;align-items:center;gap:.55em;font-size:.8rem;letter-spacing:.02em;color:var(--gold-hi);font-weight:560}
+  .eyebrow::before{content:"✦";color:var(--gold-accent);font-size:.9em}
+  p.lead{font-size:clamp(1.05rem,1.7vw,1.3rem);color:var(--ink-soft);max-width:60ch;line-height:1.55}
+  .glass{background:var(--glass);border:1px solid var(--glass-brd);border-radius:18px;
+    backdrop-filter:blur(14px) saturate(1.2);-webkit-backdrop-filter:blur(14px) saturate(1.2);
+    box-shadow:0 1px 0 rgba(255,255,255,.05) inset,0 -20px 40px -30px rgba(123,92,196,.4) inset,0 30px 60px -40px rgba(0,0,0,.8)}
+  a{color:inherit}
+  .btn{display:inline-flex;align-items:center;gap:.5em;font-weight:600;font-size:.98rem;
+    padding:.82em 1.4em;border-radius:12px;text-decoration:none;transition:transform .25s cubic-bezier(.2,.8,.2,1),box-shadow .25s,border-color .25s,background .25s;will-change:transform}
+  .btn-gold{color:#161006;
+    background:linear-gradient(140deg,var(--gold-spark),var(--gold-accent) 42%,var(--gold-mid));
+    box-shadow:0 0 0 1px rgba(246,236,201,.5) inset,0 10px 30px -12px rgba(221,185,71,.55)}
+  .btn-gold:hover{transform:translateY(-2px);box-shadow:0 0 0 1px rgba(246,236,201,.7) inset,0 16px 40px -12px rgba(221,185,71,.7)}
+  .btn-ghost{color:var(--ink);border:1px solid var(--glass-brd-strong);background:rgba(255,255,255,.02)}
+  .btn-ghost:hover{transform:translateY(-2px);border-color:var(--gold-hi);background:rgba(202,183,125,.06)}
+
+  /* reveal (content visible by default; motion only enhances) */
+  .rise{opacity:1}
+  .js .rise{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.2,.8,.2,1),transform .7s cubic-bezier(.2,.8,.2,1)}
+  .js .rise.in{opacity:1;transform:none}
+
+  /* ---------- hero ---------- */
+  .hero{min-height:100svh;display:grid;place-items:center;text-align:center;padding-top:64px}
+  .hero .kicker{margin-bottom:26px}
+  .coin{width:clamp(96px,13vw,148px);height:clamp(96px,13vw,148px);margin:0 auto 30px;position:relative;border-radius:50%;
+    background:
+      radial-gradient(60% 60% at 38% 32%,rgba(246,236,201,.9),transparent 60%),
+      conic-gradient(from 210deg,var(--gold-shadow),var(--gold-accent),var(--gold-spark),var(--gold-hi),var(--gold-shadow));
+    box-shadow:0 0 0 1px rgba(246,236,201,.4) inset,0 0 60px -6px rgba(221,185,71,.5),0 20px 60px -20px rgba(0,0,0,.9);
+    animation:spin 22s linear infinite}
+  .coin::before{content:"";position:absolute;inset:11%;border-radius:50%;background:
+    radial-gradient(70% 70% at 40% 34%,#12101a,#0a0910 70%);
+    box-shadow:0 0 0 1px rgba(202,183,125,.35) inset,0 6px 18px rgba(0,0,0,.6) inset}
+  .coin::after{content:"✦";position:absolute;inset:0;display:grid;place-items:center;font-size:clamp(30px,4vw,46px);
+    color:transparent;background:linear-gradient(140deg,var(--gold-spark),var(--gold-accent),var(--gold-mid));-webkit-background-clip:text;background-clip:text;
+    filter:drop-shadow(0 2px 6px rgba(0,0,0,.5));animation:spin 22s linear infinite reverse}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .hero h1{font-size:clamp(3.3rem,11vw,7rem);letter-spacing:-.045em;font-weight:680}
+  .hero .tag{font-family:var(--serif);font-style:italic;font-size:clamp(1.15rem,2.5vw,1.7rem);color:var(--gold-hi);margin-top:.35em;letter-spacing:-.01em;font-weight:500}
+  .hero p.lead{margin:22px auto 0}
+  .cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:38px}
+  .familychip{margin-top:40px;font-size:.82rem;color:var(--muted);letter-spacing:.01em}
+  .familychip b{color:var(--gold-hi);font-weight:600}
+  .scrollcue{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);color:var(--muted);font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;animation:bob 2.6s ease-in-out infinite}
+  @keyframes bob{0%,100%{transform:translate(-50%,0);opacity:.5}50%{transform:translate(-50%,7px);opacity:1}}
+
+  /* ---------- problem ---------- */
+  .problem h2{font-size:clamp(1.9rem,4.4vw,3.1rem);max-width:16ch}
+  .problem .big{font-family:var(--serif);font-style:italic;color:var(--ink)}
+  .transform{display:flex;align-items:center;gap:clamp(14px,3vw,34px);flex-wrap:wrap;margin-top:44px;font-size:clamp(1rem,1.6vw,1.15rem)}
+  .transform .from{color:var(--muted)}
+  .transform .arrow{color:var(--gold-accent);font-size:1.5em;line-height:1}
+  .transform .to{color:var(--gold-hi);font-weight:600}
+
+  /* ---------- pipeline ---------- */
+  .flow{display:grid;gap:14px;margin-top:52px;grid-template-columns:repeat(auto-fit,minmax(155px,1fr))}
+  .step{padding:22px 20px 24px;border-radius:16px;position:relative;background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.01));border:1px solid rgba(255,255,255,.06)}
+  .step .n{font-family:var(--mono);font-size:.78rem;color:var(--gold-accent);letter-spacing:.05em}
+  .step h3{font-size:1.06rem;margin:.5em 0 .35em;letter-spacing:-.02em}
+  .step p{font-size:.9rem;color:var(--muted);line-height:1.5}
+  .step.key{border-color:var(--glass-brd-strong);background:linear-gradient(180deg,rgba(221,185,71,.09),rgba(255,255,255,.01))}
+  .compress{margin-top:56px;display:flex;gap:clamp(18px,4vw,50px);align-items:center;flex-wrap:wrap;padding:clamp(24px,4vw,40px)}
+  .compress .num{font-size:clamp(3.2rem,9vw,6rem);font-weight:700;letter-spacing:-.05em;line-height:.9;white-space:nowrap}
+  .compress .txt{max-width:44ch}
+  .compress .txt p{color:var(--ink-soft)}
+  .compress .txt small{color:var(--muted);display:block;margin-top:10px;font-size:.85rem}
+
+  /* ---------- pillars ---------- */
+  .pillars{display:grid;gap:2px}
+  .pillar{display:grid;grid-template-columns:auto 1fr;gap:clamp(18px,4vw,44px);align-items:start;padding:clamp(26px,4vw,40px) 0;border-top:1px solid rgba(255,255,255,.07)}
+  .pillar:last-child{border-bottom:1px solid rgba(255,255,255,.07)}
+  .pillar .mk{font-size:clamp(1.6rem,4vw,2.4rem);line-height:1}
+  .pillar h3{font-size:clamp(1.25rem,2.6vw,1.7rem);margin-bottom:.4em}
+  .pillar p{color:var(--ink-soft);max-width:56ch}
+  .pillar code{font-family:var(--mono);font-size:.85em;color:var(--gold-hi);background:rgba(202,183,125,.08);padding:.12em .45em;border-radius:6px}
+
+  /* ---------- sample report ---------- */
+  .report{padding:clamp(22px,3.5vw,38px)}
+  .report .rhead{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;border-bottom:1px solid var(--glass-brd);padding-bottom:16px;margin-bottom:22px}
+  .report .rhead .t{font-weight:600;font-size:1.05rem}
+  .report .meta{font-family:var(--mono);font-size:.76rem;color:var(--muted);line-height:1.8}
+  .report .meta b{color:var(--gold-hi);font-weight:600}
+  .flist{display:flex;flex-direction:column;gap:14px;margin-top:8px}
+  .fitem{padding:16px 18px;border-radius:12px;background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.06)}
+  .fitem .top{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:8px}
+  .chip{font-family:var(--mono);font-size:.68rem;padding:.22em .6em;border-radius:999px;letter-spacing:.02em;font-weight:600}
+  .chip.hi{color:#0c1a0e;background:linear-gradient(140deg,#b8e6b0,#7fd07a)}
+  .chip.mod{color:#1a140a;background:linear-gradient(140deg,var(--gold-spark),var(--gold-accent))}
+  .chip.tag{color:var(--gold-hi);background:rgba(202,183,125,.1);border:1px solid var(--glass-brd)}
+  .fitem .claim{font-size:.98rem;color:var(--ink);line-height:1.5}
+  .fitem .src{font-family:var(--mono);font-size:.74rem;color:var(--muted);margin-top:8px}
+  .fitem .src a{color:var(--gold-hi);text-decoration:none;border-bottom:1px solid rgba(202,183,125,.3)}
+  .first{margin-top:24px;padding:20px 22px;border-radius:14px;background:linear-gradient(180deg,rgba(221,185,71,.08),transparent);border:1px solid var(--glass-brd)}
+  .first h4{font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-accent);margin-bottom:12px}
+  .first ol{list-style:none;counter-reset:f;display:flex;flex-direction:column;gap:9px}
+  .first li{counter-increment:f;display:flex;gap:12px;align-items:baseline;font-size:.92rem;color:var(--ink-soft)}
+  .first li::before{content:counter(f);font-family:var(--mono);font-size:.75rem;color:var(--gold-accent);border:1px solid var(--glass-brd);border-radius:6px;min-width:1.7em;height:1.7em;display:inline-grid;place-items:center;flex:none}
+  .first li .sc{margin-left:auto;font-family:var(--mono);font-size:.74rem;color:var(--muted)}
+
+  /* ---------- caveats ---------- */
+  .cav{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));margin-top:44px}
+  .cav .c{padding:26px 26px 28px;border-radius:16px}
+  .cav h3{font-size:1.15rem;margin-bottom:.5em;display:flex;align-items:center;gap:.5em}
+  .cav h3 .d{width:8px;height:8px;border-radius:50%;background:var(--gold-accent);box-shadow:0 0 12px var(--gold-accent)}
+  .cav p{color:var(--ink-soft);font-size:.95rem}
+  .cav code{font-family:var(--mono);font-size:.85em;color:var(--gold-hi)}
+
+  /* ---------- footer / install ---------- */
+  .foot{text-align:center}
+  .install{max-width:640px;margin:0 auto;padding:22px 24px;border-radius:14px;text-align:left;font-family:var(--mono);font-size:.86rem;color:var(--ink-soft);overflow-x:auto}
+  .install .c{color:var(--gold-hi)}
+  .install .cm{color:var(--muted)}
+  .foot .cta{margin-top:34px}
+  .colophon{margin-top:56px;font-size:.8rem;color:var(--muted);line-height:1.9}
+  .colophon a{color:var(--gold-hi);text-decoration:none}
+  .divider{height:1px;background:linear-gradient(90deg,transparent,var(--glass-brd-strong),transparent);margin:0 auto;max-width:1120px}
+
+  @media (max-width:560px){
+    .pillar{grid-template-columns:1fr}
+    .compress .num{font-size:3rem}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none!important;scroll-behavior:auto!important}
+    .metal{background-position:0 0}
+    .js .rise{opacity:1;transform:none;transition:none}
+  }
+</style>
+</head>
+<body>
+<div class="sky" aria-hidden="true"></div>
+<div class="stars" id="stars" aria-hidden="true"></div>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="wrap">
+    <span class="eyebrow kicker">A Claude Code skill · part of the -proof family</span>
+    <div class="coin" aria-hidden="true"></div>
+    <h1><span class="metal" style="background-position:0 0">Goldproof</span></h1>
+    <p class="tag">assay the noise. keep the gold.</p>
+    <p class="lead">Give it a loose prompt — a topic, a pain point, or <em>“things I think my build could do better.”</em> Goldproof mines YouTube (and optionally X) and hands back <strong style="color:var(--ink)">proven, sourced upgrades to your own tooling</strong> — not a reading list.</p>
+    <div class="cta">
+      <a class="btn btn-gold" href="https://github.com/lucascashwell3-ai/goldproof">★ View on GitHub</a>
+      <a class="btn btn-ghost" href="#run">See a real run ↓</a>
+    </div>
+    <p class="familychip">kin to <b>DATproof</b> · <b>Modelproof</b></p>
+  </div>
+  <div class="scrollcue">scroll</div>
+</header>
+
+<div class="divider"></div>
+
+<!-- PROBLEM -->
+<section class="problem">
+  <div class="wrap">
+    <span class="eyebrow rise">The problem</span>
+    <h2 class="rise" style="margin-top:18px">The best Claude Code technique lives in creators’ heads and <span class="big">YouTube walkthroughs</span> — not in docs you can grep.</h2>
+    <div class="transform rise">
+      <span class="from">a loose prompt</span>
+      <span class="arrow">→</span>
+      <span class="to">specific edits to your setup, each with a source</span>
+    </div>
+  </div>
+</section>
+
+<!-- HOW -->
+<section class="how">
+  <div class="wrap">
+    <span class="eyebrow rise">How it works</span>
+    <h2 class="rise" style="margin-top:18px;font-size:clamp(1.8rem,4vw,2.8rem)">You’re the brain. Retrieval is off-the-shelf.</h2>
+    <p class="lead rise" style="margin-top:16px">Sub-agents fetch and distill each source in isolation, so raw transcripts never touch your main context. Only compact, sourced findings come back.</p>
+    <div class="flow">
+      <div class="step rise"><div class="n">01</div><h3>Search plan</h3><p>Loose prompt → 3–5 targeted queries per source. Printed so you can tweak it.</p></div>
+      <div class="step rise"><div class="n">02</div><h3>Discovery</h3><p>Sub-agents return candidate videos & articles — lists only, no content yet.</p></div>
+      <div class="step rise key"><div class="n">03</div><h3>Fetch · distill</h3><p>One sub-agent per source. Raw text stays inside it; ~300-token findings return.</p></div>
+      <div class="step rise"><div class="n">04</div><h3>Synthesis</h3><p>Merge, corroborate, classify, rank — in a clean main context.</p></div>
+      <div class="step rise"><div class="n">05</div><h3>Approve</h3><p>Diffs proposed. Dry-run by default; <code style="font-family:var(--mono);color:var(--gold-hi)">--apply</code> writes on your yes.</p></div>
+    </div>
+    <div class="glass compress rise">
+      <div class="num"><span class="metal">30–50×</span></div>
+      <div class="txt">
+        <p>A 15-source run would dump ~150k tokens of raw transcripts into your context. Sub-agent isolation collapses that to a few thousand tokens of distilled findings.</p>
+        <small>You still pay to read the ore somewhere — the win is a clean context and parallel wall-clock. Source counts are capped so cost stays bounded.</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PILLARS -->
+<section class="why">
+  <div class="wrap">
+    <span class="eyebrow rise">Why it’s trustworthy</span>
+    <h2 class="rise" style="margin:18px 0 8px;font-size:clamp(1.8rem,4vw,2.8rem)">Three guarantees, load-bearing.</h2>
+    <div class="pillars" style="margin-top:34px">
+      <div class="pillar rise">
+        <div class="mk metal">⛏</div>
+        <div><h3>Sourced or it’s dropped</h3><p>Every finding carries a resolving URL, a verbatim evidence quote, and a timestamp for video. Anything it can’t locate a source for is <strong style="color:var(--ink)">discarded, never guessed</strong>. No fabricated attributions — ever.</p></div>
+      </div>
+      <div class="pillar rise">
+        <div class="mk metal">⚖</div>
+        <div><h3>Confidence-graded</h3><p>Each claim is graded <code>high</code> · <code>moderate</code> · <code>low</code> against the source. The same claim from two independent sources earns a bump. <code>low</code> findings surface but are never auto-applied.</p></div>
+      </div>
+      <div class="pillar rise">
+        <div class="mk metal">✦</div>
+        <div><h3>Your context stays clean</h3><p>Raw transcripts live and die inside the fetch sub-agents. Your main thread only ever holds the synthesis — that’s the whole point, and it’s what keeps quality high across many sources.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SAMPLE RUN -->
+<section id="run">
+  <div class="wrap">
+    <span class="eyebrow rise">A real run</span>
+    <h2 class="rise" style="margin:18px 0 8px;font-size:clamp(1.8rem,4vw,2.8rem)">“De-stale my sites.” → 18 sourced moves.</h2>
+    <p class="lead rise" style="margin-bottom:30px">Actual output on a Next.js + Tailwind stack. Every claim below links to a page that was really fetched.</p>
+    <div class="glass report rise">
+      <div class="rhead">
+        <div class="t"><span class="metal">✦ Goldproof report</span> — UI libraries &amp; animation</div>
+        <div class="meta">Web <b>14</b> · YouTube <b>0</b>* · X <b>off</b><br>18 kept · <b>0 fabricated</b> · dry-run</div>
+      </div>
+      <div class="flist">
+        <div class="fitem">
+          <div class="top"><span class="chip mod">moderate</span><span class="chip tag">skill-candidate</span></div>
+          <div class="claim">Package the <code style="font-family:var(--mono);color:var(--gold-hi)">npx shadcn add …</code> add-and-wire-in workflow as a reusable skill — shadcn/ui, Magic UI &amp; Aceternity all ship through it.</div>
+          <div class="src">◦ shadcn CLI (npm) — <a href="#">“Add components to your apps.”</a></div>
+        </div>
+        <div class="fitem">
+          <div class="top"><span class="chip hi">high</span><span class="chip tag">behavior-change</span></div>
+          <div class="claim">Commit to one type scale with paired line-heights and use only those steps — ad-hoc font sizing is the #1 tell of a generic page.</div>
+          <div class="src">◦ Tailwind <span style="color:var(--ink-soft)">theme.css</span> — <a href="#">“--text-base--line-height: calc(1.5 / 1);”</a></div>
+        </div>
+        <div class="fitem">
+          <div class="top"><span class="chip hi">high</span><span class="chip tag">integrate-now</span></div>
+          <div class="claim">Adopt Motion (formerly Framer Motion) for React micro-motion — TS-native, GPU-accelerated, fits Next 15 cleanly.</div>
+          <div class="src">◦ Motion (GitHub) — <a href="#">“…native browser APIs for 120fps, GPU-accelerated animations.”</a></div>
+        </div>
+      </div>
+      <div class="first">
+        <h4>▶ Do this first</h4>
+        <ol>
+          <li>Define one type scale (paired sizes + line-heights)<span class="sc">9.0</span></li>
+          <li>Drive all spacing from one 4px base<span class="sc">9.0</span></li>
+          <li>Respect <code style="font-family:var(--mono);color:var(--gold-hi)">prefers-reduced-motion</code> on all motion<span class="sc">9.0</span></li>
+          <li>Add Headless UI for accessible menus/modals<span class="sc">6.0</span></li>
+        </ol>
+      </div>
+      <p style="margin-top:18px;font-size:.78rem;color:var(--muted);font-family:var(--mono)">* YouTube 0 — the local backend is IP-blocked from cloud IPs (the documented caveat, demonstrated). Residential runs add creator-video findings with timestamps.</p>
+    </div>
+    <div style="margin-top:22px" class="rise"><a class="btn btn-ghost" href="../examples/ui-libraries-and-animation/report.md">Read the full report →</a></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CAVEATS -->
+<section class="caveats">
+  <div class="wrap">
+    <span class="eyebrow rise">Stated plainly</span>
+    <h2 class="rise" style="margin:18px 0 6px;font-size:clamp(1.8rem,4vw,2.8rem)">Two honest caveats.</h2>
+    <p class="lead rise">Honesty is a feature. These are in the README, not the fine print.</p>
+    <div class="cav">
+      <div class="glass c rise">
+        <h3><span class="d"></span>The cloud can’t read YouTube</h3>
+        <p><code>local</code> (free, no key) works from your laptop, but YouTube blocks datacenter IPs fast. So: personal use → <code>local</code>; cloud / CI / routine runs → <code>hosted</code> (Supadata or youtube-transcript.io, server-side). Goldproof detects a block and skips — it never fabricates a transcript.</p>
+      </div>
+      <div class="glass c rise">
+        <h3><span class="d"></span>X costs money per read</h3>
+        <p>Uses a <strong style="color:var(--ink)">third-party</strong> read API, never the official X API. <code>off</code> by default; needs <code>--include-x</code> + a key; every run is bounded by a hard read cap (default 200 ≈ <strong style="color:var(--ink)">$0.03</strong>). No key → skipped silently.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- FOOTER -->
+<section class="foot">
+  <div class="wrap">
+    <div class="coin" aria-hidden="true" style="width:64px;height:64px;margin-bottom:26px"></div>
+    <h2 style="font-size:clamp(1.7rem,4vw,2.6rem)"><span class="metal">Assay your setup.</span></h2>
+    <p class="lead" style="margin:14px auto 0">Drop it in your skills directory and point it at whatever you suspect you’re behind on.</p>
+    <div class="install glass" style="margin-top:30px">
+      <span class="cm"># install</span><br>
+      git clone https://github.com/lucascashwell3-ai/goldproof <span class="c">~/.claude/skills/goldproof</span><br>
+      pip install youtube-transcript-api<br><br>
+      <span class="cm"># then, in Claude Code</span><br>
+      <span class="c">/goldproof</span> best UI libraries &amp; animation to de-stale my sites
+    </div>
+    <div class="cta">
+      <a class="btn btn-gold" href="https://github.com/lucascashwell3-ai/goldproof">★ View on GitHub</a>
+      <a class="btn btn-ghost" href="../README.md">Read the docs</a>
+    </div>
+    <p class="colophon">
+      Built by <a href="https://github.com/lucascashwell3-ai">Lucas Cashwell</a> · MIT licensed<br>
+      Transcripts via youtube-transcript-api / Supadata · X reads via TwitterAPI.io<br>
+      <span style="color:var(--gold-hi)">✦</span> part of the -proof family — DATproof · Modelproof · Goldproof
+    </p>
+  </div>
+</section>
+
+<script>
+  document.documentElement.classList.add('js');
+  // scatter twinkling stars
+  (function(){
+    var box=document.getElementById('stars'),n=window.innerWidth<600?34:64,f=document.createDocumentFragment();
+    for(var i=0;i<n;i++){var s=document.createElement('i');
+      s.style.left=(Math.random()*100).toFixed(2)+'%';
+      s.style.top=(Math.random()*100).toFixed(2)+'%';
+      var sc=(Math.random()*1.4+.5).toFixed(2);s.style.transform='scale('+sc+')';
+      s.style.setProperty('--d',(Math.random()*4+2.5).toFixed(2)+'s');
+      s.style.setProperty('--dl',(Math.random()*4).toFixed(2)+'s');
+      if(Math.random()>.8)s.style.background='radial-gradient(circle,#F6ECC9,rgba(246,236,201,0))';
+      f.appendChild(s);}
+    box.appendChild(f);
+  })();
+  // reveal on scroll — enhances content that is ALWAYS revealed eventually.
+  (function(){
+    var rises=[].slice.call(document.querySelectorAll('.rise'));
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches){rises.forEach(function(e){e.classList.add('in')});return;}
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{threshold:.12,rootMargin:'0px 0px -8% 0px'});
+    rises.forEach(function(e,i){e.style.transitionDelay=(Math.min(i%5,4)*60)+'ms';io.observe(e);});
+    // safety net: guarantee no section ever ships blank (headless render, hidden tab, IO unsupported, no scroll)
+    setTimeout(function(){rises.forEach(function(e){e.classList.add('in')});},1100);
+  })();
+</script>
+</body>
+</html>

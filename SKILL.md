@@ -102,6 +102,8 @@ Collect all returned Findings. Then, per `references/output-contract.md`:
   `Do this first`, then findings grouped by tag, then `Considered & skipped`, then the sources
   appendix). The metadata block must state honest coverage (counts, dropped, blocked, X budget).
 - `findings.json` — the raw Finding array (what `--apply` consumes).
+- (optional) `report.html` — a themed, shareable view:
+  `python3 ${CLAUDE_SKILL_DIR}/scripts/render_report.py <out>/findings.json -o <out>/report.html`.
 - Tell the user the paths and print the **Do this first** shortlist inline.
 
 ## 7 · Propose (dry-run default) / apply
