@@ -37,6 +37,7 @@ Load these as you go (progressive disclosure — don't read them all up front):
 Extract the topic (everything not a flag) and flags:
 `--include-x` (default OFF) · `--max-x-reads N` (default 200; hard cap) · `--backend local|hosted`
 (default `local`, or `$GOLDPROOF_TRANSCRIPT_BACKEND`) · `--apply` (default OFF = dry-run) ·
+`--auto` (skip the findings-review gate; default is interactive) ·
 `--out DIR` (default `runs/<date>-<slug>/`). Also honor caps `$GOLDPROOF_MAX_YOUTUBE` (8),
 `$GOLDPROOF_MAX_WEB` (5). Echo the resolved config back to the user in one line before running.
 
@@ -92,8 +93,27 @@ Collect all returned Findings. Then, per `references/output-contract.md`:
 - **Classify** each finding with the ordered decision rules → `integrate-now` | `skill-candidate` |
   `behavior-change` | `ignore`, and attach the tag's payload (the exact command/config, a drop-in
   `SKILL.md` stub, or a `CLAUDE.md` diff block).
+- **Skill-candidate bar (higher — a skill is durable):** tag `skill-candidate` ONLY when the finding has
+  **≥moderate confidence AND corroboration (≥2 independent sources)**; otherwise keep another tag or
+  surface it at the review gate for an explicit yes. Every `skill-candidate` carries a one-line
+  `why_skill`. Never scaffold a `SKILL.md` the user hasn't confirmed.
 - **Score** `priority = (impact_w × confidence_w) / effort_w` for the ranked shortlist.
 - **Drop, don't guess:** any finding still lacking a resolving `source.url` is discarded and counted.
+
+## 5b · Findings review gate (interactive by default)
+
+Unless `--auto` is set, **stop and show the user the findings before building anything actionable.**
+- Present each finding compactly: `claim` · `confidence` · source (+ ✓ if corroborated) · proposed
+  classification · impact/effort. For every `skill-candidate`, show its one-line `why_skill`.
+- Let the user **approve / reject / reclassify**. Only approved findings get actionable payloads (skill
+  stub, diff, command) and are eligible for `--apply`. Rejected → moved to *Considered & skipped*.
+- **Skill-candidates need an explicit yes here** (they're durable). One that doesn't meet the
+  confidence + corroboration bar is shown as a *proposal to confirm*, never auto-built.
+- This is the trust gate: nothing becomes a skill or a `CLAUDE.md` edit until the user has seen *what
+  was found* and how well-sourced it is.
+
+In `--auto`, skip the pause but still enforce the skill-candidate bar and record every decision for the
+report. `--apply` always keeps its own per-item approval on top of this gate.
 
 ## 6 · Write the report
 
@@ -126,3 +146,6 @@ Collect all returned Findings. Then, per `references/output-contract.md`:
    `--max-x-reads`; missing key → skip silently.
 4. **Dry-run by default.** Files change only with `--apply` and per-item approval.
 5. **Disclose partial coverage.** Blocked/skipped/capped sources are named in the report.
+6. **Findings gate before build.** Unless `--auto`, the user reviews/approves findings before any skill
+   stub or diff is generated. Skill-candidates need ≥moderate confidence + corroboration (or an explicit
+   yes) + a `why_skill` line — never scaffold a `SKILL.md` the user hasn't confirmed.

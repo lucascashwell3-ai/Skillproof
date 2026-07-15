@@ -95,7 +95,11 @@ Chain 6–8 tuned colors instead of a flat 2-stop gradient; save as a token. Fla
 ## 🧩 New skills to scaffold
 
 <a id="f-06"></a>**f-06 · `add-ui-component` skill** &nbsp;`moderate` · impact med · effort trivial
-shadcn/ui, Magic UI and Aceternity all distribute through `npx shadcn add …` — package the add-and-wire-in procedure once. Drop-in stub:
+shadcn/ui, Magic UI and Aceternity all distribute through `npx shadcn add …` — package the add-and-wire-in procedure once.
+› _why a skill:_ the add-and-wire-in flow recurs across every project & registry — one reusable command beats re-explaining it each time.
+› ⚠️ `moderate` confidence + single source → under the skill-candidate bar this is **confirmed at the findings gate**, not auto-built.
+
+Drop-in stub:
 
 ```markdown
 ---

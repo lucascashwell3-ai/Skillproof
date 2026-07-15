@@ -88,6 +88,7 @@ _"research &lt;topic&gt; and tell me what to change."_
 | `--max-x-reads N` | 200 | Hard cap on X posts read this run. The reader refuses to exceed it. |
 | `--backend local\|hosted` | `local` | Transcript backend (see caveat below). |
 | `--apply` | off | Propose diffs and write approved ones. Omitted = dry-run. |
+| `--auto` | off | Skip the findings-review gate (default is interactive). |
 | `--out DIR` | `runs/<date>-<slug>/` | Where `report.md` + `findings.json` land. |
 
 Configuration lives in env vars — see [`.env.example`](.env.example).
@@ -123,9 +124,14 @@ payloads, and the "Do this first" ranking — is in
 
 ## Safety
 
-Dry-run by default. `--apply` shows each eligible diff and writes **only** on an explicit per-item yes,
-backs up any file it edits, and refuses a write whose target no longer matches the diff. `low`-confidence
-findings are never auto-applied.
+**Findings-review gate (default).** After the research and *before* anything is built, Goldproof shows
+you the findings — claim, source, confidence — and you **approve / reject / reclassify**. Skill-candidates
+clear a higher bar (≥moderate confidence + corroboration, or your explicit yes, plus a *why-a-skill* line)
+because a skill is durable. `--auto` skips the gate for a straight-through run you review at the end.
+
+Then dry-run by default: `--apply` shows each eligible diff and writes **only** on an explicit per-item
+yes, backs up any file it edits, and refuses a write whose target no longer matches the diff.
+`low`-confidence findings are never auto-applied.
 
 ## Repo layout
 

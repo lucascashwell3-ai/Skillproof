@@ -171,7 +171,9 @@ def _payload(f):
     if tag == "skill-candidate":
         sm = p.get("skill_md", "")
         path = p.get("suggested_path", "")
-        return (f'<div class="pay"><span class="cm"># {esc(path)}</span>\n' + _diff_lines(sm) + "</div>") if sm else ""
+        why = p.get("why_skill", "")
+        head = f'<span class="cm"># why a skill: {esc(why)}</span>\n' if why else ""
+        return (f'<div class="pay">{head}<span class="cm"># {esc(path)}</span>\n' + _diff_lines(sm) + "</div>") if sm else ""
     if tag == "behavior-change":
         diff = p.get("diff", "")
         tgt = p.get("target", "")

@@ -67,7 +67,9 @@
       "source": { "type": "web", "url": "https://registry.npmjs.org/shadcn", "timestamp": null, "title": "shadcn (CLI) — npm registry", "author": "shadcn" },
       "evidence_quote": "Add components to your apps.",
       "corroborating_sources": [],
+      "gate": "confirm-required (moderate confidence, single source) — approved at the findings gate",
       "payload": {
+        "why_skill": "The add-and-wire-in flow recurs across every project and every registry — worth one reusable command instead of re-explaining it each time.",
         "suggested_path": "~/.claude/skills/add-ui-component/SKILL.md",
         "skill_md": "---\nname: add-ui-component\ndescription: Add and wire in a UI component from a shadcn-compatible registry (shadcn/ui, Magic UI, Aceternity). Use when the user wants to drop in a button, dialog, animated hero, marquee, or other prebuilt component into a Next.js + Tailwind project.\nallowed-tools: Bash(npx shadcn *), Read, Edit\n---\n\n# Add a UI component\n\n1. Confirm the registry + component name (shadcn/ui default, or a full URL for Magic UI / Aceternity).\n2. Run `npx shadcn@latest add <name-or-url>`.\n3. Import it where needed and wire props; keep styling in Tailwind classes so it matches the site's tokens.\n4. Check it against prefers-reduced-motion if it animates.\n"
       }

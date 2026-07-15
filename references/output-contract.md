@@ -106,14 +106,18 @@ Guidance for the fuzzy 2-vs-3-vs-4 boundary:
 ```
 
 ### 4b. `skill-candidate` → a drop-in SKILL.md stub
-The payload is a **ready-to-save SKILL.md** (valid frontmatter within the 1,536-char description cap):
+The payload is a **ready-to-save SKILL.md** (valid frontmatter within the 1,536-char description cap),
+plus a one-line `why_skill`. **Higher bar:** `skill-candidate` requires **≥moderate confidence AND
+corroboration (≥2 independent sources)**, or an explicit user yes at the findings gate (§8b) — a skill
+is durable, so it's held to a higher standard than a config tweak.
 ```jsonc
 "payload": {
+  "why_skill": "This add-and-wire-in flow recurs across every project — worth invoking as one command.",
   "suggested_path": "~/.claude/skills/context-budget/SKILL.md",
   "skill_md": "---\nname: context-budget\ndescription: Report and trim the running context budget for a Claude Code session. Use when the user says the context is getting full, asks to compact, or wants to see what is consuming tokens before a long task.\nallowed-tools: Read, Bash\n---\n\n# Context budget\n\n1. Estimate current context usage …\n2. List the largest consumers …\n3. Propose what to /compact or drop.\n"
 }
 ```
-The stub is a *starting point* the user reviews — not auto-installed.
+The stub is a *starting point* the user confirms at the findings gate (§8b) — never auto-installed.
 
 ### 4c. `behavior-change` → a CLAUDE.md diff block
 ```jsonc
@@ -196,6 +200,26 @@ ranking is legible, e.g. `impact:high × conf:high / effort:trivial = 9.0`.
   `payload.diff`/`skill_md`/`command`. `low`-confidence and `ignore` items are never in the apply set.
 - A file write is refused if the target's current content doesn't match the diff's context (no blind
   overwrite). Backups are made before any edit to an existing file.
+
+---
+
+## 8b. Findings-review gate & the skill-candidate bar
+
+Two checkpoints protect **relevance + quality**, not just truth:
+
+1. **Findings gate (default; `--auto` skips).** After synthesis and before any actionable payload is
+   built, the run presents every finding — `claim` · `confidence` · source (✓ if corroborated) ·
+   proposed tag · impact/effort — and the user **approves / rejects / reclassifies**. Only approved
+   findings get a diff/stub/command and become `--apply`-eligible. Rejected → *Considered & skipped*.
+2. **Skill-candidate bar (always on).** A skill is durable, so `skill-candidate` is held higher than a
+   config tweak: it needs **≥moderate confidence AND corroboration (≥2 independent sources)**, or an
+   explicit user yes at the gate, plus a one-line `why_skill`. Below the bar it's surfaced as a
+   *proposal to confirm* — never auto-built.
+
+Modes: `--interactive` (default) runs the gate; `--auto` runs straight through (still enforcing the bar
+and recording every decision). `--apply` keeps its own per-item approval on top of either. Net effect:
+**nothing becomes a skill or a `CLAUDE.md` edit until the user has seen what was found and how
+well-sourced it is.**
 
 ---
 
