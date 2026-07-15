@@ -1,0 +1,184 @@
+{
+  "run": {
+    "topic": "best web-design / UI component libraries & animation techniques to de-stale my sites",
+    "generated": "2026-07-15",
+    "sources": { "web": 14, "youtube": 0, "x": "off" },
+    "backend": "local",
+    "dry_run": true,
+    "coverage_notes": [
+      "YouTube: 0 transcripts — the local backend is IP-blocked from this cloud container (ProxyError before reaching YouTube). On a residential machine, YouTube creator findings would be added. This is the documented cloud-IP caveat, demonstrated.",
+      "Some design blogs (Josh Comeau, Smashing, NN/g, web.dev) were egress-blocked (connect_rejected) in this session; the visual-polish facet was re-anchored to official design-token source files (Tailwind theme.css, Open Props) that were actually retrieved. No quotes were fabricated.",
+      "X: disabled (default)."
+    ],
+    "stack_context": "Next.js 15 + Tailwind CSS v3 + TypeScript",
+    "counts": { "kept": 18, "dropped_no_source": 0, "fabricated": 0 }
+  },
+  "do_this_first": ["f-13", "f-14", "f-11", "f-03", "f-01", "f-07", "f-08"],
+  "findings": [
+    {
+      "id": "f-01", "dedup_key": "adopt-shadcn-ui", "classification": "integrate-now",
+      "claim": "Adopt shadcn/ui as your base component system — its CLI copies modern, accessible components (Radix + Tailwind) into your repo so you own and freely restyle the code, instead of fighting a black-box npm design system.",
+      "confidence": "high", "impact": "high", "effort": "moderate", "priority": 4.5,
+      "source": { "type": "web", "url": "https://raw.githubusercontent.com/shadcn-ui/ui/main/README.md", "timestamp": null, "title": "shadcn/ui — README (GitHub)", "author": "shadcn-ui" },
+      "evidence_quote": "A set of beautifully designed components that you can customize, extend, and build on. Start here then make it your own. Open Source. Open Code.",
+      "corroborating_sources": [],
+      "payload": { "action": "install", "command": "npx shadcn@latest init && npx shadcn@latest add button card dialog input", "target": "your Next.js app", "note": "Works with Tailwind v3. Components land in components/ui and are yours to restyle." }
+    },
+    {
+      "id": "f-02", "dedup_key": "build-on-radix-primitives", "classification": "integrate-now",
+      "claim": "Build dropdowns, dialogs, tooltips and comboboxes on Radix Primitives, which supplies accessibility (ARIA, focus management, keyboard nav) unstyled so you apply your own Tailwind — adopt it incrementally as the base layer of your design system.",
+      "confidence": "high", "impact": "high", "effort": "moderate", "priority": 4.5,
+      "source": { "type": "web", "url": "https://raw.githubusercontent.com/radix-ui/primitives/main/README.md", "timestamp": null, "title": "Radix Primitives — README (GitHub)", "author": "WorkOS / Radix UI" },
+      "evidence_quote": "Radix Primitives is a low-level UI component library with a focus on accessibility, customization and developer experience. You can use these components either as the base layer of your design system, or adopt them incrementally.",
+      "corroborating_sources": [],
+      "payload": { "action": "install", "command": "npm i radix-ui", "target": "your Next.js app", "note": "shadcn/ui already sits on Radix; adding Radix directly is for primitives shadcn doesn't cover." }
+    },
+    {
+      "id": "f-03", "dedup_key": "add-headless-ui", "classification": "integrate-now",
+      "claim": "For lightweight interactive primitives (menus, dialogs, comboboxes, transitions) without the full shadcn/Radix stack, add Headless UI — it's from the Tailwind team and integrates natively with Tailwind, so it drops in with almost no setup.",
+      "confidence": "high", "impact": "med", "effort": "trivial", "priority": 6.0,
+      "source": { "type": "web", "url": "https://registry.npmjs.org/@headlessui/react", "timestamp": null, "title": "@headlessui/react — npm registry", "author": "Tailwind Labs" },
+      "evidence_quote": "A set of completely unstyled, fully accessible UI components for React, designed to integrate beautifully with Tailwind CSS.",
+      "corroborating_sources": [],
+      "payload": { "action": "install", "command": "npm i @headlessui/react", "target": "your Next.js app", "note": "Lowest-friction way to replace hand-rolled menus/modals with accessible ones." }
+    },
+    {
+      "id": "f-04", "dedup_key": "adopt-heroui-tailwind-native", "classification": "integrate-now",
+      "claim": "If you want pre-styled speed over assembly, consider HeroUI (formerly NextUI): a batteries-included, beautiful-by-default, Tailwind-native React library — but its current version is built on Tailwind v4.0, so adopting it means migrating your sites off Tailwind v3.",
+      "confidence": "high", "impact": "high", "effort": "involved", "priority": 3.0,
+      "source": { "type": "web", "url": "https://registry.npmjs.org/@heroui/react", "timestamp": null, "title": "@heroui/react — npm registry", "author": "HeroUI" },
+      "evidence_quote": "🚀 Beautiful and modern React UI library built with Tailwind CSS 4.0.",
+      "corroborating_sources": [],
+      "payload": { "action": "install", "command": "npm i @heroui/react", "target": "your Next.js app", "note": "Effort=involved: requires a Tailwind v3→v4 migration first. Weigh against staying on shadcn (v3-compatible)." }
+    },
+    {
+      "id": "f-05", "dedup_key": "animated-components-magic-aceternity", "classification": "integrate-now",
+      "claim": "Fix the 'plain/stale' look on landing and marketing pages by layering in motion-rich components from Magic UI (and sibling Aceternity UI) — animated hero/section effects that install via the same shadcn-style CLI and drop into your Next+Tailwind setup.",
+      "confidence": "moderate", "impact": "high", "effort": "moderate", "priority": 3.0,
+      "source": { "type": "web", "url": "https://raw.githubusercontent.com/magicuidesign/magicui/main/README.md", "timestamp": null, "title": "Magic UI — README (GitHub)", "author": "magicuidesign" },
+      "evidence_quote": "UI Library for Design Engineers",
+      "corroborating_sources": [],
+      "payload": { "action": "command", "command": "npx shadcn@latest add \"https://magicui.design/r/marquee\"", "target": "marketing/landing pages", "note": "Use sparingly on hero sections; over-animation reads as busy (see f-12)." }
+    },
+    {
+      "id": "f-06", "dedup_key": "shadcn-cli-add-workflow", "classification": "skill-candidate",
+      "claim": "Standardize your component workflow around the shadcn CLI (`npx shadcn add ...`): shadcn/ui, Magic UI and Aceternity all distribute through this same add-to-your-app mechanism, so package the 'add + wire in a component' procedure as a reusable skill.",
+      "confidence": "moderate", "impact": "med", "effort": "trivial", "priority": 4.0,
+      "source": { "type": "web", "url": "https://registry.npmjs.org/shadcn", "timestamp": null, "title": "shadcn (CLI) — npm registry", "author": "shadcn" },
+      "evidence_quote": "Add components to your apps.",
+      "corroborating_sources": [],
+      "payload": {
+        "suggested_path": "~/.claude/skills/add-ui-component/SKILL.md",
+        "skill_md": "---\nname: add-ui-component\ndescription: Add and wire in a UI component from a shadcn-compatible registry (shadcn/ui, Magic UI, Aceternity). Use when the user wants to drop in a button, dialog, animated hero, marquee, or other prebuilt component into a Next.js + Tailwind project.\nallowed-tools: Bash(npx shadcn *), Read, Edit\n---\n\n# Add a UI component\n\n1. Confirm the registry + component name (shadcn/ui default, or a full URL for Magic UI / Aceternity).\n2. Run `npx shadcn@latest add <name-or-url>`.\n3. Import it where needed and wire props; keep styling in Tailwind classes so it matches the site's tokens.\n4. Check it against prefers-reduced-motion if it animates.\n"
+      }
+    },
+    {
+      "id": "f-07", "dedup_key": "adopt-motion-react-animations", "classification": "integrate-now",
+      "claim": "Adopt Motion (formerly Framer Motion) as your default for React micro-motion — declarative entrances, hover/tap gestures, and layout transitions. It's TypeScript-native and GPU-accelerated, so it fits your Next 15 + TS UI cleanly.",
+      "confidence": "high", "impact": "high", "effort": "moderate", "priority": 4.5,
+      "source": { "type": "web", "url": "https://github.com/motiondivision/motion", "timestamp": null, "title": "Motion — animation library for JS, React and Vue", "author": "Motion (motiondivision)" },
+      "evidence_quote": "Power of JavaScript combined with native browser APIs for 120fps, GPU-accelerated animations.",
+      "corroborating_sources": [],
+      "payload": { "action": "install", "command": "npm i motion", "target": "your React components", "note": "import { motion } from \"motion/react\"; then <motion.div animate={{ x: 100 }} />. Pair with f-11/f-12 for tasteful defaults." }
+    },
+    {
+      "id": "f-08", "dedup_key": "adopt-view-transitions-nextjs", "classification": "integrate-now",
+      "claim": "For page/route feel, enable View Transitions in Next.js and wrap shared elements (a grid thumbnail that becomes a hero) in <ViewTransition> with a matching name — the browser animates route changes automatically, and unsupported browsers just navigate normally.",
+      "confidence": "high", "impact": "high", "effort": "moderate", "priority": 4.5,
+      "source": { "type": "web", "url": "https://nextjs.org/docs/app/guides/view-transitions", "timestamp": null, "title": "Designing view transitions", "author": "Next.js (Vercel)" },
+      "evidence_quote": "You name the elements that should persist, and the browser animates between their old and new positions.",
+      "corroborating_sources": [],
+      "payload": { "action": "config-edit", "target": "next.config.ts", "change": "experimental: { viewTransition: true }", "note": "Then wrap shared elements in <ViewTransition name=\"...\">. Progressive: no-support = normal nav." }
+    },
+    {
+      "id": "f-09", "dedup_key": "native-scroll-driven-animations", "classification": "integrate-now",
+      "claim": "Replace scroll-event listeners / IntersectionObserver 'reveal on scroll' JS with native CSS animation-timeline: view() (scroll-triggered) or scroll() (scroll-linked). Zero JavaScript, so scroll animations stop competing for the main thread and won't jank your marketing pages.",
+      "confidence": "high", "impact": "high", "effort": "moderate", "priority": 4.5,
+      "source": { "type": "web", "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Scroll-driven_animations/Timelines", "timestamp": null, "title": "Scroll-driven animation timelines", "author": "MDN Web Docs" },
+      "evidence_quote": "Any time you rely on the main thread to render effects with JavaScript, you run the risk of blocking the main thread, which can lead to an unresponsive page and a bad user experience",
+      "corroborating_sources": [],
+      "payload": { "action": "config-edit", "target": "CSS", "change": "animation-timeline: view(); animation-range: entry 0% cover 40%;", "note": "Pair with f-10 feature-detection for Firefox fallback." }
+    },
+    {
+      "id": "f-10", "dedup_key": "supports-feature-detect-scroll", "classification": "behavior-change",
+      "claim": "Treat scroll-driven animations as progressive enhancement: gate the CSS behind @supports (animation-timeline: view()) so browsers that lack support (notably Firefox stable) fall back to fully-readable static content instead of breaking.",
+      "confidence": "moderate", "impact": "med", "effort": "trivial", "priority": 4.0,
+      "source": { "type": "web", "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Scroll-driven_animations", "timestamp": null, "title": "CSS scroll-driven animations", "author": "MDN Web Docs" },
+      "evidence_quote": "@supports not (scroll-timeline: --main-timeline)",
+      "corroborating_sources": [],
+      "payload": { "target": "project CLAUDE.md", "section": "UI / design house rules", "diff": "+ - Scroll-driven CSS animations are progressive enhancement: always gate them behind\n+   `@supports (animation-timeline: view())` so unsupported browsers get readable static content." }
+    },
+    {
+      "id": "f-11", "dedup_key": "respect-prefers-reduced-motion", "classification": "behavior-change",
+      "claim": "Always wrap non-essential motion in @media (prefers-reduced-motion: reduce) and tone it down — swap scaling/sliding for a gentle opacity dissolve, or drop durations to 0. Large scaling/panning can physically trigger discomfort, so this is a baseline accessibility must.",
+      "confidence": "high", "impact": "high", "effort": "trivial", "priority": 9.0,
+      "source": { "type": "web", "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@media/prefers-reduced-motion", "timestamp": null, "title": "prefers-reduced-motion — MDN", "author": "MDN Web Docs" },
+      "evidence_quote": "Animations such as scaling or panning large objects can be vestibular motion triggers.",
+      "corroborating_sources": [],
+      "payload": { "target": "project CLAUDE.md", "section": "UI / design house rules", "diff": "+ - All non-essential motion must be wrapped in `@media (prefers-reduced-motion: reduce)`\n+   (reduce to an opacity fade or 0ms). Never ship scaling/panning motion without it." }
+    },
+    {
+      "id": "f-12", "dedup_key": "subtle-fast-asymmetric-motion", "classification": "behavior-change",
+      "claim": "Make motion subtle and quick so it reads as 'considered', not 'busy': small travel (~60px), short durations (exits ~150ms, enters ~200–400ms), and make exits faster than entrances. That fast-out/gentle-in asymmetry separates tasteful motion from over-animated jank.",
+      "confidence": "moderate", "impact": "med", "effort": "trivial", "priority": 4.0,
+      "source": { "type": "web", "url": "https://nextjs.org/docs/app/guides/view-transitions", "timestamp": null, "title": "Designing view transitions", "author": "Next.js (Vercel)" },
+      "evidence_quote": "Old content should leave quickly so it does not compete for attention. New content should arrive more gently so the user has time to register it.",
+      "corroborating_sources": [],
+      "payload": { "target": "project CLAUDE.md", "section": "UI / design house rules", "diff": "+ - Motion defaults: travel ≤ ~60px; enters 200–400ms, exits ~150ms (exits faster than enters).\n+   Prefer opacity+small-translate over scale. If it feels 'busy', it's too much." }
+    },
+    {
+      "id": "f-13", "dedup_key": "define-type-scale", "classification": "behavior-change",
+      "claim": "Stop hand-picking a font-size per element. Commit to one type scale where every step pairs with a matching line-height (as Tailwind's own theme defines it) and use only those steps — ad-hoc type sizing is the single biggest tell of a generic, AI-generated page.",
+      "confidence": "high", "impact": "high", "effort": "trivial", "priority": 9.0,
+      "source": { "type": "web", "url": "https://github.com/tailwindlabs/tailwindcss/blob/f861d5c5e6909b9f0dd59ae476ff6d551f492bef/packages/tailwindcss/theme.css", "timestamp": null, "title": "tailwindcss — theme.css (default design tokens)", "author": "Tailwind Labs" },
+      "evidence_quote": "--text-base: 1rem;\n  --text-base--line-height: calc(1.5 / 1);",
+      "corroborating_sources": [],
+      "payload": { "target": "project CLAUDE.md", "section": "UI / design house rules", "diff": "+ - Type: use only the defined scale (text-sm/base/lg/xl/2xl…) with its paired line-height.\n+   No ad-hoc font sizes. Ad-hoc sizing is the #1 tell of a generic page." }
+    },
+    {
+      "id": "f-14", "dedup_key": "single-spacing-base", "classification": "behavior-change",
+      "claim": "Drive all padding, margin and gap from one spacing base unit (Tailwind's is 0.25rem / 4px) instead of ad-hoc pixel values, so vertical rhythm and gaps snap to a consistent grid across every section rather than drifting.",
+      "confidence": "high", "impact": "high", "effort": "trivial", "priority": 9.0,
+      "source": { "type": "web", "url": "https://github.com/tailwindlabs/tailwindcss/blob/f861d5c5e6909b9f0dd59ae476ff6d551f492bef/packages/tailwindcss/theme.css", "timestamp": null, "title": "tailwindcss — theme.css (default design tokens)", "author": "Tailwind Labs" },
+      "evidence_quote": "--spacing: 0.25rem;",
+      "corroborating_sources": [],
+      "payload": { "target": "project CLAUDE.md", "section": "UI / design house rules", "diff": "+ - Spacing: every padding/margin/gap comes from the 4px spacing scale. No ad-hoc px values." }
+    },
+    {
+      "id": "f-15", "dedup_key": "layered-shadows", "classification": "integrate-now",
+      "claim": "Replace flat single box-shadows with a multi-layer shadow — several stacked shadow lines sharing one shadow-color and graduated opacity — and store them as reusable tokens (shadow-1…6) so elevation reads as deliberate depth, not a default drop shadow.",
+      "confidence": "moderate", "impact": "med", "effort": "moderate", "priority": 2.0,
+      "source": { "type": "web", "url": "https://github.com/argyleink/open-props/blob/b515be8e7ab907f085ee7fa175e21456a358cd6c/src/props.shadows.css", "timestamp": null, "title": "Open Props — props.shadows.css", "author": "Adam Argyle" },
+      "evidence_quote": "--shadow-5: \n    0 -1px 2px 0 hsl(var(--shadow-color) / var(--shadow-strength-3)),",
+      "corroborating_sources": [],
+      "payload": { "action": "install", "command": "npm i open-props", "target": "your CSS/tokens", "note": "Or copy the layered-shadow tokens into your Tailwind theme extend.boxShadow." }
+    },
+    {
+      "id": "f-16", "dedup_key": "dark-mode-shadow-adapt", "classification": "behavior-change",
+      "claim": "Don't reuse light-mode shadows in dark mode. Under prefers-color-scheme: dark, shift the shadow color much darker and raise its strength (Open Props jumps strength from ~1% to 25%), or elevation and cards visually flatten on dark surfaces.",
+      "confidence": "high", "impact": "med", "effort": "moderate", "priority": 3.0,
+      "source": { "type": "web", "url": "https://github.com/argyleink/open-props/blob/b515be8e7ab907f085ee7fa175e21456a358cd6c/src/props.shadows.css", "timestamp": null, "title": "Open Props — props.shadows.css", "author": "Adam Argyle" },
+      "evidence_quote": "@media (--OSdark) {\n  :where(html) {\n    --shadow-color: 220 40% 2%;\n    --shadow-strength: 25%;",
+      "corroborating_sources": [],
+      "payload": { "target": "project CLAUDE.md", "section": "UI / design house rules", "diff": "+ - Dark mode: never reuse light shadows — darken shadow-color and raise strength, or cards flatten." }
+    },
+    {
+      "id": "f-17", "dedup_key": "easing-tokens", "classification": "behavior-change",
+      "claim": "Define a small set of named easing tokens (custom cubic-beziers — an ease-out for entering elements) and reference them in every transition, instead of leaving each hover/press on the browser default ease. Shared, intentional easing makes motion feel considered.",
+      "confidence": "moderate", "impact": "med", "effort": "trivial", "priority": 4.0,
+      "source": { "type": "web", "url": "https://github.com/argyleink/open-props/blob/b515be8e7ab907f085ee7fa175e21456a358cd6c/src/props.easing.css", "timestamp": null, "title": "Open Props — props.easing.css", "author": "Adam Argyle" },
+      "evidence_quote": "--ease-out-5: cubic-bezier(0, 0, 0, 1);\n  --ease-in-out-1: cubic-bezier(.1, 0, .9, 1);",
+      "corroborating_sources": [],
+      "payload": { "target": "project CLAUDE.md", "section": "UI / design house rules", "diff": "+ - Easing: reference named easing tokens (e.g. --ease-out-5) in transitions; no default ease." }
+    },
+    {
+      "id": "f-18", "dedup_key": "multistop-gradients", "classification": "integrate-now",
+      "claim": "When you use a gradient, reach for a rich multi-stop blend (Open Props gradients chain 6–8 hand-tuned colors) rather than a flat two-color linear-gradient, and save it as a token so it's reused consistently — flat 2-stop gradients are a classic generic-template signal.",
+      "confidence": "moderate", "impact": "low", "effort": "trivial", "priority": 2.0,
+      "source": { "type": "web", "url": "https://github.com/argyleink/open-props/blob/b515be8e7ab907f085ee7fa175e21456a358cd6c/src/props.gradients.css", "timestamp": null, "title": "Open Props — props.gradients.css", "author": "Adam Argyle" },
+      "evidence_quote": "linear-gradient(to bottom right var(--gradient-space), #1f005c, #5b0060, #870160, #ac255e, #ca485c, #e16b5c, #f39060, #ffb56b)",
+      "corroborating_sources": [],
+      "payload": { "action": "config-edit", "target": "your CSS/tokens", "change": "Define a multi-stop gradient token; reuse it instead of ad-hoc 2-color gradients." }
+    }
+  ]
+}
