@@ -1,4 +1,4 @@
-# Goldproof — Output Contract (Phase 2)
+# Skillproof — Output Contract (Phase 2)
 
 > This is the spec Phase 3 implements. It defines exactly what a run produces: the **Finding**
 > object, the **confidence** rubric, the **classification** taxonomy and its decision rules, the
@@ -148,7 +148,7 @@ The stub is a *starting point* the user confirms at the findings gate (§8b) —
 ## 6. The report document (`report.md`)
 
 ```
-# Goldproof report — "<topic>"
+# Skillproof report — "<topic>"
 <run metadata block>
 
 ## Do this first        ← the ranked shortlist (§7), 5–7 items, each linking to its finding
@@ -195,7 +195,7 @@ ranking is legible, e.g. `impact:high × conf:high / effort:trivial = 9.0`.
 
 - Every run writes `findings.json` = the raw Finding array. `report.md` is its rendering.
 - **Dry-run (default):** nothing is written outside the run's own output folder.
-- **`--apply`:** Goldproof presents each eligible finding's diff/stub **one at a time** and writes
+- **`--apply`:** Skillproof presents each eligible finding's diff/stub **one at a time** and writes
   ONLY on an explicit per-item yes. Eligibility = `confidence ∈ {high, moderate}` AND a concrete
   `payload.diff`/`skill_md`/`command`. `low`-confidence and `ignore` items are never in the apply set.
 - A file write is refused if the target's current content doesn't match the diff's context (no blind

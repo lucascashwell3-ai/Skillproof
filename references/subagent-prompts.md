@@ -1,4 +1,4 @@
-# Goldproof — Sub-agent prompt templates
+# Skillproof — Sub-agent prompt templates
 
 The orchestrator drops these into `Agent` (Task) tool calls. Sub-agents keep raw content in their own
 context and return only compact JSON. `{{…}}` are fill-ins.

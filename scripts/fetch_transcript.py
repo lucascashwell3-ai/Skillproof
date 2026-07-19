@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Goldproof transcript fetcher — one interface, two backends.
+"""Skillproof transcript fetcher — one interface, two backends.
 
     local   -> youtube-transcript-api (residential/personal use)
     hosted  -> Supadata or youtube-transcript.io (works from cloud IPs)
@@ -13,9 +13,9 @@ Usage:
     python3 fetch_transcript.py <video_url_or_id> [--backend local|hosted]
 
 Env:
-    GOLDPROOF_TRANSCRIPT_BACKEND          local | hosted            (default: local)
-    GOLDPROOF_TRANSCRIPT_HOSTED_PROVIDER  supadata | youtube-transcript-io  (default: supadata)
-    GOLDPROOF_TRANSCRIPT_API_KEY          key for the hosted backend
+    SKILLPROOF_TRANSCRIPT_BACKEND          local | hosted            (default: local)
+    SKILLPROOF_TRANSCRIPT_HOSTED_PROVIDER  supadata | youtube-transcript-io  (default: supadata)
+    SKILLPROOF_TRANSCRIPT_API_KEY          key for the hosted backend
 """
 import argparse
 import json
@@ -92,10 +92,10 @@ def _http_json(url: str, headers: dict, data: bytes = None) -> dict:
 
 
 def fetch_hosted(vid: str) -> dict:
-    provider = os.environ.get("GOLDPROOF_TRANSCRIPT_HOSTED_PROVIDER", "supadata").lower()
-    key = os.environ.get("GOLDPROOF_TRANSCRIPT_API_KEY", "")
+    provider = os.environ.get("SKILLPROOF_TRANSCRIPT_HOSTED_PROVIDER", "supadata").lower()
+    key = os.environ.get("SKILLPROOF_TRANSCRIPT_API_KEY", "")
     if not key:
-        return {"blocked": False, "error": "GOLDPROOF_TRANSCRIPT_API_KEY not set for hosted backend"}
+        return {"blocked": False, "error": "SKILLPROOF_TRANSCRIPT_API_KEY not set for hosted backend"}
     url = f"https://www.youtube.com/watch?v={vid}"
     try:
         if provider == "supadata":
@@ -125,7 +125,7 @@ def fetch_hosted(vid: str) -> dict:
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("video")
-    ap.add_argument("--backend", default=os.environ.get("GOLDPROOF_TRANSCRIPT_BACKEND", "local"),
+    ap.add_argument("--backend", default=os.environ.get("SKILLPROOF_TRANSCRIPT_BACKEND", "local"),
                     choices=["local", "hosted"])
     args = ap.parse_args()
     try:

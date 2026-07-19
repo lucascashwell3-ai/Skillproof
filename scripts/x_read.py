@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Goldproof X (Twitter) reader — third-party read API, hard-capped.
+"""Skillproof X (Twitter) reader — third-party read API, hard-capped.
 
 Uses TwitterAPI.io (a third-party X read API). NEVER the official X API. X is
 OFF by default at the orchestrator level; this script additionally enforces a
@@ -10,8 +10,8 @@ Usage:
     python3 x_read.py search "<query>" [--max N]
 
 Env:
-    GOLDPROOF_X_API_KEY     TwitterAPI.io key. Absent -> skip silently.
-    GOLDPROOF_X_MAX_READS   hard cap on posts read per invocation (default 200).
+    SKILLPROOF_X_API_KEY     TwitterAPI.io key. Absent -> skip silently.
+    SKILLPROOF_X_MAX_READS   hard cap on posts read per invocation (default 200).
 
 Cost note: TwitterAPI.io ~= $0.00015 / tweet ($0.15 / 1,000). A 200-read run ~= $0.03.
 (Re-verify the live price before relying on the estimate.)
@@ -51,7 +51,7 @@ def _norm(t: dict) -> dict:
 
 
 def search(query: str, requested: int, key: str) -> dict:
-    cap = int(os.environ.get("GOLDPROOF_X_MAX_READS", "200"))
+    cap = int(os.environ.get("SKILLPROOF_X_MAX_READS", "200"))
     budget = min(requested, cap)  # HARD cap — never read more than this
     posts, cursor, reads = [], "", 0
     while reads < budget:
@@ -93,10 +93,10 @@ def main() -> int:
     ap.add_argument("--max", type=int, default=50)
     args = ap.parse_args()
 
-    key = os.environ.get("GOLDPROOF_X_API_KEY", "")
+    key = os.environ.get("SKILLPROOF_X_API_KEY", "")
     if not key:
         # No key -> orchestrator skips X silently. Not an error.
-        print(json.dumps({"skipped": True, "reason": "GOLDPROOF_X_API_KEY not set"}))
+        print(json.dumps({"skipped": True, "reason": "SKILLPROOF_X_API_KEY not set"}))
         return 0
 
     print(json.dumps(search(args.query, args.max, key), ensure_ascii=False))

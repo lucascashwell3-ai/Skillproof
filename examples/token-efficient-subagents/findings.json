@@ -7,7 +7,7 @@
     "dry_run": true,
     "stack_context": "Claude Code power user; also runs Modelproof (informed model selection)",
     "coverage_notes": [
-      "This run dogfoods Goldproof: it researches how to make sub-agents token-efficient — which is exactly Goldproof's own architecture.",
+      "This run dogfoods Skillproof: it researches how to make sub-agents token-efficient — which is exactly Skillproof's own architecture.",
       "All 8 sources are official Anthropic / Claude Code docs. Three practitioner blogs (hackernoon, amitkoth, richsnapp) were egress-blocked (403) and excluded rather than guessed.",
       "YouTube 0 — local backend IP-blocked from this cloud container (documented caveat). A residential run adds creator-video findings with timestamps.",
       "2 claims were corroborated by ≥2 independent official pages (delegate-verbose-to-subagent; route-mechanical-subagents-to-haiku) — confidence held at high with both sources cited."

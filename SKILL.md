@@ -1,5 +1,5 @@
 ---
-name: goldproof
+name: skillproof
 description: >-
   Research a loose topic, pain point, or "what could my setup do better" across YouTube (and
   optionally X) and distill it into concrete, SOURCED upgrades to the user's own tooling — things to
@@ -17,7 +17,7 @@ allowed-tools: Agent, Task, WebSearch, WebFetch, Read, Write, Edit, Grep, Glob, 
 argument-hint: "<loose topic or pain point> [--include-x] [--max-x-reads N] [--backend local|hosted] [--apply] [--out DIR]"
 ---
 
-# Goldproof
+# Skillproof
 
 Orchestrate research sub-agents to turn a loose prompt into sourced, confidence-graded upgrades to the
 user's own tooling. **You are the brain; retrieval is off-the-shelf** (WebSearch + an existing
@@ -36,10 +36,10 @@ Load these as you go (progressive disclosure — don't read them all up front):
 
 Extract the topic (everything not a flag) and flags:
 `--include-x` (default OFF) · `--max-x-reads N` (default 200; hard cap) · `--backend local|hosted`
-(default `local`, or `$GOLDPROOF_TRANSCRIPT_BACKEND`) · `--apply` (default OFF = dry-run) ·
+(default `local`, or `$SKILLPROOF_TRANSCRIPT_BACKEND`) · `--apply` (default OFF = dry-run) ·
 `--auto` (skip the findings-review gate; default is interactive) ·
-`--out DIR` (default `runs/<date>-<slug>/`). Also honor caps `$GOLDPROOF_MAX_YOUTUBE` (8),
-`$GOLDPROOF_MAX_WEB` (5). Echo the resolved config back to the user in one line before running.
+`--out DIR` (default `runs/<date>-<slug>/`). Also honor caps `$SKILLPROOF_MAX_YOUTUBE` (8),
+`$SKILLPROOF_MAX_WEB` (5). Echo the resolved config back to the user in one line before running.
 
 ## 1 · Build the search plan
 
@@ -54,7 +54,7 @@ Spawn discovery sub-agents (Agent tool) in parallel — one per source type — 
 lightweight candidate list `{type, id, url, title, author?, published?}`, **not** content:
 - **YouTube:** the sub-agent runs `WebSearch` on the YouTube queries, extracts video URLs/IDs.
 - **Web:** the sub-agent runs `WebSearch` on the web queries, returns article/doc/repo URLs.
-- **X (only if `--include-x` AND `$GOLDPROOF_X_API_KEY` set):** discovery+fetch happen together in
+- **X (only if `--include-x` AND `$SKILLPROOF_X_API_KEY` set):** discovery+fetch happen together in
   step 4 via the reader (search returns the posts). If the key is missing, **skip X silently** — do
   not warn, do not ask.
 

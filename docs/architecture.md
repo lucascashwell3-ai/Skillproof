@@ -1,4 +1,4 @@
-# Goldproof — Architecture Decision Record
+# Skillproof — Architecture Decision Record
 
 > **Status:** Phase 1 (Recon) complete — awaiting review before build.
 > **Date:** 2026-07-15
@@ -8,7 +8,7 @@
 
 ## 0. TL;DR (plain English)
 
-**Goldproof** is a Claude Code skill. You give it a loose prompt — a topic, a pain point, or
+**Skillproof** is a Claude Code skill. You give it a loose prompt — a topic, a pain point, or
 "things I think my build could do better." It fans out research **sub-agents** that pull knowledge
 from **YouTube transcripts** (and, only if you opt in, **X/Twitter posts**), boils the raw firehose
 down to a handful of **sourced, confidence-graded findings**, and turns those into **actionable
@@ -190,16 +190,16 @@ files only behind explicit per-diff approval.
 
 ```
 # Transcript
-GOLDPROOF_TRANSCRIPT_BACKEND      local | hosted        (default: local)
-GOLDPROOF_TRANSCRIPT_API_KEY      key for hosted backend
-GOLDPROOF_TRANSCRIPT_HOSTED_PROVIDER  supadata | youtube-transcript-io   (default: supadata)
+SKILLPROOF_TRANSCRIPT_BACKEND      local | hosted        (default: local)
+SKILLPROOF_TRANSCRIPT_API_KEY      key for hosted backend
+SKILLPROOF_TRANSCRIPT_HOSTED_PROVIDER  supadata | youtube-transcript-io   (default: supadata)
 # Discovery (optional)
-GOLDPROOF_YOUTUBE_DATA_API_KEY    richer video discovery; falls back to WebSearch if unset
+SKILLPROOF_YOUTUBE_DATA_API_KEY    richer video discovery; falls back to WebSearch if unset
 # X (all optional; absent key ⇒ X skipped silently)
-GOLDPROOF_X_API_KEY               TwitterAPI.io key
-GOLDPROOF_X_MAX_READS             hard per-run cap (default: 200 ≈ $0.03); run refuses to exceed
+SKILLPROOF_X_API_KEY               TwitterAPI.io key
+SKILLPROOF_X_MAX_READS             hard per-run cap (default: 200 ≈ $0.03); run refuses to exceed
 # Caps
-GOLDPROOF_MAX_YOUTUBE / GOLDPROOF_MAX_WEB   source-count caps (default 8 / 5)
+SKILLPROOF_MAX_YOUTUBE / SKILLPROOF_MAX_WEB   source-count caps (default 8 / 5)
 ```
 Flags: `--include-x` (required to touch X at all) · `--max-x-reads N` · `--backend local|hosted` ·
 `--apply` (off by default = dry-run).
@@ -230,7 +230,7 @@ Flags: `--include-x` (required to touch X at all) · `--max-x-reads N` · `--bac
 ## 7. Repo layout (proposed)
 
 ```
-goldproof/
+skillproof/
 ├── SKILL.md                     # frontmatter (trigger) + orchestration instructions
 ├── scripts/
 │   ├── fetch_transcript.py      # local + hosted backends behind one interface
@@ -277,11 +277,11 @@ every claim carries source + confidence; **X disabled; dry-run by default.**
 
 ## 10. Decisions (resolved 2026-07-15)
 
-- **Name:** ✅ **Goldproof** (joins the `-proof` family; fallbacks Toolproof/Stackproof).
+- **Name:** ✅ **Skillproof** (joins the `-proof` family; fallbacks Toolproof/Stackproof).
 - **Correction #1** (library-first, MCP-optional): ✅ approved — this is the default.
 - **Correction #2** (X pricing = official API's numbers; third-party is 33× cheaper): ✅ acknowledged.
 - **Sample topics — TWO example runs:**
-  1. **"Make Claude Code sub-agents more token-efficient"** — dogfoods Goldproof on its own architecture.
+  1. **"Make Claude Code sub-agents more token-efficient"** — dogfoods Skillproof on its own architecture.
   2. **"Best web-design / UI component libraries & animation techniques"** (headline showcase) — surfaces
      UI libraries, components, and motion patterns to de-stale real sites. Broad appeal beyond the author.
-- **New GitHub repo** — create `goldproof` (public, MIT) at Phase 4, pending an explicit "yes" then.
+- **New GitHub repo** — create `skillproof` (public, MIT) at Phase 4, pending an explicit "yes" then.

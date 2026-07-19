@@ -1,18 +1,18 @@
 <div align="center">
 
-# ✦ Goldproof
+# ✦ Skillproof
 
 **Mine YouTube (and optionally X) for _proven, sourced_ upgrades to your Claude Code setup.**
 
 Give it a loose prompt — a topic, a pain point, or _"things I think my build could do better."_
-Goldproof fans out research sub-agents, distills the firehose down to a handful of **sourced,
+Skillproof fans out research sub-agents, distills the firehose down to a handful of **sourced,
 confidence-graded findings**, and turns them into **actionable changes to your own tooling**:
 things to _integrate now_, new _skills to scaffold_, and _CLAUDE.md / behavior edits_ —
 proposed as diffs you approve. Dry-run by default.
 
 `MIT` · a Claude Code Skill · part of the `-proof` family (DATproof · Modelproof)
 
-<img src="portfolio/preview.png" alt="Goldproof — cosmic-gold showcase page: metallic wordmark on a dark starfield" width="840">
+<img src="portfolio/preview.png" alt="Skillproof — cosmic-gold showcase page: metallic wordmark on a dark starfield" width="840">
 
 </div>
 
@@ -21,7 +21,7 @@ proposed as diffs you approve. Dry-run by default.
 ## Why
 
 Great Claude Code technique lives in creators' heads, YouTube walkthroughs, and X threads — not in
-docs you can grep. Goldproof goes and gets it, then hands you **specific edits to your setup** instead
+docs you can grep. Skillproof goes and gets it, then hands you **specific edits to your setup** instead
 of a summary you have to act on yourself. Every claim carries a **source URL (+ timestamp)** and a
 **confidence level**; anything it can't locate a source for is **dropped, not guessed**.
 
@@ -61,10 +61,10 @@ capped so total cost stays bounded.)
 
 ## Install
 
-Goldproof is a Claude Code skill — drop it in your skills directory:
+Skillproof is a Claude Code skill — drop it in your skills directory:
 
 ```bash
-git clone https://github.com/lucascashwell3-ai/goldproof.git ~/.claude/skills/goldproof
+git clone https://github.com/lucascashwell3-ai/skillproof.git ~/.claude/skills/skillproof
 # Local (residential) transcript backend:
 pip install youtube-transcript-api
 ```
@@ -72,9 +72,9 @@ pip install youtube-transcript-api
 Then in Claude Code:
 
 ```
-/goldproof make my Claude Code sub-agents more token-efficient
-/goldproof best web-design & UI component libraries to de-stale my sites
-/goldproof "AI agent eval techniques" --include-x --apply
+/skillproof make my Claude Code sub-agents more token-efficient
+/skillproof best web-design & UI component libraries to de-stale my sites
+/skillproof "AI agent eval techniques" --include-x --apply
 ```
 
 It also activates automatically when you ask things like _"what am I missing on &lt;topic&gt;"_ or
@@ -84,7 +84,7 @@ _"research &lt;topic&gt; and tell me what to change."_
 
 | Flag | Default | Meaning |
 |---|---|---|
-| `--include-x` | off | Also read X/Twitter. Needs `GOLDPROOF_X_API_KEY`, else skipped silently. |
+| `--include-x` | off | Also read X/Twitter. Needs `SKILLPROOF_X_API_KEY`, else skipped silently. |
 | `--max-x-reads N` | 200 | Hard cap on X posts read this run. The reader refuses to exceed it. |
 | `--backend local\|hosted` | `local` | Transcript backend (see caveat below). |
 | `--apply` | off | Propose diffs and write approved ones. Omitted = dry-run. |
@@ -100,12 +100,12 @@ Configuration lives in env vars — see [`.env.example`](.env.example).
 
 - **Personal use on your laptop → `local`** (free, no key).
 - **Cloud / CI / any routine automated run → `hosted`** (Supadata or youtube-transcript.io; they fetch
-  server-side behind their own proxies). Set `GOLDPROOF_TRANSCRIPT_BACKEND=hosted` + a key.
+  server-side behind their own proxies). Set `SKILLPROOF_TRANSCRIPT_BACKEND=hosted` + a key.
 
-Goldproof detects a block and falls back (page metadata via web fetch) or skips the source — it never
+Skillproof detects a block and falls back (page metadata via web fetch) or skips the source — it never
 fabricates a transcript.
 
-**2. X costs money per read.** Goldproof uses a **third-party** read API (TwitterAPI.io-class),
+**2. X costs money per read.** Skillproof uses a **third-party** read API (TwitterAPI.io-class),
 **never the official X API** (whose cheapest read path is ~33× more and has no viable free tier). X is
 **off by default**, requires `--include-x` **and** a key, and every run is bounded by a hard read cap
 (`--max-x-reads`, default 200 ≈ **$0.03** at ~$0.00015/read). No key → X is skipped silently.
@@ -124,7 +124,7 @@ payloads, and the "Do this first" ranking — is in
 
 ## Safety
 
-**Findings-review gate (default).** After the research and *before* anything is built, Goldproof shows
+**Findings-review gate (default).** After the research and *before* anything is built, Skillproof shows
 you the findings — claim, source, confidence — and you **approve / reject / reclassify**. Skill-candidates
 clear a higher bar (≥moderate confidence + corroboration, or your explicit yes, plus a *why-a-skill* line)
 because a skill is durable. `--auto` skips the gate for a straight-through run you review at the end.
@@ -136,7 +136,7 @@ yes, backs up any file it edits, and refuses a write whose target no longer matc
 ## Repo layout
 
 ```
-goldproof/
+skillproof/
 ├── SKILL.md                     # the orchestrator (trigger + procedure + guardrails)
 ├── scripts/
 │   ├── fetch_transcript.py      # local + hosted transcript backends, one interface

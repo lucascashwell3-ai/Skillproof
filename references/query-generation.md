@@ -1,4 +1,4 @@
-# Goldproof — Query Generation (loose prompt → search plan)
+# Skillproof — Query Generation (loose prompt → search plan)
 
 Turn one loose prompt into a small, **logged, editable** search plan *before* any fetching or
 spending. Determinism here = reproducible runs.

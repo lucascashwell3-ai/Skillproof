@@ -1,14 +1,14 @@
-# Goldproof — roadmap / not-yet-done
+# Skillproof — roadmap / not-yet-done
 
 Status: built end-to-end, **private** repo, pre-public polish. Tracking what's left before going public.
 
 ## Before public
-- [ ] **Lock the final name** — repo is currently **`skillproof`** (Lucas didn't like "Goldproof");
-      code still says "Goldproof" everywhere. Decide: keep **Skillproof** / **fold into Modelproof** /
+- [ ] **Lock the final name** — repo is currently **`skillproof`** (Lucas didn't like "Skillproof");
+      code still says "Skillproof" everywhere. Decide: keep **Skillproof** / **fold into Modelproof** /
       other → then ONE clean rename + URL pass. Deferred 2026-07-15. (Modelproof link already exists via
       the token-efficiency example's model-routing findings — a bridge without a merge.)
 - [ ] **Design overhaul of the showcase + report template** _(Lucas, 2026-07-15)_ — apply the
-      UI / animation / design findings Goldproof itself surfaced (define a type scale, single spacing
+      UI / animation / design findings Skillproof itself surfaced (define a type scale, single spacing
       base, Motion for entrances, layered shadow + easing tokens, view-transitions, prefers-reduced-motion)
       to `portfolio/index.html` and the `render_report.py` theme. Dogfood the tool's own output on its
       own site — a strong portfolio narrative.
