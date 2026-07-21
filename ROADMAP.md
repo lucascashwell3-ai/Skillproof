@@ -1,43 +1,49 @@
 # Skillproof — roadmap / not-yet-done
 
-Status: built end-to-end, **private** repo, pre-public polish. Tracking what's left before going public.
+Status: **repositioned 2026-07-21** — Skillproof is now "the rating agency for Claude skills":
+a static site (`docs/`) with a graded, receipted index + pain-point matcher, with the original
+research skill as the scouting engine underneath. Repo still **private**, pre-public polish.
 
-## Before public
-- [x] **Lock the final name** — **Skillproof**, decided 2026-07-19. Renamed everywhere (skill
-      invocation name, `SKILLPROOF_*` env vars, docs, scripts, portfolio page, example run outputs).
-      Standalone repo, not folded into Modelproof. (Modelproof link still exists via the
-      token-efficiency example's model-routing findings — a bridge, not a merge.)
-- [ ] **Design overhaul of the showcase + report template** _(Lucas, 2026-07-15)_ — apply the
-      UI / animation / design findings Skillproof itself surfaced (define a type scale, single spacing
-      base, Motion for entrances, layered shadow + easing tokens, view-transitions, prefers-reduced-motion)
-      to `portfolio/index.html` and the `render_report.py` theme. Dogfood the tool's own output on its
-      own site — a strong portfolio narrative.
-- [ ] **Verify paid backends live with real keys** — the hosted transcript providers (Supadata,
-      youtube-transcript.io) and TwitterAPI.io happy-paths are structurally correct but untested here
-      (no keys; two pricing pages 403'd during recon). Confirm endpoints + exact per-read price before
-      publishing the cost claims.
-- [ ] **Add a residential YouTube-transcript finding to an example** — this cloud env IP-blocks the
-      local backend, so both example runs are web-sourced. A run from a residential machine would add a
-      real transcript-sourced finding (with timestamp) — nice proof for the README/site.
-- [ ] Flip repo to **public** once the above land.
+## Before public (Lucas-gated where marked)
 
-## Workflow / quality — user-trust gates (requested by Lucas 2026-07-15)
-Goal: assure the user that **high-quality, relevant** sources were fetched *before* anything is built
-into a skill or diff. Today's bar = sourced-or-dropped + confidence + corroboration + official-source
-preference — but there's no mid-run user gate, and skill-candidates aren't held to a higher bar than a
-config tweak. Proposed additions:
-- **Gate 2 — source shortlist review (new):** after discovery, show ranked candidates with a quality
-  score (authority tier · recency · relevance-to-the-ask); user prunes/approves before any fetch spend.
-- **Gate 3 — findings review (new):** after synthesis, user approves / rejects / reclassifies findings
-  BEFORE any skill stub or CLAUDE.md diff is generated. ("Here's what I got — review it" made structural.)
-- **Higher bar for skill-candidates:** a skill is durable → require ≥moderate confidence + corroboration
-  OR explicit confirm, plus a one-line "why this deserves a skill" justification before scaffolding.
-- **Relevance re-rank:** score each finding against the original intent/lens; flag tangential ones.
-- **Modes:** `--interactive` (the gates) default for trust; `--auto` for a straight-through run reviewed
-  at the end. (Gate 1 — the search plan — already exists.)
+- [ ] **Grow the graded index to 25** — batch grading sessions (~30–60 min per skill,
+      ~4 skills per session, worksheets + JSON entries + `validate_index.py` green).
+      Next candidates already scouted: `doraemonkeys/claude-code-debug-mode` (debugging),
+      `aidankinzett/claude-git-pr-skill` (git/PR hygiene), `Anjos2/recursive-research`
+      (research rigor), `lackeyjb/playwright-skill` (browser testing).
+- [ ] **Flip repo to public** — 🔒 Lucas's call, in the live conversation.
+- [ ] **Enable GitHub Pages** (Settings → Pages → deploy from `main` / `docs/`) — 🔒 Lucas's
+      call, after flip-public. Until then merging deploys nothing.
+- [ ] Decide the lowercase-rename question (`Skillproof` repo vs `skillproof` URLs used in
+      docs) — 🔒 Lucas's call at flip-public time.
+- [ ] **Verify research-skill paid backends live with real keys** (Supadata,
+      youtube-transcript.io, TwitterAPI.io) before publishing the cost claims.
 
-## Nice-to-haves
-- More example topics (each doubles as a showcase run).
-- Optional transcript-MCP backend (currently library-first; MCP is a documented optional path).
-- A GitHub Action recipe for hosted/routine runs (uses the `hosted` backend to dodge the cloud-IP block).
-- Package as a Claude Code plugin for one-command install.
+## v1.1 (small PRs, post-Pages)
+
+- [ ] **Advisor skill** — `skills/skillproof-advisor/SKILL.md` fetching the live
+      `docs/data/skills.json` URL (adapt `modelproof/skills/modelproof-advisor/SKILL.md`).
+      The paste-in advisor prompt already ships on the site.
+- [ ] Document community submissions: "PR against `skills.json` + a filled worksheet" +
+      a nomination issue template.
+- [ ] Re-grade cadence: calendar the 90-day staleness sweep (grades auto-flag stale on-site).
+
+## Later / ideas (captured, not scheduled)
+
+- [ ] MCP server for the index (modelproof's `mcp/server.js` is the template).
+- [ ] **Interview → personalized global instructions skill** _(Lucas, 2026-07-21)_: a skill
+      that interviews you (or runs a quick quiz) and generates tuned global instructions for
+      how AI should respond/chat with you — Lucas prototyped this once and it worked; the
+      viral `i-have-adhd` skill (graded A in our index) proves the demand for output-style
+      personalization. Could also become a second advisor lens on the site.
+- [ ] Auto-crawl candidate discovery / CI-scheduled re-grading (flag-first, never auto-publish).
+- [ ] More research-skill example topics; GitHub Action recipe for hosted/routine runs;
+      package research skill as a plugin.
+
+## Superseded
+
+- ~~Design overhaul of the showcase + report template~~ — the `portfolio/index.html`
+  showcase is retired; its design DNA (cosmic-gold identity) carried into the `docs/` site
+  (2026-07-21). The `render_report.py` HTML theme refresh remains a nice-to-have above.
+- ✅ Name locked: **Skillproof** (2026-07-19).
+- ✅ User-trust gates (findings review, higher skill-candidate bar) — built 2026-07-19.

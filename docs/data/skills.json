@@ -1,0 +1,57 @@
+{
+  "as_of": "2026-07-21",
+  "rubric_version": "1.0",
+  "notes": "Grades reflect the exact version tested (version_tested) on last_verified, under the rubric version shown. Skills graded so far is stated on the site; there are no placeholder grades.",
+  "pain_points": [
+    { "id": "buried-answers", "label": "Answers are long and the next step is buried",
+      "keywords": ["adhd", "focus", "verbose", "preamble", "long replies", "buried", "direct", "concise", "wall of text", "rambling"] },
+    { "id": "context-bloat", "label": "Context fills up; long sessions degrade",
+      "keywords": ["context", "compact", "tokens", "memory", "long session", "context window", "token cost", "degrade"] },
+    { "id": "generic-frontend", "label": "Frontend output looks generic",
+      "keywords": ["design", "ui", "css", "landing page", "tailwind", "slop", "frontend", "styling", "generic", "templated"] },
+    { "id": "testing-discipline", "label": "Tests get skipped, gamed, or written weak",
+      "keywords": ["tdd", "test", "tests", "coverage", "red-green", "unit test", "regression", "flaky"] },
+    { "id": "planning-drift", "label": "Big tasks drift off the rails without a plan",
+      "keywords": ["plan", "planning", "breakdown", "spec", "scope", "drift", "requirements", "tasks", "roadmap"] },
+    { "id": "git-hygiene", "label": "Messy commits, branches, and PRs",
+      "keywords": ["commit", "pr", "git", "changelog", "conventional commits", "branch", "pull request", "review"] },
+    { "id": "shallow-research", "label": "Web research comes back shallow or unsourced",
+      "keywords": ["research", "sources", "citations", "hallucinate", "verify", "web search", "fact check"] },
+    { "id": "code-quality", "label": "Code works but is over-engineered or inconsistent",
+      "keywords": ["refactor", "simplify", "review", "lint", "clean", "over-engineered", "complexity", "consistency"] },
+    { "id": "docs-drift", "label": "Docs and READMEs go stale or never get written",
+      "keywords": ["docs", "readme", "documentation", "comments", "api docs", "stale"] },
+    { "id": "security-worries", "label": "Unsure what AI-written code and skills can touch",
+      "keywords": ["security", "secrets", "audit", "vulnerability", "injection", "credentials", "safety", "permissions"] }
+  ],
+  "skills": [
+    {
+      "id": "i-have-adhd",
+      "name": "i-have-adhd",
+      "repo_url": "https://github.com/ayghri/i-have-adhd",
+      "author": "Ayoub G. (ayghri)",
+      "version_tested": "0241185",
+      "category": "output-style",
+      "summary": "Ten markdown rules that make replies action-first: answer in line one, numbered steps, time estimates, no preamble or closers. Opt-in via /i-have-adhd.",
+      "pain_points": ["buried-answers"],
+      "install": {
+        "command": "claude plugin marketplace add ayghri/i-have-adhd && claude plugin install i-have-adhd@i-have-adhd",
+        "notes": "Opt-in by design: nothing changes until you type /i-have-adhd. 'stop adhd mode' turns it off."
+      },
+      "grade": "A",
+      "score_total": 24,
+      "scores": {
+        "triggering":    { "score": 4, "note": "5/5 probes — fires only on explicit /i-have-adhd, stays silent otherwise, exactly its declared opt-in design" },
+        "effectiveness": { "score": 4, "note": "Treatment vs control: action-first line 1, numbered steps, real time estimates, tangents deferred — precisely as sold" },
+        "docs_install":  { "score": 4, "note": "Installed first try; the activation docs ('if you did not turn it on, it is off') are a model for opt-in skills" },
+        "maintenance":   { "score": 4, "note": "Commits and merged PRs on the day of grading; same-day frontmatter fix" },
+        "safety":        { "score": 4, "note": "Pure markdown — no scripts, no network, no writes; nothing it can touch" }
+      },
+      "verdict": "Does exactly what it promises, fires only when you ask, and contains nothing but 10 markdown rules — the model citizen of tiny skills.",
+      "evidence_url": "grading/worksheets/i-have-adhd.md",
+      "security_notes": "Pure markdown plus plugin manifests: no scripts, no network calls, no file writes, no credential access. The GitHub workflows in the repo run only in the author's CI, never on your machine.",
+      "last_verified": "2026-07-21",
+      "status": "graded"
+    }
+  ]
+}

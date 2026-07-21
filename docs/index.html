@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SKILLproof — the rating agency for Claude skills</title>
+  <meta name="description" content="Community Claude skills, actually installed, tested, and graded A–F against a published rubric. Tell it your pain point; get a vetted stack — with receipts." />
+  <meta name="theme-color" content="#0a0b0f" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='11' fill='%230a0b0f'/%3E%3Ccircle cx='12' cy='12' r='9.2' fill='none' stroke='%23f2c14e' stroke-opacity='0.5' stroke-width='1.4'/%3E%3Ctext x='12' y='16.2' font-family='Georgia' font-size='11' fill='%23f2c14e' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="SKILLproof — the rating agency for Claude skills" />
+  <meta property="og:description" content="Directories count skills. Nobody grades them. Every skill here was installed, probed, and graded A–F against a published rubric — with the receipts to prove it." />
+  <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&f[]=jetbrains-mono@400,500&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/styles.css?v=1" />
+</head>
+<body>
+  <canvas id="stars" aria-hidden="true"></canvas>
+  <div class="wrap">
+
+    <header class="nav">
+      <a class="nav__brand" href="#top" aria-label="SKILLproof home">
+        <svg class="nav__seal" viewBox="0 0 24 24" width="21" height="21" aria-hidden="true">
+          <circle cx="12" cy="12" r="9.2" class="r-ring" />
+          <path d="M7.6 12.4l3 3 5.8-6.6" class="r-check" />
+        </svg>
+        <span>SKILL<b>proof</b></span>
+      </a>
+      <span class="nav__count" id="navCount">loading…</span>
+      <a class="nav__link" href="methodology.html">How grading works</a>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <span class="hero__eyebrow">Directories count skills. We grade them.</span>
+        <h1 class="hero__wordmark">SKILL<em>proof</em></h1>
+        <p class="hero__sub">
+          Thousands of community Claude skills exist. Nobody tells you which five actually work.
+          Every skill here was <strong>installed, probed, and graded A–F</strong> against a
+          <a href="methodology.html">published rubric</a> — with the receipts to prove it.
+        </p>
+
+        <!-- the matcher console -->
+        <div class="console" role="group" aria-label="Find skills for your pain point">
+          <span class="console__label">What's slowing you down? <em>— pick up to three</em></span>
+          <div class="chips" id="chips"></div>
+          <div class="console__or">or say it in your own words</div>
+          <div class="searchrow">
+            <input class="search" id="q" type="search"
+              placeholder='e.g. "my landing pages look AI-generated" or "long sessions lose the plot"'
+              aria-label="Describe your pain point" />
+            <button class="go" id="goBtn" type="button">Match skills</button>
+          </div>
+          <p class="console__note">
+            Honesty note: this is keyword matching over a small curated set — not semantic search.
+            No match ≠ no skill exists; it means <b>we haven't graded one yet</b>.
+          </p>
+        </div>
+      </section>
+
+      <section class="results" id="results" aria-live="polite"></section>
+
+      <!-- the graded index -->
+      <section class="panel" id="index">
+        <h2 class="panel__title"><span class="panel__no">01</span>The graded index</h2>
+        <p class="panel__desc">
+          Every grade recomputes from five tested dimensions — triggering, effectiveness (double-weighted),
+          docs &amp; install, maintenance, safety — and links to the worksheet that produced it.
+          <span class="dim">Grades reflect the exact commit tested, on the date shown. We don't guess, and we never publish a grade we didn't run.</span>
+        </p>
+        <div class="idx-wrap"><table class="idx" id="idxTable"></table></div>
+      </section>
+
+      <!-- promptgen -->
+      <section class="promptgen" id="promptgen">
+        <h3 class="promptgen__title">Take the advisor with you</h3>
+        <p class="promptgen__sub">
+          One click turns the graded index into a paste-in prompt — your own Claude becomes the
+          skill-picker, grades and receipts included.
+        </p>
+        <button class="promptgen__btn" id="genPrompt" type="button">Get my advisor prompt →</button>
+        <div class="promptgen__panel" id="promptPanel" hidden>
+          <textarea id="promptText" readonly rows="12" aria-label="Generated skill-advisor prompt"></textarea>
+          <div style="margin-top:10px">
+            <button class="copy" id="copyPrompt" type="button">Copy prompt</button>
+            <span class="promptgen__status" id="copyStatus" role="status" aria-live="polite"></span>
+          </div>
+        </div>
+      </section>
+
+      <div class="honesty" id="honesty">
+        <p><b>What a grade is — and isn't.</b> A Skillproof grade is the documented result of one
+        grading run: real install, real trigger probes in fresh sessions, the skill's headline job
+        executed in a sandboxed container, every line of its source read. It is not an endorsement,
+        not a popularity score, and it can go stale — grades older than 90 days are flagged.
+        Disagree with one? Open an issue; we re-run the protocol and publish the result either way.</p>
+        <p style="margin-top:10px" id="honestyCount"></p>
+      </div>
+    </main>
+
+    <footer>
+      <span>SKILLproof — part of the <em>-proof</em> family:
+      <a href="https://lucascashwell3-ai.github.io/modelproof/">MODELproof</a> · DATproof</span><br />
+      <span><a href="methodology.html">Methodology</a> ·
+      <a href="https://github.com/lucascashwell3-ai/Skillproof">Source + worksheets on GitHub</a> · MIT</span>
+    </footer>
+  </div>
+
+  <script src="assets/app.js?v=1"></script>
+</body>
+</html>
