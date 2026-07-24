@@ -10,12 +10,10 @@
   <meta property="og:type" content="website" />
   <meta property="og:title" content="SKILLproof — the rating agency for Claude skills" />
   <meta property="og:description" content="Directories count skills. Nobody grades them. Every skill here was installed, probed, and graded A–F against a published rubric — with the receipts to prove it." />
-  <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
-  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&f[]=jetbrains-mono@400,500&display=swap" rel="stylesheet" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/styles.css?v=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/styles.css?v=2" />
 </head>
 <body>
   <canvas id="stars" aria-hidden="true"></canvas>
@@ -30,6 +28,7 @@
         <span>SKILL<b>proof</b></span>
       </a>
       <span class="nav__count" id="navCount">loading…</span>
+      <a class="nav__link" href="#tools">Use it as a tool</a>
       <a class="nav__link" href="methodology.html">How grading works</a>
     </header>
 
@@ -41,6 +40,8 @@
           Thousands of community Claude skills exist. Nobody tells you which five actually work.
           Every skill here was <strong>installed, probed, and graded A–F</strong> against a
           <a href="methodology.html">published rubric</a> — with the receipts to prove it.
+          And for everything we haven't graded yet, the <a href="#tools">scout</a> goes out and
+          finds it, triaged and honestly labeled <em>ungraded</em>.
         </p>
 
         <!-- the matcher console -->
@@ -55,8 +56,10 @@
             <button class="go" id="goBtn" type="button">Match skills</button>
           </div>
           <p class="console__note">
-            Honesty note: this is keyword matching over a small curated set — not semantic search.
-            No match ≠ no skill exists; it means <b>we haven't graded one yet</b>.
+            Honesty note: keyword matching over a small curated set — not semantic search. Results
+            come in two tiers: <b>graded</b> (tested, with receipts) and <b>scouted</b> (found +
+            triaged, explicitly ungraded). No match ≠ no tool exists — take the
+            <a href="#tools">scout</a> with you and search the live ecosystem.
           </p>
         </div>
       </section>
@@ -65,7 +68,7 @@
 
       <!-- the graded index -->
       <section class="panel" id="index">
-        <h2 class="panel__title"><span class="panel__no">01</span>The graded index</h2>
+        <h2 class="panel__title">The graded index</h2>
         <p class="panel__desc">
           Every grade recomputes from five tested dimensions — triggering, effectiveness (double-weighted),
           docs &amp; install, maintenance, safety — and links to the worksheet that produced it.
@@ -74,20 +77,74 @@
         <div class="idx-wrap"><table class="idx" id="idxTable"></table></div>
       </section>
 
-      <!-- promptgen -->
-      <section class="promptgen" id="promptgen">
-        <h3 class="promptgen__title">Take the advisor with you</h3>
-        <p class="promptgen__sub">
-          One click turns the graded index into a paste-in prompt — your own Claude becomes the
-          skill-picker, grades and receipts included.
+      <!-- the scouted tier -->
+      <section class="panel" id="scouted">
+        <h2 class="panel__title">Scouted, not yet graded</h2>
+        <p class="panel__desc">
+          Resources the scout found and triaged — repo verified real, license and last-push
+          checked, safety skimmed — but <strong>never installed, never probed</strong>.
+          <span class="dim">They carry no grade by design; the honesty gate rejects any that try. Grading queue runs top-down.</span>
         </p>
-        <button class="promptgen__btn" id="genPrompt" type="button">Get my advisor prompt →</button>
-        <div class="promptgen__panel" id="promptPanel" hidden>
-          <textarea id="promptText" readonly rows="12" aria-label="Generated skill-advisor prompt"></textarea>
-          <div style="margin-top:10px">
-            <button class="copy" id="copyPrompt" type="button">Copy prompt</button>
-            <span class="promptgen__status" id="copyStatus" role="status" aria-live="polite"></span>
+        <div class="idx-wrap"><table class="idx" id="scoutTable"></table></div>
+      </section>
+
+      <!-- use skillproof as a tool -->
+      <section class="panel" id="tools">
+        <h2 class="panel__title">Take Skillproof with you</h2>
+        <p class="panel__desc">
+          The matcher above is the demo. The tool itself installs into your own Claude, three ways —
+          each one answers pain points from the graded index first, then scouts the live ecosystem
+          with the same triage rubric. <span class="dim">All read-only: it never installs anything for you.</span>
+        </p>
+
+        <div class="way">
+          <div class="way__head">
+            <h3 class="way__title">Paste-in advisor prompt</h3>
+            <span class="way__tag">zero install · any Claude chat</span>
           </div>
+          <p class="way__desc">One click bakes the current index — graded with receipts, scouted
+          clearly labeled — plus the scout's triage rules into a single prompt.</p>
+          <button class="promptgen__btn" id="genPrompt" type="button">Get my advisor prompt →</button>
+          <div class="promptgen__panel" id="promptPanel" hidden>
+            <textarea id="promptText" readonly rows="12" aria-label="Generated skill-advisor prompt"></textarea>
+            <div style="margin-top:10px">
+              <button class="copy" id="copyPrompt" type="button">Copy prompt</button>
+              <span class="promptgen__status" id="copyStatus" role="status" aria-live="polite"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="way">
+          <div class="way__head">
+            <h3 class="way__title">The scout skill</h3>
+            <span class="way__tag">Claude Code · auto-triggers on "find me a skill for…"</span>
+          </div>
+          <p class="way__desc">An installable skill that checks the graded index, then searches
+          GitHub and directories for your pain point and returns a receipted shortlist —
+          provenance, license, freshness, safety flags on every candidate.</p>
+          <div class="cmd"><code id="skillCmd">mkdir -p ~/.claude/skills/skillproof-scout &amp;&amp; curl -fsSL https://raw.githubusercontent.com/lucascashwell3-ai/Skillproof/main/skills/skillproof-scout/SKILL.md -o ~/.claude/skills/skillproof-scout/SKILL.md</code>
+            <button class="copy" type="button" data-copy="mkdir -p ~/.claude/skills/skillproof-scout && curl -fsSL https://raw.githubusercontent.com/lucascashwell3-ai/Skillproof/main/skills/skillproof-scout/SKILL.md -o ~/.claude/skills/skillproof-scout/SKILL.md">Copy</button>
+          </div>
+          <p class="way__fine">Read what you're installing first — we would grade us too:
+          <a href="https://github.com/lucascashwell3-ai/Skillproof/blob/main/skills/skillproof-scout/SKILL.md" target="_blank" rel="noopener">skills/skillproof-scout/SKILL.md ↗</a></p>
+        </div>
+
+        <div class="way">
+          <div class="way__head">
+            <h3 class="way__title">MCP server</h3>
+            <span class="way__tag">Claude Desktop · Claude Code · Cursor</span>
+          </div>
+          <p class="way__desc">Four read-only tools any MCP host can call mid-workflow:
+          <code>find_resources</code>, <code>get_grade</code>, <code>list_index</code>,
+          <code>get_scout_methodology</code> — reading the same data file this page renders.</p>
+          <div class="cmd"><code>git clone https://github.com/lucascashwell3-ai/Skillproof &amp;&amp; cd Skillproof/mcp &amp;&amp; npm install</code>
+            <button class="copy" type="button" data-copy="git clone https://github.com/lucascashwell3-ai/Skillproof && cd Skillproof/mcp && npm install">Copy</button>
+          </div>
+          <div class="cmd"><code>claude mcp add skillproof -- node /path/to/Skillproof/mcp/server.js</code>
+            <button class="copy" type="button" data-copy="claude mcp add skillproof -- node /path/to/Skillproof/mcp/server.js">Copy</button>
+          </div>
+          <p class="way__fine">Desktop config + honesty rules in
+          <a href="https://github.com/lucascashwell3-ai/Skillproof/blob/main/mcp/README.md" target="_blank" rel="noopener">mcp/README.md ↗</a></p>
         </div>
       </section>
 
@@ -109,6 +166,6 @@
     </footer>
   </div>
 
-  <script src="assets/app.js?v=1"></script>
+  <script src="assets/app.js?v=2"></script>
 </body>
 </html>

@@ -7,12 +7,10 @@
   <meta name="description" content="The published rubric behind every SKILLproof grade: five tested dimensions, a fixed protocol, receipts for every score." />
   <meta name="theme-color" content="#0a0b0f" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='11' fill='%230a0b0f'/%3E%3Ccircle cx='12' cy='12' r='9.2' fill='none' stroke='%23f2c14e' stroke-opacity='0.5' stroke-width='1.4'/%3E%3Ctext x='12' y='16.2' font-family='Georgia' font-size='11' fill='%23f2c14e' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E" />
-  <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
-  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&f[]=jetbrains-mono@400,500&display=swap" rel="stylesheet" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/styles.css?v=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/styles.css?v=2" />
 </head>
 <body>
   <canvas id="stars" aria-hidden="true"></canvas>
@@ -110,6 +108,23 @@
       </table>
       <p>Grades are <b>derived from the dimension scores by this table, never hand-set</b> — an automated
       honesty gate (<code>scripts/validate_index.py</code>) recomputes every grade and fails the build on any mismatch.</p>
+
+      <h2>The scouted tier — found is not graded</h2>
+      <p>The scout (the site matcher's fallback, the installable scout skill, and the MCP server's
+      <code>find_resources</code>) surfaces resources we have <b>not</b> graded. Each scouted entry
+      carries exactly four triage receipts, checked on the date shown:</p>
+      <ul>
+        <li><b>Provenance</b> — repo verified real via the GitHub API: author, stars, created-when.</li>
+        <li><b>License</b> — the license field/file as found; "none detected" is reported plainly.</li>
+        <li><b>Freshness</b> — last push date, with a flag when it's been quiet &gt;6 months.</li>
+        <li><b>Safety skim</b> — README + file-tree only. The line-by-line read happens in grading, so
+        every scouted entry says the same thing: treat as untrusted until graded.</li>
+      </ul>
+      <div class="callout">
+        <b>Hard wall:</b> scouted entries never carry a grade, a score, or an install command.
+        The honesty gate (<code>scripts/validate_index.py</code>) fails the build if one tries.
+        Triage is a screen; a grade is a test.
+      </div>
 
       <h2>Freshness &amp; disputes</h2>
       <ul>
