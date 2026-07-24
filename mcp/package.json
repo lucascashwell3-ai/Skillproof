@@ -1,0 +1,12 @@
+{
+  "name": "skillproof-mcp",
+  "version": "0.1.0",
+  "description": "The rating agency for Claude skills, as an MCP server: graded recommendations with receipts, honest scouted-ungraded leads, and the triage methodology.",
+  "type": "module",
+  "bin": { "skillproof-mcp": "server.js" },
+  "main": "server.js",
+  "scripts": { "start": "node server.js" },
+  "dependencies": { "@modelcontextprotocol/sdk": "^1.0.0" },
+  "engines": { "node": ">=18" },
+  "license": "MIT"
+}

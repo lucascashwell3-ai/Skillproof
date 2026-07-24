@@ -1,7 +1,7 @@
 {
-  "as_of": "2026-07-21",
+  "as_of": "2026-07-24",
   "rubric_version": "1.0",
-  "notes": "Grades reflect the exact version tested (version_tested) on last_verified, under the rubric version shown. Skills graded so far is stated on the site; there are no placeholder grades.",
+  "notes": "Grades reflect the exact version tested (version_tested) on last_verified, under the rubric version shown. Skills graded so far is stated on the site; there are no placeholder grades. Entries with status 'scouted' are found-and-triaged only: repo verified real, license and freshness checked via the GitHub API on scouted_on — but never installed, never probed, source not read. They carry no grade by design.",
   "pain_points": [
     { "id": "buried-answers", "label": "Answers are long and the next step is buried",
       "keywords": ["adhd", "focus", "verbose", "preamble", "long replies", "buried", "direct", "concise", "wall of text", "rambling"] },
@@ -22,7 +22,9 @@
     { "id": "docs-drift", "label": "Docs and READMEs go stale or never get written",
       "keywords": ["docs", "readme", "documentation", "comments", "api docs", "stale"] },
     { "id": "security-worries", "label": "Unsure what AI-written code and skills can touch",
-      "keywords": ["security", "secrets", "audit", "vulnerability", "injection", "credentials", "safety", "permissions"] }
+      "keywords": ["security", "secrets", "audit", "vulnerability", "injection", "credentials", "safety", "permissions"] },
+    { "id": "debugging-loops", "label": "Bug hunts go in circles",
+      "keywords": ["debug", "debugging", "bug", "bugs", "error", "errors", "stack trace", "root cause", "broken", "crash", "regression hunt"] }
   ],
   "skills": [
     {
@@ -52,6 +54,132 @@
       "security_notes": "Pure markdown plus plugin manifests: no scripts, no network calls, no file writes, no credential access. The GitHub workflows in the repo run only in the author's CI, never on your machine.",
       "last_verified": "2026-07-21",
       "status": "graded"
+    },
+    {
+      "id": "claude-code-debug-mode",
+      "name": "claude-code-debug-mode",
+      "repo_url": "https://github.com/doraemonkeys/claude-code-debug-mode",
+      "author": "doraemonkeys",
+      "category": "workflow",
+      "summary": "Cursor-style Debug Mode skill: hypothesis-driven debugging with runtime log instrumentation and human-in-the-loop verification, instead of guess-edit loops.",
+      "pain_points": ["debugging-loops"],
+      "status": "scouted",
+      "scouted_on": "2026-07-24",
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: doraemonkeys/claude-code-debug-mode, 107 stars, created 2026-02.",
+        "license": "MIT",
+        "freshness": "Last push 2026-06-26 (checked 2026-07-24).",
+        "safety": "Source NOT yet read line-by-line — that read happens in grading. Treat as untrusted until graded."
+      },
+      "next": "Queued for a full grading run."
+    },
+    {
+      "id": "claude-git-pr-skill",
+      "name": "claude-git-pr-skill",
+      "repo_url": "https://github.com/aidankinzett/claude-git-pr-skill",
+      "author": "Aidan Kinzett (aidankinzett)",
+      "category": "git",
+      "summary": "GitHub PR review skill for Claude Code: pending reviews, inline code suggestions, and a user-approval workflow before anything posts.",
+      "pain_points": ["git-hygiene"],
+      "status": "scouted",
+      "scouted_on": "2026-07-24",
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: aidankinzett/claude-git-pr-skill, 41 stars, created 2025-12.",
+        "license": "No license file detected via the GitHub API — usage rights unclear; a real triage red flag.",
+        "freshness": "Last push 2025-12-02 (checked 2026-07-24) — ~8 months quiet.",
+        "safety": "Source NOT yet read line-by-line — that read happens in grading. Treat as untrusted until graded."
+      },
+      "next": "Queued for a full grading run."
+    },
+    {
+      "id": "recursive-research",
+      "name": "recursive-research",
+      "repo_url": "https://github.com/Anjos2/recursive-research",
+      "author": "Anjos2",
+      "category": "research",
+      "summary": "Recursive research skill with source tiering, weighted-decision-matrix + inversion checks, and disk checkpointing to survive context compaction.",
+      "pain_points": ["shallow-research"],
+      "status": "scouted",
+      "scouted_on": "2026-07-24",
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: Anjos2/recursive-research, 32 stars, created 2026-04.",
+        "license": "MIT",
+        "freshness": "Last push 2026-04-22 (checked 2026-07-24).",
+        "safety": "Source NOT yet read line-by-line — that read happens in grading. Treat as untrusted until graded."
+      },
+      "next": "Queued for a full grading run."
+    },
+    {
+      "id": "playwright-skill",
+      "name": "playwright-skill",
+      "repo_url": "https://github.com/lackeyjb/playwright-skill",
+      "author": "lackeyjb",
+      "category": "testing",
+      "summary": "Browser automation skill: Claude writes and runs Playwright scripts itself to test and validate real pages instead of claiming untested success.",
+      "pain_points": ["testing-discipline"],
+      "status": "scouted",
+      "scouted_on": "2026-07-24",
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: lackeyjb/playwright-skill, 2,937 stars, created 2025-10.",
+        "license": "MIT",
+        "freshness": "Last push 2025-12-19 (checked 2026-07-24) — ~7 months quiet.",
+        "safety": "Source NOT yet read line-by-line — that read happens in grading. Executes generated JS against a real browser; treat as untrusted until graded."
+      },
+      "next": "Queued for a full grading run."
+    },
+    {
+      "id": "anthropics-skills",
+      "name": "anthropics/skills",
+      "repo_url": "https://github.com/anthropics/skills",
+      "author": "Anthropic",
+      "category": "library",
+      "summary": "Anthropic's official public Agent Skills library — document skills (docx/pptx/xlsx/pdf), design and artifact builders, and the canonical skill-authoring examples.",
+      "pain_points": ["generic-frontend", "docs-drift"],
+      "status": "scouted",
+      "scouted_on": "2026-07-24",
+      "triage": {
+        "provenance": "First-party Anthropic org repo, verified via GitHub API: 163,783 stars, created 2025-09.",
+        "license": "No top-level license detected via the GitHub API — check per-skill terms in the repo before commercial reuse.",
+        "freshness": "Last push 2026-07-22 (checked 2026-07-24) — actively maintained.",
+        "safety": "A library, not one skill — each skill needs its own read before use. Not graded; individual skills may be graded separately later."
+      },
+      "next": "Individual skills from this library are grading candidates, not the library as a whole."
+    },
+    {
+      "id": "mengto-skills",
+      "name": "MengTo/Skills",
+      "repo_url": "https://github.com/MengTo/Skills",
+      "author": "Meng To (Design+Code)",
+      "category": "library",
+      "summary": "78+ agent skills for designers and builders — layout systems, visual styles, motion patterns — aimed squarely at making AI frontend output less generic.",
+      "pain_points": ["generic-frontend"],
+      "status": "scouted",
+      "scouted_on": "2026-07-24",
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: MengTo/Skills, 2,508 stars, created 2026-02; author is the founder of Design+Code.",
+        "license": "MIT",
+        "freshness": "Last push 2026-07-19 (checked 2026-07-24) — actively maintained.",
+        "safety": "A library, not one skill — each skill needs its own read before use. Not graded; individual skills may be graded separately later."
+      },
+      "next": "Cherry-pick candidates from the library for individual grading runs."
+    },
+    {
+      "id": "superpowers",
+      "name": "superpowers",
+      "repo_url": "https://github.com/obra/superpowers",
+      "author": "Jesse Vincent (obra)",
+      "category": "library",
+      "summary": "An agentic skills framework and full software-development methodology — planning, TDD, and subagent-driven development as installable skills.",
+      "pain_points": ["planning-drift", "testing-discipline"],
+      "status": "scouted",
+      "scouted_on": "2026-07-24",
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: obra/superpowers, 260,171 stars, created 2025-10.",
+        "license": "MIT",
+        "freshness": "Last push 2026-07-24 (checked 2026-07-24) — actively maintained.",
+        "safety": "A framework with shell components — every part needs its own read before use. Not graded; individual skills may be graded separately later."
+      },
+      "next": "Cherry-pick candidates from the framework for individual grading runs."
     }
   ]
 }
