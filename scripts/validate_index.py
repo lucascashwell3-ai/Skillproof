@@ -14,10 +14,16 @@ from pathlib import Path
 
 DATA = Path(__file__).resolve().parent.parent / "docs" / "data" / "skills.json"
 
-STATUSES = {"graded", "provisional", "delisted"}
+STATUSES = {"graded", "provisional", "delisted", "scouted"}
 CATEGORIES = {"workflow", "frontend", "testing", "research", "context",
-              "security", "docs", "automation", "output-style", "planning", "git"}
+              "security", "docs", "automation", "output-style", "planning", "git",
+              "library"}
 DIMS = ("triggering", "effectiveness", "docs_install", "maintenance", "safety")
+# A scouted entry is found-and-triaged, never tested. It must carry its triage
+# receipts and must NOT carry anything that looks like a grade.
+TRIAGE_KEYS = ("provenance", "license", "freshness", "safety")
+GRADE_ONLY_FIELDS = ("grade", "scores", "score_total", "evidence_url",
+                     "version_tested", "last_verified", "verdict")
 KEBAB = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")
 ISO = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 
@@ -83,6 +89,24 @@ def main() -> int:
         for field in ("name", "repo_url", "author", "summary"):
             if not s.get(field):
                 E(f"{sid}: missing {field}")
+
+        if status == "scouted":
+            # Honesty both ways: triage receipts required, grade fields forbidden.
+            for field in GRADE_ONLY_FIELDS:
+                if field in s:
+                    E(f"{sid}: scouted entry carries '{field}' — scouted resources are "
+                      "NEVER graded; grades come only from a full grading run")
+            if not s.get("scouted_on") or not ISO.match(str(s.get("scouted_on", ""))):
+                E(f"{sid}: scouted but scouted_on missing or not YYYY-MM-DD")
+            triage = s.get("triage")
+            if not isinstance(triage, dict):
+                E(f"{sid}: scouted but no triage receipts (provenance/license/freshness/safety)")
+            else:
+                for key in TRIAGE_KEYS:
+                    if not triage.get(key):
+                        E(f"{sid}: triage.{key} missing — a scouted entry without "
+                          "receipts is just a listicle row")
+            continue
 
         if status != "graded":
             continue
