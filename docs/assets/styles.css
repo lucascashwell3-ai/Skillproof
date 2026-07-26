@@ -663,18 +663,15 @@ kbd{font-family:var(--mono);font-size:.71rem;padding:2px 5px;border-radius:5px;b
 .vitem p{font-size:.84rem;color:var(--ink-2);font-weight:440}
 .vitem a{color:var(--violet-d)}
 
-/* take it with you — rotating demo stage */
-.demo{margin-bottom:22px;border-radius:var(--r-lg);overflow:hidden;
-  background:linear-gradient(158deg, rgba(255,255,255,.6), rgba(240,238,255,.4));
-  backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.95), inset 0 0 0 1px rgba(255,255,255,.55), var(--shadow-md)}
-.demo-stage{position:relative;height:190px}
+/* take it with you — rotating demo stage (no container box; the window floats) */
+.demo{margin-bottom:26px}
+.demo-stage{position:relative;height:236px}
 .demo-scene{position:absolute;inset:0;display:grid;place-items:center;padding:18px;
   opacity:0;transform:translateY(8px) scale(.98);pointer-events:none;
   transition:opacity 480ms var(--ease-out), transform var(--d-gentle) var(--sp-gentle)}
 .demo-scene.on{opacity:1;transform:none}
-.demo-win{width:min(560px,100%);border-radius:var(--r-md);background:rgba(255,255,255,.94);
-  box-shadow:inset 0 0 0 1px rgba(255,255,255,1), 0 14px 34px -18px rgba(75,55,216,.5);overflow:hidden}
+.demo-win{width:min(580px,100%);border-radius:var(--r-md);background:rgba(255,255,255,.94);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,1), 0 3px 8px rgba(22,18,58,.05), 0 22px 48px -20px rgba(75,55,216,.5);overflow:hidden}
 .demo-bar{font-family:var(--mono);font-size:.66rem;color:var(--ink-3);padding:6px 12px;
   background:rgba(246,247,252,.9);border-bottom:1px solid rgba(22,18,58,.06)}
 .demo-chat{display:flex;align-items:center;gap:9px;padding:12px}
@@ -685,10 +682,21 @@ kbd{font-family:var(--mono);font-size:.71rem;padding:2px 5px;border-radius:5px;b
   background:linear-gradient(135deg,#7C5CFA,#4E7BF7)}
 .demo-scene.on .demo-send{animation:sendpulse 900ms var(--sp-bouncy) 2.1s both}
 @keyframes sendpulse{0%{transform:scale(1)}40%{transform:scale(1.22)}100%{transform:scale(1)}}
-.demo-reply{margin:0 12px 12px;padding:8px 12px;border-radius:var(--r-md);font-size:.75rem;color:var(--ink-2);
-  background:rgba(109,91,246,.08);box-shadow:inset 0 0 0 1px rgba(109,91,246,.16);
-  opacity:0}
-.demo-scene.on .demo-reply{animation:rzin 460ms var(--sp-gentle) 2.7s both}
+.demo-msgs{display:flex;flex-direction:column;gap:6px;padding:11px 12px 4px}
+.demo-sent{align-self:flex-end;max-width:78%;padding:7px 12px;border-radius:14px 14px 4px 14px;
+  font-size:.74rem;color:#fff;background:linear-gradient(135deg,#7C5CFA,#4E7BF7);
+  box-shadow:0 4px 12px -6px rgba(78,60,220,.6);opacity:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.demo-scene.on .demo-sent{animation:tin var(--d-bouncy) var(--sp-bouncy) 2.35s both}
+.demo-reply{align-self:flex-start;max-width:82%;padding:7px 12px;border-radius:14px 14px 14px 4px;
+  font-size:.74rem;color:var(--ink-2);
+  background:rgba(109,91,246,.08);box-shadow:inset 0 0 0 1px rgba(109,91,246,.16);opacity:0}
+.demo-reply b{color:var(--ink);font-weight:640}
+.demo-scene.on .demo-reply{animation:tin var(--d-gentle) var(--sp-gentle) 2.9s both}
+.demo-scene.on .demo-reply2{animation-delay:3.4s}
+/* the typed prompt "sends": input text + caret flush as the sent bubble appears */
+.demo-scene.on .demo-chat .t1{animation:demotype 1.6s steps(36,end) .3s forwards, demoflush 180ms var(--ease-out) 2.35s forwards}
+.demo-scene.on .demo-chat .caret{animation:blink 1s steps(1) infinite, demoflush 180ms var(--ease-out) 2.35s forwards}
+@keyframes demoflush{to{opacity:0;max-width:0}}
 .demo-dark{background:linear-gradient(150deg, rgba(41,35,101,.98), rgba(52,40,118,.96))}
 .demo-dark .demo-bar{background:rgba(255,255,255,.06);color:#A8A2D8;border-bottom-color:rgba(255,255,255,.08)}
 .demo-term{padding:12px 14px;font-family:var(--mono);font-size:.74rem;line-height:1.8;color:#C7C2F2}

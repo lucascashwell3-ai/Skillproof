@@ -787,9 +787,15 @@
       tabs.forEach(function (t, k) { t.classList.toggle("on", k === i); });
       ways.forEach(function (w) { w.classList.toggle("demo-live", +w.dataset.way === i); });
     }
-    show(0);
-    setInterval(function () { show((cur + 1) % scenes.length); }, 4600);
-    tabs.forEach(function (t, k) { t.addEventListener("click", function () { show(k); }); });
+    var timer;
+    function arm() {
+      clearInterval(timer);
+      timer = setInterval(function () { show((cur + 1) % scenes.length); }, 5200);
+    }
+    show(0); arm();
+    tabs.forEach(function (t, k) {
+      t.addEventListener("click", function () { show(k); arm(); }); // manual pick restarts the clock
+    });
   }
 
   /* ======================= advisor prompt (real data only) ======================= */
