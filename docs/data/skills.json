@@ -1,30 +1,178 @@
 {
-  "as_of": "2026-07-24",
+  "as_of": "2026-07-25",
   "rubric_version": "1.0",
   "notes": "Grades reflect the exact version tested (version_tested) on last_verified, under the rubric version shown. Skills graded so far is stated on the site; there are no placeholder grades. Entries with status 'scouted' are found-and-triaged only: repo verified real, license and freshness checked via the GitHub API on scouted_on — but never installed, never probed, source not read. They carry no grade by design.",
   "pain_points": [
-    { "id": "buried-answers", "label": "Answers are long and the next step is buried", "short": "Direct answers",
-      "keywords": ["adhd", "focus", "verbose", "preamble", "long replies", "buried", "direct", "concise", "wall of text", "rambling"] },
-    { "id": "context-bloat", "label": "Context fills up; long sessions degrade", "short": "Token usage",
-      "keywords": ["context", "compact", "tokens", "memory", "long session", "context window", "token cost", "degrade"] },
-    { "id": "generic-frontend", "label": "Frontend output looks generic", "short": "Frontend design",
-      "keywords": ["design", "ui", "css", "landing page", "tailwind", "slop", "frontend", "styling", "generic", "templated"] },
-    { "id": "testing-discipline", "label": "Tests get skipped, gamed, or written weak", "short": "Testing",
-      "keywords": ["tdd", "test", "tests", "coverage", "red-green", "unit test", "regression", "flaky"] },
-    { "id": "planning-drift", "label": "Big tasks drift off the rails without a plan", "short": "Planning",
-      "keywords": ["plan", "planning", "breakdown", "spec", "scope", "drift", "requirements", "tasks", "roadmap"] },
-    { "id": "git-hygiene", "label": "Messy commits, branches, and PRs", "short": "Git & PRs",
-      "keywords": ["commit", "pr", "git", "changelog", "conventional commits", "branch", "pull request", "review"] },
-    { "id": "shallow-research", "label": "Web research comes back shallow or unsourced", "short": "Research",
-      "keywords": ["research", "sources", "citations", "hallucinate", "verify", "web search", "fact check"] },
-    { "id": "code-quality", "label": "Code works but is over-engineered or inconsistent", "short": "Code quality",
-      "keywords": ["refactor", "simplify", "review", "lint", "clean", "over-engineered", "complexity", "consistency"] },
-    { "id": "docs-drift", "label": "Docs and READMEs go stale or never get written", "short": "Docs",
-      "keywords": ["docs", "readme", "documentation", "comments", "api docs", "stale"] },
-    { "id": "security-worries", "label": "Unsure what AI-written code and skills can touch", "short": "Security",
-      "keywords": ["security", "secrets", "audit", "vulnerability", "injection", "credentials", "safety", "permissions"] },
-    { "id": "debugging-loops", "label": "Bug hunts go in circles", "short": "Debugging",
-      "keywords": ["debug", "debugging", "bug", "bugs", "error", "errors", "stack trace", "root cause", "broken", "crash", "regression hunt"] }
+    {
+      "id": "buried-answers",
+      "label": "Answers are long and the next step is buried",
+      "short": "Direct answers",
+      "keywords": [
+        "adhd",
+        "focus",
+        "verbose",
+        "preamble",
+        "long replies",
+        "buried",
+        "direct",
+        "concise",
+        "wall of text",
+        "rambling"
+      ]
+    },
+    {
+      "id": "context-bloat",
+      "label": "Context fills up; long sessions degrade",
+      "short": "Token usage",
+      "keywords": [
+        "context",
+        "compact",
+        "tokens",
+        "memory",
+        "long session",
+        "context window",
+        "token cost",
+        "degrade"
+      ]
+    },
+    {
+      "id": "generic-frontend",
+      "label": "Frontend output looks generic",
+      "short": "Frontend design",
+      "keywords": [
+        "design",
+        "ui",
+        "css",
+        "landing page",
+        "tailwind",
+        "slop",
+        "frontend",
+        "styling",
+        "generic",
+        "templated"
+      ]
+    },
+    {
+      "id": "testing-discipline",
+      "label": "Tests get skipped, gamed, or written weak",
+      "short": "Testing",
+      "keywords": [
+        "tdd",
+        "test",
+        "tests",
+        "coverage",
+        "red-green",
+        "unit test",
+        "regression",
+        "flaky"
+      ]
+    },
+    {
+      "id": "planning-drift",
+      "label": "Big tasks drift off the rails without a plan",
+      "short": "Planning",
+      "keywords": [
+        "plan",
+        "planning",
+        "breakdown",
+        "spec",
+        "scope",
+        "drift",
+        "requirements",
+        "tasks",
+        "roadmap"
+      ]
+    },
+    {
+      "id": "git-hygiene",
+      "label": "Messy commits, branches, and PRs",
+      "short": "Git & PRs",
+      "keywords": [
+        "commit",
+        "pr",
+        "git",
+        "changelog",
+        "conventional commits",
+        "branch",
+        "pull request",
+        "review"
+      ]
+    },
+    {
+      "id": "shallow-research",
+      "label": "Web research comes back shallow or unsourced",
+      "short": "Research",
+      "keywords": [
+        "research",
+        "sources",
+        "citations",
+        "hallucinate",
+        "verify",
+        "web search",
+        "fact check"
+      ]
+    },
+    {
+      "id": "code-quality",
+      "label": "Code works but is over-engineered or inconsistent",
+      "short": "Code quality",
+      "keywords": [
+        "refactor",
+        "simplify",
+        "review",
+        "lint",
+        "clean",
+        "over-engineered",
+        "complexity",
+        "consistency"
+      ]
+    },
+    {
+      "id": "docs-drift",
+      "label": "Docs and READMEs go stale or never get written",
+      "short": "Docs",
+      "keywords": [
+        "docs",
+        "readme",
+        "documentation",
+        "comments",
+        "api docs",
+        "stale"
+      ]
+    },
+    {
+      "id": "security-worries",
+      "label": "Unsure what AI-written code and skills can touch",
+      "short": "Security",
+      "keywords": [
+        "security",
+        "secrets",
+        "audit",
+        "vulnerability",
+        "injection",
+        "credentials",
+        "safety",
+        "permissions"
+      ]
+    },
+    {
+      "id": "debugging-loops",
+      "label": "Bug hunts go in circles",
+      "short": "Debugging",
+      "keywords": [
+        "debug",
+        "debugging",
+        "bug",
+        "bugs",
+        "error",
+        "errors",
+        "stack trace",
+        "root cause",
+        "broken",
+        "crash",
+        "regression hunt"
+      ]
+    }
   ],
   "skills": [
     {
@@ -35,7 +183,9 @@
       "version_tested": "0241185",
       "category": "output-style",
       "summary": "Ten markdown rules that make replies action-first: answer in line one, numbered steps, time estimates, no preamble or closers. Opt-in via /i-have-adhd.",
-      "pain_points": ["buried-answers"],
+      "pain_points": [
+        "buried-answers"
+      ],
       "install": {
         "command": "claude plugin marketplace add ayghri/i-have-adhd && claude plugin install i-have-adhd@i-have-adhd",
         "notes": "Opt-in by design: nothing changes until you type /i-have-adhd. 'stop adhd mode' turns it off."
@@ -43,11 +193,26 @@
       "grade": "A",
       "score_total": 24,
       "scores": {
-        "triggering":    { "score": 4, "note": "5/5 probes — fires only on explicit /i-have-adhd, stays silent otherwise, exactly its declared opt-in design" },
-        "effectiveness": { "score": 4, "note": "Treatment vs control: action-first line 1, numbered steps, real time estimates, tangents deferred — precisely as sold" },
-        "docs_install":  { "score": 4, "note": "Installed first try; the activation docs ('if you did not turn it on, it is off') are a model for opt-in skills" },
-        "maintenance":   { "score": 4, "note": "Commits and merged PRs on the day of grading; same-day frontmatter fix" },
-        "safety":        { "score": 4, "note": "Pure markdown — no scripts, no network, no writes; nothing it can touch" }
+        "triggering": {
+          "score": 4,
+          "note": "5/5 probes — fires only on explicit /i-have-adhd, stays silent otherwise, exactly its declared opt-in design"
+        },
+        "effectiveness": {
+          "score": 4,
+          "note": "Treatment vs control: action-first line 1, numbered steps, real time estimates, tangents deferred — precisely as sold"
+        },
+        "docs_install": {
+          "score": 4,
+          "note": "Installed first try; the activation docs ('if you did not turn it on, it is off') are a model for opt-in skills"
+        },
+        "maintenance": {
+          "score": 4,
+          "note": "Commits and merged PRs on the day of grading; same-day frontmatter fix"
+        },
+        "safety": {
+          "score": 4,
+          "note": "Pure markdown — no scripts, no network, no writes; nothing it can touch"
+        }
       },
       "verdict": "Does exactly what it promises, fires only when you ask, and contains nothing but 10 markdown rules — the model citizen of tiny skills.",
       "evidence_url": "grading/worksheets/i-have-adhd.md",
@@ -62,7 +227,9 @@
       "author": "doraemonkeys",
       "category": "workflow",
       "summary": "Cursor-style Debug Mode skill: hypothesis-driven debugging with runtime log instrumentation and human-in-the-loop verification, instead of guess-edit loops.",
-      "pain_points": ["debugging-loops"],
+      "pain_points": [
+        "debugging-loops"
+      ],
       "status": "scouted",
       "scouted_on": "2026-07-24",
       "triage": {
@@ -80,7 +247,9 @@
       "author": "Aidan Kinzett (aidankinzett)",
       "category": "git",
       "summary": "GitHub PR review skill for Claude Code: pending reviews, inline code suggestions, and a user-approval workflow before anything posts.",
-      "pain_points": ["git-hygiene"],
+      "pain_points": [
+        "git-hygiene"
+      ],
       "status": "scouted",
       "scouted_on": "2026-07-24",
       "triage": {
@@ -98,7 +267,9 @@
       "author": "Anjos2",
       "category": "research",
       "summary": "Recursive research skill with source tiering, weighted-decision-matrix + inversion checks, and disk checkpointing to survive context compaction.",
-      "pain_points": ["shallow-research"],
+      "pain_points": [
+        "shallow-research"
+      ],
       "status": "scouted",
       "scouted_on": "2026-07-24",
       "triage": {
@@ -116,7 +287,9 @@
       "author": "lackeyjb",
       "category": "testing",
       "summary": "Browser automation skill: Claude writes and runs Playwright scripts itself to test and validate real pages instead of claiming untested success.",
-      "pain_points": ["testing-discipline"],
+      "pain_points": [
+        "testing-discipline"
+      ],
       "status": "scouted",
       "scouted_on": "2026-07-24",
       "triage": {
@@ -134,7 +307,10 @@
       "author": "Anthropic",
       "category": "library",
       "summary": "Anthropic's official public Agent Skills library — document skills (docx/pptx/xlsx/pdf), design and artifact builders, and the canonical skill-authoring examples.",
-      "pain_points": ["generic-frontend", "docs-drift"],
+      "pain_points": [
+        "generic-frontend",
+        "docs-drift"
+      ],
       "status": "scouted",
       "scouted_on": "2026-07-24",
       "triage": {
@@ -152,7 +328,9 @@
       "author": "Meng To (Design+Code)",
       "category": "library",
       "summary": "78+ agent skills for designers and builders — layout systems, visual styles, motion patterns — aimed squarely at making AI frontend output less generic.",
-      "pain_points": ["generic-frontend"],
+      "pain_points": [
+        "generic-frontend"
+      ],
       "status": "scouted",
       "scouted_on": "2026-07-24",
       "triage": {
@@ -170,7 +348,10 @@
       "author": "Jesse Vincent (obra)",
       "category": "library",
       "summary": "An agentic skills framework and full software-development methodology — planning, TDD, and subagent-driven development as installable skills.",
-      "pain_points": ["planning-drift", "testing-discipline"],
+      "pain_points": [
+        "planning-drift",
+        "testing-discipline"
+      ],
       "status": "scouted",
       "scouted_on": "2026-07-24",
       "triage": {
@@ -180,6 +361,976 @@
         "safety": "A framework with shell components — every part needs its own read before use. Not graded; individual skills may be graded separately later."
       },
       "next": "Cherry-pick candidates from the framework for individual grading runs."
+    },
+    {
+      "id": "affaan-m-ecc",
+      "name": "ECC",
+      "repo_url": "https://github.com/affaan-m/ECC",
+      "author": "affaan-m",
+      "category": "research",
+      "summary": "The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond.",
+      "pain_points": [
+        "shallow-research",
+        "context-bloat",
+        "security-worries"
+      ],
+      "status": "scouted",
+      "scouted_on": "2026-07-25",
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: affaan-m/ECC, 233,314 stars, created 2026-01.",
+        "license": "MIT",
+        "freshness": "Last push 2026-07-25 (checked 2026-07-25) — actively maintained.",
+        "safety": "Source NOT yet read line-by-line — that read happens in grading. Treat as untrusted until graded."
+      },
+      "next": "Queued for a full grading run."
+    },
+    {
+      "id": "multica-ai-andrej-karpathy-skills",
+      "name": "multica-ai/andrej-karpathy-skills",
+      "repo_url": "https://github.com/multica-ai/andrej-karpathy-skills",
+      "author": "multica-ai",
+      "category": "library",
+      "summary": "A single CLAUDE.md file to improve Claude Code behavior, derived from Andrej Karpathy's observations on LLM coding pitfalls.",
+      "pain_points": [],
+      "status": "scouted",
+      "scouted_on": "2026-07-25",
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: multica-ai/andrej-karpathy-skills, 196,302 stars, created 2026-01.",
+        "license": "No license file detected via the GitHub API — usage rights unclear; a real triage red flag.",
+        "freshness": "Last push 2026-04-20 (checked 2026-07-25).",
+        "safety": "A library, not one skill — each skill needs its own read before use. Not graded; individual skills may be graded separately later."
+      },
+      "next": "Queued for a full grading run."
+    },
+    {
+      "id": "mattpocock-skills",
+      "name": "mattpocock/skills",
+      "repo_url": "https://github.com/mattpocock/skills",
+      "author": "mattpocock",
+      "category": "library",
+      "summary": "Skills for Real Engineers. Straight from my .agents directory.",
+      "pain_points": [],
+      "status": "scouted",
+      "scouted_on": "2026-07-25",
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: mattpocock/skills, 188,291 stars, created 2026-02.",
+        "license": "MIT",
+        "freshness": "Last push 2026-07-23 (checked 2026-07-25) — actively maintained.",
+        "safety": "A library, not one skill — each skill needs its own read before use. Not graded; individual skills may be graded separately later."
+      },
+      "next": "Queued for a full grading run."
+    },
+    {
+      "id": "nextlevelbuilder-ui-ux-pro-max-skill",
+      "name": "ui-ux-pro-max-skill",
+      "repo_url": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill",
+      "author": "nextlevelbuilder",
+      "category": "frontend",
+      "summary": "An AI SKILL that provide design intelligence for building professional UI/UX multiple platforms",
+      "pain_points": [
+        "generic-frontend"
+      ],
+      "status": "scouted",
+      "scouted_on": "2026-07-25",
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: nextlevelbuilder/ui-ux-pro-max-skill, 110,114 stars, created 2025-11.",
+        "license": "MIT",
+        "freshness": "Last push 2026-07-21 (checked 2026-07-25) — actively maintained.",
+        "safety": "Source NOT yet read line-by-line — that read happens in grading. Treat as untrusted until graded."
+      },
+      "next": "Queued for a full grading run."
+    },
+    {
+      "id": "graphify-labs-graphify",
+      "name": "graphify",
+      "repo_url": "https://github.com/Graphify-Labs/graphify",
+      "author": "Graphify-Labs",
+      "category": "research",
+      "summary": "Turn any codebase, with its docs, SQL schemas, configs, and PDFs, into a queryable knowledge graph. A /graphify skill for Claude Code, Cursor, Codex, and Gemini CLI: local deterministic AST parsing, every edge explained,",
+      "pain_points": [
+        "docs-drift"
+      ],
+      "status": "scouted",
+      "scouted_on": "2026-07-25",
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: Graphify-Labs/graphify, 95,868 stars, created 2026-04.",
+        "license": "Apache-2.0",
+        "freshness": "Last push 2026-07-24 (checked 2026-07-25) — actively maintained.",
+        "safety": "Source NOT yet read line-by-line — that read happens in grading. Treat as untrusted until graded."
+      },
+      "next": "Queued for a full grading run."
+    },
+    {
+      "id": "juliusbrussee-caveman",
+      "name": "caveman",
+      "repo_url": "https://github.com/JuliusBrussee/caveman",
+      "author": "JuliusBrussee",
+      "category": "context",
+      "summary": "🪨 why use many token when few token do trick — Claude Code skill that cuts 65% of tokens by talking like caveman",
+      "pain_points": [
+        "context-bloat"
+      ],
+      "status": "scouted",
+      "scouted_on": "2026-07-25",
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: JuliusBrussee/caveman, 92,983 stars, created 2026-04.",
+        "license": "MIT",
+        "freshness": "Last push 2026-07-03 (checked 2026-07-25) — actively maintained.",
+        "safety": "Source NOT yet read line-by-line — that read happens in grading. Treat as untrusted until graded."
+      },
+      "next": "Queued for a full grading run."
+    },
+    {
+      "id": "dietrichgebert-ponytail",
+      "name": "ponytail",
+      "repo_url": "https://github.com/DietrichGebert/ponytail",
+      "author": "DietrichGebert",
+      "category": "workflow",
+      "summary": "Makes your AI agent think like the laziest senior dev in the room. The best code is the code you never wrote.",
+      "pain_points": [],
+      "status": "scouted",
+      "scouted_on": "2026-07-25",
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: DietrichGebert/ponytail, 89,377 stars, created 2026-06.",
+        "license": "MIT",
+        "freshness": "Last push 2026-07-15 (checked 2026-07-25) — actively maintained.",
+        "safety": "Source NOT yet read line-by-line — that read happens in grading. Treat as untrusted until graded."
+      },
+      "next": "Queued for a full grading run."
+    },
+    {
+      "id": "thedotmack-claude-mem",
+      "name": "claude-mem",
+      "repo_url": "https://github.com/thedotmack/claude-mem",
+      "author": "thedotmack",
+      "category": "context",
+      "summary": "Persistent Context Across Sessions for Every Agent –  Captures everything your agent does during sessions, compresses it with AI, and injects relevant context back into future sessions. Works with Claude Code, OpenClaw, ",
+      "pain_points": [
+        "context-bloat"
+      ],
+      "status": "scouted",
+      "scouted_on": "2026-07-25",
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: thedotmack/claude-mem, 88,561 stars, created 2025-08.",
+        "license": "Apache-2.0",
+        "freshness": "Last push 2026-07-23 (checked 2026-07-25) — actively maintained.",
+        "safety": "Source NOT yet read line-by-line — that read happens in grading. Treat as untrusted until graded."
+      },
+      "next": "Queued for a full grading run."
+    },
+    {
+      "id": "nexu-io-open-design",
+      "name": "open-design",
+      "repo_url": "https://github.com/nexu-io/open-design",
+      "author": "nexu-io",
+      "category": "frontend",
+      "summary": "🎨 The open-source Claude Design alternative. 🖥️ Local-first desktop app. 🖼️ Your coding agent becomes the design engine: prototypes, landing pages, dashboards, slides, images & video — real files, HTML/PDF/PPTX/MP4 expor",
+      "pain_points": [
+        "generic-frontend"
+      ],
+      "status": "scouted",
+      "scouted_on": "2026-07-25",
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: nexu-io/open-design, 81,529 stars, created 2026-04.",
+        "license": "Apache-2.0",
+        "freshness": "Last push 2026-07-26 (checked 2026-07-25) — actively maintained.",
+        "safety": "Source NOT yet read line-by-line — that read happens in grading. Treat as untrusted until graded."
+      },
+      "next": "Queued for a full grading run."
+    },
+    {
+      "id": "addyosmani-agent-skills",
+      "name": "addyosmani/agent-skills",
+      "repo_url": "https://github.com/addyosmani/agent-skills",
+      "author": "addyosmani",
+      "category": "library",
+      "summary": "Production-grade engineering skills for AI coding agents.",
+      "pain_points": [],
+      "status": "scouted",
+      "scouted_on": "2026-07-25",
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: addyosmani/agent-skills, 80,373 stars, created 2026-02.",
+        "license": "MIT",
+        "freshness": "Last push 2026-07-26 (checked 2026-07-25) — actively maintained.",
+        "safety": "A library, not one skill — each skill needs its own read before use. Not graded; individual skills may be graded separately later."
+      },
+      "next": "Queued for a full grading run."
+    },
+    {
+      "id": "egonex-ai-understand-anything",
+      "name": "Understand-Anything",
+      "repo_url": "https://github.com/Egonex-AI/Understand-Anything",
+      "author": "Egonex-AI",
+      "category": "research",
+      "summary": "Graphs that teach > graphs that impress. Turn any code into an interactive knowledge graph you can explore, search, and ask questions about. Works with Claude Code, Codex, Cursor, Copilot, Gemini CLI, and more.",
+      "pain_points": [
+        "context-bloat"
+      ],
+      "status": "scouted",
+      "scouted_on": "2026-07-25",
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: Egonex-AI/Understand-Anything, 76,093 stars, created 2026-03.",
+        "license": "MIT",
+        "freshness": "Last push 2026-07-25 (checked 2026-07-25) — actively maintained.",
+        "safety": "Source NOT yet read line-by-line — that read happens in grading. Treat as untrusted until graded."
+      },
+      "next": "Queued for a full grading run."
+    },
+    {
+      "id": "rtk-ai-rtk",
+      "name": "rtk",
+      "repo_url": "https://github.com/rtk-ai/rtk",
+      "author": "rtk-ai",
+      "category": "context",
+      "summary": "CLI proxy that reduces LLM token consumption by 60-90% on common dev commands. Single Rust binary, zero dependencies",
+      "pain_points": [
+        "context-bloat"
+      ],
+      "status": "scouted",
+      "scouted_on": "2026-07-25",
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: rtk-ai/rtk, 73,247 stars, created 2026-01.",
+        "license": "Apache-2.0",
+        "freshness": "Last push 2026-07-26 (checked 2026-07-25) — actively maintained.",
+        "safety": "Source NOT yet read line-by-line — that read happens in grading. Treat as untrusted until graded."
+      },
+      "next": "Queued for a full grading run."
+    },
+    {
+      "id": "shareai-lab-learn-claude-code",
+      "name": "learn-claude-code",
+      "repo_url": "https://github.com/shareAI-lab/learn-claude-code",
+      "author": "shareAI-lab",
+      "category": "workflow",
+      "summary": "Bash is all you need -  A nano claude code–like 「agent harness」, built from 0 to 1",
+      "pain_points": [],
+      "status": "scouted",
+      "scouted_on": "2026-07-25",
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: shareAI-lab/learn-claude-code, 72,210 stars, created 2025-06.",
+        "license": "MIT",
+        "freshness": "Last push 2026-06-26 (checked 2026-07-25) — actively maintained.",
+        "safety": "Source NOT yet read line-by-line — that read happens in grading. Treat as untrusted until graded."
+      },
+      "next": "Queued for a full grading run."
+    },
+    {
+      "id": "composiohq-awesome-claude-skills",
+      "name": "ComposioHQ/awesome-claude-skills",
+      "repo_url": "https://github.com/ComposioHQ/awesome-claude-skills",
+      "author": "ComposioHQ",
+      "category": "library",
+      "summary": "A curated list of awesome Claude Skills, resources, and tools for customizing Claude AI workflows",
+      "pain_points": [
+        "shallow-research"
+      ],
+      "status": "scouted",
+      "scouted_on": "2026-07-25",
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: ComposioHQ/awesome-claude-skills, 70,593 stars, created 2025-10.",
+        "license": "No license file detected via the GitHub API — usage rights unclear; a real triage red flag.",
+        "freshness": "Last push 2026-07-24 (checked 2026-07-25) — actively maintained.",
+        "safety": "A library, not one skill — each skill needs its own read before use. Not graded; individual skills may be graded separately later."
+      },
+      "next": "Queued for a full grading run."
+    },
+    {
+      "id": "leonxlnx-taste-skill",
+      "name": "taste-skill",
+      "repo_url": "https://github.com/Leonxlnx/taste-skill",
+      "author": "Leonxlnx",
+      "category": "frontend",
+      "summary": "Taste-Skill - gives your AI good taste. stops the AI from generating boring, generic slop",
+      "pain_points": [
+        "generic-frontend"
+      ],
+      "status": "scouted",
+      "scouted_on": "2026-07-25",
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: Leonxlnx/taste-skill, 67,630 stars, created 2026-02.",
+        "license": "MIT",
+        "freshness": "Last push 2026-07-23 (checked 2026-07-25) — actively maintained.",
+        "safety": "Source NOT yet read line-by-line — that read happens in grading. Treat as untrusted until graded."
+      },
+      "next": "Queued for a full grading run."
+    },
+    {
+      "id": "ruvnet-ruflo",
+      "name": "ruflo",
+      "repo_url": "https://github.com/ruvnet/ruflo",
+      "author": "ruvnet",
+      "category": "context",
+      "summary": "🌊 The leading agent meta-harness. Deploy intelligent multi-player swarms, coordinate autonomous workflows, and build conversational AI systems. Features adaptive memory, self-learning intelligence, RAG integration, and n",
+      "pain_points": [
+        "context-bloat"
+      ],
+      "status": "scouted",
+      "scouted_on": "2026-07-25",
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: ruvnet/ruflo, 65,978 stars, created 2025-06.",
+        "license": "MIT",
+        "freshness": "Last push 2026-07-25 (checked 2026-07-25) — actively maintained.",
+        "safety": "Source NOT yet read line-by-line — that read happens in grading. Treat as untrusted until graded."
+      },
+      "next": "Queued for a full grading run."
+    },
+    {
+      "id": "shanraisshan-claude-code-best-practice",
+      "name": "claude-code-best-practice",
+      "repo_url": "https://github.com/shanraisshan/claude-code-best-practice",
+      "author": "shanraisshan",
+      "category": "context",
+      "summary": "from vibe coding to agentic engineering - practice makes claude perfect",
+      "pain_points": [
+        "context-bloat"
+      ],
+      "status": "scouted",
+      "scouted_on": "2026-07-25",
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: shanraisshan/claude-code-best-practice, 63,490 stars, created 2025-10.",
+        "license": "MIT",
+        "freshness": "Last push 2026-07-25 (checked 2026-07-25) — actively maintained.",
+        "safety": "Source NOT yet read line-by-line — that read happens in grading. Treat as untrusted until graded."
+      },
+      "next": "Queued for a full grading run."
+    },
+    {
+      "id": "headroomlabs-ai-headroom",
+      "name": "headroom",
+      "repo_url": "https://github.com/headroomlabs-ai/headroom",
+      "author": "headroomlabs-ai",
+      "category": "context",
+      "summary": "Compress tool outputs, logs, files, and RAG chunks before they reach the LLM. 20% fewer tokens for coding agents, 60-95% fewer tokens for JSON, same answers. Library, proxy, MCP server.",
+      "pain_points": [
+        "context-bloat"
+      ],
+      "status": "scouted",
+      "scouted_on": "2026-07-25",
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: headroomlabs-ai/headroom, 62,416 stars, created 2026-01.",
+        "license": "Apache-2.0",
+        "freshness": "Last push 2026-07-25 (checked 2026-07-25) — actively maintained.",
+        "safety": "Source NOT yet read line-by-line — that read happens in grading. Treat as untrusted until graded."
+      },
+      "next": "Queued for a full grading run."
+    },
+    {
+      "id": "panniantong-agent-reach",
+      "name": "Agent-Reach",
+      "repo_url": "https://github.com/Panniantong/Agent-Reach",
+      "author": "Panniantong",
+      "category": "research",
+      "summary": "Give your AI agent eyes to see the entire internet. Read & search Twitter, Reddit, YouTube, GitHub, Bilibili, XiaoHongShu — one CLI, zero API fees.",
+      "pain_points": [],
+      "status": "scouted",
+      "scouted_on": "2026-07-25",
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: Panniantong/Agent-Reach, 60,834 stars, created 2026-02.",
+        "license": "MIT",
+        "freshness": "Last push 2026-07-25 (checked 2026-07-25) — actively maintained.",
+        "safety": "Source NOT yet read line-by-line — that read happens in grading. Treat as untrusted until graded."
+      },
+      "next": "Queued for a full grading run."
+    },
+    {
+      "id": "mvanhorn-last30days-skill",
+      "name": "last30days-skill",
+      "repo_url": "https://github.com/mvanhorn/last30days-skill",
+      "author": "mvanhorn",
+      "category": "research",
+      "summary": "AI agent skill that researches any topic across Reddit, X, YouTube, HN, Polymarket, and the web - then synthesizes a grounded summary",
+      "pain_points": [
+        "shallow-research"
+      ],
+      "status": "scouted",
+      "scouted_on": "2026-07-25",
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: mvanhorn/last30days-skill, 53,607 stars, created 2026-01.",
+        "license": "MIT",
+        "freshness": "Last push 2026-07-25 (checked 2026-07-25) — actively maintained.",
+        "safety": "Source NOT yet read line-by-line — that read happens in grading. Treat as untrusted until graded."
+      },
+      "next": "Queued for a full grading run."
+    },
+    {
+      "id": "voltagent-awesome-openclaw-skills",
+      "name": "VoltAgent/awesome-openclaw-skills",
+      "repo_url": "https://github.com/VoltAgent/awesome-openclaw-skills",
+      "author": "VoltAgent",
+      "category": "library",
+      "summary": "The awesome collection of OpenClaw skills. 5,400+ skills filtered and categorized from the official OpenClaw Skills Registry.🦞",
+      "pain_points": [],
+      "status": "scouted",
+      "scouted_on": "2026-07-25",
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: VoltAgent/awesome-openclaw-skills, 51,518 stars, created 2026-01.",
+        "license": "MIT",
+        "freshness": "Last push 2026-07-16 (checked 2026-07-25) — actively maintained.",
+        "safety": "A library, not one skill — each skill needs its own read before use. Not graded; individual skills may be graded separately later."
+      },
+      "next": "Queued for a full grading run."
+    },
+    {
+      "id": "hesreallyhim-awesome-claude-code",
+      "name": "hesreallyhim/awesome-claude-code",
+      "repo_url": "https://github.com/hesreallyhim/awesome-claude-code",
+      "author": "hesreallyhim",
+      "category": "library",
+      "summary": "A hand-picked collection of the finest of resources for the most awesome of agents, Claude Code, the undisputed champion of coding companions, from the unstoppable team at Anthropic PBC. A delectable showcase of top tier",
+      "pain_points": [
+        "shallow-research"
+      ],
+      "status": "scouted",
+      "scouted_on": "2026-07-25",
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: hesreallyhim/awesome-claude-code, 50,936 stars, created 2025-04.",
+        "license": "No license file detected via the GitHub API — usage rights unclear; a real triage red flag.",
+        "freshness": "Last push 2026-07-26 (checked 2026-07-25) — actively maintained.",
+        "safety": "A library, not one skill — each skill needs its own read before use. Not graded; individual skills may be graded separately later."
+      },
+      "next": "Queued for a full grading run."
+    },
+    {
+      "id": "sickn33-agentic-awesome-skills",
+      "name": "sickn33/agentic-awesome-skills",
+      "repo_url": "https://github.com/sickn33/agentic-awesome-skills",
+      "author": "sickn33",
+      "category": "library",
+      "summary": "AAS Core is the local, agent-first control plane for complete catalog discovery, agent-owned selection, stack validation, and planning, backed by 1,987+ agentic skills. Includes CLI, local MCP, catalog, plugins, and Work",
+      "pain_points": [
+        "planning-drift"
+      ],
+      "status": "scouted",
+      "scouted_on": "2026-07-25",
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: sickn33/agentic-awesome-skills, 43,911 stars, created 2026-01.",
+        "license": "MIT",
+        "freshness": "Last push 2026-07-24 (checked 2026-07-25) — actively maintained.",
+        "safety": "A library, not one skill — each skill needs its own read before use. Not graded; individual skills may be graded separately later."
+      },
+      "next": "Queued for a full grading run."
+    },
+    {
+      "id": "coreyhaines31-marketingskills",
+      "name": "marketingskills",
+      "repo_url": "https://github.com/coreyhaines31/marketingskills",
+      "author": "coreyhaines31",
+      "category": "workflow",
+      "summary": "Marketing skills for Claude Code and AI agents. CRO, copywriting, SEO, analytics, and growth engineering.",
+      "pain_points": [],
+      "status": "scouted",
+      "scouted_on": "2026-07-25",
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: coreyhaines31/marketingskills, 41,683 stars, created 2026-01.",
+        "license": "MIT",
+        "freshness": "Last push 2026-07-23 (checked 2026-07-25) — actively maintained.",
+        "safety": "Source NOT yet read line-by-line — that read happens in grading. Treat as untrusted until graded."
+      },
+      "next": "Queued for a full grading run."
+    },
+    {
+      "id": "imbad0202-academic-research-skills",
+      "name": "Imbad0202/academic-research-skills",
+      "repo_url": "https://github.com/Imbad0202/academic-research-skills",
+      "author": "Imbad0202",
+      "category": "library",
+      "summary": "Academic Research Skills for Claude Code: research → write → review → revise → finalize",
+      "pain_points": [
+        "shallow-research"
+      ],
+      "status": "scouted",
+      "scouted_on": "2026-07-25",
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: Imbad0202/academic-research-skills, 39,500 stars, created 2026-02.",
+        "license": "No license file detected via the GitHub API — usage rights unclear; a real triage red flag.",
+        "freshness": "Last push 2026-07-25 (checked 2026-07-25) — actively maintained.",
+        "safety": "A library, not one skill — each skill needs its own read before use. Not graded; individual skills may be graded separately later."
+      },
+      "next": "Queued for a full grading run."
+    },
+    {
+      "id": "wshobson-agents",
+      "name": "wshobson/agents",
+      "repo_url": "https://github.com/wshobson/agents",
+      "author": "wshobson",
+      "category": "library",
+      "summary": "Multi-harness agentic plugin marketplace for Claude Code, Codex CLI, Cursor, OpenCode, GitHub Copilot, and Gemini CLI",
+      "pain_points": [],
+      "status": "scouted",
+      "scouted_on": "2026-07-25",
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: wshobson/agents, 38,224 stars, created 2025-07.",
+        "license": "MIT",
+        "freshness": "Last push 2026-07-22 (checked 2026-07-25) — actively maintained.",
+        "safety": "A library, not one skill — each skill needs its own read before use. Not graded; individual skills may be graded separately later."
+      },
+      "next": "Queued for a full grading run."
+    },
+    {
+      "id": "github-awesome-copilot",
+      "name": "github/awesome-copilot",
+      "repo_url": "https://github.com/github/awesome-copilot",
+      "author": "github",
+      "category": "library",
+      "summary": "Community-contributed instructions, agents, skills, and configurations to help you make the most of GitHub Copilot.",
+      "pain_points": [],
+      "status": "scouted",
+      "scouted_on": "2026-07-25",
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: github/awesome-copilot, 37,034 stars, created 2025-06.",
+        "license": "MIT",
+        "freshness": "Last push 2026-07-25 (checked 2026-07-25) — actively maintained.",
+        "safety": "A library, not one skill — each skill needs its own read before use. Not graded; individual skills may be graded separately later."
+      },
+      "next": "Queued for a full grading run."
+    },
+    {
+      "id": "k-dense-ai-scientific-agent-skills",
+      "name": "K-Dense-AI/scientific-agent-skills",
+      "repo_url": "https://github.com/K-Dense-AI/scientific-agent-skills",
+      "author": "K-Dense-AI",
+      "category": "library",
+      "summary": "Turn any AI agent into an AI Scientist. The #1 Agent Skills library for science, used by 160,000+ scientists worldwide. 148 ready-to-use skills plus 100+ scientific databases covering biology, chemistry, medicine, and dr",
+      "pain_points": [
+        "shallow-research"
+      ],
+      "status": "scouted",
+      "scouted_on": "2026-07-25",
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: K-Dense-AI/scientific-agent-skills, 31,754 stars, created 2025-10.",
+        "license": "MIT",
+        "freshness": "Last push 2026-07-25 (checked 2026-07-25) — actively maintained.",
+        "safety": "A library, not one skill — each skill needs its own read before use. Not graded; individual skills may be graded separately later."
+      },
+      "next": "Queued for a full grading run."
+    },
+    {
+      "id": "blader-humanizer",
+      "name": "humanizer",
+      "repo_url": "https://github.com/blader/humanizer",
+      "author": "blader",
+      "category": "workflow",
+      "summary": "Agent skill that removes signs of AI-generated writing from text",
+      "pain_points": [],
+      "status": "scouted",
+      "scouted_on": "2026-07-25",
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: blader/humanizer, 31,038 stars, created 2026-01.",
+        "license": "MIT",
+        "freshness": "Last push 2026-07-22 (checked 2026-07-25) — actively maintained.",
+        "safety": "Source NOT yet read line-by-line — that read happens in grading. Treat as untrusted until graded."
+      },
+      "next": "Queued for a full grading run."
+    },
+    {
+      "id": "davila7-claude-code-templates",
+      "name": "davila7/claude-code-templates",
+      "repo_url": "https://github.com/davila7/claude-code-templates",
+      "author": "davila7",
+      "category": "library",
+      "summary": "CLI tool for configuring and monitoring Claude Code",
+      "pain_points": [],
+      "status": "scouted",
+      "scouted_on": "2026-07-25",
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: davila7/claude-code-templates, 29,904 stars, created 2025-07.",
+        "license": "MIT",
+        "freshness": "Last push 2026-07-25 (checked 2026-07-25) — actively maintained.",
+        "safety": "A library, not one skill — each skill needs its own read before use. Not graded; individual skills may be graded separately later."
+      },
+      "next": "Queued for a full grading run."
+    },
+    {
+      "id": "topoteretes-cognee",
+      "name": "cognee",
+      "repo_url": "https://github.com/topoteretes/cognee",
+      "author": "topoteretes",
+      "category": "context",
+      "summary": "Cognee is the open-source AI memory platform for agents. Give your AI agents persistent long-term memory across sessions with a self-hosted knowledge graph engine.",
+      "pain_points": [
+        "context-bloat",
+        "git-hygiene"
+      ],
+      "status": "scouted",
+      "scouted_on": "2026-07-25",
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: topoteretes/cognee, 29,328 stars, created 2023-08.",
+        "license": "Apache-2.0",
+        "freshness": "Last push 2026-07-25 (checked 2026-07-25) — actively maintained.",
+        "safety": "Source NOT yet read line-by-line — that read happens in grading. Treat as untrusted until graded."
+      },
+      "next": "Queued for a full grading run."
+    },
+    {
+      "id": "voltagent-awesome-agent-skills",
+      "name": "VoltAgent/awesome-agent-skills",
+      "repo_url": "https://github.com/VoltAgent/awesome-agent-skills",
+      "author": "VoltAgent",
+      "category": "library",
+      "summary": "A curated collection of 1000+ agent skills from official dev teams and the community, compatible with Claude Code, Codex, Gemini CLI, Cursor, and more.",
+      "pain_points": [],
+      "status": "scouted",
+      "scouted_on": "2026-07-25",
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: VoltAgent/awesome-agent-skills, 28,946 stars, created 2025-10.",
+        "license": "MIT",
+        "freshness": "Last push 2026-07-10 (checked 2026-07-25) — actively maintained.",
+        "safety": "A library, not one skill — each skill needs its own read before use. Not graded; individual skills may be graded separately later."
+      },
+      "next": "Queued for a full grading run."
+    },
+    {
+      "id": "mukul975-anthropic-cybersecurity-skills",
+      "name": "mukul975/Anthropic-Cybersecurity-Skills",
+      "repo_url": "https://github.com/mukul975/Anthropic-Cybersecurity-Skills",
+      "author": "mukul975",
+      "category": "library",
+      "summary": "817 structured cybersecurity skills for AI agents · Mapped to 6 frameworks: MITRE ATT&CK, NIST CSF 2.0, MITRE ATLAS, D3FEND, NIST AI RMF & MITRE F3 (Fight Fraud) · agentskills.io standard · Works with Claude Code, GitHub",
+      "pain_points": [
+        "testing-discipline",
+        "security-worries"
+      ],
+      "status": "scouted",
+      "scouted_on": "2026-07-25",
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: mukul975/Anthropic-Cybersecurity-Skills, 26,571 stars, created 2026-02.",
+        "license": "Apache-2.0",
+        "freshness": "Last push 2026-06-26 (checked 2026-07-25) — actively maintained.",
+        "safety": "A library, not one skill — each skill needs its own read before use. Not graded; individual skills may be graded separately later."
+      },
+      "next": "Queued for a full grading run."
+    },
+    {
+      "id": "othmanadi-planning-with-files",
+      "name": "OthmanAdi/planning-with-files",
+      "repo_url": "https://github.com/OthmanAdi/planning-with-files",
+      "author": "OthmanAdi",
+      "category": "library",
+      "summary": "Persistent file-based planning for AI coding agents and long-running tasks. Crash-proof markdown plans, session recovery after /clear and compaction, per-turn re-injection against context rot, deterministic completion ga",
+      "pain_points": [
+        "context-bloat",
+        "planning-drift"
+      ],
+      "status": "scouted",
+      "scouted_on": "2026-07-25",
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: OthmanAdi/planning-with-files, 25,735 stars, created 2026-01.",
+        "license": "MIT",
+        "freshness": "Last push 2026-07-24 (checked 2026-07-25) — actively maintained.",
+        "safety": "A library, not one skill — each skill needs its own read before use. Not graded; individual skills may be graded separately later."
+      },
+      "next": "Queued for a full grading run."
+    },
+    {
+      "id": "phuryn-pm-skills",
+      "name": "phuryn/pm-skills",
+      "repo_url": "https://github.com/phuryn/pm-skills",
+      "author": "phuryn",
+      "category": "library",
+      "summary": "PM Skills Marketplace: 100+ agentic skills, commands, and plugins — from discovery to strategy, execution, launch, and growth.",
+      "pain_points": [],
+      "status": "scouted",
+      "scouted_on": "2026-07-25",
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: phuryn/pm-skills, 24,455 stars, created 2026-03.",
+        "license": "MIT",
+        "freshness": "Last push 2026-07-03 (checked 2026-07-25) — actively maintained.",
+        "safety": "A library, not one skill — each skill needs its own read before use. Not graded; individual skills may be graded separately later."
+      },
+      "next": "Queued for a full grading run."
+    },
+    {
+      "id": "voltagent-awesome-claude-code-subagents",
+      "name": "VoltAgent/awesome-claude-code-subagents",
+      "repo_url": "https://github.com/VoltAgent/awesome-claude-code-subagents",
+      "author": "VoltAgent",
+      "category": "library",
+      "summary": "A collection of 100+ specialized Claude Code subagents covering a wide range of development use cases",
+      "pain_points": [],
+      "status": "scouted",
+      "scouted_on": "2026-07-25",
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: VoltAgent/awesome-claude-code-subagents, 23,713 stars, created 2025-07.",
+        "license": "MIT",
+        "freshness": "Last push 2026-07-10 (checked 2026-07-25) — actively maintained.",
+        "safety": "A library, not one skill — each skill needs its own read before use. Not graded; individual skills may be graded separately later."
+      },
+      "next": "Queued for a full grading run."
+    },
+    {
+      "id": "agentskills-agentskills",
+      "name": "agentskills",
+      "repo_url": "https://github.com/agentskills/agentskills",
+      "author": "agentskills",
+      "category": "docs",
+      "summary": "Specification and documentation for Agent Skills",
+      "pain_points": [
+        "docs-drift"
+      ],
+      "status": "scouted",
+      "scouted_on": "2026-07-25",
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: agentskills/agentskills, 23,474 stars, created 2025-12.",
+        "license": "Apache-2.0",
+        "freshness": "Last push 2026-07-10 (checked 2026-07-25) — actively maintained.",
+        "safety": "Source NOT yet read line-by-line — that read happens in grading. Treat as untrusted until graded."
+      },
+      "next": "Queued for a full grading run."
+    },
+    {
+      "id": "donchitos-claude-code-game-studios",
+      "name": "Claude-Code-Game-Studios",
+      "repo_url": "https://github.com/Donchitos/Claude-Code-Game-Studios",
+      "author": "Donchitos",
+      "category": "frontend",
+      "summary": "Turn Claude Code into a full game dev studio — 49 AI agents, 72 workflow skills, and a complete coordination system mirroring real studio hierarchy.",
+      "pain_points": [
+        "generic-frontend"
+      ],
+      "status": "scouted",
+      "scouted_on": "2026-07-25",
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: Donchitos/Claude-Code-Game-Studios, 23,389 stars, created 2026-02.",
+        "license": "MIT",
+        "freshness": "Last push 2026-05-21 (checked 2026-07-25) — actively maintained.",
+        "safety": "Source NOT yet read line-by-line — that read happens in grading. Treat as untrusted until graded."
+      },
+      "next": "Queued for a full grading run."
+    },
+    {
+      "id": "alirezarezvani-claude-skills",
+      "name": "alirezarezvani/claude-skills",
+      "repo_url": "https://github.com/alirezarezvani/claude-skills",
+      "author": "alirezarezvani",
+      "category": "library",
+      "summary": "345 Claude Code skills & agent skills & plugins (30+ Agents, 70+ custom commands, 330+ skills, customizable references, scripts)for Claude Code, Codex, Gemini CLI, Cursor, and 8 more coding agents — engineering, marketin",
+      "pain_points": [
+        "shallow-research"
+      ],
+      "status": "scouted",
+      "scouted_on": "2026-07-25",
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: alirezarezvani/claude-skills, 23,191 stars, created 2025-10.",
+        "license": "MIT",
+        "freshness": "Last push 2026-07-17 (checked 2026-07-25) — actively maintained.",
+        "safety": "A library, not one skill — each skill needs its own read before use. Not graded; individual skills may be graded separately later."
+      },
+      "next": "Queued for a full grading run."
+    },
+    {
+      "id": "alchaincyf-huashu-design",
+      "name": "huashu-design",
+      "repo_url": "https://github.com/alchaincyf/huashu-design",
+      "author": "alchaincyf",
+      "category": "frontend",
+      "summary": "Huashu Design · HTML-native design skill for Claude Code · Claude Code 里 HTML 原生的设计 skill · 高保真原型 / 幻灯片 / 动画 + 20 设计哲学 + 5 维评审 + MP4 导出 · Agent-agnostic",
+      "pain_points": [
+        "generic-frontend"
+      ],
+      "status": "scouted",
+      "scouted_on": "2026-07-25",
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: alchaincyf/huashu-design, 22,003 stars, created 2026-04.",
+        "license": "MIT",
+        "freshness": "Last push 2026-07-24 (checked 2026-07-25) — actively maintained.",
+        "safety": "Source NOT yet read line-by-line — that read happens in grading. Treat as untrusted until graded."
+      },
+      "next": "Queued for a full grading run."
+    },
+    {
+      "id": "teng-lin-notebooklm-py",
+      "name": "notebooklm-py",
+      "repo_url": "https://github.com/teng-lin/notebooklm-py",
+      "author": "teng-lin",
+      "category": "frontend",
+      "summary": "Unofficial Python API and agentic skill for Google NotebookLM. Full programmatic access to NotebookLM's features—including capabilities the web UI doesn't expose—via Python, CLI, and AI agents like Claude Code, Codex, an",
+      "pain_points": [
+        "generic-frontend"
+      ],
+      "status": "scouted",
+      "scouted_on": "2026-07-25",
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: teng-lin/notebooklm-py, 18,193 stars, created 2026-01.",
+        "license": "MIT",
+        "freshness": "Last push 2026-07-24 (checked 2026-07-25) — actively maintained.",
+        "safety": "Source NOT yet read line-by-line — that read happens in grading. Treat as untrusted until graded."
+      },
+      "next": "Queued for a full grading run."
+    },
+    {
+      "id": "kkkkhazix-khazix-skills",
+      "name": "KKKKhazix/khazix-skills",
+      "repo_url": "https://github.com/KKKKhazix/khazix-skills",
+      "author": "KKKKhazix",
+      "category": "library",
+      "summary": "数字生命卡兹克开源的 AI Skills 合集 | Agent Skills: neat-freak 洁癖 (docs/memory closeout), hv-analysis, khazix-writer & more — Claude Code, Codex & 40+ agents",
+      "pain_points": [
+        "context-bloat",
+        "docs-drift"
+      ],
+      "status": "scouted",
+      "scouted_on": "2026-07-25",
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: KKKKhazix/khazix-skills, 17,926 stars, created 2026-04.",
+        "license": "MIT",
+        "freshness": "Last push 2026-07-25 (checked 2026-07-25) — actively maintained.",
+        "safety": "A library, not one skill — each skill needs its own read before use. Not graded; individual skills may be graded separately later."
+      },
+      "next": "Queued for a full grading run."
+    },
+    {
+      "id": "nutlope-hallmark",
+      "name": "hallmark",
+      "repo_url": "https://github.com/Nutlope/hallmark",
+      "author": "Nutlope",
+      "category": "frontend",
+      "summary": "Anti-AI-slop design skill for Claude Code, Cursor, and Codex.",
+      "pain_points": [
+        "generic-frontend"
+      ],
+      "status": "scouted",
+      "scouted_on": "2026-07-25",
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: Nutlope/hallmark, 17,710 stars, created 2026-04.",
+        "license": "MIT",
+        "freshness": "Last push 2026-06-26 (checked 2026-07-25) — actively maintained.",
+        "safety": "Source NOT yet read line-by-line — that read happens in grading. Treat as untrusted until graded."
+      },
+      "next": "Queued for a full grading run."
+    },
+    {
+      "id": "microsoft-skillopt",
+      "name": "SkillOpt",
+      "repo_url": "https://github.com/microsoft/SkillOpt",
+      "author": "microsoft",
+      "category": "workflow",
+      "summary": "SkillOpt is a text-space optimizer that trains reusable natural-language skills for frozen LLM agents through trajectory-driven edits, validation-gated updates, and deployable best_skill.md artifacts.",
+      "pain_points": [],
+      "status": "scouted",
+      "scouted_on": "2026-07-25",
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: microsoft/SkillOpt, 15,023 stars, created 2026-05.",
+        "license": "MIT",
+        "freshness": "Last push 2026-07-24 (checked 2026-07-25) — actively maintained.",
+        "safety": "Source NOT yet read line-by-line — that read happens in grading. Treat as untrusted until graded."
+      },
+      "next": "Queued for a full grading run."
+    },
+    {
+      "id": "eigent-ai-eigent",
+      "name": "eigent",
+      "repo_url": "https://github.com/eigent-ai/eigent",
+      "author": "eigent-ai",
+      "category": "automation",
+      "summary": "Eigent: The Open Source Cowork Desktop - Local and Free Alternative to Claude Cowork and Codex",
+      "pain_points": [],
+      "status": "scouted",
+      "scouted_on": "2026-07-25",
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: eigent-ai/eigent, 14,656 stars, created 2025-07.",
+        "license": "Apache-2.0",
+        "freshness": "Last push 2026-07-25 (checked 2026-07-25) — actively maintained.",
+        "safety": "Source NOT yet read line-by-line — that read happens in grading. Treat as untrusted until graded."
+      },
+      "next": "Queued for a full grading run."
+    },
+    {
+      "id": "yusufkaraaslan-skill-seekers",
+      "name": "Skill_Seekers",
+      "repo_url": "https://github.com/yusufkaraaslan/Skill_Seekers",
+      "author": "yusufkaraaslan",
+      "category": "docs",
+      "summary": "Convert documentation websites, GitHub repositories, and PDFs into Claude AI skills with automatic conflict detection",
+      "pain_points": [
+        "docs-drift"
+      ],
+      "status": "scouted",
+      "scouted_on": "2026-07-25",
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: yusufkaraaslan/Skill_Seekers, 14,560 stars, created 2025-10.",
+        "license": "MIT",
+        "freshness": "Last push 2026-07-20 (checked 2026-07-25) — actively maintained.",
+        "safety": "Source NOT yet read line-by-line — that read happens in grading. Treat as untrusted until graded."
+      },
+      "next": "Queued for a full grading run."
+    },
+    {
+      "id": "travisvn-awesome-claude-skills",
+      "name": "travisvn/awesome-claude-skills",
+      "repo_url": "https://github.com/travisvn/awesome-claude-skills",
+      "author": "travisvn",
+      "category": "library",
+      "summary": "A curated list of awesome Claude Skills, resources, and tools for customizing Claude AI workflows — particularly Claude Code",
+      "pain_points": [
+        "shallow-research"
+      ],
+      "status": "scouted",
+      "scouted_on": "2026-07-25",
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: travisvn/awesome-claude-skills, 14,313 stars, created 2025-10.",
+        "license": "No license file detected via the GitHub API — usage rights unclear; a real triage red flag.",
+        "freshness": "Last push 2026-04-28 (checked 2026-07-25) — actively maintained.",
+        "safety": "A library, not one skill — each skill needs its own read before use. Not graded; individual skills may be graded separately later."
+      },
+      "next": "Queued for a full grading run."
+    },
+    {
+      "id": "nevamind-ai-memu",
+      "name": "memU",
+      "repo_url": "https://github.com/NevaMind-AI/memU",
+      "author": "NevaMind-AI",
+      "category": "context",
+      "summary": "Personal memory across agents",
+      "pain_points": [
+        "context-bloat"
+      ],
+      "status": "scouted",
+      "scouted_on": "2026-07-25",
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: NevaMind-AI/memU, 14,059 stars, created 2025-07.",
+        "license": "No license file detected via the GitHub API — usage rights unclear; a real triage red flag.",
+        "freshness": "Last push 2026-07-25 (checked 2026-07-25) — actively maintained.",
+        "safety": "Source NOT yet read line-by-line — that read happens in grading. Treat as untrusted until graded."
+      },
+      "next": "Queued for a full grading run."
+    },
+    {
+      "id": "op7418-humanizer-zh",
+      "name": "Humanizer-zh",
+      "repo_url": "https://github.com/op7418/Humanizer-zh",
+      "author": "op7418",
+      "category": "workflow",
+      "summary": "Humanizer 的汉化版本，Claude Code Skills，旨在消除文本中 AI 生成的痕迹。",
+      "pain_points": [],
+      "status": "scouted",
+      "scouted_on": "2026-07-25",
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: op7418/Humanizer-zh, 13,909 stars, created 2026-01.",
+        "license": "MIT",
+        "freshness": "Last push 2026-01-19 (checked 2026-07-25) — ~6 months quiet.",
+        "safety": "Source NOT yet read line-by-line — that read happens in grading. Treat as untrusted until graded."
+      },
+      "next": "Queued for a full grading run."
+    },
+    {
+      "id": "wanshuiyin-auto-claude-code-research-in-sleep",
+      "name": "Auto-claude-code-research-in-sleep",
+      "repo_url": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep",
+      "author": "wanshuiyin",
+      "category": "research",
+      "summary": "ARIS ⚔️ (Auto-Research-In-Sleep) — Lightweight Markdown-only skills for autonomous ML research: cross-model review loops, idea discovery, and experiment automation. No framework, no lock-in — works with Claude Code, Code",
+      "pain_points": [
+        "shallow-research"
+      ],
+      "status": "scouted",
+      "scouted_on": "2026-07-25",
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: wanshuiyin/Auto-claude-code-research-in-sleep, 13,855 stars, created 2026-03.",
+        "license": "MIT",
+        "freshness": "Last push 2026-07-22 (checked 2026-07-25) — actively maintained.",
+        "safety": "Source NOT yet read line-by-line — that read happens in grading. Treat as untrusted until graded."
+      },
+      "next": "Queued for a full grading run."
     }
   ]
 }
