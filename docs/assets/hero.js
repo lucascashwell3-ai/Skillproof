@@ -1,10 +1,11 @@
 /* =========================================================================
    Skillproof hero — canvas ASCII particle field
    Ported from the approved prototype (design/direction-lab/skillproof/hero/
-   b-particle-assembly.html) with owner edits: denser/detailed robot-head
-   formation, hammer + question-mark morphs, rebalanced layout, a title
-   exclusion zone for ambient glyphs, and a scroll dissolve wired to the
-   real #bench element instead of a mocked workbench.
+   b-particle-assembly.html) with owner edits: a four-pointed AI sparkle-glyph
+   default formation (one large + two small companion stars), tools/wrench +
+   question-mark morphs, rebalanced layout, a title exclusion zone for
+   ambient glyphs, and a scroll dissolve wired to the real #bench element
+   instead of a mocked workbench.
    Perf: rAF + IntersectionObserver/visibilitychange gated (two independent
    flags, resynced from scratch on every signal — no stale-read freeze).
    No backdrop-filter, no fixed-attachment, no blend-mode on the canvas.
@@ -110,49 +111,47 @@
     return out;
   }
 
-  // Robot-head mark (classic robot-emoji silhouette) — the hero's default
-  // resting formation: rounded-square head outline, antenna + ball tip,
-  // two large hollow ring eyes, small side ears, a wide grille mouth with
-  // vertical tooth bars, and — in place of a nose — a small, subtle cross.
-  function robotFormation(n){
-    var headN   = Math.round(n*0.34);
-    var stemN   = Math.round(n*0.05);
-    var ballN   = Math.round(n*0.035);
-    var eyeN    = Math.round(n*0.075); // x2
-    var earN    = Math.round(n*0.05);  // x2
-    var crossVN = Math.round(n*0.045);
-    var crossHN = Math.round(n*0.03);
-    var used = headN + stemN + ballN + eyeN*2 + earN*2 + crossVN + crossHN;
-    var mouthN  = Math.max(20, n - used);
-
+  // Four-pointed "AI sparkle" mark (the standard ✦ glyph: points up/down/
+  // left/right, edges curving in toward the center between each point) —
+  // the hero's default resting formation. Densely filled (not just an
+  // outline) so the silhouette reads solid within ~1s. Built from one large
+  // star plus two small companion stars offset top-right and bottom-left,
+  // like a cluster of sparkles.
+  function starFill(cx, cy, R, rot, minFrac, pow, count){
+    var out = [];
+    for(var i=0;i<count;i++){
+      var a = Math.random()*Math.PI*2;
+      var lobe = Math.pow(Math.abs(Math.cos(2*(a-rot))), pow);
+      var rmax = R * (minFrac + (1-minFrac)*lobe);
+      var r = rmax*Math.sqrt(Math.random());
+      out.push({x:cx+r*Math.cos(a), y:cy+r*Math.sin(a)});
+    }
+    return out;
+  }
+  function sparkleFormation(n){
+    var mainN = Math.round(n*0.60);
+    var comp1N = Math.round(n*0.21);
+    var comp2N = n - mainN - comp1N;
     var pts = [];
-    // head: rounded-square (squircle) outline
-    pts = pts.concat(ringOutline(0, 0.02, 0.32, 0.38, 4.5, headN));
-    // antenna: stem rising above the head + a small ball tip
-    pts = pts.concat(lineSeg(0,-0.36, 0,-0.60, stemN, 0.01));
-    pts = pts.concat(discFill(0,-0.63, 0.05, ballN));
-    // eyes: hollow rings (not filled discs)
-    pts = pts.concat(ringOutline(-0.145,-0.05, 0.095,0.095, 2, eyeN));
-    pts = pts.concat(ringOutline( 0.145,-0.05, 0.095,0.095, 2, eyeN));
-    // small side ears
-    pts = pts.concat(rectFill(-0.415, 0.02, 0.075, 0.16, earN));
-    pts = pts.concat(rectFill( 0.415, 0.02, 0.075, 0.16, earN));
-    // nose -> subtle crucifix: vertical stroke longer than the crossbar,
-    // crossbar above the vertical stroke's midpoint
-    pts = pts.concat(lineSeg(0,-0.01, 0,0.15, crossVN, 0.006));
-    pts = pts.concat(lineSeg(-0.045,0.035, 0.045,0.035, crossHN, 0.006));
-    // mouth: wide grille, vertical tooth bars
-    pts = pts.concat(grille(0, 0.245, 0.40, 0.11, 7, mouthN));
+    // large four-pointed star, centered — lower pow = fatter arms (more
+    // filled area per particle so the mark reads solid, not speckled)
+    pts = pts.concat(starFill(0, 0, 0.40, 0, 0.22, 1.7, mainN));
+    // small companion star, top-right
+    pts = pts.concat(starFill(0.32, -0.38, 0.12, 0.15, 0.26, 1.7, comp1N));
+    // small companion star, bottom-left
+    pts = pts.concat(starFill(-0.32, 0.38, 0.12, -0.2, 0.26, 1.7, comp2N));
     return pts;
   }
 
-  // "Get skills" morph -> hammer (clear head + handle silhouette)
-  function hammerFormation(n){
-    var headN = Math.round(n*0.34);
-    var handleN = n - headN;
+  // "Get skills" morph -> wrench (clear open jaw + straight handle, diagonal)
+  function wrenchFormation(n){
+    var jawN = Math.round(n*0.30);
+    var handleN = n - jawN;
     var pts = [];
-    pts = pts.concat(rectFillRot(-0.10,-0.40, 0.46,0.22, -38, headN));
-    pts = pts.concat(lineSeg(-0.02,-0.28, 0.30,0.52, handleN, 0.035));
+    // open jaw: a "C" arc at the far tip, opening away from the handle
+    pts = pts.concat(arc(-0.28,-0.42, 0.13, 281, 551, jawN, 0.02));
+    // straight handle running diagonally down to the opposite corner
+    pts = pts.concat(lineSeg(-0.18,-0.32, 0.34,0.46, handleN, 0.032));
     return pts;
   }
 
@@ -189,22 +188,25 @@
     var stemN = Math.round(n*0.28);
     var dotN  = Math.max(10, n - hookN - stemN);
     var pts = [];
-    pts = pts.concat(arc(0.00,-0.34, 0.22, 300, 120, hookN, 0.012));
-    pts = pts.concat(lineSeg(-0.11,-0.15, 0.03,0.10, stemN, 0.012));
-    pts = pts.concat(discFill(0.03, 0.34, 0.055, dotN));
+    // hook sweeps upper-left -> top -> right side -> lower-right, leaving
+    // the gap open at lower-left (where a real "?" curls empty before the
+    // stem), instead of wrapping the left side like the old version did
+    pts = pts.concat(arc(0.00,-0.34, 0.22, 200, 420, hookN, 0.012));
+    pts = pts.concat(lineSeg(0.11,-0.15, 0.00,0.10, stemN, 0.012));
+    pts = pts.concat(discFill(0.02, 0.33, 0.055, dotN));
     return pts;
   }
 
   var FORMATIONS = {
-    robot: robotFormation,
-    hammer: hammerFormation,
+    sparkle: sparkleFormation,
+    wrench: wrenchFormation,
     install: installFormation,
     question: questionFormation
   };
 
   var N = 0; // glyph count, set on resize
   var particles = [];
-  var currentFormationKey = 'robot';
+  var currentFormationKey = 'sparkle';
   var targetPts = [];
   // 0..1 scroll-driven release amount — see the scroll dissolve block below
   var dissolveT = 0;
@@ -323,7 +325,7 @@
     var wBudget = box.w*0.94;
     var scale = Math.min(hBudget/NORM_H, wBudget/NORM_W);
 
-    var count = Math.min(particles.length, Math.max(80, Math.round(particles.length*0.78)));
+    var count = Math.min(particles.length, Math.max(80, Math.round(particles.length*0.94)));
     targetPts = gen(count).map(function(pt){
       return { x: cx + pt.x*scale, y: cy + pt.y*scale };
     });
@@ -499,7 +501,7 @@
   }, {passive:true});
 
   // ---- hero button hover -> micro formation ------------------------------
-  var HOVER_MAP = { bench:'hammer', carry:'install', how:'question' };
+  var HOVER_MAP = { bench:'wrench', carry:'install', how:'question' };
   var hoverButtons = document.querySelectorAll('.hero-ctas [data-form]');
   hoverButtons.forEach(function(btn){
     var key = btn.getAttribute('data-form');
@@ -509,7 +511,7 @@
       if(reduced) renderStatic();
     }
     function leave(){
-      applyFormation('robot', reduced);
+      applyFormation('sparkle', reduced);
       if(reduced) renderStatic();
     }
     btn.addEventListener('mouseenter', enter);

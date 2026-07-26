@@ -769,11 +769,7 @@
       }
     });
 
-    /* prompt generator */
-    $("#genPrompt").addEventListener("click", function () {
-      $("#promptText").value = buildPrompt();
-      $("#promptPanel").classList.add("open");
-    });
+    /* prompt generator: panel is open by default (see boot), just wire copy */
     $("#copyPrompt").addEventListener("click", function () {
       try {
         if (navigator.clipboard) navigator.clipboard.writeText($("#promptText").value);
@@ -815,20 +811,19 @@
   }
 
   /* ======================= advisor prompt (real data only) ======================= */
+  // Compact one-line-per-skill payload — keeps the whole prompt well under
+  // ~150 lines instead of a full JSON.stringify dump of the catalog. Detail
+  // (pain points, triage notes, safety skim) lives in the repo itself; the
+  // advisor can fetch it there if asked.
+  function promptLine(s) {
+    var tag = s.status === "graded"
+      ? "GRADE " + s.grade + ", " + s.score_total + "/24"
+      : "SCOUTED, never tested";
+    return "- " + s.name + " (" + tag + ") — " + s.summary + " " + s.repo_url;
+  }
   function buildPrompt() {
-    var graded = DATA.skills.filter(function (s) { return s.status === "graded"; }).map(function (s) {
-      return {
-        name: s.name, repo: s.repo_url, grade: s.grade, score: s.score_total + "/24",
-        does: s.summary, pain_points: s.pain_points, install: s.install && s.install.command,
-        safety: s.security_notes, verified: s.last_verified
-      };
-    });
-    var scouted = DATA.skills.filter(function (s) { return s.status === "scouted"; }).map(function (s) {
-      return {
-        name: s.name, repo: s.repo_url, status: "SCOUTED — NOT TESTED, NOT GRADED",
-        does: s.summary, pain_points: s.pain_points, triage: s.triage, scouted_on: s.scouted_on
-      };
-    });
+    var graded = DATA.skills.filter(function (s) { return s.status === "graded"; });
+    var scouted = DATA.skills.filter(function (s) { return s.status === "scouted"; });
     return [
       "You are my AI-environment upgrade advisor and scout, powered by the Skillproof catalog (rubric v" +
         DATA.rubric_version + ", data as of " + DATA.as_of + ").",
@@ -842,10 +837,10 @@
       "- Fresh data + every grading worksheet: " + REPO,
       "",
       "TESTED INDEX (installed, probed, receipts on file):",
-      JSON.stringify(graded, null, 1),
+      graded.map(promptLine).join("\n"),
       "",
       "SCOUTED — found + triaged only, NO grades:",
-      JSON.stringify(scouted, null, 1)
+      scouted.map(promptLine).join("\n")
     ].join("\n");
   }
 
@@ -885,6 +880,8 @@
     startDemo();
     onSetupChange();
     render();
+    var promptEl = $("#promptText");
+    if (promptEl) promptEl.value = buildPrompt();
     renderTray();
     window.addEventListener("resize", function () { moveGlide(); moveModeThumb(); moveSortThumb(); syncListHeight(); });
     setTimeout(function () { moveGlide(); moveModeThumb(); moveSortThumb(); syncListHeight(); }, 60);

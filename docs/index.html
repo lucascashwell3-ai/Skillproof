@@ -31,9 +31,12 @@
   <symbol id="i-stack" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
     <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 12l10 5 10-5"/><path d="M2 17l10 5 10-5"/>
   </symbol>
-  <symbol id="i-hammer" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <symbol id="i-tools" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
     <rect x="13.2" y="2.6" width="5.4" height="7" rx="1.1" transform="rotate(45 15.9 6.1)"/>
     <path d="M13.5 9.5 5.4 17.6a2 2 0 1 0 2.8 2.8L16.3 12.3"/>
+    <g transform="matrix(-1 0 0 1 24 0)">
+      <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+    </g>
   </symbol>
 </defs></svg>
 
@@ -71,7 +74,7 @@
 
             <div class="hero-ctas">
               <a class="btn btn-ghost btn-sm" href="#bench" data-form="bench" data-magnetic>
-                <svg class="ico" viewBox="0 0 24 24"><use href="#i-hammer"/></svg>
+                <svg class="ico" viewBox="0 0 24 24"><use href="#i-tools"/></svg>
                 Get skills
               </a>
               <a class="btn btn-ghost btn-sm" href="#with-you" data-form="carry">
@@ -259,8 +262,7 @@
       <div class="way" data-way="0">
         <h3>Paste-in advisor prompt</h3>
         <p><b>For Claude in the browser or app — nothing to install.</b> Paste it once and that chat becomes your skill advisor: describe a problem, it answers from this catalog and scouts honestly beyond it.</p>
-        <button class="btn btn-ghost btn-sm" id="genPrompt" type="button" style="align-self:flex-start">Generate my advisor prompt</button>
-        <div class="promptpanel" id="promptPanel">
+        <div class="promptpanel open" id="promptPanel">
           <textarea id="promptText" readonly rows="10" aria-label="Generated advisor prompt"></textarea>
           <button class="btn btn-primary btn-sm" id="copyPrompt" type="button" style="align-self:flex-start">Copy prompt</button>
           <span class="prompt-status" id="copyStatus" role="status" aria-live="polite"></span>

@@ -195,7 +195,10 @@ kbd{font-family:var(--mono);font-size:.71rem;padding:2px 5px;border-radius:5px;b
 .hero-split{display:grid;grid-template-columns:minmax(280px,1fr) minmax(280px,1fr);gap:20px;align-items:center;
   min-height:min(62vh,660px)}
 .hero-visual{align-self:stretch;pointer-events:none}
-.hero-panel{width:100%;max-width:540px;text-align:left}
+/* justify-self:end shifts the text block toward the center of its column
+   (flush against the gap) instead of hugging the far-left edge, closing the
+   dead band that used to sit between the panel and the formation */
+.hero-panel{width:100%;max-width:580px;text-align:left;justify-self:end}
 
 .hero-ctas{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:2px}
 .hero-ctas .btn{padding:9px 17px}
@@ -209,7 +212,7 @@ kbd{font-family:var(--mono);font-size:.71rem;padding:2px 5px;border-radius:5px;b
   /* formation gets a dedicated open band above the text on small screens,
      instead of sharing a row it would otherwise be squeezed out of */
   .hero-visual{order:-1;align-self:auto;height:min(28vh,220px)}
-  .hero-panel{max-width:none}
+  .hero-panel{max-width:none;justify-self:stretch}
 }
 
 /* =====================================================================
