@@ -192,13 +192,14 @@ kbd{font-family:var(--mono);font-size:.71rem;padding:2px 5px;border-radius:5px;b
 #field{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
 
 .hero-content{position:relative;z-index:3;width:100%;padding:56px 0}
-.hero-split{display:grid;grid-template-columns:minmax(280px,1fr) minmax(280px,1fr);gap:20px;align-items:center;
-  min-height:min(62vh,660px)}
+/* The hero is one centered composition, not two halves pinned to the page
+   edges: the pair is capped well inside .wrap and centered, so the text ends
+   near the middle and the formation begins just past it. Widening this past
+   ~1080px reintroduces the dead band between them. */
+.hero-split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:26px;align-items:center;
+  max-width:1080px;margin:0 auto;min-height:min(62vh,660px)}
 .hero-visual{align-self:stretch;pointer-events:none}
-/* justify-self:end shifts the text block toward the center of its column
-   (flush against the gap) instead of hugging the far-left edge, closing the
-   dead band that used to sit between the panel and the formation */
-.hero-panel{width:100%;max-width:580px;text-align:left;justify-self:end}
+.hero-panel{width:100%;max-width:500px;text-align:left;justify-self:end}
 
 .hero-ctas{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:2px}
 .hero-ctas .btn{padding:9px 17px}
@@ -779,6 +780,7 @@ kbd{font-family:var(--mono);font-size:.71rem;padding:2px 5px;border-radius:5px;b
   background:linear-gradient(150deg, rgba(41,35,101,.97), rgba(52,40,118,.95));
   box-shadow:inset 0 1px 0 rgba(255,255,255,.12)}
 .promptpanel textarea:focus-visible{outline:none;box-shadow:inset 0 1px 0 rgba(255,255,255,.12), 0 0 0 2px var(--violet)}
+.prompt-actions{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
 .prompt-status{font-size:.76rem;color:var(--mint-d);min-height:1.2em}
 
 footer{margin-top:10px;padding:42px 0 20px;

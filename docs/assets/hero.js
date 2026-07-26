@@ -1,11 +1,11 @@
 /* =========================================================================
    Skillproof hero — canvas ASCII particle field
    Ported from the approved prototype (design/direction-lab/skillproof/hero/
-   b-particle-assembly.html) with owner edits: a four-pointed AI sparkle-glyph
-   default formation (one large + two small companion stars), tools/wrench +
-   question-mark morphs, rebalanced layout, a title exclusion zone for
-   ambient glyphs, and a scroll dissolve wired to the real #bench element
-   instead of a mocked workbench.
+   b-particle-assembly.html). Shapes are rasterized from drawn icon geometry
+   and pixel-sampled (see "shape sampling"), so each formation matches its
+   button icon by construction: robot head at rest, wrench / install / "?" on
+   hover. Plus a title exclusion zone for ambient glyphs and a scroll dissolve
+   wired to the real #bench element.
    Perf: rAF + IntersectionObserver/visibilitychange gated (two independent
    flags, resynced from scratch on every signal — no stale-read freeze).
    No backdrop-filter, no fixed-attachment, no blend-mode on the canvas.
@@ -32,185 +32,127 @@
   var FORMATION_GLYPHS = ['#','*','+','o'];
   var COLORS = ['#6D5BF6','#06B6D4','#EC4899','#10B981','#3B82F6'];
 
-  // shared normalized bounding box every formation generator fits inside —
-  // keeps scale consistent across morphs
-  var NORM_H = 1.14;
-  var NORM_W = 0.96;
 
   function rand(a,b){ return a + Math.random()*(b-a); }
   function pick(arr){ return arr[(Math.random()*arr.length)|0]; }
 
-  // ---- formation primitives ----------------------------------------------
-  // outline (superellipse ring, pow=2 -> circle, higher pow -> rounded square)
-  function ringOutline(cx,cy,hw,hh,pow,count){
-    var out = [];
-    for(var i=0;i<count;i++){
-      var a = i/count*Math.PI*2;
-      var c = Math.cos(a), s = Math.sin(a);
-      var x = (c<0?-1:1) * Math.pow(Math.abs(c),2/pow) * hw;
-      var y = (s<0?-1:1) * Math.pow(Math.abs(s),2/pow) * hh;
-      out.push({x:cx+x, y:cy+y});
-    }
-    return out;
-  }
-  function discFill(cx,cy,r,count){
-    var out = [];
-    for(var i=0;i<count;i++){
-      var rad = r*Math.sqrt(Math.random());
-      var ang = Math.random()*Math.PI*2;
-      out.push({x:cx+rad*Math.cos(ang), y:cy+rad*Math.sin(ang)});
-    }
-    return out;
-  }
-  function rectFill(cx,cy,w,h,count){
-    var out = [];
-    for(var i=0;i<count;i++){
-      out.push({x:cx+(Math.random()*2-1)*w/2, y:cy+(Math.random()*2-1)*h/2});
-    }
-    return out;
-  }
-  function rectFillRot(cx,cy,w,h,deg,count){
-    var r = deg*Math.PI/180, c = Math.cos(r), s = Math.sin(r);
-    var out = [];
-    for(var i=0;i<count;i++){
-      var lx = (Math.random()*2-1)*w/2, ly = (Math.random()*2-1)*h/2;
-      out.push({x:cx+(lx*c-ly*s), y:cy+(lx*s+ly*c)});
-    }
-    return out;
-  }
-  function lineSeg(x1,y1,x2,y2,count,jitter){
-    var out = [];
-    var dx = x2-x1, dy = y2-y1;
-    var len = Math.sqrt(dx*dx+dy*dy) || 1;
-    var nx = -dy/len, ny = dx/len;
-    for(var i=0;i<count;i++){
-      var t = count<=1 ? 0 : i/(count-1);
-      var j = jitter ? (Math.random()*2-1)*jitter : 0;
-      out.push({x:x1+dx*t+nx*j, y:y1+dy*t+ny*j});
-    }
-    return out;
-  }
-  function arc(cx,cy,r,a0deg,a1deg,count,jitter){
-    var out = [];
-    for(var i=0;i<count;i++){
-      var t = count<=1 ? 0 : i/(count-1);
-      var a = (a0deg + (a1deg-a0deg)*t) * Math.PI/180;
-      var j = jitter ? (Math.random()*2-1)*jitter : 0;
-      out.push({x:cx+(r+j)*Math.cos(a), y:cy+(r+j)*Math.sin(a)});
-    }
-    return out;
-  }
-  function grille(cx,cy,w,h,bars,count){
-    var out = [];
-    for(var i=0;i<count;i++){
-      var bar = Math.floor(Math.random()*bars);
-      var bx = cx - w/2 + (bar+0.5)*(w/bars);
-      var by = cy + (Math.random()*2-1)*(h/2);
-      out.push({x:bx+(Math.random()*2-1)*(w/bars)*0.12, y:by});
-    }
-    return out;
+  // ---- shape sampling ----------------------------------------------------
+  // Formations are not hand-authored point clouds. Every shape is DRAWN with
+  // the same geometry its button icon uses, rasterized to an offscreen bitmap,
+  // and sampled for opaque pixels. What the particles spell is what the icon
+  // looks like, by construction — no parametric guesswork.
+  var SHEET = 128;
+  var shapeCache = {};
+
+  function roundRectPath(o, x, y, w, h, r){
+    o.beginPath();
+    if(o.roundRect){ o.roundRect(x, y, w, h, r); return; }
+    o.moveTo(x+r, y);
+    o.arcTo(x+w, y,   x+w, y+h, r);
+    o.arcTo(x+w, y+h, x,   y+h, r);
+    o.arcTo(x,   y+h, x,   y,   r);
+    o.arcTo(x,   y,   x+w, y,   r);
+    o.closePath();
   }
 
-  // Four-pointed "AI sparkle" mark (the standard ✦ glyph: points up/down/
-  // left/right, edges curving in toward the center between each point) —
-  // the hero's default resting formation. Densely filled (not just an
-  // outline) so the silhouette reads solid within ~1s. Built from one large
-  // star plus two small companion stars offset top-right and bottom-left,
-  // like a cluster of sparkles.
-  function starFill(cx, cy, R, rot, minFrac, pow, count){
-    var out = [];
-    for(var i=0;i<count;i++){
-      var a = Math.random()*Math.PI*2;
-      var lobe = Math.pow(Math.abs(Math.cos(2*(a-rot))), pow);
-      var rmax = R * (minFrac + (1-minFrac)*lobe);
-      // exponent < 0.5 biases samples outward: silhouette edge stays crisp
-      // at low particle-per-area density (uniform fill read as speckle)
-      var r = rmax*Math.pow(Math.random(), 0.36);
-      out.push({x:cx+r*Math.cos(a), y:cy+r*Math.sin(a)});
+  function rasterize(draw){
+    var off = document.createElement('canvas');
+    off.width = off.height = SHEET;
+    var o = off.getContext('2d');
+    o.fillStyle = '#000'; o.strokeStyle = '#000';
+    o.lineCap = 'round'; o.lineJoin = 'round';
+    draw(o);
+    var d = o.getImageData(0, 0, SHEET, SHEET).data;
+    var hits = [], minX = SHEET, minY = SHEET, maxX = 0, maxY = 0;
+    for(var y=0;y<SHEET;y++){
+      for(var x=0;x<SHEET;x++){
+        if(d[(y*SHEET+x)*4+3] > 128){
+          hits.push(x, y);
+          if(x<minX) minX=x; if(x>maxX) maxX=x;
+          if(y<minY) minY=y; if(y>maxY) maxY=y;
+        }
+      }
     }
-    return out;
-  }
-  function sparkleFormation(n){
-    var mainN = Math.round(n*0.74);
-    var comp1N = Math.round(n*0.14);
-    var comp2N = n - mainN - comp1N;
+    // uniform normalize: longest axis spans 1.0, shape centered on origin
+    var span = Math.max(1, Math.max(maxX-minX, maxY-minY));
+    var ox = (minX+maxX)/2, oy = (minY+maxY)/2;
     var pts = [];
-    // large four-pointed star, centered — kept compact (R 0.30) and sharply
-    // pinched so its particle density matches the small companions; at the
-    // old R 0.40 / soft pinch the main star had ~4x less density per area
-    // than the companions and read as speckle while they read as stars
-    pts = pts.concat(starFill(0, 0, 0.30, 0, 0.10, 2.4, mainN));
-    // small companion star, top-right
-    pts = pts.concat(starFill(0.30, -0.34, 0.11, 0.15, 0.14, 2.4, comp1N));
-    // small companion star, bottom-left
-    pts = pts.concat(starFill(-0.30, 0.34, 0.11, -0.2, 0.14, 2.4, comp2N));
-    return pts;
-  }
-
-  // "Get skills" morph -> wrench (clear open jaw + straight handle, diagonal)
-  function wrenchFormation(n){
-    var jawN = Math.round(n*0.30);
-    var handleN = n - jawN;
-    var pts = [];
-    // open jaw: a "C" arc at the far tip, opening away from the handle
-    pts = pts.concat(arc(-0.28,-0.42, 0.13, 281, 551, jawN, 0.02));
-    // straight handle running diagonally down to the opposite corner
-    pts = pts.concat(lineSeg(-0.18,-0.32, 0.34,0.46, handleN, 0.032));
-    return pts;
-  }
-
-  // "Install to your agent" morph -> up-arrow inside a circle (approved, unchanged)
-  function installFormation(n){
-    var pts = [];
-    var circleN = Math.round(n*0.55);
-    for(var i=0;i<circleN;i++){
-      var a = i/circleN*Math.PI*2;
-      pts.push({x:0.42*Math.cos(a), y:0.42*Math.sin(a)});
-    }
-    var shaftN = Math.round(n*0.22);
-    for(var j=0;j<shaftN;j++){
-      var t = j/shaftN;
-      pts.push({x:0, y:0.22 - t*0.40});
-    }
-    var headN = n - circleN - shaftN;
-    var leftN = Math.floor(headN/2), rightN = headN - leftN;
-    for(var k=0;k<leftN;k++){
-      var u = k/leftN;
-      pts.push({x:-0.16*u, y:-0.18 + 0.16*u});
-    }
-    for(var m=0;m<rightN;m++){
-      var u2 = m/rightN;
-      pts.push({x:0.16*u2, y:-0.18 + 0.16*u2});
+    for(var i=0;i<hits.length;i+=2){
+      pts.push({ x:(hits[i]-ox)/span, y:(hits[i+1]-oy)/span });
     }
     return pts;
   }
 
-  // "How it works" morph -> question mark: rounded hook + stem + a dot,
-  // clearly separated so it reads as "?" at a glance
-  function questionFormation(n){
-    var hookN = Math.round(n*0.52);
-    var stemN = Math.round(n*0.28);
-    var dotN  = Math.max(10, n - hookN - stemN);
-    var pts = [];
-    // hook sweeps upper-left -> top -> right side -> lower-right, leaving
-    // the gap open at lower-left (where a real "?" curls empty before the
-    // stem), instead of wrapping the left side like the old version did
-    pts = pts.concat(arc(0.00,-0.34, 0.22, 200, 420, hookN, 0.012));
-    pts = pts.concat(lineSeg(0.11,-0.15, 0.00,0.10, stemN, 0.012));
-    pts = pts.concat(discFill(0.02, 0.33, 0.055, dotN));
-    return pts;
+  function sampleShape(key, n){
+    var pool = shapeCache[key] || (shapeCache[key] = rasterize(SHAPES[key]));
+    var out = [], len = pool.length;
+    if(!len) return out;
+    // stride-sample the (row-major) pool so coverage stays even, with a
+    // sub-pixel jitter so the result never reads as a scanline grid
+    var step = len/n, jit = 0.4/SHEET;
+    for(var k=0;k<n;k++){
+      var p = pool[Math.min(len-1, Math.floor(k*step + Math.random()*step))];
+      out.push({ x:p.x + rand(-jit,jit), y:p.y + rand(-jit,jit) });
+    }
+    return out;
   }
 
-  var FORMATIONS = {
-    sparkle: sparkleFormation,
-    wrench: wrenchFormation,
-    install: installFormation,
-    question: questionFormation
+  // ---- the shapes (drawn at 128x128) -------------------------------------
+  var SHAPES = {
+    // default: a robot head — thick outline + solid features. Outline (not a
+    // filled silhouette) concentrates every particle on the contour, so the
+    // shape reads at a glance instead of dissolving into a blob.
+    robot: function(o){
+      // thinner outline spends fewer particles on the contour, leaving more
+      // for the features — at ~600 particles a fat outline starves the eyes
+      o.lineWidth = 6.5;
+      // squarer head (r14, not r21) — a soft-cornered oval reads as a pumpkin
+      roundRectPath(o, 25, 33, 78, 67, 14); o.stroke();
+      o.lineWidth = 6;                                               // antenna
+      o.beginPath(); o.moveTo(64, 33); o.lineTo(64, 17); o.stroke();
+      o.beginPath(); o.arc(64, 11, 7, 0, Math.PI*2); o.fill();
+      roundRectPath(o, 4, 55, 15, 23, 4); o.fill();                  // ears, held
+      roundRectPath(o, 109, 55, 15, 23, 4); o.fill();                // clear of the head
+      o.beginPath(); o.arc(48, 60, 10, 0, Math.PI*2); o.fill();      // solid eyes
+      o.beginPath(); o.arc(80, 60, 10, 0, Math.PI*2); o.fill();
+      o.lineWidth = 5;                                               // grille mouth
+      roundRectPath(o, 45, 79, 38, 14, 5); o.stroke();
+      o.beginPath(); o.moveTo(57.6, 79); o.lineTo(57.6, 93);
+      o.moveTo(70.3, 79); o.lineTo(70.3, 93); o.lineWidth = 4; o.stroke();
+    },
+    // "Get skills" -> a single double-open-ended wrench on the diagonal
+    wrench: function(o){
+      o.save();
+      o.translate(64, 64); o.rotate(-Math.PI/4);
+      o.fillRect(-32, -5, 64, 10);                                   // handle
+      o.beginPath(); o.arc(-34, 0, 17, 0, Math.PI*2); o.fill();      // heads
+      o.beginPath(); o.arc(34, 0, 17, 0, Math.PI*2); o.fill();
+      // open jaws: a deep V cut out of each head, so the tool reads as a
+      // wrench rather than a dumbbell
+      o.globalCompositeOperation = 'destination-out';
+      o.beginPath(); o.moveTo(-30,0); o.lineTo(-56,-13); o.lineTo(-56,13); o.closePath(); o.fill();
+      o.beginPath(); o.moveTo(30,0);  o.lineTo(56,-13);  o.lineTo(56,13);  o.closePath(); o.fill();
+      o.restore();
+    },
+    // "Install to your agent" -> up-arrow in a circle (approved, unchanged)
+    install: function(o){
+      o.lineWidth = 8;
+      o.beginPath(); o.arc(64, 64, 40, 0, Math.PI*2); o.stroke();
+      o.beginPath(); o.moveTo(64, 88); o.lineTo(64, 42); o.stroke();
+      o.beginPath(); o.moveTo(46, 60); o.lineTo(64, 41); o.lineTo(82, 60); o.stroke();
+    },
+    // "How it works" -> the literal "?" glyph in the same font/weight the
+    // button icon renders, so the morph matches the icon exactly
+    question: function(o){
+      o.textAlign = 'center'; o.textBaseline = 'middle';
+      o.font = '700 116px "JetBrains Mono", ui-monospace, monospace';
+      o.fillText('?', 64, 62);
+    }
   };
 
   var N = 0; // glyph count, set on resize
   var particles = [];
-  var currentFormationKey = 'sparkle';
+  var currentFormationKey = 'robot';
   var targetPts = [];
   // 0..1 scroll-driven release amount — see the scroll dissolve block below
   var dissolveT = 0;
@@ -268,8 +210,8 @@
 
   function computeCount(){
     var area = W*H;
-    var target = Math.round(area / 3200);
-    return Math.max(160, Math.min(600, target));
+    var target = Math.round(area / 1600);
+    return Math.max(260, Math.min(900, target));
   }
 
   var firstLoad = true;
@@ -317,20 +259,16 @@
 
   function applyFormation(key, instant){
     currentFormationKey = key;
-    var gen = FORMATIONS[key];
     var box = getVisualBox();
     var cx = box.cx, cy = box.cy;
 
-    // uniform scale (true proportions, no stretching): whichever budget —
-    // viewport-height share, or the zone's own width — is more constraining
-    // wins. Formation is centered in its half and sized slightly larger than
-    // the original pass so the two halves meet without a dead center gap.
-    var hBudget = Math.min(box.h*0.94, H*0.66);
-    var wBudget = box.w*0.94;
-    var scale = Math.min(hBudget/NORM_H, wBudget/NORM_W);
+    // shapes normalize to a 1.0 longest axis, so one uniform scale fits any
+    // of them into whichever budget is tighter: the visual half, or a share
+    // of viewport height.
+    var scale = Math.min(box.h*0.92, H*0.62, box.w*0.92);
 
     var count = Math.min(particles.length, Math.max(80, Math.round(particles.length*0.94)));
-    targetPts = gen(count).map(function(pt){
+    targetPts = sampleShape(key, count).map(function(pt){
       return { x: cx + pt.x*scale, y: cy + pt.y*scale };
     });
 
@@ -447,7 +385,7 @@
 
   function restingInk(p){
     if(p.accent) return hexAlpha(p.color, 0.5);
-    return p.glyph.length > 1 ? 'rgba(107,101,145,.34)' : 'rgba(154,149,184,.55)';
+    return p.glyph.length > 1 ? 'rgba(107,101,145,.42)' : 'rgba(154,149,184,.62)';
   }
   function hexAlpha(hex, a){
     var c = hex.replace('#','');
@@ -523,7 +461,7 @@
       if(reduced) renderStatic();
     }
     function leave(){
-      applyFormation('sparkle', reduced);
+      applyFormation('robot', reduced);
       if(reduced) renderStatic();
     }
     btn.addEventListener('mouseenter', enter);
@@ -567,6 +505,16 @@
   window.addEventListener('scroll', function(){
     if(!scrollTicking){ scrollTicking = true; requestAnimationFrame(applyScroll); }
   }, {passive:true});
+
+  // The "?" formation is sampled from a real JetBrains Mono glyph; if the
+  // webfont lands after first paint the cached sample is the fallback face,
+  // so drop it and re-fit once fonts are actually ready.
+  if(document.fonts && document.fonts.ready){
+    document.fonts.ready.then(function(){
+      delete shapeCache.question;
+      if(currentFormationKey === 'question') applyFormation('question', true);
+    });
+  }
 
   // ---- init ---------------------------------------------------------------
   layout();

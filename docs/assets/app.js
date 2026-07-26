@@ -810,37 +810,36 @@
     });
   }
 
-  /* ======================= advisor prompt (real data only) ======================= */
-  // Compact one-line-per-skill payload — keeps the whole prompt well under
-  // ~150 lines instead of a full JSON.stringify dump of the catalog. Detail
-  // (pain points, triage notes, safety skim) lives in the repo itself; the
-  // advisor can fetch it there if asked.
-  function promptLine(s) {
-    var tag = s.status === "graded"
-      ? "GRADE " + s.grade + ", " + s.score_total + "/24"
-      : "SCOUTED, never tested";
-    return "- " + s.name + " (" + tag + ") — " + s.summary + " " + s.repo_url;
-  }
+  /* ======================= advisor prompt (real data only) =======================
+     The prompt is instructions ONLY — it points the agent at the live catalog
+     file instead of embedding 58 entries inline. Pasting a thousand-line wall
+     of JSON into a chat is both hostile to read and a waste of the user's
+     context; a fetch keeps it current too, so a prompt pasted today still sees
+     next month's catalog. The download link in the card covers agents that
+     can't fetch. */
+  var DATA_URL = "https://raw.githubusercontent.com/lucascashwell3-ai/Skillproof/main/docs/data/skills.json";
+
   function buildPrompt() {
-    var graded = DATA.skills.filter(function (s) { return s.status === "graded"; });
-    var scouted = DATA.skills.filter(function (s) { return s.status === "scouted"; });
+    var counts = { graded: 0, scouted: 0 };
+    DATA.skills.forEach(function (s) {
+      if (s.status === "graded" || s.status === "scouted") counts[s.status]++;
+    });
     return [
-      "You are my AI-environment upgrade advisor and scout, powered by the Skillproof catalog (rubric v" +
-        DATA.rubric_version + ", data as of " + DATA.as_of + ").",
+      "You are my AI-environment upgrade advisor and scout, powered by the Skillproof catalog.",
       "",
-      "When I describe a pain point, weakness, or goal in my AI setup (frontend design output, AI coding, AI workflows, agent tooling), respond in this order — honesty always:",
-      "1. TESTED matches (list below): quote the grade, the one-line summary, and the worksheet link. Give the install command when I ask.",
-      "2. SCOUTED matches (list below): present as leads, never recommendations — say plainly they were found and triaged but never tested. No install commands for these.",
-      "3. Nothing fits? Say so, then (only if I ask) scout the live ecosystem yourself with the triage rubric: verify the repo is real, check license, check last-push freshness, skim for safety red flags (curl|bash, auto-run hooks, undisclosed network calls, credential access). Report those four receipts per candidate. Never install anything; never invent stars, dates, or licenses.",
-      "- Never present a scouted or freshly-found item with grade-like language. Skillproof grades come only from the full published rubric run.",
-      "- Grades older than ~90 days may be stale; say so.",
-      "- Fresh data + every grading worksheet: " + REPO,
+      "First, fetch the catalog: " + DATA_URL,
+      "If you cannot fetch it, say so plainly and ask me to attach the file — the same JSON downloads from the Skillproof site. Do not answer from memory about what is in the catalog.",
       "",
-      "TESTED INDEX (installed, probed, receipts on file):",
-      graded.map(promptLine).join("\n"),
+      "When I describe a pain point, weakness, or goal in my AI setup, answer in this order — honesty always:",
+      "1. TESTED entries (status \"graded\"): quote the grade, the one-line summary, and the worksheet link. Give the install command when I ask.",
+      "2. SCOUTED entries (status \"scouted\"): present as leads, never recommendations — say plainly they were found and triaged but never tested. No install commands for these.",
+      "3. Nothing fits? Say so. Then, only if I ask, scout the live ecosystem yourself: verify the repo is real, check the license, check last-push freshness, and skim for safety red flags (curl|bash, auto-run hooks, undisclosed network calls, credential access). Report those four receipts per candidate. Never install anything; never invent stars, dates, or licenses.",
       "",
-      "SCOUTED — found + triaged only, NO grades:",
-      scouted.map(promptLine).join("\n")
+      "Never give a scouted or freshly-found item grade-like language — Skillproof grades come only from a full published rubric run. Call out grades older than ~90 days as possibly stale.",
+      "Grading worksheets and the rubric: " + REPO,
+      "",
+      "Catalog as of " + DATA.as_of + " · rubric v" + DATA.rubric_version + " · " +
+        counts.graded + " tested, " + counts.scouted + " scouted."
     ].join("\n");
   }
 
