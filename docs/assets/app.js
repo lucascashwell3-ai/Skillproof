@@ -304,7 +304,6 @@
           '</span><span class="rd-v">' + kv[1] + "</span></div>";
       }).join("") + "</div>" +
       '<div class="rd-actions">' +
-        '<a class="btn btn-ghost btn-sm" href="' + esc(it.repo_url) + '" target="_blank" rel="noopener">View the source ↗</a>' +
         worksheet +
         '<span class="rd-asof">As of ' + esc(mdY(asOf)) + "</span>" +
       "</div>" +
