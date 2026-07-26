@@ -218,7 +218,12 @@
       "evidence_url": "grading/worksheets/i-have-adhd.md",
       "security_notes": "Pure markdown plus plugin manifests: no scripts, no network calls, no file writes, no credential access. The GitHub workflows in the repo run only in the author's CI, never on your machine.",
       "last_verified": "2026-07-21",
-      "status": "graded"
+      "status": "graded",
+      "signals": {
+        "stars": 10027,
+        "forks": 506,
+        "checked": "2026-07-25"
+      }
     },
     {
       "id": "claude-code-debug-mode",
@@ -235,10 +240,15 @@
       "triage": {
         "provenance": "Repo verified real via GitHub API: doraemonkeys/claude-code-debug-mode, 107 stars, created 2026-02.",
         "license": "MIT",
-        "freshness": "Last push 2026-06-26 (checked 2026-07-24).",
+        "freshness": "Last push 2026-06-26 (checked 2026-07-25) — actively maintained.",
         "safety": "Source NOT yet read line-by-line — that read happens in grading. Treat as untrusted until graded."
       },
-      "next": "Queued for a full grading run."
+      "next": "Queued for a full grading run.",
+      "signals": {
+        "stars": 107,
+        "forks": 6,
+        "checked": "2026-07-25"
+      }
     },
     {
       "id": "claude-git-pr-skill",
@@ -255,10 +265,15 @@
       "triage": {
         "provenance": "Repo verified real via GitHub API: aidankinzett/claude-git-pr-skill, 41 stars, created 2025-12.",
         "license": "No license file detected via the GitHub API — usage rights unclear; a real triage red flag.",
-        "freshness": "Last push 2025-12-02 (checked 2026-07-24) — ~8 months quiet.",
+        "freshness": "Last push 2025-12-02 (checked 2026-07-25) — ~8 months quiet.",
         "safety": "Source NOT yet read line-by-line — that read happens in grading. Treat as untrusted until graded."
       },
-      "next": "Queued for a full grading run."
+      "next": "Queued for a full grading run.",
+      "signals": {
+        "stars": 41,
+        "forks": 7,
+        "checked": "2026-07-25"
+      }
     },
     {
       "id": "recursive-research",
@@ -275,10 +290,15 @@
       "triage": {
         "provenance": "Repo verified real via GitHub API: Anjos2/recursive-research, 32 stars, created 2026-04.",
         "license": "MIT",
-        "freshness": "Last push 2026-04-22 (checked 2026-07-24).",
+        "freshness": "Last push 2026-04-22 (checked 2026-07-25).",
         "safety": "Source NOT yet read line-by-line — that read happens in grading. Treat as untrusted until graded."
       },
-      "next": "Queued for a full grading run."
+      "next": "Queued for a full grading run.",
+      "signals": {
+        "stars": 35,
+        "forks": 1,
+        "checked": "2026-07-25"
+      }
     },
     {
       "id": "playwright-skill",
@@ -295,10 +315,15 @@
       "triage": {
         "provenance": "Repo verified real via GitHub API: lackeyjb/playwright-skill, 2,937 stars, created 2025-10.",
         "license": "MIT",
-        "freshness": "Last push 2025-12-19 (checked 2026-07-24) — ~7 months quiet.",
+        "freshness": "Last push 2025-12-19 (checked 2026-07-25) — ~7 months quiet.",
         "safety": "Source NOT yet read line-by-line — that read happens in grading. Executes generated JS against a real browser; treat as untrusted until graded."
       },
-      "next": "Queued for a full grading run."
+      "next": "Queued for a full grading run.",
+      "signals": {
+        "stars": 2947,
+        "forks": 218,
+        "checked": "2026-07-25"
+      }
     },
     {
       "id": "anthropics-skills",
@@ -316,10 +341,15 @@
       "triage": {
         "provenance": "First-party Anthropic org repo, verified via GitHub API: 163,783 stars, created 2025-09.",
         "license": "No top-level license detected via the GitHub API — check per-skill terms in the repo before commercial reuse.",
-        "freshness": "Last push 2026-07-22 (checked 2026-07-24) — actively maintained.",
+        "freshness": "Last push 2026-07-24 (checked 2026-07-25) — actively maintained.",
         "safety": "A library, not one skill — each skill needs its own read before use. Not graded; individual skills may be graded separately later."
       },
-      "next": "Individual skills from this library are grading candidates, not the library as a whole."
+      "next": "Individual skills from this library are grading candidates, not the library as a whole.",
+      "signals": {
+        "stars": 164166,
+        "forks": 19488,
+        "checked": "2026-07-25"
+      }
     },
     {
       "id": "mengto-skills",
@@ -336,10 +366,15 @@
       "triage": {
         "provenance": "Repo verified real via GitHub API: MengTo/Skills, 2,508 stars, created 2026-02; author is the founder of Design+Code.",
         "license": "MIT",
-        "freshness": "Last push 2026-07-19 (checked 2026-07-24) — actively maintained.",
+        "freshness": "Last push 2026-07-25 (checked 2026-07-25) — actively maintained.",
         "safety": "A library, not one skill — each skill needs its own read before use. Not graded; individual skills may be graded separately later."
       },
-      "next": "Cherry-pick candidates from the library for individual grading runs."
+      "next": "Cherry-pick candidates from the library for individual grading runs.",
+      "signals": {
+        "stars": 3094,
+        "forks": 328,
+        "checked": "2026-07-25"
+      }
     },
     {
       "id": "superpowers",
@@ -357,10 +392,15 @@
       "triage": {
         "provenance": "Repo verified real via GitHub API: obra/superpowers, 260,171 stars, created 2025-10.",
         "license": "MIT",
-        "freshness": "Last push 2026-07-24 (checked 2026-07-24) — actively maintained.",
+        "freshness": "Last push 2026-07-24 (checked 2026-07-25) — actively maintained.",
         "safety": "A framework with shell components — every part needs its own read before use. Not graded; individual skills may be graded separately later."
       },
-      "next": "Cherry-pick candidates from the framework for individual grading runs."
+      "next": "Cherry-pick candidates from the framework for individual grading runs.",
+      "signals": {
+        "stars": 261122,
+        "forks": 23302,
+        "checked": "2026-07-25"
+      }
     },
     {
       "id": "affaan-m-ecc",
@@ -382,7 +422,12 @@
         "freshness": "Last push 2026-07-25 (checked 2026-07-25) — actively maintained.",
         "safety": "Source NOT yet read line-by-line — that read happens in grading. Treat as untrusted until graded."
       },
-      "next": "Queued for a full grading run."
+      "next": "Queued for a full grading run.",
+      "signals": {
+        "stars": 233337,
+        "forks": 35575,
+        "checked": "2026-07-25"
+      }
     },
     {
       "id": "multica-ai-andrej-karpathy-skills",
@@ -400,7 +445,12 @@
         "freshness": "Last push 2026-04-20 (checked 2026-07-25).",
         "safety": "A library, not one skill — each skill needs its own read before use. Not graded; individual skills may be graded separately later."
       },
-      "next": "Queued for a full grading run."
+      "next": "Queued for a full grading run.",
+      "signals": {
+        "stars": 196311,
+        "forks": 20212,
+        "checked": "2026-07-25"
+      }
     },
     {
       "id": "mattpocock-skills",
@@ -418,7 +468,12 @@
         "freshness": "Last push 2026-07-23 (checked 2026-07-25) — actively maintained.",
         "safety": "A library, not one skill — each skill needs its own read before use. Not graded; individual skills may be graded separately later."
       },
-      "next": "Queued for a full grading run."
+      "next": "Queued for a full grading run.",
+      "signals": {
+        "stars": 188329,
+        "forks": 16181,
+        "checked": "2026-07-25"
+      }
     },
     {
       "id": "nextlevelbuilder-ui-ux-pro-max-skill",
@@ -438,7 +493,12 @@
         "freshness": "Last push 2026-07-21 (checked 2026-07-25) — actively maintained.",
         "safety": "Source NOT yet read line-by-line — that read happens in grading. Treat as untrusted until graded."
       },
-      "next": "Queued for a full grading run."
+      "next": "Queued for a full grading run.",
+      "signals": {
+        "stars": 110120,
+        "forks": 11745,
+        "checked": "2026-07-25"
+      }
     },
     {
       "id": "graphify-labs-graphify",
@@ -458,7 +518,12 @@
         "freshness": "Last push 2026-07-24 (checked 2026-07-25) — actively maintained.",
         "safety": "Source NOT yet read line-by-line — that read happens in grading. Treat as untrusted until graded."
       },
-      "next": "Queued for a full grading run."
+      "next": "Queued for a full grading run.",
+      "signals": {
+        "stars": 95892,
+        "forks": 9294,
+        "checked": "2026-07-25"
+      }
     },
     {
       "id": "juliusbrussee-caveman",
@@ -478,7 +543,12 @@
         "freshness": "Last push 2026-07-03 (checked 2026-07-25) — actively maintained.",
         "safety": "Source NOT yet read line-by-line — that read happens in grading. Treat as untrusted until graded."
       },
-      "next": "Queued for a full grading run."
+      "next": "Queued for a full grading run.",
+      "signals": {
+        "stars": 92990,
+        "forks": 5293,
+        "checked": "2026-07-25"
+      }
     },
     {
       "id": "dietrichgebert-ponytail",
@@ -496,7 +566,12 @@
         "freshness": "Last push 2026-07-15 (checked 2026-07-25) — actively maintained.",
         "safety": "Source NOT yet read line-by-line — that read happens in grading. Treat as untrusted until graded."
       },
-      "next": "Queued for a full grading run."
+      "next": "Queued for a full grading run.",
+      "signals": {
+        "stars": 89383,
+        "forks": 4901,
+        "checked": "2026-07-25"
+      }
     },
     {
       "id": "thedotmack-claude-mem",
@@ -516,7 +591,12 @@
         "freshness": "Last push 2026-07-23 (checked 2026-07-25) — actively maintained.",
         "safety": "Source NOT yet read line-by-line — that read happens in grading. Treat as untrusted until graded."
       },
-      "next": "Queued for a full grading run."
+      "next": "Queued for a full grading run.",
+      "signals": {
+        "stars": 88564,
+        "forks": 7691,
+        "checked": "2026-07-25"
+      }
     },
     {
       "id": "nexu-io-open-design",
@@ -536,7 +616,12 @@
         "freshness": "Last push 2026-07-26 (checked 2026-07-25) — actively maintained.",
         "safety": "Source NOT yet read line-by-line — that read happens in grading. Treat as untrusted until graded."
       },
-      "next": "Queued for a full grading run."
+      "next": "Queued for a full grading run.",
+      "signals": {
+        "stars": 81538,
+        "forks": 9426,
+        "checked": "2026-07-25"
+      }
     },
     {
       "id": "addyosmani-agent-skills",
@@ -554,7 +639,12 @@
         "freshness": "Last push 2026-07-26 (checked 2026-07-25) — actively maintained.",
         "safety": "A library, not one skill — each skill needs its own read before use. Not graded; individual skills may be graded separately later."
       },
-      "next": "Queued for a full grading run."
+      "next": "Queued for a full grading run.",
+      "signals": {
+        "stars": 80374,
+        "forks": 8661,
+        "checked": "2026-07-25"
+      }
     },
     {
       "id": "egonex-ai-understand-anything",
@@ -574,7 +664,12 @@
         "freshness": "Last push 2026-07-25 (checked 2026-07-25) — actively maintained.",
         "safety": "Source NOT yet read line-by-line — that read happens in grading. Treat as untrusted until graded."
       },
-      "next": "Queued for a full grading run."
+      "next": "Queued for a full grading run.",
+      "signals": {
+        "stars": 76097,
+        "forks": 6359,
+        "checked": "2026-07-25"
+      }
     },
     {
       "id": "rtk-ai-rtk",
@@ -594,7 +689,12 @@
         "freshness": "Last push 2026-07-26 (checked 2026-07-25) — actively maintained.",
         "safety": "Source NOT yet read line-by-line — that read happens in grading. Treat as untrusted until graded."
       },
-      "next": "Queued for a full grading run."
+      "next": "Queued for a full grading run.",
+      "signals": {
+        "stars": 73253,
+        "forks": 4567,
+        "checked": "2026-07-25"
+      }
     },
     {
       "id": "shareai-lab-learn-claude-code",
@@ -612,7 +712,12 @@
         "freshness": "Last push 2026-06-26 (checked 2026-07-25) — actively maintained.",
         "safety": "Source NOT yet read line-by-line — that read happens in grading. Treat as untrusted until graded."
       },
-      "next": "Queued for a full grading run."
+      "next": "Queued for a full grading run.",
+      "signals": {
+        "stars": 72213,
+        "forks": 11706,
+        "checked": "2026-07-25"
+      }
     },
     {
       "id": "composiohq-awesome-claude-skills",
@@ -632,7 +737,12 @@
         "freshness": "Last push 2026-07-24 (checked 2026-07-25) — actively maintained.",
         "safety": "A library, not one skill — each skill needs its own read before use. Not graded; individual skills may be graded separately later."
       },
-      "next": "Queued for a full grading run."
+      "next": "Queued for a full grading run.",
+      "signals": {
+        "stars": 70614,
+        "forks": 7944,
+        "checked": "2026-07-25"
+      }
     },
     {
       "id": "leonxlnx-taste-skill",
@@ -652,7 +762,12 @@
         "freshness": "Last push 2026-07-23 (checked 2026-07-25) — actively maintained.",
         "safety": "Source NOT yet read line-by-line — that read happens in grading. Treat as untrusted until graded."
       },
-      "next": "Queued for a full grading run."
+      "next": "Queued for a full grading run.",
+      "signals": {
+        "stars": 67640,
+        "forks": 4680,
+        "checked": "2026-07-25"
+      }
     },
     {
       "id": "ruvnet-ruflo",
@@ -672,7 +787,12 @@
         "freshness": "Last push 2026-07-25 (checked 2026-07-25) — actively maintained.",
         "safety": "Source NOT yet read line-by-line — that read happens in grading. Treat as untrusted until graded."
       },
-      "next": "Queued for a full grading run."
+      "next": "Queued for a full grading run.",
+      "signals": {
+        "stars": 65983,
+        "forks": 7841,
+        "checked": "2026-07-25"
+      }
     },
     {
       "id": "shanraisshan-claude-code-best-practice",
@@ -692,7 +812,12 @@
         "freshness": "Last push 2026-07-25 (checked 2026-07-25) — actively maintained.",
         "safety": "Source NOT yet read line-by-line — that read happens in grading. Treat as untrusted until graded."
       },
-      "next": "Queued for a full grading run."
+      "next": "Queued for a full grading run.",
+      "signals": {
+        "stars": 63495,
+        "forks": 6330,
+        "checked": "2026-07-25"
+      }
     },
     {
       "id": "headroomlabs-ai-headroom",
@@ -712,7 +837,12 @@
         "freshness": "Last push 2026-07-25 (checked 2026-07-25) — actively maintained.",
         "safety": "Source NOT yet read line-by-line — that read happens in grading. Treat as untrusted until graded."
       },
-      "next": "Queued for a full grading run."
+      "next": "Queued for a full grading run.",
+      "signals": {
+        "stars": 62421,
+        "forks": 4717,
+        "checked": "2026-07-25"
+      }
     },
     {
       "id": "panniantong-agent-reach",
@@ -730,7 +860,12 @@
         "freshness": "Last push 2026-07-25 (checked 2026-07-25) — actively maintained.",
         "safety": "Source NOT yet read line-by-line — that read happens in grading. Treat as untrusted until graded."
       },
-      "next": "Queued for a full grading run."
+      "next": "Queued for a full grading run.",
+      "signals": {
+        "stars": 60839,
+        "forks": 4923,
+        "checked": "2026-07-25"
+      }
     },
     {
       "id": "mvanhorn-last30days-skill",
@@ -750,7 +885,12 @@
         "freshness": "Last push 2026-07-25 (checked 2026-07-25) — actively maintained.",
         "safety": "Source NOT yet read line-by-line — that read happens in grading. Treat as untrusted until graded."
       },
-      "next": "Queued for a full grading run."
+      "next": "Queued for a full grading run.",
+      "signals": {
+        "stars": 53615,
+        "forks": 4649,
+        "checked": "2026-07-25"
+      }
     },
     {
       "id": "voltagent-awesome-openclaw-skills",
@@ -768,7 +908,12 @@
         "freshness": "Last push 2026-07-16 (checked 2026-07-25) — actively maintained.",
         "safety": "A library, not one skill — each skill needs its own read before use. Not graded; individual skills may be graded separately later."
       },
-      "next": "Queued for a full grading run."
+      "next": "Queued for a full grading run.",
+      "signals": {
+        "stars": 51521,
+        "forks": 4970,
+        "checked": "2026-07-25"
+      }
     },
     {
       "id": "hesreallyhim-awesome-claude-code",
@@ -788,7 +933,12 @@
         "freshness": "Last push 2026-07-26 (checked 2026-07-25) — actively maintained.",
         "safety": "A library, not one skill — each skill needs its own read before use. Not graded; individual skills may be graded separately later."
       },
-      "next": "Queued for a full grading run."
+      "next": "Queued for a full grading run.",
+      "signals": {
+        "stars": 50938,
+        "forks": 4441,
+        "checked": "2026-07-25"
+      }
     },
     {
       "id": "sickn33-agentic-awesome-skills",
@@ -808,7 +958,12 @@
         "freshness": "Last push 2026-07-24 (checked 2026-07-25) — actively maintained.",
         "safety": "A library, not one skill — each skill needs its own read before use. Not graded; individual skills may be graded separately later."
       },
-      "next": "Queued for a full grading run."
+      "next": "Queued for a full grading run.",
+      "signals": {
+        "stars": 43912,
+        "forks": 6482,
+        "checked": "2026-07-25"
+      }
     },
     {
       "id": "coreyhaines31-marketingskills",
@@ -826,7 +981,12 @@
         "freshness": "Last push 2026-07-23 (checked 2026-07-25) — actively maintained.",
         "safety": "Source NOT yet read line-by-line — that read happens in grading. Treat as untrusted until graded."
       },
-      "next": "Queued for a full grading run."
+      "next": "Queued for a full grading run.",
+      "signals": {
+        "stars": 41689,
+        "forks": 6559,
+        "checked": "2026-07-25"
+      }
     },
     {
       "id": "imbad0202-academic-research-skills",
@@ -843,10 +1003,15 @@
       "triage": {
         "provenance": "Repo verified real via GitHub API: Imbad0202/academic-research-skills, 39,500 stars, created 2026-02.",
         "license": "No license file detected via the GitHub API — usage rights unclear; a real triage red flag.",
-        "freshness": "Last push 2026-07-25 (checked 2026-07-25) — actively maintained.",
+        "freshness": "Last push 2026-07-26 (checked 2026-07-25) — actively maintained.",
         "safety": "A library, not one skill — each skill needs its own read before use. Not graded; individual skills may be graded separately later."
       },
-      "next": "Queued for a full grading run."
+      "next": "Queued for a full grading run.",
+      "signals": {
+        "stars": 39506,
+        "forks": 3170,
+        "checked": "2026-07-25"
+      }
     },
     {
       "id": "wshobson-agents",
@@ -864,7 +1029,12 @@
         "freshness": "Last push 2026-07-22 (checked 2026-07-25) — actively maintained.",
         "safety": "A library, not one skill — each skill needs its own read before use. Not graded; individual skills may be graded separately later."
       },
-      "next": "Queued for a full grading run."
+      "next": "Queued for a full grading run.",
+      "signals": {
+        "stars": 38225,
+        "forks": 4093,
+        "checked": "2026-07-25"
+      }
     },
     {
       "id": "github-awesome-copilot",
@@ -882,7 +1052,12 @@
         "freshness": "Last push 2026-07-25 (checked 2026-07-25) — actively maintained.",
         "safety": "A library, not one skill — each skill needs its own read before use. Not graded; individual skills may be graded separately later."
       },
-      "next": "Queued for a full grading run."
+      "next": "Queued for a full grading run.",
+      "signals": {
+        "stars": 37033,
+        "forks": 4640,
+        "checked": "2026-07-25"
+      }
     },
     {
       "id": "k-dense-ai-scientific-agent-skills",
@@ -902,7 +1077,12 @@
         "freshness": "Last push 2026-07-25 (checked 2026-07-25) — actively maintained.",
         "safety": "A library, not one skill — each skill needs its own read before use. Not graded; individual skills may be graded separately later."
       },
-      "next": "Queued for a full grading run."
+      "next": "Queued for a full grading run.",
+      "signals": {
+        "stars": 31758,
+        "forks": 3160,
+        "checked": "2026-07-25"
+      }
     },
     {
       "id": "blader-humanizer",
@@ -920,7 +1100,12 @@
         "freshness": "Last push 2026-07-22 (checked 2026-07-25) — actively maintained.",
         "safety": "Source NOT yet read line-by-line — that read happens in grading. Treat as untrusted until graded."
       },
-      "next": "Queued for a full grading run."
+      "next": "Queued for a full grading run.",
+      "signals": {
+        "stars": 31039,
+        "forks": 2844,
+        "checked": "2026-07-25"
+      }
     },
     {
       "id": "davila7-claude-code-templates",
@@ -938,7 +1123,12 @@
         "freshness": "Last push 2026-07-25 (checked 2026-07-25) — actively maintained.",
         "safety": "A library, not one skill — each skill needs its own read before use. Not graded; individual skills may be graded separately later."
       },
-      "next": "Queued for a full grading run."
+      "next": "Queued for a full grading run.",
+      "signals": {
+        "stars": 29903,
+        "forks": 3216,
+        "checked": "2026-07-25"
+      }
     },
     {
       "id": "topoteretes-cognee",
@@ -959,7 +1149,12 @@
         "freshness": "Last push 2026-07-25 (checked 2026-07-25) — actively maintained.",
         "safety": "Source NOT yet read line-by-line — that read happens in grading. Treat as untrusted until graded."
       },
-      "next": "Queued for a full grading run."
+      "next": "Queued for a full grading run.",
+      "signals": {
+        "stars": 29332,
+        "forks": 2809,
+        "checked": "2026-07-25"
+      }
     },
     {
       "id": "voltagent-awesome-agent-skills",
@@ -977,7 +1172,12 @@
         "freshness": "Last push 2026-07-10 (checked 2026-07-25) — actively maintained.",
         "safety": "A library, not one skill — each skill needs its own read before use. Not graded; individual skills may be graded separately later."
       },
-      "next": "Queued for a full grading run."
+      "next": "Queued for a full grading run.",
+      "signals": {
+        "stars": 28952,
+        "forks": 3111,
+        "checked": "2026-07-25"
+      }
     },
     {
       "id": "mukul975-anthropic-cybersecurity-skills",
@@ -998,7 +1198,12 @@
         "freshness": "Last push 2026-06-26 (checked 2026-07-25) — actively maintained.",
         "safety": "A library, not one skill — each skill needs its own read before use. Not graded; individual skills may be graded separately later."
       },
-      "next": "Queued for a full grading run."
+      "next": "Queued for a full grading run.",
+      "signals": {
+        "stars": 26573,
+        "forks": 3220,
+        "checked": "2026-07-25"
+      }
     },
     {
       "id": "othmanadi-planning-with-files",
@@ -1019,7 +1224,12 @@
         "freshness": "Last push 2026-07-24 (checked 2026-07-25) — actively maintained.",
         "safety": "A library, not one skill — each skill needs its own read before use. Not graded; individual skills may be graded separately later."
       },
-      "next": "Queued for a full grading run."
+      "next": "Queued for a full grading run.",
+      "signals": {
+        "stars": 25736,
+        "forks": 2164,
+        "checked": "2026-07-25"
+      }
     },
     {
       "id": "phuryn-pm-skills",
@@ -1037,7 +1247,12 @@
         "freshness": "Last push 2026-07-03 (checked 2026-07-25) — actively maintained.",
         "safety": "A library, not one skill — each skill needs its own read before use. Not graded; individual skills may be graded separately later."
       },
-      "next": "Queued for a full grading run."
+      "next": "Queued for a full grading run.",
+      "signals": {
+        "stars": 24455,
+        "forks": 2527,
+        "checked": "2026-07-25"
+      }
     },
     {
       "id": "voltagent-awesome-claude-code-subagents",
@@ -1055,7 +1270,12 @@
         "freshness": "Last push 2026-07-10 (checked 2026-07-25) — actively maintained.",
         "safety": "A library, not one skill — each skill needs its own read before use. Not graded; individual skills may be graded separately later."
       },
-      "next": "Queued for a full grading run."
+      "next": "Queued for a full grading run.",
+      "signals": {
+        "stars": 23716,
+        "forks": 2762,
+        "checked": "2026-07-25"
+      }
     },
     {
       "id": "agentskills-agentskills",
@@ -1075,7 +1295,12 @@
         "freshness": "Last push 2026-07-10 (checked 2026-07-25) — actively maintained.",
         "safety": "Source NOT yet read line-by-line — that read happens in grading. Treat as untrusted until graded."
       },
-      "next": "Queued for a full grading run."
+      "next": "Queued for a full grading run.",
+      "signals": {
+        "stars": 23474,
+        "forks": 1585,
+        "checked": "2026-07-25"
+      }
     },
     {
       "id": "donchitos-claude-code-game-studios",
@@ -1095,7 +1320,12 @@
         "freshness": "Last push 2026-05-21 (checked 2026-07-25) — actively maintained.",
         "safety": "Source NOT yet read line-by-line — that read happens in grading. Treat as untrusted until graded."
       },
-      "next": "Queued for a full grading run."
+      "next": "Queued for a full grading run.",
+      "signals": {
+        "stars": 23390,
+        "forks": 3360,
+        "checked": "2026-07-25"
+      }
     },
     {
       "id": "alirezarezvani-claude-skills",
@@ -1115,7 +1345,12 @@
         "freshness": "Last push 2026-07-17 (checked 2026-07-25) — actively maintained.",
         "safety": "A library, not one skill — each skill needs its own read before use. Not graded; individual skills may be graded separately later."
       },
-      "next": "Queued for a full grading run."
+      "next": "Queued for a full grading run.",
+      "signals": {
+        "stars": 23193,
+        "forks": 3174,
+        "checked": "2026-07-25"
+      }
     },
     {
       "id": "alchaincyf-huashu-design",
@@ -1135,7 +1370,12 @@
         "freshness": "Last push 2026-07-24 (checked 2026-07-25) — actively maintained.",
         "safety": "Source NOT yet read line-by-line — that read happens in grading. Treat as untrusted until graded."
       },
-      "next": "Queued for a full grading run."
+      "next": "Queued for a full grading run.",
+      "signals": {
+        "stars": 22005,
+        "forks": 2610,
+        "checked": "2026-07-25"
+      }
     },
     {
       "id": "teng-lin-notebooklm-py",
@@ -1155,7 +1395,12 @@
         "freshness": "Last push 2026-07-24 (checked 2026-07-25) — actively maintained.",
         "safety": "Source NOT yet read line-by-line — that read happens in grading. Treat as untrusted until graded."
       },
-      "next": "Queued for a full grading run."
+      "next": "Queued for a full grading run.",
+      "signals": {
+        "stars": 18193,
+        "forks": 2457,
+        "checked": "2026-07-25"
+      }
     },
     {
       "id": "kkkkhazix-khazix-skills",
@@ -1176,7 +1421,12 @@
         "freshness": "Last push 2026-07-25 (checked 2026-07-25) — actively maintained.",
         "safety": "A library, not one skill — each skill needs its own read before use. Not graded; individual skills may be graded separately later."
       },
-      "next": "Queued for a full grading run."
+      "next": "Queued for a full grading run.",
+      "signals": {
+        "stars": 17927,
+        "forks": 2017,
+        "checked": "2026-07-25"
+      }
     },
     {
       "id": "nutlope-hallmark",
@@ -1196,7 +1446,12 @@
         "freshness": "Last push 2026-06-26 (checked 2026-07-25) — actively maintained.",
         "safety": "Source NOT yet read line-by-line — that read happens in grading. Treat as untrusted until graded."
       },
-      "next": "Queued for a full grading run."
+      "next": "Queued for a full grading run.",
+      "signals": {
+        "stars": 17732,
+        "forks": 891,
+        "checked": "2026-07-25"
+      }
     },
     {
       "id": "microsoft-skillopt",
@@ -1214,7 +1469,12 @@
         "freshness": "Last push 2026-07-24 (checked 2026-07-25) — actively maintained.",
         "safety": "Source NOT yet read line-by-line — that read happens in grading. Treat as untrusted until graded."
       },
-      "next": "Queued for a full grading run."
+      "next": "Queued for a full grading run.",
+      "signals": {
+        "stars": 15026,
+        "forks": 1383,
+        "checked": "2026-07-25"
+      }
     },
     {
       "id": "eigent-ai-eigent",
@@ -1232,7 +1492,12 @@
         "freshness": "Last push 2026-07-25 (checked 2026-07-25) — actively maintained.",
         "safety": "Source NOT yet read line-by-line — that read happens in grading. Treat as untrusted until graded."
       },
-      "next": "Queued for a full grading run."
+      "next": "Queued for a full grading run.",
+      "signals": {
+        "stars": 14657,
+        "forks": 1738,
+        "checked": "2026-07-25"
+      }
     },
     {
       "id": "yusufkaraaslan-skill-seekers",
@@ -1252,7 +1517,12 @@
         "freshness": "Last push 2026-07-20 (checked 2026-07-25) — actively maintained.",
         "safety": "Source NOT yet read line-by-line — that read happens in grading. Treat as untrusted until graded."
       },
-      "next": "Queued for a full grading run."
+      "next": "Queued for a full grading run.",
+      "signals": {
+        "stars": 14561,
+        "forks": 1477,
+        "checked": "2026-07-25"
+      }
     },
     {
       "id": "travisvn-awesome-claude-skills",
@@ -1272,7 +1542,12 @@
         "freshness": "Last push 2026-04-28 (checked 2026-07-25) — actively maintained.",
         "safety": "A library, not one skill — each skill needs its own read before use. Not graded; individual skills may be graded separately later."
       },
-      "next": "Queued for a full grading run."
+      "next": "Queued for a full grading run.",
+      "signals": {
+        "stars": 14313,
+        "forks": 1748,
+        "checked": "2026-07-25"
+      }
     },
     {
       "id": "nevamind-ai-memu",
@@ -1292,7 +1567,12 @@
         "freshness": "Last push 2026-07-25 (checked 2026-07-25) — actively maintained.",
         "safety": "Source NOT yet read line-by-line — that read happens in grading. Treat as untrusted until graded."
       },
-      "next": "Queued for a full grading run."
+      "next": "Queued for a full grading run.",
+      "signals": {
+        "stars": 14059,
+        "forks": 1043,
+        "checked": "2026-07-25"
+      }
     },
     {
       "id": "op7418-humanizer-zh",
@@ -1310,7 +1590,12 @@
         "freshness": "Last push 2026-01-19 (checked 2026-07-25) — ~6 months quiet.",
         "safety": "Source NOT yet read line-by-line — that read happens in grading. Treat as untrusted until graded."
       },
-      "next": "Queued for a full grading run."
+      "next": "Queued for a full grading run.",
+      "signals": {
+        "stars": 13909,
+        "forks": 969,
+        "checked": "2026-07-25"
+      }
     },
     {
       "id": "wanshuiyin-auto-claude-code-research-in-sleep",
@@ -1330,7 +1615,12 @@
         "freshness": "Last push 2026-07-22 (checked 2026-07-25) — actively maintained.",
         "safety": "Source NOT yet read line-by-line — that read happens in grading. Treat as untrusted until graded."
       },
-      "next": "Queued for a full grading run."
+      "next": "Queued for a full grading run.",
+      "signals": {
+        "stars": 13858,
+        "forks": 1239,
+        "checked": "2026-07-25"
+      }
     }
   ]
 }

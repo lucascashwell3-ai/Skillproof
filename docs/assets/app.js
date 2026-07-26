@@ -41,6 +41,12 @@
     return esc(text.slice(0, i)) + "<mark>" + esc(text.slice(i, i + q.length)) + "</mark>" + esc(text.slice(i + q.length));
   }
   function kindOf(s) { return s.category === "library" ? "library" : "skill"; }
+  function stars(s) { return (s.signals && s.signals.stars) || 0; }
+  function fmtNum(n) {
+    if (n >= 1e6) return (n / 1e6).toFixed(1).replace(/\.0$/, "") + "M";
+    if (n >= 1e3) return (n / 1e3).toFixed(1).replace(/\.0$/, "") + "k";
+    return String(n);
+  }
   function icon(kind) { return '<svg><use href="#i-' + kind + '"/></svg>'; }
   var CHECK = '<svg class="checkmark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>';
 
@@ -250,11 +256,16 @@
         }).join("") + "</div>"
       : "";
     var tested = it.status === "graded" ? '<span class="tag tested">Tested ✓</span>' : "";
+    var sig = it.signals && it.signals.stars
+      ? '<span class="row-stars" title="' + it.signals.stars.toLocaleString() + " stars · " +
+        (it.signals.forks || 0).toLocaleString() + " forks on GitHub, checked " + esc(it.signals.checked) + '">★ ' +
+        fmtNum(it.signals.stars) + "</span>"
+      : "";
     return '<div class="row t-' + kind + (inTray ? " in-tray" : "") + (i === state.cursor ? " cursor" : "") +
       '" data-id="' + it.id + '" draggable="true" role="option" aria-selected="' + (i === state.cursor) + '">' +
       '<span class="tico">' + icon(kind) + "</span>" +
       '<div class="row-body">' +
-        '<div class="row-top"><span class="row-name">' + hi(it.name, q) + "</span>" + tested + "</div>" +
+        '<div class="row-top"><span class="row-name">' + hi(it.name, q) + "</span>" + tested + sig + "</div>" +
         '<div class="row-blurb">' + hi(it.summary, q) + "</div>" + pills +
       "</div>" +
       '<div class="row-right">' +
@@ -279,9 +290,10 @@
     $("#clearQ").classList.toggle("on", !!q);
 
     var res = DATA.skills.filter(matches).map(function (it, i) { return { it: it, ev: evaluate(it), i: i }; });
-    if (setupActive()) {
-      res.sort(function (a, b) { return (b.ev.score - a.ev.score) || (a.i - b.i); });
-    }
+    /* pain-point fit ranks first; GitHub exposure (stars) breaks ties */
+    res.sort(function (a, b) {
+      return (b.ev.score - a.ev.score) || (stars(b.it) - stars(a.it)) || (a.i - b.i);
+    });
     $("#catCount").textContent = res.length;
 
     var bar = $("#rankbar");

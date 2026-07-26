@@ -196,6 +196,11 @@ def to_entry(repo):
         "pain_points": pains,
         "status": "scouted",
         "scouted_on": TODAY,
+        "signals": {
+            "stars": repo["stargazers_count"],
+            "forks": repo["forks_count"],
+            "checked": TODAY,
+        },
         "triage": {
             "provenance": (
                 f"Repo verified real via GitHub API: {full}, "
