@@ -1,0 +1,67 @@
+# Weekly catalog refresh — the automated updater Lucas approved (2026-07-25).
+#
+# Runs the same pipeline a session would: refresh signals + freshness receipts,
+# scout new candidates, safety-skim anything new, honesty-gate the result.
+# It NEVER pushes to main: changes go up as a PR for Lucas's review, and any
+# safety-skim red flag is named in the PR body and held for a human read.
+#
+# Requires (one-time, repo Settings → Actions → General):
+#   ☑ Allow GitHub Actions to create and approve pull requests
+name: catalog-refresh
+
+on:
+  schedule:
+    - cron: "0 14 * * 1" # Mondays 14:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Refresh exposure signals + freshness receipts
+        run: python3 scripts/refresh_signals.py
+
+      - name: Scout new candidates (dedupes against existing)
+        run: python3 scripts/scout_scrape.py --cap 15 | tee /tmp/scout.log
+
+      - name: Safety-skim (new flags are held for human review)
+        run: |
+          python3 scripts/safety_skim.py | tee /tmp/skim.log || true
+          grep -c "🚩" /tmp/skim.log > /tmp/redcount || echo 0 > /tmp/redcount
+
+      - name: Honesty gate
+        run: python3 scripts/validate_index.py
+
+      - name: Open PR if anything changed
+        run: |
+          if git diff --quiet docs/data/skills.json; then
+            echo "no changes — nothing to PR"; exit 0
+          fi
+          RED=$(cat /tmp/redcount)
+          DATE=$(date -u +%F)
+          BRANCH="auto/catalog-refresh-$DATE"
+          git config user.name "skillproof-refresh[bot]"
+          git config user.email "noreply@github.com"
+          git checkout -b "$BRANCH"
+          git add docs/data/skills.json
+          git commit -m "Weekly catalog refresh $DATE (signals + scout + skim)"
+          git push -u origin "$BRANCH"
+          TITLE="Weekly catalog refresh $DATE"
+          if [ "$RED" != "0" ]; then TITLE="$TITLE — $RED skim flag(s) NEED HUMAN REVIEW"; fi
+          {
+            echo "Automated weekly run: signals refreshed, new candidates scouted, safety skim on everything new, honesty gate passed."
+            echo
+            echo '### Scout log (tail)'; echo '```'; tail -20 /tmp/scout.log; echo '```'
+            echo '### Skim log (tail)';  echo '```'; tail -20 /tmp/skim.log;  echo '```'
+            echo
+            echo "Red-flagged entries (if any) carry a 'held for human review' receipt and must be read before merge."
+          } > /tmp/pr-body.md
+          gh pr create --title "$TITLE" --body-file /tmp/pr-body.md --base main --head "$BRANCH"
