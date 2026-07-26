@@ -123,23 +123,27 @@
       var a = Math.random()*Math.PI*2;
       var lobe = Math.pow(Math.abs(Math.cos(2*(a-rot))), pow);
       var rmax = R * (minFrac + (1-minFrac)*lobe);
-      var r = rmax*Math.sqrt(Math.random());
+      // exponent < 0.5 biases samples outward: silhouette edge stays crisp
+      // at low particle-per-area density (uniform fill read as speckle)
+      var r = rmax*Math.pow(Math.random(), 0.36);
       out.push({x:cx+r*Math.cos(a), y:cy+r*Math.sin(a)});
     }
     return out;
   }
   function sparkleFormation(n){
-    var mainN = Math.round(n*0.60);
-    var comp1N = Math.round(n*0.21);
+    var mainN = Math.round(n*0.74);
+    var comp1N = Math.round(n*0.14);
     var comp2N = n - mainN - comp1N;
     var pts = [];
-    // large four-pointed star, centered — lower pow = fatter arms (more
-    // filled area per particle so the mark reads solid, not speckled)
-    pts = pts.concat(starFill(0, 0, 0.40, 0, 0.22, 1.7, mainN));
+    // large four-pointed star, centered — kept compact (R 0.30) and sharply
+    // pinched so its particle density matches the small companions; at the
+    // old R 0.40 / soft pinch the main star had ~4x less density per area
+    // than the companions and read as speckle while they read as stars
+    pts = pts.concat(starFill(0, 0, 0.30, 0, 0.10, 2.4, mainN));
     // small companion star, top-right
-    pts = pts.concat(starFill(0.32, -0.38, 0.12, 0.15, 0.26, 1.7, comp1N));
+    pts = pts.concat(starFill(0.30, -0.34, 0.11, 0.15, 0.14, 2.4, comp1N));
     // small companion star, bottom-left
-    pts = pts.concat(starFill(-0.32, 0.38, 0.12, -0.2, 0.26, 1.7, comp2N));
+    pts = pts.concat(starFill(-0.30, 0.34, 0.11, -0.2, 0.14, 2.4, comp2N));
     return pts;
   }
 
@@ -423,7 +427,7 @@
       p.x += p.vx;
       p.y += p.vy;
 
-      var fsize = p.isFormation ? p.size*1.55 : p.size;
+      var fsize = p.isFormation ? p.size*1.8 : p.size;
       ctx.font = (p.isFormation ? '700 ' : '500 ') + fsize + 'px "JetBrains Mono", monospace';
       var formAlpha = 0.95 * (1 - dissolveT*0.92);
       ctx.fillStyle = p.isFormation ? hexAlpha(p.color, formAlpha) : restingInk(p);
@@ -463,7 +467,7 @@
       var p = particles[i];
       var x = p.isFormation ? p.tx : p.hx;
       var y = p.isFormation ? p.ty : p.hy;
-      var fsize = p.isFormation ? p.size*1.55 : p.size;
+      var fsize = p.isFormation ? p.size*1.8 : p.size;
       ctx.font = (p.isFormation ? '700 ' : '500 ') + fsize + 'px "JetBrains Mono", monospace';
       ctx.fillStyle = p.isFormation ? hexAlpha(p.color, 0.95) : restingInk(p);
       ctx.fillText(p.glyph, x, y);
