@@ -251,38 +251,62 @@
   }
 
   /* ======================= render catalog ======================= */
-  /* expanded detail: the full description + every real receipt on file */
+  /* expanded detail: slim labeled rows, one as-of tag, high-level security line.
+     (The one-line blurb expands to the full description via CSS on .row.open.) */
+  function mdY(iso) { // "2026-07-24" -> "7/24/2026", "2026-02" -> "2/2026"
+    if (!iso) return "";
+    var p = iso.split("-");
+    if (p.length === 3) return (+p[1]) + "/" + (+p[2]) + "/" + p[0];
+    if (p.length === 2) return (+p[1]) + "/" + p[0];
+    return iso;
+  }
   function detailHTML(it) {
     var tr = it.triage || {};
-    var items = [];
-    items.push(["Source", tr.provenance || ("Repo by " + it.author + ".")]);
-    if (tr.license || it.status === "graded") {
-      items.push(["License", tr.license || "See repo — tested entries carry their license in the worksheet."]);
+    var rows = [];
+
+    var repoSlug = it.repo_url.replace(/^https:\/\/github\.com\//, "");
+    rows.push(["Source", "From a public GitHub repo by " + esc(it.author) +
+      ' · <a href="' + esc(it.repo_url) + '" target="_blank" rel="noopener">' + esc(repoSlug) + " ↗</a>"]);
+
+    var created = (tr.provenance || "").match(/created (\d{4}-\d{2})/);
+    var pushed = (tr.freshness || "").match(/Last push (\d{4}-\d{2}-\d{2})/);
+    if (created || pushed) {
+      rows.push(["Last updated",
+        esc((created ? "Created " + mdY(created[1]) + ". " : "") +
+            (pushed ? "Last push " + mdY(pushed[1]) + "." : ""))]);
     }
-    if (tr.freshness) items.push(["Last push", tr.freshness]);
     if (it.signals) {
-      items.push(["Exposure", it.signals.stars.toLocaleString() + " stars · " +
-        (it.signals.forks || 0).toLocaleString() + " forks (checked " + it.signals.checked + ")"]);
+      rows.push(["Exposure", esc(it.signals.stars.toLocaleString() + " GitHub stars · " +
+        (it.signals.forks || 0).toLocaleString() + " forks")]);
     }
+    if (tr.license) rows.push(["License", esc(tr.license.split("—")[0].trim().replace(/\.$/, ""))]);
+
+    var sec;
     if (it.status === "graded") {
-      items.push(["Skillproof test", "Graded " + it.grade + " (" + it.score_total + "/24), verified " +
-        it.last_verified + " — " + (it.verdict || "")]);
-      if (it.security_notes) items.push(["Safety read", it.security_notes]);
-    } else if (tr.safety) {
-      items.push(["Safety", tr.safety]);
+      sec = "Tested by Skillproof — installed, probed, and every line of source read. Graded " +
+        it.grade + " (" + it.score_total + "/24).";
+    } else if (it.skim && !(it.skim.red_flags || []).length) {
+      sec = "Automatically screened for known malicious patterns — none found. Not yet hand-tested by Skillproof; review the source before installing.";
+    } else if (it.skim) {
+      sec = "Flagged by our automated screen — held from recommendations until reviewed.";
+    } else {
+      sec = "Not yet screened — review the source before installing.";
     }
+    rows.push(["Security", esc(sec)]);
+
     var worksheet = it.status === "graded" && it.evidence_url
       ? '<a class="btn btn-ghost btn-sm" href="' + REPO + "/blob/main/" + esc(it.evidence_url) + '" target="_blank" rel="noopener">Test worksheet ↗</a>'
       : "";
+    var asOf = (it.skim && it.skim.date) || (it.signals && it.signals.checked) || DATA.as_of;
     return '<div class="row-detail"><div class="rd-in">' +
-      '<p class="rd-desc">' + esc(it.summary) + "</p>" +
-      '<div class="rd-grid">' + items.map(function (kv, i) {
-        return '<div class="rd-item" style="animation-delay:' + (i * 45) + 'ms"><span class="rd-k">' + esc(kv[0]) +
-          '</span><span class="rd-v">' + esc(kv[1]) + "</span></div>";
+      '<div class="rd-rows">' + rows.map(function (kv, i) {
+        return '<div class="rd-row" style="animation-delay:' + (i * 40) + 'ms"><span class="rd-k">' + kv[0] +
+          '</span><span class="rd-v">' + kv[1] + "</span></div>";
       }).join("") + "</div>" +
       '<div class="rd-actions">' +
         '<a class="btn btn-ghost btn-sm" href="' + esc(it.repo_url) + '" target="_blank" rel="noopener">View the source ↗</a>' +
         worksheet +
+        '<span class="rd-asof">As of ' + esc(mdY(asOf)) + "</span>" +
       "</div>" +
     "</div></div>";
   }
