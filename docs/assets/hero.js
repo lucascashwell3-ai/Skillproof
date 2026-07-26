@@ -388,6 +388,10 @@
 
   function step(t){
     if(!running) return;
+    // capped so a long throttled frame can't make the spring step unstable;
+    // cap stays high (200ms) so heavily rAF-throttled embedded browsers
+    // still converge in wall-clock time (k*fscale max ~0.26, damp^12 — stable)
+    var dt = Math.min(200, t - (lastT || t)) || 16.67;
     lastT = t;
 
     ctx.clearRect(0,0,W,H);
@@ -405,8 +409,12 @@
         ay = p.hy + Math.cos(tsec*p.driftSpeed*0.8 + p.driftSeed) * p.driftAmp;
       }
 
-      var k = p.tx !== null ? 0.022 : 0.006;
-      var damp = 0.84;
+      // frame-rate independent: forces and damping are normalized to a 60fps
+      // frame so convergence takes the same wall-clock time in throttled
+      // embedded browsers (~10-15fps) as in native 60fps Chrome
+      var fscale = dt / 16.67;
+      var k = (p.tx !== null ? 0.022 : 0.006) * fscale;
+      var damp = Math.pow(0.84, fscale);
       var fx = (ax - p.x) * k;
       var fy = (ay - p.y) * k;
 
