@@ -25,7 +25,7 @@
   ];
 
   var S = { pains: [], applied: false };
-  var state = { q: "", facet: "all", tray: [], cursor: -1, mode: "terminal", explain: true, sort: "match" };
+  var state = { q: "", facet: "all", tray: [], cursor: -1, mode: "terminal", explain: true, sort: "match", open: null };
   var byId = {};
   var PAIN_LBL = {};   // id -> full label (used in search keywords)
   var PAIN_SHORT = {}; // id -> short chip label
@@ -195,8 +195,8 @@
       b.addEventListener("click", function () {
         var i = S.pains.indexOf(p.id);
         if (i > -1) { S.pains.splice(i, 1); b.setAttribute("aria-pressed", "false"); }
-        else if (S.pains.length < 3) { S.pains.push(p.id); b.setAttribute("aria-pressed", "true"); }
-        else { toast("Three max — remove one first"); return; }
+        else if (S.pains.length < 5) { S.pains.push(p.id); b.setAttribute("aria-pressed", "true"); }
+        else { toast("Five max — remove one first"); return; }
         onSetupChange();
       });
       mount.appendChild(b);
@@ -206,8 +206,8 @@
   function onSetupChange() {
     $("#applySetup").disabled = !S.pains.length;
     $("#setupMsg").textContent = S.pains.length
-      ? S.pains.length + " of 3 picked"
-      : "Pick up to three.";
+      ? S.pains.length + " of 5 picked"
+      : "Pick up to five.";
     if (S.applied) render();
     renderTray();
   }
@@ -251,6 +251,42 @@
   }
 
   /* ======================= render catalog ======================= */
+  /* expanded detail: the full description + every real receipt on file */
+  function detailHTML(it) {
+    var tr = it.triage || {};
+    var items = [];
+    items.push(["Source", tr.provenance || ("Repo by " + it.author + ".")]);
+    if (tr.license || it.status === "graded") {
+      items.push(["License", tr.license || "See repo — tested entries carry their license in the worksheet."]);
+    }
+    if (tr.freshness) items.push(["Last push", tr.freshness]);
+    if (it.signals) {
+      items.push(["Exposure", it.signals.stars.toLocaleString() + " stars · " +
+        (it.signals.forks || 0).toLocaleString() + " forks (checked " + it.signals.checked + ")"]);
+    }
+    if (it.status === "graded") {
+      items.push(["Skillproof test", "Graded " + it.grade + " (" + it.score_total + "/24), verified " +
+        it.last_verified + " — " + (it.verdict || "")]);
+      if (it.security_notes) items.push(["Safety read", it.security_notes]);
+    } else if (tr.safety) {
+      items.push(["Safety", tr.safety]);
+    }
+    var worksheet = it.status === "graded" && it.evidence_url
+      ? '<a class="btn btn-ghost btn-sm" href="' + REPO + "/blob/main/" + esc(it.evidence_url) + '" target="_blank" rel="noopener">Test worksheet ↗</a>'
+      : "";
+    return '<div class="row-detail"><div class="rd-in">' +
+      '<p class="rd-desc">' + esc(it.summary) + "</p>" +
+      '<div class="rd-grid">' + items.map(function (kv, i) {
+        return '<div class="rd-item" style="animation-delay:' + (i * 45) + 'ms"><span class="rd-k">' + esc(kv[0]) +
+          '</span><span class="rd-v">' + esc(kv[1]) + "</span></div>";
+      }).join("") + "</div>" +
+      '<div class="rd-actions">' +
+        '<a class="btn btn-ghost btn-sm" href="' + esc(it.repo_url) + '" target="_blank" rel="noopener">View the source ↗</a>' +
+        worksheet +
+      "</div>" +
+    "</div></div>";
+  }
+
   function rowHTML(it, ev, q, i) {
     var kind = kindOf(it);
     var inTray = state.tray.indexOf(it.id) > -1;
@@ -265,14 +301,17 @@
         (it.signals.forks || 0).toLocaleString() + " forks on GitHub, checked " + esc(it.signals.checked) + '">★ ' +
         fmtNum(it.signals.stars) + "</span>"
       : "";
-    return '<div class="row t-' + kind + (inTray ? " in-tray" : "") + (i === state.cursor ? " cursor" : "") +
-      '" data-id="' + it.id + '" draggable="true" role="option" aria-selected="' + (i === state.cursor) + '">' +
+    var open = state.open === it.id;
+    return '<div class="row t-' + kind + (inTray ? " in-tray" : "") + (open ? " open" : "") + (i === state.cursor ? " cursor" : "") +
+      '" data-id="' + it.id + '" draggable="true" role="option" aria-selected="' + (i === state.cursor) + '" aria-expanded="' + open + '">' +
       '<span class="tico">' + icon(kind) + "</span>" +
       '<div class="row-body">' +
         '<div class="row-top"><span class="row-name">' + hi(it.name, q) + "</span>" + tested + sig + "</div>" +
         '<div class="row-blurb">' + hi(it.summary, q) + "</div>" + pills +
+        detailHTML(it) +
       "</div>" +
       '<div class="row-right">' +
+        '<span class="chev" aria-hidden="true"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>' +
         '<button class="add" type="button" data-add="' + it.id + '" data-state="' + (inTray ? "added" : "idle") + '" aria-label="' +
           (inTray ? "In tray" : "Add " + esc(it.name) + " to tray") + '">' +
           '<span class="add-fill" aria-hidden="true"></span>' +
@@ -562,13 +601,26 @@
 
   /* ======================= events ======================= */
   function wireEvents() {
+    /* Add button adds; anywhere else on the row toggles the detail popout.
+       Links inside the open detail behave as links. */
     $("#list").addEventListener("click", function (e) {
       var a = e.target.closest("[data-add]");
       if (a) { if (a.dataset.state !== "added") addItem(a.dataset.add, a); return; }
+      if (e.target.closest(".row-detail a")) return;
+      if (e.target.closest(".row-detail")) return;
       var row = e.target.closest(".row");
-      if (row) {
-        var b = row.querySelector(".add");
-        if (b && b.dataset.state !== "added") addItem(row.dataset.id, b);
+      if (!row) return;
+      var id = row.dataset.id;
+      if (state.open === id) {
+        state.open = null;
+        row.classList.remove("open");
+        row.setAttribute("aria-expanded", "false");
+      } else {
+        var prev = $("#list").querySelector(".row.open");
+        if (prev) { prev.classList.remove("open"); prev.setAttribute("aria-expanded", "false"); }
+        state.open = id;
+        row.classList.add("open");
+        row.setAttribute("aria-expanded", "true");
       }
     });
     $("#trayList").addEventListener("click", function (e) {
