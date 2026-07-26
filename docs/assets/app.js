@@ -19,9 +19,13 @@
     { id: "terminal", label: "Terminal" },
     { id: "agent",    label: "Ask your agent" }
   ];
+  var SORTS = [
+    { id: "match", label: "Best match" },
+    { id: "stars", label: "★ Stars" }
+  ];
 
   var S = { pains: [], applied: false };
-  var state = { q: "", facet: "all", tray: [], cursor: -1, mode: "terminal", explain: false };
+  var state = { q: "", facet: "all", tray: [], cursor: -1, mode: "terminal", explain: true, sort: "match", open: null };
   var byId = {};
   var PAIN_LBL = {};   // id -> full label (used in search keywords)
   var PAIN_SHORT = {}; // id -> short chip label
@@ -41,6 +45,12 @@
     return esc(text.slice(0, i)) + "<mark>" + esc(text.slice(i, i + q.length)) + "</mark>" + esc(text.slice(i + q.length));
   }
   function kindOf(s) { return s.category === "library" ? "library" : "skill"; }
+  function stars(s) { return (s.signals && s.signals.stars) || 0; }
+  function fmtNum(n) {
+    if (n >= 1e6) return (n / 1e6).toFixed(1).replace(/\.0$/, "") + "M";
+    if (n >= 1e3) return (n / 1e3).toFixed(1).replace(/\.0$/, "") + "k";
+    return String(n);
+  }
   function icon(kind) { return '<svg><use href="#i-' + kind + '"/></svg>'; }
   var CHECK = '<svg class="checkmark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>';
 
@@ -185,8 +195,8 @@
       b.addEventListener("click", function () {
         var i = S.pains.indexOf(p.id);
         if (i > -1) { S.pains.splice(i, 1); b.setAttribute("aria-pressed", "false"); }
-        else if (S.pains.length < 3) { S.pains.push(p.id); b.setAttribute("aria-pressed", "true"); }
-        else { toast("Three max — remove one first"); return; }
+        else if (S.pains.length < 5) { S.pains.push(p.id); b.setAttribute("aria-pressed", "true"); }
+        else { toast("Five max — remove one first"); return; }
         onSetupChange();
       });
       mount.appendChild(b);
@@ -196,8 +206,8 @@
   function onSetupChange() {
     $("#applySetup").disabled = !S.pains.length;
     $("#setupMsg").textContent = S.pains.length
-      ? S.pains.length + " of 3 picked"
-      : "Pick up to three.";
+      ? S.pains.length + " of 5 picked"
+      : "Pick up to five.";
     if (S.applied) render();
     renderTray();
   }
@@ -208,7 +218,7 @@
     renderSummary();
     $("#setup").classList.add("collapsed");
     render(); renderTray();
-    toast("Catalog ranked");
+    toast("Catalog sorted");
   });
   $("#editSetup").addEventListener("click", function () {
     $("#setup").classList.remove("collapsed");
@@ -241,6 +251,65 @@
   }
 
   /* ======================= render catalog ======================= */
+  /* expanded detail: slim labeled rows, one as-of tag, high-level security line.
+     (The one-line blurb expands to the full description via CSS on .row.open.) */
+  function mdY(iso) { // "2026-07-24" -> "7/24/2026", "2026-02" -> "2/2026"
+    if (!iso) return "";
+    var p = iso.split("-");
+    if (p.length === 3) return (+p[1]) + "/" + (+p[2]) + "/" + p[0];
+    if (p.length === 2) return (+p[1]) + "/" + p[0];
+    return iso;
+  }
+  function detailHTML(it) {
+    var tr = it.triage || {};
+    var rows = [];
+
+    var repoSlug = it.repo_url.replace(/^https:\/\/github\.com\//, "");
+    rows.push(["Source", "From a public GitHub repo by " + esc(it.author) +
+      ' · <a href="' + esc(it.repo_url) + '" target="_blank" rel="noopener">' + esc(repoSlug) + " ↗</a>"]);
+
+    var created = (tr.provenance || "").match(/created (\d{4}-\d{2})/);
+    var pushed = (tr.freshness || "").match(/Last push (\d{4}-\d{2}-\d{2})/);
+    if (created || pushed) {
+      rows.push(["Last updated",
+        esc((created ? "Created " + mdY(created[1]) + ". " : "") +
+            (pushed ? "Last push " + mdY(pushed[1]) + "." : ""))]);
+    }
+    if (it.signals) {
+      rows.push(["Exposure", esc(it.signals.stars.toLocaleString() + " GitHub stars · " +
+        (it.signals.forks || 0).toLocaleString() + " forks")]);
+    }
+    if (tr.license) rows.push(["License", esc(tr.license.split("—")[0].trim().replace(/\.$/, ""))]);
+
+    var sec;
+    if (it.status === "graded") {
+      sec = "Tested by Skillproof — installed, probed, and every line of source read. Graded " +
+        it.grade + " (" + it.score_total + "/24).";
+    } else if (it.skim && !(it.skim.red_flags || []).length) {
+      sec = "Automatically screened for known malicious patterns — none found. Not yet hand-tested by Skillproof; review the source before installing.";
+    } else if (it.skim) {
+      sec = "Flagged by our automated screen — held from recommendations until reviewed.";
+    } else {
+      sec = "Not yet screened — review the source before installing.";
+    }
+    rows.push(["Security", esc(sec)]);
+
+    var worksheet = it.status === "graded" && it.evidence_url
+      ? '<a class="btn btn-ghost btn-sm" href="' + REPO + "/blob/main/" + esc(it.evidence_url) + '" target="_blank" rel="noopener">Test worksheet ↗</a>'
+      : "";
+    var asOf = (it.skim && it.skim.date) || (it.signals && it.signals.checked) || DATA.as_of;
+    return '<div class="row-detail"><div class="rd-in">' +
+      '<div class="rd-rows">' + rows.map(function (kv, i) {
+        return '<div class="rd-row" style="animation-delay:' + (i * 40) + 'ms"><span class="rd-k">' + kv[0] +
+          '</span><span class="rd-v">' + kv[1] + "</span></div>";
+      }).join("") + "</div>" +
+      '<div class="rd-actions">' +
+        worksheet +
+        '<span class="rd-asof">As of ' + esc(mdY(asOf)) + "</span>" +
+      "</div>" +
+    "</div></div>";
+  }
+
   function rowHTML(it, ev, q, i) {
     var kind = kindOf(it);
     var inTray = state.tray.indexOf(it.id) > -1;
@@ -250,14 +319,22 @@
         }).join("") + "</div>"
       : "";
     var tested = it.status === "graded" ? '<span class="tag tested">Tested ✓</span>' : "";
-    return '<div class="row t-' + kind + (inTray ? " in-tray" : "") + (i === state.cursor ? " cursor" : "") +
-      '" data-id="' + it.id + '" draggable="true" role="option" aria-selected="' + (i === state.cursor) + '">' +
+    var sig = it.signals && it.signals.stars
+      ? '<span class="row-stars" title="' + it.signals.stars.toLocaleString() + " stars · " +
+        (it.signals.forks || 0).toLocaleString() + " forks on GitHub, checked " + esc(it.signals.checked) + '">★ ' +
+        fmtNum(it.signals.stars) + "</span>"
+      : "";
+    var open = state.open === it.id;
+    return '<div class="row t-' + kind + (inTray ? " in-tray" : "") + (open ? " open" : "") + (i === state.cursor ? " cursor" : "") +
+      '" data-id="' + it.id + '" draggable="true" role="option" aria-selected="' + (i === state.cursor) + '" aria-expanded="' + open + '">' +
       '<span class="tico">' + icon(kind) + "</span>" +
       '<div class="row-body">' +
-        '<div class="row-top"><span class="row-name">' + hi(it.name, q) + "</span>" + tested + "</div>" +
+        '<div class="row-top"><span class="row-name">' + hi(it.name, q) + "</span>" + tested + sig + "</div>" +
         '<div class="row-blurb">' + hi(it.summary, q) + "</div>" + pills +
+        detailHTML(it) +
       "</div>" +
       '<div class="row-right">' +
+        '<span class="chev" aria-hidden="true"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>' +
         '<button class="add" type="button" data-add="' + it.id + '" data-state="' + (inTray ? "added" : "idle") + '" aria-label="' +
           (inTray ? "In tray" : "Add " + esc(it.name) + " to tray") + '">' +
           '<span class="add-fill" aria-hidden="true"></span>' +
@@ -279,15 +356,20 @@
     $("#clearQ").classList.toggle("on", !!q);
 
     var res = DATA.skills.filter(matches).map(function (it, i) { return { it: it, ev: evaluate(it), i: i }; });
-    if (setupActive()) {
-      res.sort(function (a, b) { return (b.ev.score - a.ev.score) || (a.i - b.i); });
-    }
+    /* best match: pain-point fit first, stars break ties; stars: pure exposure order */
+    res.sort(function (a, b) {
+      if (state.sort === "stars") return (stars(b.it) - stars(a.it)) || (a.i - b.i);
+      return (b.ev.score - a.ev.score) || (stars(b.it) - stars(a.it)) || (a.i - b.i);
+    });
     $("#catCount").textContent = res.length;
 
     var bar = $("#rankbar");
-    if (setupActive()) {
+    if (state.sort === "stars") {
       bar.hidden = false;
-      $("#rankmsg").innerHTML = "Ranked for <b>" +
+      $("#rankmsg").innerHTML = "Sorted by <b>GitHub stars</b>";
+    } else if (setupActive()) {
+      bar.hidden = false;
+      $("#rankmsg").innerHTML = "Sorted for <b>" +
         S.pains.map(function (p) { return esc(PAIN_SHORT[p]); }).join(" · ") + "</b>";
     } else {
       bar.hidden = true;
@@ -349,11 +431,9 @@
       return '<div class="flag-note">' + WARN + "<p>" + names + " overlap on <b>" +
         esc(PAIN_SHORT[g.pain].toLowerCase()) + "</b> — start with one.</p></div>";
     });
-    var scoutedPicked = state.tray.filter(function (id) { return byId[id].status === "scouted"; });
-    if (scoutedPicked.length) {
-      notes.push('<div class="flag-note setup">' + WARN + "<p><b>" + scoutedPicked.length +
-        (scoutedPicked.length === 1 ? " pick hasn't" : " picks haven't") +
-        " been tested by us</b> — read the source before installing.</p></div>");
+    if (state.tray.length) {
+      notes.push('<div class="flag-note setup">' + WARN +
+        "<p>Always check the source before you install — every pick links to its repo.</p></div>");
     }
     $("#flags").innerHTML = notes.join("");
 
@@ -442,6 +522,31 @@
     modeThumb.style.transform = "translateX(" + a.offsetLeft + "px)";
   }
 
+  var sortWrap, sortThumb;
+  function buildSort() {
+    sortWrap = $("#grpSort"); sortThumb = $("#sortThumb");
+    SORTS.forEach(function (o) {
+      var b = document.createElement("button");
+      b.type = "button"; b.className = "seg"; b.dataset.id = o.id; b.textContent = o.label;
+      b.setAttribute("aria-pressed", String(o.id === state.sort));
+      b.addEventListener("click", function () {
+        state.sort = o.id;
+        $$(".seg", sortWrap).forEach(function (s) { s.setAttribute("aria-pressed", String(s.dataset.id === o.id)); });
+        moveSortThumb();
+        state.cursor = -1;
+        render();
+      });
+      sortWrap.appendChild(b);
+    });
+  }
+  function moveSortThumb() {
+    var a = sortWrap.querySelector('.seg[aria-pressed="true"]');
+    if (!a) { sortThumb.classList.remove("on"); return; }
+    sortThumb.classList.add("on");
+    sortThumb.style.width = a.offsetWidth + "px";
+    sortThumb.style.transform = "translateX(" + a.offsetLeft + "px)";
+  }
+
   function renderCmd() {
     var box = $("#cmdbox"), copyBtn = $("#copy");
     if (!state.tray.length) {
@@ -519,13 +624,26 @@
 
   /* ======================= events ======================= */
   function wireEvents() {
+    /* Add button adds; anywhere else on the row toggles the detail popout.
+       Links inside the open detail behave as links. */
     $("#list").addEventListener("click", function (e) {
       var a = e.target.closest("[data-add]");
       if (a) { if (a.dataset.state !== "added") addItem(a.dataset.add, a); return; }
+      if (e.target.closest(".row-detail a")) return;
+      if (e.target.closest(".row-detail")) return;
       var row = e.target.closest(".row");
-      if (row) {
-        var b = row.querySelector(".add");
-        if (b && b.dataset.state !== "added") addItem(row.dataset.id, b);
+      if (!row) return;
+      var id = row.dataset.id;
+      if (state.open === id) {
+        state.open = null;
+        row.classList.remove("open");
+        row.setAttribute("aria-expanded", "false");
+      } else {
+        var prev = $("#list").querySelector(".row.open");
+        if (prev) { prev.classList.remove("open"); prev.setAttribute("aria-expanded", "false"); }
+        state.open = id;
+        row.classList.add("open");
+        row.setAttribute("aria-expanded", "true");
       }
     });
     $("#trayList").addEventListener("click", function (e) {
@@ -719,12 +837,13 @@
     buildPainChips();
     buildFacets();
     buildModes();
+    buildSort();
     wireEvents();
     onSetupChange();
     render();
     renderTray();
-    window.addEventListener("resize", function () { moveGlide(); moveModeThumb(); });
-    setTimeout(function () { moveGlide(); moveModeThumb(); }, 60);
+    window.addEventListener("resize", function () { moveGlide(); moveModeThumb(); moveSortThumb(); });
+    setTimeout(function () { moveGlide(); moveModeThumb(); moveSortThumb(); }, 60);
   }).catch(function (e) {
     $("#list").innerHTML = '<div class="list-empty"><b>Could not load the catalog</b>' + esc(e.message) + "</div>";
   });
