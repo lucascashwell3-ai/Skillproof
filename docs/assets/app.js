@@ -431,10 +431,6 @@
       return '<div class="flag-note">' + WARN + "<p>" + names + " overlap on <b>" +
         esc(PAIN_SHORT[g.pain].toLowerCase()) + "</b> — start with one.</p></div>";
     });
-    if (state.tray.length) {
-      notes.push('<div class="flag-note setup">' + WARN +
-        "<p>Always check the source before you install — every pick links to its repo.</p></div>");
-    }
     $("#flags").innerHTML = notes.join("");
 
     var painSet = [];
@@ -548,7 +544,7 @@
   }
 
   function renderCmd() {
-    var box = $("#cmdbox"), copyBtn = $("#copy");
+    var box = $("#cmdbox");
     if (!state.tray.length) {
       box.innerHTML = '<span class="muted">' +
         (state.mode === "agent" ? "# add items to build your agent prompt" : "# add items to build your install plan") +
@@ -568,7 +564,6 @@
       box.innerHTML = html;
       box.dataset.cmd = txt;
     }
-    box.appendChild(copyBtn);
   }
 
   /* ======================= add / remove ======================= */
@@ -771,6 +766,32 @@
     });
   }
 
+  /* ======================= take-it-with-you demo (rotates 3 scenes) ======================= */
+  function startDemo() {
+    var demo = $("#demo");
+    if (!demo || RM.matches) return; // reduced motion: static first scene, no cycling
+    var scenes = $$(".demo-scene", demo);
+    var tabs = $$(".demo-tabs span", demo);
+    var ways = $$(".way[data-way]");
+    var cur = 0;
+    function show(i) {
+      cur = i;
+      scenes.forEach(function (s, k) {
+        s.classList.remove("on");
+        if (k === i) {
+          // reflow so the typing/pop keyframes restart each cycle
+          void s.offsetWidth;
+          s.classList.add("on");
+        }
+      });
+      tabs.forEach(function (t, k) { t.classList.toggle("on", k === i); });
+      ways.forEach(function (w) { w.classList.toggle("demo-live", +w.dataset.way === i); });
+    }
+    show(0);
+    setInterval(function () { show((cur + 1) % scenes.length); }, 4600);
+    tabs.forEach(function (t, k) { t.addEventListener("click", function () { show(k); }); });
+  }
+
   /* ======================= advisor prompt (real data only) ======================= */
   function buildPrompt() {
     var graded = DATA.skills.filter(function (s) { return s.status === "graded"; }).map(function (s) {
@@ -839,6 +860,7 @@
     buildModes();
     buildSort();
     wireEvents();
+    startDemo();
     onSetupChange();
     render();
     renderTray();

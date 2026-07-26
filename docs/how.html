@@ -102,28 +102,25 @@
     </div>
 
     <div class="sec-head" style="margin-top:56px">
-      <h2>Checked before it lists</h2>
-      <p>Every entry is verified against its real source before it appears — and labeled by exactly how far that check went.</p>
+      <h2>Checked before it's cataloged</h2>
+      <p>Every entry is verified against its real source, with two levels of verification.</p>
     </div>
     <div class="tiers">
       <div class="tier-card">
-        <h3><span class="vico" style="background:linear-gradient(140deg,#45D3A5,#10B981)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Tested ✓</h3>
+        <h3><span class="vico" style="background:linear-gradient(140deg,#45D3A5,#10B981)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Tested</h3>
         <ol>
           <li>Installed into a clean project</li>
           <li>Probed in real sessions — does it fire when it should, do what it claims?</li>
           <li>Every line of its source read before anything ran</li>
         </ol>
-        <p>Each tested entry links to the worksheet that produced the result.</p>
       </div>
       <div class="tier-card">
         <h3><span class="vico" style="background:linear-gradient(140deg,#FBBF24,#F59E0B)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6"/></svg></span>Scouted</h3>
         <ol>
           <li>Repo verified real — author, stars, created-when, license, freshness</li>
-          <li>Source code screened for known malicious patterns — remote-exec one-liners, credential harvesting, obfuscated scripts</li>
-          <li>Anything the screen flags is read by a person before it can list — and held out until it is</li>
-          <li>What we haven't done: run the skill ourselves. That's what the Tested tier means, so the install plan still links you to the source</li>
+          <li>Source code screened for known malicious patterns; anything flagged is read by a person before it can list</li>
+          <li>Not yet run by us ourselves — that's what the Tested tier means</li>
         </ol>
-        <p>An automated gate blocks any entry claiming more than its checks support.</p>
       </div>
     </div>
     <p style="margin-top:18px;font-size:.88rem;color:var(--ink-2)">Want the full protocol — scoring dimensions, probes, the letter map? <a href="methodology.html" style="color:var(--violet-d)">Read the quality bar →</a></p>
