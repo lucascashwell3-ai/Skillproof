@@ -3,17 +3,17 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Skillproof — upgrade your AI environment</title>
-  <meta name="description" content="Tell it what's slowing you down. Skillproof matches your pain points to quality skills, libraries, and resources from real creators — every entry checked before it lists, honestly labeled, assembled into a stack you can install." />
+  <title>Skillproof — upgrade your AI work</title>
+  <meta name="description" content="Pick what you're trying to improve. Skillproof assembles quality skills and resources from real creators into one install-ready stack for your agent." />
   <meta name="theme-color" content="#F6F7FC" />
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='1' y='1' width='22' height='22' rx='7' fill='%236D5BF6'/%3E%3Cpath d='M6.5 12.5l4 4 7-8.5' fill='none' stroke='white' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='1' y='1' width='22' height='22' rx='7' fill='%236D5BF6'/%3E%3Cpath d='M12 5.5l6 3-6 3-6-3 6-3z' fill='white'/%3E%3Cpath d='M6 12.4l6 3 6-3M6 15.6l6 3 6-3' fill='none' stroke='white' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" />
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Skillproof — upgrade your AI environment" />
-  <meta property="og:description" content="Describe your pain points; leave with a stack of quality skills and resources that fits what you actually run — checked before listing, honestly labeled." />
+  <meta property="og:title" content="Skillproof — upgrade your AI work" />
+  <meta property="og:description" content="Give your agent the skills for the task. Quality skills and resources, assembled into one install-ready stack." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400..800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/styles.css?v=3" />
+  <link rel="stylesheet" href="assets/styles.css?v=4" />
 </head>
 <body>
 
@@ -28,11 +28,8 @@
   <symbol id="i-library" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
     <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
   </symbol>
-  <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M4 13l5 5L20 7"/>
-  </symbol>
-  <symbol id="i-scout" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-    <circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6"/>
+  <symbol id="i-stack" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 12l10 5 10-5"/><path d="M2 17l10 5 10-5"/>
   </symbol>
 </defs></svg>
 
@@ -41,19 +38,16 @@
   <div class="nav-in">
     <a class="logo" href="#top">
       <span class="logo-mark" aria-hidden="true">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13l5 5L20 7"/></svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5L4 7.5l8 4 8-4-8-4z" fill="#fff" fill-opacity=".28"/><path d="M4 12l8 4 8-4"/><path d="M4 16.5l8 4 8-4"/></svg>
       </span>
       Skillproof
     </a>
-    <ul class="nav-links">
-      <li><a href="#bench">Workbench</a></li>
-      <li><a href="#how">How it works</a></li>
-      <li><a href="#quality">The quality bar</a></li>
-      <li><a href="#with-you">Take it with you</a></li>
-    </ul>
+    <nav class="nav-pills" aria-label="Site">
+      <a href="#bench">Workbench</a>
+      <a href="#with-you">Take it with you</a>
+      <a href="how.html">How it works</a>
+    </nav>
     <div class="nav-right">
-      <span class="nav-meta" id="navMeta">loading…</span>
-      <button class="nav-kbd" id="navk" type="button">Search catalog <kbd>⌘</kbd><kbd>K</kbd></button>
       <a class="btn btn-primary btn-sm" href="#bench" data-magnetic>Build my stack</a>
     </div>
   </div>
@@ -63,15 +57,10 @@
 <section class="hero" id="top">
   <div class="hero-head">
     <div class="hero-head-l">
-      <span class="eyebrow">Your AI environment, upgraded <span class="pulse"></span></span>
-      <h1>Tell it what's slowing you down.<br><span class="grad">Leave with a stack that fixes it.</span></h1>
-      <p class="hero-sub">Tap your pain points and where you run AI. Skillproof matches them against quality skills, libraries, and resources from real creators — checked before they list, honestly labeled — and assembles the picks into one install-ready stack.</p>
+      <h1>Upgrade your AI work.<br><span class="grad">Give your agent the skills for the task.</span></h1>
     </div>
-    <div class="hero-legend" aria-label="Catalog legend">
-      <span class="lgd t-skill"><span class="lg"><svg><use href="#i-skill"/></svg></span>Skills</span>
-      <span class="lgd t-library"><span class="lg"><svg><use href="#i-library"/></svg></span>Libraries</span>
-      <span class="lgd t-graded"><span class="lg"><svg><use href="#i-check"/></svg></span>Tested &amp; graded</span>
-      <span class="lgd t-scouted"><span class="lg"><svg><use href="#i-scout"/></svg></span>Scouted, ungraded</span>
+    <div class="hero-cta">
+      <a class="btn btn-ghost" href="how.html">How it works</a>
     </div>
   </div>
 
@@ -80,35 +69,20 @@
 
       <!-- ============ REGION 1 · SETUP ============ -->
       <div class="setup" id="setup">
-        <div class="setup-head">
-          <span class="setup-title">Your setup</span>
-          <span class="setup-note">Tap, don't type. Nothing to connect.</span>
-          <span class="setup-step" id="setupStep"><b>0</b>/2 set</span>
-          <span class="msg" id="setupMsg">Pick where you run AI + at least one pain point.</span>
-          <button class="btn btn-primary btn-sm" id="applySetup" type="button" data-magnetic disabled>
+        <div class="setup-row">
+          <div class="setup-q">
+            <span class="setup-title">What are you trying to improve?</span>
+            <span class="setup-note" id="setupMsg">Pick up to three.</span>
+          </div>
+          <div class="chips chips-lg" id="grpPain"></div>
+          <button class="btn btn-primary" id="applySetup" type="button" data-magnetic disabled>
             <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13l5 5L20 7"/></svg>
             Rank the catalog
           </button>
         </div>
 
-        <div class="setup-body">
-          <div class="grp">
-            <div class="grp-lab"><span class="n" id="nEnv">1</span>Where you run AI</div>
-            <div class="chips" id="grpEnv"></div>
-          </div>
-          <div class="grp">
-            <div class="grp-lab"><span class="n" id="nPain">2</span>What's slowing you down <em>· pick up to 3</em></div>
-            <div class="chips" id="grpPain"></div>
-          </div>
-          <div class="grp">
-            <div class="grp-lab"><span class="n done" style="background:linear-gradient(140deg,#3ED0E8,#06B6D4);transform:none">✓</span>Trust bar <em>· optional</em></div>
-            <div class="seg-wrap" id="grpTrust"><span class="seg-thumb" id="trustThumb"></span></div>
-            <p class="seg-note">Graded = installed &amp; tested by us. Scouted = found &amp; triaged, never tested.</p>
-          </div>
-        </div>
-
         <div class="setup-sum">
-          <span class="sum-lab">Your setup</span>
+          <span class="sum-lab">Improving</span>
           <span class="sum-pills" id="sumPills"></span>
           <button class="editbtn" id="editSetup" type="button">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
@@ -122,27 +96,25 @@
         <!-- ============ REGION 2 · CATALOG ============ -->
         <div class="panel">
           <div class="panel-head">
-            <span class="dot-row" aria-hidden="true"><i></i><i></i><i></i></span>
             <span class="panel-title">Catalog <b id="catCount">0</b></span>
-            <span class="panel-meta" id="catMeta"></span>
           </div>
 
           <div class="cmdbar">
             <div class="cmd-field">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6"/></svg>
-              <input type="text" id="q" placeholder="Filter by name or problem — try &ldquo;design&rdquo; or &ldquo;tests&rdquo;" aria-label="Filter catalog" autocomplete="off" spellcheck="false">
-              <button class="cmd-clear" id="clearQ" type="button" aria-label="Clear filter">
+              <input type="text" id="q" placeholder="Search — try &ldquo;design&rdquo; or &ldquo;tests&rdquo;" aria-label="Search catalog" autocomplete="off" spellcheck="false">
+              <button class="cmd-clear" id="clearQ" type="button" aria-label="Clear search">
                 <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
               </button>
             </div>
-            <div class="facets" id="facets" role="tablist" aria-label="Category filter">
+            <div class="facets" id="facets" role="tablist" aria-label="Type filter">
               <span class="glide" id="glide" aria-hidden="true"></span>
             </div>
           </div>
 
-          <div class="rankbar idle" id="rankbar">
+          <div class="rankbar" id="rankbar" hidden>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M7 12h13M11 18h9"/></svg>
-            <span id="rankmsg">Unranked — set your setup above and every row gets a reason.</span>
+            <span id="rankmsg"></span>
           </div>
 
           <div class="list" id="list" role="listbox" aria-label="Catalog results"></div>
@@ -153,7 +125,6 @@
           <div class="panel-head">
             <span class="panel-title">Build tray</span>
             <span class="tray-count" id="trayCount">0</span>
-            <span class="panel-meta" id="trayMeta">drop items here</span>
           </div>
 
           <div class="tray-body">
@@ -161,15 +132,20 @@
             <div class="flags" id="flags"></div>
 
             <div class="effect">
-              <div class="effect-h">What this stack addresses</div>
-              <div id="effect"><p class="effect-none">Nothing in the tray yet. Add items on the left to see what your stack covers.</p></div>
+              <div class="effect-h">This stack improves</div>
+              <div id="effect"><p class="effect-none">Add items to see what your stack covers.</p></div>
             </div>
 
             <div class="install">
               <div class="install-h">
                 <span class="t">Install plan</span>
-                <span class="from-setup unset" id="fromSetup"><i></i>no environment set</span>
+                <div class="seg-wrap seg-modes" id="grpMode"><span class="seg-thumb" id="modeThumb"></span></div>
               </div>
+              <label class="check" id="explainWrap" hidden>
+                <input type="checkbox" id="explainChk">
+                <span class="check-box" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none"><path d="M3.5 8.4l3 3L12.8 5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                Explain each skill to me as it installs
+              </label>
               <div class="cmdbox" id="cmdbox"><span class="muted"># add items to build your install plan</span>
                 <button class="copy" id="copy" type="button" aria-label="Copy install plan">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2.5"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
@@ -178,80 +154,12 @@
               <div class="install-foot">
                 <button class="btn btn-primary" id="copyPlan" type="button" data-magnetic>
                   <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2.5"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-                  Copy install plan
+                  <span id="copyPlanLbl">Copy install plan</span>
                 </button>
                 <button class="btn btn-ghost" id="clearTray" type="button">Clear</button>
               </div>
-              <p class="install-note">Nothing runs until you paste it. Every entry links to its source — read before you install.</p>
             </div>
           </div>
-        </div>
-      </div>
-
-      <div class="bench-foot">
-        <span class="hint"><kbd>↑</kbd><kbd>↓</kbd> move</span>
-        <span class="hint"><kbd>Enter</kbd> add to tray</span>
-        <span class="hint"><kbd>Esc</kbd> clear filter</span>
-        <span class="hint">Drag rows into the tray · drag inside the tray to reorder</span>
-        <span class="sample">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>
-          <span id="honestyLine">Real catalog — small on purpose; every entry carries receipts.</span>
-        </span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ======================= HOW IT WORKS ======================= -->
-<section class="sec" id="how">
-  <div class="wrap">
-    <div class="sec-head">
-      <h2>Your pain points are the filter. Everything else follows from them.</h2>
-      <p>No leaderboard, no crawl through a thousand-item marketplace. Just: this is what's slowing me down, so this is what's worth adding.</p>
-    </div>
-    <div class="steps">
-      <article class="step"><span class="rail"></span>
-        <div class="step-n">01</div>
-        <h3>Describe the problem</h3>
-        <p>Where you run AI, plus up to three pain points — generic frontend output, tests that get gamed, sessions that lose the plot. A few taps, then the rail folds into a one-line summary you can reopen anytime.</p>
-      </article>
-      <article class="step"><span class="rail"></span>
-        <div class="step-n">02</div>
-        <h3>Read the reasons, not a rank</h3>
-        <p>Every row carries plain-English reasons tied to what you tapped: targets your pain point, tested by us with receipts, or scouted-only with its real red flags shown — a missing license, a quiet repo — never hidden.</p>
-      </article>
-      <article class="step"><span class="rail"></span>
-        <div class="step-n">03</div>
-        <h3>Assemble and install</h3>
-        <p>Drop picks in the tray. It flags overlaps between them, then writes one install plan: real commands for tested entries, review-first links for scouted ones. Copy it, paste it, done.</p>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- ======================= QUALITY BAR ======================= -->
-<section class="sec" id="quality" style="padding-top:0">
-  <div class="wrap">
-    <div class="vet">
-      <div class="vet-lead">
-        <h2>Checked before it lists</h2>
-        <p>Quality is the bar for entry, not the product. Every entry is verified against its real source before it shows up here — and labeled by exactly how far that check went. The full protocol is <a href="methodology.html">published</a>.</p>
-      </div>
-      <div class="vet-items">
-        <div class="vitem">
-          <span class="vico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
-          <h3>Tested &amp; graded</h3>
-          <p>Installed, probed in real sessions, source read line-by-line. Each grade links to the worksheet that produced it — the receipts.</p>
-        </div>
-        <div class="vitem">
-          <span class="vico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6"/></svg></span>
-          <h3>Scouted, ungraded</h3>
-          <p>Found and triaged: repo verified real, license and freshness checked, safety skimmed. Never installed, never probed — and it says so on the row.</p>
-        </div>
-        <div class="vitem">
-          <span class="vico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v5h-5"/></svg></span>
-          <h3>Never faked</h3>
-          <p>An automated honesty gate blocks any entry that claims more than its receipts support. No placeholder grades, no invented stats, ever.</p>
         </div>
       </div>
     </div>
@@ -259,17 +167,16 @@
 </section>
 
 <!-- ======================= TAKE IT WITH YOU ======================= -->
-<section class="sec" id="with-you" style="padding-top:0">
+<section class="sec" id="with-you">
   <div class="wrap">
     <div class="sec-head">
       <h2>Take it with you</h2>
-      <p>The workbench is the demo. The same matcher installs into your own AI, three ways — all read-only, none of them ever installs anything for you.</p>
+      <p>The same catalog, wherever your agent lives. Pick the one that matches how you work.</p>
     </div>
     <div class="ways">
       <div class="way">
-        <span class="way-tag">zero install · any Claude chat</span>
         <h3>Paste-in advisor prompt</h3>
-        <p>One click bakes the current catalog — tested entries with receipts, scouted ones clearly labeled — plus the scout's triage rules into a single prompt.</p>
+        <p><b>For Claude in the browser or app — nothing to install.</b> Paste it once and that chat becomes your skill advisor: describe a problem, it answers from this catalog and scouts honestly beyond it.</p>
         <button class="btn btn-ghost btn-sm" id="genPrompt" type="button" style="align-self:flex-start">Generate my advisor prompt</button>
         <div class="promptpanel" id="promptPanel">
           <textarea id="promptText" readonly rows="10" aria-label="Generated advisor prompt"></textarea>
@@ -278,9 +185,8 @@
         </div>
       </div>
       <div class="way">
-        <span class="way-tag">Claude Code · auto-triggers</span>
         <h3>The scout skill</h3>
-        <p>Fires on "find me a skill for…" — checks this catalog first, then searches the live ecosystem and returns a receipted shortlist: provenance, license, freshness, safety flags on every candidate.</p>
+        <p><b>For Claude Code.</b> Fires on "find me a skill for…" — checks this catalog first, then searches the live ecosystem and returns a shortlist with provenance, license, freshness, and safety flags on every candidate.</p>
         <div class="cmdbox">mkdir -p ~/.claude/skills/skillproof-scout &amp;&amp; curl -fsSL https://raw.githubusercontent.com/lucascashwell3-ai/Skillproof/main/skills/skillproof-scout/SKILL.md -o ~/.claude/skills/skillproof-scout/SKILL.md
           <button class="copy" type="button" aria-label="Copy scout install command" data-copy="mkdir -p ~/.claude/skills/skillproof-scout &amp;&amp; curl -fsSL https://raw.githubusercontent.com/lucascashwell3-ai/Skillproof/main/skills/skillproof-scout/SKILL.md -o ~/.claude/skills/skillproof-scout/SKILL.md">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2.5"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
@@ -289,9 +195,8 @@
         <p class="way-fine">Read what you're installing first — we'd grade us too: <a href="https://github.com/lucascashwell3-ai/Skillproof/blob/main/skills/skillproof-scout/SKILL.md" target="_blank" rel="noopener">SKILL.md ↗</a></p>
       </div>
       <div class="way">
-        <span class="way-tag">Claude Desktop · Claude Code · Cursor</span>
         <h3>MCP server</h3>
-        <p>Four read-only tools any MCP host can call mid-workflow: <code style="font-family:var(--mono);font-size:.8em">find_resources</code>, <code style="font-family:var(--mono);font-size:.8em">get_grade</code>, <code style="font-family:var(--mono);font-size:.8em">list_index</code>, <code style="font-family:var(--mono);font-size:.8em">get_scout_methodology</code> — reading the same data file this page renders.</p>
+        <p><b>For Cursor, Claude Desktop, and any other MCP-capable agent.</b> The catalog as four read-only tools your agent can query mid-task — same data file this page renders.</p>
         <div class="cmdbox">git clone https://github.com/lucascashwell3-ai/Skillproof &amp;&amp; cd Skillproof/mcp &amp;&amp; npm install
           <button class="copy" type="button" aria-label="Copy MCP clone command" data-copy="git clone https://github.com/lucascashwell3-ai/Skillproof &amp;&amp; cd Skillproof/mcp &amp;&amp; npm install">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2.5"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
@@ -302,7 +207,7 @@
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2.5"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
           </button>
         </div>
-        <p class="way-fine">Desktop config + honesty rules in <a href="https://github.com/lucascashwell3-ai/Skillproof/blob/main/mcp/README.md" target="_blank" rel="noopener">mcp/README.md ↗</a></p>
+        <p class="way-fine">Setup for each host: <a href="https://github.com/lucascashwell3-ai/Skillproof/blob/main/mcp/README.md" target="_blank" rel="noopener">mcp/README.md ↗</a></p>
       </div>
     </div>
   </div>
@@ -314,22 +219,21 @@
       <div class="foot-brand">
         <a class="logo" href="#top">
           <span class="logo-mark" aria-hidden="true">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13l5 5L20 7"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5L4 7.5l8 4 8-4-8-4z" fill="#fff" fill-opacity=".28"/><path d="M4 12l8 4 8-4"/><path d="M4 16.5l8 4 8-4"/></svg>
           </span>
           Skillproof
         </a>
-        <p>Upgrade your AI environment with resources that were checked before they were listed.</p>
+        <p>Quality skills and resources for your AI, checked before they list.</p>
       </div>
       <div class="foot-cols">
         <div class="foot-col"><h4>Product</h4><ul>
           <li><a href="#bench">Workbench</a></li>
-          <li><a href="#how">How it works</a></li>
-          <li><a href="methodology.html">The quality bar</a></li>
           <li><a href="#with-you">Take it with you</a></li>
+          <li><a href="how.html">How it works</a></li>
         </ul></div>
         <div class="foot-col"><h4>Source</h4><ul>
           <li><a href="https://github.com/lucascashwell3-ai/Skillproof" target="_blank" rel="noopener">GitHub</a></li>
-          <li><a href="https://github.com/lucascashwell3-ai/Skillproof/tree/main/grading/worksheets" target="_blank" rel="noopener">Grading worksheets</a></li>
+          <li><a href="https://github.com/lucascashwell3-ai/Skillproof/tree/main/grading/worksheets" target="_blank" rel="noopener">Test worksheets</a></li>
           <li><a href="https://github.com/lucascashwell3-ai/Skillproof/issues" target="_blank" rel="noopener">Nominate a resource</a></li>
         </ul></div>
         <div class="foot-col"><h4>Family</h4><ul>
@@ -340,13 +244,13 @@
     </div>
     <div class="foot-legal">
       <span>© 2026 Skillproof · MIT</span>
-      <span id="footAsOf">Recommendations are advisory; review any resource before installing it.</span>
+      <span id="footAsOf"></span>
     </div>
   </div>
 </footer>
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-<script src="assets/app.js?v=3"></script>
+<script src="assets/app.js?v=4"></script>
 </body>
 </html>

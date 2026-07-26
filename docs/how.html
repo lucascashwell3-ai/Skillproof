@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>How it works — Skillproof</title>
+  <meta name="description" content="Three steps from a weak spot to an installed stack — and what 'checked before it lists' actually means." />
+  <meta name="theme-color" content="#F6F7FC" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='1' y='1' width='22' height='22' rx='7' fill='%236D5BF6'/%3E%3Cpath d='M12 5.5l6 3-6 3-6-3 6-3z' fill='white'/%3E%3Cpath d='M6 12.4l6 3 6-3M6 15.6l6 3 6-3' fill='none' stroke='white' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400..800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/styles.css?v=4" />
+  <style>
+    /* small page-local visuals: static mock elements inside the step cards */
+    .mock{margin-top:14px;padding:12px;border-radius:var(--r-md);background:rgba(255,255,255,.6);
+      box-shadow:inset 0 0 0 1px rgba(255,255,255,.9), inset 0 1px 0 #fff}
+    .mock .chips{gap:6px}
+    .mock .chip{pointer-events:none}
+    .mock-row{display:flex;align-items:center;gap:10px}
+    .mock-row .tico{width:28px;height:28px;border-radius:9px}
+    .mock-row .nm{font-size:.86rem;font-weight:620}
+    .mock-row .bl{font-size:.75rem;color:var(--ink-3)}
+    .mock-cmd{font-family:var(--mono);font-size:.72rem;line-height:1.6;color:#C7C2F2;border-radius:var(--r-sm);
+      padding:9px 11px;background:linear-gradient(150deg, rgba(41,35,101,.97), rgba(52,40,118,.95))}
+    .mock-cmd .k{color:#7DE3F4}.mock-cmd .muted{color:#8983B8}
+    .tiers{display:grid;grid-template-columns:1fr 1fr;gap:15px;margin-top:26px}
+    .tier-card{padding:22px 20px;border-radius:var(--r-lg);
+      background:linear-gradient(160deg, rgba(255,255,255,.8), rgba(255,255,255,.56));
+      backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);
+      box-shadow:inset 0 1px 0 #fff, inset 0 0 0 1px rgba(255,255,255,.6), var(--shadow-md)}
+    .tier-card h3{display:flex;align-items:center;gap:9px;font-size:1.05rem;margin-bottom:10px}
+    .tier-card .vico{width:27px;height:27px;border-radius:9px}
+    .tier-card ol{margin:0 0 0 20px;font-size:.87rem;color:var(--ink-2)}
+    .tier-card li{margin:5px 0}
+    .tier-card p{font-size:.83rem;color:var(--ink-3);margin-top:10px}
+    @media (max-width:820px){.tiers{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+
+<div class="bg" aria-hidden="true">
+  <span class="blob blob-a"></span><span class="blob blob-b"></span><span class="blob blob-c"></span>
+</div>
+
+<header class="nav">
+  <div class="nav-in">
+    <a class="logo" href="index.html">
+      <span class="logo-mark" aria-hidden="true">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5L4 7.5l8 4 8-4-8-4z" fill="#fff" fill-opacity=".28"/><path d="M4 12l8 4 8-4"/><path d="M4 16.5l8 4 8-4"/></svg>
+      </span>
+      Skillproof
+    </a>
+    <nav class="nav-pills" aria-label="Site">
+      <a href="index.html#bench">Workbench</a>
+      <a href="index.html#with-you">Take it with you</a>
+      <a href="how.html" aria-current="page">How it works</a>
+    </nav>
+    <div class="nav-right">
+      <a class="btn btn-primary btn-sm" href="index.html#bench" data-magnetic>Build my stack</a>
+    </div>
+  </div>
+</header>
+
+<section class="sec" style="padding-top:34px">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Three steps to a better agent</h2>
+    </div>
+    <div class="steps">
+      <article class="step"><span class="rail"></span>
+        <div class="step-n">01</div>
+        <h3>Pick what you're improving</h3>
+        <p>Up to three areas. The catalog re-ranks around them.</p>
+        <div class="mock" aria-hidden="true">
+          <div class="chips">
+            <span class="chip" aria-pressed="true"><span class="tick" style="background:linear-gradient(135deg,#6D5BF6,#3B82F6);box-shadow:none"></span><span>Frontend design</span></span>
+            <span class="chip" aria-pressed="true"><span class="tick" style="background:linear-gradient(135deg,#6D5BF6,#3B82F6);box-shadow:none"></span><span>Testing</span></span>
+            <span class="chip"><span class="tick"></span><span>Debugging</span></span>
+          </div>
+        </div>
+      </article>
+      <article class="step"><span class="rail"></span>
+        <div class="step-n">02</div>
+        <h3>Stack your picks</h3>
+        <p>Add skills and libraries to the tray. It flags overlaps between them as you go.</p>
+        <div class="mock mock-row" aria-hidden="true">
+          <span class="tico" style="background:linear-gradient(140deg,#8B7BFF,#6D5BF6)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.1 4.9L19 10l-4.9 2.1L12 17l-2.1-4.9L5 10l4.9-2.1L12 3z"/></svg></span>
+          <div><div class="nm">i-have-adhd</div><div class="bl">Action-first replies, no preamble</div></div>
+          <span class="tag tested" style="margin-left:auto">Tested ✓</span>
+        </div>
+      </article>
+      <article class="step"><span class="rail"></span>
+        <div class="step-n">03</div>
+        <h3>Copy the install plan</h3>
+        <p>Paste it in your terminal — or flip the switch and hand the whole plan to your agent.</p>
+        <div class="mock mock-cmd" aria-hidden="true">
+          <span class="muted"># skillproof install plan</span><br>
+          <span class="k">claude</span> plugin install i-have-adhd…
+        </div>
+      </article>
+    </div>
+
+    <div class="sec-head" style="margin-top:56px">
+      <h2>Checked before it lists</h2>
+      <p>Every entry is verified against its real source before it appears — and labeled by exactly how far that check went.</p>
+    </div>
+    <div class="tiers">
+      <div class="tier-card">
+        <h3><span class="vico" style="background:linear-gradient(140deg,#45D3A5,#10B981)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Tested ✓</h3>
+        <ol>
+          <li>Installed into a clean project</li>
+          <li>Probed in real sessions — does it fire when it should, do what it claims?</li>
+          <li>Every line of its source read before anything ran</li>
+        </ol>
+        <p>Each tested entry links to the worksheet that produced the result.</p>
+      </div>
+      <div class="tier-card">
+        <h3><span class="vico" style="background:linear-gradient(140deg,#FBBF24,#F59E0B)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6"/></svg></span>Scouted</h3>
+        <ol>
+          <li>Repo verified real — author, stars, created-when</li>
+          <li>License and last-push freshness checked</li>
+          <li>Not installed, not probed — the install plan tells you to read it first</li>
+        </ol>
+        <p>An automated gate blocks any entry claiming more than its checks support.</p>
+      </div>
+    </div>
+    <p style="margin-top:18px;font-size:.88rem;color:var(--ink-2)">Want the full protocol — scoring dimensions, probes, the letter map? <a href="methodology.html" style="color:var(--violet-d)">Read the quality bar →</a></p>
+
+    <div style="margin-top:44px">
+      <a class="btn btn-primary" href="index.html#bench" data-magnetic>Build my stack</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-legal" style="margin-top:0;border-top:0">
+      <span>© 2026 Skillproof · MIT</span>
+      <span>Part of the <em>-proof</em> family:
+        <a href="https://lucascashwell3-ai.github.io/modelproof/" style="color:var(--violet-d)">Modelproof</a> ·
+        <a href="https://lucascashwell3-ai.github.io/datproof/" style="color:var(--violet-d)">DATproof</a></span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,7 +1,8 @@
-/* Skillproof workbench — setup rail → catalog → build tray.
+/* Skillproof workbench — improve-areas rail → catalog → build tray.
    Data contract: docs/data/skills.json (validated by scripts/validate_index.py).
-   Honesty rules: every reason pill derives from a real field in the data.
-   Two tiers everywhere: graded (tested, receipts) vs scouted (found + triaged, NO grade). */
+   Honesty rules: every claim on the page derives from a real field in the data.
+   Tested entries carry receipts; everything else is scouted and the install
+   plan says so — no fabricated grades, commands, or stats. */
 (function () {
   "use strict";
 
@@ -9,33 +10,21 @@
   var REPO = "https://github.com/lucascashwell3-ai/Skillproof";
   var DATA = null;
 
-  /* Environments: drives the install-plan target + an honest ecosystem note.
-     The catalog is Claude-ecosystem; entries are untested elsewhere and rows say so. */
-  var ENVS = [
-    { id: "claude-code",    label: "Claude Code",    native: true },
-    { id: "claude-desktop", label: "Claude Desktop", native: false },
-    { id: "cursor",         label: "Cursor",         native: false },
-    { id: "other",          label: "Other agent",    native: false }
-  ];
-  var ENV_LBL = {};
-  ENVS.forEach(function (e) { ENV_LBL[e.id] = e.label; });
-
-  var TRUST = [
-    { id: "all",    label: "Everything" },
-    { id: "graded", label: "Graded only" }
-  ];
-
   var FACETS = [
     { k: "all",     label: "All" },
     { k: "skill",   label: "Skills" },
     { k: "library", label: "Libraries" }
   ];
+  var MODES = [
+    { id: "terminal", label: "Terminal" },
+    { id: "agent",    label: "Ask your agent" }
+  ];
 
-  /* setup state (S) + view state */
-  var S = { env: null, pains: [], trust: "all", applied: false };
-  var state = { q: "", facet: "all", tray: [], cursor: -1 };
+  var S = { pains: [], applied: false };
+  var state = { q: "", facet: "all", tray: [], cursor: -1, mode: "terminal", explain: false };
   var byId = {};
-  var PAIN_LBL = {};
+  var PAIN_LBL = {};   // id -> full label (used in search keywords)
+  var PAIN_SHORT = {}; // id -> short chip label
 
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
@@ -115,7 +104,7 @@
     if (KW_IDX) return KW_IDX;
     KW_IDX = {};
     (DATA.pain_points || []).forEach(function (p) {
-      KW_IDX[p.id] = (p.keywords || []).concat(tokenize(p.label));
+      KW_IDX[p.id] = (p.keywords || []).concat(tokenize(p.label)).concat(tokenize(p.short || ""));
     });
     return KW_IDX;
   }
@@ -136,45 +125,27 @@
   }
 
   /* ======================= honest evaluation ======================= */
-  function setupActive() { return S.applied && S.env && S.pains.length; }
+  function setupActive() { return S.applied && S.pains.length; }
 
-  /* every string below names a real data field or a real user tap */
+  /* pills are capped at 2 and every string names a real data field */
   function evaluate(it) {
-    var out = { fit: [], good: [], note: [], bad: [], score: 0, belowBar: false };
+    var out = { pills: [], score: 0 };
     var tr = it.triage || {};
 
     if (setupActive()) {
       S.pains.forEach(function (pid) {
         if ((it.pain_points || []).indexOf(pid) > -1) {
-          out.fit.push("Targets: " + PAIN_LBL[pid].toLowerCase());
+          out.pills.push(["fit", PAIN_SHORT[pid]]);
           out.score += 10;
         }
       });
-      if (S.env && S.env !== "claude-code") {
-        out.note.push("Claude-ecosystem catalog — check the repo for " + ENV_LBL[S.env] + " support");
-      }
-      if (S.trust === "graded" && it.status !== "graded") out.belowBar = true;
     }
-
-    if (it.status === "graded") {
-      out.good.push("Tested & graded " + it.grade + " · " + it.score_total + "/24 — receipts on file");
-      out.score += 1;
-    } else if (it.status === "scouted") {
-      out.note.push("Scouted, ungraded — found + triaged, never installed");
-    }
+    if (it.status === "graded") out.score += 1;
     if (tr.license && /^no /i.test(tr.license)) {
-      out.bad.push("No license detected — usage rights unclear");
+      out.pills.push(["bad", "No license — usage rights unclear"]);
       out.score -= 2;
     }
-    if (tr.freshness && /quiet/i.test(tr.freshness)) {
-      var m = tr.freshness.match(/~[^.]*quiet/i);
-      out.note.push(m ? "Repo " + m[0].toLowerCase() : "Repo has gone quiet");
-      out.score -= 1;
-    }
-    if (tr.freshness && /actively maintained/i.test(tr.freshness)) {
-      out.good.push("Actively maintained");
-      out.score += 1;
-    }
+    out.pills = out.pills.slice(0, 2);
     return out;
   }
 
@@ -204,99 +175,48 @@
   /* ======================= setup rail ======================= */
   var TICK = '<span class="tick"><svg viewBox="0 0 16 16" fill="none"><path d="M4 8.2l2.6 2.6L12 5.4" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>';
 
-  function buildEnvChips() {
-    var mount = $("#grpEnv");
-    ENVS.forEach(function (o) {
-      var b = document.createElement("button");
-      b.type = "button"; b.className = "chip"; b.dataset.id = o.id;
-      b.setAttribute("aria-pressed", "false");
-      b.innerHTML = TICK + "<span>" + o.label + "</span>";
-      b.addEventListener("click", function () {
-        S.env = (S.env === o.id) ? null : o.id;
-        $$(".chip", mount).forEach(function (c) { c.setAttribute("aria-pressed", String(c.dataset.id === S.env)); });
-        onSetupChange();
-      });
-      mount.appendChild(b);
-    });
-  }
   function buildPainChips() {
     var mount = $("#grpPain");
     DATA.pain_points.forEach(function (p) {
       var b = document.createElement("button");
       b.type = "button"; b.className = "chip"; b.dataset.id = p.id;
       b.setAttribute("aria-pressed", "false");
-      b.innerHTML = TICK + "<span>" + esc(p.label) + "</span>";
+      b.innerHTML = TICK + "<span>" + esc(p.short || p.label) + "</span>";
       b.addEventListener("click", function () {
         var i = S.pains.indexOf(p.id);
         if (i > -1) { S.pains.splice(i, 1); b.setAttribute("aria-pressed", "false"); }
         else if (S.pains.length < 3) { S.pains.push(p.id); b.setAttribute("aria-pressed", "true"); }
-        else { toast("Three pain points max — remove one first"); return; }
+        else { toast("Three max — remove one first"); return; }
         onSetupChange();
       });
       mount.appendChild(b);
     });
   }
-  var trustWrap, trustThumb;
-  function buildTrust() {
-    trustWrap = $("#grpTrust"); trustThumb = $("#trustThumb");
-    TRUST.forEach(function (o) {
-      var b = document.createElement("button");
-      b.type = "button"; b.className = "seg"; b.dataset.id = o.id; b.textContent = o.label;
-      b.setAttribute("aria-pressed", String(o.id === S.trust));
-      b.addEventListener("click", function () {
-        S.trust = o.id;
-        $$(".seg", trustWrap).forEach(function (s) { s.setAttribute("aria-pressed", String(s.dataset.id === o.id)); });
-        moveThumb();
-        onSetupChange();
-      });
-      trustWrap.appendChild(b);
-    });
-  }
-  function moveThumb() {
-    var a = trustWrap.querySelector('.seg[aria-pressed="true"]');
-    if (!a) { trustThumb.classList.remove("on"); return; }
-    trustThumb.classList.add("on");
-    trustThumb.style.width = a.offsetWidth + "px";
-    trustThumb.style.transform = "translateX(" + a.offsetLeft + "px)";
-  }
-
-  function setCount() { return (S.env ? 1 : 0) + (S.pains.length ? 1 : 0); }
 
   function onSetupChange() {
-    var n = setCount();
-    $("#setupStep").innerHTML = "<b>" + n + "</b>/2 set";
-    $("#nEnv").classList.toggle("done", !!S.env);
-    $("#nPain").classList.toggle("done", !!S.pains.length);
-    $("#applySetup").disabled = n < 2;
-    $("#setupMsg").textContent = n < 2
-      ? "Pick where you run AI + at least one pain point."
-      : "Ready — this rail folds to one line.";
-    if (S.applied) { render(); }
+    $("#applySetup").disabled = !S.pains.length;
+    $("#setupMsg").textContent = S.pains.length
+      ? S.pains.length + " of 3 picked"
+      : "Pick up to three.";
+    if (S.applied) render();
     renderTray();
   }
 
   $("#applySetup").addEventListener("click", function () {
-    if (setCount() < 2) return;
+    if (!S.pains.length) return;
     S.applied = true;
     renderSummary();
     $("#setup").classList.add("collapsed");
     render(); renderTray();
-    toast("Catalog ranked for your setup");
+    toast("Catalog ranked");
   });
   $("#editSetup").addEventListener("click", function () {
     $("#setup").classList.remove("collapsed");
-    setTimeout(moveThumb, 20);
   });
   function renderSummary() {
-    var parts = ['<span class="sum-pill"><i></i>' + esc(ENV_LBL[S.env]) + "</span>"];
-    S.pains.forEach(function (pid) {
-      parts.push('<span class="sum-pill"><i></i>' + esc(PAIN_LBL[pid]) + "</span>");
-    });
-    var html = parts.join('<span class="sum-sep">·</span>');
-    if (S.trust === "graded") {
-      html += '<span class="sum-sep">·</span><span class="sum-pill trust"><i></i>graded only</span>';
-    }
-    $("#sumPills").innerHTML = html;
+    $("#sumPills").innerHTML = S.pains.map(function (pid) {
+      return '<span class="sum-pill"><i></i>' + esc(PAIN_SHORT[pid]) + "</span>";
+    }).join("");
   }
 
   /* ======================= facets ======================= */
@@ -324,27 +244,18 @@
   function rowHTML(it, ev, q, i) {
     var kind = kindOf(it);
     var inTray = state.tray.indexOf(it.id) > -1;
-    var bits = [];
-    ev.bad.forEach(function (t) { bits.push(["bad", t]); });
-    ev.fit.forEach(function (t) { bits.push(["fit", t]); });
-    ev.good.forEach(function (t) { bits.push(["good", t]); });
-    ev.note.forEach(function (t) { bits.push(["note", t]); });
-    bits = bits.slice(0, 3);
-    var rz = bits.length
-      ? '<div class="reasons">' + bits.map(function (b, k) {
+    var pills = ev.pills.length
+      ? '<div class="reasons">' + ev.pills.map(function (b, k) {
           return '<span class="rz ' + b[0] + '" style="animation-delay:' + (k * 40) + 'ms"><i></i>' + esc(b[1]) + "</span>";
         }).join("") + "</div>"
       : "";
-    var statusTag = it.status === "graded"
-      ? '<span class="tag graded">graded ' + esc(it.grade) + "</span>"
-      : '<span class="tag scouted">scouted</span>';
-    return '<div class="row t-' + kind + (inTray ? " in-tray" : "") + (ev.belowBar ? " below-bar" : "") + (i === state.cursor ? " cursor" : "") +
+    var tested = it.status === "graded" ? '<span class="tag tested">Tested ✓</span>' : "";
+    return '<div class="row t-' + kind + (inTray ? " in-tray" : "") + (i === state.cursor ? " cursor" : "") +
       '" data-id="' + it.id + '" draggable="true" role="option" aria-selected="' + (i === state.cursor) + '">' +
       '<span class="tico">' + icon(kind) + "</span>" +
       '<div class="row-body">' +
-        '<div class="row-top"><span class="row-name">' + hi(it.name, q) + "</span>" +
-        '<span class="tag kind">' + kind + "</span>" + statusTag + "</div>" +
-        '<div class="row-blurb">' + hi(it.summary, q) + "</div>" + rz +
+        '<div class="row-top"><span class="row-name">' + hi(it.name, q) + "</span>" + tested + "</div>" +
+        '<div class="row-blurb">' + hi(it.summary, q) + "</div>" + pills +
       "</div>" +
       '<div class="row-right">' +
         '<button class="add" type="button" data-add="' + it.id + '" data-state="' + (inTray ? "added" : "idle") + '" aria-label="' +
@@ -371,35 +282,23 @@
     if (setupActive()) {
       res.sort(function (a, b) { return (b.ev.score - a.ev.score) || (a.i - b.i); });
     }
-    var fits = res.filter(function (r) { return !r.ev.belowBar; });
-    var below = res.filter(function (r) { return r.ev.belowBar; });
-
     $("#catCount").textContent = res.length;
-    $("#catMeta").textContent = q ? 'filtering "' + q + '"' : "real entries · no filler";
 
-    var bar = $("#rankbar"), msg = $("#rankmsg");
+    var bar = $("#rankbar");
     if (setupActive()) {
-      bar.classList.remove("idle");
-      msg.innerHTML = "Ranked for <b>" + esc(ENV_LBL[S.env]) + " · " +
-        S.pains.map(function (p) { return esc(PAIN_LBL[p]); }).join(" · ") + "</b>" +
-        (below.length ? " — " + below.length + " below your trust bar (shown, not hidden)" : "");
+      bar.hidden = false;
+      $("#rankmsg").innerHTML = "Ranked for <b>" +
+        S.pains.map(function (p) { return esc(PAIN_SHORT[p]); }).join(" · ") + "</b>";
     } else {
-      bar.classList.add("idle");
-      msg.textContent = "Unranked — set your setup above and every row gets a reason.";
+      bar.hidden = true;
     }
 
     if (!res.length) {
       list.innerHTML = '<div class="list-empty"><b>No matches for "' + esc(q) + '"</b>' +
-        'The catalog is small on purpose. No match ≠ no tool exists — <a href="#with-you">take the scout with you</a> and search the live ecosystem.</div>';
+        'No match here ≠ no tool exists — <a href="#with-you">take the scout with you</a> and search the live ecosystem.</div>';
       return;
     }
-    var idx = 0;
-    var html = fits.map(function (r) { return rowHTML(r.it, r.ev, q, idx++); }).join("");
-    if (below.length) {
-      html += '<div class="split"><span class="dot"></span>Below your trust bar — scouted, ungraded (' + below.length + ")</div>";
-      html += below.map(function (r) { return rowHTML(r.it, r.ev, q, idx++); }).join("");
-    }
-    list.innerHTML = html;
+    list.innerHTML = res.map(function (r, idx) { return rowHTML(r.it, r.ev, q, idx); }).join("");
   }
 
   /* ======================= tray ======================= */
@@ -420,7 +319,6 @@
   function renderTray() {
     var wrap = $("#trayList");
     $("#trayCount").textContent = state.tray.length;
-    $("#trayMeta").textContent = state.tray.length ? "drag to reorder" : "drop items here";
 
     var ov = overlaps();
     var flagged = {};
@@ -429,17 +327,15 @@
     if (!state.tray.length) {
       wrap.innerHTML = '<div class="tray-empty">' +
         '<span class="drop-ring"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg></span>' +
-        "<b>Your tray is empty</b><p>Add or drag items from the catalog. Overlaps and your install plan appear here.</p></div>";
+        "<b>Your tray is empty</b><p>Add or drag items from the catalog.</p></div>";
     } else {
       wrap.innerHTML = state.tray.map(function (id) {
         var it = byId[id], kind = kindOf(it);
-        var statusTag = it.status === "graded"
-          ? '<span class="tag graded">graded ' + esc(it.grade) + "</span>"
-          : '<span class="tag scouted">scouted</span>';
+        var tested = it.status === "graded" ? '<span class="tag tested">Tested ✓</span>' : "";
         return '<div class="titem t-' + kind + (flagged[id] ? " flag" : "") + '" data-id="' + id + '" draggable="true">' +
           '<span class="grip" aria-hidden="true"><svg width="8" height="14" viewBox="0 0 8 14" fill="currentColor"><circle cx="2" cy="2" r="1.3"/><circle cx="6" cy="2" r="1.3"/><circle cx="2" cy="7" r="1.3"/><circle cx="6" cy="7" r="1.3"/><circle cx="2" cy="12" r="1.3"/><circle cx="6" cy="12" r="1.3"/></svg></span>' +
           '<span class="tico tico-sm">' + icon(kind) + "</span>" +
-          '<div class="titem-body"><div class="titem-name">' + esc(it.name) + " " + statusTag + "</div>" +
+          '<div class="titem-body"><div class="titem-name">' + esc(it.name) + " " + tested + "</div>" +
           '<div class="titem-eff">' + esc(it.summary) + "</div></div>" +
           '<button class="rm" type="button" data-rm="' + id + '" aria-label="Remove ' + esc(it.name) + '">' +
             '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>' +
@@ -450,13 +346,14 @@
     var WARN = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.6L1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.6a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg>';
     var notes = ov.map(function (g) {
       var names = g.items.map(function (i) { return "<b>" + esc(i.name) + "</b>"; }).join(" and ");
-      return '<div class="flag-note">' + WARN + "<p>" + names + " both target <b>" +
-        esc(PAIN_LBL[g.pain].toLowerCase()) + "</b>. Expect overlap — start with one.</p></div>";
+      return '<div class="flag-note">' + WARN + "<p>" + names + " overlap on <b>" +
+        esc(PAIN_SHORT[g.pain].toLowerCase()) + "</b> — start with one.</p></div>";
     });
     var scoutedPicked = state.tray.filter(function (id) { return byId[id].status === "scouted"; });
     if (scoutedPicked.length) {
-      notes.push('<div class="flag-note setup">' + WARN + "<p><b>" + scoutedPicked.length + " of your picks " +
-        (scoutedPicked.length === 1 ? "is" : "are") + " scouted-only</b> — found and triaged, never tested by us. Read the source before installing.</p></div>");
+      notes.push('<div class="flag-note setup">' + WARN + "<p><b>" + scoutedPicked.length +
+        (scoutedPicked.length === 1 ? " pick hasn't" : " picks haven't") +
+        " been tested by us</b> — read the source before installing.</p></div>");
     }
     $("#flags").innerHTML = notes.join("");
 
@@ -468,57 +365,103 @@
     });
     var eff = $("#effect");
     if (!painSet.length) {
-      eff.innerHTML = '<p class="effect-none">Nothing in the tray yet. Add items on the left to see what your stack covers.</p>';
+      eff.innerHTML = '<p class="effect-none">Add items to see what your stack covers.</p>';
     } else {
       eff.innerHTML = '<div class="caps">' + painSet.map(function (p, i) {
-        return '<span class="cap" style="animation-delay:' + (i * 34) + 'ms"><i></i>' + esc(PAIN_LBL[p]) + "</span>";
+        return '<span class="cap" style="animation-delay:' + (i * 34) + 'ms"><i></i>' + esc(PAIN_SHORT[p]) + "</span>";
       }).join("") + "</div>";
     }
     wrap.classList.toggle("scrolls", wrap.scrollHeight > wrap.clientHeight + 2);
     renderCmd();
   }
 
-  /* install plan: real commands for graded entries, review-first links for scouted */
+  /* ======================= install plan — two modes ======================= */
+  /* Terminal: real commands for tested entries, review-first links for scouted. */
   function planText() {
-    var lines = ["# skillproof install plan — target: " + (S.env ? ENV_LBL[S.env] : "Claude Code (default)")];
-    if (S.env && S.env !== "claude-code") {
-      lines.push("# catalog is Claude-ecosystem — check each repo for " + ENV_LBL[S.env] + " support");
-    }
+    var lines = ["# skillproof install plan"];
     state.tray.forEach(function (id, i) {
       var it = byId[id];
       if (it.status === "graded" && it.install && it.install.command) {
-        lines.push("# " + (i + 1) + ". " + it.name + " — tested, graded " + it.grade + " (" + it.score_total + "/24)");
+        lines.push("# " + (i + 1) + ". " + it.name + " — tested by Skillproof");
         lines.push(it.install.command);
       } else {
-        lines.push("# " + (i + 1) + ". " + it.name + " — scouted, ungraded: review before installing");
+        lines.push("# " + (i + 1) + ". " + it.name + " — not tested by us: review, then install per its README");
         lines.push("#    " + it.repo_url);
       }
     });
     return lines.join("\n");
   }
-  function renderCmd() {
-    var box = $("#cmdbox"), copyBtn = $("#copy"), fs = $("#fromSetup");
-    if (S.env) {
-      fs.className = "from-setup";
-      fs.innerHTML = "<i></i>target: " + esc(ENV_LBL[S.env]) + " — from your setup";
-    } else {
-      fs.className = "from-setup unset";
-      fs.innerHTML = "<i></i>no environment set — defaulting to Claude Code";
+  /* Agent: a prompt you paste at your agent; honest about tested vs not. */
+  function agentPrompt() {
+    var lines = ["Install this stack into my AI environment, one item at a time:"];
+    state.tray.forEach(function (id, i) {
+      var it = byId[id];
+      if (it.status === "graded" && it.install && it.install.command) {
+        lines.push((i + 1) + ". " + it.name + " (tested by Skillproof) — run: " + it.install.command);
+      } else {
+        lines.push((i + 1) + ". " + it.name + " (listed but not tested by Skillproof) — fetch " + it.repo_url +
+          ", read the README and source, then install per its instructions.");
+      }
+    });
+    lines.push("");
+    lines.push("Rules: install only these items. Show me each command before running it. Flag anything that wants network access, credentials, or writes outside the project.");
+    if (state.explain) {
+      lines.push("Before each install, explain in 2-3 sentences what the item does, then ask me one short question to confirm I know when I'd use it.");
     }
+    return lines.join("\n");
+  }
+  function activePlan() { return state.mode === "agent" ? agentPrompt() : planText(); }
+
+  var modeWrap, modeThumb;
+  function buildModes() {
+    modeWrap = $("#grpMode"); modeThumb = $("#modeThumb");
+    MODES.forEach(function (o) {
+      var b = document.createElement("button");
+      b.type = "button"; b.className = "seg"; b.dataset.id = o.id; b.textContent = o.label;
+      b.setAttribute("aria-pressed", String(o.id === state.mode));
+      b.addEventListener("click", function () {
+        state.mode = o.id;
+        $$(".seg", modeWrap).forEach(function (s) { s.setAttribute("aria-pressed", String(s.dataset.id === o.id)); });
+        moveModeThumb();
+        $("#explainWrap").hidden = state.mode !== "agent";
+        $("#copyPlanLbl").textContent = state.mode === "agent" ? "Copy agent prompt" : "Copy install plan";
+        renderCmd();
+      });
+      modeWrap.appendChild(b);
+    });
+    $("#explainChk").addEventListener("change", function (e) {
+      state.explain = e.target.checked;
+      renderCmd();
+    });
+  }
+  function moveModeThumb() {
+    var a = modeWrap.querySelector('.seg[aria-pressed="true"]');
+    if (!a) { modeThumb.classList.remove("on"); return; }
+    modeThumb.classList.add("on");
+    modeThumb.style.width = a.offsetWidth + "px";
+    modeThumb.style.transform = "translateX(" + a.offsetLeft + "px)";
+  }
+
+  function renderCmd() {
+    var box = $("#cmdbox"), copyBtn = $("#copy");
     if (!state.tray.length) {
-      box.innerHTML = '<span class="muted"># add items to build your install plan</span>';
+      box.innerHTML = '<span class="muted">' +
+        (state.mode === "agent" ? "# add items to build your agent prompt" : "# add items to build your install plan") +
+        "</span>";
       box.dataset.cmd = "";
     } else {
-      var html = planText().split("\n").map(function (l) {
-        if (l.charAt(0) === "#") {
-          return /https?:\/\//.test(l)
-            ? '<span class="muted"># </span><span class="p">' + esc(l.replace(/^#\s+/, "")) + "</span>"
-            : '<span class="muted">' + esc(l) + "</span>";
+      var txt = activePlan();
+      var html = txt.split("\n").map(function (l) {
+        if (l.charAt(0) === "#") return '<span class="muted">' + esc(l) + "</span>";
+        if (state.mode === "agent") {
+          return /^\d+\./.test(l)
+            ? '<span class="p">' + esc(l) + "</span>"
+            : '<span class="f">' + esc(l) + "</span>";
         }
         return esc(l).replace(/^(\S+)/, '<span class="k">$1</span>');
       }).join("<br>");
       box.innerHTML = html;
-      box.dataset.cmd = planText();
+      box.dataset.cmd = txt;
     }
     box.appendChild(copyBtn);
   }
@@ -620,9 +563,6 @@
     $("#clearQ").addEventListener("click", function () {
       qi.value = ""; state.q = ""; state.cursor = -1; render(); qi.focus();
     });
-    $("#navk").addEventListener("click", function () {
-      qi.focus(); qi.scrollIntoView({ block: "center" });
-    });
     document.addEventListener("keydown", function (e) {
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
         e.preventDefault(); qi.focus(); qi.select();
@@ -637,7 +577,7 @@
       var txt = $("#cmdbox").dataset.cmd || "";
       if (!txt) { toast("Add something to the tray first"); return; }
       try { if (navigator.clipboard) navigator.clipboard.writeText(txt); } catch (err) {}
-      toast("Install plan copied — paste it in your terminal");
+      toast(state.mode === "agent" ? "Agent prompt copied — paste it at your agent" : "Install plan copied — paste it in your terminal");
       if (btn) {
         btn.classList.add("done");
         setTimeout(function () { btn.classList.remove("done"); }, 1800);
@@ -646,7 +586,6 @@
     $("#copyPlan").addEventListener("click", function () { copyPlanNow(null); });
     $("#copy").addEventListener("click", function () { copyPlanNow($("#copy")); });
 
-    /* generic copy buttons (take-it-with-you commands) */
     $$(".copy[data-copy]").forEach(function (btn) {
       btn.addEventListener("click", function () {
         try { if (navigator.clipboard) navigator.clipboard.writeText(btn.getAttribute("data-copy")); } catch (err) {}
@@ -750,7 +689,6 @@
   }
 
   /* ======================= boot ======================= */
-  // fetch() cannot read file:// URLs — use XHR for local double-click previews
   function loadData() {
     if (window.SKILLPROOF_DATA) return Promise.resolve(window.SKILLPROOF_DATA);
     function viaXHR() {
@@ -771,26 +709,22 @@
   loadData().then(function (d) {
     DATA = d;
     d.skills.forEach(function (s) { byId[s.id] = s; });
-    d.pain_points.forEach(function (p) { PAIN_LBL[p.id] = p.label; });
+    d.pain_points.forEach(function (p) {
+      PAIN_LBL[p.id] = p.label;
+      PAIN_SHORT[p.id] = p.short || p.label;
+    });
 
-    var g = d.skills.filter(function (s) { return s.status === "graded"; }).length;
-    var sc = d.skills.filter(function (s) { return s.status === "scouted"; }).length;
-    $("#navMeta").textContent = g + " graded · " + sc + " scouted";
-    $("#honestyLine").textContent = "Real catalog — " + g + " tested & graded, " + sc +
-      " scouted & ungraded. Small on purpose: every listing costs a real check.";
-    $("#footAsOf").textContent = "Catalog as of " + d.as_of + " · rubric v" + d.rubric_version +
-      " · recommendations are advisory; review any resource before installing it.";
+    $("#footAsOf").textContent = "Catalog as of " + d.as_of + ".";
 
-    buildEnvChips();
     buildPainChips();
-    buildTrust();
     buildFacets();
+    buildModes();
     wireEvents();
     onSetupChange();
     render();
     renderTray();
-    window.addEventListener("resize", function () { moveGlide(); moveThumb(); });
-    setTimeout(function () { moveGlide(); moveThumb(); }, 60);
+    window.addEventListener("resize", function () { moveGlide(); moveModeThumb(); });
+    setTimeout(function () { moveGlide(); moveModeThumb(); }, 60);
   }).catch(function (e) {
     $("#list").innerHTML = '<div class="list-empty"><b>Could not load the catalog</b>' + esc(e.message) + "</div>";
   });
