@@ -543,6 +543,21 @@
     sortThumb.style.transform = "translateX(" + a.offsetLeft + "px)";
   }
 
+  /* When the tray column grows (agent prompt, many items), the catalog list's
+     height cap left dead space under its fade mask. Track the tray: the list
+     cap becomes max(its own cap, whatever fills the panel to the tray's height). */
+  function syncListHeight() {
+    var list = $("#list");
+    if (!list) return;
+    var twoCol = window.matchMedia("(min-width: 1241px)").matches;
+    if (!twoCol) { list.style.maxHeight = ""; return; }
+    var panel = list.closest(".panel");
+    var tray = $("#tray");
+    var cap = Math.min(window.innerHeight * 0.74, 940);
+    var chrome = (list.getBoundingClientRect().top - panel.getBoundingClientRect().top) + 13;
+    list.style.maxHeight = Math.max(cap, tray.offsetHeight - chrome) + "px";
+  }
+
   function renderCmd() {
     var box = $("#cmdbox");
     if (!state.tray.length) {
@@ -564,6 +579,7 @@
       box.innerHTML = html;
       box.dataset.cmd = txt;
     }
+    requestAnimationFrame(syncListHeight);
   }
 
   /* ======================= add / remove ======================= */
@@ -870,8 +886,8 @@
     onSetupChange();
     render();
     renderTray();
-    window.addEventListener("resize", function () { moveGlide(); moveModeThumb(); moveSortThumb(); });
-    setTimeout(function () { moveGlide(); moveModeThumb(); moveSortThumb(); }, 60);
+    window.addEventListener("resize", function () { moveGlide(); moveModeThumb(); moveSortThumb(); syncListHeight(); });
+    setTimeout(function () { moveGlide(); moveModeThumb(); moveSortThumb(); syncListHeight(); }, 60);
   }).catch(function (e) {
     $("#list").innerHTML = '<div class="list-empty"><b>Could not load the catalog</b>' + esc(e.message) + "</div>";
   });
