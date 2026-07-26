@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400..800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/styles.css?v=4" />
+  <link rel="stylesheet" href="assets/styles.css?v=5" />
 </head>
 <body>
 
@@ -30,6 +30,10 @@
   </symbol>
   <symbol id="i-stack" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
     <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 12l10 5 10-5"/><path d="M2 17l10 5 10-5"/>
+  </symbol>
+  <symbol id="i-hammer" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="13.2" y="2.6" width="5.4" height="7" rx="1.1" transform="rotate(45 15.9 6.1)"/>
+    <path d="M13.5 9.5 5.4 17.6a2 2 0 1 0 2.8 2.8L16.3 12.3"/>
   </symbol>
 </defs></svg>
 
@@ -55,12 +59,37 @@
 
 <!-- ======================= HERO ======================= -->
 <section class="hero" id="top">
-  <div class="hero-head">
-    <div class="hero-head-l">
-      <h1>Upgrade your AI work with Skillproof.<br><span class="grad">Give your agent the skills it needs.</span></h1>
-    </div>
-    <div class="hero-cta">
-      <a class="btn btn-ghost" href="how.html">How it works</a>
+  <div class="field-wrap" id="fieldWrap">
+    <canvas id="field" aria-hidden="true"></canvas>
+
+    <div class="hero-content">
+      <div class="wrap">
+        <div class="hero-split">
+          <div class="hero-panel">
+            <h1>Upgrade your AI work with <span class="grad">Skillproof.</span></h1>
+            <p class="hero-sub">Give your agents the skills they need.</p>
+
+            <div class="hero-ctas">
+              <a class="btn btn-ghost btn-sm" href="#bench" data-form="bench" data-magnetic>
+                <svg class="ico" viewBox="0 0 24 24"><use href="#i-hammer"/></svg>
+                Get skills
+              </a>
+              <a class="btn btn-ghost btn-sm" href="#with-you" data-form="carry">
+                <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 16V8"/><path d="M8.5 11.5 12 8l3.5 3.5"/></svg>
+                Install to your agent
+              </a>
+              <a class="btn btn-ghost btn-sm" href="how.html" data-form="how">
+                <span class="ico-i" aria-hidden="true">?</span>
+                How it works
+              </a>
+            </div>
+          </div>
+
+          <!-- pure layout anchor: renders nothing, hero.js measures its rect
+               to place/size the assembled formation in the open half -->
+          <div class="hero-visual" aria-hidden="true"></div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -304,6 +333,7 @@
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
+<script src="assets/hero.js?v=1" defer></script>
 <script src="assets/app.js?v=4"></script>
 </body>
 </html>
