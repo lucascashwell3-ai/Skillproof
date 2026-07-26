@@ -520,8 +520,17 @@ kbd{font-family:var(--mono);font-size:.71rem;padding:2px 5px;border-radius:5px;b
 .install-h{display:flex;align-items:center;gap:8px;margin-bottom:9px;flex-wrap:wrap}
 .install-h span.t{font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-4)}
 .seg-modes{margin-left:auto;max-width:250px;flex:1 1 200px}
-.check{display:flex;align-items:center;gap:8px;font-size:.8rem;font-weight:540;color:var(--ink-2);
-  cursor:pointer;margin:0 0 9px 2px;user-select:none}
+.facet-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.facet-row .facets{flex:1 1 auto}
+.seg-sort{flex:0 0 auto;width:196px;max-width:none;margin-left:auto}
+.check{display:flex;align-items:flex-start;gap:9px;font-size:.8rem;font-weight:480;color:var(--ink-2);
+  cursor:pointer;margin:0 0 9px;user-select:none;padding:9px 12px;border-radius:var(--r-sm);
+  background:linear-gradient(120deg, rgba(109,91,246,.10), rgba(6,182,212,.07));
+  box-shadow:inset 0 0 0 1px rgba(109,91,246,.22);line-height:1.35;
+  transition:box-shadow 240ms var(--ease-out), background-color 240ms var(--ease-out)}
+.check:hover{box-shadow:inset 0 0 0 1px rgba(109,91,246,.4)}
+.check b{font-weight:650;color:var(--ink)}
+.check .check-box{margin-top:1px}
 .check input{position:absolute;opacity:0;width:0;height:0}
 .check-box{width:17px;height:17px;border-radius:6px;flex:none;display:grid;place-items:center;color:#fff;
   background:rgba(255,255,255,.8);box-shadow:inset 0 0 0 1.5px rgba(109,91,246,.34);

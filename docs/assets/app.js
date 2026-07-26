@@ -19,9 +19,13 @@
     { id: "terminal", label: "Terminal" },
     { id: "agent",    label: "Ask your agent" }
   ];
+  var SORTS = [
+    { id: "match", label: "Best match" },
+    { id: "stars", label: "★ Stars" }
+  ];
 
   var S = { pains: [], applied: false };
-  var state = { q: "", facet: "all", tray: [], cursor: -1, mode: "terminal", explain: false };
+  var state = { q: "", facet: "all", tray: [], cursor: -1, mode: "terminal", explain: true, sort: "match" };
   var byId = {};
   var PAIN_LBL = {};   // id -> full label (used in search keywords)
   var PAIN_SHORT = {}; // id -> short chip label
@@ -214,7 +218,7 @@
     renderSummary();
     $("#setup").classList.add("collapsed");
     render(); renderTray();
-    toast("Catalog ranked");
+    toast("Catalog sorted");
   });
   $("#editSetup").addEventListener("click", function () {
     $("#setup").classList.remove("collapsed");
@@ -290,16 +294,20 @@
     $("#clearQ").classList.toggle("on", !!q);
 
     var res = DATA.skills.filter(matches).map(function (it, i) { return { it: it, ev: evaluate(it), i: i }; });
-    /* pain-point fit ranks first; GitHub exposure (stars) breaks ties */
+    /* best match: pain-point fit first, stars break ties; stars: pure exposure order */
     res.sort(function (a, b) {
+      if (state.sort === "stars") return (stars(b.it) - stars(a.it)) || (a.i - b.i);
       return (b.ev.score - a.ev.score) || (stars(b.it) - stars(a.it)) || (a.i - b.i);
     });
     $("#catCount").textContent = res.length;
 
     var bar = $("#rankbar");
-    if (setupActive()) {
+    if (state.sort === "stars") {
       bar.hidden = false;
-      $("#rankmsg").innerHTML = "Ranked for <b>" +
+      $("#rankmsg").innerHTML = "Sorted by <b>GitHub stars</b>";
+    } else if (setupActive()) {
+      bar.hidden = false;
+      $("#rankmsg").innerHTML = "Sorted for <b>" +
         S.pains.map(function (p) { return esc(PAIN_SHORT[p]); }).join(" · ") + "</b>";
     } else {
       bar.hidden = true;
@@ -361,11 +369,9 @@
       return '<div class="flag-note">' + WARN + "<p>" + names + " overlap on <b>" +
         esc(PAIN_SHORT[g.pain].toLowerCase()) + "</b> — start with one.</p></div>";
     });
-    var scoutedPicked = state.tray.filter(function (id) { return byId[id].status === "scouted"; });
-    if (scoutedPicked.length) {
-      notes.push('<div class="flag-note setup">' + WARN + "<p><b>" + scoutedPicked.length +
-        (scoutedPicked.length === 1 ? " pick hasn't" : " picks haven't") +
-        " been tested by us</b> — read the source before installing.</p></div>");
+    if (state.tray.length) {
+      notes.push('<div class="flag-note setup">' + WARN +
+        "<p>Always check the source before you install — every pick links to its repo.</p></div>");
     }
     $("#flags").innerHTML = notes.join("");
 
@@ -452,6 +458,31 @@
     modeThumb.classList.add("on");
     modeThumb.style.width = a.offsetWidth + "px";
     modeThumb.style.transform = "translateX(" + a.offsetLeft + "px)";
+  }
+
+  var sortWrap, sortThumb;
+  function buildSort() {
+    sortWrap = $("#grpSort"); sortThumb = $("#sortThumb");
+    SORTS.forEach(function (o) {
+      var b = document.createElement("button");
+      b.type = "button"; b.className = "seg"; b.dataset.id = o.id; b.textContent = o.label;
+      b.setAttribute("aria-pressed", String(o.id === state.sort));
+      b.addEventListener("click", function () {
+        state.sort = o.id;
+        $$(".seg", sortWrap).forEach(function (s) { s.setAttribute("aria-pressed", String(s.dataset.id === o.id)); });
+        moveSortThumb();
+        state.cursor = -1;
+        render();
+      });
+      sortWrap.appendChild(b);
+    });
+  }
+  function moveSortThumb() {
+    var a = sortWrap.querySelector('.seg[aria-pressed="true"]');
+    if (!a) { sortThumb.classList.remove("on"); return; }
+    sortThumb.classList.add("on");
+    sortThumb.style.width = a.offsetWidth + "px";
+    sortThumb.style.transform = "translateX(" + a.offsetLeft + "px)";
   }
 
   function renderCmd() {
@@ -731,12 +762,13 @@
     buildPainChips();
     buildFacets();
     buildModes();
+    buildSort();
     wireEvents();
     onSetupChange();
     render();
     renderTray();
-    window.addEventListener("resize", function () { moveGlide(); moveModeThumb(); });
-    setTimeout(function () { moveGlide(); moveModeThumb(); }, 60);
+    window.addEventListener("resize", function () { moveGlide(); moveModeThumb(); moveSortThumb(); });
+    setTimeout(function () { moveGlide(); moveModeThumb(); moveSortThumb(); }, 60);
   }).catch(function (e) {
     $("#list").innerHTML = '<div class="list-empty"><b>Could not load the catalog</b>' + esc(e.message) + "</div>";
   });

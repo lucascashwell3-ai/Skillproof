@@ -77,7 +77,7 @@
           <div class="chips chips-lg" id="grpPain"></div>
           <button class="btn btn-primary" id="applySetup" type="button" data-magnetic disabled>
             <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13l5 5L20 7"/></svg>
-            Rank the catalog
+            Sort the catalog
           </button>
         </div>
 
@@ -97,6 +97,7 @@
         <div class="panel">
           <div class="panel-head">
             <span class="panel-title">Catalog <b id="catCount">0</b></span>
+            <span class="panel-meta">★ = GitHub stars</span>
           </div>
 
           <div class="cmdbar">
@@ -107,8 +108,11 @@
                 <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
               </button>
             </div>
-            <div class="facets" id="facets" role="tablist" aria-label="Type filter">
-              <span class="glide" id="glide" aria-hidden="true"></span>
+            <div class="facet-row">
+              <div class="facets" id="facets" role="tablist" aria-label="Type filter">
+                <span class="glide" id="glide" aria-hidden="true"></span>
+              </div>
+              <div class="seg-wrap seg-sort" id="grpSort" aria-label="Sort order"><span class="seg-thumb" id="sortThumb"></span></div>
             </div>
           </div>
 
@@ -142,9 +146,9 @@
                 <div class="seg-wrap seg-modes" id="grpMode"><span class="seg-thumb" id="modeThumb"></span></div>
               </div>
               <label class="check" id="explainWrap" hidden>
-                <input type="checkbox" id="explainChk">
+                <input type="checkbox" id="explainChk" checked>
                 <span class="check-box" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none"><path d="M3.5 8.4l3 3L12.8 5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-                Explain each skill to me as it installs
+                <span><b>Explain each skill to me as it installs</b> — your agent teaches you each one, briefly, before it runs</span>
               </label>
               <div class="cmdbox" id="cmdbox"><span class="muted"># add items to build your install plan</span>
                 <button class="copy" id="copy" type="button" aria-label="Copy install plan">
@@ -171,7 +175,7 @@
   <div class="wrap">
     <div class="sec-head">
       <h2>Take it with you</h2>
-      <p>The same catalog, wherever your agent lives. Pick the one that matches how you work.</p>
+      <p>Plug Skillproof right into your agent. Pick the one that matches how you work.</p>
     </div>
     <div class="ways">
       <div class="way">
