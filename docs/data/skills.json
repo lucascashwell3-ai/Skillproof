@@ -220,8 +220,8 @@
       "last_verified": "2026-07-21",
       "status": "graded",
       "signals": {
-        "stars": 10542,
-        "forks": 534,
+        "stars": 11173,
+        "forks": 564,
         "checked": "2026-07-27"
       }
     },
@@ -308,7 +308,7 @@
       "next": "Queued for a full grading run.",
       "signals": {
         "stars": 35,
-        "forks": 1,
+        "forks": 0,
         "checked": "2026-07-27"
       },
       "skim": {
@@ -338,7 +338,7 @@
       },
       "next": "Queued for a full grading run.",
       "signals": {
-        "stars": 2951,
+        "stars": 2953,
         "forks": 219,
         "checked": "2026-07-27"
       },
@@ -370,8 +370,8 @@
       },
       "next": "Individual skills from this library are grading candidates, not the library as a whole.",
       "signals": {
-        "stars": 164342,
-        "forks": 19526,
+        "stars": 164535,
+        "forks": 19551,
         "checked": "2026-07-27"
       },
       "skim": {
@@ -401,8 +401,8 @@
       },
       "next": "Cherry-pick candidates from the library for individual grading runs.",
       "signals": {
-        "stars": 3416,
-        "forks": 375,
+        "stars": 3613,
+        "forks": 414,
         "checked": "2026-07-27"
       },
       "skim": {
@@ -435,8 +435,8 @@
       },
       "next": "Cherry-pick candidates from the framework for individual grading runs.",
       "signals": {
-        "stars": 261591,
-        "forks": 23355,
+        "stars": 261992,
+        "forks": 23394,
         "checked": "2026-07-27"
       },
       "skim": {
@@ -463,13 +463,13 @@
       "triage": {
         "provenance": "Repo verified real via GitHub API: affaan-m/ECC, 233,314 stars, created 2026-01.",
         "license": "MIT",
-        "freshness": "Last push 2026-07-26 (checked 2026-07-27) — actively maintained.",
+        "freshness": "Last push 2026-07-27 (checked 2026-07-27) — actively maintained.",
         "safety": "Automated safety skim (2026-07-27, 600 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: remote-exec pipe in docs, ssh key read in tests, remote-exec pipe in tests. Not a line-by-line read — treat as untrusted until graded."
       },
       "next": "Queued for a full grading run.",
       "signals": {
-        "stars": 233672,
-        "forks": 35616,
+        "stars": 233956,
+        "forks": 35659,
         "checked": "2026-07-27"
       },
       "skim": {
@@ -501,8 +501,8 @@
       },
       "next": "Queued for a full grading run.",
       "signals": {
-        "stars": 196559,
-        "forks": 20234,
+        "stars": 196790,
+        "forks": 20255,
         "checked": "2026-07-27"
       },
       "skim": {
@@ -525,13 +525,13 @@
       "triage": {
         "provenance": "Repo verified real via GitHub API: mattpocock/skills, 188,291 stars, created 2026-02.",
         "license": "MIT",
-        "freshness": "Last push 2026-07-23 (checked 2026-07-27) — actively maintained.",
+        "freshness": "Last push 2026-07-27 (checked 2026-07-27) — actively maintained.",
         "safety": "Automated safety skim (2026-07-27, 166 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. A library, not one skill — each skill needs its own read before use."
       },
       "next": "Queued for a full grading run.",
       "signals": {
-        "stars": 189602,
-        "forks": 16281,
+        "stars": 191040,
+        "forks": 16412,
         "checked": "2026-07-27"
       },
       "skim": {
@@ -556,13 +556,13 @@
       "triage": {
         "provenance": "Repo verified real via GitHub API: nextlevelbuilder/ui-ux-pro-max-skill, 110,114 stars, created 2025-11.",
         "license": "MIT",
-        "freshness": "Last push 2026-07-21 (checked 2026-07-27) — actively maintained.",
+        "freshness": "Last push 2026-07-27 (checked 2026-07-27) — actively maintained.",
         "safety": "Automated safety skim (2026-07-27, 327 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Not a line-by-line read — treat as untrusted until graded."
       },
       "next": "Queued for a full grading run.",
       "signals": {
-        "stars": 110431,
-        "forks": 11782,
+        "stars": 110699,
+        "forks": 11804,
         "checked": "2026-07-27"
       },
       "skim": {
@@ -590,8 +590,8 @@
       },
       "next": "Queued for a full grading run.",
       "signals": {
-        "stars": 89834,
-        "forks": 4942,
+        "stars": 90237,
+        "forks": 4966,
         "checked": "2026-07-27"
       },
       "skim": {
@@ -623,8 +623,8 @@
       },
       "next": "Queued for a full grading run.",
       "signals": {
-        "stars": 81734,
-        "forks": 9449,
+        "stars": 81905,
+        "forks": 9472,
         "checked": "2026-07-27"
       },
       "skim": {
@@ -655,8 +655,8 @@
       },
       "next": "Queued for a full grading run.",
       "signals": {
-        "stars": 80491,
-        "forks": 8679,
+        "stars": 80614,
+        "forks": 8694,
         "checked": "2026-07-27"
       },
       "skim": {
@@ -686,8 +686,8 @@
       },
       "next": "Queued for a full grading run.",
       "signals": {
-        "stars": 72289,
-        "forks": 11727,
+        "stars": 72390,
+        "forks": 11740,
         "checked": "2026-07-27"
       },
       "skim": {
@@ -717,8 +717,8 @@
       },
       "next": "Queued for a full grading run.",
       "signals": {
-        "stars": 70905,
-        "forks": 7959,
+        "stars": 71044,
+        "forks": 7971,
         "checked": "2026-07-27"
       },
       "skim": {
@@ -748,8 +748,8 @@
       },
       "next": "Queued for a full grading run.",
       "signals": {
-        "stars": 67927,
-        "forks": 4701,
+        "stars": 68193,
+        "forks": 4716,
         "checked": "2026-07-27"
       },
       "skim": {
@@ -774,12 +774,12 @@
       "triage": {
         "provenance": "Repo verified real via GitHub API: shanraisshan/claude-code-best-practice, 63,490 stars, created 2025-10.",
         "license": "MIT",
-        "freshness": "Last push 2026-07-26 (checked 2026-07-27) — actively maintained.",
+        "freshness": "Last push 2026-07-27 (checked 2026-07-27) — actively maintained.",
         "safety": "Automated safety skim (2026-07-27, 135 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: ssh key read in docs, remote-exec pipe in docs. Not a line-by-line read — treat as untrusted until graded."
       },
       "next": "Queued for a full grading run.",
       "signals": {
-        "stars": 63539,
+        "stars": 63577,
         "forks": 6333,
         "checked": "2026-07-27"
       },
@@ -813,8 +813,8 @@
       },
       "next": "Queued for a full grading run.",
       "signals": {
-        "stars": 53796,
-        "forks": 4673,
+        "stars": 54024,
+        "forks": 4690,
         "checked": "2026-07-27"
       },
       "skim": {
@@ -844,8 +844,8 @@
       },
       "next": "Queued for a full grading run.",
       "signals": {
-        "stars": 51542,
-        "forks": 4973,
+        "stars": 51545,
+        "forks": 4971,
         "checked": "2026-07-27"
       },
       "skim": {
@@ -875,8 +875,8 @@
       },
       "next": "Queued for a full grading run.",
       "signals": {
-        "stars": 51010,
-        "forks": 4446,
+        "stars": 51063,
+        "forks": 4447,
         "checked": "2026-07-27"
       },
       "skim": {
@@ -906,8 +906,8 @@
       },
       "next": "Queued for a full grading run.",
       "signals": {
-        "stars": 41823,
-        "forks": 6588,
+        "stars": 41924,
+        "forks": 6601,
         "checked": "2026-07-27"
       },
       "skim": {
@@ -939,8 +939,8 @@
       },
       "next": "Queued for a full grading run.",
       "signals": {
-        "stars": 39623,
-        "forks": 3178,
+        "stars": 39769,
+        "forks": 3188,
         "checked": "2026-07-27"
       },
       "skim": {
@@ -966,13 +966,13 @@
       "triage": {
         "provenance": "Repo verified real via GitHub API: github/awesome-copilot, 37,034 stars, created 2025-06.",
         "license": "MIT",
-        "freshness": "Last push 2026-07-26 (checked 2026-07-27) — actively maintained.",
+        "freshness": "Last push 2026-07-27 (checked 2026-07-27) — actively maintained.",
         "safety": "Automated safety skim (2026-07-27, 600 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: remote-exec pipe in docs, network call. A library, not one skill — each skill needs its own read before use."
       },
       "next": "Queued for a full grading run.",
       "signals": {
-        "stars": 37062,
-        "forks": 4648,
+        "stars": 37096,
+        "forks": 4652,
         "checked": "2026-07-27"
       },
       "skim": {
@@ -1000,13 +1000,13 @@
       "triage": {
         "provenance": "Repo verified real via GitHub API: K-Dense-AI/scientific-agent-skills, 31,754 stars, created 2025-10.",
         "license": "MIT",
-        "freshness": "Last push 2026-07-26 (checked 2026-07-27) — actively maintained.",
+        "freshness": "Last push 2026-07-27 (checked 2026-07-27) — actively maintained.",
         "safety": "Automated safety skim (2026-07-27, 600 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: remote-exec pipe in docs, cloud credential read in docs, network call. A library, not one skill — each skill needs its own read before use."
       },
       "next": "Queued for a full grading run.",
       "signals": {
-        "stars": 31846,
-        "forks": 3167,
+        "stars": 31909,
+        "forks": 3170,
         "checked": "2026-07-27"
       },
       "skim": {
@@ -1038,8 +1038,8 @@
       },
       "next": "Queued for a full grading run.",
       "signals": {
-        "stars": 31237,
-        "forks": 2861,
+        "stars": 31489,
+        "forks": 2878,
         "checked": "2026-07-27"
       },
       "skim": {
@@ -1062,13 +1062,13 @@
       "triage": {
         "provenance": "Repo verified real via GitHub API: davila7/claude-code-templates, 29,904 stars, created 2025-07.",
         "license": "MIT",
-        "freshness": "Last push 2026-07-26 (checked 2026-07-27) — actively maintained.",
+        "freshness": "Last push 2026-07-27 (checked 2026-07-27) — actively maintained.",
         "safety": "Automated safety skim (2026-07-27, 600 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: remote-exec pipe in docs, network call. A library, not one skill — each skill needs its own read before use."
       },
       "next": "Queued for a full grading run.",
       "signals": {
-        "stars": 29934,
-        "forks": 3233,
+        "stars": 29942,
+        "forks": 3247,
         "checked": "2026-07-27"
       },
       "skim": {
@@ -1099,8 +1099,8 @@
       },
       "next": "Queued for a full grading run.",
       "signals": {
-        "stars": 29000,
-        "forks": 3115,
+        "stars": 29041,
+        "forks": 3116,
         "checked": "2026-07-27"
       },
       "skim": {
@@ -1131,8 +1131,8 @@
       },
       "next": "Queued for a full grading run.",
       "signals": {
-        "stars": 26655,
-        "forks": 3235,
+        "stars": 26703,
+        "forks": 3243,
         "checked": "2026-07-27"
       },
       "skim": {
@@ -1168,8 +1168,8 @@
       },
       "next": "Queued for a full grading run.",
       "signals": {
-        "stars": 25755,
-        "forks": 2164,
+        "stars": 25783,
+        "forks": 2163,
         "checked": "2026-07-27"
       },
       "skim": {
@@ -1197,8 +1197,8 @@
       },
       "next": "Queued for a full grading run.",
       "signals": {
-        "stars": 24488,
-        "forks": 2544,
+        "stars": 24531,
+        "forks": 2563,
         "checked": "2026-07-27"
       },
       "skim": {
@@ -1226,8 +1226,8 @@
       },
       "next": "Queued for a full grading run.",
       "signals": {
-        "stars": 23751,
-        "forks": 2765,
+        "stars": 23765,
+        "forks": 2763,
         "checked": "2026-07-27"
       },
       "skim": {
@@ -1260,8 +1260,8 @@
       },
       "next": "Queued for a full grading run.",
       "signals": {
-        "stars": 23517,
-        "forks": 1597,
+        "stars": 23540,
+        "forks": 1610,
         "checked": "2026-07-27"
       },
       "skim": {
@@ -1291,8 +1291,8 @@
       },
       "next": "Queued for a full grading run.",
       "signals": {
-        "stars": 23409,
-        "forks": 3362,
+        "stars": 23421,
+        "forks": 3366,
         "checked": "2026-07-27"
       },
       "skim": {
@@ -1322,8 +1322,8 @@
       },
       "next": "Queued for a full grading run.",
       "signals": {
-        "stars": 23243,
-        "forks": 3187,
+        "stars": 23284,
+        "forks": 3205,
         "checked": "2026-07-27"
       },
       "skim": {
@@ -1348,13 +1348,13 @@
       "triage": {
         "provenance": "Repo verified real via GitHub API: alchaincyf/huashu-design, 22,003 stars, created 2026-04.",
         "license": "MIT",
-        "freshness": "Last push 2026-07-24 (checked 2026-07-27) — actively maintained.",
+        "freshness": "Last push 2026-07-27 (checked 2026-07-27) — actively maintained.",
         "safety": "Automated safety skim (2026-07-27, 74 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: network call. Not a line-by-line read — treat as untrusted until graded."
       },
       "next": "Queued for a full grading run.",
       "signals": {
-        "stars": 22062,
-        "forks": 2619,
+        "stars": 22098,
+        "forks": 2621,
         "checked": "2026-07-27"
       },
       "skim": {
@@ -1387,8 +1387,8 @@
       },
       "next": "Queued for a full grading run.",
       "signals": {
-        "stars": 17981,
-        "forks": 2020,
+        "stars": 18369,
+        "forks": 2053,
         "checked": "2026-07-27"
       },
       "skim": {
@@ -1420,8 +1420,8 @@
       },
       "next": "Queued for a full grading run.",
       "signals": {
-        "stars": 18242,
-        "forks": 921,
+        "stars": 18623,
+        "forks": 937,
         "checked": "2026-07-27"
       },
       "skim": {
@@ -1444,18 +1444,18 @@
       "triage": {
         "provenance": "Repo verified real via GitHub API: microsoft/SkillOpt, 15,023 stars, created 2026-05.",
         "license": "MIT",
-        "freshness": "Last push 2026-07-26 (checked 2026-07-27) — actively maintained.",
-        "safety": "Automated safety skim (2026-07-27, 338 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: network call. Not a line-by-line read — treat as untrusted until graded."
+        "freshness": "Last push 2026-07-27 (checked 2026-07-27) — actively maintained.",
+        "safety": "Automated safety skim (2026-07-27, 339 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: network call. Not a line-by-line read — treat as untrusted until graded."
       },
       "next": "Queued for a full grading run.",
       "signals": {
-        "stars": 15124,
-        "forks": 1395,
+        "stars": 15171,
+        "forks": 1397,
         "checked": "2026-07-27"
       },
       "skim": {
         "date": "2026-07-27",
-        "files_scanned": 338,
+        "files_scanned": 339,
         "red_flags": [],
         "notes": [
           "network call"
@@ -1482,8 +1482,8 @@
       },
       "next": "Queued for a full grading run.",
       "signals": {
-        "stars": 14340,
-        "forks": 1752,
+        "stars": 14362,
+        "forks": 1753,
         "checked": "2026-07-27"
       },
       "skim": {
@@ -1511,8 +1511,8 @@
       },
       "next": "Queued for a full grading run.",
       "signals": {
-        "stars": 13953,
-        "forks": 974,
+        "stars": 13999,
+        "forks": 975,
         "checked": "2026-07-27"
       },
       "skim": {
@@ -1564,8 +1564,8 @@
       "status": "scouted",
       "scouted_on": "2026-07-27",
       "signals": {
-        "stars": 11123,
-        "forks": 817,
+        "stars": 11157,
+        "forks": 818,
         "checked": "2026-07-27"
       },
       "triage": {
@@ -1597,8 +1597,8 @@
       "status": "scouted",
       "scouted_on": "2026-07-27",
       "signals": {
-        "stars": 10742,
-        "forks": 984,
+        "stars": 10750,
+        "forks": 985,
         "checked": "2026-07-27"
       },
       "triage": {
@@ -1631,8 +1631,8 @@
       "status": "scouted",
       "scouted_on": "2026-07-27",
       "signals": {
-        "stars": 10741,
-        "forks": 1274,
+        "stars": 10757,
+        "forks": 1278,
         "checked": "2026-07-27"
       },
       "triage": {
@@ -1660,8 +1660,8 @@
       "status": "scouted",
       "scouted_on": "2026-07-27",
       "signals": {
-        "stars": 10110,
-        "forks": 1230,
+        "stars": 10442,
+        "forks": 1267,
         "checked": "2026-07-27"
       },
       "triage": {
@@ -1689,8 +1689,8 @@
       "status": "scouted",
       "scouted_on": "2026-07-27",
       "signals": {
-        "stars": 9969,
-        "forks": 1223,
+        "stars": 9971,
+        "forks": 1224,
         "checked": "2026-07-27"
       },
       "triage": {
@@ -1722,8 +1722,8 @@
       "status": "scouted",
       "scouted_on": "2026-07-27",
       "signals": {
-        "stars": 9958,
-        "forks": 1155,
+        "stars": 9994,
+        "forks": 1163,
         "checked": "2026-07-27"
       },
       "triage": {
@@ -1756,14 +1756,14 @@
       "status": "scouted",
       "scouted_on": "2026-07-27",
       "signals": {
-        "stars": 8172,
-        "forks": 1290,
+        "stars": 8171,
+        "forks": 1291,
         "checked": "2026-07-27"
       },
       "triage": {
         "provenance": "Repo verified real via GitHub API: xixu-me/xget, 8,172 stars, created 2024-11.",
         "license": "AGPL-3.0",
-        "freshness": "Last push 2026-07-26 (checked 2026-07-27) — actively maintained.",
+        "freshness": "Last push 2026-07-27 (checked 2026-07-27) — actively maintained.",
         "safety": "Automated safety skim (2026-07-27, 117 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: network call. Not a line-by-line read — treat as untrusted until graded."
       },
       "next": "Queued for a full grading run.",
@@ -1789,8 +1789,8 @@
       "status": "scouted",
       "scouted_on": "2026-07-27",
       "signals": {
-        "stars": 6645,
-        "forks": 513,
+        "stars": 6715,
+        "forks": 514,
         "checked": "2026-07-27"
       },
       "triage": {
@@ -1822,8 +1822,8 @@
       "status": "scouted",
       "scouted_on": "2026-07-27",
       "signals": {
-        "stars": 6107,
-        "forks": 692,
+        "stars": 6109,
+        "forks": 691,
         "checked": "2026-07-27"
       },
       "triage": {
@@ -1855,8 +1855,8 @@
       "status": "scouted",
       "scouted_on": "2026-07-27",
       "signals": {
-        "stars": 5983,
-        "forks": 734,
+        "stars": 5993,
+        "forks": 736,
         "checked": "2026-07-27"
       },
       "triage": {
@@ -1871,6 +1871,38 @@
         "files_scanned": 300,
         "red_flags": [],
         "notes": []
+      }
+    },
+    {
+      "id": "luongnv89-claude-howto",
+      "name": "claude-howto",
+      "repo_url": "https://github.com/luongnv89/claude-howto",
+      "author": "luongnv89",
+      "category": "workflow",
+      "summary": "A visual, example-driven guide to Claude Code — from basic concepts to advanced agents, with copy-paste templates that bring immediate value.",
+      "pain_points": [],
+      "status": "scouted",
+      "scouted_on": "2026-07-27",
+      "signals": {
+        "stars": 40607,
+        "forks": 4932,
+        "checked": "2026-07-27"
+      },
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: luongnv89/claude-howto, 40,607 stars, created 2025-11.",
+        "license": "MIT",
+        "freshness": "Last push 2026-07-22 (checked 2026-07-27) — actively maintained.",
+        "safety": "Automated safety skim (2026-07-27, 600 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: network call, remote-exec pipe in docs. Not a line-by-line read — treat as untrusted until graded."
+      },
+      "next": "Queued for a full grading run.",
+      "skim": {
+        "date": "2026-07-27",
+        "files_scanned": 600,
+        "red_flags": [],
+        "notes": [
+          "network call",
+          "remote-exec pipe in docs"
+        ]
       }
     }
   ]

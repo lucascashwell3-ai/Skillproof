@@ -2,531 +2,6 @@
   "_comment": "Repos the safety scanner flagged. NOT published to the site. Restored only by a human via scripts/quarantine.py --restore.",
   "entries": [
     {
-      "id": "graphify-labs-graphify",
-      "name": "graphify",
-      "repo_url": "https://github.com/Graphify-Labs/graphify",
-      "author": "Graphify-Labs",
-      "category": "research",
-      "summary": "Turn any codebase, with its docs, SQL schemas, configs, and PDFs, into a queryable knowledge graph. A /graphify skill for Claude Code, Cursor, Codex, and Gemini CLI: local deterministic AST parsing, every edge explained,",
-      "pain_points": [
-        "docs-drift"
-      ],
-      "status": "scouted",
-      "scouted_on": "2026-07-25",
-      "triage": {
-        "provenance": "Repo verified real via GitHub API: Graphify-Labs/graphify, 95,868 stars, created 2026-04.",
-        "license": "Apache-2.0",
-        "freshness": "Last push 2026-07-26 (checked 2026-07-27) — actively maintained.",
-        "safety": "Automated safety skim (2026-07-27): flagged for human review — cloud credential read (graphify/detect.py); ssh key read (graphify/extractors/fortran.py). Held out of recommendations until a person reads the flagged lines."
-      },
-      "next": "Queued for a full grading run.",
-      "signals": {
-        "stars": 96459,
-        "forks": 9347,
-        "checked": "2026-07-27"
-      },
-      "skim": {
-        "date": "2026-07-27",
-        "files_scanned": 600,
-        "red_flags": [
-          "cloud credential read",
-          "ssh key read"
-        ],
-        "notes": [
-          "cloud credential read in docs",
-          "cloud credential read in tests",
-          "network call",
-          "remote-exec pipe in docs",
-          "ssh key read in tests"
-        ]
-      },
-      "quarantined_on": "2026-07-27"
-    },
-    {
-      "id": "juliusbrussee-caveman",
-      "name": "caveman",
-      "repo_url": "https://github.com/JuliusBrussee/caveman",
-      "author": "JuliusBrussee",
-      "category": "context",
-      "summary": "🪨 why use many token when few token do trick — Claude Code skill that cuts 65% of tokens by talking like caveman",
-      "pain_points": [
-        "context-bloat"
-      ],
-      "status": "scouted",
-      "scouted_on": "2026-07-25",
-      "triage": {
-        "provenance": "Repo verified real via GitHub API: JuliusBrussee/caveman, 92,983 stars, created 2026-04.",
-        "license": "MIT",
-        "freshness": "Last push 2026-07-26 (checked 2026-07-27) — actively maintained.",
-        "safety": "Automated safety skim (2026-07-27): flagged for human review — remote-exec pipe (install.sh); cloud credential read (plugins/caveman/skills/caveman-compress/scripts/compress.py); ssh key read (src/hooks/caveman-statusline.sh). Held out of recommendations until a person reads the flagged lines."
-      },
-      "next": "Queued for a full grading run.",
-      "signals": {
-        "stars": 93214,
-        "forks": 5313,
-        "checked": "2026-07-27"
-      },
-      "skim": {
-        "date": "2026-07-27",
-        "files_scanned": 155,
-        "red_flags": [
-          "cloud credential read",
-          "remote-exec pipe",
-          "ssh key read"
-        ],
-        "notes": [
-          "network call",
-          "remote-exec pipe in docs",
-          "remote-exec pipe in tests"
-        ]
-      },
-      "quarantined_on": "2026-07-27"
-    },
-    {
-      "id": "thedotmack-claude-mem",
-      "name": "claude-mem",
-      "repo_url": "https://github.com/thedotmack/claude-mem",
-      "author": "thedotmack",
-      "category": "context",
-      "summary": "Persistent Context Across Sessions for Every Agent –  Captures everything your agent does during sessions, compresses it with AI, and injects relevant context back into future sessions. Works with Claude Code, OpenClaw, ",
-      "pain_points": [
-        "context-bloat"
-      ],
-      "status": "scouted",
-      "scouted_on": "2026-07-25",
-      "triage": {
-        "provenance": "Repo verified real via GitHub API: thedotmack/claude-mem, 88,561 stars, created 2025-08.",
-        "license": "Apache-2.0",
-        "freshness": "Last push 2026-07-23 (checked 2026-07-27) — actively maintained.",
-        "safety": "Automated safety skim (2026-07-27): flagged for human review — remote-exec pipe (openclaw/test-install.sh); powershell encoded exec (plugin/scripts/mcp-server.cjs). Held out of recommendations until a person reads the flagged lines."
-      },
-      "next": "Queued for a full grading run.",
-      "signals": {
-        "stars": 88647,
-        "forks": 7702,
-        "checked": "2026-07-27"
-      },
-      "skim": {
-        "date": "2026-07-27",
-        "files_scanned": 600,
-        "red_flags": [
-          "powershell encoded exec",
-          "remote-exec pipe"
-        ],
-        "notes": [
-          "long base64 blob",
-          "network call",
-          "remote-exec pipe in docker",
-          "remote-exec pipe in docs"
-        ]
-      },
-      "quarantined_on": "2026-07-27"
-    },
-    {
-      "id": "egonex-ai-understand-anything",
-      "name": "Understand-Anything",
-      "repo_url": "https://github.com/Egonex-AI/Understand-Anything",
-      "author": "Egonex-AI",
-      "category": "research",
-      "summary": "Graphs that teach > graphs that impress. Turn any code into an interactive knowledge graph you can explore, search, and ask questions about. Works with Claude Code, Codex, Cursor, Copilot, Gemini CLI, and more.",
-      "pain_points": [
-        "context-bloat"
-      ],
-      "status": "scouted",
-      "scouted_on": "2026-07-25",
-      "triage": {
-        "provenance": "Repo verified real via GitHub API: Egonex-AI/Understand-Anything, 76,093 stars, created 2026-03.",
-        "license": "MIT",
-        "freshness": "Last push 2026-07-25 (checked 2026-07-27) — actively maintained.",
-        "safety": "Automated safety skim (2026-07-27): flagged for human review — remote-exec pipe (install.sh). Held out of recommendations until a person reads the flagged lines."
-      },
-      "next": "Queued for a full grading run.",
-      "signals": {
-        "stars": 76246,
-        "forks": 6374,
-        "checked": "2026-07-27"
-      },
-      "skim": {
-        "date": "2026-07-27",
-        "files_scanned": 462,
-        "red_flags": [
-          "remote-exec pipe"
-        ],
-        "notes": [
-          "network call",
-          "remote-exec pipe in docs"
-        ]
-      },
-      "quarantined_on": "2026-07-27"
-    },
-    {
-      "id": "rtk-ai-rtk",
-      "name": "rtk",
-      "repo_url": "https://github.com/rtk-ai/rtk",
-      "author": "rtk-ai",
-      "category": "context",
-      "summary": "CLI proxy that reduces LLM token consumption by 60-90% on common dev commands. Single Rust binary, zero dependencies",
-      "pain_points": [
-        "context-bloat"
-      ],
-      "status": "scouted",
-      "scouted_on": "2026-07-25",
-      "triage": {
-        "provenance": "Repo verified real via GitHub API: rtk-ai/rtk, 73,247 stars, created 2026-01.",
-        "license": "Apache-2.0",
-        "freshness": "Last push 2026-07-26 (checked 2026-07-27) — actively maintained.",
-        "safety": "Automated safety skim (2026-07-27): flagged for human review — remote-exec pipe (install.sh). Held out of recommendations until a person reads the flagged lines."
-      },
-      "next": "Queued for a full grading run.",
-      "signals": {
-        "stars": 73346,
-        "forks": 4580,
-        "checked": "2026-07-27"
-      },
-      "skim": {
-        "date": "2026-07-27",
-        "files_scanned": 269,
-        "red_flags": [
-          "remote-exec pipe"
-        ],
-        "notes": [
-          "network call",
-          "remote-exec pipe in docs"
-        ]
-      },
-      "quarantined_on": "2026-07-27"
-    },
-    {
-      "id": "ruvnet-ruflo",
-      "name": "ruflo",
-      "repo_url": "https://github.com/ruvnet/ruflo",
-      "author": "ruvnet",
-      "category": "context",
-      "summary": "🌊 The leading agent meta-harness. Deploy intelligent multi-player swarms, coordinate autonomous workflows, and build conversational AI systems. Features adaptive memory, self-learning intelligence, RAG integration, and n",
-      "pain_points": [
-        "context-bloat"
-      ],
-      "status": "scouted",
-      "scouted_on": "2026-07-25",
-      "triage": {
-        "provenance": "Repo verified real via GitHub API: ruvnet/ruflo, 65,978 stars, created 2025-06.",
-        "license": "MIT",
-        "freshness": "Last push 2026-07-27 (checked 2026-07-27) — actively maintained.",
-        "safety": "Automated safety skim (2026-07-27): flagged for human review — remote-exec pipe (scripts/install.sh). Held out of recommendations until a person reads the flagged lines."
-      },
-      "next": "Queued for a full grading run.",
-      "signals": {
-        "stars": 66131,
-        "forks": 7872,
-        "checked": "2026-07-27"
-      },
-      "skim": {
-        "date": "2026-07-27",
-        "files_scanned": 600,
-        "red_flags": [
-          "remote-exec pipe"
-        ],
-        "notes": [
-          "network call",
-          "remote-exec pipe in docs"
-        ]
-      },
-      "quarantined_on": "2026-07-27"
-    },
-    {
-      "id": "headroomlabs-ai-headroom",
-      "name": "headroom",
-      "repo_url": "https://github.com/headroomlabs-ai/headroom",
-      "author": "headroomlabs-ai",
-      "category": "context",
-      "summary": "Compress tool outputs, logs, files, and RAG chunks before they reach the LLM. 20% fewer tokens for coding agents, 60-95% fewer tokens for JSON, same answers. Library, proxy, MCP server.",
-      "pain_points": [
-        "context-bloat"
-      ],
-      "status": "scouted",
-      "scouted_on": "2026-07-25",
-      "triage": {
-        "provenance": "Repo verified real via GitHub API: headroomlabs-ai/headroom, 62,416 stars, created 2026-01.",
-        "license": "Apache-2.0",
-        "freshness": "Last push 2026-07-26 (checked 2026-07-27) — actively maintained.",
-        "safety": "Automated safety skim (2026-07-27): flagged for human review — cloud credential read (examples/strands_via_proxy_demo.py). Held out of recommendations until a person reads the flagged lines."
-      },
-      "next": "Queued for a full grading run.",
-      "signals": {
-        "stars": 62600,
-        "forks": 4732,
-        "checked": "2026-07-27"
-      },
-      "skim": {
-        "date": "2026-07-27",
-        "files_scanned": 600,
-        "red_flags": [
-          "cloud credential read"
-        ],
-        "notes": [
-          "cloud credential read in docs",
-          "network call",
-          "remote-exec pipe in docs"
-        ]
-      },
-      "quarantined_on": "2026-07-27"
-    },
-    {
-      "id": "panniantong-agent-reach",
-      "name": "Agent-Reach",
-      "repo_url": "https://github.com/Panniantong/Agent-Reach",
-      "author": "Panniantong",
-      "category": "research",
-      "summary": "Give your AI agent eyes to see the entire internet. Read & search Twitter, Reddit, YouTube, GitHub, Bilibili, XiaoHongShu — one CLI, zero API fees.",
-      "pain_points": [],
-      "status": "scouted",
-      "scouted_on": "2026-07-25",
-      "triage": {
-        "provenance": "Repo verified real via GitHub API: Panniantong/Agent-Reach, 60,834 stars, created 2026-02.",
-        "license": "MIT",
-        "freshness": "Last push 2026-07-25 (checked 2026-07-27) — actively maintained.",
-        "safety": "Automated safety skim (2026-07-27): flagged for human review — remote-exec pipe (agent_reach/cli.py). Held out of recommendations until a person reads the flagged lines."
-      },
-      "next": "Queued for a full grading run.",
-      "signals": {
-        "stars": 61027,
-        "forks": 4952,
-        "checked": "2026-07-27"
-      },
-      "skim": {
-        "date": "2026-07-27",
-        "files_scanned": 103,
-        "red_flags": [
-          "remote-exec pipe"
-        ],
-        "notes": [
-          "network call"
-        ]
-      },
-      "quarantined_on": "2026-07-27"
-    },
-    {
-      "id": "sickn33-agentic-awesome-skills",
-      "name": "sickn33/agentic-awesome-skills",
-      "repo_url": "https://github.com/sickn33/agentic-awesome-skills",
-      "author": "sickn33",
-      "category": "library",
-      "summary": "AAS Core is the local, agent-first control plane for complete catalog discovery, agent-owned selection, stack validation, and planning, backed by 1,987+ agentic skills. Includes CLI, local MCP, catalog, plugins, and Work",
-      "pain_points": [
-        "planning-drift"
-      ],
-      "status": "scouted",
-      "scouted_on": "2026-07-25",
-      "triage": {
-        "provenance": "Repo verified real via GitHub API: sickn33/agentic-awesome-skills, 43,911 stars, created 2026-01.",
-        "license": "MIT",
-        "freshness": "Last push 2026-07-26 (checked 2026-07-27) — actively maintained.",
-        "safety": "Automated safety skim (2026-07-27): flagged for human review — remote-exec pipe (docs_zh-CN/.glossary.json). Held out of recommendations until a person reads the flagged lines."
-      },
-      "next": "Queued for a full grading run.",
-      "signals": {
-        "stars": 43966,
-        "forks": 6491,
-        "checked": "2026-07-27"
-      },
-      "skim": {
-        "date": "2026-07-27",
-        "files_scanned": 600,
-        "red_flags": [
-          "remote-exec pipe"
-        ],
-        "notes": [
-          "cloud credential read in docs",
-          "network call",
-          "remote-exec pipe in docs"
-        ]
-      },
-      "quarantined_on": "2026-07-27"
-    },
-    {
-      "id": "wshobson-agents",
-      "name": "wshobson/agents",
-      "repo_url": "https://github.com/wshobson/agents",
-      "author": "wshobson",
-      "category": "library",
-      "summary": "Multi-harness agentic plugin marketplace for Claude Code, Codex CLI, Cursor, OpenCode, GitHub Copilot, and Gemini CLI",
-      "pain_points": [],
-      "status": "scouted",
-      "scouted_on": "2026-07-25",
-      "triage": {
-        "provenance": "Repo verified real via GitHub API: wshobson/agents, 38,224 stars, created 2025-07.",
-        "license": "MIT",
-        "freshness": "Last push 2026-07-22 (checked 2026-07-27) — actively maintained.",
-        "safety": "Automated safety skim (2026-07-27): flagged for human review — remote-exec pipe (.github/workflows/validate.yml). Held out of recommendations until a person reads the flagged lines."
-      },
-      "next": "Queued for a full grading run.",
-      "signals": {
-        "stars": 38261,
-        "forks": 4097,
-        "checked": "2026-07-27"
-      },
-      "skim": {
-        "date": "2026-07-27",
-        "files_scanned": 600,
-        "red_flags": [
-          "remote-exec pipe"
-        ],
-        "notes": [
-          "network call",
-          "remote-exec pipe in docs"
-        ]
-      },
-      "quarantined_on": "2026-07-27"
-    },
-    {
-      "id": "topoteretes-cognee",
-      "name": "cognee",
-      "repo_url": "https://github.com/topoteretes/cognee",
-      "author": "topoteretes",
-      "category": "context",
-      "summary": "Cognee is the open-source AI memory platform for agents. Give your AI agents persistent long-term memory across sessions with a self-hosted knowledge graph engine.",
-      "pain_points": [
-        "context-bloat",
-        "git-hygiene"
-      ],
-      "status": "scouted",
-      "scouted_on": "2026-07-25",
-      "triage": {
-        "provenance": "Repo verified real via GitHub API: topoteretes/cognee, 29,328 stars, created 2023-08.",
-        "license": "Apache-2.0",
-        "freshness": "Last push 2026-07-26 (checked 2026-07-27) — actively maintained.",
-        "safety": "Automated safety skim (2026-07-27): flagged for human review — cloud credential read (.github/workflows/test_llms.yml). Held out of recommendations until a person reads the flagged lines."
-      },
-      "next": "Queued for a full grading run.",
-      "signals": {
-        "stars": 29393,
-        "forks": 2824,
-        "checked": "2026-07-27"
-      },
-      "skim": {
-        "date": "2026-07-27",
-        "files_scanned": 600,
-        "red_flags": [
-          "cloud credential read"
-        ],
-        "notes": [
-          "long base64 blob",
-          "network call"
-        ]
-      },
-      "quarantined_on": "2026-07-27"
-    },
-    {
-      "id": "teng-lin-notebooklm-py",
-      "name": "notebooklm-py",
-      "repo_url": "https://github.com/teng-lin/notebooklm-py",
-      "author": "teng-lin",
-      "category": "frontend",
-      "summary": "Unofficial Python API and agentic skill for Google NotebookLM. Full programmatic access to NotebookLM's features—including capabilities the web UI doesn't expose—via Python, CLI, and AI agents like Claude Code, Codex, an",
-      "pain_points": [
-        "generic-frontend"
-      ],
-      "status": "scouted",
-      "scouted_on": "2026-07-25",
-      "triage": {
-        "provenance": "Repo verified real via GitHub API: teng-lin/notebooklm-py, 18,193 stars, created 2026-01.",
-        "license": "MIT",
-        "freshness": "Last push 2026-07-27 (checked 2026-07-27) — actively maintained.",
-        "safety": "Automated safety skim (2026-07-27): flagged for human review — remote-exec pipe (desktop-extension/run_server.py). Held out of recommendations until a person reads the flagged lines."
-      },
-      "next": "Queued for a full grading run.",
-      "signals": {
-        "stars": 18216,
-        "forks": 2458,
-        "checked": "2026-07-27"
-      },
-      "skim": {
-        "date": "2026-07-27",
-        "files_scanned": 600,
-        "red_flags": [
-          "remote-exec pipe"
-        ],
-        "notes": [
-          "network call",
-          "remote-exec pipe in docs"
-        ]
-      },
-      "quarantined_on": "2026-07-27"
-    },
-    {
-      "id": "eigent-ai-eigent",
-      "name": "eigent",
-      "repo_url": "https://github.com/eigent-ai/eigent",
-      "author": "eigent-ai",
-      "category": "automation",
-      "summary": "Eigent: The Open Source Cowork Desktop - Local and Free Alternative to Claude Cowork and Codex",
-      "pain_points": [],
-      "status": "scouted",
-      "scouted_on": "2026-07-25",
-      "triage": {
-        "provenance": "Repo verified real via GitHub API: eigent-ai/eigent, 14,656 stars, created 2025-07.",
-        "license": "Apache-2.0",
-        "freshness": "Last push 2026-07-25 (checked 2026-07-27) — actively maintained.",
-        "safety": "Automated safety skim (2026-07-27): flagged for human review — remote-exec pipe (server/start_server.bat). Held out of recommendations until a person reads the flagged lines."
-      },
-      "next": "Queued for a full grading run.",
-      "signals": {
-        "stars": 14670,
-        "forks": 1739,
-        "checked": "2026-07-27"
-      },
-      "skim": {
-        "date": "2026-07-27",
-        "files_scanned": 600,
-        "red_flags": [
-          "remote-exec pipe"
-        ],
-        "notes": [
-          "cloud credential read in docs",
-          "network call",
-          "remote-exec pipe in docker"
-        ]
-      },
-      "quarantined_on": "2026-07-27"
-    },
-    {
-      "id": "yusufkaraaslan-skill-seekers",
-      "name": "Skill_Seekers",
-      "repo_url": "https://github.com/yusufkaraaslan/Skill_Seekers",
-      "author": "yusufkaraaslan",
-      "category": "docs",
-      "summary": "Convert documentation websites, GitHub repositories, and PDFs into Claude AI skills with automatic conflict detection",
-      "pain_points": [
-        "docs-drift"
-      ],
-      "status": "scouted",
-      "scouted_on": "2026-07-25",
-      "triage": {
-        "provenance": "Repo verified real via GitHub API: yusufkaraaslan/Skill_Seekers, 14,560 stars, created 2025-10.",
-        "license": "MIT",
-        "freshness": "Last push 2026-07-20 (checked 2026-07-27) — actively maintained.",
-        "safety": "Automated safety skim (2026-07-27): flagged for human review — remote-exec pipe (scripts/bootstrap_skill.sh). Held out of recommendations until a person reads the flagged lines."
-      },
-      "next": "Queued for a full grading run.",
-      "signals": {
-        "stars": 14569,
-        "forks": 1479,
-        "checked": "2026-07-27"
-      },
-      "skim": {
-        "date": "2026-07-27",
-        "files_scanned": 600,
-        "red_flags": [
-          "remote-exec pipe"
-        ],
-        "notes": [
-          "network call",
-          "remote-exec pipe in docs"
-        ]
-      },
-      "quarantined_on": "2026-07-27"
-    },
-    {
       "id": "nevamind-ai-memu",
       "name": "memU",
       "repo_url": "https://github.com/NevaMind-AI/memU",
@@ -749,6 +224,531 @@
         ],
         "notes": [
           "network call"
+        ]
+      },
+      "quarantined_on": "2026-07-27"
+    },
+    {
+      "id": "graphify-labs-graphify",
+      "name": "graphify",
+      "repo_url": "https://github.com/Graphify-Labs/graphify",
+      "author": "Graphify-Labs",
+      "category": "research",
+      "summary": "Turn any codebase, with its docs, SQL schemas, configs, and PDFs, into a queryable knowledge graph. A /graphify skill for Claude Code, Cursor, Codex, and Gemini CLI: local deterministic AST parsing, every edge explained,",
+      "pain_points": [
+        "docs-drift"
+      ],
+      "status": "scouted",
+      "scouted_on": "2026-07-27",
+      "signals": {
+        "stars": 96964,
+        "forks": 9386,
+        "checked": "2026-07-27"
+      },
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: Graphify-Labs/graphify, 96,964 stars, created 2026-04.",
+        "license": "Apache-2.0",
+        "freshness": "Last push 2026-07-27 (checked 2026-07-27) — actively maintained.",
+        "safety": "Automated safety skim (2026-07-27): flagged for human review — cloud credential read (graphify/detect.py); ssh key read (graphify/extractors/fortran.py). Held out of recommendations until a person reads the flagged lines."
+      },
+      "next": "Queued for a full grading run.",
+      "skim": {
+        "date": "2026-07-27",
+        "files_scanned": 600,
+        "red_flags": [
+          "cloud credential read",
+          "ssh key read"
+        ],
+        "notes": [
+          "cloud credential read in docs",
+          "cloud credential read in tests",
+          "network call",
+          "remote-exec pipe in docs",
+          "ssh key read in tests"
+        ]
+      },
+      "quarantined_on": "2026-07-27"
+    },
+    {
+      "id": "juliusbrussee-caveman",
+      "name": "caveman",
+      "repo_url": "https://github.com/JuliusBrussee/caveman",
+      "author": "JuliusBrussee",
+      "category": "context",
+      "summary": "🪨 why use many token when few token do trick — Claude Code skill that cuts 65% of tokens by talking like caveman",
+      "pain_points": [
+        "context-bloat"
+      ],
+      "status": "scouted",
+      "scouted_on": "2026-07-27",
+      "signals": {
+        "stars": 93458,
+        "forks": 5344,
+        "checked": "2026-07-27"
+      },
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: JuliusBrussee/caveman, 93,458 stars, created 2026-04.",
+        "license": "MIT",
+        "freshness": "Last push 2026-07-26 (checked 2026-07-27) — actively maintained.",
+        "safety": "Automated safety skim (2026-07-27): flagged for human review — remote-exec pipe (install.sh); cloud credential read (plugins/caveman/skills/caveman-compress/scripts/compress.py); ssh key read (src/hooks/caveman-statusline.sh). Held out of recommendations until a person reads the flagged lines."
+      },
+      "next": "Queued for a full grading run.",
+      "skim": {
+        "date": "2026-07-27",
+        "files_scanned": 155,
+        "red_flags": [
+          "cloud credential read",
+          "remote-exec pipe",
+          "ssh key read"
+        ],
+        "notes": [
+          "network call",
+          "remote-exec pipe in docs",
+          "remote-exec pipe in tests"
+        ]
+      },
+      "quarantined_on": "2026-07-27"
+    },
+    {
+      "id": "thedotmack-claude-mem",
+      "name": "claude-mem",
+      "repo_url": "https://github.com/thedotmack/claude-mem",
+      "author": "thedotmack",
+      "category": "context",
+      "summary": "Persistent Context Across Sessions for Every Agent –  Captures everything your agent does during sessions, compresses it with AI, and injects relevant context back into future sessions. Works with Claude Code, OpenClaw, ",
+      "pain_points": [
+        "context-bloat"
+      ],
+      "status": "scouted",
+      "scouted_on": "2026-07-27",
+      "signals": {
+        "stars": 88717,
+        "forks": 7709,
+        "checked": "2026-07-27"
+      },
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: thedotmack/claude-mem, 88,717 stars, created 2025-08.",
+        "license": "Apache-2.0",
+        "freshness": "Last push 2026-07-23 (checked 2026-07-27) — actively maintained.",
+        "safety": "Automated safety skim (2026-07-27): flagged for human review — remote-exec pipe (openclaw/test-install.sh); powershell encoded exec (plugin/scripts/mcp-server.cjs). Held out of recommendations until a person reads the flagged lines."
+      },
+      "next": "Queued for a full grading run.",
+      "skim": {
+        "date": "2026-07-27",
+        "files_scanned": 600,
+        "red_flags": [
+          "powershell encoded exec",
+          "remote-exec pipe"
+        ],
+        "notes": [
+          "long base64 blob",
+          "network call",
+          "remote-exec pipe in docker",
+          "remote-exec pipe in docs"
+        ]
+      },
+      "quarantined_on": "2026-07-27"
+    },
+    {
+      "id": "egonex-ai-understand-anything",
+      "name": "Understand-Anything",
+      "repo_url": "https://github.com/Egonex-AI/Understand-Anything",
+      "author": "Egonex-AI",
+      "category": "research",
+      "summary": "Graphs that teach > graphs that impress. Turn any code into an interactive knowledge graph you can explore, search, and ask questions about. Works with Claude Code, Codex, Cursor, Copilot, Gemini CLI, and more.",
+      "pain_points": [
+        "context-bloat"
+      ],
+      "status": "scouted",
+      "scouted_on": "2026-07-27",
+      "signals": {
+        "stars": 76387,
+        "forks": 6386,
+        "checked": "2026-07-27"
+      },
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: Egonex-AI/Understand-Anything, 76,387 stars, created 2026-03.",
+        "license": "MIT",
+        "freshness": "Last push 2026-07-25 (checked 2026-07-27) — actively maintained.",
+        "safety": "Automated safety skim (2026-07-27): flagged for human review — remote-exec pipe (install.sh). Held out of recommendations until a person reads the flagged lines."
+      },
+      "next": "Queued for a full grading run.",
+      "skim": {
+        "date": "2026-07-27",
+        "files_scanned": 462,
+        "red_flags": [
+          "remote-exec pipe"
+        ],
+        "notes": [
+          "network call",
+          "remote-exec pipe in docs"
+        ]
+      },
+      "quarantined_on": "2026-07-27"
+    },
+    {
+      "id": "rtk-ai-rtk",
+      "name": "rtk",
+      "repo_url": "https://github.com/rtk-ai/rtk",
+      "author": "rtk-ai",
+      "category": "context",
+      "summary": "CLI proxy that reduces LLM token consumption by 60-90% on common dev commands. Single Rust binary, zero dependencies",
+      "pain_points": [
+        "context-bloat"
+      ],
+      "status": "scouted",
+      "scouted_on": "2026-07-27",
+      "signals": {
+        "stars": 73497,
+        "forks": 4592,
+        "checked": "2026-07-27"
+      },
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: rtk-ai/rtk, 73,497 stars, created 2026-01.",
+        "license": "Apache-2.0",
+        "freshness": "Last push 2026-07-27 (checked 2026-07-27) — actively maintained.",
+        "safety": "Automated safety skim (2026-07-27): flagged for human review — remote-exec pipe (install.sh). Held out of recommendations until a person reads the flagged lines."
+      },
+      "next": "Queued for a full grading run.",
+      "skim": {
+        "date": "2026-07-27",
+        "files_scanned": 269,
+        "red_flags": [
+          "remote-exec pipe"
+        ],
+        "notes": [
+          "network call",
+          "remote-exec pipe in docs"
+        ]
+      },
+      "quarantined_on": "2026-07-27"
+    },
+    {
+      "id": "ruvnet-ruflo",
+      "name": "ruflo",
+      "repo_url": "https://github.com/ruvnet/ruflo",
+      "author": "ruvnet",
+      "category": "context",
+      "summary": "🌊 The leading agent meta-harness. Deploy intelligent multi-player swarms, coordinate autonomous workflows, and build conversational AI systems. Features adaptive memory, self-learning intelligence, RAG integration, and n",
+      "pain_points": [
+        "context-bloat"
+      ],
+      "status": "scouted",
+      "scouted_on": "2026-07-27",
+      "signals": {
+        "stars": 66236,
+        "forks": 7887,
+        "checked": "2026-07-27"
+      },
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: ruvnet/ruflo, 66,236 stars, created 2025-06.",
+        "license": "MIT",
+        "freshness": "Last push 2026-07-27 (checked 2026-07-27) — actively maintained.",
+        "safety": "Automated safety skim (2026-07-27): flagged for human review — remote-exec pipe (scripts/install.sh). Held out of recommendations until a person reads the flagged lines."
+      },
+      "next": "Queued for a full grading run.",
+      "skim": {
+        "date": "2026-07-27",
+        "files_scanned": 600,
+        "red_flags": [
+          "remote-exec pipe"
+        ],
+        "notes": [
+          "network call",
+          "remote-exec pipe in docs"
+        ]
+      },
+      "quarantined_on": "2026-07-27"
+    },
+    {
+      "id": "headroomlabs-ai-headroom",
+      "name": "headroom",
+      "repo_url": "https://github.com/headroomlabs-ai/headroom",
+      "author": "headroomlabs-ai",
+      "category": "context",
+      "summary": "Compress tool outputs, logs, files, and RAG chunks before they reach the LLM. 20% fewer tokens for coding agents, 60-95% fewer tokens for JSON, same answers. Library, proxy, MCP server.",
+      "pain_points": [
+        "context-bloat"
+      ],
+      "status": "scouted",
+      "scouted_on": "2026-07-27",
+      "signals": {
+        "stars": 62751,
+        "forks": 4746,
+        "checked": "2026-07-27"
+      },
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: headroomlabs-ai/headroom, 62,751 stars, created 2026-01.",
+        "license": "Apache-2.0",
+        "freshness": "Last push 2026-07-27 (checked 2026-07-27) — actively maintained.",
+        "safety": "Automated safety skim (2026-07-27): flagged for human review — cloud credential read (examples/strands_via_proxy_demo.py). Held out of recommendations until a person reads the flagged lines."
+      },
+      "next": "Queued for a full grading run.",
+      "skim": {
+        "date": "2026-07-27",
+        "files_scanned": 600,
+        "red_flags": [
+          "cloud credential read"
+        ],
+        "notes": [
+          "cloud credential read in docs",
+          "network call",
+          "remote-exec pipe in docs"
+        ]
+      },
+      "quarantined_on": "2026-07-27"
+    },
+    {
+      "id": "panniantong-agent-reach",
+      "name": "Agent-Reach",
+      "repo_url": "https://github.com/Panniantong/Agent-Reach",
+      "author": "Panniantong",
+      "category": "research",
+      "summary": "Give your AI agent eyes to see the entire internet. Read & search Twitter, Reddit, YouTube, GitHub, Bilibili, XiaoHongShu — one CLI, zero API fees.",
+      "pain_points": [],
+      "status": "scouted",
+      "scouted_on": "2026-07-27",
+      "signals": {
+        "stars": 61212,
+        "forks": 4971,
+        "checked": "2026-07-27"
+      },
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: Panniantong/Agent-Reach, 61,212 stars, created 2026-02.",
+        "license": "MIT",
+        "freshness": "Last push 2026-07-25 (checked 2026-07-27) — actively maintained.",
+        "safety": "Automated safety skim (2026-07-27): flagged for human review — remote-exec pipe (agent_reach/cli.py). Held out of recommendations until a person reads the flagged lines."
+      },
+      "next": "Queued for a full grading run.",
+      "skim": {
+        "date": "2026-07-27",
+        "files_scanned": 103,
+        "red_flags": [
+          "remote-exec pipe"
+        ],
+        "notes": [
+          "network call"
+        ]
+      },
+      "quarantined_on": "2026-07-27"
+    },
+    {
+      "id": "sickn33-agentic-awesome-skills",
+      "name": "sickn33/agentic-awesome-skills",
+      "repo_url": "https://github.com/sickn33/agentic-awesome-skills",
+      "author": "sickn33",
+      "category": "library",
+      "summary": "AAS Core is the local, agent-first control plane for complete catalog discovery, agent-owned selection, stack validation, and planning, backed by 1,987+ agentic skills. Includes CLI, local MCP, catalog, plugins, and Work",
+      "pain_points": [
+        "planning-drift"
+      ],
+      "status": "scouted",
+      "scouted_on": "2026-07-27",
+      "signals": {
+        "stars": 44010,
+        "forks": 6491,
+        "checked": "2026-07-27"
+      },
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: sickn33/agentic-awesome-skills, 44,010 stars, created 2026-01.",
+        "license": "MIT",
+        "freshness": "Last push 2026-07-27 (checked 2026-07-27) — actively maintained.",
+        "safety": "Automated safety skim (2026-07-27): flagged for human review — remote-exec pipe (docs_zh-CN/.glossary.json). Held out of recommendations until a person reads the flagged lines."
+      },
+      "next": "Queued for a full grading run.",
+      "skim": {
+        "date": "2026-07-27",
+        "files_scanned": 600,
+        "red_flags": [
+          "remote-exec pipe"
+        ],
+        "notes": [
+          "cloud credential read in docs",
+          "network call",
+          "remote-exec pipe in docs"
+        ]
+      },
+      "quarantined_on": "2026-07-27"
+    },
+    {
+      "id": "wshobson-agents",
+      "name": "wshobson/agents",
+      "repo_url": "https://github.com/wshobson/agents",
+      "author": "wshobson",
+      "category": "library",
+      "summary": "Multi-harness agentic plugin marketplace for Claude Code, Codex CLI, Cursor, OpenCode, GitHub Copilot, and Gemini CLI",
+      "pain_points": [],
+      "status": "scouted",
+      "scouted_on": "2026-07-27",
+      "signals": {
+        "stars": 38291,
+        "forks": 4097,
+        "checked": "2026-07-27"
+      },
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: wshobson/agents, 38,291 stars, created 2025-07.",
+        "license": "MIT",
+        "freshness": "Last push 2026-07-22 (checked 2026-07-27) — actively maintained.",
+        "safety": "Automated safety skim (2026-07-27): flagged for human review — remote-exec pipe (.github/workflows/validate.yml). Held out of recommendations until a person reads the flagged lines."
+      },
+      "next": "Queued for a full grading run.",
+      "skim": {
+        "date": "2026-07-27",
+        "files_scanned": 600,
+        "red_flags": [
+          "remote-exec pipe"
+        ],
+        "notes": [
+          "network call",
+          "remote-exec pipe in docs"
+        ]
+      },
+      "quarantined_on": "2026-07-27"
+    },
+    {
+      "id": "topoteretes-cognee",
+      "name": "cognee",
+      "repo_url": "https://github.com/topoteretes/cognee",
+      "author": "topoteretes",
+      "category": "context",
+      "summary": "Cognee is the open-source AI memory platform for agents. Give your AI agents persistent long-term memory across sessions with a self-hosted knowledge graph engine.",
+      "pain_points": [
+        "context-bloat",
+        "git-hygiene"
+      ],
+      "status": "scouted",
+      "scouted_on": "2026-07-27",
+      "signals": {
+        "stars": 29440,
+        "forks": 2832,
+        "checked": "2026-07-27"
+      },
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: topoteretes/cognee, 29,440 stars, created 2023-08.",
+        "license": "Apache-2.0",
+        "freshness": "Last push 2026-07-27 (checked 2026-07-27) — actively maintained.",
+        "safety": "Automated safety skim (2026-07-27): flagged for human review — cloud credential read (.github/workflows/test_llms.yml). Held out of recommendations until a person reads the flagged lines."
+      },
+      "next": "Queued for a full grading run.",
+      "skim": {
+        "date": "2026-07-27",
+        "files_scanned": 600,
+        "red_flags": [
+          "cloud credential read"
+        ],
+        "notes": [
+          "long base64 blob",
+          "network call"
+        ]
+      },
+      "quarantined_on": "2026-07-27"
+    },
+    {
+      "id": "teng-lin-notebooklm-py",
+      "name": "notebooklm-py",
+      "repo_url": "https://github.com/teng-lin/notebooklm-py",
+      "author": "teng-lin",
+      "category": "frontend",
+      "summary": "Unofficial Python API and agentic skill for Google NotebookLM. Full programmatic access to NotebookLM's features—including capabilities the web UI doesn't expose—via Python, CLI, and AI agents like Claude Code, Codex, an",
+      "pain_points": [
+        "generic-frontend"
+      ],
+      "status": "scouted",
+      "scouted_on": "2026-07-27",
+      "signals": {
+        "stars": 18244,
+        "forks": 2458,
+        "checked": "2026-07-27"
+      },
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: teng-lin/notebooklm-py, 18,244 stars, created 2026-01.",
+        "license": "MIT",
+        "freshness": "Last push 2026-07-27 (checked 2026-07-27) — actively maintained.",
+        "safety": "Automated safety skim (2026-07-27): flagged for human review — remote-exec pipe (desktop-extension/run_server.py). Held out of recommendations until a person reads the flagged lines."
+      },
+      "next": "Queued for a full grading run.",
+      "skim": {
+        "date": "2026-07-27",
+        "files_scanned": 600,
+        "red_flags": [
+          "remote-exec pipe"
+        ],
+        "notes": [
+          "network call",
+          "remote-exec pipe in docs"
+        ]
+      },
+      "quarantined_on": "2026-07-27"
+    },
+    {
+      "id": "eigent-ai-eigent",
+      "name": "eigent",
+      "repo_url": "https://github.com/eigent-ai/eigent",
+      "author": "eigent-ai",
+      "category": "automation",
+      "summary": "Eigent: The Open Source Cowork Desktop - Local and Free Alternative to Claude Cowork and Codex",
+      "pain_points": [],
+      "status": "scouted",
+      "scouted_on": "2026-07-27",
+      "signals": {
+        "stars": 14672,
+        "forks": 1740,
+        "checked": "2026-07-27"
+      },
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: eigent-ai/eigent, 14,672 stars, created 2025-07.",
+        "license": "Apache-2.0",
+        "freshness": "Last push 2026-07-27 (checked 2026-07-27) — actively maintained.",
+        "safety": "Automated safety skim (2026-07-27): flagged for human review — remote-exec pipe (server/start_server.bat). Held out of recommendations until a person reads the flagged lines."
+      },
+      "next": "Queued for a full grading run.",
+      "skim": {
+        "date": "2026-07-27",
+        "files_scanned": 600,
+        "red_flags": [
+          "remote-exec pipe"
+        ],
+        "notes": [
+          "cloud credential read in docs",
+          "network call",
+          "remote-exec pipe in docker"
+        ]
+      },
+      "quarantined_on": "2026-07-27"
+    },
+    {
+      "id": "yusufkaraaslan-skill-seekers",
+      "name": "Skill_Seekers",
+      "repo_url": "https://github.com/yusufkaraaslan/Skill_Seekers",
+      "author": "yusufkaraaslan",
+      "category": "docs",
+      "summary": "Convert documentation websites, GitHub repositories, and PDFs into Claude AI skills with automatic conflict detection",
+      "pain_points": [
+        "docs-drift"
+      ],
+      "status": "scouted",
+      "scouted_on": "2026-07-27",
+      "signals": {
+        "stars": 14575,
+        "forks": 1479,
+        "checked": "2026-07-27"
+      },
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: yusufkaraaslan/Skill_Seekers, 14,575 stars, created 2025-10.",
+        "license": "MIT",
+        "freshness": "Last push 2026-07-20 (checked 2026-07-27) — actively maintained.",
+        "safety": "Automated safety skim (2026-07-27): flagged for human review — remote-exec pipe (scripts/bootstrap_skill.sh). Held out of recommendations until a person reads the flagged lines."
+      },
+      "next": "Queued for a full grading run.",
+      "skim": {
+        "date": "2026-07-27",
+        "files_scanned": 600,
+        "red_flags": [
+          "remote-exec pipe"
+        ],
+        "notes": [
+          "network call",
+          "remote-exec pipe in docs"
         ]
       },
       "quarantined_on": "2026-07-27"
