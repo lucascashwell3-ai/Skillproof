@@ -203,6 +203,19 @@ kbd{font-family:var(--mono);font-size:.71rem;padding:2px 5px;border-radius:5px;b
 
 .hero-ctas{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:2px}
 .hero-ctas .btn{padding:9px 17px}
+/* intro-cycle hint: pulses the button whose shape the field is currently
+   forming. Uses box-shadow + colour only — .btn's transform is already driven
+   by the magnetic-pull custom properties, so animating it here would fight. */
+@keyframes ctaHint{
+  0%   {box-shadow:0 0 0 0 rgba(109,91,246,.42), var(--shadow-sm)}
+  45%  {box-shadow:0 0 0 7px rgba(109,91,246,0), var(--shadow-md)}
+  100% {box-shadow:0 0 0 0 rgba(109,91,246,0), var(--shadow-sm)}
+}
+.hero-ctas .btn.hint{animation:ctaHint 900ms var(--ease-out);color:var(--violet-d)}
+@media (prefers-reduced-motion: reduce){
+  .hero-ctas .btn.hint{animation:none}
+}
+
 .hero-ctas .ico-i{width:15px;flex:none;font-family:var(--mono);font-weight:700;font-style:normal;
   font-size:.95rem;line-height:1;text-align:center;color:currentColor}
 

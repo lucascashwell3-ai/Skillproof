@@ -319,6 +319,7 @@
     pointer.y = cy - rect.top;
     pointer.active = true;
     pointer.moveAt = now();
+    cancelIntro();
     wake(700);
   }
   function onPointerLeave(){ pointer.active = false; pointer.x=-9999; pointer.y=-9999; }
@@ -507,6 +508,7 @@
     var key = btn.getAttribute('data-form');
     var micro = HOVER_MAP[key];
     function enter(){
+      cancelIntro();
       if(micro) applyFormation(micro, reduced);
       if(reduced) renderStatic();
     }
@@ -519,6 +521,46 @@
     btn.addEventListener('mouseleave', leave);
     btn.addEventListener('blur', leave);
   });
+
+  // ---- intro cycle --------------------------------------------------------
+  // Runs ONCE, a second or so after the robot lands: the field steps through
+  // each button's shape, pulsing that button as it forms, then returns to the
+  // robot and goes back to sleep. It teaches what the three buttons do without
+  // the user having to discover the hover — and unlike a permanent loop it
+  // costs nothing after the first few seconds.
+  //
+  // Any real interaction cancels it immediately: a canned animation must never
+  // fight someone who has started using the page.
+  var introTimers = [];
+  var introSpent = false;
+  function cancelIntro(){
+    if(!introTimers.length) return;
+    introTimers.forEach(clearTimeout);
+    introTimers = [];
+    introSpent = true;
+  }
+  function pulseButton(formKey){
+    var b = document.querySelector('.hero-ctas [data-form="' + formKey + '"]');
+    if(!b) return;
+    b.classList.remove('hint');
+    void b.offsetWidth;          // restart the animation if it's mid-flight
+    b.classList.add('hint');
+    setTimeout(function(){ b.classList.remove('hint'); }, 900);
+  }
+  function runIntro(){
+    if(reduced || introSpent) return;
+    introSpent = true;
+    [ { at: 2200, shape: 'wrench',   btn: 'bench' },
+      { at: 3450, shape: 'install',  btn: 'carry' },
+      { at: 4700, shape: 'question', btn: 'how'   },
+      { at: 5950, shape: 'robot',    btn: null    }
+    ].forEach(function(beat){
+      introTimers.push(setTimeout(function(){
+        applyFormation(beat.shape);
+        if(beat.btn) pulseButton(beat.btn);
+      }, beat.at));
+    });
+  }
 
   // ---- scroll dissolve: hero formation releases into the real workbench ---
   // rAF-throttled, transform/opacity only. As the hero scrolls up, the
@@ -533,6 +575,7 @@
   var benchEl = document.getElementById('bench');
   var scrollTicking = false;
   function applyScroll(){
+    if(window.scrollY > 40) cancelIntro();
     wake(600); // scrolling drives the dissolve — needs full frame rate
     scrollTicking = false;
     if(reduced) return;
@@ -575,5 +618,6 @@
   } else {
     start();
     applyScroll();
+    runIntro();
   }
 })();
