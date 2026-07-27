@@ -28,7 +28,7 @@ import tempfile
 from datetime import date
 from pathlib import Path
 
-from clear_flag import load_ledger, valid_clearance
+from quarantine import load_quarantine, save_quarantine
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "docs" / "data" / "skills.json"
@@ -130,9 +130,9 @@ def main():
     args = ap.parse_args()
 
     data = json.loads(DATA.read_text())
-    ledger = load_ledger()
+    quarantined = load_quarantine()
     flagged, missed, done = [], [], 0
-    already_cleared = []
+    pulled = []
     for s in data["skills"]:
         if s.get("status") != "scouted":
             continue
@@ -158,39 +158,34 @@ def main():
             "red_flags": sorted(result["reds"]),
             "notes": sorted(result["notes"]),
         }
-        # `held` is the enforcement flag the site reads: a red-flagged entry is
-        # withheld from stacks and install plans unless a human clearance covers
-        # this exact code + flag set. Nothing here can create a clearance —
-        # only scripts/clear_flag.py, run by a person, can.
+        # A repo the scanner flags never reaches the site. It is pulled out of
+        # the published catalog into grading/quarantine.json, where it stays
+        # until a human reads the source and restores it with
+        # scripts/quarantine.py --restore. Listing something we suspect is
+        # malicious — even with a warning on it — is still advertising it.
         if result["reds"]:
-            cleared = valid_clearance(s, ledger)
-            s["skim"]["held"] = not cleared
-            if cleared:
-                rec = ledger["clearances"][s["id"]]
-                s["skim"]["cleared"] = {"date": rec["date"], "by": rec["by"],
-                                        "sha": rec["sha"], "reason": rec["reason"]}
-                already_cleared.append(s["id"])
-                print(f"  ✓ cleared (human-reviewed {rec['date']} @ {rec['sha']}): {s['id']}")
-            else:
-                s["skim"].pop("cleared", None)
-                flagged.append(s["id"])
-                print(f"  🚩 RED: {s['id']} — {result['reds']}")
+            flagged.append(s["id"])
+            pulled.append(dict(s, quarantined_on=TODAY))
+            print(f"  🚩 QUARANTINED (pulled from the site): {s['id']} — {result['reds']}")
         else:
-            s["skim"]["held"] = False
-            s["skim"].pop("cleared", None)
             print(f"  ok: {s['id']} ({result['files_scanned']} files{', notes: ' + ','.join(result['notes']) if result['notes'] else ''})")
 
+    if pulled:
+        ids = {e["id"] for e in pulled}
+        data["skills"] = [x for x in data["skills"] if x["id"] not in ids]
+        q = quarantined
+        q["entries"] = [e for e in q.get("entries", []) if e["id"] not in ids] + pulled
+        save_quarantine(q)
+
     DATA.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n")
-    print(f"\nskimmed {done}: {len(flagged)} need review, "
-          f"{len(already_cleared)} previously cleared by a human, {len(missed)} missed")
+    print(f"\nskimmed {done}: {len(flagged)} quarantined (removed from the site), {len(missed)} missed")
     # NEEDS-REVIEW is the number that matters: previously-cleared entries are
     # reported separately so the weekly signal only rises when something is
     # actually new or has changed since a human last read it.
-    print(f"NEEDS_REVIEW_COUNT={len(flagged)}")
-    if already_cleared:
-        print("cleared (unchanged since human review): " + ", ".join(already_cleared))
+    print(f"QUARANTINED_COUNT={len(flagged)}")
     if flagged:
-        print("NEEDS REVIEW (read + clear or drop before merge): " + ", ".join(flagged))
+        print("QUARANTINED (never published; restore only after reading the source): "
+              + ", ".join(flagged))
     print("now run: python3 scripts/validate_index.py")
     return 1 if flagged or missed else 0
 

@@ -318,6 +318,7 @@
     pointer.x = cx - rect.left;
     pointer.y = cy - rect.top;
     pointer.active = true;
+    pointer.moveAt = now();
     wake(700);
   }
   function onPointerLeave(){ pointer.active = false; pointer.x=-9999; pointer.y=-9999; }
@@ -330,37 +331,43 @@
   var FORCE_RADIUS = 130;
   var FORCE_STRENGTH = 2600;
 
-  // ---- idle throttling ----------------------------------------------------
-  // A hero nobody is touching should not cost a laptop its battery. Once the
-  // field has settled, drop to IDLE_FPS: ambient drift is slow enough that it
-  // still reads as floating, but we skip ~80% of the repaints. Any real
-  // activity (pointer, morph, scroll, resize) calls wake() and restores full
-  // frame rate instantly.
-  var IDLE_FPS = 12;
-  var IDLE_GAP = 1000 / IDLE_FPS;
+  // ---- sleep when nothing is happening -------------------------------------
+  // A hero nobody is touching costs nothing: once the particles stop moving we
+  // paint one last frame and cancel the animation loop entirely (0% CPU), so an
+  // idle tab drains no battery. Any real activity — pointer, hover morph,
+  // scroll, resize — calls wake() and the loop restarts at full 60fps.
+  //
+  // Crucially the field is STILL when asleep rather than crawling: a slow
+  // low-frame-rate drift reads as jank, whereas a static field reads as a
+  // finished composition. Ambient drift therefore only runs while awake.
+  // A cursor resting inside the hero is not interaction — without this, parking
+  // the mouse over the field (very common while reading) would hold the loop
+  // awake forever, since mouseleave never fires.
+  var POINTER_IDLE_MS = 1200;
+  var SETTLE_SPEED = 0.05;  // px/frame below which a particle counts as parked
+  var SETTLE_FRAMES = 30;   // consecutive calm frames before we sleep
+  var calmFrames = 0;
   var activeUntil = 0;
-  var lastDraw = 0;
+  function now(){ return window.performance ? performance.now() : Date.now(); }
   function wake(ms){
-    activeUntil = (window.performance ? performance.now() : Date.now()) + (ms || 900);
+    activeUntil = now() + (ms || 900);
+    calmFrames = 0;
+    if(!running && !reduced) start();
   }
 
   function step(t){
     if(!running) return;
-    // idle frames cost one comparison; the expensive clear+refill below is
-    // skipped entirely until the next scheduled idle repaint
-    if(t >= activeUntil && !pointer.active && dissolveT <= 0.001 && (t - lastDraw) < IDLE_GAP){
-      rafId = requestAnimationFrame(step);
-      return;
-    }
+    var pointerLive = pointer.active && (t - (pointer.moveAt || 0)) < POINTER_IDLE_MS;
+    var awake = t < activeUntil || pointerLive || dissolveT > 0.001;
     // capped so a long throttled frame can't make the spring step unstable;
     // cap stays high (200ms) so heavily rAF-throttled embedded browsers
     // still converge in wall-clock time (k*fscale max ~0.26, damp^12 — stable)
     var dt = Math.min(200, t - (lastT || t)) || 16.67;
     lastT = t;
-    lastDraw = t;
 
     ctx.clearRect(0,0,W,H);
     var lastFont = '';
+    var maxSpeed = 0;
 
     for(var i=0;i<particles.length;i++){
       var p = particles[i];
@@ -369,10 +376,12 @@
       if(p.tx !== null){
         ax = p.tx + p.disperseX*dissolveT;
         ay = p.ty + p.disperseY*dissolveT;
-      } else {
+      } else if(awake){
         var tsec = t/1000;
         ax = p.hx + Math.sin(tsec*p.driftSpeed + p.driftSeed) * p.driftAmp;
         ay = p.hy + Math.cos(tsec*p.driftSpeed*0.8 + p.driftSeed) * p.driftAmp;
+      } else {
+        ax = p.hx; ay = p.hy;   // parked: lets the spring actually converge
       }
 
       // frame-rate independent: forces and damping are normalized to a 60fps
@@ -384,7 +393,7 @@
       var fx = (ax - p.x) * k;
       var fy = (ay - p.y) * k;
 
-      if(pointer.active){
+      if(pointerLive){
         var dx = p.x - pointer.x, dy = p.y - pointer.y;
         var dist2 = dx*dx+dy*dy;
         var r2 = FORCE_RADIUS*FORCE_RADIUS;
@@ -400,6 +409,8 @@
       p.vy = (p.vy + fy) * damp;
       p.x += p.vx;
       p.y += p.vy;
+      var sp = Math.abs(p.vx) + Math.abs(p.vy);
+      if(sp > maxSpeed) maxSpeed = sp;
 
       // sizes are whole pixels, so this resolves to a handful of distinct font
       // strings — assigning ctx.font re-parses it every time, so skip repeats
@@ -409,6 +420,13 @@
       var formAlpha = 0.95 * (1 - dissolveT*0.92);
       ctx.fillStyle = p.isFormation ? hexAlpha(p.color, formAlpha) : restingInk(p);
       ctx.fillText(p.glyph, p.x, p.y);
+    }
+
+    // everything has come to rest and nothing is asking for motion -> sleep
+    if(!awake && maxSpeed < SETTLE_SPEED){
+      if(++calmFrames >= SETTLE_FRAMES){ stop(); return; }
+    } else if(awake){
+      calmFrames = 0;
     }
 
     rafId = requestAnimationFrame(step);

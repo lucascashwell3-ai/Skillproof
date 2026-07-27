@@ -32,14 +32,12 @@ jobs:
       - name: Scout new candidates (dedupes against existing)
         run: python3 scripts/scout_scrape.py --cap 15 | tee /tmp/scout.log
 
-      - name: Safety-skim (uncleared flags are held from install plans)
+      - name: Safety-skim (flagged repos are pulled off the site)
         run: |
           python3 scripts/safety_skim.py | tee /tmp/skim.log || true
-          # Count only entries that still NEED a human read. Entries a human
-          # already cleared (and whose code hasn't changed since) are reported
-          # in the body but must not inflate the title — a headline number that
-          # never falls is a number reviewers learn to ignore.
-          sed -n 's/^NEEDS_REVIEW_COUNT=//p' /tmp/skim.log | tail -1 > /tmp/redcount
+          # Flagged repos are removed from the published catalog and parked in
+          # grading/quarantine.json — the count is FYI, not a review queue.
+          sed -n 's/^QUARANTINED_COUNT=//p' /tmp/skim.log | tail -1 > /tmp/redcount
           [ -s /tmp/redcount ] || echo 0 > /tmp/redcount
 
       - name: Honesty gate
@@ -47,7 +45,7 @@ jobs:
 
       - name: Open PR if anything changed
         run: |
-          if git diff --quiet docs/data/skills.json; then
+          if git diff --quiet docs/data/skills.json grading/quarantine.json; then
             echo "no changes — nothing to PR"; exit 0
           fi
           RED=$(cat /tmp/redcount)
@@ -56,20 +54,20 @@ jobs:
           git config user.name "skillproof-refresh[bot]"
           git config user.email "noreply@github.com"
           git checkout -b "$BRANCH"
-          git add docs/data/skills.json
+          git add docs/data/skills.json grading/quarantine.json
           git commit -m "Weekly catalog refresh $DATE (signals + scout + skim)"
           git push -u origin "$BRANCH"
           TITLE="Weekly catalog refresh $DATE"
-          if [ "$RED" != "0" ]; then TITLE="$TITLE — $RED NEW skim flag(s) need a human read"; fi
+          if [ "$RED" != "0" ]; then TITLE="$TITLE — $RED repo(s) quarantined, not published"; fi
           {
             echo "Automated weekly run: signals refreshed, new candidates scouted, safety skim on everything new, honesty gate passed."
             echo
             echo '### Scout log (tail)'; echo '```'; tail -20 /tmp/scout.log; echo '```'
             echo '### Skim log (tail)';  echo '```'; tail -20 /tmp/skim.log;  echo '```'
             echo
-            echo "Entries flagged with no valid human clearance are marked \`skim.held\`: they stay listed for transparency but CANNOT be added to a stack or an install plan, and the honesty gate fails if that is ever untrue."
+            echo "Any repo the scanner flagged was REMOVED from the catalog and parked in \`grading/quarantine.json\` — it is not on the site. The honesty gate blocks the merge if a flagged repo ever appears in the published data."
             echo
-            echo "To clear one after reading its source: \`python3 scripts/clear_flag.py --id <entry-id> --reason \"...\"\`"
-            echo "A clearance is pinned to the repo's commit at review time and expires automatically when new code is pushed."
+            echo "See what's quarantined: \`python3 scripts/quarantine.py --list\`"
+            echo "Restore one only after reading its source: \`python3 scripts/quarantine.py --restore <id> --reason \"...\"\`"
           } > /tmp/pr-body.md
           gh pr create --title "$TITLE" --body-file /tmp/pr-body.md --base main --head "$BRANCH"

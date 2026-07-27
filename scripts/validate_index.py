@@ -12,7 +12,7 @@ import sys
 from datetime import date
 from pathlib import Path
 
-from clear_flag import load_ledger, valid_clearance
+
 
 DATA = Path(__file__).resolve().parent.parent / "docs" / "data" / "skills.json"
 
@@ -72,26 +72,18 @@ def main() -> int:
 
     seen_ids = set()
     graded_count = 0
-    ledger = load_ledger()
     for s in data["skills"]:
         sid = s.get("id", "(unnamed)")
 
-        # --- safety hold: the site promises flagged entries are "held from
-        # recommendations until reviewed". This is where that promise is
-        # enforced on the data, so it cannot quietly become untrue.
+        # --- THE SAFETY RULE: nothing the scanner flagged may be published.
+        # Flagged repos are pulled into grading/quarantine.json by safety_skim
+        # and only a human can restore one. If a flagged entry ever appears in
+        # the published catalog, that is a blocking error — no warning labels,
+        # no exceptions.
         skim = s.get("skim") or {}
-        reds = skim.get("red_flags") or []
-        if reds:
-            cleared = valid_clearance(s, ledger)
-            if skim.get("held") is not (not cleared):
-                E(f"{sid}: red-flagged but skim.held is {skim.get('held')!r}; "
-                  f"expected {not cleared} (a clearance must come from scripts/clear_flag.py)")
-            if not cleared and s.get("install", {}).get("command"):
-                E(f"{sid}: red-flagged and uncleared, but ships an install command — "
-                  f"a held entry must never be installable")
-            if skim.get("cleared") and not cleared:
-                E(f"{sid}: carries a stale clearance receipt — the repo's code or its "
-                  f"flags changed since a human reviewed it; re-review required")
+        if skim.get("red_flags"):
+            E(f"{sid}: carries safety red flags {skim['red_flags']} but is in the published "
+              f"catalog — flagged repos must be quarantined, never listed")
         if not KEBAB.match(sid):
             E(f"{sid}: id not kebab-case")
         if sid in seen_ids:
