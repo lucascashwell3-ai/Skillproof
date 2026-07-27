@@ -19,7 +19,11 @@
   var ctx = canvas.getContext('2d');
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  var DPR = Math.min(window.devicePixelRatio || 1, 2);
+  // capped at 1.5, not 2: the canvas is cleared and refilled every frame, so
+  // pixel count is the single biggest cost here. At DPR 2 a 1440x900 hero is a
+  // 4.6-megapixel per-frame repaint; 1.5 cuts that ~44% with no visible loss on
+  // glyphs this small.
+  var DPR = Math.min(window.devicePixelRatio || 1, 1.5);
   var W = 0, H = 0;
   var running = false;
   var lastT = 0;
@@ -204,7 +208,7 @@
       // scroll-release drift vector (upward-biased) — used once dissolveT>0
       disperseX: rand(-160, 160),
       disperseY: rand(-220, -40),
-      size: rand(11, 15)
+      size: Math.round(rand(11, 15))
     };
   }
 
@@ -259,6 +263,7 @@
 
   function applyFormation(key, instant){
     currentFormationKey = key;
+    wake(2600); // let an assembly or morph converge at full frame rate
     var box = getVisualBox();
     var cx = box.cx, cy = box.cy;
 
@@ -313,6 +318,7 @@
     pointer.x = cx - rect.left;
     pointer.y = cy - rect.top;
     pointer.active = true;
+    wake(700);
   }
   function onPointerLeave(){ pointer.active = false; pointer.x=-9999; pointer.y=-9999; }
 
@@ -324,15 +330,37 @@
   var FORCE_RADIUS = 130;
   var FORCE_STRENGTH = 2600;
 
+  // ---- idle throttling ----------------------------------------------------
+  // A hero nobody is touching should not cost a laptop its battery. Once the
+  // field has settled, drop to IDLE_FPS: ambient drift is slow enough that it
+  // still reads as floating, but we skip ~80% of the repaints. Any real
+  // activity (pointer, morph, scroll, resize) calls wake() and restores full
+  // frame rate instantly.
+  var IDLE_FPS = 12;
+  var IDLE_GAP = 1000 / IDLE_FPS;
+  var activeUntil = 0;
+  var lastDraw = 0;
+  function wake(ms){
+    activeUntil = (window.performance ? performance.now() : Date.now()) + (ms || 900);
+  }
+
   function step(t){
     if(!running) return;
+    // idle frames cost one comparison; the expensive clear+refill below is
+    // skipped entirely until the next scheduled idle repaint
+    if(t >= activeUntil && !pointer.active && dissolveT <= 0.001 && (t - lastDraw) < IDLE_GAP){
+      rafId = requestAnimationFrame(step);
+      return;
+    }
     // capped so a long throttled frame can't make the spring step unstable;
     // cap stays high (200ms) so heavily rAF-throttled embedded browsers
     // still converge in wall-clock time (k*fscale max ~0.26, damp^12 — stable)
     var dt = Math.min(200, t - (lastT || t)) || 16.67;
     lastT = t;
+    lastDraw = t;
 
     ctx.clearRect(0,0,W,H);
+    var lastFont = '';
 
     for(var i=0;i<particles.length;i++){
       var p = particles[i];
@@ -373,8 +401,11 @@
       p.x += p.vx;
       p.y += p.vy;
 
+      // sizes are whole pixels, so this resolves to a handful of distinct font
+      // strings — assigning ctx.font re-parses it every time, so skip repeats
       var fsize = p.isFormation ? p.size*1.8 : p.size;
-      ctx.font = (p.isFormation ? '700 ' : '500 ') + fsize + 'px "JetBrains Mono", monospace';
+      var font = (p.isFormation ? '700 ' : '500 ') + fsize + 'px "JetBrains Mono", monospace';
+      if(font !== lastFont){ ctx.font = font; lastFont = font; }
       var formAlpha = 0.95 * (1 - dissolveT*0.92);
       ctx.fillStyle = p.isFormation ? hexAlpha(p.color, formAlpha) : restingInk(p);
       ctx.fillText(p.glyph, p.x, p.y);
@@ -445,6 +476,7 @@
   window.addEventListener('resize', function(){
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(function(){
+      wake(1200);
       layout();
       if(reduced) renderStatic();
     }, 120);
@@ -483,6 +515,7 @@
   var benchEl = document.getElementById('bench');
   var scrollTicking = false;
   function applyScroll(){
+    wake(600); // scrolling drives the dissolve — needs full frame rate
     scrollTicking = false;
     if(reduced) return;
     var rect = wrap.getBoundingClientRect();

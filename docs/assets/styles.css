@@ -780,6 +780,12 @@ kbd{font-family:var(--mono);font-size:.71rem;padding:2px 5px;border-radius:5px;b
   background:linear-gradient(150deg, rgba(41,35,101,.97), rgba(52,40,118,.95));
   box-shadow:inset 0 1px 0 rgba(255,255,255,.12)}
 .promptpanel textarea:focus-visible{outline:none;box-shadow:inset 0 1px 0 rgba(255,255,255,.12), 0 0 0 2px var(--violet)}
+/* held: an entry the screen flagged and no human has cleared. Reads as a
+   deliberate lock, not a broken button — it replaces Add entirely. */
+.held{display:inline-flex;align-items:center;gap:6px;padding:7px 13px;border-radius:var(--r-pill);
+  font-size:.78rem;font-weight:600;color:var(--amber-d);background:rgba(154,91,8,.08);
+  border:1px solid rgba(154,91,8,.22);white-space:nowrap;cursor:help}
+
 .prompt-actions{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
 .prompt-status{font-size:.76rem;color:var(--mint-d);min-height:1.2em}
 

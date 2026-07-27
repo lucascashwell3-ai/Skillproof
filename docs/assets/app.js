@@ -287,6 +287,14 @@
         it.grade + " (" + it.score_total + "/24).";
     } else if (it.skim && !(it.skim.red_flags || []).length) {
       sec = "Automatically screened for known malicious patterns — none found. Not yet hand-tested by Skillproof; review the source before installing.";
+    } else if (it.skim && it.skim.held) {
+      sec = "Flagged by our automated screen (" + (it.skim.red_flags || []).join(", ") +
+        ") and held: it cannot be added to a stack or an install plan until a human reads the source.";
+    } else if (it.skim && it.skim.cleared) {
+      sec = "Flagged by our automated screen (" + (it.skim.red_flags || []).join(", ") +
+        "), then read by a human on " + it.skim.cleared.date + " at commit " + it.skim.cleared.sha +
+        " and judged safe: " + it.skim.cleared.reason +
+        " This clearance expires automatically if the repo pushes new code.";
     } else if (it.skim) {
       sec = "Flagged by our automated screen — held from recommendations until reviewed.";
     } else {
@@ -335,12 +343,17 @@
       "</div>" +
       '<div class="row-right">' +
         '<span class="chev" aria-hidden="true"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>' +
-        '<button class="add" type="button" data-add="' + it.id + '" data-state="' + (inTray ? "added" : "idle") + '" aria-label="' +
-          (inTray ? "In tray" : "Add " + esc(it.name) + " to tray") + '">' +
-          '<span class="add-fill" aria-hidden="true"></span>' +
-          '<span class="ic" aria-hidden="true">' + (inTray ? CHECK : '<span class="plus"></span>') + "</span>" +
-          '<span class="lbl">' + (inTray ? "In tray" : "Add") + "</span>" +
-        "</button>" +
+        (isHeld(it)
+          ? '<span class="held" title="Our automated screen flagged this repo. It stays listed for transparency, but it cannot be added to a stack until a human has read the source.">' +
+              '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="10.5" width="16" height="10" rx="2.5"/><path d="M8 10.5V7a4 4 0 0 1 8 0v3.5"/></svg>' +
+              'Held' +
+            "</span>"
+          : '<button class="add" type="button" data-add="' + it.id + '" data-state="' + (inTray ? "added" : "idle") + '" aria-label="' +
+            (inTray ? "In tray" : "Add " + esc(it.name) + " to tray") + '">' +
+            '<span class="add-fill" aria-hidden="true"></span>' +
+            '<span class="ic" aria-hidden="true">' + (inTray ? CHECK : '<span class="plus"></span>') + "</span>" +
+            '<span class="lbl">' + (inTray ? "In tray" : "Add") + "</span>" +
+          "</button>") +
       "</div>" +
     "</div>";
   }
@@ -603,9 +616,19 @@
     ], { duration: 600, easing: "cubic-bezier(.34,.9,.3,1)" });
     anim.onfinish = function () { f.remove(); done(); };
   }
+  /* An entry the automated screen red-flagged, with no human clearance
+     covering its current code, is HELD: the catalog still lists it (hiding it
+     would be dishonest) but it cannot enter a stack or an install plan. The
+     site says "held from recommendations until reviewed" — this is what makes
+     that true rather than decorative. */
+  function isHeld(it) {
+    return !!(it && it.skim && it.skim.held);
+  }
+
   function addItem(id, srcBtn) {
     if (state.tray.indexOf(id) > -1) return;
     var it = byId[id];
+    if (isHeld(it)) return; // never addable — belt and braces behind the UI
     var btn = srcBtn || $('[data-add="' + id + '"]');
     if (btn) {
       btn.dataset.state = "added";

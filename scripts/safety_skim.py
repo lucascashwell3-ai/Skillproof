@@ -28,6 +28,8 @@ import tempfile
 from datetime import date
 from pathlib import Path
 
+from clear_flag import load_ledger, valid_clearance
+
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "docs" / "data" / "skills.json"
 TODAY = date.today().isoformat()
@@ -128,7 +130,9 @@ def main():
     args = ap.parse_args()
 
     data = json.loads(DATA.read_text())
+    ledger = load_ledger()
     flagged, missed, done = [], [], 0
+    already_cleared = []
     for s in data["skills"]:
         if s.get("status") != "scouted":
             continue
@@ -154,16 +158,39 @@ def main():
             "red_flags": sorted(result["reds"]),
             "notes": sorted(result["notes"]),
         }
+        # `held` is the enforcement flag the site reads: a red-flagged entry is
+        # withheld from stacks and install plans unless a human clearance covers
+        # this exact code + flag set. Nothing here can create a clearance —
+        # only scripts/clear_flag.py, run by a person, can.
         if result["reds"]:
-            flagged.append(s["id"])
-            print(f"  🚩 RED: {s['id']} — {result['reds']}")
+            cleared = valid_clearance(s, ledger)
+            s["skim"]["held"] = not cleared
+            if cleared:
+                rec = ledger["clearances"][s["id"]]
+                s["skim"]["cleared"] = {"date": rec["date"], "by": rec["by"],
+                                        "sha": rec["sha"], "reason": rec["reason"]}
+                already_cleared.append(s["id"])
+                print(f"  ✓ cleared (human-reviewed {rec['date']} @ {rec['sha']}): {s['id']}")
+            else:
+                s["skim"].pop("cleared", None)
+                flagged.append(s["id"])
+                print(f"  🚩 RED: {s['id']} — {result['reds']}")
         else:
+            s["skim"]["held"] = False
+            s["skim"].pop("cleared", None)
             print(f"  ok: {s['id']} ({result['files_scanned']} files{', notes: ' + ','.join(result['notes']) if result['notes'] else ''})")
 
     DATA.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n")
-    print(f"\nskimmed {done}: {len(flagged)} red-flagged, {len(missed)} missed")
+    print(f"\nskimmed {done}: {len(flagged)} need review, "
+          f"{len(already_cleared)} previously cleared by a human, {len(missed)} missed")
+    # NEEDS-REVIEW is the number that matters: previously-cleared entries are
+    # reported separately so the weekly signal only rises when something is
+    # actually new or has changed since a human last read it.
+    print(f"NEEDS_REVIEW_COUNT={len(flagged)}")
+    if already_cleared:
+        print("cleared (unchanged since human review): " + ", ".join(already_cleared))
     if flagged:
-        print("RED-FLAGGED (review + pull before merge): " + ", ".join(flagged))
+        print("NEEDS REVIEW (read + clear or drop before merge): " + ", ".join(flagged))
     print("now run: python3 scripts/validate_index.py")
     return 1 if flagged or missed else 0
 
