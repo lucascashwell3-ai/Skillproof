@@ -707,30 +707,30 @@ kbd{font-family:var(--mono);font-size:.71rem;padding:2px 5px;border-radius:5px;b
 .vitem a{color:var(--violet-d)}
 
 /* take it with you — rotating demo stage (no container box; the window floats) */
-.demo{margin-bottom:26px}
-.demo-stage{position:relative;height:236px}
+.demo{margin-bottom:30px}
+.demo-stage{position:relative;height:322px}
 .demo-scene{position:absolute;inset:0;display:grid;place-items:center;padding:18px;
   opacity:0;transform:translateY(8px) scale(.98);pointer-events:none;
   transition:opacity 480ms var(--ease-out), transform var(--d-gentle) var(--sp-gentle)}
 .demo-scene.on{opacity:1;transform:none}
-.demo-win{width:min(580px,100%);border-radius:var(--r-md);background:rgba(255,255,255,.94);
+.demo-win{width:min(760px,100%);border-radius:var(--r-md);background:rgba(255,255,255,.94);
   box-shadow:inset 0 0 0 1px rgba(255,255,255,1), 0 3px 8px rgba(22,18,58,.05), 0 22px 48px -20px rgba(75,55,216,.5);overflow:hidden}
-.demo-bar{font-family:var(--mono);font-size:.66rem;color:var(--ink-3);padding:6px 12px;
+.demo-bar{font-family:var(--mono);font-size:.74rem;color:var(--ink-3);padding:6px 12px;
   background:rgba(246,247,252,.9);border-bottom:1px solid rgba(22,18,58,.06)}
 .demo-chat{display:flex;align-items:center;gap:9px;padding:12px}
 .demo-input{flex:1;display:flex;align-items:center;min-width:0;padding:9px 12px;border-radius:var(--r-pill);
   background:#fff;box-shadow:inset 0 0 0 1.5px rgba(109,91,246,.4);
-  font-size:.78rem;color:var(--ink-2);white-space:nowrap;overflow:hidden}
+  font-size:.86rem;color:var(--ink-2);white-space:nowrap;overflow:hidden}
 .demo-send{width:26px;height:26px;border-radius:50%;flex:none;display:grid;place-items:center;
   background:linear-gradient(135deg,#7C5CFA,#4E7BF7)}
 .demo-scene.on .demo-send{animation:sendpulse 900ms var(--sp-bouncy) 2.1s both}
 @keyframes sendpulse{0%{transform:scale(1)}40%{transform:scale(1.22)}100%{transform:scale(1)}}
 .demo-msgs{display:flex;flex-direction:column;gap:6px;padding:11px 12px 4px}
-.demo-sent{align-self:flex-end;max-width:78%;padding:7px 12px;border-radius:14px 14px 4px 14px;
-  font-size:.74rem;color:#fff;background:linear-gradient(135deg,#7C5CFA,#4E7BF7);
+.demo-sent{align-self:flex-end;max-width:78%;padding:9px 14px;border-radius:14px 14px 4px 14px;
+  font-size:.84rem;color:#fff;background:linear-gradient(135deg,#7C5CFA,#4E7BF7);
   box-shadow:0 4px 12px -6px rgba(78,60,220,.6);opacity:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .demo-scene.on .demo-sent{animation:tin var(--d-bouncy) var(--sp-bouncy) 2.35s both}
-.demo-reply{align-self:flex-start;max-width:82%;padding:7px 12px;border-radius:14px 14px 14px 4px;
+.demo-reply{align-self:flex-start;max-width:82%;padding:9px 14px;border-radius:14px 14px 14px 4px;
   font-size:.74rem;color:var(--ink-2);
   background:rgba(109,91,246,.08);box-shadow:inset 0 0 0 1px rgba(109,91,246,.16);opacity:0}
 .demo-reply b{color:var(--ink);font-weight:640}
@@ -742,7 +742,7 @@ kbd{font-family:var(--mono);font-size:.71rem;padding:2px 5px;border-radius:5px;b
 @keyframes demoflush{to{opacity:0;max-width:0}}
 .demo-dark{background:linear-gradient(150deg, rgba(41,35,101,.98), rgba(52,40,118,.96))}
 .demo-dark .demo-bar{background:rgba(255,255,255,.06);color:#A8A2D8;border-bottom-color:rgba(255,255,255,.08)}
-.demo-term{padding:12px 14px;font-family:var(--mono);font-size:.74rem;line-height:1.8;color:#C7C2F2}
+.demo-term{padding:12px 14px;font-family:var(--mono);font-size:.82rem;line-height:1.8;color:#C7C2F2}
 .demo-term .k{color:#7DE3F4}
 .demo-term .ok{color:#A9F5C9}
 .demo-scene .type{display:inline-block;max-width:0;overflow:hidden;white-space:nowrap;vertical-align:bottom}
@@ -873,4 +873,10 @@ footer{margin-top:10px;padding:42px 0 20px;
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;
     transition-duration:.001ms !important;scroll-behavior:auto !important}
+  /* A blanket transition kill turns every state change into a jump cut. What
+     reduced-motion actually asks us to remove is vestibular movement — travel,
+     parallax, spin — not cross-fades. So opacity-only fades are restored here,
+     which is what keeps the hero morphs and the demo from snapping. */
+  .demo-scene{transition-duration:260ms !important;transition-property:opacity !important;transform:none !important}
+  #field{transition-duration:190ms !important;transition-property:opacity !important}
 }

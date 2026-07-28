@@ -795,7 +795,7 @@
   /* ======================= take-it-with-you demo (rotates 3 scenes) ======================= */
   function startDemo() {
     var demo = $("#demo");
-    if (!demo || RM.matches) return; // reduced motion: static first scene, no cycling
+    if (!demo) return;
     var scenes = $$(".demo-scene", demo);
     var tabs = $$(".demo-tabs span", demo);
     var ways = $$(".way[data-way]");
@@ -818,7 +818,12 @@
       clearInterval(timer);
       timer = setInterval(function () { show((cur + 1) % scenes.length); }, 5200);
     }
-    show(0); arm();
+    show(0);
+    // Reduced motion: show the first scene and stop. The old code returned
+    // BEFORE show(0), so every scene stayed at opacity:0 and this whole section
+    // rendered as an empty gap for anyone with "reduce motion" enabled.
+    if (RM.matches) return;
+    arm();
     tabs.forEach(function (t, k) {
       t.addEventListener("click", function () { show(k); arm(); }); // manual pick restarts the clock
     });

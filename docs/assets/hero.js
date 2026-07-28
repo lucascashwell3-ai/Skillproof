@@ -509,18 +509,34 @@
     var micro = HOVER_MAP[key];
     function enter(){
       cancelIntro();
-      if(micro) applyFormation(micro, reduced);
-      if(reduced) renderStatic();
+      if(!micro) return;
+      if(reduced) return swapReduced(micro);
+      applyFormation(micro, false);
     }
     function leave(){
-      applyFormation('robot', reduced);
-      if(reduced) renderStatic();
+      if(reduced) return swapReduced('robot');
+      applyFormation('robot', false);
     }
     btn.addEventListener('mouseenter', enter);
     btn.addEventListener('focus', enter);
     btn.addEventListener('mouseleave', leave);
     btn.addEventListener('blur', leave);
   });
+
+  // Reduced motion still deserves a transition — it just can't be travel. The
+  // shape swaps behind an opacity cross-fade (see the reduced-motion block in
+  // styles.css, which re-enables opacity transitions for #field): no particle
+  // movement, but no jump cut either.
+  var swapTimer = null;
+  function swapReduced(key){
+    clearTimeout(swapTimer);
+    canvas.style.opacity = '0';
+    swapTimer = setTimeout(function(){
+      applyFormation(key, true);
+      renderStatic();
+      canvas.style.opacity = '1';
+    }, 190);
+  }
 
   // ---- intro cycle --------------------------------------------------------
   // Runs ONCE, a second or so after the robot lands: the field steps through
@@ -575,6 +591,7 @@
   var benchEl = document.getElementById('bench');
   var scrollTicking = false;
   function applyScroll(){
+    if(reduced) return;   // the dissolve is travel — exactly what reduce-motion opts out of
     if(window.scrollY > 40) cancelIntro();
     wake(600); // scrolling drives the dissolve — needs full frame rate
     scrollTicking = false;
