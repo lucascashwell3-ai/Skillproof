@@ -16,7 +16,11 @@
   var wrap = document.getElementById('fieldWrap');
   var canvas = document.getElementById('field');
   if(!wrap || !canvas) return;
-  var ctx = canvas.getContext('2d');
+  // canvas 2D can be absent (very old browser) or refused (hardened/enterprise
+  // profiles, some privacy extensions). Bail to the centered-title fallback
+  // rather than throwing halfway through setup and leaving a dead half-hero.
+  var ctx = canvas.getContext && canvas.getContext('2d');
+  if(!ctx){ wrap.classList.add('no-field'); return; }
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   // capped at 1.5, not 2: the canvas is cleared and refilled every frame, so
@@ -319,7 +323,12 @@
     pointer.y = cy - rect.top;
     pointer.active = true;
     pointer.moveAt = now();
-    cancelIntro();
+    // NOTE: moving the cursor deliberately does NOT cancel the intro cycle.
+    // The hero wrap is the full viewport, so any mouse twitch in the first six
+    // seconds used to kill the intro before it ever played — which is exactly
+    // what happened in practice: nobody ever saw it. Pushing particles around
+    // and watching the shapes cycle coexist fine. Only real intent cancels:
+    // hovering a CTA, focusing one, or scrolling away.
     wake(700);
   }
   function onPointerLeave(){ pointer.active = false; pointer.x=-9999; pointer.y=-9999; }
@@ -480,11 +489,17 @@
     if(reduced) return;
     if(isVisible && !isHidden) start(); else stop();
   }
-  var io = new IntersectionObserver(function(entries){
-    entries.forEach(function(e){ isVisible = e.isIntersecting; });
-    syncRunning();
-  }, {threshold: 0.01});
-  io.observe(wrap);
+  // Feature-detected, not assumed. Without this guard a browser lacking
+  // IntersectionObserver threw here and took the WHOLE hero down — blank canvas,
+  // no particles, no morphs. The observer is an optimisation (don't animate
+  // offscreen), so its absence must cost a little battery, never the visual.
+  if(window.IntersectionObserver){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ isVisible = e.isIntersecting; });
+      syncRunning();
+    }, {threshold: 0.01});
+    io.observe(wrap);
+  }
 
   document.addEventListener('visibilitychange', function(){
     isHidden = document.hidden;
@@ -503,7 +518,9 @@
 
   // ---- hero button hover -> micro formation ------------------------------
   var HOVER_MAP = { bench:'wrench', carry:'install', how:'question' };
-  var hoverButtons = document.querySelectorAll('.hero-ctas [data-form]');
+  // slice, not NodeList.forEach — the latter is missing on older engines and
+  // would throw here, taking the rest of the hero down with it
+  var hoverButtons = Array.prototype.slice.call(document.querySelectorAll('.hero-ctas [data-form]'));
   hoverButtons.forEach(function(btn){
     var key = btn.getAttribute('data-form');
     var micro = HOVER_MAP[key];
@@ -566,10 +583,12 @@
   function runIntro(){
     if(reduced || introSpent) return;
     introSpent = true;
-    [ { at: 2200, shape: 'wrench',   btn: 'bench' },
-      { at: 3450, shape: 'install',  btn: 'carry' },
-      { at: 4700, shape: 'question', btn: 'how'   },
-      { at: 5950, shape: 'robot',    btn: null    }
+    // starts sooner (the robot has landed by ~1.2s) and holds each shape 1.4s,
+    // long enough to read the form and glance at the button pulsing with it
+    [ { at: 1500, shape: 'wrench',   btn: 'bench' },
+      { at: 2900, shape: 'install',  btn: 'carry' },
+      { at: 4300, shape: 'question', btn: 'how'   },
+      { at: 5700, shape: 'robot',    btn: null    }
     ].forEach(function(beat){
       introTimers.push(setTimeout(function(){
         applyFormation(beat.shape);
@@ -628,13 +647,23 @@
   }
 
   // ---- init ---------------------------------------------------------------
-  layout();
-  if(reduced){
-    renderStatic();
-    if(benchEl){ benchEl.style.opacity = ''; benchEl.style.transform = ''; }
-  } else {
-    start();
-    applyScroll();
-    runIntro();
+  // Everything above degrades on its own; this is the last line of defence. If
+  // the field can't be built at all on some machine we've never seen, the hero
+  // must still look deliberate — .no-field centers the title over the aurora
+  // instead of leaving an empty right half that reads as a broken page.
+  try {
+    layout();
+    if(reduced){
+      renderStatic();
+      if(benchEl){ benchEl.style.opacity = ''; benchEl.style.transform = ''; }
+    } else {
+      start();
+      applyScroll();
+      runIntro();
+    }
+  } catch(err){
+    stop();
+    wrap.classList.add('no-field');
+    if(window.console && console.warn) console.warn('Skillproof hero: field disabled —', err);
   }
 })();

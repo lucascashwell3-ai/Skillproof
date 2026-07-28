@@ -50,7 +50,13 @@
 
 *{margin:0;padding:0;box-sizing:border-box}
 [hidden]{display:none !important}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+/* scroll-padding-top: the nav is sticky, so a bare anchor jump parks the
+   section's first row underneath it. This reserves the nav's height plus a
+   breath of space, for every in-page link on the site at once. */
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;scroll-padding-top:82px}
+/* the workbench's first row is a card edge, not a heading — it wants a touch
+   more clearance than a section title does */
+#bench{scroll-margin-top:16px}
 body{font-family:var(--font);color:var(--ink);background:#F6F7FC;line-height:1.55;
   -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden}
 h1,h2,h3,h4{line-height:1.08;letter-spacing:-.032em;text-wrap:balance;font-weight:700}
@@ -201,6 +207,16 @@ kbd{font-family:var(--mono);font-size:.71rem;padding:2px 5px;border-radius:5px;b
 .hero-visual{align-self:stretch;pointer-events:none}
 .hero-panel{width:100%;max-width:500px;text-align:left;justify-self:end}
 
+/* Graceful failure. If the particle field can't run at all — canvas refused by
+   a hardened browser profile, or any unforeseen throw — hero.js sets .no-field
+   and the hero becomes a single centered column over the aurora. Degraded, but
+   deliberately composed: an empty right half is what reads as a broken page. */
+.field-wrap.no-field #field{display:none}
+.field-wrap.no-field .hero-split{grid-template-columns:1fr;min-height:min(46vh,460px)}
+.field-wrap.no-field .hero-visual{display:none}
+.field-wrap.no-field .hero-panel{max-width:640px;justify-self:center;text-align:center}
+.field-wrap.no-field .hero-ctas{justify-content:center}
+
 .hero-ctas{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:2px}
 .hero-ctas .btn{padding:9px 17px}
 /* intro-cycle hint: pulses the button whose shape the field is currently
@@ -256,6 +272,30 @@ kbd{font-family:var(--mono);font-size:.71rem;padding:2px 5px;border-radius:5px;b
 .setup-row .chips{flex:1 1 380px}
 .setup-row .btn{flex:none;margin-left:auto}
 .chips-lg .chip{font-size:.83rem;padding:7px 11px 7px 8px}
+
+/* plain-language route into the same eleven areas */
+.setup-say{display:flex;align-items:center;gap:9px;margin:0 15px 0;padding:7px 8px 7px 12px;
+  border-radius:var(--r-pill);background:rgba(255,255,255,.72);
+  box-shadow:inset 0 0 0 1.5px rgba(109,91,246,.22);
+  transition:box-shadow 260ms var(--ease-out), background-color 260ms var(--ease-out)}
+.setup-say:focus-within{background:#fff;box-shadow:inset 0 0 0 1.5px rgba(109,91,246,.5), var(--shadow-sm)}
+.setup-say .say-ico{flex:none;display:grid;place-items:center;color:var(--violet-d);opacity:.72}
+.setup-say input{flex:1;min-width:0;border:0;background:none;outline:none;font:inherit;
+  font-size:.865rem;color:var(--ink);padding:5px 0}
+.setup-say input::placeholder{color:var(--ink-4);font-weight:440}
+.setup-say .btn{flex:none}
+.setup-say input.miss{animation:saymiss 520ms var(--ease-out)}
+@keyframes saymiss{0%,100%{transform:translateX(0)}25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+
+.setup-egs{display:flex;align-items:center;gap:6px;flex-wrap:wrap;padding:9px 15px 13px}
+.eg-lab{font-size:.72rem;font-weight:600;color:var(--ink-4);letter-spacing:.01em}
+.eg{font-size:.745rem;font-weight:480;color:var(--ink-3);cursor:pointer;border:0;
+  padding:4px 11px;border-radius:var(--r-pill);background:rgba(255,255,255,.6);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.85);
+  transition:color 220ms var(--ease-out), background-color 220ms var(--ease-out), transform 220ms var(--ease-out)}
+.eg:hover{color:var(--violet-d);background:#fff;transform:translateY(-1px)}
+.eg:focus-visible{outline:none;box-shadow:0 0 0 2px #fff, 0 0 0 4px var(--violet)}
+.setup.collapsed .setup-say,.setup.collapsed .setup-egs{display:none}
 
 .setup-body{display:grid;grid-template-columns:.9fr 1.7fr .8fr;gap:10px 18px;padding:9px 14px 13px}
 .grp-lab{display:flex;align-items:center;gap:6px;font-size:.655rem;font-weight:700;letter-spacing:.09em;
@@ -706,14 +746,43 @@ kbd{font-family:var(--mono);font-size:.71rem;padding:2px 5px;border-radius:5px;b
 .vitem p{font-size:.84rem;color:var(--ink-2);font-weight:440}
 .vitem a{color:var(--violet-d)}
 
-/* take it with you — rotating demo stage (no container box; the window floats) */
-.demo{margin-bottom:30px}
-.demo-stage{position:relative;height:322px}
-.demo-scene{position:absolute;inset:0;display:grid;place-items:center;padding:18px;
+/* take it with you — chooser on the left, live preview on the right.
+   The window used to float alone in a full-bleed band with three bare pills
+   under it and three unequal cards under those; the band was mostly empty and
+   the same three options appeared twice. Now: one row, one selection, one card. */
+.carry{display:grid;grid-template-columns:minmax(0,330px) minmax(0,1fr);gap:22px;
+  align-items:center;margin-bottom:20px}
+.carry-pick{display:flex;flex-direction:column;gap:8px}
+.pick{position:relative;isolation:isolate;overflow:hidden;text-align:left;cursor:pointer;
+  display:flex;flex-direction:column;gap:3px;padding:13px 15px;border:0;border-radius:var(--r-md);
+  background:linear-gradient(160deg, rgba(255,255,255,.72), rgba(255,255,255,.48));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.9), inset 0 0 0 1px rgba(255,255,255,.6);
+  transition:transform var(--d-gentle) var(--sp-gentle), box-shadow 280ms var(--ease-out),
+    background-color 280ms var(--ease-out)}
+.pick:hover{transform:translateY(-2px);background:rgba(255,255,255,.86)}
+.pick:focus-visible{outline:none;box-shadow:0 0 0 2px #fff, 0 0 0 4px var(--violet)}
+.pick-t{font-size:.92rem;font-weight:660;letter-spacing:-.02em;color:var(--ink)}
+.pick-s{font-size:.765rem;font-weight:450;line-height:1.45;color:var(--ink-3)}
+/* the active row carries a violet edge and a progress hairline that fills over
+   the dwell time, so the rotation is legible instead of just happening to you */
+.pick[aria-selected="true"]{background:rgba(255,255,255,.96);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,1), inset 0 0 0 1.5px rgba(109,91,246,.45),
+    0 6px 18px -10px rgba(75,55,216,.55)}
+.pick[aria-selected="true"] .pick-t{color:var(--violet-d)}
+.pick::after{content:"";position:absolute;left:0;bottom:0;height:2px;width:100%;
+  transform:scaleX(0);transform-origin:left;background:linear-gradient(90deg,#6D5BF6,#06B6D4)}
+.pick.timing::after{animation:pickfill var(--dwell,8200ms) linear forwards}
+@keyframes pickfill{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@media (prefers-reduced-motion: reduce){.pick.timing::after{animation:none}}
+
+.demo{margin-bottom:26px}
+.demo-stage{position:relative;height:268px}
+.demo-scene{position:absolute;inset:0;display:grid;place-items:center;padding:6px;
   opacity:0;transform:translateY(8px) scale(.98);pointer-events:none;
   transition:opacity 480ms var(--ease-out), transform var(--d-gentle) var(--sp-gentle)}
 .demo-scene.on{opacity:1;transform:none}
-.demo-win{width:min(760px,100%);border-radius:var(--r-md);background:rgba(255,255,255,.94);
+/* fills its column instead of floating as a fixed 760px slab in a wide band */
+.demo-win{width:100%;max-width:860px;border-radius:var(--r-md);background:rgba(255,255,255,.94);
   box-shadow:inset 0 0 0 1px rgba(255,255,255,1), 0 3px 8px rgba(22,18,58,.05), 0 22px 48px -20px rgba(75,55,216,.5);overflow:hidden}
 .demo-bar{font-family:var(--mono);font-size:.74rem;color:var(--ink-3);padding:6px 12px;
   background:rgba(246,247,252,.9);border-bottom:1px solid rgba(22,18,58,.06)}
@@ -760,23 +829,24 @@ kbd{font-family:var(--mono);font-size:.71rem;padding:2px 5px;border-radius:5px;b
 .demo-scene.on .demo-chips span:nth-child(1){animation:capin var(--d-bouncy) var(--sp-bouncy) 2.5s both}
 .demo-scene.on .demo-chips span:nth-child(2){animation:capin var(--d-bouncy) var(--sp-bouncy) 2.7s both}
 .demo-scene.on .demo-chips span:nth-child(3){animation:capin var(--d-bouncy) var(--sp-bouncy) 2.9s both}
-.demo-tabs{display:flex;gap:6px;justify-content:center;padding:0 14px 13px;flex-wrap:wrap}
-.demo-tabs span{font-size:.76rem;font-weight:580;color:var(--ink-3);padding:5px 13px;border-radius:var(--r-pill);
-  cursor:pointer;background:rgba(255,255,255,.5);box-shadow:inset 0 0 0 1px rgba(255,255,255,.8);
-  transition:color 240ms var(--ease-out), box-shadow 240ms var(--ease-out), background-color 240ms}
-.demo-tabs span.on{color:var(--violet-d);background:rgba(255,255,255,.95);
-  box-shadow:inset 0 0 0 1px rgba(109,91,246,.4), 0 4px 12px -6px rgba(75,55,216,.5)}
-.way{transition:box-shadow 400ms var(--ease-out), transform var(--d-gentle) var(--sp-gentle)}
-.way.demo-live{box-shadow:inset 0 1px 0 rgba(255,255,255,1), inset 0 0 0 1.5px rgba(109,91,246,.45), var(--shadow-md)}
-
-/* take it with you */
-.ways{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;align-items:start}
-.way{position:relative;padding:22px 20px;border-radius:var(--r-lg);display:flex;flex-direction:column;gap:10px;
+/* one card at a time — the one the chooser above is pointing at */
+.ways{display:block}
+.way{display:none}
+.way.on{display:grid;grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);gap:26px;align-items:start;
+  animation:wayin 380ms var(--ease-out) both}
+@keyframes wayin{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion: reduce){
+  .way.on{animation-duration:240ms;animation-name:wayfade}
+  @keyframes wayfade{from{opacity:0}to{opacity:1}}
+}
+.way-txt{display:flex;flex-direction:column;gap:10px}
+.way-do{display:flex;flex-direction:column;gap:10px;min-width:0}
+.way{position:relative;padding:22px 22px;border-radius:var(--r-lg);gap:10px;
   background:linear-gradient(160deg, rgba(255,255,255,.8), rgba(255,255,255,.56));
   backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);
   box-shadow:inset 0 1px 0 rgba(255,255,255,1), inset 0 0 0 1px rgba(255,255,255,.6), var(--shadow-md)}
-.way:hover{transform:translateY(-3px);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,1), inset 0 0 0 1px rgba(255,255,255,.7), var(--shadow-lg)}
+/* no hover lift: this is one wide panel now, not a card in a pick-one row —
+   a full-width slab jumping on hover reads as a glitch, not affordance */
 .way-tag{align-self:flex-start;font-size:.66rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
   padding:3px 9px;border-radius:var(--r-pill);color:var(--cyan-d);background:rgba(6,182,212,.12);
   box-shadow:inset 0 0 0 1px rgba(6,182,212,.24)}
@@ -848,7 +918,13 @@ footer{margin-top:10px;padding:42px 0 20px;
   .setup-body{grid-template-columns:1fr 1fr}
   .bench-grid{grid-template-columns:1fr}
   .list{max-height:min(56vh,520px)}
-  .ways{grid-template-columns:1fr}
+}
+@media (max-width:1000px){
+  /* chooser stacks above the preview; the card's two columns become one */
+  .carry{grid-template-columns:1fr;gap:18px}
+  .carry-pick{flex-direction:row;flex-wrap:wrap}
+  .pick{flex:1 1 220px}
+  .way.on{grid-template-columns:1fr;gap:16px}
 }
 @media (max-width:820px){
   .wrap,.nav-in{padding-left:18px;padding-right:18px}
