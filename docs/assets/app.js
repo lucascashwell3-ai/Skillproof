@@ -792,6 +792,13 @@
     });
   }
 
+  /* Any place the page states the catalog size reads it from the data, so a
+     stale hardcoded number can never contradict the catalog it is describing. */
+  function syncCatalogCounts() {
+    var n = DATA.skills.length;
+    $$("[data-catalog-count]").forEach(function (el) { el.textContent = String(n); });
+  }
+
   /* ======================= take-it-with-you demo (rotates 3 scenes) ======================= */
   function startDemo() {
     var demo = $("#demo");
@@ -818,6 +825,7 @@
       clearInterval(timer);
       timer = setInterval(function () { show((cur + 1) % scenes.length); }, 5200);
     }
+    syncCatalogCounts();
     show(0);
     // Reduced motion: show the first scene and stop. The old code returned
     // BEFORE show(0), so every scene stayed at opacity:0 and this whole section

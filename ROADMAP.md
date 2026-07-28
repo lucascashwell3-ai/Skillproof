@@ -11,9 +11,8 @@ research skill as the scouting engine underneath. Repo still **private**, pre-pu
       Next candidates already scouted: `doraemonkeys/claude-code-debug-mode` (debugging),
       `aidankinzett/claude-git-pr-skill` (git/PR hygiene), `Anjos2/recursive-research`
       (research rigor), `lackeyjb/playwright-skill` (browser testing).
-- [ ] **Flip repo to public** — 🔒 Lucas's call, in the live conversation.
-- [ ] **Enable GitHub Pages** (Settings → Pages → deploy from `main` / `docs/`) — 🔒 Lucas's
-      call, after flip-public. Until then merging deploys nothing.
+- [x] **Flip repo to public** — done 2026-07-26.
+- [x] **Enable GitHub Pages** — done 2026-07-26; live at https://lucascashwell3-ai.github.io/Skillproof/
 - [ ] Decide the lowercase-rename question (`Skillproof` repo vs `skillproof` URLs used in
       docs) — 🔒 Lucas's call at flip-public time.
 - [ ] **Verify research-skill paid backends live with real keys** (Supadata,
