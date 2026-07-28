@@ -191,6 +191,10 @@
       var b = document.createElement("button");
       b.type = "button"; b.className = "chip"; b.dataset.id = p.id;
       b.setAttribute("aria-pressed", "false");
+      // the chip is a two-word category; the full label is the actual problem
+      // sentence ("Answers are long and the next step is buried") — which is
+      // what a user recognises. Keep the chip short, expose the sentence.
+      b.title = p.label;
       b.innerHTML = TICK + "<span>" + esc(p.short || p.label) + "</span>";
       b.addEventListener("click", function () {
         var i = S.pains.indexOf(p.id);
@@ -207,10 +211,70 @@
     $("#applySetup").disabled = !S.pains.length;
     $("#setupMsg").textContent = S.pains.length
       ? S.pains.length + " of 5 picked"
-      : "Pick up to five.";
+      : "Pick up to five — or describe it in your own words below.";
     if (S.applied) render();
     renderTray();
   }
+
+  /* ---- plain-language route into the same eleven areas --------------------
+     The chips are category names ("Token usage", "Code quality"); users think
+     in symptoms ("long sessions get dumb"). This scores the sentence against
+     each area's keyword list — the SAME index the catalog search already uses,
+     so there is no second vocabulary to keep in sync — and ticks the winners. */
+  function syncPainChips() {
+    $$("#grpPain .chip").forEach(function (b) {
+      b.setAttribute("aria-pressed", S.pains.indexOf(b.dataset.id) > -1 ? "true" : "false");
+    });
+  }
+
+  function matchPains(text) {
+    var tokens = tokenize(text);
+    if (!tokens.length) return [];
+    var idx = kwIndex();
+    return DATA.pain_points.map(function (p) {
+      var kws = idx[p.id] || [], s = 0;
+      tokens.forEach(function (t) {
+        for (var i = 0; i < kws.length; i++) {
+          if (kwHit(kws[i], t)) { s++; return; }
+        }
+      });
+      return { id: p.id, s: s };
+    }).filter(function (r) { return r.s > 0; })
+      .sort(function (a, b) { return b.s - a.s; })
+      .slice(0, 3)
+      .map(function (r) { return r.id; });
+  }
+
+  function runSay() {
+    var input = $("#painSay");
+    var v = input.value.trim();
+    if (!v) { input.focus(); return; }
+    var hits = matchPains(v);
+    if (!hits.length) {
+      // Say what to do next, not just that it failed.
+      $("#setupMsg").textContent = "No area matched those words — pick from the list, or try naming the symptom (“tests”, “docs”, “planning”).";
+      input.classList.add("miss");
+      setTimeout(function () { input.classList.remove("miss"); }, 1400);
+      return;
+    }
+    S.pains = hits.slice(0, 5);
+    syncPainChips();
+    onSetupChange();
+    $("#setupMsg").innerHTML = "Matched <b>" +
+      hits.map(function (p) { return esc(PAIN_SHORT[p]); }).join(" &middot; ") +
+      "</b> — change anything below, then sort.";
+  }
+
+  $("#painSayGo").addEventListener("click", runSay);
+  $("#painSay").addEventListener("keydown", function (e) {
+    if (e.key === "Enter") { e.preventDefault(); runSay(); }
+  });
+  $$("#setupEgs .eg").forEach(function (b) {
+    b.addEventListener("click", function () {
+      $("#painSay").value = b.textContent;
+      runSay();
+    });
+  });
 
   $("#applySetup").addEventListener("click", function () {
     if (!S.pains.length) return;
@@ -799,14 +863,27 @@
     $$("[data-catalog-count]").forEach(function (el) { el.textContent = String(n); });
   }
 
-  /* ======================= take-it-with-you demo (rotates 3 scenes) ======================= */
+  /* ======================= take-it-with-you (chooser + preview + card) =======================
+     One selection drives three things: the preview window, the highlighted
+     chooser row, and which install card is shown. It auto-advances so all three
+     options get seen, but never at the cost of someone actually using it:
+       - DWELL is 8.2s, not 5.2s. Scene 0's last line lands at ~3.9s, so the old
+         interval left barely a second to read the payoff before it moved on.
+       - hovering or focusing anywhere in the section pauses the clock — you
+         can't have the panel swap out from under a cursor mid-copy.
+       - clicking a row stops rotation for good. An explicit choice outranks
+         a carousel. */
+  var DWELL = 8200;
+
   function startDemo() {
     var demo = $("#demo");
     if (!demo) return;
+    var section = $("#with-you") || demo;
     var scenes = $$(".demo-scene", demo);
-    var tabs = $$(".demo-tabs span", demo);
+    var picks = $$(".pick", demo);
     var ways = $$(".way[data-way]");
-    var cur = 0;
+    var cur = 0, timer = null, locked = false, paused = false;
+
     function show(i) {
       cur = i;
       scenes.forEach(function (s, k) {
@@ -817,23 +894,71 @@
           s.classList.add("on");
         }
       });
-      tabs.forEach(function (t, k) { t.classList.toggle("on", k === i); });
-      ways.forEach(function (w) { w.classList.toggle("demo-live", +w.dataset.way === i); });
+      picks.forEach(function (t, k) {
+        t.setAttribute("aria-selected", k === i ? "true" : "false");
+        t.classList.remove("timing");
+      });
+      ways.forEach(function (w) { w.classList.toggle("on", +w.dataset.way === i); });
     }
-    var timer;
+
+    /* the active row's hairline fills over exactly one dwell, so the rotation
+       is something you can see coming rather than something that just happens */
+    function markTiming() {
+      if (locked || paused || RM.matches) return;
+      var p = picks[cur];
+      if (!p) return;
+      p.style.setProperty("--dwell", DWELL + "ms");
+      void p.offsetWidth;
+      p.classList.add("timing");
+    }
     function arm() {
       clearInterval(timer);
-      timer = setInterval(function () { show((cur + 1) % scenes.length); }, 5200);
+      if (locked) return;
+      timer = setInterval(function () { show((cur + 1) % scenes.length); markTiming(); }, DWELL);
+      markTiming();
     }
+
     syncCatalogCounts();
     show(0);
+
+    // Wired before the reduced-motion return: rotation is optional, but the
+    // chooser is the section's navigation and must work for everyone.
+    picks.forEach(function (t, k) {
+      t.addEventListener("click", function () {
+        locked = true;                       // an explicit pick ends the rotation
+        clearInterval(timer);
+        show(k);
+      });
+    });
+
     // Reduced motion: show the first scene and stop. The old code returned
     // BEFORE show(0), so every scene stayed at opacity:0 and this whole section
     // rendered as an empty gap for anyone with "reduce motion" enabled.
     if (RM.matches) return;
     arm();
-    tabs.forEach(function (t, k) {
-      t.addEventListener("click", function () { show(k); arm(); }); // manual pick restarts the clock
+
+    function pause() {
+      if (paused) return;
+      paused = true;
+      clearInterval(timer);
+      picks.forEach(function (p) { p.classList.remove("timing"); });
+    }
+    function resume() {
+      if (!paused) return;
+      paused = false;
+      arm();
+    }
+    // Scoped to the two things you can actually be mid-use of — the chooser and
+    // the install card. Hovering the preview, or merely scrolling past with the
+    // cursor somewhere in the section, must not freeze the rotation for good.
+    [$(".carry-pick", demo), $(".ways", section)].forEach(function (zone) {
+      if (!zone) return;
+      zone.addEventListener("mouseenter", pause);
+      zone.addEventListener("mouseleave", resume);
+      zone.addEventListener("focusin", pause);
+      zone.addEventListener("focusout", function (e) {
+        if (!zone.contains(e.relatedTarget)) resume();
+      });
     });
   }
 
