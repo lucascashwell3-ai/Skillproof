@@ -424,16 +424,19 @@ def main():
 
     print(f"deep review · backend={args.backend} · model={MODEL} · "
           f"budget=${args.max_cost:.2f}")
-    print(f"{len(targets)} candidate entr(y|ies)\n")
+    print(f"{len(targets)} candidate entr(y|ies) · about a minute each\n",
+          flush=True)
 
     spent = 0.0
     done = failed = skipped_current = missed = 0
     stopped_for_budget = []
 
-    for s in targets:
+    total = len(targets) if not args.limit else min(args.limit, len(targets))
+    for n, s in enumerate(targets, 1):
         sid = s["id"]
         if args.limit and done >= args.limit:
             break
+        print(f"  [{n}/{total}] {sid}: downloading…", end="\r", flush=True)
 
         with tempfile.TemporaryDirectory() as tmp:
             try:
@@ -452,6 +455,7 @@ def main():
                 skipped_current += 1
                 continue
 
+            print(f"  [{n}/{total}] {sid}: reading source…    ", end="\r", flush=True)
             files, nskipped, ntrunc, used = collect(repo)
             if not files:
                 print(f"  miss  {sid}: nothing reviewable found (no SKILL.md, "
@@ -514,7 +518,7 @@ def main():
         c = cost(in_tok, out_tok)
         spent += c
         done += 1
-        print(f"  ok    {sid}: {len(files)} files @ {head_sha[:8]} · "
+        print(f"  ok    [{n}/{total}] {sid}: {len(files)} files @ {head_sha[:8]} · "
               f"{in_tok:,} in / {out_tok:,} out · ${c:.3f} · "
               f"touches={','.join(fields['touches'])}")
 
