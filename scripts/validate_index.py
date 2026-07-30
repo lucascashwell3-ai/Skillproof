@@ -2,21 +2,56 @@
 """Honesty gate for docs/data/skills.json.
 
 Every grade must recompute from its dimension scores; every graded entry must
-carry receipts (worksheet link, security notes, verification date). A hand-set
-or unsupported value must not be able to ship. Exits non-zero on any error.
-Usage: python3 scripts/validate_index.py
+carry receipts (worksheet link, security notes, verification date); every
+`reviewed` entry must carry a complete review block pinned to a commit sha that
+still matches the repo's recorded HEAD. A hand-set or unsupported value must not
+be able to ship. Exits non-zero on any error.
+
+Two modes, because a stale review is a different problem from a false one:
+
+  python3 scripts/validate_index.py
+      GATE. Read-only. A `reviewed` entry whose review no longer matches the
+      repo's recorded HEAD is a BLOCKING error — stale must never reach the site
+      presenting as current.
+
+  python3 scripts/validate_index.py --downgrade-stale
+      FIX. Demotes those entries to `scouted`, archiving the old review block
+      under `review_stale` with the reason, and writes the file. Runs in the
+      pipeline right after signals refresh, so upstream moving costs an entry its
+      tier automatically instead of silently invalidating a published claim.
+
+The pipeline runs FIX and then GATE. The fix keeps the catalog honest without
+human intervention; the gate means that if the fix is ever skipped, removed, or
+broken, the build stops rather than shipping a decayed claim.
 """
+import argparse
 import json
+import os
 import re
 import sys
 from datetime import date
 from pathlib import Path
 
+from review_contract import (
+    REVIEW_REQUIRED,
+    REVIEW_STALE_REQUIRED,
+    TOUCHES_EXCLUSIVE,
+    TOUCHES_VOCAB,
+)
 
+ROOT = Path(__file__).resolve().parent.parent
+# SKILLPROOF_DATA lets the gate be pointed at a fixture. A gate nobody can test
+# against deliberately-broken data is a gate nobody has evidence works — see
+# scripts/test_review_gate.py, which uses this to prove each rule fails closed.
+DATA = Path(os.environ.get("SKILLPROOF_DATA")
+            or ROOT / "docs" / "data" / "skills.json")
+TODAY = date.today().isoformat()
 
-DATA = Path(__file__).resolve().parent.parent / "docs" / "data" / "skills.json"
-
-STATUSES = {"graded", "provisional", "delisted", "scouted"}
+# `reviewed` sits between scouted and graded: full source read by an automated
+# reviewer, pinned to a commit. Not installed, not executed — that gap is the
+# reason it is a separate tier and not a grade.
+STATUSES = {"graded", "provisional", "delisted", "scouted", "reviewed"}
+UNTESTED_TIERS = ("scouted", "reviewed")
 CATEGORIES = {"workflow", "frontend", "testing", "research", "context",
               "security", "docs", "automation", "output-style", "planning", "git",
               "library"}
@@ -28,6 +63,13 @@ GRADE_ONLY_FIELDS = ("grade", "scores", "score_total", "evidence_url",
                      "version_tested", "last_verified", "verdict")
 KEBAB = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")
 ISO = re.compile(r"^\d{4}-\d{2}-\d{2}$")
+SHA = re.compile(r"^[0-9a-f]{40}$")
+
+# Words a review must never use about itself. Reading source is not running it,
+# and the single most damaging thing this catalog could do is blur that line —
+# so it is enforced mechanically, not left to whoever writes the prompt.
+FORBIDDEN_IN_REVIEW = ("we tested", "we installed", "we ran ", "verified working",
+                       "confirmed working", "tested and", "we probed")
 
 # RUBRIC.md v1.0 letter mapping (total /24). Order matters: first match wins.
 LETTER = [(23, "A"), (21, "A-"), (20, "B+"), (18, "B"), (17, "B-"),
@@ -41,7 +83,73 @@ def letter_for(total: int) -> str:
     return "F"
 
 
-def main() -> int:
+def check_review(sid, s, E, W):
+    """Validate an entry's `review` block. Returns "stale" when the block no
+    longer describes the repo's recorded HEAD, else None.
+
+    Staleness is reported separately from malformedness because the two have
+    different remedies: a malformed review is a bug to fix, a stale one is a
+    fact of upstream life and gets an automatic demotion.
+    """
+    review = s.get("review")
+    status = s.get("status")
+
+    if status == "reviewed" and not isinstance(review, dict):
+        E(f"{sid}: status 'reviewed' but no review block — the tier IS the block")
+        return None
+    if not isinstance(review, dict):
+        return None
+
+    for field in REVIEW_REQUIRED:
+        if not review.get(field):
+            E(f"{sid}: review.{field} missing — an incomplete review block must "
+              f"not present as a review")
+    if review.get("reviewed_at") and not ISO.match(str(review["reviewed_at"])):
+        E(f"{sid}: review.reviewed_at '{review['reviewed_at']}' is not YYYY-MM-DD")
+
+    touches = review.get("touches")
+    if touches is not None:
+        if not isinstance(touches, list) or not touches:
+            E(f"{sid}: review.touches must be a non-empty list")
+        else:
+            for t in touches:
+                if t not in TOUCHES_VOCAB:
+                    E(f"{sid}: review.touches value '{t}' is not in the fixed "
+                      f"vocabulary — an invented category is a claim nobody "
+                      f"defined and the site cannot filter on")
+            if TOUCHES_EXCLUSIVE in touches and len(touches) > 1:
+                E(f"{sid}: review.touches has '{TOUCHES_EXCLUSIVE}' alongside "
+                  f"{[t for t in touches if t != TOUCHES_EXCLUSIVE]} — it means "
+                  f"nothing else is claimed, so it cannot be combined")
+
+    # Precision is the product: a review may never imply execution.
+    prose = " ".join(str(review.get(k, "")) for k in
+                     ("does", "undo", "scope", "limits")).lower()
+    for phrase in FORBIDDEN_IN_REVIEW:
+        if phrase in prose:
+            E(f"{sid}: review prose contains '{phrase.strip()}' — a source review "
+              f"never executed the code and must not imply it did")
+    if review.get("limits") and "not" not in str(review["limits"]).lower():
+        W(f"{sid}: review.limits does not appear to state a limit — it must say "
+          f"what the review could NOT establish")
+
+    # --- THE PINNING RULE. Without it, "reviewed" decays into a stale assertion
+    # the moment the upstream repo changes.
+    sha = review.get("source_sha")
+    head = (s.get("signals") or {}).get("head_sha")
+    if sha and not SHA.match(str(sha)):
+        E(f"{sid}: review.source_sha '{sha}' is not a 40-char commit sha")
+        return None
+    if not head:
+        W(f"{sid}: no signals.head_sha recorded, so the review at "
+          f"{str(sha)[:8]} cannot be confirmed current — run refresh_signals.py")
+        return None
+    if sha and sha != head:
+        return "stale"
+    return None
+
+
+def main(downgrade: bool = False) -> int:
     errors, warnings = [], []
     E, W = errors.append, warnings.append
 
@@ -72,6 +180,7 @@ def main() -> int:
 
     seen_ids = set()
     graded_count = 0
+    stale = []
     for s in data["skills"]:
         sid = s.get("id", "(unnamed)")
 
@@ -102,27 +211,57 @@ def main() -> int:
             if not s.get(field):
                 E(f"{sid}: missing {field}")
 
-        if status == "scouted":
+        # A review block is validated wherever it appears, not only on the tier
+        # that requires one — so an entry can never carry a malformed or decayed
+        # review quietly under some other status.
+        if check_review(sid, s, E, W) == "stale":
+            stale.append(s)
+
+        # The archived footprint of a review that went stale. It is kept for the
+        # audit trail and must never be mistaken for a current one, so it has to
+        # say when and why it was demoted.
+        rs = s.get("review_stale")
+        if isinstance(rs, dict):
+            for field in REVIEW_STALE_REQUIRED:
+                if not rs.get(field):
+                    E(f"{sid}: review_stale.{field} missing — an archived review "
+                      f"must record when and why it stopped being current")
+        if isinstance(rs, dict) and isinstance(s.get("review"), dict):
+            E(f"{sid}: carries both 'review' and 'review_stale' — a current review "
+              f"supersedes the archived one; the stale copy must be dropped")
+
+        if status in UNTESTED_TIERS:
             # Honesty both ways: triage receipts required, grade fields forbidden.
+            # This holds for `reviewed` too — reading source is not testing, so a
+            # reviewed entry is still barred from anything that looks like a grade.
             for field in GRADE_ONLY_FIELDS:
                 if field in s:
-                    E(f"{sid}: scouted entry carries '{field}' — scouted resources are "
-                      "NEVER graded; grades come only from a full grading run")
+                    E(f"{sid}: {status} entry carries '{field}' — neither scouted nor "
+                      "reviewed resources are graded; grades come only from a full "
+                      "grading run (installed + probed)")
             if not s.get("scouted_on") or not ISO.match(str(s.get("scouted_on", ""))):
-                E(f"{sid}: scouted but scouted_on missing or not YYYY-MM-DD")
+                E(f"{sid}: {status} but scouted_on missing or not YYYY-MM-DD")
             triage = s.get("triage")
             if not isinstance(triage, dict):
-                E(f"{sid}: scouted but no triage receipts (provenance/license/freshness/safety)")
+                E(f"{sid}: {status} but no triage receipts (provenance/license/freshness/safety)")
             else:
                 for key in TRIAGE_KEYS:
                     if not triage.get(key):
-                        E(f"{sid}: triage.{key} missing — a scouted entry without "
+                        E(f"{sid}: triage.{key} missing — a {status} entry without "
                           "receipts is just a listicle row")
             continue
 
         if status != "graded":
             continue
         graded_count += 1
+
+        # No entry may claim a tier above the evidence on file. For `graded` the
+        # evidence is a worksheet, so the file has to actually exist — a link to
+        # a missing worksheet is exactly the kind of receipt a skeptic checks.
+        ev = s.get("evidence_url")
+        if ev and not str(ev).startswith("http") and not (ROOT / ev).is_file():
+            E(f"{sid}: graded but evidence_url '{ev}' does not exist in the repo — "
+              f"a grade without a readable worksheet is unsupported")
 
         # Receipts: a graded entry without evidence is a lie.
         for field in ("evidence_url", "security_notes", "last_verified", "verdict",
@@ -164,8 +303,48 @@ def main() -> int:
     if graded_count == 0:
         W("0 graded skills — site must state this honestly")
 
+    # --- STALE REVIEWS. A review describes one commit. When upstream moves on,
+    # the claim is no longer about the code a visitor would install.
+    if stale:
+        if downgrade:
+            for s in stale:
+                sid = s["id"]
+                old = s.pop("review")
+                head = (s.get("signals") or {}).get("head_sha", "unknown")
+                s["review_stale"] = dict(
+                    old,
+                    downgraded_on=TODAY,
+                    stale_reason=(
+                        f"upstream HEAD moved from {old['source_sha'][:8]} to "
+                        f"{head[:8]}; the review described code that is no longer "
+                        f"what a visitor would install"
+                    ),
+                )
+                if s.get("status") == "reviewed":
+                    s["status"] = "scouted"
+                    s["next"] = ("Upstream changed since the last source review — "
+                                 "queued for re-review.")
+                print(f"⤓ downgraded {sid}: reviewed → scouted "
+                      f"({old['source_sha'][:8]} ≠ {head[:8]})")
+            DATA.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n")
+            print(f"⤓ {len(stale)} stale review(s) demoted; wrote {DATA}")
+            stale = []
+        else:
+            for s in stale:
+                head = (s.get("signals") or {}).get("head_sha", "unknown")
+                E(f"{s['id']}: review pinned to {s['review']['source_sha'][:8]} but "
+                  f"recorded HEAD is {head[:8]} — a stale review must never present "
+                  f"as current. Run: validate_index.py --downgrade-stale")
+
     report(errors, warnings, data)
     return 1 if errors else 0
+
+
+def tier_counts(data):
+    c = {}
+    for s in data.get("skills", []):
+        c[s.get("status", "?")] = c.get(s.get("status", "?"), 0) + 1
+    return c
 
 
 def report(errors, warnings, data):
@@ -178,10 +357,19 @@ def report(errors, warnings, data):
         for e in errors:
             print("  - " + e, file=sys.stderr)
     else:
+        c = tier_counts(data)
         n = len(data.get("skills", []))
-        g = sum(1 for s in data.get("skills", []) if s.get("status") == "graded")
-        print(f"\n✓ honesty gate passed: {n} skills ({g} graded), 0 errors.")
+        # Every count the site states is derived from this data, never hardcoded.
+        split = " · ".join(f"{c[k]} {k}" for k in
+                           ("graded", "reviewed", "scouted", "provisional", "delisted")
+                           if c.get(k))
+        print(f"\n✓ honesty gate passed: {n} entries ({split}), 0 errors.")
+        print(f"TIER_SPLIT={json.dumps(c, sort_keys=True)}")
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    ap = argparse.ArgumentParser(description=__doc__)
+    ap.add_argument("--downgrade-stale", action="store_true",
+                    help="demote reviews whose source_sha no longer matches the "
+                         "repo's recorded HEAD, and write the file")
+    sys.exit(main(ap.parse_args().downgrade_stale))

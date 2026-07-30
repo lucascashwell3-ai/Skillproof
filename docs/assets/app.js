@@ -391,9 +391,7 @@
           return '<span class="rz ' + b[0] + '" style="animation-delay:' + (k * 40) + 'ms"><i></i>' + esc(b[1]) + "</span>";
         }).join("") + "</div>"
       : "";
-    var tested = it.status === "graded"
-        ? '<span class="tag tested">Tested ✓</span>'
-        : '<span class="tag scouted" title="Found and screened for malicious code, but not yet run by us">Scouted</span>';
+    var tested = tierBadge(it);
     var sig = it.signals && it.signals.stars
       ? '<span class="row-stars" title="' + it.signals.stars.toLocaleString() + " stars · " +
         (it.signals.forks || 0).toLocaleString() + " forks on GitHub, checked " + esc(it.signals.checked) + '">★ ' +
@@ -489,9 +487,7 @@
     } else {
       wrap.innerHTML = state.tray.map(function (id) {
         var it = byId[id], kind = kindOf(it);
-        var tested = it.status === "graded"
-        ? '<span class="tag tested">Tested ✓</span>'
-        : '<span class="tag scouted" title="Found and screened for malicious code, but not yet run by us">Scouted</span>';
+        var tested = tierBadge(it);
         return '<div class="titem t-' + kind + (flagged[id] ? " flag" : "") + '" data-id="' + id + '" draggable="true">' +
           '<span class="grip" aria-hidden="true"><svg width="8" height="14" viewBox="0 0 8 14" fill="currentColor"><circle cx="2" cy="2" r="1.3"/><circle cx="6" cy="2" r="1.3"/><circle cx="2" cy="7" r="1.3"/><circle cx="6" cy="7" r="1.3"/><circle cx="2" cy="12" r="1.3"/><circle cx="6" cy="12" r="1.3"/></svg></span>' +
           '<span class="tico tico-sm">' + icon(kind) + "</span>" +
@@ -879,9 +875,28 @@
   /* Any place the page states the catalog size reads it from the data, so a
      stale hardcoded number can never contradict the catalog it is describing. */
   function tierCounts() {
-    var c = { graded: 0, scouted: 0 };
-    DATA.skills.forEach(function (s) { if (c[s.status] != null) c[s.status]++; });
+    // Counts every status present, not a fixed pair. A hardcoded {graded,scouted}
+    // silently dropped the `reviewed` tier the moment it existed, so the stated
+    // split stopped summing to the catalog size — the exact shape of the lie the
+    // derived split was introduced to kill.
+    var c = {};
+    DATA.skills.forEach(function (s) { c[s.status] = (c[s.status] || 0) + 1; });
     return c;
+  }
+  /* One word per tier, and the word has to be literally true. `reviewed` means an
+     automated reviewer READ the source at a pinned commit — it does not mean
+     tested, so it never borrows the tested label. */
+  var TIER_LABEL = {
+    graded:   { word: "Tested ✓", cls: "tested",
+                hint: "Installed, probed, and source-read by a person; worksheet on file" },
+    reviewed: { word: "Reviewed", cls: "scouted",
+                hint: "Full source read by an automated reviewer at a pinned commit — not installed, not run" },
+    scouted:  { word: "Scouted", cls: "scouted",
+                hint: "Found and screened for malicious code, but the source has not been read" }
+  };
+  function tierBadge(it) {
+    var t = TIER_LABEL[it.status] || TIER_LABEL.scouted;
+    return '<span class="tag ' + t.cls + '" title="' + t.hint + '">' + t.word + "</span>";
   }
   function syncCatalogCounts() {
     var n = DATA.skills.length, c = tierCounts();
@@ -890,9 +905,14 @@
     // read "54 skills & libraries with receipts" while 53 of the 54 had never
     // been run by anyone here — the single worst line on the site, and both cold
     // reviewers found it independently. Derived, so it can never drift again.
-    $$("[data-catalog-split]").forEach(function (el) {
-      el.textContent = c.graded + " tested, " + c.scouted + " scouted";
-    });
+    // Lists every tier that actually has entries, in descending strength, so the
+    // stated split always sums to the catalog size. When the reviewed tier fills
+    // up, this sentence changes on its own.
+    var split = [["graded", "tested"], ["reviewed", "source-reviewed"],
+                 ["scouted", "scouted"]]
+      .filter(function (p) { return c[p[0]]; })
+      .map(function (p) { return c[p[0]] + " " + p[1]; }).join(", ");
+    $$("[data-catalog-split]").forEach(function (el) { el.textContent = split; });
     $$("[data-tier-count]").forEach(function (el) {
       el.textContent = String(c[el.getAttribute("data-tier-count")] || 0);
     });
@@ -1007,10 +1027,11 @@
   var DATA_URL = "https://raw.githubusercontent.com/lucascashwell3-ai/Skillproof/main/docs/data/skills.json";
 
   function buildPrompt() {
-    var counts = { graded: 0, scouted: 0 };
-    DATA.skills.forEach(function (s) {
-      if (s.status === "graded" || s.status === "scouted") counts[s.status]++;
-    });
+    var counts = tierCounts();
+    var split = [["graded", "tested"], ["reviewed", "source-reviewed"],
+                 ["scouted", "scouted"]]
+      .filter(function (p) { return counts[p[0]]; })
+      .map(function (p) { return counts[p[0]] + " " + p[1]; }).join(", ");
     return [
       "You are my AI-environment upgrade advisor and scout, powered by the Skillproof catalog.",
       "",
@@ -1018,15 +1039,16 @@
       "If you cannot fetch it, say so plainly and ask me to attach the file — the same JSON downloads from the Skillproof site. Do not answer from memory about what is in the catalog.",
       "",
       "When I describe a pain point, weakness, or goal in my AI setup, answer in this order — honesty always:",
+      "For any entry, lead with the three things that decide whether I install it: what it does, what it touches, and how to undo it. Stars and grades come after.",
       "1. TESTED entries (status \"graded\"): quote the grade, the one-line summary, and the worksheet link. Give the install command when I ask.",
-      "2. SCOUTED entries (status \"scouted\"): present as leads, never recommendations — say plainly they were found and triaged but never tested. No install commands for these.",
-      "3. Nothing fits? Say so. Then, only if I ask, scout the live ecosystem yourself: verify the repo is real, check the license, check last-push freshness, and skim for safety red flags (curl|bash, auto-run hooks, undisclosed network calls, credential access). Report those four receipts per candidate. Never install anything; never invent stars, dates, or licenses.",
+      "2. REVIEWED entries (status \"reviewed\"): read me review.does, review.touches and review.undo, and quote review.limits verbatim. An automated reviewer read the full source at commit review.source_sha — nobody installed or ran it. Say that in those words; never call it tested, verified, or safe.",
+      "3. SCOUTED entries (status \"scouted\"): present as leads, never recommendations — found and screened for malicious patterns, but the source has not been read. No install commands for these.",
+      "4. Nothing fits? Say so. Then, only if I ask, scout the live ecosystem yourself: verify the repo is real, check the license, check last-push freshness, and skim for safety red flags (curl|bash, auto-run hooks, undisclosed network calls, credential access). Report those four receipts per candidate. Never install anything; never invent stars, dates, or licenses.",
       "",
-      "Never give a scouted or freshly-found item grade-like language — Skillproof grades come only from a full published rubric run. Call out grades older than ~90 days as possibly stale.",
-      "Grading worksheets and the rubric: " + REPO,
+      "Never give a scouted, reviewed, or freshly-found item grade-like language — Skillproof grades come only from a full published rubric run. Reading source is not running it. Call out grades older than ~90 days as possibly stale.",
+      "Grading worksheets, the rubric, and what each tier does and does not establish: " + REPO,
       "",
-      "Catalog as of " + DATA.as_of + " · rubric v" + DATA.rubric_version + " · " +
-        counts.graded + " tested, " + counts.scouted + " scouted."
+      "Catalog as of " + DATA.as_of + " · rubric v" + DATA.rubric_version + " · " + split + "."
     ].join("\n");
   }
 

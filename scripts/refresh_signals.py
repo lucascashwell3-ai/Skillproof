@@ -50,9 +50,23 @@ def freshness_line(pushed_at):
     return f"Last push {day} (checked {TODAY})."
 
 
+def head_sha(full, default_branch):
+    """The current tip commit of the repo's default branch.
+
+    This is what `review.source_sha` is checked against. Without it, a review
+    block is an assertion about code nobody re-checked — so a fetch failure
+    leaves the previous value alone rather than clearing it, and the honesty
+    gate treats an unknown HEAD as unverified rather than as agreement.
+    """
+    commit = gh(f"repos/{full}/commits/{default_branch}")
+    if not commit or not commit.get("sha"):
+        return None
+    return commit["sha"]
+
+
 def main():
     data = json.loads(DATA.read_text())
-    ok = missed = 0
+    ok = missed = sha_missed = 0
     for s in data["skills"]:
         m = re.match(r"https://github\.com/([^/]+/[^/]+)", s["repo_url"])
         if not m:
@@ -62,19 +76,34 @@ def main():
             print(f"  miss: {s['id']} ({m.group(1)}) — API error; signals left as-is")
             missed += 1
             continue
+        prev = s.get("signals") or {}
         s["signals"] = {
             "stars": repo["stargazers_count"],
             "forks": repo["forks_count"],
             "checked": TODAY,
         }
+        sha = head_sha(m.group(1), repo.get("default_branch") or "main")
+        if sha:
+            s["signals"]["head_sha"] = sha
+            s["signals"]["head_checked"] = TODAY
+            if prev.get("head_sha") and prev["head_sha"] != sha:
+                print(f"  moved: {s['id']} {prev['head_sha'][:8]} → {sha[:8]}")
+        else:
+            # Keep whatever we last knew; never fabricate a HEAD.
+            if prev.get("head_sha"):
+                s["signals"]["head_sha"] = prev["head_sha"]
+                s["signals"]["head_checked"] = prev.get("head_checked", "unknown")
+            sha_missed += 1
+            print(f"  miss: {s['id']} — HEAD sha unavailable; previous value kept")
         # keep the freshness receipt current for scouted entries
         if s.get("status") == "scouted" and isinstance(s.get("triage"), dict):
             s["triage"]["freshness"] = freshness_line(repo["pushed_at"])
         ok += 1
     data["as_of"] = TODAY
     DATA.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n")
-    print(f"signals refreshed: {ok} updated, {missed} missed → {DATA}")
-    print("now run: python3 scripts/validate_index.py")
+    print(f"signals refreshed: {ok} updated, {missed} missed, "
+          f"{sha_missed} without a HEAD sha → {DATA}")
+    print("now run: python3 scripts/validate_index.py --downgrade-stale")
     return 0 if missed == 0 else 1
 
 

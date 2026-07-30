@@ -26,8 +26,17 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Refresh exposure signals + freshness receipts
+      - name: Refresh exposure signals + freshness receipts (incl. HEAD sha)
         run: python3 scripts/refresh_signals.py
+
+      - name: Expire reviews whose repo moved on
+        # Runs BEFORE anything else spends effort: an entry whose upstream moved
+        # past its reviewed commit is demoted to `scouted` here, so the rest of
+        # the pipeline never operates on a review that already stopped being true.
+        # The honesty gate at the end treats a surviving stale review as a
+        # blocking error — if this step is ever removed, the build stops instead
+        # of shipping a decayed claim.
+        run: python3 scripts/validate_index.py --downgrade-stale | tee /tmp/stale.log
 
       - name: Scout new candidates (dedupes against existing)
         run: python3 scripts/scout_scrape.py --cap 15 | tee /tmp/scout.log
@@ -40,8 +49,45 @@ jobs:
           sed -n 's/^QUARANTINED_COUNT=//p' /tmp/skim.log | tail -1 > /tmp/redcount
           [ -s /tmp/redcount ] || echo 0 > /tmp/redcount
 
+      - name: Deep source review (reads source; never runs it)
+        # ORDER MATTERS: runs AFTER the safety skim so review effort is never
+        # spent on a repo that is about to be quarantined, and BEFORE the honesty
+        # gate so anything it writes is gated like everything else.
+        #
+        # CI has no Claude subscription, so it can only use the metered API path.
+        # That is deliberately OPT-IN: ~30 of the 53 catalogued repos push in any
+        # given week, so an always-on API review is a recurring bill. The default
+        # way to run this is `python3 scripts/deep_review.py` on a machine with a
+        # Claude subscription (backend `cli`), which costs nothing per run.
+        #
+        # With no secret set this step is a no-op and says so. A missing key must
+        # leave the catalog honestly under-reviewed, never block the refresh and
+        # never fabricate a tier.
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          if [ -z "$ANTHROPIC_API_KEY" ]; then
+            {
+              echo "No ANTHROPIC_API_KEY secret — metered review skipped by design."
+              echo "Entries stay at whatever tier their evidence supports."
+              echo "Reviews are expected to come from a subscription run:"
+              echo "  python3 scripts/deep_review.py"
+            } | tee /tmp/review.log
+            exit 0
+          fi
+          pip install --quiet 'anthropic>=0.105'
+          python3 scripts/deep_review.py --backend api --max-cost 5.00 \
+            | tee /tmp/review.log || true
+
       - name: Honesty gate
-        run: python3 scripts/validate_index.py
+        run: python3 scripts/validate_index.py | tee /tmp/gate.log
+
+      - name: Prove the gate still fails closed
+        # The gate is the only thing standing between a decayed claim and the
+        # site, so every run re-proves it rejects deliberately-broken data
+        # (missing review block, mismatched sha, invented touches value, …).
+        # A gate nobody has watched reject anything is not evidence of anything.
+        run: python3 scripts/test_review_gate.py
 
       - name: Open PR if anything changed
         run: |
@@ -60,10 +106,16 @@ jobs:
           TITLE="Weekly catalog refresh $DATE"
           if [ "$RED" != "0" ]; then TITLE="$TITLE — $RED repo(s) quarantined, not published"; fi
           {
-            echo "Automated weekly run: signals refreshed, new candidates scouted, safety skim on everything new, honesty gate passed."
+            echo "Automated weekly run: signals refreshed, stale reviews expired, new candidates scouted, safety skim on everything new, deep source review, honesty gate passed."
             echo
+            echo '### Tier split (derived from the data)'; echo '```'
+            sed -n 's/^TIER_SPLIT=//p' /tmp/gate.log | tail -1; echo '```'
+            echo '### Stale reviews expired'; echo '```'; grep '⤓' /tmp/stale.log || echo 'none — every review still describes its repo'\''s current HEAD'; echo '```'
+            echo '### Deep review log (tail)'; echo '```'; tail -20 /tmp/review.log; echo '```'
             echo '### Scout log (tail)'; echo '```'; tail -20 /tmp/scout.log; echo '```'
             echo '### Skim log (tail)';  echo '```'; tail -20 /tmp/skim.log;  echo '```'
+            echo
+            echo "\`reviewed\` means an automated reviewer READ the full source at the commit named in \`review.source_sha\`. Nothing was installed and nothing was executed — see [methodology](https://lucascashwell3-ai.github.io/Skillproof/methodology.html#) for what that does and does not establish."
             echo
             echo "Any repo the scanner flagged was REMOVED from the catalog and parked in \`grading/quarantine.json\` — it is not on the site. The honesty gate blocks the merge if a flagged repo ever appears in the published data."
             echo
