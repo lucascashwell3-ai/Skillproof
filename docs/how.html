@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400..800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/styles.css?v=4" />
+  <link rel="stylesheet" href="assets/styles.css?v=11" />
   <style>
     /* small page-local visuals: static mock elements inside the step cards */
     .mock{margin-top:14px;padding:12px;border-radius:var(--r-md);background:rgba(255,255,255,.6);
@@ -107,7 +107,7 @@
     </div>
     <div class="tiers">
       <div class="tier-card">
-        <h3><span class="vico" style="background:linear-gradient(140deg,#45D3A5,#10B981)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Tested</h3>
+        <h3><span class="vico" style="background:linear-gradient(140deg,#45D3A5,#10B981)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Tested <b data-tier-count="graded" class="tier-n">&hellip;</b></h3>
         <ol>
           <li>Installed into a clean project</li>
           <li>Probed in real sessions — does it fire when it should, do what it claims?</li>
@@ -115,10 +115,10 @@
         </ol>
       </div>
       <div class="tier-card">
-        <h3><span class="vico" style="background:linear-gradient(140deg,#FBBF24,#F59E0B)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6"/></svg></span>Scouted</h3>
+        <h3><span class="vico" style="background:linear-gradient(140deg,#FBBF24,#F59E0B)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6"/></svg></span>Scouted <b data-tier-count="scouted" class="tier-n">&hellip;</b></h3>
         <ol>
           <li>Repo verified real — author, stars, created-when, license, freshness</li>
-          <li>Source code screened for known malicious patterns; anything flagged is read by a person before it can list</li>
+          <li>Source code screened for known malicious patterns; anything flagged is quarantined and never listed</li>
           <li>Not yet run by us ourselves — that's what the Tested tier means</li>
         </ol>
       </div>
@@ -142,5 +142,27 @@
   </div>
 </footer>
 
+<script>
+/* Tier counts come from the catalog itself. Two equal-sized cards with no numbers
+   read as a 50/50 split; the real ratio is nothing like that, and stating it is
+   the whole point of the page. Hardcoding would just drift back into a lie. */
+(function () {
+  var els = document.querySelectorAll("[data-tier-count]");
+  if (!els.length) return;
+  fetch("data/skills.json").then(function (r) {
+    if (!r.ok) throw new Error("HTTP " + r.status);
+    return r.json();
+  }).then(function (d) {
+    var c = {};
+    d.skills.forEach(function (s) { c[s.status] = (c[s.status] || 0) + 1; });
+    Array.prototype.forEach.call(els, function (el) {
+      el.textContent = String(c[el.getAttribute("data-tier-count")] || 0);
+    });
+  }).catch(function () {
+    // never leave a placeholder ellipsis sitting where a number should be
+    Array.prototype.forEach.call(els, function (el) { el.remove(); });
+  });
+})();
+</script>
 </body>
 </html>

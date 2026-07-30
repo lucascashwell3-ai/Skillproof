@@ -248,7 +248,12 @@
   function runSay() {
     var input = $("#painSay");
     var v = input.value.trim();
-    if (!v) { input.focus(); return; }
+    if (!v) {
+      // was: silently focus and return, which reads as a dead button
+      $("#setupMsg").textContent = "Type what you’re trying to improve first — or tap an example below.";
+      input.focus();
+      return;
+    }
     var hits = matchPains(v);
     if (!hits.length) {
       // Say what to do next, not just that it failed.
@@ -386,7 +391,9 @@
           return '<span class="rz ' + b[0] + '" style="animation-delay:' + (k * 40) + 'ms"><i></i>' + esc(b[1]) + "</span>";
         }).join("") + "</div>"
       : "";
-    var tested = it.status === "graded" ? '<span class="tag tested">Tested ✓</span>' : "";
+    var tested = it.status === "graded"
+        ? '<span class="tag tested">Tested ✓</span>'
+        : '<span class="tag scouted" title="Found and screened for malicious code, but not yet run by us">Scouted</span>';
     var sig = it.signals && it.signals.stars
       ? '<span class="row-stars" title="' + it.signals.stars.toLocaleString() + " stars · " +
         (it.signals.forks || 0).toLocaleString() + " forks on GitHub, checked " + esc(it.signals.checked) + '">★ ' +
@@ -482,7 +489,9 @@
     } else {
       wrap.innerHTML = state.tray.map(function (id) {
         var it = byId[id], kind = kindOf(it);
-        var tested = it.status === "graded" ? '<span class="tag tested">Tested ✓</span>' : "";
+        var tested = it.status === "graded"
+        ? '<span class="tag tested">Tested ✓</span>'
+        : '<span class="tag scouted" title="Found and screened for malicious code, but not yet run by us">Scouted</span>';
         return '<div class="titem t-' + kind + (flagged[id] ? " flag" : "") + '" data-id="' + id + '" draggable="true">' +
           '<span class="grip" aria-hidden="true"><svg width="8" height="14" viewBox="0 0 8 14" fill="currentColor"><circle cx="2" cy="2" r="1.3"/><circle cx="6" cy="2" r="1.3"/><circle cx="2" cy="7" r="1.3"/><circle cx="6" cy="7" r="1.3"/><circle cx="2" cy="12" r="1.3"/><circle cx="6" cy="12" r="1.3"/></svg></span>' +
           '<span class="tico tico-sm">' + icon(kind) + "</span>" +
@@ -627,6 +636,15 @@
     list.style.maxHeight = Math.max(cap, tray.offsetHeight - chrome) + "px";
   }
 
+  function setCopyEnabled(on) {
+    ["#copyPlan", "#copy"].forEach(function (sel) {
+      var b = $(sel);
+      if (!b) return;
+      b.disabled = !on;
+      b.setAttribute("aria-disabled", String(!on));
+      b.title = on ? "" : "Add something to your tray first";
+    });
+  }
   function renderCmd() {
     var box = $("#cmdbox");
     if (!state.tray.length) {
@@ -634,6 +652,7 @@
         (state.mode === "agent" ? "# add items to build your agent prompt" : "# add items to build your install plan") +
         "</span>";
       box.dataset.cmd = "";
+      setCopyEnabled(false);
     } else {
       var txt = activePlan();
       var html = txt.split("\n").map(function (l) {
@@ -647,6 +666,7 @@
       }).join("<br>");
       box.innerHTML = html;
       box.dataset.cmd = txt;
+      setCopyEnabled(true);
     }
     requestAnimationFrame(syncListHeight);
   }
@@ -858,9 +878,24 @@
 
   /* Any place the page states the catalog size reads it from the data, so a
      stale hardcoded number can never contradict the catalog it is describing. */
+  function tierCounts() {
+    var c = { graded: 0, scouted: 0 };
+    DATA.skills.forEach(function (s) { if (c[s.status] != null) c[s.status]++; });
+    return c;
+  }
   function syncCatalogCounts() {
-    var n = DATA.skills.length;
+    var n = DATA.skills.length, c = tierCounts();
     $$("[data-catalog-count]").forEach(function (el) { el.textContent = String(n); });
+    // The honest split, stated wherever the catalog is described. This used to
+    // read "54 skills & libraries with receipts" while 53 of the 54 had never
+    // been run by anyone here — the single worst line on the site, and both cold
+    // reviewers found it independently. Derived, so it can never drift again.
+    $$("[data-catalog-split]").forEach(function (el) {
+      el.textContent = c.graded + " tested, " + c.scouted + " scouted";
+    });
+    $$("[data-tier-count]").forEach(function (el) {
+      el.textContent = String(c[el.getAttribute("data-tier-count")] || 0);
+    });
   }
 
   /* ======================= take-it-with-you (chooser + preview + card) =======================
@@ -1010,7 +1045,13 @@
       });
     }
     if (location.protocol === "file:") return viaXHR();
-    return fetch("data/skills.json").then(function (r) { return r.json(); }).catch(viaXHR);
+    // Check ok BEFORE parsing. A 500 returning an HTML error page used to surface
+    // as `Unexpected token 'e', "err" is not valid JSON` — which tells the user
+    // nothing and misdiagnoses a server error as corrupt data.
+    return fetch("data/skills.json").then(function (r) {
+      if (!r.ok) throw new Error("HTTP " + r.status);
+      return r.json();
+    }).catch(viaXHR);
   }
 
   loadData().then(function (d) {
@@ -1037,6 +1078,15 @@
     window.addEventListener("resize", function () { moveGlide(); moveModeThumb(); moveSortThumb(); syncListHeight(); });
     setTimeout(function () { moveGlide(); moveModeThumb(); moveSortThumb(); syncListHeight(); }, 60);
   }).catch(function (e) {
-    $("#list").innerHTML = '<div class="list-empty"><b>Could not load the catalog</b>' + esc(e.message) + "</div>";
+    // Never show the raw exception: a JSON.parse message is meaningless to a user
+    // and misleading to a developer. One sentence, one action.
+    $("#catCount").textContent = "—";
+    $("#list").innerHTML =
+      '<div class="list-empty"><b>Could not load the catalog</b>' +
+      "The catalog file didn’t load — usually a network blip." +
+      '<div style="margin-top:14px"><button class="btn btn-primary btn-sm" type="button" id="retryLoad">Try again</button></div></div>';
+    var rb = $("#retryLoad");
+    if (rb) rb.addEventListener("click", function () { location.reload(); });
+    if (window.console && console.warn) console.warn("Skillproof: catalog load failed —", e);
   });
 })();

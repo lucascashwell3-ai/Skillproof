@@ -202,9 +202,12 @@ def to_entry(repo):
             "checked": TODAY,
         },
         "triage": {
+            # No star count here on purpose: signals.stars is refreshed weekly and
+            # carries its own `checked` date, so restating it in frozen prose just
+            # guarantees the record ends up contradicting itself.
             "provenance": (
                 f"Repo verified real via GitHub API: {full}, "
-                f"{repo['stargazers_count']:,} stars, created {repo['created_at'][:7]}."
+                f"created {repo['created_at'][:7]}."
             ),
             "license": license_line(repo),
             "freshness": freshness_line(repo["pushed_at"]),
@@ -275,7 +278,7 @@ def main():
 
     print(f"\n{len(fresh)} new scouted entries (cap {args.cap}):")
     for e in fresh:
-        stars = re.search(r"([\d,]+) stars", e["triage"]["provenance"]).group(1)
+        stars = f"{e['signals']['stars']:,}"
         print(f"  + {e['name']}  ★{stars}  [{e['category']}]  pains={','.join(e['pain_points']) or '-'}")
 
     if args.dry_run:
