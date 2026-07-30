@@ -42,23 +42,32 @@
       descending strength:
     </p>
     <table>
-      <tr><th>Tier</th><th>What was actually done</th><th>What it does <em>not</em> establish</th></tr>
+      <tr><th>Tier</th><th>Live count</th><th>What was actually done</th><th>What it does <em>not</em> establish</th></tr>
       <tr>
         <td><b>tested &amp; graded</b></td>
+        <td><b data-tier-count="graded">&hellip;</b></td>
         <td>Installed in a sandbox, probed, source read by a person, worksheet published</td>
         <td>—</td>
       </tr>
       <tr>
         <td><b>reviewed</b></td>
+        <td><b data-tier-count="reviewed">&hellip;</b></td>
         <td>Full source read by an automated reviewer, pinned to one commit</td>
         <td>That it works. Nothing was installed or executed.</td>
       </tr>
       <tr>
         <td><b>scouted</b></td>
+        <td><b data-tier-count="scouted">&hellip;</b></td>
         <td>Repo verified real, scanned for known-malicious patterns</td>
         <td>What the code does. Nobody read it.</td>
       </tr>
     </table>
+    <p class="callout" data-tier-empty="reviewed" hidden>
+      <b>As of right now, no entry has reached the reviewed tier.</b> The protocol below is
+      published and enforced, but it has not been pointed at the catalogue yet — so every entry
+      is still labelled <code>scouted</code> on the site, and nothing claims otherwise. This
+      sentence disappears on its own once the first review lands.
+    </p>
     <p>
       If we didn't run it, we don't grade it. If we didn't read it, we don't say we reviewed it.
       There are no placeholder grades, and the counts on every page are computed from the
@@ -260,5 +269,35 @@
   </div>
 </footer>
 
+<script>
+/* Counts come from the catalogue itself — same idiom as how.html. This page
+   describes the protocol in the present tense, so if it named a tier without
+   saying how many entries have actually reached it, the page would imply the tier
+   is in use. That is the exact overclaim the reviewed tier exists to remove, so
+   the numbers are read from the data and the "none yet" note reveals itself. */
+(function () {
+  var counts = document.querySelectorAll("[data-tier-count]");
+  var empties = document.querySelectorAll("[data-tier-empty]");
+  if (!counts.length && !empties.length) return;
+  fetch("data/skills.json").then(function (r) {
+    if (!r.ok) throw new Error("HTTP " + r.status);
+    return r.json();
+  }).then(function (d) {
+    var c = {};
+    d.skills.forEach(function (s) { c[s.status] = (c[s.status] || 0) + 1; });
+    Array.prototype.forEach.call(counts, function (el) {
+      el.textContent = String(c[el.getAttribute("data-tier-count")] || 0);
+    });
+    Array.prototype.forEach.call(empties, function (el) {
+      el.hidden = (c[el.getAttribute("data-tier-empty")] || 0) > 0;
+    });
+  }).catch(function () {
+    // Never leave a placeholder ellipsis where a number should be, and never
+    // leave the "none yet" note showing on a guess — drop both instead.
+    Array.prototype.forEach.call(counts, function (el) { el.remove(); });
+    Array.prototype.forEach.call(empties, function (el) { el.remove(); });
+  });
+})();
+</script>
 </body>
 </html>
