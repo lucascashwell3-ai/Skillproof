@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>The quality bar — Skillproof</title>
-  <meta name="description" content="The published protocol behind every Skillproof listing: what 'tested & graded' means, what 'scouted' means, and the honesty gate that keeps the two from ever blurring." />
+  <meta name="description" content="The published protocol behind every Skillproof listing: what 'tested & graded' means, what 'reviewed' means, what 'scouted' means, and the honesty gate that keeps the three from ever blurring." />
   <meta name="theme-color" content="#F6F7FC" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='1' y='1' width='22' height='22' rx='7' fill='%236D5BF6'/%3E%3Cpath d='M12 5.5l6 3-6 3-6-3 6-3z' fill='white'/%3E%3Cpath d='M6 12.4l6 3 6-3M6 15.6l6 3 6-3' fill='none' stroke='white' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -38,10 +38,31 @@
     <p>
       Skillproof is a tool for upgrading your AI environment — and the reason you can trust
       what it hands you is this protocol. Every listing is checked against its real source
-      before it appears, and labeled by exactly how far that check went:
-      <b>tested &amp; graded</b> (installed, probed, source read) or <b>scouted</b>
-      (found and triaged, never tested). If we didn't run it, we don't grade it. There are
-      no placeholder grades.
+      before it appears, and labeled by exactly how far that check went. Three tiers, in
+      descending strength:
+    </p>
+    <table>
+      <tr><th>Tier</th><th>What was actually done</th><th>What it does <em>not</em> establish</th></tr>
+      <tr>
+        <td><b>tested &amp; graded</b></td>
+        <td>Installed in a sandbox, probed, source read by a person, worksheet published</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td><b>reviewed</b></td>
+        <td>Full source read by an automated reviewer, pinned to one commit</td>
+        <td>That it works. Nothing was installed or executed.</td>
+      </tr>
+      <tr>
+        <td><b>scouted</b></td>
+        <td>Repo verified real, scanned for known-malicious patterns</td>
+        <td>What the code does. Nobody read it.</td>
+      </tr>
+    </table>
+    <p>
+      If we didn't run it, we don't grade it. If we didn't read it, we don't say we reviewed it.
+      There are no placeholder grades, and the counts on every page are computed from the
+      catalog file rather than typed in.
     </p>
     <div class="callout">
       <b>Conflict of interest:</b> we do not grade our own skills. Skillproof-family tools,
@@ -117,7 +138,67 @@
     <p>Grades are <b>derived from the dimension scores by this table, never hand-set</b> — an automated
     honesty gate (<code>scripts/validate_index.py</code>) recomputes every grade and fails the build on any mismatch.</p>
 
-    <h2>The scouted tier — found is not graded</h2>
+    <h2>The reviewed tier — read is not run</h2>
+    <p>
+      "Review the source before installing" is useless advice for the person who came here
+      <em>because</em> they can't. So an automated reviewer (<code>scripts/deep_review.py</code>,
+      Claude Opus&nbsp;5) reads the source and answers the three questions that actually decide
+      whether you install something. It publishes exactly four fields plus its own receipts:
+    </p>
+    <ul>
+      <li><b>What it does</b> (<code>review.does</code>) — one plain sentence.</li>
+      <li><b>What it touches</b> (<code>review.touches</code>) — from a <b>fixed vocabulary</b>
+      of eight values (reads/writes project files · network calls · reads credentials/keys ·
+      runs shell commands · installs dependencies · writes outside the project · no side
+      effects). The build rejects any value outside that list, so the labels mean the same
+      thing on every entry and can be filtered on.</li>
+      <li><b>How to undo it</b> (<code>review.undo</code>) — taken from what the source says.
+      Where the source doesn't say, the field reads <code>not documented by the author</code>.
+      That is a finding we publish, not a gap we fill with a guess.</li>
+      <li><b>What the review couldn't tell you</b> (<code>review.limits</code>) — published
+      verbatim, including on the entries where it is unflattering.</li>
+      <li><b>Scope</b> (<code>review.scope</code>) — which files were read, how many bytes, and
+      what was left out. Reviews are capped at <b>40KB</b> per entry, so a 200-skill library is
+      reviewed in part and says so; oversized documents are truncated and the cut is named.</li>
+    </ul>
+
+    <h3>What "reviewed" does not mean</h3>
+    <p>
+      Nothing was installed. Nothing was executed. Nobody watched it work. A reviewed entry
+      carries <b>no grade, no score, and no worksheet</b> — the build fails if one ever tries to.
+      A source read can be fooled by code that behaves differently at runtime, and it cannot tell
+      you whether the thing is any good. Reading is not running; the tier exists to name that gap
+      rather than paper over it.
+    </p>
+    <div class="callout">
+      <b>Enforced, not promised:</b> the honesty gate scans review prose for phrases that imply
+      execution — "we tested", "we ran", "verified working" — and <b>fails the build</b> on a hit.
+      The word choice is not left to whoever writes the prompt.
+    </div>
+
+    <h3>The pinning rule — why a review can't quietly go stale</h3>
+    <p>
+      Every review records <code>review.source_sha</code>: the exact commit whose bytes were read,
+      taken from the clone the reviewer read (<code>git rev-parse HEAD</code>), not from a
+      branch name. A branch moves; a commit doesn't.
+    </p>
+    <ul>
+      <li>Each refresh re-reads the repo's current HEAD into <code>signals.head_sha</code>.</li>
+      <li>When <code>review.source_sha</code> no longer matches it, the build
+      <b>automatically demotes the entry back to <code>scouted</code></b>, archives the old review
+      under <code>review_stale</code> with the reason, and logs the demotion
+      (<code>validate_index.py --downgrade-stale</code>).</li>
+      <li>If that step is ever skipped or broken, the honesty gate treats a stale review as a
+      <b>blocking error</b> and the build stops. Belt and braces, deliberately: the fix keeps the
+      catalog current without a human, and the gate means a decayed claim cannot ship even if the
+      fix fails.</li>
+    </ul>
+    <p>
+      So a <code>reviewed</code> badge on this site means: <em>the source at the commit that is
+      live right now was read end to end.</em> It expires by itself.
+    </p>
+
+    <h2>The scouted tier — found is not read</h2>
     <p>The scout (the workbench's fallback, the installable scout skill, and the MCP server's
     <code>find_resources</code>) surfaces resources we have <b>not</b> graded. Each scouted entry
     carries exactly four triage receipts, checked on the date shown:</p>
@@ -125,18 +206,31 @@
       <li><b>Provenance</b> — repo verified real via the GitHub API: author, stars, created-when.</li>
       <li><b>License</b> — the license field/file as found; "none detected" is reported plainly.</li>
       <li><b>Freshness</b> — last push date, with a flag when it's been quiet &gt;6 months.</li>
-      <li><b>Safety skim</b> — README + file-tree only. The line-by-line read happens in grading, so
-      every scouted entry says the same thing: treat as untrusted until graded.</li>
+      <li><b>Safety skim</b> — an automated scan of the repo's text for known-malicious
+      patterns: remote-exec pipes, credential and SSH-key reads, decode-then-execute. It is a
+      pattern match, not a reading. Anything it flags is <b>pulled off the site entirely</b>
+      and parked in <code>grading/quarantine.json</code> — we don't list something we suspect
+      and label it, because listing it is still advertising it. Only a person, having read the
+      flagged lines, can restore one.</li>
     </ul>
+    <p>
+      So <code>scouted</code> means <em>nothing known-bad was found</em>, not <em>nothing bad is
+      there</em>. The full read is the <code>reviewed</code> tier above; until an entry reaches it,
+      the catalog says so plainly rather than letting the absence of a warning read as a clearance.
+    </p>
     <div class="callout">
-      <b>Hard wall:</b> scouted entries never carry a grade, a score, or an install command.
-      The honesty gate (<code>scripts/validate_index.py</code>) fails the build if one tries.
-      Triage is a screen; a grade is a test.
+      <b>Hard wall:</b> neither scouted nor reviewed entries ever carry a grade, a score, or a
+      worksheet, and scouted entries carry no install command. The honesty gate
+      (<code>scripts/validate_index.py</code>) fails the build if one tries. A scan is a screen,
+      a read is a description, and a grade is a test — the three are never merged.
     </div>
 
     <h2>Freshness &amp; disputes</h2>
     <ul>
       <li>Grades older than <b>90 days</b> are flagged <code>stale — re-verify pending</code> on the site.</li>
+      <li>Reviews don't expire on a clock, they expire on a <b>commit</b>: the moment upstream moves
+      past the reviewed sha, the entry drops to <code>scouted</code> until it is re-read. A review
+      is never "a few weeks old" — it either describes the live code or it is gone.</li>
       <li>Re-grading a newer version supersedes the old worksheet — append-only, history never edited.</li>
       <li>Authors who dispute a grade can open an issue; we re-run the protocol and publish the re-test either way.</li>
     </ul>
