@@ -407,11 +407,17 @@ def main():
                          "will exceed this, and stops mid-run if actuals do.")
     ap.add_argument("--force", action="store_true",
                     help="re-review even when review.source_sha is current")
+    ap.add_argument("--dump-prompts", metavar="DIR",
+                    help="write one <id>.json per entry (system + prompt + pinned sha) "
+                         "and exit without calling any model. A reviewing agent answers "
+                         "each file; scripts/ingest_reviews.py validates + writes. This "
+                         "is the no-CLI path: same clone, same byte caps, same sha pin.")
     args = ap.parse_args()
 
-    backend = ({"api": ApiBackend,
-                "echo": EchoBackend}.get(args.backend)
-               or (lambda: CliBackend(args.model, args.effort)))()
+    backend = (None if args.dump_prompts
+               else ({"api": ApiBackend,
+                      "echo": EchoBackend}.get(args.backend)
+                     or (lambda: CliBackend(args.model, args.effort)))())
     data = json.loads(DATA.read_text())
 
     # `reviewed` is a promotion from `scouted`: found, skimmed clean, published.
@@ -463,6 +469,21 @@ def main():
                 missed += 1
                 continue
             prompt = build_prompt(s, files, nskipped, ntrunc)
+
+        if args.dump_prompts:
+            outdir = Path(args.dump_prompts)
+            outdir.mkdir(parents=True, exist_ok=True)
+            (outdir / f"{sid}.json").write_text(json.dumps({
+                "id": sid,
+                "source_sha": head_sha,           # pinned HERE, at read time —
+                "scope": scope_line(files, nskipped, ntrunc, used),  # never by the reviewer
+                "system": SYSTEM,
+                "prompt": prompt,
+            }, ensure_ascii=False) + "\n")
+            done += 1
+            print(f"  dump  [{n}/{total}] {sid}: {len(files)} files @ {head_sha[:8]} "
+                  f"→ {outdir / (sid + '.json')}")
+            continue
 
         est_in = backend.count_tokens(prompt)
         est = cost(est_in, 900)
@@ -531,6 +552,11 @@ def main():
                   f"raise --max-cost deliberately or run in batches with --limit")
             return 1
         print("nothing written (echo backend)")
+        return 0
+
+    if args.dump_prompts:
+        print(f"\ndumped {done} prompt file(s) to {args.dump_prompts} — nothing written "
+              f"to {DATA.name}. Answer each, then run scripts/ingest_reviews.py")
         return 0
 
     DATA.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n")

@@ -237,7 +237,7 @@
       "pain_points": [
         "debugging-loops"
       ],
-      "status": "scouted",
+      "status": "reviewed",
       "scouted_on": "2026-07-24",
       "triage": {
         "provenance": "Repo verified real via GitHub API: doraemonkeys/claude-code-debug-mode, created 2026-02.",
@@ -245,19 +245,35 @@
         "freshness": "Last push 2026-06-26 (checked 2026-07-29) — actively maintained.",
         "safety": "Automated safety skim (2026-07-27, 3 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Not a line-by-line read — treat as untrusted until graded."
       },
-      "next": "Queued for automated source review — the source has not been read yet, so this entry states only what the scan found.",
+      "next": "Queued for a full grading run (installed + probed).",
       "signals": {
         "stars": 108,
         "forks": 6,
         "checked": "2026-07-29",
         "head_sha": "2dc917f7ea357f668201119371e2fe0eebd50299",
-        "head_checked": "2026-07-29"
+        "head_checked": "2026-07-31"
       },
       "skim": {
         "date": "2026-07-27",
         "files_scanned": 3,
         "red_flags": [],
         "notes": []
+      },
+      "review": {
+        "does": "When your coding agent hits a stubborn bug, this makes it work like a methodical detective: list possible causes, add temporary logging lines to your code, wait for you to re-trigger the bug, read the log to prove which cause is real, fix it, and then strip the temporary lines back out.",
+        "touches": [
+          "reads project files",
+          "writes project files",
+          "runs shell commands",
+          "network calls",
+          "writes outside the project"
+        ],
+        "undo": "The author documents removal: delete the installed skill folder (for Claude Code, `rm -rf ~/.claude/skills/debug-mode`; similar delete commands are given for Codex and Gemini CLI, or `gemini skills uninstall debug-mode`). Separately, the workflow itself tells the agent to remove all its temporary logging lines and delete the debug log file once you confirm the bug is fixed.",
+        "scope": "2 file(s), 10.7KB read: debug-mode/SKILL.md, README.md",
+        "limits": "This review is based on reading the source only; nothing was installed, run, or tested. The package ships no program of its own -- it is a written playbook the AI agent is told to follow -- so every category listed under touches is something the instructions direct the agent to do to YOUR code, not something this package does by itself, and whether the agent follows the playbook faithfully cannot be verified by reading. In particular: the temporary logging edits and the log file (kept in a .claude folder inside your project, or in the system /tmp folder as a fallback) are only cleaned up if the session reaches the final step -- an interrupted session could leave stray debug lines in your files. The 'network calls' entry refers to instructions for browser-based code to send log data to a debugging endpoint in your own app; the instructions do not spell out how that endpoint is created, which is left to the agent. The instructions contain a small contradiction: one rule says log-file writing only, while another section allows the browser fetch approach. I reviewed the two files supplied (the skill instructions and the README); I cannot confirm whether the repository contains other files beyond these.",
+        "reviewed_at": "2026-07-31",
+        "reviewer": "automated-source-review v1",
+        "source_sha": "2dc917f7ea357f668201119371e2fe0eebd50299"
       }
     },
     {
@@ -270,7 +286,7 @@
       "pain_points": [
         "git-hygiene"
       ],
-      "status": "scouted",
+      "status": "reviewed",
       "scouted_on": "2026-07-24",
       "triage": {
         "provenance": "Repo verified real via GitHub API: aidankinzett/claude-git-pr-skill, created 2025-12.",
@@ -278,19 +294,32 @@
         "freshness": "Last push 2025-12-02 (checked 2026-07-29) — ~8 months quiet.",
         "safety": "Automated safety skim (2026-07-27, 6 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Not a line-by-line read — treat as untrusted until graded."
       },
-      "next": "Queued for automated source review — the source has not been read yet, so this entry states only what the scan found.",
+      "next": "Queued for a full grading run (installed + probed).",
       "signals": {
         "stars": 41,
         "forks": 7,
         "checked": "2026-07-29",
         "head_sha": "3660dca92424b91f1eb716b5815b476c3913450e",
-        "head_checked": "2026-07-29"
+        "head_checked": "2026-07-31"
       },
       "skim": {
         "date": "2026-07-27",
         "files_scanned": 6,
         "red_flags": [],
         "notes": []
+      },
+      "review": {
+        "does": "It gives your agent a step-by-step routine for posting review comments on GitHub pull requests: draft all comments first, show you exactly what will be posted and wait for your yes, then publish everything as one batched review using GitHub's command-line tool.",
+        "touches": [
+          "runs shell commands",
+          "network calls"
+        ],
+        "undo": "not documented by the author",
+        "scope": "2 file(s), 14.6KB read: github-pr-review/skills/github-pr-review/SKILL.md, README.md",
+        "limits": "This review is based on reading the source, not running it. Only two files were provided (the skill instructions and the README); the repo also references a marketplace.json and CHANGELOG.md that were not included, so the review covers only part of the repo. The files ship no program code of their own -- they are written instructions the agent is meant to follow -- so everything above describes what the instructions tell the agent to do, not code that acts on its own. The instructions direct the agent to run the 'gh' command-line tool, which sends requests to GitHub and posts review comments publicly and permanently under your GitHub account, using whatever GitHub login 'gh' already holds on your machine. The safeguard that nothing posts without your approval is itself just an instruction to the agent; whether the agent always obeys it cannot be verified by reading. The README's claims about behavior match what the instructions say, but neither was tested.",
+        "reviewed_at": "2026-07-31",
+        "reviewer": "automated-source-review v1",
+        "source_sha": "3660dca92424b91f1eb716b5815b476c3913450e"
       }
     },
     {
@@ -303,7 +332,7 @@
       "pain_points": [
         "shallow-research"
       ],
-      "status": "scouted",
+      "status": "reviewed",
       "scouted_on": "2026-07-24",
       "triage": {
         "provenance": "Repo verified real via GitHub API: Anjos2/recursive-research, created 2026-04.",
@@ -311,19 +340,33 @@
         "freshness": "Last push 2026-04-22 (checked 2026-07-29).",
         "safety": "Automated safety skim (2026-07-27, 7 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Not a line-by-line read — treat as untrusted until graded."
       },
-      "next": "Queued for automated source review — the source has not been read yet, so this entry states only what the scan found.",
+      "next": "Queued for a full grading run (installed + probed).",
       "signals": {
         "stars": 36,
         "forks": 0,
         "checked": "2026-07-29",
         "head_sha": "15ed326ae7162c674d7a1e477724148fa4435528",
-        "head_checked": "2026-07-29"
+        "head_checked": "2026-07-31"
       },
       "skim": {
         "date": "2026-07-27",
         "files_scanned": 7,
         "red_flags": [],
         "notes": []
+      },
+      "review": {
+        "does": "Turns a topic you name into a long-running research project: your agent repeatedly searches the web (and any local folders you point it at), grades every source it uses by trustworthiness, saves its progress into files inside your project so it can pick up again in a later session, and keeps going until a strict quality checklist passes or you tell it to stop.",
+        "touches": [
+          "reads project files",
+          "writes project files",
+          "network calls"
+        ],
+        "undo": "not documented by the author",
+        "scope": "2 file(s), 27.9KB read: plugins/recursive-research/skills/recursive-research/SKILL.md, README.md",
+        "limits": "This review is based on reading the source, not running it. Only two files were provided (the skill instructions and the README); the rest of the repository — including the plugin manifest, marketplace manifest, privacy policy, and license files the README mentions — was not shown, so the review covers only part of the repo. The entire skill is written instructions (in Spanish) that the AI is asked to follow; there is no program code, so none of the described safeguards (asking before starting, rejecting bad sources, pausing before context limits) are enforced by anything — they depend entirely on the AI choosing to follow them. The research files are written into a 'memoria/investigaciones/' folder in whatever project is open, and if you give it local folder paths it will read files anywhere on your machine, not just in the project. The 'PhD level' claim is the author's own five-point checklist, not any real credential. The README says no user data is collected, and the source shows no analytics or reporting back to the author, but by design the skill sends your research topics as search queries to outside websites and, if installed, third-party scraping services like Firecrawl — that traffic is inherent to how it works. The README describes install commands (git clone, copying files) that were not part of the skill itself and were not verified.",
+        "reviewed_at": "2026-07-31",
+        "reviewer": "automated-source-review v1",
+        "source_sha": "15ed326ae7162c674d7a1e477724148fa4435528"
       }
     },
     {
