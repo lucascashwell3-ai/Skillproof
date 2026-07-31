@@ -379,7 +379,7 @@
       "pain_points": [
         "testing-discipline"
       ],
-      "status": "scouted",
+      "status": "reviewed",
       "scouted_on": "2026-07-24",
       "triage": {
         "provenance": "Repo verified real via GitHub API: lackeyjb/playwright-skill, created 2025-10.",
@@ -387,19 +387,35 @@
         "freshness": "Last push 2025-12-19 (checked 2026-07-29) — ~7 months quiet.",
         "safety": "Automated safety skim (2026-07-27, 11 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Not a line-by-line read — treat as untrusted until graded."
       },
-      "next": "Queued for automated source review — the source has not been read yet, so this entry states only what the scan found.",
+      "next": "Queued for a full grading run (installed + probed).",
       "signals": {
         "stars": 2960,
         "forks": 219,
         "checked": "2026-07-29",
         "head_sha": "bb7e920d376022958214e349ef25498a2644e189",
-        "head_checked": "2026-07-29"
+        "head_checked": "2026-07-31"
       },
       "skim": {
         "date": "2026-07-27",
         "files_scanned": 11,
         "red_flags": [],
         "notes": []
+      },
+      "review": {
+        "does": "It lets your agent open a real web browser on your computer, visit pages (your local project or any site), click buttons, fill in forms, and save screenshots, so it can check that a website actually works instead of guessing.",
+        "touches": [
+          "reads project files",
+          "network calls",
+          "runs shell commands",
+          "installs dependencies",
+          "writes outside the project"
+        ],
+        "undo": "not documented by the author",
+        "scope": "4 file(s), 40.0KB read: skills/playwright-skill/SKILL.md, README.md, skills/playwright-skill/run.js, skills/playwright-skill/lib/helpers.js",
+        "limits": "This review is based on reading the source, not running it. Four files were reviewed (the instructions file, the README, the runner script, and the helpers file); the repo's full API reference document and package/setup configuration were not included, so what the setup step installs is known only from descriptions, not from the setup file itself. Two things deserve extra caution. First, the runner script executes whatever code it is handed - a file, typed-in text, or piped input - with no restrictions, and if its own dependencies are missing it silently downloads and installs them from the internet before running; a browser download of this kind is large. Second, the toolkit includes a ready-made 'authenticate' helper that types a username and password into login forms, and another that automatically clicks 'Accept' on cookie pop-ups - meaning an agent using this skill can log into sites and accept cookie terms on your behalf if given credentials. The browser is launched with a security feature (the sandbox) turned off in one helper, which is a common convenience choice but slightly weakens isolation between the browser and your machine. Scripts and screenshots are written to the system's temporary folder outside your project, and leftover run files sit inside the skill's own folder until the next run cleans them. The 'network calls' finding covers both the browser traffic the agent drives (to any address it is pointed at, including scanning your machine's local ports for running servers) and the dependency download; nothing in the source shows data being sent to the author. Removal steps are never stated anywhere in these files - you would have to delete the installed folder yourself, and the downloaded browser and packages would remain inside it until you do.",
+        "reviewed_at": "2026-07-31",
+        "reviewer": "automated-source-review v1",
+        "source_sha": "bb7e920d376022958214e349ef25498a2644e189"
       }
     },
     {
@@ -511,7 +527,7 @@
         "planning-drift",
         "testing-discipline"
       ],
-      "status": "scouted",
+      "status": "reviewed",
       "scouted_on": "2026-07-24",
       "triage": {
         "provenance": "Repo verified real via GitHub API: obra/superpowers, created 2025-10.",
@@ -519,19 +535,35 @@
         "freshness": "Last push 2026-07-28 (checked 2026-07-29) — actively maintained.",
         "safety": "Automated safety skim (2026-07-27, 175 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. A library, not one skill — each skill needs its own read before use."
       },
-      "next": "Queued for automated source review — the source has not been read yet, so this entry states only what the scan found.",
+      "next": "Queued for a full grading run (installed + probed).",
       "signals": {
         "stars": 263380,
         "forks": 23516,
         "checked": "2026-07-29",
         "head_sha": "44c9b2d6e889982ac18c27d05a19fefe335194e1",
-        "head_checked": "2026-07-29"
+        "head_checked": "2026-07-31"
       },
       "skim": {
         "date": "2026-07-27",
         "files_scanned": 175,
         "red_flags": [],
         "notes": []
+      },
+      "review": {
+        "does": "Gives your agent a strict step-by-step working discipline for software tasks: it will write detailed plans before coding, do its work in a separate copy of your project, hand tasks to helper agents, run your tests before claiming anything is done, and push back on review feedback instead of just agreeing.",
+        "touches": [
+          "reads project files",
+          "writes project files",
+          "runs shell commands",
+          "installs dependencies",
+          "network calls"
+        ],
+        "undo": "not documented by the author",
+        "scope": "9 file(s), 40.0KB read: skills/executing-plans/SKILL.md, skills/requesting-code-review/SKILL.md, skills/using-superpowers/SKILL.md, skills/verification-before-completion/SKILL.md, +5 more. skills/finishing-a-development-branch/SKILL.md truncated at 3KB of 7KB. 19 further file(s) NOT read — repo exceeds the 40KB review cap",
+        "limits": "This review is based on reading the source, not running it — nothing here was executed or observed working. It covers only part of the repository: 19 files were withheld under the review size cap, and one of the nine files provided (finishing-a-development-branch) was cut off at roughly its first third, so anything in the unseen files or the truncated portion is outside this review. These files are written instructions for an AI agent, not program code: the shell commands, dependency installs (npm/pip/cargo/go), file writes (saved plan documents, .gitignore edits, git commits), and network activity (git pull, git push, creating pull requests, replying to GitHub comments via the gh tool) happen only if and when the agent follows the instructions, and an instruction-following agent may deviate — there is no code enforcing these behaviors. The commands the visible files direct appear to stay inside the project folder; whether the 19 unseen files direct anything broader cannot be said from this review.",
+        "reviewed_at": "2026-07-31",
+        "reviewer": "automated-source-review v1",
+        "source_sha": "44c9b2d6e889982ac18c27d05a19fefe335194e1"
       }
     },
     {
@@ -782,7 +814,7 @@
       "pain_points": [
         "generic-frontend"
       ],
-      "status": "scouted",
+      "status": "reviewed",
       "scouted_on": "2026-07-25",
       "triage": {
         "provenance": "Repo verified real via GitHub API: nexu-io/open-design, created 2026-04.",
@@ -790,13 +822,13 @@
         "freshness": "Last push 2026-07-30 (checked 2026-07-29) — actively maintained.",
         "safety": "Automated safety skim (2026-07-27, 600 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: remote-exec pipe in docs, network call. Not a line-by-line read — treat as untrusted until graded."
       },
-      "next": "Queued for automated source review — the source has not been read yet, so this entry states only what the scan found.",
+      "next": "Queued for a full grading run (installed + probed).",
       "signals": {
         "stars": 82579,
         "forks": 9557,
         "checked": "2026-07-29",
-        "head_sha": "4f3a0b3c06346519f14015435a9fd582967b68a8",
-        "head_checked": "2026-07-29"
+        "head_sha": "517f39acde402c1a7af2189167a8d6957a3dac71",
+        "head_checked": "2026-07-31"
       },
       "skim": {
         "date": "2026-07-27",
@@ -806,6 +838,21 @@
           "network call",
           "remote-exec pipe in docs"
         ]
+      },
+      "review": {
+        "does": "It gives your agent a set of design recipes — creating and refining page mockups, turning an approved design into React, Vue, or Next.js code, and a menu of pointers to outside AI services (OpenAI, Venice.ai, fal.ai, Google, Figma and others) for making images, video, audio, slides, and PDFs.",
+        "touches": [
+          "runs shell commands",
+          "network calls",
+          "installs dependencies",
+          "writes outside the project"
+        ],
+        "undo": "not documented by the author",
+        "scope": "39 file(s), 40.0KB read: plugins/community/registry-starter/SKILL.md, tools/serve/AGENTS.md, plugins/_official/scenarios/od-design-refine/SKILL.md, plugins/_official/scenarios/od-vue-export/SKILL.md, +35 more. skills/venice-audio-music/SKILL.md truncated at 1KB of 1KB. 2071 further file(s) NOT read — repo exceeds the 40KB review cap",
+        "limits": "This code was read, not run — nothing here was installed, executed, or observed working. The review covers only 39 files (about 40KB); 2,071 further files in the repository were withheld by the review size cap, so the vast majority of the project — including the desktop app itself and all of its actual program code — was never seen. One reviewed file (skills/venice-audio-music/SKILL.md) was cut off partway through. Everything I did see is plain instruction text (markdown), not program code; the 'touches' flags come from what those instructions tell an agent or user to do: run a shell command that opens a web page, and download and install add-on skill bundles from other GitHub projects into the agent's own skills folder, outside your project. The real working code for those add-ons — which by their descriptions call paid AI services and would likely need API keys — lives in those other repositories and was not part of this review. The author's claims (local-first desktop app, HTML/PDF/PPTX/MP4 export) could not be checked against the withheld code.",
+        "reviewed_at": "2026-07-31",
+        "reviewer": "automated-source-review v1",
+        "source_sha": "517f39acde402c1a7af2189167a8d6957a3dac71"
       }
     },
     {
@@ -864,7 +911,7 @@
       "category": "workflow",
       "summary": "Bash is all you need -  A nano claude code–like 「agent harness」, built from 0 to 1",
       "pain_points": [],
-      "status": "scouted",
+      "status": "reviewed",
       "scouted_on": "2026-07-25",
       "triage": {
         "provenance": "Repo verified real via GitHub API: shareAI-lab/learn-claude-code, created 2025-06.",
@@ -872,19 +919,37 @@
         "freshness": "Last push 2026-07-28 (checked 2026-07-29) — actively maintained.",
         "safety": "Automated safety skim (2026-07-27, 265 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Not a line-by-line read — treat as untrusted until graded."
       },
-      "next": "Queued for automated source review — the source has not been read yet, so this entry states only what the scan found.",
+      "next": "Queued for a full grading run (installed + probed).",
       "signals": {
         "stars": 72675,
         "forks": 11790,
         "checked": "2026-07-29",
         "head_sha": "7b564c3ee6996039cb4e13a53024dfe2d4388d35",
-        "head_checked": "2026-07-29"
+        "head_checked": "2026-07-31"
       },
       "skim": {
         "date": "2026-07-27",
         "files_scanned": 265,
         "red_flags": [],
         "notes": []
+      },
+      "review": {
+        "does": "Gives your agent ready-made playbooks for working with PDF files, reviewing code, and building its own agents and tool servers, alongside a lesson series that teaches, step by step, how a Claude-Code-style assistant is built from a simple loop.",
+        "touches": [
+          "reads project files",
+          "writes project files",
+          "network calls",
+          "reads credentials/keys",
+          "runs shell commands",
+          "installs dependencies",
+          "writes outside the project"
+        ],
+        "undo": "not documented by the author",
+        "scope": "8 file(s), 39.6KB read: skills/pdf/SKILL.md, skills/code-review/SKILL.md, skills/agent-builder/SKILL.md, skills/mcp-builder/SKILL.md, +4 more. 67 further file(s) NOT read — repo exceeds the 40KB review cap",
+        "limits": "This review is based on reading the source, not running it - nothing here was executed, installed, or observed working. Only 8 of roughly 75 files were provided; 67 files were withheld by the review size cap, and crucially those withheld files include the actual runnable Python programs (the code.py files) that the tutorial lessons describe - so what those programs really do when run could not be verified, only what their write-ups claim. Everything reviewed is instruction text (markdown), not a program: the skill files direct an AI agent to run shell commands (including pip/brew/npm installs), read and write files, call outside web services, search project files for passwords and keys, and edit a configuration file in the user's home folder outside the project - whether any of that happens depends on the agent following the instructions, and an agent could act on them differently than written. The tutorial's own text says its example agent executes model-generated shell commands with no permission gate until a later lesson, and recommends running it in a throwaway folder; that warning comes from the author and could not be independently checked. Much of the material is written in Chinese, reviewed via translation.",
+        "reviewed_at": "2026-07-31",
+        "reviewer": "automated-source-review v1",
+        "source_sha": "7b564c3ee6996039cb4e13a53024dfe2d4388d35"
       }
     },
     {
@@ -993,7 +1058,7 @@
       "pain_points": [
         "context-bloat"
       ],
-      "status": "scouted",
+      "status": "reviewed",
       "scouted_on": "2026-07-25",
       "triage": {
         "provenance": "Repo verified real via GitHub API: shanraisshan/claude-code-best-practice, created 2025-10.",
@@ -1001,13 +1066,13 @@
         "freshness": "Last push 2026-07-30 (checked 2026-07-29) — actively maintained.",
         "safety": "Automated safety skim (2026-07-27, 135 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: ssh key read in docs, remote-exec pipe in docs. Not a line-by-line read — treat as untrusted until graded."
       },
-      "next": "Queued for automated source review — the source has not been read yet, so this entry states only what the scan found.",
+      "next": "Queued for a full grading run (installed + probed).",
       "signals": {
         "stars": 63715,
         "forks": 6342,
         "checked": "2026-07-29",
-        "head_sha": "67c2696b679c94162808ba633e94185a3ff6d0bd",
-        "head_checked": "2026-07-29"
+        "head_sha": "8c891bc8d28786ec994b6db19f6606fe77fe8670",
+        "head_checked": "2026-07-31"
       },
       "skim": {
         "date": "2026-07-27",
@@ -1017,6 +1082,24 @@
           "remote-exec pipe in docs",
           "ssh key read in docs"
         ]
+      },
+      "review": {
+        "does": "Gives their agent a bundle of tutorial examples: instructions for reporting the current time in Dubai or Pakistan, looking up Dubai's weather from a free online weather service, saving small picture-card and note files into the project, editing a slideshow that ships with the repo, and driving a web browser (opening pages, filling forms, logging into sites, taking screenshots) through a separate command-line program called agent-browser.",
+        "touches": [
+          "reads project files",
+          "writes project files",
+          "network calls",
+          "reads credentials/keys",
+          "runs shell commands",
+          "installs dependencies",
+          "writes outside the project"
+        ],
+        "undo": "not documented by the author",
+        "scope": "11 file(s), 39.9KB read: agent-teams/.claude/skills/time-fetcher/SKILL.md, .claude/skills/time-skill/SKILL.md, agent-teams/.claude/skills/time-svg-creator/SKILL.md, .claude/skills/weather-svg-creator/SKILL.md, +7 more. 3 further file(s) NOT read — repo exceeds the 40KB review cap",
+        "limits": "This review is based on reading the files, not running anything — nothing was installed, executed, or observed working. 3 files in the repo were withheld from the review because of a size cap, so this covers only part of the repo; the withheld files could do things not listed here. Several files these instructions point to (reference.md, examples.md, and three .sh script templates for the browser skill) were also not provided, so what those scripts actually do is unknown. The browser skill only contains instructions for using a separate program called agent-browser — that program's own code is not in this repo and was not reviewed, so what it truly does when it opens pages, saves login state, or takes screenshots cannot be verified from here. Its examples show filling in usernames and passwords from the computer's environment and saving login sessions to a file, which is why credential handling is flagged; whether that is done safely depends entirely on the unreviewed external program. The 'installs dependencies' flag comes from a documented setup command (a global npm install for iOS testing) rather than an automatic install step. The time and weather examples themselves are simple and match their descriptions in what was read.",
+        "reviewed_at": "2026-07-31",
+        "reviewer": "automated-source-review v1",
+        "source_sha": "8c891bc8d28786ec994b6db19f6606fe77fe8670"
       }
     },
     {
@@ -1078,7 +1161,7 @@
       "category": "library",
       "summary": "The awesome collection of OpenClaw skills. 5,400+ skills filtered and categorized from the official OpenClaw Skills Registry.🦞",
       "pain_points": [],
-      "status": "scouted",
+      "status": "reviewed",
       "scouted_on": "2026-07-25",
       "triage": {
         "provenance": "Repo verified real via GitHub API: VoltAgent/awesome-openclaw-skills, created 2026-01.",
@@ -1086,19 +1169,31 @@
         "freshness": "Last push 2026-07-16 (checked 2026-07-29) — actively maintained.",
         "safety": "Automated safety skim (2026-07-27, 35 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. A library, not one skill — each skill needs its own read before use."
       },
-      "next": "Queued for automated source review — the source has not been read yet, so this entry states only what the scan found.",
+      "next": "Queued for a full grading run (installed + probed).",
       "signals": {
         "stars": 51601,
         "forks": 4974,
         "checked": "2026-07-29",
-        "head_sha": "6afb5d4e3e6f36ff181a33b3b6f88054348bc70a",
-        "head_checked": "2026-07-29"
+        "head_sha": "69f6512e3dc3df71ab839e6f13bd53ef8199d918",
+        "head_checked": "2026-07-31"
       },
       "skim": {
         "date": "2026-07-27",
         "files_scanned": 35,
         "red_flags": [],
         "notes": []
+      },
+      "review": {
+        "does": "It gives you a large categorized directory of links to thousands of other people's OpenClaw skills, with instructions for how to install them yourself — it is a catalog to browse, not a tool that adds any ability on its own.",
+        "touches": [
+          "no side effects"
+        ],
+        "undo": "not documented by the author",
+        "scope": "1 file(s), 40.0KB read: README.md. README.md truncated at 40KB of 130KB",
+        "limits": "The code was read, not run. Only one file (README.md) was reviewed, and only its first 40KB of 130KB — the rest of the README and any other files in the repository were not seen, so this review covers only part of the repo. The portion reviewed is prose and links only, with no executable code, so 'no side effects' applies to the list itself — but every skill it links to is separate third-party code that this review says nothing about; the list's own maintainers state the entries are 'curated, not audited' and can change at any time. The README also shows installation commands (such as 'openclaw skills install' and 'npx clawhub install') that, if you follow them, download and run outside code — the safety of anything installed that way is entirely outside this review. The README's claims about how many skills were filtered out as spam or malicious could not be verified from the source. The README also contains paid sponsor promotions presented alongside the curated content.",
+        "reviewed_at": "2026-07-31",
+        "reviewer": "automated-source-review v1",
+        "source_sha": "69f6512e3dc3df71ab839e6f13bd53ef8199d918"
       }
     },
     {
@@ -1450,7 +1545,7 @@
       "category": "library",
       "summary": "A curated collection of 1000+ agent skills from official dev teams and the community, compatible with Claude Code, Codex, Gemini CLI, Cursor, and more.",
       "pain_points": [],
-      "status": "scouted",
+      "status": "reviewed",
       "scouted_on": "2026-07-25",
       "triage": {
         "provenance": "Repo verified real via GitHub API: VoltAgent/awesome-agent-skills, created 2025-10.",
@@ -1458,19 +1553,31 @@
         "freshness": "Last push 2026-07-10 (checked 2026-07-29) — actively maintained.",
         "safety": "Automated safety skim (2026-07-27, 4 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. A library, not one skill — each skill needs its own read before use."
       },
-      "next": "Queued for automated source review — the source has not been read yet, so this entry states only what the scan found.",
+      "next": "Queued for a full grading run (installed + probed).",
       "signals": {
         "stars": 29212,
         "forks": 3141,
         "checked": "2026-07-29",
-        "head_sha": "c97eda5e3406670f3285c6bf9eb7639a7ecc03cc",
-        "head_checked": "2026-07-29"
+        "head_sha": "6c82fb77e5bf84de77d1074b2d98d65d75ea730e",
+        "head_checked": "2026-07-31"
       },
       "skim": {
         "date": "2026-07-27",
         "files_scanned": 4,
         "red_flags": [],
         "notes": []
+      },
+      "review": {
+        "does": "It gives you a large organized list of links to agent skills made by other companies and people, so you can find and pick ones to install from their own repositories.",
+        "touches": [
+          "no side effects"
+        ],
+        "undo": "not documented by the author",
+        "scope": "1 file(s), 40.0KB read: README.md. README.md truncated at 40KB of 235KB",
+        "limits": "This review is based on reading the source, not running or installing anything. Only one file was available: the first 40KB of a 235KB README, so about five-sixths of the document was not reviewed and any other files in the repository were not seen. What was reviewed is a directory of links plus sponsor advertisements; the repository itself ships no code in the portion seen, but every linked skill is separate third-party code that this review says nothing about — each one would need its own review before installing. The 'no side effects' rating applies only to this catalog document, not to anything it links to. The badge claims of '1497+ skills' and the claim that entries are 'hand-picked' could not be verified from the source.",
+        "reviewed_at": "2026-07-31",
+        "reviewer": "automated-source-review v1",
+        "source_sha": "6c82fb77e5bf84de77d1074b2d98d65d75ea730e"
       }
     },
     {
@@ -1540,7 +1647,7 @@
         "context-bloat",
         "planning-drift"
       ],
-      "status": "scouted",
+      "status": "reviewed",
       "scouted_on": "2026-07-25",
       "triage": {
         "provenance": "Repo verified real via GitHub API: OthmanAdi/planning-with-files, created 2026-01.",
@@ -1548,19 +1655,34 @@
         "freshness": "Last push 2026-07-24 (checked 2026-07-29) — actively maintained.",
         "safety": "Automated safety skim (2026-07-27, 477 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. A library, not one skill — each skill needs its own read before use."
       },
-      "next": "Queued for automated source review — the source has not been read yet, so this entry states only what the scan found.",
+      "next": "Queued for a full grading run (installed + probed).",
       "signals": {
         "stars": 25840,
         "forks": 2165,
         "checked": "2026-07-29",
         "head_sha": "b04ffd9c8f9f93919649d197e5d4ec1bfc06fa14",
-        "head_checked": "2026-07-29"
+        "head_checked": "2026-07-31"
       },
       "skim": {
         "date": "2026-07-27",
         "files_scanned": 477,
         "red_flags": [],
         "notes": []
+      },
+      "review": {
+        "does": "Makes your coding agent keep its plan, research notes, and progress in markdown files inside your project so it can pick up where it left off after a crash, a cleared chat, or a long break.",
+        "touches": [
+          "reads project files",
+          "writes project files",
+          "runs shell commands",
+          "writes outside the project"
+        ],
+        "undo": "not documented by the author",
+        "scope": "5 file(s), 40.0KB read: AGENTS.md, .kiro/skills/planning-with-files/SKILL.md, .hermes/skills/planning-with-files/SKILL.md, .gemini/skills/planning-with-files/SKILL.md, +1 more. .continue/skills/planning-with-files/SKILL.md truncated at 7KB of 10KB. 170 further file(s) NOT read — repo exceeds the 40KB review cap",
+        "limits": "The code was read, not run. This review covers only a small slice of the repository: 170 files were withheld under the review size cap, including every helper script the instructions tell the agent to run (bootstrap.sh, init-session.sh, session-catchup.py, check-complete.sh, attest-plan.sh, and others) — so what those scripts actually do on your machine could not be verified, only what the instructions say about them. One of the five files shown (.continue/skills/planning-with-files/SKILL.md) was cut off partway through. What was seen: the instructions direct the agent to run shell and Python scripts, create and edit planning files in your project (task_plan.md, findings.md, progress.md, .planning/ folders, and hidden attestation files), and — for one editor (OpenCode) — read a database in your home folder outside the project (~/.local/share/opencode/opencode.db), which holds past session history. The Gemini variant also relies on hooks configured in a settings file that was not shown, meaning parts of the agent's behavior are wired up in a file this review could not see. The author's claims of 'crash-proof' plans, 'deterministic completion gating', and injection protection via hash-locking could not be confirmed from the visible files. One included file (AGENTS.md) is release-process rules for the project's own maintainers, not something that runs on your machine. No uninstall or disable instructions appear anywhere in the visible files.",
+        "reviewed_at": "2026-07-31",
+        "reviewer": "automated-source-review v1",
+        "source_sha": "b04ffd9c8f9f93919649d197e5d4ec1bfc06fa14"
       }
     },
     {
@@ -1571,7 +1693,7 @@
       "category": "library",
       "summary": "PM Skills Marketplace: 100+ agentic skills, commands, and plugins — from discovery to strategy, execution, launch, and growth.",
       "pain_points": [],
-      "status": "scouted",
+      "status": "reviewed",
       "scouted_on": "2026-07-25",
       "triage": {
         "provenance": "Repo verified real via GitHub API: phuryn/pm-skills, created 2026-03.",
@@ -1579,19 +1701,33 @@
         "freshness": "Last push 2026-07-03 (checked 2026-07-29) — actively maintained.",
         "safety": "Automated safety skim (2026-07-27, 142 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. A library, not one skill — each skill needs its own read before use."
       },
-      "next": "Queued for automated source review — the source has not been read yet, so this entry states only what the scan found.",
+      "next": "Queued for a full grading run (installed + probed).",
       "signals": {
         "stars": 24639,
         "forks": 2570,
         "checked": "2026-07-29",
         "head_sha": "18468a95b427e70e258b51389796367c6f684e7d",
-        "head_checked": "2026-07-29"
+        "head_checked": "2026-07-31"
       },
       "skim": {
         "date": "2026-07-27",
         "files_scanned": 142,
         "red_flags": [],
         "notes": []
+      },
+      "review": {
+        "does": "Gives your agent ready-made step-by-step playbooks for common product-manager jobs — summarizing customer interviews, prioritizing features and assumptions, planning sprints, writing release notes and retros, mapping stakeholders, and building competitor battlecards — each producing a structured written document.",
+        "touches": [
+          "reads project files",
+          "writes project files",
+          "network calls"
+        ],
+        "undo": "not documented by the author",
+        "scope": "18 file(s), 40.0KB read: AGENTS.md, pm-product-discovery/skills/summarize-interview/SKILL.md, pm-product-discovery/skills/identify-assumptions-existing/SKILL.md, pm-marketing-growth/skills/marketing-ideas/SKILL.md, +14 more. pm-product-discovery/skills/brainstorm-ideas-existing/SKILL.md truncated at 2KB of 3KB. 62 further file(s) NOT read — repo exceeds the 40KB review cap",
+        "limits": "The code was read, not run. This review covers only 18 of the repository's files (about 40KB); 62 other files were withheld by the review size cap, so most of the '100+ skills' the author advertises were not seen. One reviewed file (pm-product-discovery/skills/brainstorm-ideas-existing/SKILL.md) was cut off partway through. The repository's own agent-guidance file, CLAUDE.md — which AGENTS.md calls the single source of truth — was not among the files provided, so any behavior it adds is unknown. Within what was reviewed, the files are plain instructions with no scripts or executable code; the 'reads project files', 'writes project files', and 'network calls' findings come from the instructions telling the agent to read files you provide, save its output as markdown documents in your workspace, and use web search for market or competitor research (several skills, e.g. competitive-battlecard and brainstorm-ideas-new). Several skills also link to the author's own paid courses and newsletter as 'further reading'.",
+        "reviewed_at": "2026-07-31",
+        "reviewer": "automated-source-review v1",
+        "source_sha": "18468a95b427e70e258b51389796367c6f684e7d"
       }
     },
     {
@@ -1602,7 +1738,7 @@
       "category": "library",
       "summary": "A collection of 100+ specialized Claude Code subagents covering a wide range of development use cases",
       "pain_points": [],
-      "status": "scouted",
+      "status": "reviewed",
       "scouted_on": "2026-07-25",
       "triage": {
         "provenance": "Repo verified real via GitHub API: VoltAgent/awesome-claude-code-subagents, created 2025-07.",
@@ -1610,13 +1746,13 @@
         "freshness": "Last push 2026-07-10 (checked 2026-07-29) — actively maintained.",
         "safety": "Automated safety skim (2026-07-27, 189 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: network call, remote-exec pipe in docs. A library, not one skill — each skill needs its own read before use."
       },
-      "next": "Queued for automated source review — the source has not been read yet, so this entry states only what the scan found.",
+      "next": "Queued for a full grading run (installed + probed).",
       "signals": {
         "stars": 23847,
         "forks": 2768,
         "checked": "2026-07-29",
-        "head_sha": "947b44ca0c58d606b084e9cb1a2389335b49278b",
-        "head_checked": "2026-07-29"
+        "head_sha": "91810b33c707111e05e0988b12e7385d7b5cfe9d",
+        "head_checked": "2026-07-31"
       },
       "skim": {
         "date": "2026-07-27",
@@ -1626,6 +1762,19 @@
           "network call",
           "remote-exec pipe in docs"
         ]
+      },
+      "review": {
+        "does": "Gives your agent a large menu of ready-made specialist personas (backend developer, data analyst, competitive researcher, workflow coordinator, and many more) it can take on, plus an optional catalog helper that fetches those persona definitions from the internet and saves a copy on your computer.",
+        "touches": [
+          "network calls",
+          "writes outside the project"
+        ],
+        "undo": "not documented by the author",
+        "scope": "6 file(s), 40.0KB read: tools/subagent-catalog/README.md, categories/05-data-ai/README.md, categories/10-research-analysis/README.md, categories/09-meta-orchestration/README.md, +2 more. categories/08-business-product/README.md truncated at 3KB of 9KB. 8 further file(s) NOT read — repo exceeds the 40KB review cap",
+        "limits": "This review is based on reading the source, not running or installing anything. It covers only 6 of the repository's files (about 40KB) — 8 files were withheld by the review size cap, and one file (the business-product category page) was cut off after its first 2KB. Critically, none of the actual subagent definition files (the .md files each category page links to) were among the files provided, so what each individual persona instructs an agent to do is unverified. The 'network calls' and 'writes outside the project' findings come from the catalog tool's own README, which describes downloading a catalog over the network and keeping a cache file in the user's home folder (~/.claude/cache/) after being copied into ~/.claude/commands/ — but the tool's scripts themselves (the shell code, config.sh) were not provided, so this is the author's description of the behavior, not observed code. The README's installation step copies files into your home directory; no removal or uninstall step is documented anywhere in what was reviewed.",
+        "reviewed_at": "2026-07-31",
+        "reviewer": "automated-source-review v1",
+        "source_sha": "91810b33c707111e05e0988b12e7385d7b5cfe9d"
       }
     },
     {
@@ -1884,7 +2033,7 @@
       "pain_points": [
         "generic-frontend"
       ],
-      "status": "scouted",
+      "status": "reviewed",
       "scouted_on": "2026-07-25",
       "triage": {
         "provenance": "Repo verified real via GitHub API: Nutlope/hallmark, created 2026-04.",
@@ -1892,19 +2041,33 @@
         "freshness": "Last push 2026-06-26 (checked 2026-07-29) — actively maintained.",
         "safety": "Automated safety skim (2026-07-27, 151 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Not a line-by-line read — treat as untrusted until graded."
       },
-      "next": "Queued for automated source review — the source has not been read yet, so this entry states only what the scan found.",
+      "next": "Queued for a full grading run (installed + probed).",
       "signals": {
         "stars": 19746,
         "forks": 976,
         "checked": "2026-07-29",
         "head_sha": "aeb42fb354ff4efa36ab475773a082315a3af2ce",
-        "head_checked": "2026-07-29"
+        "head_checked": "2026-07-31"
       },
       "skim": {
         "date": "2026-07-27",
         "files_scanned": 151,
         "red_flags": [],
         "notes": []
+      },
+      "review": {
+        "does": "Gives your coding assistant a strict design rulebook so the web pages and components it builds look distinct and handcrafted instead of following the same generic AI template every time.",
+        "touches": [
+          "reads project files",
+          "writes project files",
+          "network calls"
+        ],
+        "undo": "not documented by the author",
+        "scope": "1 file(s), 40.0KB read: skills/hallmark/SKILL.md. skills/hallmark/SKILL.md truncated at 40KB of 66KB. 17 further file(s) NOT read — repo exceeds the 40KB review cap",
+        "limits": "This review is based on reading the source, not running it — nothing here was executed, installed, or observed working. The review covers only part of the repo: 17 files were withheld, and the one file provided (skills/hallmark/SKILL.md) was cut off at 40KB of its 66KB, so roughly the second half of the instructions and all of the referenced files (the reference rulesets, theme catalog, and genre files) were not seen. The skill is written as instructions for an AI assistant rather than as a standalone program, so what it actually touches depends on the assistant carrying it out: the visible portion directs the assistant to read project files (package.json, CSS, configs), write files into the project (design artifacts, preview pages, a .hallmark/ folder with preflight.json and log.json), and fetch external web pages in its 'study a URL' mode. The unseen files could direct additional behavior this review cannot rule out. The visible portion does include its own safety language (don't delete files without confirmation, treat a design.md file as data not instructions), but whether the assistant honors that in practice cannot be verified by reading alone.",
+        "reviewed_at": "2026-07-31",
+        "reviewer": "automated-source-review v1",
+        "source_sha": "aeb42fb354ff4efa36ab475773a082315a3af2ce"
       }
     },
     {
@@ -1967,7 +2130,7 @@
       "pain_points": [
         "shallow-research"
       ],
-      "status": "scouted",
+      "status": "reviewed",
       "scouted_on": "2026-07-25",
       "triage": {
         "provenance": "Repo verified real via GitHub API: travisvn/awesome-claude-skills, created 2025-10.",
@@ -1975,19 +2138,31 @@
         "freshness": "Last push 2026-04-28 (checked 2026-07-29).",
         "safety": "Automated safety skim (2026-07-27, 3 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. A library, not one skill — each skill needs its own read before use."
       },
-      "next": "Queued for automated source review — the source has not been read yet, so this entry states only what the scan found.",
+      "next": "Queued for a full grading run (installed + probed).",
       "signals": {
         "stars": 14407,
         "forks": 1766,
         "checked": "2026-07-29",
         "head_sha": "1da55aa810f206d3fe2005e7e3989b15a275d942",
-        "head_checked": "2026-07-29"
+        "head_checked": "2026-07-31"
       },
       "skim": {
         "date": "2026-07-27",
         "files_scanned": 3,
         "red_flags": [],
         "notes": []
+      },
+      "review": {
+        "does": "Gives you a reading list: a single page of links pointing to other people's Claude skills, tutorials, and documentation, with short descriptions and setup notes -- it adds nothing to your agent by itself.",
+        "touches": [
+          "no side effects"
+        ],
+        "undo": "not documented by the author",
+        "scope": "1 file(s), 21.3KB read: README.md",
+        "limits": "The code was read, not run. Only one file (README.md) was provided for review, so this covers only part of the repo -- any other files (such as CONTRIBUTING.md) were not seen. The README itself is pure prose and links with no executable code, but every skill it links to is a separate third-party project that this review says nothing about; the page itself warns that skills can execute arbitrary code, and the linked projects would each need their own review before installing. The install commands shown in the README (marketplace and plugin commands) are instructions for you to run, not something this page runs.",
+        "reviewed_at": "2026-07-31",
+        "reviewer": "automated-source-review v1",
+        "source_sha": "1da55aa810f206d3fe2005e7e3989b15a275d942"
       }
     },
     {
@@ -1998,7 +2173,7 @@
       "category": "workflow",
       "summary": "Humanizer 的汉化版本，Claude Code Skills，旨在消除文本中 AI 生成的痕迹。",
       "pain_points": [],
-      "status": "scouted",
+      "status": "reviewed",
       "scouted_on": "2026-07-25",
       "triage": {
         "provenance": "Repo verified real via GitHub API: op7418/Humanizer-zh, created 2026-01.",
@@ -2006,19 +2181,32 @@
         "freshness": "Last push 2026-01-19 (checked 2026-07-29) — ~6 months quiet.",
         "safety": "Automated safety skim (2026-07-27, 4 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Not a line-by-line read — treat as untrusted until graded."
       },
-      "next": "Queued for automated source review — the source has not been read yet, so this entry states only what the scan found.",
+      "next": "Queued for a full grading run (installed + probed).",
       "signals": {
         "stars": 14184,
         "forks": 982,
         "checked": "2026-07-29",
         "head_sha": "91f3d394db8419c20d67ebe22a96cf8fee0a404b",
-        "head_checked": "2026-07-29"
+        "head_checked": "2026-07-31"
       },
       "skim": {
         "date": "2026-07-27",
         "files_scanned": 4,
         "red_flags": [],
         "notes": []
+      },
+      "review": {
+        "does": "When your agent edits or reviews text, it will rewrite it to strip common signs of AI-generated writing (in Chinese) — inflated significance claims, filler phrases, promotional wording, overused dashes and lists — and make the result read like a real person wrote it.",
+        "touches": [
+          "reads project files",
+          "writes project files"
+        ],
+        "undo": "not documented by the author",
+        "scope": "2 file(s), 26.1KB read: SKILL.md, README.md",
+        "limits": "This review is based on reading the source, not running it — nothing here was executed or tested. The material reviewed was two files (SKILL.md and README.md); if the repository contains other files, they were not covered. The skill ships no program code, only written instructions for the agent, but its declared permissions allow the agent to read, write, and edit files, and the README shows it being used to rewrite files such as article.md — so 'reads project files' and 'writes project files' reflect what the agent is permitted and instructed to do, not code we could trace. How faithfully an agent follows these instructions, and whether rewrites preserve your original meaning, cannot be judged from reading alone. The README's installation commands (npx, git clone) are actions you would run yourself, not something the skill does.",
+        "reviewed_at": "2026-07-31",
+        "reviewer": "automated-source-review v1",
+        "source_sha": "91f3d394db8419c20d67ebe22a96cf8fee0a404b"
       }
     },
     {
@@ -2029,14 +2217,14 @@
       "category": "workflow",
       "summary": "Access large language models from the command-line",
       "pain_points": [],
-      "status": "scouted",
+      "status": "reviewed",
       "scouted_on": "2026-07-27",
       "signals": {
         "stars": 12263,
         "forks": 933,
         "checked": "2026-07-29",
-        "head_sha": "5aa61fc6335d365306a68183435c71819b7e2de8",
-        "head_checked": "2026-07-29"
+        "head_sha": "e9ec05995684ea820062ff80a443509b65437cdd",
+        "head_checked": "2026-07-31"
       },
       "triage": {
         "provenance": "Repo verified real via GitHub API: simonw/llm, created 2023-04.",
@@ -2044,12 +2232,27 @@
         "freshness": "Last push 2026-07-30 (checked 2026-07-29) — actively maintained.",
         "safety": "Automated safety skim (2026-07-27, 110 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Not a line-by-line read — treat as untrusted until graded."
       },
-      "next": "Queued for automated source review — the source has not been read yet, so this entry states only what the scan found.",
+      "next": "Queued for a full grading run (installed + probed).",
       "skim": {
         "date": "2026-07-27",
         "files_scanned": 110,
         "red_flags": [],
         "notes": []
+      },
+      "review": {
+        "does": "Lets you send questions to AI services like OpenAI, Claude, or Gemini from your terminal and keeps a searchable record of every prompt and answer on your own computer.",
+        "touches": [
+          "network calls",
+          "reads credentials/keys",
+          "installs dependencies",
+          "writes outside the project"
+        ],
+        "undo": "not documented by the author",
+        "scope": "10 file(s), 38.6KB read: AGENTS.md, README.md, llm/__main__.py, llm/default_plugins/default_tools.py, +6 more. 9 further file(s) NOT read — repo exceeds the 40KB review cap",
+        "limits": "This review is based on reading the source, not running it. Only 10 of the repo's files (about 38.6KB) were provided; 9 files were withheld by the review size cap, and the withheld files include the main command-line code (llm/cli.py and the OpenAI plugin module are referenced but were not shown), so most of what this tool actually does at runtime was not directly reviewed. The categories above are partly drawn from what the provided files reference rather than full code: the tool is built around calling remote AI services (network calls) and managing stored API keys (reads credentials/keys), and it can install add-on plugins on request (installs dependencies) and stores logs and embeddings in database files in a user directory outside your project (writes outside the project) -- but the code performing those actions was in the withheld files. The files actually shown (plugin loading, error classes, two harmless built-in tools that report the version and current time, database schema migrations, and a documentation example) contain nothing beyond local database writes. Whether it reads or writes files in your project, or runs shell commands, could not be confirmed either way from what was provided. Documentation mentions an 'llm uninstall' command for removing plugins, but no removal instructions for the tool itself appear in the reviewed source.",
+        "reviewed_at": "2026-07-31",
+        "reviewer": "automated-source-review v1",
+        "source_sha": "e9ec05995684ea820062ff80a443509b65437cdd"
       }
     },
     {
@@ -2062,14 +2265,14 @@
       "pain_points": [
         "shallow-research"
       ],
-      "status": "scouted",
+      "status": "reviewed",
       "scouted_on": "2026-07-27",
       "signals": {
         "stars": 11237,
         "forks": 820,
         "checked": "2026-07-29",
         "head_sha": "773a52944ba4747a18bd4ae9ade53fff041adcbc",
-        "head_checked": "2026-07-29"
+        "head_checked": "2026-07-31"
       },
       "triage": {
         "provenance": "Repo verified real via GitHub API: Orchestra-Research/AI-Research-SKILLs, created 2025-11.",
@@ -2077,7 +2280,7 @@
         "freshness": "Last push 2026-06-16 (checked 2026-07-29) — actively maintained.",
         "safety": "Automated safety skim (2026-07-27, 455 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: network call, ssh key read in docs, remote-exec pipe in docs. A library, not one skill — each skill needs its own read before use."
       },
-      "next": "Queued for automated source review — the source has not been read yet, so this entry states only what the scan found.",
+      "next": "Queued for a full grading run (installed + probed).",
       "skim": {
         "date": "2026-07-27",
         "files_scanned": 455,
@@ -2087,6 +2290,21 @@
           "remote-exec pipe in docs",
           "ssh key read in docs"
         ]
+      },
+      "review": {
+        "does": "Gives your agent a library of ready-made instruction guides for popular AI research tools (model fine-tuning, tokenizers, fast model serving, vector search), so when you ask about those tools it can walk you through installing, configuring, and running them with worked examples.",
+        "touches": [
+          "runs shell commands",
+          "installs dependencies",
+          "network calls",
+          "writes project files"
+        ],
+        "undo": "not documented by the author",
+        "scope": "10 file(s), 40.0KB read: 14-agents/llamaindex/references/agents.md, 03-fine-tuning/unsloth/SKILL.md, 03-fine-tuning/llama-factory/SKILL.md, 03-fine-tuning/axolotl/SKILL.md, +6 more. 15-rag/sentence-transformers/SKILL.md truncated at 2KB of 6KB. 120 further file(s) NOT read — repo exceeds the 40KB review cap",
+        "limits": "The code was read, not run. This review covers only a small part of the repository: 120 files were withheld under the review size cap, and one of the ten files provided (15-rag/sentence-transformers/SKILL.md) was cut off after its first portion — anything in the unseen files is outside this review. The files I did see are instruction documents, not programs: they ship no scripts of their own, but they are full of commands the guides tell an agent to run — installing large software packages (pip, conda, brew, Docker), downloading multi-gigabyte models from the internet, starting local servers, launching training jobs, and saving output files. The side-effect list above reflects those embedded commands; whether they actually run depends on the agent following the guides, which I cannot observe. Several files mention scripts/ and references/ folders whose contents were not given to me, so I cannot say whether executable code exists elsewhere in the repo. The author's description promises a comprehensive 'AI research agent' capability across the whole library; I could only verify the ten documents shown. Some example snippets carry their own risks if followed literally, e.g. one FAISS example enables an option the underlying library itself labels dangerous when loading saved data (allow_dangerous_deserialization=True); the guides do not flag this.",
+        "reviewed_at": "2026-07-31",
+        "reviewer": "automated-source-review v1",
+        "source_sha": "773a52944ba4747a18bd4ae9ade53fff041adcbc"
       }
     },
     {
@@ -2148,14 +2366,14 @@
       "pain_points": [
         "context-bloat"
       ],
-      "status": "scouted",
+      "status": "reviewed",
       "scouted_on": "2026-07-27",
       "signals": {
         "stars": 10806,
         "forks": 1283,
         "checked": "2026-07-29",
         "head_sha": "d15eabbe5d2122eedc060bae8a771381e9873d1b",
-        "head_checked": "2026-07-29"
+        "head_checked": "2026-07-31"
       },
       "triage": {
         "provenance": "Repo verified real via GitHub API: nidhinjs/prompt-master, created 2026-03.",
@@ -2163,12 +2381,24 @@
         "freshness": "Last push 2026-06-10 (checked 2026-07-29) — actively maintained.",
         "safety": "Automated safety skim (2026-07-27, 5 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Not a line-by-line read — treat as untrusted until graded."
       },
-      "next": "Queued for automated source review — the source has not been read yet, so this entry states only what the scan found.",
+      "next": "Queued for a full grading run (installed + probed).",
       "skim": {
         "date": "2026-07-27",
         "files_scanned": 5,
         "red_flags": [],
         "notes": []
+      },
+      "review": {
+        "does": "When you ask for help writing a prompt for some AI tool, your assistant will follow this playbook to hand you one polished, ready-to-paste prompt tailored to that specific tool, asking you at most three clarifying questions first.",
+        "touches": [
+          "no side effects"
+        ],
+        "undo": "not documented by the author",
+        "scope": "2 file(s), 40.0KB read: SKILL.md, README.md. README.md truncated at 13KB of 21KB",
+        "limits": "This review is based on reading the source, not running it — nothing here was installed, executed, or observed working. Only two files were available: the instruction file (SKILL.md) and the README, and the README was cut off partway through (13KB of 21KB seen). The instruction file tells the assistant to read two additional files bundled with it (references/templates.md and references/patterns.md); those files were not provided, so their contents are unverified — 'no side effects' applies to what was shown, and cannot be guaranteed for the withheld files. The README's uninstall/removal instructions, if any, may sit in the portion that was cut off; none appear in what was visible. The README's claims of 'zero tokens wasted' and 'works on the first try' are marketing promises, not anything the source can prove. The instructions themselves change how the assistant behaves (e.g. it may withhold a prompt until you name a target tool, and it caps its own questions at three), which is by design but worth knowing.",
+        "reviewed_at": "2026-07-31",
+        "reviewer": "automated-source-review v1",
+        "source_sha": "d15eabbe5d2122eedc060bae8a771381e9873d1b"
       }
     },
     {
@@ -2179,14 +2409,14 @@
       "category": "workflow",
       "summary": "Turn any technical book PDF into a Claude Code skill — ready to study, reference, and use while you work.",
       "pain_points": [],
-      "status": "scouted",
+      "status": "reviewed",
       "scouted_on": "2026-07-27",
       "signals": {
         "stars": 12934,
         "forks": 1429,
         "checked": "2026-07-29",
-        "head_sha": "c6bc1b7927822e563aae6212c07670f5a3d95ea7",
-        "head_checked": "2026-07-29"
+        "head_sha": "b74286d1277ff1ae048e7b7392985bf54aa2987a",
+        "head_checked": "2026-07-31"
       },
       "triage": {
         "provenance": "Repo verified real via GitHub API: virgiliojr94/book-to-skill, created 2026-05.",
@@ -2194,12 +2424,28 @@
         "freshness": "Last push 2026-07-27 (checked 2026-07-29) — actively maintained.",
         "safety": "Automated safety skim (2026-07-27, 47 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Not a line-by-line read — treat as untrusted until graded."
       },
-      "next": "Queued for automated source review — the source has not been read yet, so this entry states only what the scan found.",
+      "next": "Queued for a full grading run (installed + probed).",
       "skim": {
         "date": "2026-07-27",
         "files_scanned": 47,
         "red_flags": [],
         "notes": []
+      },
+      "review": {
+        "does": "Lets you hand your agent a book or document (PDF, EPUB, Word, etc.) and get back a set of organized notes files — key frameworks, terms, and per-chapter summaries — that the agent can then look up and answer from while you work.",
+        "touches": [
+          "reads project files",
+          "writes project files",
+          "runs shell commands",
+          "installs dependencies",
+          "writes outside the project"
+        ],
+        "undo": "not documented by the author",
+        "scope": "2 file(s), 40.0KB read: SKILL.md, README.md. README.md truncated at 10KB of 24KB. 20 further file(s) NOT read — repo exceeds the 40KB review cap",
+        "limits": "The code was read, not run. 20 of the repo's files were withheld from this review, and critically that includes the two Python programs the instructions actually execute (scripts/extract.py and tools/scan_generated_skill.py) — so what those programs really do, including whether they make network calls, could not be verified; only the instruction file telling the agent how to use them was reviewed. The README was also cut off at its first 9KB of 24KB. What the reviewed instructions do show: they direct the agent to run shell commands, to write generated files into your home folder (e.g. ~/.claude/skills or ~/.copilot/skills) or into the current project, to create and later delete a temporary working folder in the system temp directory, and to offer installing missing Python packages (the extraction script has an install-missing option; installs happen only after asking, per the instructions). One option in the workflow offers to delete and regenerate an existing skill folder if a name collides — that deletion is user-prompted but worth knowing. No removal or uninstall instructions appear anywhere in the reviewed files.",
+        "reviewed_at": "2026-07-31",
+        "reviewer": "automated-source-review v1",
+        "source_sha": "b74286d1277ff1ae048e7b7392985bf54aa2987a"
       }
     },
     {
@@ -2312,14 +2558,14 @@
         "shallow-research",
         "security-worries"
       ],
-      "status": "scouted",
+      "status": "reviewed",
       "scouted_on": "2026-07-27",
       "signals": {
         "stars": 8171,
         "forks": 1293,
         "checked": "2026-07-29",
         "head_sha": "87837e55399a80e30dab1b9e1a3032bc9fe58903",
-        "head_checked": "2026-07-29"
+        "head_checked": "2026-07-31"
       },
       "triage": {
         "provenance": "Repo verified real via GitHub API: xixu-me/xget, created 2024-11.",
@@ -2327,7 +2573,7 @@
         "freshness": "Last push 2026-07-27 (checked 2026-07-29) — actively maintained.",
         "safety": "Automated safety skim (2026-07-27, 117 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: network call. Not a line-by-line read — treat as untrusted until graded."
       },
-      "next": "Queued for automated source review — the source has not been read yet, so this entry states only what the scan found.",
+      "next": "Queued for a full grading run (installed + probed).",
       "skim": {
         "date": "2026-07-27",
         "files_scanned": 117,
@@ -2335,6 +2581,18 @@
         "notes": [
           "network call"
         ]
+      },
+      "review": {
+        "does": "It lets your downloads of code, packages, AI models, and container images go through a relay server (which you deploy yourself, or a public one the author runs) by swapping the normal download address for the relay's address, with the aim of making those downloads faster and more reliable.",
+        "touches": [
+          "network calls"
+        ],
+        "undo": "not documented by the author",
+        "scope": "2 file(s), 40.0KB read: AGENTS.md, README.md. README.md truncated at 40KB of 103KB. 31 further file(s) NOT read — repo exceeds the 40KB review cap",
+        "limits": "The code was read, not run. This review covers only a small part of the repo: 31 files were withheld, and of the two files provided, one (AGENTS.md) contains only a single pointer line and the other (README.md) was cut off at 39KB of 103KB. Critically, the withheld files include all of the actual program code — everything said here about behavior comes from the project's own description and diagrams, not from reading the code that runs. 'network calls' is listed because relaying downloads over the network is the product's entire stated purpose, but no code showing those calls was seen; whether the software does anything beyond what it describes (in caching, logging, or how it handles the download traffic and any login tokens passed through it) cannot be judged from what was provided. Note that this is a server, not an agent skill: it runs on a hosting platform (for example Cloudflare), and every download routed through it passes through whoever operates that server — using the author's public instance means trusting the author with your download traffic. The README's performance and security claims could not be verified.",
+        "reviewed_at": "2026-07-31",
+        "reviewer": "automated-source-review v1",
+        "source_sha": "87837e55399a80e30dab1b9e1a3032bc9fe58903"
       }
     },
     {
