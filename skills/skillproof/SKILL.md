@@ -1,5 +1,5 @@
 ---
-name: skillproof-scout
+name: skillproof
 description: >-
   Use when someone wants to FIND, INSTALL, or FIX skills and resources in their AI setup —
   e.g. "find me a skill for X", "install this for me", "my sites all look the same",
