@@ -51,6 +51,39 @@ REVIEWER_ID = "automated-source-review v1"
 # Real finding, not a gap to paper over.
 UNDO_NOT_DOCUMENTED = "not documented by the author"
 
+# --- What may keep a review alive across a commit -------------------------
+# A review is pinned to one commit. Expiring it on ANY commit means a typo fix
+# in a README throws away a source review — measured 2026-08-03: 21 reviews
+# expired in three days, and at least one of them for nothing but documentation.
+#
+# So a commit that changes only files in this list re-pins the review instead of
+# killing it. This is a SHORT ALLOWLIST on purpose. The opposite design — list
+# the dangerous file types and treat the rest as safe — fails the moment a repo
+# adds something the list never anticipated, and that miss would publish a
+# review of code that changed. Anything not named here is material.
+INERT_NAMES = (
+    "readme", "changelog", "contributing", "code_of_conduct", "license",
+    "licence", "notice", "authors", "citation", "funding", "security.md",
+    ".gitignore", ".gitattributes", ".editorconfig",
+)
+INERT_EXTS = (".png", ".jpg", ".jpeg", ".gif", ".svg", ".webp", ".ico", ".bmp",
+              ".mp4", ".mov", ".webm", ".pdf")
+
+
+def inert_file(path: str) -> bool:
+    """True only for files whose contents cannot change behaviour.
+
+    Judged on the file name alone, deliberately — reading the diff to decide
+    would mean trusting a judgement call on every commit forever. A name-based
+    rule is one someone can check.
+    """
+    name = (path or "").rsplit("/", 1)[-1].lower()
+    if not name:
+        return False
+    if name.endswith(INERT_EXTS):
+        return True
+    return any(name == n or name.startswith(n + ".") for n in INERT_NAMES)
+
 
 def output_schema() -> dict:
     """JSON Schema handed to the model as a structured-output format.

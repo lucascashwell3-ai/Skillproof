@@ -105,6 +105,42 @@ def no_block():
     return data
 
 
+@case("review re-pinned across a commit that changed a real file",
+      "could affect behaviour")
+def repin_over_material_change():
+    """The re-pin path is the ONLY way a review survives a commit it was not
+    written against. If it ever accepts a real code change, the site states a
+    review of code that changed — the one thing this project cannot get wrong.
+    So the gate re-checks the file list instead of trusting the refresher."""
+    data, sid = base_reviewed()
+    e = data["skills"][0]
+    e["review"]["source_sha"] = MOVED_SHA
+    e["signals"]["head_sha"] = MOVED_SHA
+    e["review"]["repinned"] = [{"from": GOOD_SHA, "to": MOVED_SHA,
+                                "on": "2026-08-03",
+                                "changed": ["README.md", "install.sh"]}]
+    return data
+
+
+@case("re-pin trail that disagrees with the pin it claims to explain",
+      "the pin and its trail disagree")
+def repin_trail_mismatch():
+    data, sid = base_reviewed()
+    e = data["skills"][0]
+    e["review"]["repinned"] = [{"from": MOVED_SHA, "to": MOVED_SHA,
+                                "on": "2026-08-03", "changed": ["README.md"]}]
+    return data
+
+
+@case("re-pin recorded with no evidence of what changed",
+      "a re-pin with no evidence is not auditable")
+def repin_no_evidence():
+    data, sid = base_reviewed()
+    data["skills"][0]["review"]["repinned"] = [
+        {"from": MOVED_SHA, "to": GOOD_SHA, "on": "2026-08-03"}]
+    return data
+
+
 @case("review pinned to a sha that no longer matches HEAD",
       "must never present as current")
 def mismatched_sha():

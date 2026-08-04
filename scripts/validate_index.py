@@ -33,6 +33,7 @@ from datetime import date
 from pathlib import Path
 
 from review_contract import (
+    inert_file,
     REVIEW_REQUIRED,
     REVIEW_STALE_REQUIRED,
     TOUCHES_EXCLUSIVE,
@@ -229,6 +230,35 @@ def main(downgrade: bool = False) -> int:
         if isinstance(rs, dict) and isinstance(s.get("review"), dict):
             E(f"{sid}: carries both 'review' and 'review_stale' — a current review "
               f"supersedes the archived one; the stale copy must be dropped")
+
+        # A re-pinned review claims: upstream moved, but nothing that changed can
+        # affect behaviour, so the bytes we read are still the bytes there now.
+        # That claim is only as good as the file list behind it, so the list is
+        # re-checked here rather than trusted. This is the one path that keeps a
+        # review alive across a commit it was not written against — if it is ever
+        # wrong, the site states a review of code that changed, which is the one
+        # thing this project cannot get wrong.
+        rv = s.get("review")
+        if isinstance(rv, dict) and rv.get("repinned"):
+            if not isinstance(rv["repinned"], list):
+                E(f"{sid}: review.repinned must be a list of re-pin records")
+            else:
+                for hop in rv["repinned"]:
+                    if not isinstance(hop, dict) or not hop.get("changed"):
+                        E(f"{sid}: a review.repinned record lists no changed files "
+                          f"— a re-pin with no evidence is not auditable")
+                        continue
+                    guilty = [f for f in hop["changed"] if not inert_file(f)]
+                    if guilty:
+                        E(f"{sid}: review re-pinned across {hop.get('from','?')[:8]}→"
+                          f"{hop.get('to','?')[:8]} but {len(guilty)} changed file(s) "
+                          f"could affect behaviour ({', '.join(guilty[:3])}) — only "
+                          f"docs, licences and images may keep a review alive")
+                    if hop.get("to") and rv.get("source_sha") and \
+                            rv["repinned"][-1] is hop and hop["to"] != rv["source_sha"]:
+                        E(f"{sid}: last re-pin points at {hop['to'][:8]} but "
+                          f"review.source_sha is {rv['source_sha'][:8]} — the pin and "
+                          f"its trail disagree")
 
         if status in UNTESTED_TIERS:
             # Honesty both ways: triage receipts required, grade fields forbidden.
