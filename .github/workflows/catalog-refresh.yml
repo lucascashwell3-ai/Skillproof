@@ -89,6 +89,13 @@ jobs:
         # A gate nobody has watched reject anything is not evidence of anything.
         run: python3 scripts/test_review_gate.py
 
+      - name: Prove the published install command still installs a working skill
+        # Broke twice on 2026-08-03, the same way both times: a file was added to
+        # the skill and the install command, which names each file explicitly,
+        # was not updated. That ships a SKILL.md pointing at files that are not
+        # there, and nothing would have said so.
+        run: python3 scripts/test_install_command.py
+
       - name: Open PR if anything changed
         run: |
           if git diff --quiet docs/data/skills.json grading/quarantine.json; then
