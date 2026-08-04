@@ -20,6 +20,9 @@ import sys
 from datetime import date, datetime, timezone
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from review_contract import inert_file
+
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "docs" / "data" / "skills.json"
 TODAY = date.today().isoformat()
@@ -64,6 +67,44 @@ def head_sha(full, default_branch):
     return commit["sha"]
 
 
+def changed_files(full, base, head):
+    """Files that differ between two commits, or None if we cannot tell.
+
+    None is not 'nothing changed'. A comparison we could not make must never
+    keep a review alive — the caller treats None as material.
+    """
+    cmp = gh(f"repos/{full}/compare/{base}...{head}")
+    if not cmp or "files" not in cmp:
+        return None
+    return [f.get("filename", "") for f in cmp["files"]]
+
+
+def repin(s, full, old, new):
+    """Keep a review alive across a commit that changed nothing material.
+
+    A review says: we read these bytes. If every file that changed since is one
+    whose contents cannot affect behaviour — a README, a licence, a screenshot —
+    then the bytes we read are still the bytes there now, and expiring the
+    review would throw away good work for a typo. Anything else, including a
+    comparison we could not make, expires it.
+
+    Returns True if the review was re-pinned. The trail is recorded on the entry
+    so the claim stays auditable: the gate re-checks the file list and fails the
+    build if a re-pin ever names a file that is not inert.
+    """
+    files = changed_files(full, old, new)
+    if files is None or not files or any(not inert_file(f) for f in files):
+        return False
+    r = s["review"]
+    r["source_sha"] = new
+    r.setdefault("repinned", []).append({
+        "from": old, "to": new, "on": TODAY, "changed": sorted(files),
+    })
+    print(f"  = kept: {s['id']} {old[:8]} → {new[:8]} "
+          f"({len(files)} file(s) changed, none material: {', '.join(sorted(files)[:3])})")
+    return True
+
+
 def main():
     data = json.loads(DATA.read_text())
     ok = missed = sha_missed = 0
@@ -88,6 +129,11 @@ def main():
             s["signals"]["head_checked"] = TODAY
             if prev.get("head_sha") and prev["head_sha"] != sha:
                 print(f"  moved: {s['id']} {prev['head_sha'][:8]} → {sha[:8]}")
+                # A live review pinned to the commit we just moved off gets one
+                # chance to survive: only if nothing material changed.
+                rv = s.get("review")
+                if rv and rv.get("source_sha") == prev["head_sha"]:
+                    repin(s, m.group(1), prev["head_sha"], sha)
         else:
             # Keep whatever we last knew; never fabricate a HEAD.
             if prev.get("head_sha"):

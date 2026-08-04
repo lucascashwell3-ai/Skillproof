@@ -11,7 +11,7 @@ name: catalog-refresh
 
 on:
   schedule:
-    - cron: "0 14 * * 1" # Mondays 14:00 UTC
+    - cron: "0 14 * * 1,4" # Mondays + Thursdays 14:00 UTC
   workflow_dispatch:
 
 permissions:
