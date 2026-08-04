@@ -27,10 +27,10 @@ is in [`references/consent.md`](skillproof/references/consent.md); read it befor
 ### Install (Claude Code)
 
 ```bash
-for f in SKILL.md references/consent.md references/conflict-patterns.md references/install-paths.md references/tiers.md references/finding.md; do curl -fsSL --create-dirs https://raw.githubusercontent.com/lucascashwell3-ai/Skillproof/main/skills/skillproof/$f -o ~/.claude/skills/skillproof/$f; done
+for f in SKILL.md references/consent.md references/conflict-patterns.md references/install-paths.md references/tiers.md references/finding.md references/security.md; do curl -fsSL --create-dirs https://raw.githubusercontent.com/lucascashwell3-ai/Skillproof/main/skills/skillproof/$f -o ~/.claude/skills/skillproof/$f; done
 ```
 
-Six files to disk, nothing piped into a shell. Or clone this repo and copy `skills/skillproof/`
+Seven files to disk, nothing piped into a shell. Or clone this repo and copy `skills/skillproof/`
 into `~/.claude/skills/` (everywhere) or `<project>/.claude/skills/` (one project).
 
 Then ask naturally: *"find me a skill that makes my frontend output less generic"*, *"install
