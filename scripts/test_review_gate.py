@@ -39,11 +39,34 @@ def run_gate(data, *flags):
         return r.returncode, r.stdout + r.stderr, json.loads(path.read_text())
 
 
-def base_reviewed():
-    """A well-formed `reviewed` entry, built off a real scouted row."""
-    data = json.loads(LIVE.read_text())
-    entry = next(s for s in data["skills"] if s.get("status") == "scouted")
-    entry = copy.deepcopy(entry)
+def base_reviewed(source=None):
+    """A well-formed `reviewed` entry, built off a real catalog row.
+
+    Two things this must not do, both learned from the 2026-08-03 CI failure:
+
+    1. **Never require a `scouted` row to exist.** It used to pick the first one,
+       which was fine until 53 of 54 entries got reviewed and there were none
+       left — then the whole suite died on its first fixture, locally and in CI.
+       Any row works; the tier-specific fields get stripped below.
+    2. **Strip every review remnant, not just `review`.** A row that had already
+       been demoted carries `review_stale`. Building a `reviewed` fixture on top
+       of it produced an entry with BOTH blocks — which the gate correctly
+       blocks, so the fix-mode test failed for a reason that had nothing to do
+       with fix mode. That masked a green pipeline as a broken one and stopped
+       17 real demotions from ever shipping.
+
+    The rule: a fixture must be defined by what this function sets, never by what
+    the live row happened to be carrying.
+    """
+    data = json.loads(Path(source or LIVE).read_text())
+    # A non-graded row already carries what every tier needs (scouted_on, triage
+    # receipts) and none of what only a grade may carry. Prefer one; fall back to
+    # any row rather than raising, so the suite can never die on catalog shape.
+    rows = data["skills"]
+    entry = copy.deepcopy(next((s for s in rows if s.get("status") != "graded"), rows[0]))
+    for leftover in ("review", "review_stale", "grade", "scores", "score_total",
+                     "verdict", "evidence_url", "version_tested", "last_verified"):
+        entry.pop(leftover, None)
     entry["status"] = "reviewed"
     entry.setdefault("signals", {})["head_sha"] = GOOD_SHA
     entry["signals"]["head_checked"] = "2026-07-29"
@@ -183,6 +206,34 @@ def main():
         passed += 1
     else:
         print(f"  ✗ CONTROL     good `reviewed` entry REJECTED:\n{out}")
+        failed += 1
+
+    # Regression, 2026-08-03: the fixture builder must survive a catalog whose
+    # rows have already been demoted. On the first real demotion (17 repos moved
+    # in one week) `base_reviewed()` built its fixture on top of a row that still
+    # carried `review_stale`, producing an entry with BOTH blocks. The gate
+    # blocked it — correctly — so fix mode "failed", CI went red, and the 17 real
+    # demotions never shipped. The live site kept advertising 17 reviews of code
+    # that had changed. A green pipeline was reported as broken by its own test.
+    demoted = {"downgraded_on": "2026-08-03", "stale_reason": "regression fixture",
+               "source_sha": "c" * 40, "does": "x", "touches": ["no side effects"],
+               "undo": "x", "scope": "x", "limits": "x"}
+    probe = json.loads(LIVE.read_text())
+    # Filter FIRST, then mark the row base_reviewed() will actually pick. Marking
+    # before filtering silently marked the graded row, which the filter then
+    # dropped — leaving a test that passed no matter what. Caught by injection.
+    ungraded = [s for s in probe["skills"] if s.get("status") != "graded"]
+    probe["skills"] = [dict(ungraded[0], review_stale=demoted)] + ungraded[1:]
+    tmp = Path(tempfile.mkdtemp()) / "skills.json"
+    tmp.write_text(json.dumps(probe))
+    built = base_reviewed(source=tmp)[0]["skills"][0]
+    if "review_stale" not in built and built.get("review"):
+        print("  ✓ REGRESSION  fixture built off an already-demoted row carries no "
+              "leftover `review_stale`")
+        passed += 1
+    else:
+        print("  ✗ REGRESSION  fixture inherited `review_stale` from the live row — "
+              "this is the 2026-08-03 CI failure returning")
         failed += 1
 
     print()

@@ -243,7 +243,7 @@
         </button>
         <button class="pick" type="button" role="tab" data-tab="1" aria-selected="false" aria-controls="way-1">
           <span class="pick-t">Run in your terminal</span>
-          <span class="pick-s">Claude Code — one skill file, no dependencies</span>
+          <span class="pick-s">Claude Code — it reads your setup before it changes anything</span>
         </button>
         <button class="pick" type="button" role="tab" data-tab="2" aria-selected="false" aria-controls="way-2">
           <span class="pick-t">Connect over MCP</span>
@@ -270,8 +270,8 @@
           <div class="demo-win demo-dark">
             <div class="demo-bar">terminal</div>
             <div class="demo-term">
-              <div class="line l1"><span class="k">$</span> <span class="type t1">claude plugin install i-have-adhd…</span></div>
-              <div class="line l2"><span class="ok">✓</span> installed — your agent answers first, explains second</div>
+              <div class="line l1"><span class="k">$</span> <span class="type t1">curl … -o ~/.claude/skills/skillproof/SKILL.md</span></div>
+              <div class="line l2"><span class="ok">✓</span> installed — now ask it for a skill, and it fits it to your setup</div>
               <div class="line l3"><span class="k">$</span> <span class="caret"></span></div>
             </div>
           </div>
@@ -312,13 +312,13 @@
       </div>
       <div class="way" id="way-1" role="tabpanel" tabindex="0" data-way="1">
         <div class="way-txt">
-          <h3>The scout skill</h3>
-          <p><b>For Claude Code.</b> Fires on "find me a skill for…" — checks this catalog first, then searches the live ecosystem and returns a shortlist with provenance, license, freshness, and safety flags on every candidate.</p>
-          <p class="way-fine">This downloads one file to disk so you can read it &mdash; it does not pipe anything into a shell. Read it first; we&rsquo;d grade us too: <a href="https://github.com/lucascashwell3-ai/Skillproof/blob/main/skills/skillproof-scout/SKILL.md" target="_blank" rel="noopener">SKILL.md ↗</a></p>
+          <h3>The Skillproof skill</h3>
+          <p><b>For Claude Code.</b> Finds the right skill for what you described, then reads the setup it has to live in &mdash; your instructions, your other skills, your memory files &mdash; tells you plainly what will fight it, asks permission for every change, makes the changes, and confirms it actually works.</p>
+          <p class="way-fine">This downloads six files to disk so you can read them &mdash; it does not pipe anything into a shell. It never edits anything without asking you first, per change. Read it before you run it; we&rsquo;d grade us too: <a href="https://github.com/lucascashwell3-ai/Skillproof/blob/main/skills/skillproof/SKILL.md" target="_blank" rel="noopener">SKILL.md ↗</a> &middot; <a href="https://github.com/lucascashwell3-ai/Skillproof/blob/main/skills/skillproof/references/consent.md" target="_blank" rel="noopener">what it will and won&rsquo;t touch ↗</a></p>
         </div>
         <div class="way-do">
-          <div class="cmdbox">mkdir -p ~/.claude/skills/skillproof-scout &amp;&amp; curl -fsSL https://raw.githubusercontent.com/lucascashwell3-ai/Skillproof/main/skills/skillproof-scout/SKILL.md -o ~/.claude/skills/skillproof-scout/SKILL.md
-            <button class="copy" type="button" aria-label="Copy scout install command" data-copy="mkdir -p ~/.claude/skills/skillproof-scout &amp;&amp; curl -fsSL https://raw.githubusercontent.com/lucascashwell3-ai/Skillproof/main/skills/skillproof-scout/SKILL.md -o ~/.claude/skills/skillproof-scout/SKILL.md">
+          <div class="cmdbox">for f in SKILL.md references/consent.md references/conflict-patterns.md references/install-paths.md references/tiers.md references/finding.md; do curl -fsSL --create-dirs https://raw.githubusercontent.com/lucascashwell3-ai/Skillproof/main/skills/skillproof/$f -o ~/.claude/skills/skillproof/$f; done
+            <button class="copy" type="button" aria-label="Copy the Skillproof skill install command" data-copy="for f in SKILL.md references/consent.md references/conflict-patterns.md references/install-paths.md references/tiers.md references/finding.md; do curl -fsSL --create-dirs https://raw.githubusercontent.com/lucascashwell3-ai/Skillproof/main/skills/skillproof/$f -o ~/.claude/skills/skillproof/$f; done">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2.5"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             </button>
           </div>
