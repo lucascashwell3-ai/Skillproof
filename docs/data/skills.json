@@ -1,7 +1,7 @@
 {
   "as_of": "2026-08-03",
   "rubric_version": "1.0",
-  "notes": "Grades reflect the exact version tested (version_tested) on last_verified, under the rubric version shown. Skills graded so far is stated on the site; there are no placeholder grades. Entries with status 'scouted' are found-and-triaged only: repo verified real, license and freshness checked via the GitHub API on scouted_on — but never installed, never probed, source not read. They carry no grade by design.",
+  "notes": "Published entries are status 'graded' (installed, probed, source read by a person, worksheet on file — grades reflect version_tested on last_verified under the rubric version shown) or 'reviewed' with a review block (full source read at review.source_sha; does/touches/undo published). Rows in any other status are internal pipeline states awaiting a source read — not published, kept here so their history survives; consumers should skip them.",
   "pain_points": [
     {
       "id": "buried-answers",
@@ -243,7 +243,7 @@
         "provenance": "Repo verified real via GitHub API: doraemonkeys/claude-code-debug-mode, created 2026-02.",
         "license": "MIT",
         "freshness": "Last push 2026-06-26 (checked 2026-07-29) — actively maintained.",
-        "safety": "Automated safety skim (2026-07-27, 3 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Not a line-by-line read — treat as untrusted until graded."
+        "safety": "Automated safety skim (2026-07-27, 3 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. A pattern scan, not a line-by-line read — the full source read happens before publication."
       },
       "next": "Queued for a full grading run (installed + probed).",
       "signals": {
@@ -292,7 +292,7 @@
         "provenance": "Repo verified real via GitHub API: aidankinzett/claude-git-pr-skill, created 2025-12.",
         "license": "No license file detected via the GitHub API — usage rights unclear; a real triage red flag.",
         "freshness": "Last push 2025-12-02 (checked 2026-07-29) — ~8 months quiet.",
-        "safety": "Automated safety skim (2026-07-27, 6 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Not a line-by-line read — treat as untrusted until graded."
+        "safety": "Automated safety skim (2026-07-27, 6 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. A pattern scan, not a line-by-line read — the full source read happens before publication."
       },
       "next": "Queued for a full grading run (installed + probed).",
       "signals": {
@@ -338,7 +338,7 @@
         "provenance": "Repo verified real via GitHub API: Anjos2/recursive-research, created 2026-04.",
         "license": "MIT",
         "freshness": "Last push 2026-04-22 (checked 2026-07-29).",
-        "safety": "Automated safety skim (2026-07-27, 7 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Not a line-by-line read — treat as untrusted until graded."
+        "safety": "Automated safety skim (2026-07-27, 7 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. A pattern scan, not a line-by-line read — the full source read happens before publication."
       },
       "next": "Queued for a full grading run (installed + probed).",
       "signals": {
@@ -385,7 +385,7 @@
         "provenance": "Repo verified real via GitHub API: lackeyjb/playwright-skill, created 2025-10.",
         "license": "MIT",
         "freshness": "Last push 2025-12-19 (checked 2026-07-29) — ~7 months quiet.",
-        "safety": "Automated safety skim (2026-07-27, 11 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Not a line-by-line read — treat as untrusted until graded."
+        "safety": "Automated safety skim (2026-07-27, 11 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. A pattern scan, not a line-by-line read — the full source read happens before publication."
       },
       "next": "Queued for a full grading run (installed + probed).",
       "signals": {
@@ -584,7 +584,7 @@
         "provenance": "Repo verified real via GitHub API: affaan-m/ECC, created 2026-01.",
         "license": "MIT",
         "freshness": "Last push 2026-07-29 (checked 2026-07-29) — actively maintained.",
-        "safety": "Automated safety skim (2026-07-27, 600 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: remote-exec pipe in docs, ssh key read in tests, remote-exec pipe in tests. Not a line-by-line read — treat as untrusted until graded."
+        "safety": "Automated safety skim (2026-07-27, 600 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: remote-exec pipe in docs, ssh key read in tests, remote-exec pipe in tests. A pattern scan, not a line-by-line read — the full source read happens before publication."
       },
       "next": "Queued for a full grading run (installed + probed).",
       "signals": {
@@ -724,7 +724,7 @@
         "provenance": "Repo verified real via GitHub API: nextlevelbuilder/ui-ux-pro-max-skill, created 2025-11.",
         "license": "MIT",
         "freshness": "Last push 2026-07-28 (checked 2026-07-29) — actively maintained.",
-        "safety": "Automated safety skim (2026-07-27, 327 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Not a line-by-line read — treat as untrusted until graded."
+        "safety": "Automated safety skim (2026-07-27, 327 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. A pattern scan, not a line-by-line read — the full source read happens before publication."
       },
       "next": "Queued for a full grading run (installed + probed).",
       "signals": {
@@ -770,7 +770,7 @@
         "provenance": "Repo verified real via GitHub API: DietrichGebert/ponytail, created 2026-06.",
         "license": "MIT",
         "freshness": "Last push 2026-07-15 (checked 2026-07-29) — actively maintained.",
-        "safety": "Automated safety skim (2026-07-27, 143 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: network call. Not a line-by-line read — treat as untrusted until graded."
+        "safety": "Automated safety skim (2026-07-27, 143 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: network call. A pattern scan, not a line-by-line read — the full source read happens before publication."
       },
       "next": "Queued for a full grading run (installed + probed).",
       "signals": {
@@ -819,7 +819,7 @@
         "provenance": "Repo verified real via GitHub API: nexu-io/open-design, created 2026-04.",
         "license": "Apache-2.0",
         "freshness": "Last push 2026-07-30 (checked 2026-07-29) — actively maintained.",
-        "safety": "Automated safety skim (2026-07-27, 600 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: remote-exec pipe in docs, network call. Not a line-by-line read — treat as untrusted until graded."
+        "safety": "Automated safety skim (2026-07-27, 600 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: remote-exec pipe in docs, network call. A pattern scan, not a line-by-line read — the full source read happens before publication."
       },
       "next": "Queued for a full grading run (installed + probed).",
       "signals": {
@@ -914,7 +914,7 @@
         "provenance": "Repo verified real via GitHub API: shareAI-lab/learn-claude-code, created 2025-06.",
         "license": "MIT",
         "freshness": "Last push 2026-07-28 (checked 2026-07-29) — actively maintained.",
-        "safety": "Automated safety skim (2026-07-27, 265 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Not a line-by-line read — treat as untrusted until graded."
+        "safety": "Automated safety skim (2026-07-27, 265 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. A pattern scan, not a line-by-line read — the full source read happens before publication."
       },
       "next": "Queued for a full grading run (installed + probed).",
       "signals": {
@@ -1016,7 +1016,7 @@
         "provenance": "Repo verified real via GitHub API: Leonxlnx/taste-skill, created 2026-02.",
         "license": "MIT",
         "freshness": "Last push 2026-07-23 (checked 2026-07-29) — actively maintained.",
-        "safety": "Automated safety skim (2026-07-27, 40 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Not a line-by-line read — treat as untrusted until graded."
+        "safety": "Automated safety skim (2026-07-27, 40 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. A pattern scan, not a line-by-line read — the full source read happens before publication."
       },
       "next": "Queued for a full grading run (installed + probed).",
       "signals": {
@@ -1061,7 +1061,7 @@
         "provenance": "Repo verified real via GitHub API: shanraisshan/claude-code-best-practice, created 2025-10.",
         "license": "MIT",
         "freshness": "Last push 2026-07-30 (checked 2026-07-29) — actively maintained.",
-        "safety": "Automated safety skim (2026-07-27, 135 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: ssh key read in docs, remote-exec pipe in docs. Not a line-by-line read — treat as untrusted until graded."
+        "safety": "Automated safety skim (2026-07-27, 135 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: ssh key read in docs, remote-exec pipe in docs. A pattern scan, not a line-by-line read — the full source read happens before publication."
       },
       "next": "Queued for a full grading run (installed + probed).",
       "signals": {
@@ -1112,7 +1112,7 @@
         "provenance": "Repo verified real via GitHub API: mvanhorn/last30days-skill, created 2026-01.",
         "license": "MIT",
         "freshness": "Last push 2026-07-28 (checked 2026-07-29) — actively maintained.",
-        "safety": "Automated safety skim (2026-07-27, 383 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: network call. Not a line-by-line read — treat as untrusted until graded."
+        "safety": "Automated safety skim (2026-07-27, 383 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: network call. A pattern scan, not a line-by-line read — the full source read happens before publication."
       },
       "next": "Queued for a full grading run (installed + probed).",
       "signals": {
@@ -1251,7 +1251,7 @@
         "provenance": "Repo verified real via GitHub API: coreyhaines31/marketingskills, created 2026-01.",
         "license": "MIT",
         "freshness": "Last push 2026-07-29 (checked 2026-07-29) — actively maintained.",
-        "safety": "Automated safety skim (2026-07-27, 419 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: network call. Not a line-by-line read — treat as untrusted until graded."
+        "safety": "Automated safety skim (2026-07-27, 419 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: network call. A pattern scan, not a line-by-line read — the full source read happens before publication."
       },
       "next": "Queued for a full grading run (installed + probed).",
       "signals": {
@@ -1448,7 +1448,7 @@
         "provenance": "Repo verified real via GitHub API: blader/humanizer, created 2026-01.",
         "license": "MIT",
         "freshness": "Last push 2026-07-22 (checked 2026-07-29) — actively maintained.",
-        "safety": "Automated safety skim (2026-07-27, 9 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Not a line-by-line read — treat as untrusted until graded."
+        "safety": "Automated safety skim (2026-07-27, 9 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. A pattern scan, not a line-by-line read — the full source read happens before publication."
       },
       "next": "Queued for a full grading run (installed + probed).",
       "signals": {
@@ -1793,7 +1793,7 @@
         "provenance": "Repo verified real via GitHub API: agentskills/agentskills, created 2025-12.",
         "license": "Apache-2.0",
         "freshness": "Last push 2026-07-10 (checked 2026-07-29) — actively maintained.",
-        "safety": "Automated safety skim (2026-07-27, 30 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Not a line-by-line read — treat as untrusted until graded."
+        "safety": "Automated safety skim (2026-07-27, 30 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. A pattern scan, not a line-by-line read — the full source read happens before publication."
       },
       "next": "Upstream changed since the last source review — queued for re-review.",
       "signals": {
@@ -1841,7 +1841,7 @@
         "provenance": "Repo verified real via GitHub API: Donchitos/Claude-Code-Game-Studios, created 2026-02.",
         "license": "MIT",
         "freshness": "Last push 2026-05-21 (checked 2026-07-29) — actively maintained.",
-        "safety": "Automated safety skim (2026-07-27, 417 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Not a line-by-line read — treat as untrusted until graded."
+        "safety": "Automated safety skim (2026-07-27, 417 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. A pattern scan, not a line-by-line read — the full source read happens before publication."
       },
       "next": "Queued for a full grading run (installed + probed).",
       "signals": {
@@ -1936,7 +1936,7 @@
         "provenance": "Repo verified real via GitHub API: alchaincyf/huashu-design, created 2026-04.",
         "license": "MIT",
         "freshness": "Last push 2026-07-27 (checked 2026-07-29) — actively maintained.",
-        "safety": "Automated safety skim (2026-07-27, 74 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: network call. Not a line-by-line read — treat as untrusted until graded."
+        "safety": "Automated safety skim (2026-07-27, 74 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: network call. A pattern scan, not a line-by-line read — the full source read happens before publication."
       },
       "next": "Queued for a full grading run (installed + probed).",
       "signals": {
@@ -2043,7 +2043,7 @@
         "provenance": "Repo verified real via GitHub API: Nutlope/hallmark, created 2026-04.",
         "license": "MIT",
         "freshness": "Last push 2026-06-26 (checked 2026-07-29) — actively maintained.",
-        "safety": "Automated safety skim (2026-07-27, 151 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Not a line-by-line read — treat as untrusted until graded."
+        "safety": "Automated safety skim (2026-07-27, 151 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. A pattern scan, not a line-by-line read — the full source read happens before publication."
       },
       "next": "Queued for a full grading run (installed + probed).",
       "signals": {
@@ -2088,7 +2088,7 @@
         "provenance": "Repo verified real via GitHub API: microsoft/SkillOpt, created 2026-05.",
         "license": "MIT",
         "freshness": "Last push 2026-07-29 (checked 2026-07-29) — actively maintained.",
-        "safety": "Automated safety skim (2026-07-27, 339 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: network call. Not a line-by-line read — treat as untrusted until graded."
+        "safety": "Automated safety skim (2026-07-27, 339 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: network call. A pattern scan, not a line-by-line read — the full source read happens before publication."
       },
       "next": "Upstream changed since the last source review — queued for re-review.",
       "signals": {
@@ -2185,7 +2185,7 @@
         "provenance": "Repo verified real via GitHub API: op7418/Humanizer-zh, created 2026-01.",
         "license": "MIT",
         "freshness": "Last push 2026-01-19 (checked 2026-07-29) — ~6 months quiet.",
-        "safety": "Automated safety skim (2026-07-27, 4 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Not a line-by-line read — treat as untrusted until graded."
+        "safety": "Automated safety skim (2026-07-27, 4 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. A pattern scan, not a line-by-line read — the full source read happens before publication."
       },
       "next": "Queued for a full grading run (installed + probed).",
       "signals": {
@@ -2236,7 +2236,7 @@
         "provenance": "Repo verified real via GitHub API: simonw/llm, created 2023-04.",
         "license": "Apache-2.0",
         "freshness": "Last push 2026-07-30 (checked 2026-07-29) — actively maintained.",
-        "safety": "Automated safety skim (2026-07-27, 110 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Not a line-by-line read — treat as untrusted until graded."
+        "safety": "Automated safety skim (2026-07-27, 110 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. A pattern scan, not a line-by-line read — the full source read happens before publication."
       },
       "next": "Upstream changed since the last source review — queued for re-review.",
       "skim": {
@@ -2387,7 +2387,7 @@
         "provenance": "Repo verified real via GitHub API: nidhinjs/prompt-master, created 2026-03.",
         "license": "MIT",
         "freshness": "Last push 2026-06-10 (checked 2026-07-29) — actively maintained.",
-        "safety": "Automated safety skim (2026-07-27, 5 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Not a line-by-line read — treat as untrusted until graded."
+        "safety": "Automated safety skim (2026-07-27, 5 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. A pattern scan, not a line-by-line read — the full source read happens before publication."
       },
       "next": "Queued for a full grading run (installed + probed).",
       "skim": {
@@ -2430,7 +2430,7 @@
         "provenance": "Repo verified real via GitHub API: virgiliojr94/book-to-skill, created 2026-05.",
         "license": "MIT",
         "freshness": "Last push 2026-07-27 (checked 2026-07-29) — actively maintained.",
-        "safety": "Automated safety skim (2026-07-27, 47 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Not a line-by-line read — treat as untrusted until graded."
+        "safety": "Automated safety skim (2026-07-27, 47 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. A pattern scan, not a line-by-line read — the full source read happens before publication."
       },
       "next": "Queued for a full grading run (installed + probed).",
       "skim": {
@@ -2477,7 +2477,7 @@
         "provenance": "Repo verified real via GitHub API: diet103/claude-code-infrastructure-showcase, created 2025-10.",
         "license": "MIT",
         "freshness": "Last push 2026-07-13 (checked 2026-07-29) — actively maintained.",
-        "safety": "Automated safety skim (2026-07-27, 130 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: network call. Not a line-by-line read — treat as untrusted until graded."
+        "safety": "Automated safety skim (2026-07-27, 130 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: network call. A pattern scan, not a line-by-line read — the full source read happens before publication."
       },
       "next": "Queued for a full grading run (installed + probed).",
       "skim": {
@@ -2528,7 +2528,7 @@
         "provenance": "Repo verified real via GitHub API: AgriciDaniel/claude-obsidian, created 2026-04.",
         "license": "MIT",
         "freshness": "Last push 2026-07-29 (checked 2026-07-29) — actively maintained.",
-        "safety": "Automated safety skim (2026-07-27, 175 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: network call. Not a line-by-line read — treat as untrusted until graded."
+        "safety": "Automated safety skim (2026-07-27, 175 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: network call. A pattern scan, not a line-by-line read — the full source read happens before publication."
       },
       "next": "Upstream changed since the last source review — queued for re-review.",
       "skim": {
@@ -2581,7 +2581,7 @@
         "provenance": "Repo verified real via GitHub API: xixu-me/xget, created 2024-11.",
         "license": "AGPL-3.0",
         "freshness": "Last push 2026-07-27 (checked 2026-07-29) — actively maintained.",
-        "safety": "Automated safety skim (2026-07-27, 117 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: network call. Not a line-by-line read — treat as untrusted until graded."
+        "safety": "Automated safety skim (2026-07-27, 117 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: network call. A pattern scan, not a line-by-line read — the full source read happens before publication."
       },
       "next": "Upstream changed since the last source review — queued for re-review.",
       "skim": {
@@ -2630,7 +2630,7 @@
         "provenance": "Repo verified real via GitHub API: Agents365-ai/drawio-skill, created 2026-03.",
         "license": "MIT",
         "freshness": "Last push 2026-07-25 (checked 2026-07-29) — actively maintained.",
-        "safety": "Automated safety skim (2026-07-27, 95 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: network call. Not a line-by-line read — treat as untrusted until graded."
+        "safety": "Automated safety skim (2026-07-27, 95 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: network call. A pattern scan, not a line-by-line read — the full source read happens before publication."
       },
       "next": "Queued for a full grading run (installed + probed).",
       "skim": {
@@ -2777,7 +2777,7 @@
         "provenance": "Repo verified real via GitHub API: luongnv89/claude-howto, created 2025-11.",
         "license": "MIT",
         "freshness": "Last push 2026-07-29 (checked 2026-07-29) — actively maintained.",
-        "safety": "Automated safety skim (2026-07-27, 600 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: network call, remote-exec pipe in docs. Not a line-by-line read — treat as untrusted until graded."
+        "safety": "Automated safety skim (2026-07-27, 600 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: network call, remote-exec pipe in docs. A pattern scan, not a line-by-line read — the full source read happens before publication."
       },
       "next": "Queued for a full grading run (installed + probed).",
       "skim": {

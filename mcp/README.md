@@ -1,22 +1,26 @@
 # SKILLproof MCP server
 
-The rating agency for Claude skills, callable from any MCP host (Claude Desktop, Claude Code,
+The Skillproof catalog, callable from any MCP host (Claude Desktop, Claude Code,
 Cursor, …) mid-workflow. Read-only, no auth, no side effects. It reads the **same
 `docs/data/skills.json`** the website renders and the honesty gate
-(`scripts/validate_index.py`) validates — so its answers always match the site.
+(`scripts/validate_index.py`) validates — and serves **published entries only**: every one had
+its full source read at a pinned commit before listing. Internal pipeline states (candidates
+awaiting review) are never returned.
 
 ## Tools
 
-- `find_resources({ pain_point, limit? })` — matches for a described pain point, returned in two
-  honestly-separated tiers: **graded** (tested, worksheet receipts, install command) and
-  **scouted** (found + triaged, explicitly ungraded, no install command). Zero matches returns
-  the scout methodology instead of a guess.
+- `find_resources({ pain_point, limit? })` — matches for a described pain point: **graded**
+  (installed + probed, worksheet receipts) and **reviewed** (full source read at a pinned
+  commit; what it does / touches / how to undo it, install command included). Zero matches
+  returns the scout methodology instead of a guess — the catalog is a starting shelf, and
+  "not catalogued yet" never means "nothing exists."
 - `get_grade({ skill })` — one skill's full record: grade, per-dimension scores with reasons,
-  worksheet URL; or the triage receipts + an ungraded notice for scouted entries. Not in the
-  index at all → says so plainly.
-- `list_index({ status? })` — the whole index, filterable by `graded` / `scouted`.
-- `get_scout_methodology()` — the triage rubric and steps, so the calling agent can scout
-  territory the index doesn't cover yet without lowering the honesty bar.
+  worksheet URL; or the review's does/touches/undo + limits for reviewed entries. Not in the
+  catalog at all → says so plainly.
+- `list_index({ status? })` — the published catalog, filterable by `graded` / `reviewed`.
+- `get_scout_methodology()` — how to search the wider ecosystem honestly, including the rule
+  that unread code gets a repo URL and a plain "the source has not been read," never an
+  install command.
 
 ## Run it (local, stdio)
 
@@ -60,9 +64,11 @@ SKILLPROOF_DATA_URL="https://lucascashwell3-ai.github.io/skillproof/data/skills.
 
 ## Honesty rules (enforced in code)
 
+- Only published entries are served — graded, or reviewed with a review block. Pipeline states
+  never leave the data file.
 - Graded answers always carry the worksheet URL — the receipts.
-- Scouted answers are labeled `SCOUTED — NOT TESTED, NOT GRADED`, carry their triage receipts,
-  and never include an install command.
-- A skill missing from the index returns "no grade exists — do not infer one".
+- Reviewed answers carry does/touches/undo, `limits` verbatim, and the pinned commit — and are
+  never called tested. Reading is not running.
+- A skill missing from the catalog returns "no grade or review exists — do not infer one".
 
 Independent tool · MIT · Grades and receipts: https://github.com/lucascashwell3-ai/Skillproof
