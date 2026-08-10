@@ -79,10 +79,17 @@ jobs:
           python3 scripts/deep_review.py --backend api --max-cost 5.00 \
             | tee /tmp/review.log || true
 
+      # The three checks below no longer abort the run — see "Open PR" for why.
+      # They still decide whether the result is safe to merge; they just stop
+      # throwing away four steps of good work on their way out.
       - name: Honesty gate
+        id: gate
+        continue-on-error: true
         run: python3 scripts/validate_index.py | tee /tmp/gate.log
 
       - name: Prove the gate still fails closed
+        id: gatetest
+        continue-on-error: true
         # The gate is the only thing standing between a decayed claim and the
         # site, so every run re-proves it rejects deliberately-broken data
         # (missing review block, mismatched sha, invented touches value, …).
@@ -94,13 +101,31 @@ jobs:
         # the skill and the install command, which names each file explicitly,
         # was not updated. That ships a SKILL.md pointing at files that are not
         # there, and nothing would have said so.
+        id: installtest
+        continue-on-error: true
         run: python3 scripts/test_install_command.py
 
+      # CHANGED 2026-08-09 — fail partial, never vanish.
+      #
+      # On 08-03 the gate self-test failed on a bad fixture. The job exited there,
+      # so the four steps of real work before it (refreshed signals, 17 stale
+      # demotions, scouted candidates, safety skim) were thrown away, no PR was
+      # opened, and nothing told anyone. The catalog then sat frozen until 08-09.
+      #
+      # A check failing is a reason not to MERGE. It was never a reason to discard
+      # the work and go quiet. So this step now runs even when a check failed, and
+      # the PR says so at the top in words. The run still ends red (see the last
+      # step) so the nightly watchdog reports it the same night.
       - name: Open PR if anything changed
+        if: always()
         run: |
           if git diff --quiet docs/data/skills.json grading/quarantine.json; then
             echo "no changes — nothing to PR"; exit 0
           fi
+          FAILED=""
+          [ "${{ steps.gate.outcome }}" = "failure" ] && FAILED="$FAILED honesty-gate"
+          [ "${{ steps.gatetest.outcome }}" = "failure" ] && FAILED="$FAILED gate-self-test"
+          [ "${{ steps.installtest.outcome }}" = "failure" ] && FAILED="$FAILED install-command-test"
           RED=$(cat /tmp/redcount)
           DATE=$(date -u +%F)
           BRANCH="auto/catalog-refresh-$DATE"
@@ -111,9 +136,20 @@ jobs:
           git commit -m "Weekly catalog refresh $DATE (signals + scout + skim)"
           git push -u origin "$BRANCH"
           TITLE="Weekly catalog refresh $DATE"
+          if [ -n "$FAILED" ]; then TITLE="⛔ DO NOT MERGE — $TITLE (failed:$FAILED)"; fi
           if [ "$RED" != "0" ]; then TITLE="$TITLE — $RED repo(s) quarantined, not published"; fi
           {
-            echo "Automated weekly run: signals refreshed, stale reviews expired, new candidates scouted, safety skim on everything new, deep source review, honesty gate passed."
+            if [ -n "$FAILED" ]; then
+              echo "## ⛔ Do not merge this yet"
+              echo
+              echo "These checks failed:**$FAILED**"
+              echo
+              echo "The refresh work itself is here and is worth keeping — that is the only reason this PR exists. But a failed check means the data may claim something it cannot back up, so it must not reach the site until the failure is understood. Read the failing step in the run log, fix the cause, and re-run."
+              echo
+              echo "---"
+              echo
+            fi
+            echo "Automated weekly run: signals refreshed, stale reviews expired, new candidates scouted, safety skim on everything new, deep source review."
             echo
             echo '### Tier split (derived from the data)'; echo '```'
             sed -n 's/^TIER_SPLIT=//p' /tmp/gate.log | tail -1; echo '```'
@@ -130,3 +166,19 @@ jobs:
             echo "Restore one only after reading its source: \`python3 scripts/quarantine.py --restore <id> --reason \"...\"\`"
           } > /tmp/pr-body.md
           gh pr create --title "$TITLE" --body-file /tmp/pr-body.md --base main --head "$BRANCH"
+
+      # Fail loud. The steps above kept the work; this makes sure the run still ends RED so the
+      # nightly watchdog reports it as broken the same night. A job that rescues its own output
+      # and then reports success is the silent no-op this whole redesign exists to kill.
+      - name: End red if any check failed
+        if: always()
+        run: |
+          FAILED=""
+          [ "${{ steps.gate.outcome }}" = "failure" ] && FAILED="$FAILED honesty-gate"
+          [ "${{ steps.gatetest.outcome }}" = "failure" ] && FAILED="$FAILED gate-self-test"
+          [ "${{ steps.installtest.outcome }}" = "failure" ] && FAILED="$FAILED install-command-test"
+          if [ -n "$FAILED" ]; then
+            echo "::error title=Catalog refresh checks failed::$FAILED — the work was saved to a PR marked DO NOT MERGE."
+            exit 1
+          fi
+          echo "All checks passed."

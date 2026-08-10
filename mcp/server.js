@@ -1,14 +1,23 @@
 #!/usr/bin/env node
 /* ============================================================
-   SKILLproof MCP server — the rating agency for Claude skills,
+   SKILLproof MCP server — the catalog as read-only tools,
    callable from any MCP host (Claude Desktop, Claude Code, Cursor…).
-   Read-only. Source of truth: docs/data/skills.json — the same
-   file the site renders and scripts/validate_index.py gates.
+   Source of truth: docs/data/skills.json — the same file the site
+   renders and scripts/validate_index.py gates.
    Honesty rules enforced here:
+   - only PUBLISHED entries are served: status "graded", or
+     "reviewed" with a review block. Being published means the full
+     source was read at a pinned commit. Anything else in the data
+     file is an internal pipeline state and is never returned —
+     pipeline states are ours, not the calling agent's. (An earlier
+     version served them labelled "SCOUTED — NOT TESTED"; agents
+     read that as a warning about the whole catalog and told users
+     to stay away. 2026-08-10.)
    - graded entries come back with grade + receipts (worksheet URL);
-   - scouted entries come back explicitly "scouted, ungraded" with
-     their triage receipts — never anything grade-shaped;
-   - no match returns the scout methodology, never a guess.
+   - reviewed entries come back with does/touches/undo + limits
+     verbatim, and are never called tested;
+   - no match returns the scout methodology (read the source before
+     recommending), never a guess.
    ============================================================ */
 import { Server } from '@modelcontextprotocol/sdk/server/index.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
@@ -83,15 +92,19 @@ const gradedBrief = (s, rubricVersion) => ({
   last_verified: s.last_verified,
 });
 
-const scoutedBrief = (s) => ({
+const reviewedBrief = (s) => ({
   name: s.name,
-  status: 'SCOUTED — NOT TESTED, NOT GRADED',
+  status: 'reviewed', // full source read at the pinned commit below — not installed, not run
   summary: s.summary,
   pain_points: s.pain_points,
+  does: s.review?.does ?? null,
+  touches: s.review?.touches ?? null,
+  undo: s.review?.undo ?? null,
+  limits: s.review?.limits ?? null, // pass along verbatim — it is the literally-true part
+  source_sha: s.review?.source_sha ?? null,
+  install: s.install?.command ?? null,
+  install_notes: s.install?.notes ?? null,
   repo: s.repo_url,
-  triage: s.triage, // provenance / license / freshness / safety, verified on scouted_on
-  scouted_on: s.scouted_on,
-  note: 'Found and triaged only. No install command is given for ungraded resources — read it yourself before use, or nominate it for grading.',
 });
 
 const SCOUT_METHODOLOGY = {
@@ -101,8 +114,8 @@ const SCOUT_METHODOLOGY = {
     '2. Provenance: real repo, named author, stars/forks, created-when. Popularity is a signal, not a verdict.',
     '3. License: check the LICENSE file or API field. No license = usage rights unclear — report it plainly.',
     '4. Freshness: last real push. >6 months quiet on a fast-moving surface is a flag.',
-    '5. Safety red flags (skim README + file tree only): curl|bash, auto-running hooks, undisclosed network calls, credential/env access, obfuscated blobs. Hard flags exclude the candidate — named, with the reason.',
-    '6. Report graded and scouted findings separately; never use grade-like language for scouted items; never install anything.',
+    '5. Safety red flags: curl|bash, auto-running hooks, undisclosed network calls, credential/env access, obfuscated blobs. Hard flags exclude the candidate — named, with the reason.',
+    '6. Read the source of anything you are about to recommend, and answer what-it-does / what-it-touches / how-to-undo from the code you read. Unread code gets a repo URL and an honest "the source has not been read" — never an install command.',
   ],
   full_rubric: `${REPO}/blob/main/grading/RUBRIC.md`,
   nominate: `${REPO}/issues`,
@@ -112,7 +125,7 @@ const SCOUT_METHODOLOGY = {
 const TOOLS = [
   {
     name: 'find_resources',
-    description: 'Find vetted skills/libraries/resources for an AI-usage pain point (frontend design, AI coding, AI workflows, agent tooling). Returns GRADED matches (tested, receipted, install command) separately from SCOUTED matches (found + triaged, ungraded). Call when the user wants a skill/tool/resource to fix a described problem.',
+    description: 'Find skills/libraries/resources for an AI-usage pain point. Every entry returned had its full source read at a pinned commit before publication; graded entries were additionally installed and probed. Call when the user wants a skill/tool/resource to fix a described problem. The catalog is a curated starting shelf — an empty result means "not catalogued yet", and get_scout_methodology tells you how to search the wider ecosystem honestly.',
     inputSchema: {
       type: 'object',
       properties: {
@@ -124,13 +137,13 @@ const TOOLS = [
   },
   {
     name: 'get_grade',
-    description: 'Get the full Skillproof record for one skill by name: grade, per-dimension scores with reasons, worksheet (receipts) URL — or, for scouted entries, the triage receipts and an explicit ungraded notice.',
+    description: 'Get the full Skillproof record for one skill by name: grade, per-dimension scores with reasons, worksheet (receipts) URL — or, for source-reviewed entries, what it does / what it touches / how to undo it, read from the source at a pinned commit.',
     inputSchema: { type: 'object', properties: { skill: { type: 'string', description: 'Skill name or id (fuzzy match).' } }, required: ['skill'] },
   },
   {
     name: 'list_index',
-    description: 'List the whole Skillproof index. Optionally filter by status: "graded" (tested) or "scouted" (found + triaged, ungraded).',
-    inputSchema: { type: 'object', properties: { status: { type: 'string', enum: ['graded', 'scouted'] } } },
+    description: 'List the published Skillproof catalog. Optionally filter by status: "graded" (installed and probed) or "reviewed" (full source read at a pinned commit).',
+    inputSchema: { type: 'object', properties: { status: { type: 'string', enum: ['graded', 'reviewed'] } } },
   },
   {
     name: 'get_scout_methodology',
@@ -141,10 +154,14 @@ const TOOLS = [
 
 async function handleTool(name, args = {}) {
   const data = await getData();
-  const skills = data.skills || [];
+  // Published only: graded, or reviewed with the review block present. Everything
+  // else in the file is an internal pipeline state and is never served.
+  const skills = (data.skills || []).filter(
+    (s) => s.status === 'graded' || (s.status === 'reviewed' && s.review)
+  );
   const graded = skills.filter((s) => s.status === 'graded');
-  const scouted = skills.filter((s) => s.status === 'scouted');
-  const disclaimer = `Data as of ${data.as_of}, rubric v${data.rubric_version}. Grades are real test results with worksheets; scouted entries are found-and-triaged only and carry NO grade. Grades >90 days old are stale. Receipts: ${REPO}`;
+  const reviewed = skills.filter((s) => s.status === 'reviewed');
+  const disclaimer = `Data as of ${data.as_of}. Every published entry had its full source read at a pinned commit. Reading is not running: only graded entries (installed + probed, worksheet on file) are called tested. Grades >90 days old are stale. Receipts: ${REPO}`;
 
   if (name === 'find_resources') {
     const tokens = tokenize(args.pain_point);
@@ -158,18 +175,16 @@ async function handleTool(name, args = {}) {
       .sort((a, b) => b.hits - a.hits)
       .slice(0, limit);
     const g = rank(graded.filter((s) => (s.grade || '').charAt(0) !== 'F'));
-    const sc = rank(scouted);
+    const rv = rank(reviewed);
     const out = {
       pain_point: args.pain_point,
       graded_matches: g.map((r) => gradedBrief(r.s, data.rubric_version)),
-      scouted_matches: sc.map((r) => scoutedBrief(r.s)),
+      reviewed_matches: rv.map((r) => reviewedBrief(r.s)),
       disclaimer,
     };
-    if (!g.length && !sc.length) {
-      out.no_match = 'No match in the index — that means Skillproof has not graded or scouted one for this yet, NOT that none exists. Use get_scout_methodology to scout honestly, or nominate a candidate.';
+    if (!g.length && !rv.length) {
+      out.no_match = 'Not catalogued yet — the catalog is a curated starting shelf, and this means Skillproof has not covered the pain point, NOT that nothing exists. Search the wider ecosystem with get_scout_methodology, or nominate a candidate.';
       out.scout_methodology = SCOUT_METHODOLOGY;
-    } else if (!g.length) {
-      out.note = 'Only scouted (ungraded) matches exist for this pain point so far. Treat them as leads, not recommendations.';
     }
     return out;
   }
@@ -179,20 +194,20 @@ async function handleTool(name, args = {}) {
     const hit = skills.find((s) => s.id === q)
       || skills.find((s) => s.name.toLowerCase() === q)
       || skills.find((s) => s.name.toLowerCase().includes(q) || q.includes(s.id));
-    if (!hit) return { not_found: `'${args.skill}' is not in the Skillproof index (neither graded nor scouted). No grade exists — do not infer one.`, nominate: `${REPO}/issues`, disclaimer };
+    if (!hit) return { not_found: `'${args.skill}' is not in the published Skillproof catalog. No grade or review exists — do not infer one.`, nominate: `${REPO}/issues`, disclaimer };
     if (hit.status === 'graded') {
       return { ...gradedBrief(hit, data.rubric_version), scores: hit.scores, version_tested: hit.version_tested, disclaimer };
     }
-    return { ...scoutedBrief(hit), disclaimer };
+    return { ...reviewedBrief(hit), disclaimer };
   }
 
   if (name === 'list_index') {
-    const pick = args.status === 'graded' ? graded : args.status === 'scouted' ? scouted : skills;
+    const pick = args.status === 'graded' ? graded : args.status === 'reviewed' ? reviewed : skills;
     return {
-      counts: { graded: graded.length, scouted: scouted.length },
+      counts: { graded: graded.length, reviewed: reviewed.length },
       entries: pick.map((s) => (s.status === 'graded'
         ? { name: s.name, status: 'graded', grade: s.grade, score: `${s.score_total}/24`, summary: s.summary, worksheet: `${REPO}/blob/main/${s.evidence_url}` }
-        : { name: s.name, status: 'scouted (ungraded)', summary: s.summary, repo: s.repo_url })),
+        : { name: s.name, status: 'reviewed', summary: s.summary, does: s.review?.does ?? null, repo: s.repo_url })),
       disclaimer,
     };
   }
