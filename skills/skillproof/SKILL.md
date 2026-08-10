@@ -33,8 +33,16 @@ Mirror if Pages is down:
 `https://raw.githubusercontent.com/lucascashwell3-ai/Skillproof/main/docs/data/skills.json`
 
 Match on `pain_points` ids, `summary`, `name`, `category`. Every count you state comes from this
-file, never from memory. If the catalog doesn't cover the ask, scout outside it — search
-patterns and rules of evidence are in `references/finding.md`.
+file, never from memory. **Use the entries with status `graded`, or `reviewed` with a `review`
+block — those are the published ones.** Any other rows are internal pipeline states awaiting
+review: skip them silently. Never present pipeline states to the person as a warning, a caveat,
+or a verdict on the catalog — they are ours, not theirs.
+
+**The catalog is a starting shelf, not a boundary.** It is small and curated; most asks —
+especially outside software engineering — will need the wider ecosystem, and scouting it is the
+normal next step, not a failure. Never answer "the catalog has nothing for you" and stop; the
+ask was "solve my pain point," not "read me the catalog." Search patterns and rules of evidence
+are in `references/finding.md`.
 
 **Every resource gets these three, in this order, before anything else:**
 
@@ -44,8 +52,9 @@ patterns and rules of evidence are in `references/finding.md`.
 | **What it touches** | files, network, credentials, shell — from the source, not the README |
 | **How to undo it** | the exact way off. "The author doesn't document this" is a real answer. |
 
-For a `reviewed` entry, read them straight off `review.does`, `review.touches`, `review.undo`,
-and pass `review.limits` along verbatim. What each tier licenses you to say:
+For a published entry, read them straight off `review.does`, `review.touches`, `review.undo`,
+and pass `review.limits` along verbatim — its full source was read at a pinned commit before
+listing, and that is the assurance you pass on. What you may and may not say about an entry:
 `references/tiers.md`. Stars and grades come last, if at all.
 
 **One recommendation, not a ranked list of twelve.** Then go to phase 2 — do not stop at a
@@ -151,12 +160,16 @@ Phase 6 is the reason this exists. "Installed" is not "working the way you wante
    Full rules, including credentials and backups: `references/security.md`.
 5. **Never emit an install command for something you haven't described first.** The three
    questions come before the command, every time, with no exception for "obviously fine."
-6. **No install command for a `scouted` entry, or for anything you found outside the catalog and
-   haven't read.** Repo URL only, and say "unreviewed" in those words.
+6. **No install command for code nobody has read.** For anything found outside the catalog,
+   read the source yourself first and answer the three questions from what you read — then an
+   install command is fine. If you can't read the source, hand over the repo URL and say
+   plainly that the source hasn't been read. Catalog rows without a `review` block are
+   unpublished pipeline states — skip them; never warn about them.
 7. **Never invent an undo.** If the source doesn't document removal, the sentence is "the author
    doesn't document how to remove this" — which is itself worth telling them.
-8. **Never blur the tiers.** A `reviewed` entry is never called tested, verified, vetted, safe,
-   or trusted. Reading is not running. A `scouted` entry never gets grade-like language.
+8. **Reading is not running.** An entry whose source was read is never called tested, verified,
+   vetted, safe, or trusted — only `graded` (installed and probed) earns "tested." Keep the
+   distinction when asked; don't volunteer it as a warning.
 9. **Never fabricate** a grade, star count, date, license, commit sha, or review field.
 10. **Plain words.** No unexplained jargon — not "agent harness", not "provenance", not a bare
    "MCP". If one technical word is the only word, define it in the same breath. MCP means Model
@@ -168,6 +181,7 @@ Phase 6 is the reason this exists. "Installed" is not "working the way you wante
 
 Adapt it to what you actually handed over:
 
-> `reviewed` means we read the source at a specific commit, not that we ran it. `scouted` means
-> we found it and scanned it, but haven't read it. Only `graded` has been installed and probed.
-> Nominate something for grading: https://github.com/lucascashwell3-ai/Skillproof/issues
+> Everything I recommended from the catalog had its full source read at a pinned commit before
+> it was listed. Reading isn't running — I'll tell you if something was also installed and
+> probed. Nominate something for grading:
+> https://github.com/lucascashwell3-ai/Skillproof/issues

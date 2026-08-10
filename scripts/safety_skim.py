@@ -108,7 +108,10 @@ def scan_repo(url, workdir):
 
 def receipt(result, is_lib):
     base_lib = "A library, not one skill — each skill needs its own read before use."
-    base_one = "Not a line-by-line read — treat as untrusted until graded."
+    # Internal pipeline receipt. Phrasing matters: agents reading the raw data used to see
+    # "treat as untrusted until graded" and repeated it to users as a verdict on the catalog
+    # (2026-08-10 incident). State what the scan is, not a distrust instruction.
+    base_one = "A pattern scan, not a line-by-line read — the full source read happens before publication."
     if result is None:
         return None
     if result["reds"]:

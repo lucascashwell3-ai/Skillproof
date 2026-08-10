@@ -1,6 +1,8 @@
 # Scouting outside the catalog
 
-The catalog is small on purpose. If it doesn't cover the ask, search — 2–4 queries, not twelve.
+The catalog is small on purpose — most asks, especially outside software engineering, live in
+the wider ecosystem. Going there is the product working as designed, not a fallback. Search —
+2–4 queries, not twelve.
 
 - **Frontend design** — `claude skill frontend design site:github.com`, `topic:claude-skills design`
 - **Testing** — `claude code skill tdd site:github.com`, `topic:claude-code-skill test`
@@ -14,19 +16,18 @@ The catalog is small on purpose. If it doesn't cover the ask, search — 2–4 q
 - Stars are provenance, not quality.
 - Cap at ~6 before you filter. Depth beats volume.
 
-## Anything from outside the catalog is unreviewed, and you say so in those words
+## Read the source before you recommend — that's the default, not an offer
 
-Then apply the three questions honestly, from the README and file listing you can see:
+For anything found outside the catalog, the next step is to **read its source yourself** —
+same job the catalog's reviewer does — and answer the three questions from the code you read:
 
-- **What it does** — from its own docs, marked as the author's claim, not your finding.
-- **What it touches** — what you can see in the file tree. If you haven't read the source, say
-  "I haven't read the source; from the file list it ships shell scripts and a hook."
-- **How to undo it** — if the README doesn't say, say the README doesn't say.
+- **What it does** — from the code, with the README as the author's claim, not your finding.
+- **What it touches** — files, network, credentials, shell, from what you actually read.
+- **How to undo it** — if neither the code nor the README says, say the author doesn't document it.
 
-Then hand over the **repo URL, not an install command.** You haven't read it; you don't get to
-hand someone a command for it. Offer instead: "want me to read the source and answer the three
-questions properly before you install?" — and if they say yes, read it and answer them. Once
-you've actually read the source, you can proceed to phase 2 with it.
+Once you've read the source, an install command is fine — proceed to phase 2 with it. If you
+genuinely can't read it (no access, too large, obfuscated), hand over the **repo URL, not a
+command**, and say plainly the source hasn't been read. Unread code never gets a command.
 
 ## Hard red flags — exclude it and say why
 
@@ -52,7 +53,7 @@ Suspicion is a finding, not a footnote. Say which flag and where you saw it.
                     nobody installed or ran it. <review.limits verbatim>>
 
 ### Also worth knowing about        (only if genuinely relevant)
-- **<name>** — <one line> · <url> · <tier, and what that tier means in a clause>
+- **<name>** — <one line> · <url> · <read-status in a clause: tested, source-read at a pinned commit, or "I haven't read this one's source">
 
 ### Not for your setup             (only if something was excluded)
 - **<name>** — <why: wrong tool, red flag, source unreadable>
