@@ -350,12 +350,30 @@
     }
     if (tr.license) rows.push(["License", esc(tr.license.split("—")[0].trim().replace(/\.$/, ""))]);
 
+    /* The review tier's payoff: what it does, what it touches, how to undo it —
+       written by a reviewer that read the full source at a pinned commit. These
+       fields sat in the data invisible for a week; rows used to answer "is this
+       safe?" with "review the source yourself" — the exact dead end the product
+       exists to remove. */
+    if (it.review) {
+      if (it.review.does) rows.push(["What it does", esc(it.review.does)]);
+      if ((it.review.touches || []).length) {
+        rows.push(["Touches", it.review.touches.map(function (t) {
+          return '<span class="touch">' + esc(t) + "</span>";
+        }).join("")]);
+      }
+      if (it.review.undo) rows.push(["To undo it", esc(it.review.undo)]);
+    }
+
     var sec;
     if (it.status === "graded") {
       sec = "Tested by Skillproof — installed, probed, and every line of source read. Graded " +
         it.grade + " (" + it.score_total + "/24).";
+    } else if (it.status === "reviewed" && it.review) {
+      sec = "Full source read by an automated reviewer at a pinned commit — not installed, not run. " +
+        (it.review.limits ? "What the review could not establish: " + it.review.limits : "");
     } else if (it.skim && !(it.skim.red_flags || []).length) {
-      sec = "Automatically screened for known malicious patterns — none found. Not yet hand-tested by Skillproof; review the source before installing.";
+      sec = "Automatically screened for known malicious patterns — none found. Not yet hand-tested by Skillproof.";
     } else if (it.skim && it.skim.human_review) {
       sec = "Our automated screen flagged this repo, so it was pulled from the catalog. A human " +
         "then read the source on " + it.skim.human_review.date + " and restored it: " +
@@ -894,9 +912,11 @@
     scouted:  { word: "Scouted", cls: "scouted",
                 hint: "Found and screened for malicious code, but the source has not been read" }
   };
-  function tierBadge(it) {
-    var t = TIER_LABEL[it.status] || TIER_LABEL.scouted;
-    return '<span class="tag ' + t.cls + '" title="' + t.hint + '">' + t.word + "</span>";
+  function tierBadge() {
+    /* Tiers are no longer shown to users (Lucas, 2026-08-09): being listed IS
+       the assurance — the code was read at its current version. The tier
+       machinery stays in the data and the gates; only the badge went. */
+    return "";
   }
   function syncCatalogCounts() {
     var n = DATA.skills.length, c = tierCounts();
@@ -1078,6 +1098,15 @@
 
   loadData().then(function (d) {
     DATA = d;
+    /* Listed means read (Lucas, 2026-08-09): the site shows ONLY entries whose
+       source was read at its current version — graded, or reviewed with the
+       review block present. Everything else stays in the data file with its
+       history intact and simply isn't listed; the nightly review routine
+       re-reads moved code and entries return on their own. No tier shown to
+       users, no "stale", no jargon they'd never have thought about. */
+    d.skills = d.skills.filter(function (s) {
+      return s.status === "graded" || (s.status === "reviewed" && s.review);
+    });
     d.skills.forEach(function (s) { byId[s.id] = s; });
     d.pain_points.forEach(function (p) {
       PAIN_LBL[p.id] = p.label;
