@@ -1039,36 +1039,41 @@
 
   /* ======================= advisor prompt (real data only) =======================
      The prompt is instructions ONLY — it points the agent at the live catalog
-     file instead of embedding 58 entries inline. Pasting a thousand-line wall
-     of JSON into a chat is both hostile to read and a waste of the user's
-     context; a fetch keeps it current too, so a prompt pasted today still sees
-     next month's catalog. The download link in the card covers agents that
-     can't fetch. */
+     file instead of embedding entries inline. Pasting a thousand-line wall of
+     JSON into a chat is both hostile to read and a waste of the user's
+     context; a fetch keeps it current too. The download link in the card
+     covers agents that can't fetch.
+
+     The job it hands the agent is the product's job: pain point → find the
+     right thing → get it working, with per-change consent. The catalog is the
+     starting shelf, the wider web is in bounds, and the finish line is
+     "installed and confirmed working" — NOT a catalog reading. An earlier
+     version of this prompt described the internal review tiers to the agent;
+     pasted into a fresh chat, the agent read "only 1 tested, no install
+     commands for the rest" and told the user to avoid the whole site
+     (2026-08-10, Lucas's work machine). Pipeline states are ours, not the
+     agent's — the prompt now says what IS assured (published = source read at
+     a pinned commit) and keeps the rest internal. */
   var DATA_URL = "https://raw.githubusercontent.com/lucascashwell3-ai/Skillproof/main/docs/data/skills.json";
 
   function buildPrompt() {
-    var counts = tierCounts();
-    var split = [["graded", "tested"], ["reviewed", "source-reviewed"],
-                 ["scouted", "scouted"]]
-      .filter(function (p) { return counts[p[0]]; })
-      .map(function (p) { return counts[p[0]] + " " + p[1]; }).join(", ");
     return [
-      "You are my AI-environment upgrade advisor and scout, powered by the Skillproof catalog.",
+      "You are my AI-setup upgrade agent, working the Skillproof method. When I describe a pain point or goal, find the right skill or tool for it and get it working in my setup. Finding it is the start — installed, integrated, and confirmed working is the finish.",
       "",
-      "First, fetch the catalog: " + DATA_URL,
-      "If you cannot fetch it, say so plainly and ask me to attach the file — the same JSON downloads from the Skillproof site. Do not answer from memory about what is in the catalog.",
+      "Start with the curated catalog: " + DATA_URL,
+      "Use the entries with status \"graded\", or \"reviewed\" with a \"review\" block — those are the published ones. Any other rows are internal pipeline states awaiting review; skip them silently, and never present them as a warning or a verdict on the catalog. Every published entry had its full source read at a pinned commit before listing: review.does, review.touches and review.undo tell you what it does, what it touches, and how to undo it. If the fetch fails, say so and ask me to attach the file — it downloads from the Skillproof site.",
       "",
-      "When I describe a pain point, weakness, or goal in my AI setup, answer in this order — honesty always:",
-      "For any entry, lead with the three things that decide whether I install it: what it does, what it touches, and how to undo it. Stars and grades come after.",
-      "1. TESTED entries (status \"graded\"): quote the grade, the one-line summary, and the worksheet link. Give the install command when I ask.",
-      "2. REVIEWED entries (status \"reviewed\"): read me review.does, review.touches and review.undo, and quote review.limits verbatim. An automated reviewer read the full source at commit review.source_sha — nobody installed or ran it. Say that in those words; never call it tested, verified, or safe.",
-      "3. SCOUTED entries (status \"scouted\"): present as leads, never recommendations — found and screened for malicious patterns, but the source has not been read. No install commands for these.",
-      "4. Nothing fits? Say so. Then, only if I ask, scout the live ecosystem yourself: verify the repo is real, check the license, check last-push freshness, and skim for safety red flags (curl|bash, auto-run hooks, undisclosed network calls, credential access). Report those four receipts per candidate. Never install anything; never invent stars, dates, or licenses.",
+      "The catalog is a starting shelf, not a boundary. If nothing in it fits my ask, search the wider ecosystem yourself — that is the normal next step, not a failure. Read the source of anything you find before recommending it, and answer the same three questions (does / touches / undo) from the code you read, never from the README alone. If you can't read the source, hand me the repo URL and say the source hasn't been read — no install command for unread code.",
       "",
-      "Never give a scouted, reviewed, or freshly-found item grade-like language — Skillproof grades come only from a full published rubric run. Reading source is not running it. Call out grades older than ~90 days as possibly stale.",
-      "Grading worksheets, the rubric, and what each tier does and does not establish: " + REPO,
+      "Once you have the one right thing (one recommendation, not a ranked list):",
+      "1. Tell me what it does, what it touches, and how to undo it — one line each.",
+      "2. Read my setup (global instructions, CLAUDE.md, installed skills, settings) and say plainly what will fight it — or that nothing will.",
+      "3. Show me every change you propose, then ask my permission per change. Nothing is written without a yes.",
+      "4. Install it, confirm it actually triggers, and hand me the undo.",
       "",
-      "Catalog as of " + DATA.as_of + " · rubric v" + DATA.rubric_version + " · " + split + "."
+      "Honesty rules: reading source is not running it — only a \"graded\" entry may be called tested. Never invent stars, dates, licenses, or grades. Never pipe a download into a shell.",
+      "",
+      "Catalog as of " + DATA.as_of + "."
     ].join("\n");
   }
 
