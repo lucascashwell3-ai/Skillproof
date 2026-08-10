@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400..800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/styles.css?v=11" />
+  <link rel="stylesheet" href="assets/styles.css?v=12" />
 </head>
 <body>
 
@@ -50,9 +50,10 @@
       Skillproof
     </a>
     <nav class="nav-pills" aria-label="Site">
-      <a href="#bench">Workbench</a>
-      <a href="#with-you">Take it with you</a>
+      <a href="#install">Install</a>
+      <a href="#bench">Catalog</a>
       <a href="how.html">How it works</a>
+      <a href="methodology.html">Methodology</a>
     </nav>
     <div class="nav-right">
       <a class="btn btn-primary btn-sm" href="#bench" data-magnetic>Build my stack</a>
@@ -62,41 +63,81 @@
 
 <!-- ======================= HERO ======================= -->
 <section class="hero" id="top">
-  <div class="field-wrap" id="fieldWrap">
-    <canvas id="field" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <div class="hero-split" id="install">
+      <div class="hero-panel">
+        <h1>Give your agents the skills <span class="grad">they need.</span></h1>
+        <p class="hero-sub">A skill doesn&rsquo;t work if your setup ignores or blocks it.
+        Skillproof finds what you need and fits it into your setup &mdash; seamlessly, and
+        with your permission.</p>
 
-    <div class="hero-content">
-      <div class="wrap">
-        <div class="hero-split">
-          <div class="hero-panel">
-            <h1>Upgrade your AI work with <span class="grad">Skillproof.</span></h1>
-            <p class="hero-sub">Give your agents the skills they need.</p>
+        <!-- Three ways in. The tabs also drive the terminal on the right:
+             pick a method, watch that method's session play. -->
+        <div class="installer">
+          <div class="inst-tabs" role="tablist" aria-label="Ways to install Skillproof">
+            <button class="inst-tab" role="tab" aria-selected="true" data-m="prompt" id="instTab-prompt" aria-controls="instPane-prompt">Paste a prompt</button>
+            <button class="inst-tab" role="tab" aria-selected="false" data-m="cli" id="instTab-cli" aria-controls="instPane-cli">Install the skill</button>
+            <button class="inst-tab" role="tab" aria-selected="false" data-m="mcp" id="instTab-mcp" aria-controls="instPane-mcp">MCP server</button>
+          </div>
 
-            <div class="hero-ctas">
-              <a class="btn btn-ghost btn-sm" href="#bench" data-form="bench" data-magnetic>
-                <svg class="ico" viewBox="0 0 24 24"><use href="#i-tools"/></svg>
-                Get skills
-              </a>
-              <a class="btn btn-ghost btn-sm" href="#with-you" data-form="carry">
-                <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 16V8"/><path d="M8.5 11.5 12 8l3.5 3.5"/></svg>
-                Install to your agent
-              </a>
-              <a class="btn btn-ghost btn-sm" href="how.html" data-form="how">
-                <span class="ico-i" aria-hidden="true">?</span>
-                How it works
-              </a>
+          <div class="inst-pane on" id="instPane-prompt" role="tabpanel" data-pane="prompt" aria-labelledby="instTab-prompt">
+            <p>Nothing to install &mdash; paste one short prompt into Claude (browser or app) and
+            that chat becomes your skill advisor. It reads the live catalog itself, so it never
+            goes stale.</p>
+            <textarea id="promptText" readonly rows="3" aria-label="Advisor prompt" class="inst-prompt"></textarea>
+            <div class="inst-actions">
+              <button class="btn btn-primary btn-sm" id="copyPrompt" type="button" data-magnetic>Copy prompt</button>
+              <a class="btn btn-ghost btn-sm" href="data/skills.json" download="skillproof-catalog.json">Download the catalog</a>
+              <span class="prompt-status" id="copyStatus" role="status" aria-live="polite"></span>
             </div>
           </div>
 
-          <!-- pure layout anchor: renders nothing, hero.js measures its rect
-               to place/size the assembled formation in the open half -->
-          <div class="hero-visual" aria-hidden="true"></div>
+          <div class="inst-pane" id="instPane-cli" role="tabpanel" data-pane="cli" aria-labelledby="instTab-cli" hidden>
+            <p>For Claude Code. Downloads seven files to disk so you can read them &mdash; nothing
+            is piped into a shell, and it never edits your setup without asking first, per change.</p>
+            <div class="cmdbox inst-cmd">for f in SKILL.md references/consent.md references/conflict-patterns.md references/install-paths.md references/tiers.md references/finding.md references/security.md; do curl -fsSL --create-dirs https://raw.githubusercontent.com/lucascashwell3-ai/Skillproof/main/skills/skillproof/$f -o ~/.claude/skills/skillproof/$f; done
+              <button class="copy" type="button" aria-label="Copy the Skillproof skill install command" data-copy="for f in SKILL.md references/consent.md references/conflict-patterns.md references/install-paths.md references/tiers.md references/finding.md references/security.md; do curl -fsSL --create-dirs https://raw.githubusercontent.com/lucascashwell3-ai/Skillproof/main/skills/skillproof/$f -o ~/.claude/skills/skillproof/$f; done">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2.5"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              </button>
+            </div>
+            <p class="inst-fine">Read it before you run it &mdash; we&rsquo;d grade us too:
+              <a href="https://github.com/lucascashwell3-ai/Skillproof/blob/main/skills/skillproof/SKILL.md" target="_blank" rel="noopener">SKILL.md ↗</a> &middot;
+              <a href="https://github.com/lucascashwell3-ai/Skillproof/blob/main/skills/skillproof/references/consent.md" target="_blank" rel="noopener">what it will and won&rsquo;t touch ↗</a></p>
+          </div>
+
+          <div class="inst-pane" id="instPane-mcp" role="tabpanel" data-pane="mcp" aria-labelledby="instTab-mcp" hidden>
+            <p>For Cursor, Claude Desktop, and any other MCP-capable agent &mdash; the catalog as
+            four read-only tools your agent can query mid-task.</p>
+            <div class="cmdbox inst-cmd">git clone https://github.com/lucascashwell3-ai/Skillproof &amp;&amp; cd Skillproof/mcp &amp;&amp; npm install
+              <button class="copy" type="button" aria-label="Copy MCP clone command" data-copy="git clone https://github.com/lucascashwell3-ai/Skillproof &amp;&amp; cd Skillproof/mcp &amp;&amp; npm install">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2.5"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              </button>
+            </div>
+            <p class="inst-fine">Then: <code>claude mcp add skillproof -- node /path/to/Skillproof/mcp/server.js</code> &middot;
+              per-host setup in <a href="https://github.com/lucascashwell3-ai/Skillproof/blob/main/mcp/README.md" target="_blank" rel="noopener">mcp/README.md ↗</a></p>
+          </div>
         </div>
+
+        <p class="hero-assure">✓ Every skill it recommends is source-checked before it appears here.</p>
+      </div>
+
+      <!-- the living terminal: plays each install method's session, abridged -->
+      <div class="term" id="term">
+        <div class="dither-halo" aria-hidden="true"></div>
+        <div class="term-bar">
+          <span class="tdot"></span><span class="tdot"></span><span class="tdot"></span>
+          <span class="term-title" id="termTitle">skillproof — paste the prompt</span>
+          <span class="term-dots" id="termDots" aria-hidden="true">
+            <span class="mdot on"></span><span class="mdot"></span><span class="mdot"></span>
+          </span>
+        </div>
+        <div class="term-body" id="termBody" aria-label="Abridged demo of the skill working"></div>
       </div>
     </div>
   </div>
 
   <div class="wrap">
+    <div class="dither-line" aria-hidden="true"></div>
     <div class="bench" id="bench">
 
       <!-- ============ REGION 1 · SETUP ============ -->
@@ -222,133 +263,12 @@
   </div>
 </section>
 
-<!-- ======================= TAKE IT WITH YOU ======================= -->
-<section class="sec" id="with-you">
-  <div class="wrap">
-    <div class="sec-head">
-      <h2>Take it with you</h2>
-      <p>Plug Skillproof right into your agent. Pick the one that matches how you work.</p>
-    </div>
-
-    <!-- One module, one choice at a time: pick a delivery method on the left,
-         watch what it looks like on the right, get the exact thing to copy
-         below. Previously the three names appeared twice (bare pills over a
-         floating window, then three unequal cards) — two navigations for the
-         same three options, and no obvious place to act. -->
-    <div class="demo carry" id="demo">
-      <div class="carry-pick" role="tablist" aria-label="How to take Skillproof with you">
-        <button class="pick" type="button" role="tab" data-tab="0" aria-selected="true" aria-controls="way-0">
-          <span class="pick-t">Paste the prompt</span>
-          <span class="pick-s">Claude in the browser or app — nothing to install</span>
-        </button>
-        <button class="pick" type="button" role="tab" data-tab="1" aria-selected="false" aria-controls="way-1">
-          <span class="pick-t">Run in your terminal</span>
-          <span class="pick-s">Claude Code — it reads your setup before it changes anything</span>
-        </button>
-        <button class="pick" type="button" role="tab" data-tab="2" aria-selected="false" aria-controls="way-2">
-          <span class="pick-t">Connect over MCP</span>
-          <span class="pick-s">Cursor, Claude Desktop, any MCP-capable agent</span>
-        </button>
-      </div>
-
-      <div class="demo-stage" aria-hidden="true">
-        <div class="demo-scene" data-scene="0">
-          <div class="demo-win">
-            <div class="demo-bar">claude.ai — new chat</div>
-            <div class="demo-msgs">
-              <div class="demo-sent">You are my AI-environment upgrade advisor, powered by the Skillproof catalog…</div>
-              <div class="demo-reply">Advisor loaded — <span data-catalog-split>the catalog</span>. <b>What are you trying to improve?</b></div>
-              <div class="demo-reply demo-reply2">e.g. "my frontend output looks generic" → I'll hand you a stack for it.</div>
-            </div>
-            <div class="demo-chat">
-              <div class="demo-input"><span class="type t1">You are my AI-environment upgrade advisor…</span><span class="caret"></span></div>
-              <span class="demo-send"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5"/><path d="M5 12l7-7 7 7"/></svg></span>
-            </div>
-          </div>
-        </div>
-        <div class="demo-scene" data-scene="1">
-          <div class="demo-win demo-dark">
-            <div class="demo-bar">terminal</div>
-            <div class="demo-term">
-              <div class="line l1"><span class="k">$</span> <span class="type t1">curl … -o ~/.claude/skills/skillproof/SKILL.md</span></div>
-              <div class="line l2"><span class="ok">✓</span> installed — now ask it for a skill, and it fits it to your setup</div>
-              <div class="line l3"><span class="k">$</span> <span class="caret"></span></div>
-            </div>
-          </div>
-        </div>
-        <div class="demo-scene" data-scene="2">
-          <div class="demo-win demo-dark">
-            <div class="demo-bar">terminal — MCP</div>
-            <div class="demo-term">
-              <div class="line l1"><span class="k">$</span> <span class="type t1">claude mcp add skillproof -- node server.js</span></div>
-              <div class="line l2"><span class="ok">✓</span> 4 tools connected</div>
-              <div class="demo-chips">
-                <span>find_resources</span><span>get_grade</span><span>list_index</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- exactly one card visible, matching the selection above -->
-    <div class="ways">
-      <div class="way" id="way-0" role="tabpanel" tabindex="0" data-way="0">
-        <div class="way-txt">
-          <h3>Paste-in advisor prompt</h3>
-          <p><b>For Claude in the browser or app — nothing to install.</b> Paste it once and that chat becomes your skill advisor: describe a problem, it answers from this catalog and scouts honestly beyond it. Short on purpose — it reads the live catalog itself, so it never goes stale.</p>
-          <p class="way-fine">If your agent can&rsquo;t browse the web, download the catalog and attach it to the chat instead.</p>
-        </div>
-        <div class="way-do">
-          <div class="promptpanel open" id="promptPanel">
-            <textarea id="promptText" readonly rows="8" aria-label="Advisor prompt"></textarea>
-            <div class="prompt-actions">
-              <button class="btn btn-primary btn-sm" id="copyPrompt" type="button">Copy prompt</button>
-              <a class="btn btn-ghost btn-sm" href="data/skills.json" download="skillproof-catalog.json">Download the catalog</a>
-              <span class="prompt-status" id="copyStatus" role="status" aria-live="polite"></span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="way" id="way-1" role="tabpanel" tabindex="0" data-way="1">
-        <div class="way-txt">
-          <h3>The Skillproof skill</h3>
-          <p><b>For Claude Code.</b> Finds the right skill for what you described, then reads the setup it has to live in &mdash; your instructions, your other skills, your memory files &mdash; tells you plainly what will fight it, asks permission for every change, makes the changes, and confirms it actually works.</p>
-          <p class="way-fine">This downloads seven files to disk so you can read them &mdash; it does not pipe anything into a shell. It never edits anything without asking you first, per change. Read it before you run it; we&rsquo;d grade us too: <a href="https://github.com/lucascashwell3-ai/Skillproof/blob/main/skills/skillproof/SKILL.md" target="_blank" rel="noopener">SKILL.md ↗</a> &middot; <a href="https://github.com/lucascashwell3-ai/Skillproof/blob/main/skills/skillproof/references/consent.md" target="_blank" rel="noopener">what it will and won&rsquo;t touch ↗</a></p>
-        </div>
-        <div class="way-do">
-          <div class="cmdbox">for f in SKILL.md references/consent.md references/conflict-patterns.md references/install-paths.md references/tiers.md references/finding.md references/security.md; do curl -fsSL --create-dirs https://raw.githubusercontent.com/lucascashwell3-ai/Skillproof/main/skills/skillproof/$f -o ~/.claude/skills/skillproof/$f; done
-            <button class="copy" type="button" aria-label="Copy the Skillproof skill install command" data-copy="for f in SKILL.md references/consent.md references/conflict-patterns.md references/install-paths.md references/tiers.md references/finding.md references/security.md; do curl -fsSL --create-dirs https://raw.githubusercontent.com/lucascashwell3-ai/Skillproof/main/skills/skillproof/$f -o ~/.claude/skills/skillproof/$f; done">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2.5"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-            </button>
-          </div>
-        </div>
-      </div>
-      <div class="way" id="way-2" role="tabpanel" tabindex="0" data-way="2">
-        <div class="way-txt">
-          <h3>MCP server</h3>
-          <p><b>For Cursor, Claude Desktop, and any other MCP-capable agent.</b> The catalog as four read-only tools your agent can query mid-task — same data file this page renders.</p>
-          <p class="way-fine">Setup for each host: <a href="https://github.com/lucascashwell3-ai/Skillproof/blob/main/mcp/README.md" target="_blank" rel="noopener">mcp/README.md ↗</a></p>
-        </div>
-        <div class="way-do">
-          <div class="cmdbox">git clone https://github.com/lucascashwell3-ai/Skillproof &amp;&amp; cd Skillproof/mcp &amp;&amp; npm install
-            <button class="copy" type="button" aria-label="Copy MCP clone command" data-copy="git clone https://github.com/lucascashwell3-ai/Skillproof &amp;&amp; cd Skillproof/mcp &amp;&amp; npm install">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2.5"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-            </button>
-          </div>
-          <div class="cmdbox">claude mcp add skillproof -- node /path/to/Skillproof/mcp/server.js
-            <button class="copy" type="button" aria-label="Copy MCP add command" data-copy="claude mcp add skillproof -- node /path/to/Skillproof/mcp/server.js">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2.5"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+<!-- "Take it with you" retired: its three install methods now live in the hero's
+     installer tabs, one screen earlier. Kept in git history. -->
 
 <footer>
   <div class="wrap">
+    <div class="dither-line" aria-hidden="true"></div>
     <div class="foot">
       <div class="foot-brand">
         <a class="logo" href="#top">
@@ -361,9 +281,10 @@
       </div>
       <div class="foot-cols">
         <div class="foot-col"><h4>Product</h4><ul>
-          <li><a href="#bench">Workbench</a></li>
-          <li><a href="#with-you">Take it with you</a></li>
+          <li><a href="#install">Install</a></li>
+          <li><a href="#bench">Catalog</a></li>
           <li><a href="how.html">How it works</a></li>
+          <li><a href="methodology.html">Methodology</a></li>
         </ul></div>
         <div class="foot-col"><h4>Source</h4><ul>
           <li><a href="https://github.com/lucascashwell3-ai/Skillproof" target="_blank" rel="noopener">GitHub</a></li>
@@ -385,7 +306,7 @@
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-<script src="assets/hero.js?v=11" defer></script>
-<script src="assets/app.js?v=10"></script>
+<script src="assets/demo.js?v=1" defer></script>
+<script src="assets/app.js?v=11"></script>
 </body>
 </html>
