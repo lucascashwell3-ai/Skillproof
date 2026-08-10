@@ -197,9 +197,11 @@ kbd{font-family:var(--mono);font-size:.71rem;padding:2px 5px;border-radius:5px;b
    that method's session. Perf notes unchanged: no backdrop-filter on
    anything sticky, no fixed-attachment backgrounds.
    ===================================================================== */
-.hero{padding:44px 0 22px}
-.hero-split{display:grid;grid-template-columns:minmax(0,.96fr) minmax(0,1.04fr);gap:40px;
-  align-items:center;margin:0 auto 46px;scroll-margin-top:90px}
+.hero{padding:0 0 22px}
+/* the first screen belongs to the hero — the catalog starts below the fold */
+.hero-lead{min-height:calc(100svh - 84px);display:flex;align-items:center;padding:16px 0 30px}
+.hero-split{flex:1;display:grid;grid-template-columns:minmax(0,.96fr) minmax(0,1.04fr);gap:40px;
+  align-items:end;scroll-margin-top:90px}
 .hero-panel{width:100%;text-align:left}
 .hero h1{margin-bottom:12px}
 .hero-sub{margin-bottom:22px}
@@ -234,7 +236,8 @@ kbd{font-family:var(--mono);font-size:.71rem;padding:2px 5px;border-radius:5px;b
 
 /* the living terminal */
 .term{position:relative;background:linear-gradient(150deg,#182338,#1E2C44);border-radius:var(--r-lg);
-  overflow:hidden;box-shadow:inset 0 1px 0 rgba(255,255,255,.10), var(--shadow-lg)}
+  overflow:hidden;box-shadow:inset 0 1px 0 rgba(255,255,255,.10), var(--shadow-lg);
+  display:flex;flex-direction:column;align-self:stretch}
 .term-bar{display:flex;align-items:center;gap:7px;padding:11px 15px;background:rgba(255,255,255,.05);
   border-bottom:1px solid rgba(255,255,255,.08)}
 .tdot{width:11px;height:11px;border-radius:50%;flex:none}
@@ -244,8 +247,12 @@ kbd{font-family:var(--mono);font-size:.71rem;padding:2px 5px;border-radius:5px;b
 .mdot{width:7px;height:7px;border-radius:50%;background:#3A4C68;transition:background 300ms var(--ease-out)}
 .mdot.on{background:#8FBBE8}
 .term-body{padding:16px 18px 18px;font-family:var(--mono);font-size:.76rem;line-height:1.85;
-  height:352px;overflow:hidden;color:#E8EDF5;transition:opacity 320ms var(--ease-out)}
-.term-body.swap{opacity:0}
+  flex:1;min-height:330px;overflow:hidden;color:#E8EDF5;
+  transition:opacity 300ms var(--ease-out),transform 300ms var(--ease-out)}
+/* 8: direction-aware swap — outgoing session slides toward the tab you left,
+   incoming arrives from the tab you chose */
+.term-body.swap-l{opacity:0;transform:translateX(-16px)}
+.term-body.swap-r{opacity:0;transform:translateX(16px)}
 .tln{opacity:0;transform:translateY(4px);transition:opacity 320ms var(--ease-out),transform 320ms var(--ease-out);
   min-height:1.85em}
 .tln.show{opacity:1;transform:none}
@@ -260,19 +267,32 @@ kbd{font-family:var(--mono);font-size:.71rem;padding:2px 5px;border-radius:5px;b
 @media (prefers-reduced-motion: reduce){
   .tln{opacity:1;transform:none;transition:none}
   .tcaret{animation:none}
-  .term-body.swap{opacity:1}
+  .term-body.swap-l,.term-body.swap-r{opacity:1;transform:none}
   .inst-pane.on{animation:none}
 }
 
-/* dither halo — spot 1 of exactly two. A static Bayer-ish dot field behind
-   the terminal's top corner; scenery, zero animation cost. */
-.dither-halo{position:absolute;top:-3px;right:-3px;width:190px;height:130px;pointer-events:none;
-  opacity:.5;z-index:0;
-  background-image:radial-gradient(rgba(143,187,232,.85) 1px, transparent 1.1px),
-                   radial-gradient(rgba(143,187,232,.45) 1px, transparent 1.1px);
-  background-size:7px 7px, 13px 13px;
-  background-position:0 0, 3px 5px;
-  mask-image:radial-gradient(ellipse at top right, #000 12%, transparent 68%)}
+/* border beam: a bright segment travelling the terminal's border. Pure
+   compositor work (one animated custom property driving a conic gradient
+   masked to the border ring) — nothing repaints inside the card. */
+@property --beam{syntax:"<angle>";inherits:false;initial-value:0deg}
+.term::after{content:"";position:absolute;inset:0;border-radius:inherit;padding:1.5px;
+  pointer-events:none;
+  background:conic-gradient(from var(--beam),
+    transparent 0turn, transparent .78turn,
+    rgba(143,187,232,.9) .86turn, #EAF3FC .90turn, rgba(143,187,232,.9) .94turn,
+    transparent 1turn);
+  -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;mask-composite:exclude;
+  animation:beam 7s linear infinite}
+@keyframes beam{to{--beam:360deg}}
+@media (prefers-reduced-motion: reduce){
+  .term::after{animation:none;background:conic-gradient(from 40deg,
+    transparent 0turn, transparent .78turn,
+    rgba(143,187,232,.55) .86turn, rgba(234,243,252,.7) .90turn, rgba(143,187,232,.55) .94turn,
+    transparent 1turn)}
+}
+/* full-width copy button variant — same delegation as the corner icon */
+.copy-full{position:static;width:auto;height:auto;border-radius:var(--r-pill)}
 
 /* review "touches" chips — the fixed 8-word vocabulary, one chip each */
 .touch{display:inline-block;margin:0 5px 4px 0;padding:2px 9px;border-radius:var(--r-pill);
@@ -289,9 +309,10 @@ kbd{font-family:var(--mono);font-size:.71rem;padding:2px 5px;border-radius:5px;b
   mask-image:linear-gradient(90deg, transparent, #000 18%, #000 82%, transparent)}
 
 @media (max-width:900px){
-  .hero{padding-top:24px}
-  .hero-split{grid-template-columns:1fr;gap:22px}
-  .term-body{height:300px}
+  .hero-lead{min-height:0;padding-top:24px}
+  .hero-split{grid-template-columns:1fr;gap:22px;align-items:start}
+  .term{align-self:auto}
+  .term-body{min-height:280px;flex:none;height:300px}
 }
 @media (max-width:480px){
   /* the bar can't fit title + tour dots at phone width */

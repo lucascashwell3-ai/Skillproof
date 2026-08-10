@@ -147,6 +147,7 @@
 
   function setMethod(method, fromUser) {
     if (fromUser) userDrove = true;
+    var prev = current;
     current = method;
     tabs.forEach(function (t) { t.setAttribute("aria-selected", String(t.dataset.m === method)); });
     panes.forEach(function (p) {
@@ -155,12 +156,20 @@
       if (on) p.removeAttribute("hidden"); else p.setAttribute("hidden", "");
     });
     if (reduced) { play(method); return; }
-    body.classList.add("swap");
+    var dir = ORDER.indexOf(method) >= ORDER.indexOf(prev) ? "l" : "r";
+    body.classList.add("swap-" + dir);
     clearTimers();
     later(function () {
-      body.classList.remove("swap");
-      play(method);
-    }, 350);
+      body.classList.remove("swap-l", "swap-r");
+      // arrive from the opposite side, one frame later
+      body.classList.add("swap-" + (dir === "l" ? "r" : "l"));
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () {
+          body.classList.remove("swap-l", "swap-r");
+          play(method);
+        });
+      });
+    }, 310);
   }
 
   tabs.forEach(function (t) {
