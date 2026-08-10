@@ -912,9 +912,11 @@
     scouted:  { word: "Scouted", cls: "scouted",
                 hint: "Found and screened for malicious code, but the source has not been read" }
   };
-  function tierBadge(it) {
-    var t = TIER_LABEL[it.status] || TIER_LABEL.scouted;
-    return '<span class="tag ' + t.cls + '" title="' + t.hint + '">' + t.word + "</span>";
+  function tierBadge() {
+    /* Tiers are no longer shown to users (Lucas, 2026-08-09): being listed IS
+       the assurance — the code was read at its current version. The tier
+       machinery stays in the data and the gates; only the badge went. */
+    return "";
   }
   function syncCatalogCounts() {
     var n = DATA.skills.length, c = tierCounts();
@@ -1096,6 +1098,15 @@
 
   loadData().then(function (d) {
     DATA = d;
+    /* Listed means read (Lucas, 2026-08-09): the site shows ONLY entries whose
+       source was read at its current version — graded, or reviewed with the
+       review block present. Everything else stays in the data file with its
+       history intact and simply isn't listed; the nightly review routine
+       re-reads moved code and entries return on their own. No tier shown to
+       users, no "stale", no jargon they'd never have thought about. */
+    d.skills = d.skills.filter(function (s) {
+      return s.status === "graded" || (s.status === "reviewed" && s.review);
+    });
     d.skills.forEach(function (s) { byId[s.id] = s; });
     d.pain_points.forEach(function (p) {
       PAIN_LBL[p.id] = p.label;
