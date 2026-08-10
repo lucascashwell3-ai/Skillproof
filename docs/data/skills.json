@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-08-03",
+  "as_of": "2026-08-10",
   "rubric_version": "1.0",
   "notes": "Grades reflect the exact version tested (version_tested) on last_verified, under the rubric version shown. Skills graded so far is stated on the site; there are no placeholder grades. Entries with status 'scouted' are found-and-triaged only: repo verified real, license and freshness checked via the GitHub API on scouted_on — but never installed, never probed, source not read. They carry no grade by design.",
   "pain_points": [
@@ -220,11 +220,11 @@
       "last_verified": "2026-07-21",
       "status": "graded",
       "signals": {
-        "stars": 16326,
-        "forks": 919,
-        "checked": "2026-08-03",
-        "head_sha": "d05af1e4ac2259846e81686d14180d46d84acc2d",
-        "head_checked": "2026-08-03"
+        "stars": 18778,
+        "forks": 1103,
+        "checked": "2026-08-10",
+        "head_sha": "2d19ad205eb1d85fc9c3968bdeba4c2116518685",
+        "head_checked": "2026-08-10"
       }
     },
     {
@@ -247,11 +247,11 @@
       },
       "next": "Queued for a full grading run (installed + probed).",
       "signals": {
-        "stars": 110,
+        "stars": 111,
         "forks": 6,
-        "checked": "2026-08-03",
+        "checked": "2026-08-10",
         "head_sha": "2dc917f7ea357f668201119371e2fe0eebd50299",
-        "head_checked": "2026-08-03"
+        "head_checked": "2026-08-10"
       },
       "skim": {
         "date": "2026-07-27",
@@ -296,11 +296,11 @@
       },
       "next": "Queued for a full grading run (installed + probed).",
       "signals": {
-        "stars": 41,
+        "stars": 42,
         "forks": 8,
-        "checked": "2026-08-03",
+        "checked": "2026-08-10",
         "head_sha": "3660dca92424b91f1eb716b5815b476c3913450e",
-        "head_checked": "2026-08-03"
+        "head_checked": "2026-08-10"
       },
       "skim": {
         "date": "2026-07-27",
@@ -342,11 +342,11 @@
       },
       "next": "Queued for a full grading run (installed + probed).",
       "signals": {
-        "stars": 36,
+        "stars": 37,
         "forks": 0,
-        "checked": "2026-08-03",
+        "checked": "2026-08-10",
         "head_sha": "15ed326ae7162c674d7a1e477724148fa4435528",
-        "head_checked": "2026-08-03"
+        "head_checked": "2026-08-10"
       },
       "skim": {
         "date": "2026-07-27",
@@ -389,11 +389,11 @@
       },
       "next": "Queued for a full grading run (installed + probed).",
       "signals": {
-        "stars": 2972,
-        "forks": 219,
-        "checked": "2026-08-03",
+        "stars": 3005,
+        "forks": 228,
+        "checked": "2026-08-10",
         "head_sha": "bb7e920d376022958214e349ef25498a2644e189",
-        "head_checked": "2026-08-03"
+        "head_checked": "2026-08-10"
       },
       "skim": {
         "date": "2026-07-27",
@@ -429,29 +429,29 @@
         "generic-frontend",
         "docs-drift"
       ],
-      "status": "reviewed",
+      "status": "scouted",
       "scouted_on": "2026-07-24",
       "triage": {
         "provenance": "First-party Anthropic org repo, verified via GitHub API: 163, created 2025-09.",
         "license": "No top-level license detected via the GitHub API — check per-skill terms in the repo before commercial reuse.",
         "freshness": "Last push 2026-07-24 (checked 2026-07-29) — actively maintained.",
-        "safety": "Automated safety skim (2026-07-27, 229 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. A library, not one skill — each skill needs its own read before use."
+        "safety": "Automated safety skim (2026-08-10, 229 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. A library, not one skill — each skill needs its own read before use."
       },
-      "next": "Queued for a full grading run (installed + probed).",
+      "next": "Upstream changed since the last source review — queued for re-review.",
       "signals": {
-        "stars": 166046,
-        "forks": 19763,
-        "checked": "2026-08-03",
-        "head_sha": "b29e7cf65e5cb78a5ac33d582270551bc74a14eb",
-        "head_checked": "2026-08-03"
+        "stars": 167235,
+        "forks": 19944,
+        "checked": "2026-08-10",
+        "head_sha": "f17010c9bb483898c1d9c9f42dde2b3a98889434",
+        "head_checked": "2026-08-10"
       },
       "skim": {
-        "date": "2026-07-27",
+        "date": "2026-08-10",
         "files_scanned": 229,
         "red_flags": [],
         "notes": []
       },
-      "review": {
+      "review_stale": {
         "does": "Gives their agent a bundle of how-to playbooks so it can produce finished Word documents, PDFs, Slack GIFs, branded slides and web pages on request, partly by running helper scripts and code that ship alongside the instructions.",
         "touches": [
           "reads project files",
@@ -466,7 +466,9 @@
         "limits": "This review is based on reading the source only; nothing was run, installed, or observed working. It covers just 10 of the repo's files (about 40KB) — 93 further files, including all of the helper scripts the instructions tell the agent to run (project setup and bundling scripts, server launcher, document-conversion and comment-insertion scripts, GIF utilities), were not provided, so what those scripts actually do is unverified; the categories above come from what the instruction files direct the agent to do, not from inspecting the scripts themselves. One file (skills/frontend-design/SKILL.md) was cut off halfway through. The 'network calls' finding is limited to downloading software packages during setup (npm/pip installs) — no other outbound connections are shown in what was read, but the unread scripts could contain more. The 'writes outside the project' finding rests on an example that saves a screenshot to a system temp folder. The repo mixes licenses: some skills say 'Proprietary', others point to a LICENSE.txt that was not provided, so usage terms could not be reviewed.",
         "reviewed_at": "2026-07-31",
         "reviewer": "automated-source-review v1",
-        "source_sha": "b29e7cf65e5cb78a5ac33d582270551bc74a14eb"
+        "source_sha": "b29e7cf65e5cb78a5ac33d582270551bc74a14eb",
+        "downgraded_on": "2026-08-10",
+        "stale_reason": "upstream HEAD moved from b29e7cf6 to f17010c9; the review described code that is no longer what a visitor would install"
       }
     },
     {
@@ -479,31 +481,31 @@
       "pain_points": [
         "generic-frontend"
       ],
-      "status": "reviewed",
+      "status": "scouted",
       "scouted_on": "2026-07-24",
       "triage": {
         "provenance": "Repo verified real via GitHub API: MengTo/Skills, created 2026-02; author is the founder of Design+Code.",
         "license": "MIT",
         "freshness": "Last push 2026-07-28 (checked 2026-07-29) — actively maintained.",
-        "safety": "Automated safety skim (2026-07-27, 418 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: network call. A library, not one skill — each skill needs its own read before use."
+        "safety": "Automated safety skim (2026-08-10, 435 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: network call. A library, not one skill — each skill needs its own read before use."
       },
-      "next": "Queued for a full grading run (installed + probed).",
+      "next": "Upstream changed since the last source review — queued for re-review.",
       "signals": {
-        "stars": 4074,
-        "forks": 485,
-        "checked": "2026-08-03",
-        "head_sha": "46abf7860d716c33de8217b6ff9f75debf28afaf",
-        "head_checked": "2026-08-03"
+        "stars": 4537,
+        "forks": 549,
+        "checked": "2026-08-10",
+        "head_sha": "4a0d3b43c663031c9530800534b150873571c88c",
+        "head_checked": "2026-08-10"
       },
       "skim": {
-        "date": "2026-07-27",
-        "files_scanned": 418,
+        "date": "2026-08-10",
+        "files_scanned": 435,
         "red_flags": [],
         "notes": [
           "network call"
         ]
       },
-      "review": {
+      "review_stale": {
         "does": "Gives your agent a large set of written playbooks that steer it toward more polished, less generic web designs and browser games — icon choices, layouts, shadows, animated backgrounds, and step-by-step guidance for building and testing Three.js games.",
         "touches": [
           "no side effects"
@@ -513,7 +515,9 @@
         "limits": "The code was read, not run. This review covers only 26 of the repo's files (40KB cap) — 112 files were not shown to me, so anything in those files is outside this review; the author claims 78+ skills and I saw only a fraction. One file (background-grid-webgl) was cut off partway through. The files I saw are instruction documents, not programs: they contain no executable installer or script of their own, which is why I list no side effects. However, several include copy-paste code examples that, if your agent follows them, would make the resulting web page load third-party libraries from internet CDNs (jsDelivr, Cloudflare, Iconify icons, Vanta.js, Unicorn Studio) — that network activity would happen in pages your agent builds, not from installing this repo. Some game-development playbooks also instruct an agent to run tests, builds, and deployments as part of its workflow; the instructions themselves do nothing until an agent acts on them.",
         "reviewed_at": "2026-07-31",
         "reviewer": "automated-source-review v1",
-        "source_sha": "46abf7860d716c33de8217b6ff9f75debf28afaf"
+        "source_sha": "46abf7860d716c33de8217b6ff9f75debf28afaf",
+        "downgraded_on": "2026-08-10",
+        "stale_reason": "upstream HEAD moved from 46abf786 to 4a0d3b43; the review described code that is no longer what a visitor would install"
       }
     },
     {
@@ -537,11 +541,11 @@
       },
       "next": "Queued for a full grading run (installed + probed).",
       "signals": {
-        "stars": 265770,
-        "forks": 23768,
-        "checked": "2026-08-03",
+        "stars": 269719,
+        "forks": 24115,
+        "checked": "2026-08-10",
         "head_sha": "44c9b2d6e889982ac18c27d05a19fefe335194e1",
-        "head_checked": "2026-08-03"
+        "head_checked": "2026-08-10"
       },
       "skim": {
         "date": "2026-07-27",
@@ -583,19 +587,19 @@
       "triage": {
         "provenance": "Repo verified real via GitHub API: affaan-m/ECC, created 2026-01.",
         "license": "MIT",
-        "freshness": "Last push 2026-07-29 (checked 2026-07-29) — actively maintained.",
-        "safety": "Automated safety skim (2026-07-27, 600 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: remote-exec pipe in docs, ssh key read in tests, remote-exec pipe in tests. Not a line-by-line read — treat as untrusted until graded."
+        "freshness": "Last push 2026-08-09 (checked 2026-08-10) — actively maintained.",
+        "safety": "Automated safety skim (2026-08-10, 600 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: remote-exec pipe in docs, ssh key read in tests, remote-exec pipe in tests. Not a line-by-line read — treat as untrusted until graded."
       },
       "next": "Upstream changed since the last source review — queued for re-review.",
       "signals": {
-        "stars": 237345,
-        "forks": 36085,
-        "checked": "2026-08-03",
-        "head_sha": "0c1d7be9a750627fb2a6534c78a998cc46d03f9c",
-        "head_checked": "2026-08-03"
+        "stars": 239025,
+        "forks": 36305,
+        "checked": "2026-08-10",
+        "head_sha": "ae303fb6c19e3f7cb88cb9fd9f15ddcf235294b6",
+        "head_checked": "2026-08-10"
       },
       "skim": {
-        "date": "2026-07-27",
+        "date": "2026-08-10",
         "files_scanned": 600,
         "red_flags": [],
         "notes": [
@@ -637,11 +641,11 @@
       },
       "next": "Queued for a full grading run (installed + probed).",
       "signals": {
-        "stars": 199169,
-        "forks": 20495,
-        "checked": "2026-08-03",
+        "stars": 200911,
+        "forks": 20645,
+        "checked": "2026-08-10",
         "head_sha": "2c606141936f1eeef17fa3043a72095b4765b9c2",
-        "head_checked": "2026-08-03"
+        "head_checked": "2026-08-10"
       },
       "skim": {
         "date": "2026-07-27",
@@ -670,29 +674,29 @@
       "category": "library",
       "summary": "Skills for Real Engineers — straight from Matt Pocock's own .agents directory.",
       "pain_points": [],
-      "status": "reviewed",
+      "status": "scouted",
       "scouted_on": "2026-07-25",
       "triage": {
         "provenance": "Repo verified real via GitHub API: mattpocock/skills, created 2026-02.",
         "license": "MIT",
         "freshness": "Last push 2026-07-29 (checked 2026-07-29) — actively maintained.",
-        "safety": "Automated safety skim (2026-07-27, 166 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. A library, not one skill — each skill needs its own read before use."
+        "safety": "Automated safety skim (2026-08-10, 150 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. A library, not one skill — each skill needs its own read before use."
       },
-      "next": "Queued for a full grading run (installed + probed).",
+      "next": "Upstream changed since the last source review — queued for re-review.",
       "signals": {
-        "stars": 201653,
-        "forks": 17381,
-        "checked": "2026-08-03",
-        "head_sha": "2ab958093e83e0ec752e6c1c5932da465bf23e0c",
-        "head_checked": "2026-08-03"
+        "stars": 211113,
+        "forks": 18255,
+        "checked": "2026-08-10",
+        "head_sha": "84fdeffd12f2ee307994d1eb6feb48173b6e0502",
+        "head_checked": "2026-08-10"
       },
       "skim": {
-        "date": "2026-07-27",
-        "files_scanned": 166,
+        "date": "2026-08-10",
+        "files_scanned": 150,
         "red_flags": [],
         "notes": []
       },
-      "review": {
+      "review_stale": {
         "does": "Gives your agent a set of ready-made working routines from developer Matt Pocock — interviewing you with questions to sharpen a plan, building code test-first, resolving git merge conflicts, writing specs and research notes into your project, and setting up automatic checks that run before every commit — and many of these routines have the agent edit files, install tools, and make git commits on your behalf.",
         "touches": [
           "reads project files",
@@ -707,7 +711,9 @@
         "limits": "This review is based on reading the source, not running it — nothing here was executed, installed, or observed working. 33 of the repository's files were withheld from the review because the repo exceeds the review size cap, so this covers only the 22 instruction files provided; notably, one reviewed skill refers to a bundled shell script (scripts/block-dangerous-git.sh) that it copies into your agent's settings folder and wires in as a command filter, and that script itself was NOT among the files provided, so its actual contents are unreviewed. Everything reviewed is written instructions for an AI agent rather than conventional program code, so what actually happens depends on how the agent interprets them: the instructions direct the agent to run shell commands (git, npm, test and typecheck runs), install packages from the internet (husky, lint-staged, prettier, shoehorn), create and commit files in your project, publish issues to your project's issue tracker, browse online documentation for research, and write outside your project (a handoff file in the system temporary folder, hook files and settings under the agent's home-folder configuration, and one skill is hard-coded to a specific note-vault path on the author's own machine). The touches listed reflect what the instructions tell an agent to do, not code that does it directly. No instruction reviewed asks the agent to read credentials or secrets; two skills explicitly tell the agent to redact API keys and passwords from summaries it writes.",
         "reviewed_at": "2026-07-31",
         "reviewer": "automated-source-review v1",
-        "source_sha": "2ab958093e83e0ec752e6c1c5932da465bf23e0c"
+        "source_sha": "2ab958093e83e0ec752e6c1c5932da465bf23e0c",
+        "downgraded_on": "2026-08-10",
+        "stale_reason": "upstream HEAD moved from 2ab95809 to 84fdeffd; the review described code that is no longer what a visitor would install"
       }
     },
     {
@@ -725,20 +731,20 @@
       "triage": {
         "provenance": "Repo verified real via GitHub API: nextlevelbuilder/ui-ux-pro-max-skill, created 2025-11.",
         "license": "MIT",
-        "freshness": "Last push 2026-07-28 (checked 2026-07-29) — actively maintained.",
-        "safety": "Automated safety skim (2026-07-27, 327 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Not a line-by-line read — treat as untrusted until graded."
+        "freshness": "Last push 2026-08-06 (checked 2026-08-10) — actively maintained.",
+        "safety": "Automated safety skim (2026-08-10, 363 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Not a line-by-line read — treat as untrusted until graded."
       },
       "next": "Upstream changed since the last source review — queued for re-review.",
       "signals": {
-        "stars": 113090,
-        "forks": 12098,
-        "checked": "2026-08-03",
-        "head_sha": "4d140cf8ff6842de13213c7214eff3810371beb2",
-        "head_checked": "2026-08-03"
+        "stars": 115006,
+        "forks": 12322,
+        "checked": "2026-08-10",
+        "head_sha": "abb7f2fd5a083fa1ff55c326a963ff0d95c33f99",
+        "head_checked": "2026-08-10"
       },
       "skim": {
-        "date": "2026-07-27",
-        "files_scanned": 327,
+        "date": "2026-08-10",
+        "files_scanned": 363,
         "red_flags": [],
         "notes": []
       },
@@ -769,31 +775,31 @@
       "category": "workflow",
       "summary": "Makes your AI agent think like the laziest senior dev in the room. The best code is the code you never wrote.",
       "pain_points": [],
-      "status": "reviewed",
+      "status": "scouted",
       "scouted_on": "2026-07-25",
       "triage": {
         "provenance": "Repo verified real via GitHub API: DietrichGebert/ponytail, created 2026-06.",
         "license": "MIT",
         "freshness": "Last push 2026-07-15 (checked 2026-07-29) — actively maintained.",
-        "safety": "Automated safety skim (2026-07-27, 143 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: network call. Not a line-by-line read — treat as untrusted until graded."
+        "safety": "Automated safety skim (2026-08-10, 146 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: network call. Not a line-by-line read — treat as untrusted until graded."
       },
-      "next": "Queued for a full grading run (installed + probed).",
+      "next": "Upstream changed since the last source review — queued for re-review.",
       "signals": {
-        "stars": 95028,
-        "forks": 5229,
-        "checked": "2026-08-03",
-        "head_sha": "16f29800fd2681bdf24f3eb4ccffe38be3baec6b",
-        "head_checked": "2026-08-03"
+        "stars": 99323,
+        "forks": 5461,
+        "checked": "2026-08-10",
+        "head_sha": "2ed6c52c9d7e5e56942508591085fd45dea277d3",
+        "head_checked": "2026-08-10"
       },
       "skim": {
-        "date": "2026-07-27",
-        "files_scanned": 143,
+        "date": "2026-08-10",
+        "files_scanned": 146,
         "red_flags": [],
         "notes": [
           "network call"
         ]
       },
-      "review": {
+      "review_stale": {
         "does": "Your agent starts writing far less code: before building anything it checks whether the thing is needed at all, whether existing code or built-in language features already cover it, and it also gains commands to scan your project for over-built code worth deleting and to list the shortcuts it deliberately took.",
         "touches": [
           "reads project files",
@@ -805,7 +811,9 @@
         "limits": "This review is based on reading the source, not running or installing it, so I cannot confirm it behaves as written. It covers only part of the repo: 37 files were withheld by the review size cap, and benchmarks/README.md was cut off halfway. Importantly, the withheld files include the actual executable code the docs mention — an MCP server (ponytail-mcp/index.js), a hooks/ponytail-config.js script, and benchmark scripts — none of which I saw, so I cannot say what that code does. What I did read is instruction text for the agent: it tells the agent to search your project's files (grep, git blame), which is why shell commands and file reading are listed; the only file-writing shown is an optional debt-ledger file (e.g. PONYTAIL-DEBT.md) written only if you ask. The instructions also read a config file in your home folder, outside the project. Benchmark and savings claims in the README are the author's own numbers; nothing in what I read lets me verify them.",
         "reviewed_at": "2026-07-31",
         "reviewer": "automated-source-review v1",
-        "source_sha": "16f29800fd2681bdf24f3eb4ccffe38be3baec6b"
+        "source_sha": "16f29800fd2681bdf24f3eb4ccffe38be3baec6b",
+        "downgraded_on": "2026-08-10",
+        "stale_reason": "upstream HEAD moved from 16f29800 to 2ed6c52c; the review described code that is no longer what a visitor would install"
       }
     },
     {
@@ -823,19 +831,19 @@
       "triage": {
         "provenance": "Repo verified real via GitHub API: nexu-io/open-design, created 2026-04.",
         "license": "Apache-2.0",
-        "freshness": "Last push 2026-07-30 (checked 2026-07-29) — actively maintained.",
-        "safety": "Automated safety skim (2026-07-27, 600 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: remote-exec pipe in docs, network call. Not a line-by-line read — treat as untrusted until graded."
+        "freshness": "Last push 2026-08-09 (checked 2026-08-10) — actively maintained.",
+        "safety": "Automated safety skim (2026-08-10, 600 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: remote-exec pipe in docs, network call. Not a line-by-line read — treat as untrusted until graded."
       },
       "next": "Upstream changed since the last source review — queued for re-review.",
       "signals": {
-        "stars": 83428,
-        "forks": 9680,
-        "checked": "2026-08-03",
-        "head_sha": "2523669517f1f508f630e918c86cd6ef4afdb725",
-        "head_checked": "2026-08-03"
+        "stars": 84740,
+        "forks": 9908,
+        "checked": "2026-08-10",
+        "head_sha": "48fe9c1868d7bd8e5c122c919ae53a349b33b837",
+        "head_checked": "2026-08-10"
       },
       "skim": {
-        "date": "2026-07-27",
+        "date": "2026-08-10",
         "files_scanned": 600,
         "red_flags": [],
         "notes": [
@@ -874,20 +882,20 @@
       "triage": {
         "provenance": "Repo verified real via GitHub API: addyosmani/agent-skills, created 2026-02.",
         "license": "MIT",
-        "freshness": "Last push 2026-07-26 (checked 2026-07-29) — actively maintained.",
-        "safety": "Automated safety skim (2026-07-27, 172 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: network call. A library, not one skill — each skill needs its own read before use."
+        "freshness": "Last push 2026-08-08 (checked 2026-08-10) — actively maintained.",
+        "safety": "Automated safety skim (2026-08-10, 180 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: network call. A library, not one skill — each skill needs its own read before use."
       },
       "next": "Upstream changed since the last source review — queued for re-review.",
       "signals": {
-        "stars": 81471,
-        "forks": 8780,
-        "checked": "2026-08-03",
-        "head_sha": "bdf76c7c6b7b3b3e01bb15c9fdc42ac5351855c1",
-        "head_checked": "2026-08-03"
+        "stars": 85123,
+        "forks": 9159,
+        "checked": "2026-08-10",
+        "head_sha": "7676817c12a1317454ae3898a0c5c1eacf5dd3d5",
+        "head_checked": "2026-08-10"
       },
       "skim": {
-        "date": "2026-07-27",
-        "files_scanned": 172,
+        "date": "2026-08-10",
+        "files_scanned": 180,
         "red_flags": [],
         "notes": [
           "network call"
@@ -929,11 +937,11 @@
       },
       "next": "Queued for a full grading run (installed + probed).",
       "signals": {
-        "stars": 73117,
-        "forks": 11873,
-        "checked": "2026-08-03",
+        "stars": 73659,
+        "forks": 11946,
+        "checked": "2026-08-10",
         "head_sha": "7b564c3ee6996039cb4e13a53024dfe2d4388d35",
-        "head_checked": "2026-08-03"
+        "head_checked": "2026-08-10"
       },
       "skim": {
         "date": "2026-07-27",
@@ -980,11 +988,11 @@
       },
       "next": "Queued for a full grading run (installed + probed).",
       "signals": {
-        "stars": 71704,
-        "forks": 8088,
-        "checked": "2026-08-03",
+        "stars": 72146,
+        "forks": 8185,
+        "checked": "2026-08-10",
         "head_sha": "be2a406907dbc61b73e6827ded415c96139d13a2",
-        "head_checked": "2026-08-03"
+        "head_checked": "2026-08-10"
       },
       "skim": {
         "date": "2026-07-27",
@@ -1031,11 +1039,11 @@
       },
       "next": "Queued for a full grading run (installed + probed).",
       "signals": {
-        "stars": 71161,
-        "forks": 4888,
-        "checked": "2026-08-03",
+        "stars": 74595,
+        "forks": 5108,
+        "checked": "2026-08-10",
         "head_sha": "e988add20dab0fa97d7a76781c48961c8184288e",
-        "head_checked": "2026-08-03"
+        "head_checked": "2026-08-10"
       },
       "skim": {
         "date": "2026-07-27",
@@ -1071,19 +1079,19 @@
       "triage": {
         "provenance": "Repo verified real via GitHub API: shanraisshan/claude-code-best-practice, created 2025-10.",
         "license": "MIT",
-        "freshness": "Last push 2026-07-30 (checked 2026-07-29) — actively maintained.",
-        "safety": "Automated safety skim (2026-07-27, 135 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: ssh key read in docs, remote-exec pipe in docs. Not a line-by-line read — treat as untrusted until graded."
+        "freshness": "Last push 2026-08-09 (checked 2026-08-10) — actively maintained.",
+        "safety": "Automated safety skim (2026-08-10, 135 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: ssh key read in docs, remote-exec pipe in docs. Not a line-by-line read — treat as untrusted until graded."
       },
       "next": "Upstream changed since the last source review — queued for re-review.",
       "signals": {
-        "stars": 63952,
-        "forks": 6369,
-        "checked": "2026-08-03",
-        "head_sha": "63927033d56c0612e55cf3b347f9d5c22f89f6c6",
-        "head_checked": "2026-08-03"
+        "stars": 64224,
+        "forks": 6387,
+        "checked": "2026-08-10",
+        "head_sha": "8f7901c646007040867527535568ed16464728e5",
+        "head_checked": "2026-08-10"
       },
       "skim": {
-        "date": "2026-07-27",
+        "date": "2026-08-10",
         "files_scanned": 135,
         "red_flags": [],
         "notes": [
@@ -1127,20 +1135,20 @@
       "triage": {
         "provenance": "Repo verified real via GitHub API: mvanhorn/last30days-skill, created 2026-01.",
         "license": "MIT",
-        "freshness": "Last push 2026-07-28 (checked 2026-07-29) — actively maintained.",
-        "safety": "Automated safety skim (2026-07-27, 383 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: network call. Not a line-by-line read — treat as untrusted until graded."
+        "freshness": "Last push 2026-08-09 (checked 2026-08-10) — actively maintained.",
+        "safety": "Automated safety skim (2026-08-10, 406 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: network call. Not a line-by-line read — treat as untrusted until graded."
       },
       "next": "Upstream changed since the last source review — queued for re-review.",
       "signals": {
-        "stars": 57108,
-        "forks": 4933,
-        "checked": "2026-08-03",
-        "head_sha": "52f53312ff2f272e16bbc1785e1c04f9d9c19b31",
-        "head_checked": "2026-08-03"
+        "stars": 57761,
+        "forks": 5018,
+        "checked": "2026-08-10",
+        "head_sha": "1004324ad35a3ba656e6df0faabd54749e398455",
+        "head_checked": "2026-08-10"
       },
       "skim": {
-        "date": "2026-07-27",
-        "files_scanned": 383,
+        "date": "2026-08-10",
+        "files_scanned": 406,
         "red_flags": [],
         "notes": [
           "network call"
@@ -1173,29 +1181,29 @@
       "category": "library",
       "summary": "The awesome collection of OpenClaw skills. 5,400+ skills filtered and categorized from the official OpenClaw Skills Registry.🦞",
       "pain_points": [],
-      "status": "reviewed",
+      "status": "scouted",
       "scouted_on": "2026-07-25",
       "triage": {
         "provenance": "Repo verified real via GitHub API: VoltAgent/awesome-openclaw-skills, created 2026-01.",
         "license": "MIT",
         "freshness": "Last push 2026-07-16 (checked 2026-07-29) — actively maintained.",
-        "safety": "Automated safety skim (2026-07-27, 35 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. A library, not one skill — each skill needs its own read before use."
+        "safety": "Automated safety skim (2026-08-10, 35 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. A library, not one skill — each skill needs its own read before use."
       },
-      "next": "Queued for a full grading run (installed + probed).",
+      "next": "Upstream changed since the last source review — queued for re-review.",
       "signals": {
-        "stars": 51723,
-        "forks": 4987,
-        "checked": "2026-08-03",
-        "head_sha": "69f6512e3dc3df71ab839e6f13bd53ef8199d918",
-        "head_checked": "2026-08-03"
+        "stars": 51850,
+        "forks": 4995,
+        "checked": "2026-08-10",
+        "head_sha": "517a94d8d3e6cd27039ceefdbad36f19d4b73389",
+        "head_checked": "2026-08-10"
       },
       "skim": {
-        "date": "2026-07-27",
+        "date": "2026-08-10",
         "files_scanned": 35,
         "red_flags": [],
         "notes": []
       },
-      "review": {
+      "review_stale": {
         "does": "It gives you a large categorized directory of links to thousands of other people's OpenClaw skills, with instructions for how to install them yourself — it is a catalog to browse, not a tool that adds any ability on its own.",
         "touches": [
           "no side effects"
@@ -1205,7 +1213,9 @@
         "limits": "The code was read, not run. Only one file (README.md) was reviewed, and only its first 40KB of 130KB — the rest of the README and any other files in the repository were not seen, so this review covers only part of the repo. The portion reviewed is prose and links only, with no executable code, so 'no side effects' applies to the list itself — but every skill it links to is separate third-party code that this review says nothing about; the list's own maintainers state the entries are 'curated, not audited' and can change at any time. The README also shows installation commands (such as 'openclaw skills install' and 'npx clawhub install') that, if you follow them, download and run outside code — the safety of anything installed that way is entirely outside this review. The README's claims about how many skills were filtered out as spam or malicious could not be verified from the source. The README also contains paid sponsor promotions presented alongside the curated content.",
         "reviewed_at": "2026-07-31",
         "reviewer": "automated-source-review v1",
-        "source_sha": "69f6512e3dc3df71ab839e6f13bd53ef8199d918"
+        "source_sha": "69f6512e3dc3df71ab839e6f13bd53ef8199d918",
+        "downgraded_on": "2026-08-10",
+        "stale_reason": "upstream HEAD moved from 69f6512e to 517a94d8; the review described code that is no longer what a visitor would install"
       }
     },
     {
@@ -1223,19 +1233,19 @@
       "triage": {
         "provenance": "Repo verified real via GitHub API: hesreallyhim/awesome-claude-code, created 2025-04.",
         "license": "No license file detected via the GitHub API — usage rights unclear; a real triage red flag.",
-        "freshness": "Last push 2026-07-30 (checked 2026-07-29) — actively maintained.",
-        "safety": "Automated safety skim (2026-07-27, 49 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: network call. A library, not one skill — each skill needs its own read before use."
+        "freshness": "Last push 2026-08-10 (checked 2026-08-10) — actively maintained.",
+        "safety": "Automated safety skim (2026-08-10, 49 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: network call. A library, not one skill — each skill needs its own read before use."
       },
       "next": "Upstream changed since the last source review — queued for re-review.",
       "signals": {
-        "stars": 51596,
-        "forks": 4495,
-        "checked": "2026-08-03",
-        "head_sha": "278ba607c6b0180cef509e9dff5b37232ffcedf6",
-        "head_checked": "2026-08-03"
+        "stars": 52000,
+        "forks": 4539,
+        "checked": "2026-08-10",
+        "head_sha": "48848b1fc58110ae2541f79c5e60e388e7b496ff",
+        "head_checked": "2026-08-10"
       },
       "skim": {
-        "date": "2026-07-27",
+        "date": "2026-08-10",
         "files_scanned": 49,
         "red_flags": [],
         "notes": [
@@ -1275,11 +1285,11 @@
       },
       "next": "Queued for a full grading run (installed + probed).",
       "signals": {
-        "stars": 42891,
-        "forks": 6759,
-        "checked": "2026-08-03",
+        "stars": 43683,
+        "forks": 6875,
+        "checked": "2026-08-10",
         "head_sha": "7868cb9251fad80a73d26e488a5ad5f6c4a9f335",
-        "head_checked": "2026-08-03"
+        "head_checked": "2026-08-10"
       },
       "skim": {
         "date": "2026-07-27",
@@ -1317,19 +1327,19 @@
       "triage": {
         "provenance": "Repo verified real via GitHub API: Imbad0202/academic-research-skills, created 2026-02.",
         "license": "No license file detected via the GitHub API — usage rights unclear; a real triage red flag.",
-        "freshness": "Last push 2026-07-30 (checked 2026-07-29) — actively maintained.",
-        "safety": "Automated safety skim (2026-07-27, 600 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: remote-exec pipe in docs, network call. A library, not one skill — each skill needs its own read before use."
+        "freshness": "Last push 2026-08-09 (checked 2026-08-10) — actively maintained.",
+        "safety": "Automated safety skim (2026-08-10, 600 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: remote-exec pipe in docs, network call. A library, not one skill — each skill needs its own read before use."
       },
       "next": "Upstream changed since the last source review — queued for re-review.",
       "signals": {
-        "stars": 40740,
-        "forks": 3256,
-        "checked": "2026-08-03",
-        "head_sha": "49e79a7c99296e431cecce60225bf8f5393f3fbb",
-        "head_checked": "2026-08-03"
+        "stars": 41492,
+        "forks": 3298,
+        "checked": "2026-08-10",
+        "head_sha": "f3cfdb4936ba09c9ae7c01f0c6c6201a5d729de2",
+        "head_checked": "2026-08-10"
       },
       "skim": {
-        "date": "2026-07-27",
+        "date": "2026-08-10",
         "files_scanned": 600,
         "red_flags": [],
         "notes": [
@@ -1366,24 +1376,25 @@
       "triage": {
         "provenance": "Repo verified real via GitHub API: github/awesome-copilot, created 2025-06.",
         "license": "MIT",
-        "freshness": "Last push 2026-07-30 (checked 2026-07-29) — actively maintained.",
-        "safety": "Automated safety skim (2026-07-27, 600 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: remote-exec pipe in docs, network call. A library, not one skill — each skill needs its own read before use."
+        "freshness": "Last push 2026-08-09 (checked 2026-08-10) — actively maintained.",
+        "safety": "Automated safety skim (2026-08-10, 600 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: ssh key read in docs, remote-exec pipe in docs, network call. A library, not one skill — each skill needs its own read before use."
       },
       "next": "Upstream changed since the last source review — queued for re-review.",
       "signals": {
-        "stars": 37403,
-        "forks": 4701,
-        "checked": "2026-08-03",
-        "head_sha": "4b6430ee3ed78c4029bbb7360ba117b5ce53a78d",
-        "head_checked": "2026-08-03"
+        "stars": 37618,
+        "forks": 4736,
+        "checked": "2026-08-10",
+        "head_sha": "ab7544d03d4c49fdd07f5958e1888ad39c4118e2",
+        "head_checked": "2026-08-10"
       },
       "skim": {
-        "date": "2026-07-27",
+        "date": "2026-08-10",
         "files_scanned": 600,
         "red_flags": [],
         "notes": [
           "network call",
-          "remote-exec pipe in docs"
+          "remote-exec pipe in docs",
+          "ssh key read in docs"
         ]
       },
       "review_stale": {
@@ -1420,19 +1431,19 @@
       "triage": {
         "provenance": "Repo verified real via GitHub API: K-Dense-AI/scientific-agent-skills, created 2025-10.",
         "license": "MIT",
-        "freshness": "Last push 2026-07-29 (checked 2026-07-29) — actively maintained.",
-        "safety": "Automated safety skim (2026-07-27, 600 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: remote-exec pipe in docs, cloud credential read in docs, network call. A library, not one skill — each skill needs its own read before use."
+        "freshness": "Last push 2026-08-09 (checked 2026-08-10) — actively maintained.",
+        "safety": "Automated safety skim (2026-08-10, 600 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: remote-exec pipe in docs, cloud credential read in docs, network call. A library, not one skill — each skill needs its own read before use."
       },
       "next": "Upstream changed since the last source review — queued for re-review.",
       "signals": {
-        "stars": 32528,
-        "forks": 3222,
-        "checked": "2026-08-03",
-        "head_sha": "d767725c6e93b1d02a220e6be75b261a9833ede5",
-        "head_checked": "2026-08-03"
+        "stars": 33060,
+        "forks": 3251,
+        "checked": "2026-08-10",
+        "head_sha": "9b1d761c67c310e6538f1d5d88759b2bcfc65ce2",
+        "head_checked": "2026-08-10"
       },
       "skim": {
-        "date": "2026-07-27",
+        "date": "2026-08-10",
         "files_scanned": 600,
         "red_flags": [],
         "notes": [
@@ -1480,11 +1491,11 @@
       },
       "next": "Queued for a full grading run (installed + probed).",
       "signals": {
-        "stars": 32977,
-        "forks": 3004,
-        "checked": "2026-08-03",
+        "stars": 34515,
+        "forks": 3102,
+        "checked": "2026-08-10",
         "head_sha": "523374dee72d67c7b2b5f858ea0094ffda49c3ac",
-        "head_checked": "2026-08-03"
+        "head_checked": "2026-08-10"
       },
       "skim": {
         "date": "2026-07-27",
@@ -1519,19 +1530,19 @@
       "triage": {
         "provenance": "Repo verified real via GitHub API: davila7/claude-code-templates, created 2025-07.",
         "license": "MIT",
-        "freshness": "Last push 2026-07-29 (checked 2026-07-29) — actively maintained.",
-        "safety": "Automated safety skim (2026-07-27, 600 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: remote-exec pipe in docs, network call. A library, not one skill — each skill needs its own read before use."
+        "freshness": "Last push 2026-08-09 (checked 2026-08-10) — actively maintained.",
+        "safety": "Automated safety skim (2026-08-10, 600 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: remote-exec pipe in docs, network call. A library, not one skill — each skill needs its own read before use."
       },
       "next": "Upstream changed since the last source review — queued for re-review.",
       "signals": {
-        "stars": 30088,
-        "forks": 3345,
-        "checked": "2026-08-03",
-        "head_sha": "afc6e6972806b5edbde6e703e5c80080c3aa3ac0",
-        "head_checked": "2026-08-03"
+        "stars": 30174,
+        "forks": 3382,
+        "checked": "2026-08-10",
+        "head_sha": "49fe572c51e87d486be55f9dbac3a6e881b29d14",
+        "head_checked": "2026-08-10"
       },
       "skim": {
-        "date": "2026-07-27",
+        "date": "2026-08-10",
         "files_scanned": 600,
         "red_flags": [],
         "notes": [
@@ -1572,19 +1583,19 @@
       "triage": {
         "provenance": "Repo verified real via GitHub API: VoltAgent/awesome-agent-skills, created 2025-10.",
         "license": "MIT",
-        "freshness": "Last push 2026-07-10 (checked 2026-07-29) — actively maintained.",
-        "safety": "Automated safety skim (2026-07-27, 4 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. A library, not one skill — each skill needs its own read before use."
+        "freshness": "Last push 2026-08-07 (checked 2026-08-10) — actively maintained.",
+        "safety": "Automated safety skim (2026-08-10, 4 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. A library, not one skill — each skill needs its own read before use."
       },
       "next": "Upstream changed since the last source review — queued for re-review.",
       "signals": {
-        "stars": 29502,
-        "forks": 3174,
-        "checked": "2026-08-03",
-        "head_sha": "5241ad954d2880330d9f3a7df086f8d943c4c988",
-        "head_checked": "2026-08-03"
+        "stars": 29897,
+        "forks": 3212,
+        "checked": "2026-08-10",
+        "head_sha": "a310bf823a866fa2fb9d78996bd25d7a92a09bb7",
+        "head_checked": "2026-08-10"
       },
       "skim": {
-        "date": "2026-07-27",
+        "date": "2026-08-10",
         "files_scanned": 4,
         "red_flags": [],
         "notes": []
@@ -1620,19 +1631,19 @@
       "triage": {
         "provenance": "Repo verified real via GitHub API: mukul975/Anthropic-Cybersecurity-Skills, created 2026-02.",
         "license": "Apache-2.0",
-        "freshness": "Last push 2026-06-26 (checked 2026-07-29) — actively maintained.",
-        "safety": "Automated safety skim (2026-07-27, 600 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: remote-exec pipe in docs, ssh key read in docs, powershell encoded exec in docs, cloud credential read in docs. A library, not one skill — each skill needs its own read before use."
+        "freshness": "Last push 2026-08-08 (checked 2026-08-10) — actively maintained.",
+        "safety": "Automated safety skim (2026-08-10, 600 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: remote-exec pipe in docs, ssh key read in docs, powershell encoded exec in docs, cloud credential read in docs. A library, not one skill — each skill needs its own read before use."
       },
       "next": "Upstream changed since the last source review — queued for re-review.",
       "signals": {
-        "stars": 27234,
-        "forks": 3297,
-        "checked": "2026-08-03",
-        "head_sha": "e612f4944c55d306bb75565022442d7da8cf2b9a",
-        "head_checked": "2026-08-03"
+        "stars": 27515,
+        "forks": 3334,
+        "checked": "2026-08-10",
+        "head_sha": "4c0b700ac5d280ba46695062077f0fe922ce3602",
+        "head_checked": "2026-08-10"
       },
       "skim": {
-        "date": "2026-07-27",
+        "date": "2026-08-10",
         "files_scanned": 600,
         "red_flags": [],
         "notes": [
@@ -1678,20 +1689,20 @@
       "triage": {
         "provenance": "Repo verified real via GitHub API: OthmanAdi/planning-with-files, created 2026-01.",
         "license": "MIT",
-        "freshness": "Last push 2026-07-24 (checked 2026-07-29) — actively maintained.",
-        "safety": "Automated safety skim (2026-07-27, 477 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. A library, not one skill — each skill needs its own read before use."
+        "freshness": "Last push 2026-08-09 (checked 2026-08-10) — actively maintained.",
+        "safety": "Automated safety skim (2026-08-10, 594 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. A library, not one skill — each skill needs its own read before use."
       },
       "next": "Upstream changed since the last source review — queued for re-review.",
       "signals": {
-        "stars": 25951,
-        "forks": 2176,
-        "checked": "2026-08-03",
-        "head_sha": "ad1b6927e88359764a4f33720a46ae04e55ab120",
-        "head_checked": "2026-08-03"
+        "stars": 26070,
+        "forks": 2180,
+        "checked": "2026-08-10",
+        "head_sha": "e8f505a4f5025df5b070494e46c25789582bff55",
+        "head_checked": "2026-08-10"
       },
       "skim": {
-        "date": "2026-07-27",
-        "files_scanned": 477,
+        "date": "2026-08-10",
+        "files_scanned": 594,
         "red_flags": [],
         "notes": []
       },
@@ -1731,11 +1742,11 @@
       },
       "next": "Queued for a full grading run (installed + probed).",
       "signals": {
-        "stars": 24827,
-        "forks": 2642,
-        "checked": "2026-08-03",
+        "stars": 25024,
+        "forks": 2685,
+        "checked": "2026-08-10",
         "head_sha": "18468a95b427e70e258b51389796367c6f684e7d",
-        "head_checked": "2026-08-03"
+        "head_checked": "2026-08-10"
       },
       "skim": {
         "date": "2026-07-27",
@@ -1776,11 +1787,11 @@
       },
       "next": "Queued for a full grading run (installed + probed).",
       "signals": {
-        "stars": 23986,
-        "forks": 2785,
-        "checked": "2026-08-03",
+        "stars": 24163,
+        "forks": 2803,
+        "checked": "2026-08-10",
         "head_sha": "91810b33c707111e05e0988b12e7385d7b5cfe9d",
-        "head_checked": "2026-08-03"
+        "head_checked": "2026-08-10"
       },
       "skim": {
         "date": "2026-07-27",
@@ -1820,20 +1831,20 @@
       "triage": {
         "provenance": "Repo verified real via GitHub API: agentskills/agentskills, created 2025-12.",
         "license": "Apache-2.0",
-        "freshness": "Last push 2026-07-10 (checked 2026-07-29) — actively maintained.",
-        "safety": "Automated safety skim (2026-07-27, 30 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Not a line-by-line read — treat as untrusted until graded."
+        "freshness": "Last push 2026-08-09 (checked 2026-08-10) — actively maintained.",
+        "safety": "Automated safety skim (2026-08-10, 29 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Not a line-by-line read — treat as untrusted until graded."
       },
       "next": "Upstream changed since the last source review — queued for re-review.",
       "signals": {
-        "stars": 23803,
-        "forks": 1701,
-        "checked": "2026-08-03",
-        "head_sha": "27a9f0c075e876ad632fc2e88b8866c5dc8ca15c",
-        "head_checked": "2026-08-03"
+        "stars": 24068,
+        "forks": 1748,
+        "checked": "2026-08-10",
+        "head_sha": "69ef37e9424c0a7ea9dd2293b559e43ec8176379",
+        "head_checked": "2026-08-10"
       },
       "skim": {
-        "date": "2026-07-27",
-        "files_scanned": 30,
+        "date": "2026-08-10",
+        "files_scanned": 29,
         "red_flags": [],
         "notes": []
       },
@@ -1873,11 +1884,11 @@
       },
       "next": "Queued for a full grading run (installed + probed).",
       "signals": {
-        "stars": 23577,
-        "forks": 3376,
-        "checked": "2026-08-03",
+        "stars": 23724,
+        "forks": 3388,
+        "checked": "2026-08-10",
         "head_sha": "984023ddac0d5e27624f2baacde6105e45de375f",
-        "head_checked": "2026-08-03"
+        "head_checked": "2026-08-10"
       },
       "skim": {
         "date": "2026-07-27",
@@ -1920,11 +1931,11 @@
       },
       "next": "Queued for a full grading run (installed + probed).",
       "signals": {
-        "stars": 23743,
-        "forks": 3328,
-        "checked": "2026-08-03",
+        "stars": 24184,
+        "forks": 3408,
+        "checked": "2026-08-10",
         "head_sha": "aa8d778811a557a2c28ccadda4cf3d0bd028a4cc",
-        "head_checked": "2026-08-03"
+        "head_checked": "2026-08-10"
       },
       "skim": {
         "date": "2026-07-27",
@@ -1968,11 +1979,11 @@
       },
       "next": "Queued for a full grading run (installed + probed).",
       "signals": {
-        "stars": 22402,
-        "forks": 2636,
-        "checked": "2026-08-03",
+        "stars": 22699,
+        "forks": 2659,
+        "checked": "2026-08-10",
         "head_sha": "1572d431f1411c82ec0baea94dea6a45f6063b26",
-        "head_checked": "2026-08-03"
+        "head_checked": "2026-08-10"
       },
       "skim": {
         "date": "2026-07-27",
@@ -2017,19 +2028,19 @@
       "triage": {
         "provenance": "Repo verified real via GitHub API: KKKKhazix/khazix-skills, created 2026-04.",
         "license": "MIT",
-        "freshness": "Last push 2026-07-28 (checked 2026-07-29) — actively maintained.",
-        "safety": "Automated safety skim (2026-07-27, 112 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: network call. A library, not one skill — each skill needs its own read before use."
+        "freshness": "Last push 2026-08-08 (checked 2026-08-10) — actively maintained.",
+        "safety": "Automated safety skim (2026-08-10, 112 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: network call. A library, not one skill — each skill needs its own read before use."
       },
       "next": "Upstream changed since the last source review — queued for re-review.",
       "signals": {
-        "stars": 19001,
-        "forks": 2099,
-        "checked": "2026-08-03",
-        "head_sha": "17573491cf2ff70582d2ae0018ca39e571d35f53",
-        "head_checked": "2026-08-03"
+        "stars": 19422,
+        "forks": 2128,
+        "checked": "2026-08-10",
+        "head_sha": "651a45affc65919c0e3facc6124f1656d43c4ad2",
+        "head_checked": "2026-08-10"
       },
       "skim": {
-        "date": "2026-07-27",
+        "date": "2026-08-10",
         "files_scanned": 112,
         "red_flags": [],
         "notes": [
@@ -2065,29 +2076,29 @@
       "pain_points": [
         "generic-frontend"
       ],
-      "status": "reviewed",
+      "status": "scouted",
       "scouted_on": "2026-07-25",
       "triage": {
         "provenance": "Repo verified real via GitHub API: Nutlope/hallmark, created 2026-04.",
         "license": "MIT",
         "freshness": "Last push 2026-06-26 (checked 2026-07-29) — actively maintained.",
-        "safety": "Automated safety skim (2026-07-27, 151 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Not a line-by-line read — treat as untrusted until graded."
+        "safety": "Automated safety skim (2026-08-10, 152 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Not a line-by-line read — treat as untrusted until graded."
       },
-      "next": "Queued for a full grading run (installed + probed).",
+      "next": "Upstream changed since the last source review — queued for re-review.",
       "signals": {
-        "stars": 21251,
-        "forks": 1074,
-        "checked": "2026-08-03",
-        "head_sha": "aeb42fb354ff4efa36ab475773a082315a3af2ce",
-        "head_checked": "2026-08-03"
+        "stars": 22994,
+        "forks": 1179,
+        "checked": "2026-08-10",
+        "head_sha": "13ac0ec7e148655948100b6396439e481361d690",
+        "head_checked": "2026-08-10"
       },
       "skim": {
-        "date": "2026-07-27",
-        "files_scanned": 151,
+        "date": "2026-08-10",
+        "files_scanned": 152,
         "red_flags": [],
         "notes": []
       },
-      "review": {
+      "review_stale": {
         "does": "Gives your coding assistant a strict design rulebook so the web pages and components it builds look distinct and handcrafted instead of following the same generic AI template every time.",
         "touches": [
           "reads project files",
@@ -2099,7 +2110,9 @@
         "limits": "This review is based on reading the source, not running it — nothing here was executed, installed, or observed working. The review covers only part of the repo: 17 files were withheld, and the one file provided (skills/hallmark/SKILL.md) was cut off at 40KB of its 66KB, so roughly the second half of the instructions and all of the referenced files (the reference rulesets, theme catalog, and genre files) were not seen. The skill is written as instructions for an AI assistant rather than as a standalone program, so what it actually touches depends on the assistant carrying it out: the visible portion directs the assistant to read project files (package.json, CSS, configs), write files into the project (design artifacts, preview pages, a .hallmark/ folder with preflight.json and log.json), and fetch external web pages in its 'study a URL' mode. The unseen files could direct additional behavior this review cannot rule out. The visible portion does include its own safety language (don't delete files without confirmation, treat a design.md file as data not instructions), but whether the assistant honors that in practice cannot be verified by reading alone.",
         "reviewed_at": "2026-07-31",
         "reviewer": "automated-source-review v1",
-        "source_sha": "aeb42fb354ff4efa36ab475773a082315a3af2ce"
+        "source_sha": "aeb42fb354ff4efa36ab475773a082315a3af2ce",
+        "downgraded_on": "2026-08-10",
+        "stale_reason": "upstream HEAD moved from aeb42fb3 to 13ac0ec7; the review described code that is no longer what a visitor would install"
       }
     },
     {
@@ -2115,20 +2128,20 @@
       "triage": {
         "provenance": "Repo verified real via GitHub API: microsoft/SkillOpt, created 2026-05.",
         "license": "MIT",
-        "freshness": "Last push 2026-07-29 (checked 2026-07-29) — actively maintained.",
-        "safety": "Automated safety skim (2026-07-27, 339 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: network call. Not a line-by-line read — treat as untrusted until graded."
+        "freshness": "Last push 2026-08-09 (checked 2026-08-10) — actively maintained.",
+        "safety": "Automated safety skim (2026-08-10, 370 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: network call. Not a line-by-line read — treat as untrusted until graded."
       },
       "next": "Upstream changed since the last source review — queued for re-review.",
       "signals": {
-        "stars": 15552,
-        "forks": 1434,
-        "checked": "2026-08-03",
-        "head_sha": "8a4c96a23639eee6ce19de7579ac9006b6dd4a2a",
-        "head_checked": "2026-08-03"
+        "stars": 15809,
+        "forks": 1467,
+        "checked": "2026-08-10",
+        "head_sha": "ba820b500f9da96685cf2780c7dc85ed4eb6563e",
+        "head_checked": "2026-08-10"
       },
       "skim": {
-        "date": "2026-07-27",
-        "files_scanned": 339,
+        "date": "2026-08-10",
+        "files_scanned": 370,
         "red_flags": [],
         "notes": [
           "network call"
@@ -2174,11 +2187,11 @@
       },
       "next": "Queued for a full grading run (installed + probed).",
       "signals": {
-        "stars": 14490,
-        "forks": 1794,
-        "checked": "2026-08-03",
+        "stars": 14578,
+        "forks": 1819,
+        "checked": "2026-08-10",
         "head_sha": "1da55aa810f206d3fe2005e7e3989b15a275d942",
-        "head_checked": "2026-08-03"
+        "head_checked": "2026-08-10"
       },
       "skim": {
         "date": "2026-07-27",
@@ -2217,11 +2230,11 @@
       },
       "next": "Queued for a full grading run (installed + probed).",
       "signals": {
-        "stars": 14467,
-        "forks": 997,
-        "checked": "2026-08-03",
+        "stars": 14950,
+        "forks": 1019,
+        "checked": "2026-08-10",
         "head_sha": "91f3d394db8419c20d67ebe22a96cf8fee0a404b",
-        "head_checked": "2026-08-03"
+        "head_checked": "2026-08-10"
       },
       "skim": {
         "date": "2026-07-27",
@@ -2254,22 +2267,22 @@
       "status": "scouted",
       "scouted_on": "2026-07-27",
       "signals": {
-        "stars": 12292,
-        "forks": 934,
-        "checked": "2026-08-03",
-        "head_sha": "7a9454f87637b871af18be84361eb6a94eb0a9ec",
-        "head_checked": "2026-08-03"
+        "stars": 12335,
+        "forks": 941,
+        "checked": "2026-08-10",
+        "head_sha": "c410af0774d93d00c727bab22f33619c316d6148",
+        "head_checked": "2026-08-10"
       },
       "triage": {
         "provenance": "Repo verified real via GitHub API: simonw/llm, created 2023-04.",
         "license": "Apache-2.0",
-        "freshness": "Last push 2026-07-30 (checked 2026-07-29) — actively maintained.",
-        "safety": "Automated safety skim (2026-07-27, 110 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Not a line-by-line read — treat as untrusted until graded."
+        "freshness": "Last push 2026-08-09 (checked 2026-08-10) — actively maintained.",
+        "safety": "Automated safety skim (2026-08-10, 113 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Not a line-by-line read — treat as untrusted until graded."
       },
       "next": "Upstream changed since the last source review — queued for re-review.",
       "skim": {
-        "date": "2026-07-27",
-        "files_scanned": 110,
+        "date": "2026-08-10",
+        "files_scanned": 113,
         "red_flags": [],
         "notes": []
       },
@@ -2304,11 +2317,11 @@
       "status": "reviewed",
       "scouted_on": "2026-07-27",
       "signals": {
-        "stars": 11367,
-        "forks": 833,
-        "checked": "2026-08-03",
+        "stars": 11548,
+        "forks": 842,
+        "checked": "2026-08-10",
         "head_sha": "773a52944ba4747a18bd4ae9ade53fff041adcbc",
-        "head_checked": "2026-08-03"
+        "head_checked": "2026-08-10"
       },
       "triage": {
         "provenance": "Repo verified real via GitHub API: Orchestra-Research/AI-Research-SKILLs, created 2025-11.",
@@ -2351,32 +2364,32 @@
       "category": "library",
       "summary": "66 Specialized Skills for Full-Stack Developers. Transform Claude Code into your expert pair programmer.",
       "pain_points": [],
-      "status": "reviewed",
+      "status": "scouted",
       "scouted_on": "2026-07-27",
       "signals": {
-        "stars": 10863,
-        "forks": 1010,
-        "checked": "2026-08-03",
-        "head_sha": "e8be415bc94d8d6ebddc2fb50e5d03c6e27d4319",
-        "head_checked": "2026-08-03"
+        "stars": 10941,
+        "forks": 1025,
+        "checked": "2026-08-10",
+        "head_sha": "882ef55e377dbf9a4dbe496bb41ac6ccd0e555cf",
+        "head_checked": "2026-08-10"
       },
       "triage": {
         "provenance": "Repo verified real via GitHub API: Jeffallan/claude-skills, created 2025-10.",
         "license": "MIT",
         "freshness": "Last push 2026-05-20 (checked 2026-07-29) — actively maintained.",
-        "safety": "Automated safety skim (2026-07-27, 551 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: cloud credential read in docs, remote-exec pipe in docs. A library, not one skill — each skill needs its own read before use."
+        "safety": "Automated safety skim (2026-08-10, 557 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: cloud credential read in docs, remote-exec pipe in docs. A library, not one skill — each skill needs its own read before use."
       },
-      "next": "Queued for a full grading run (installed + probed).",
+      "next": "Upstream changed since the last source review — queued for re-review.",
       "skim": {
-        "date": "2026-07-27",
-        "files_scanned": 551,
+        "date": "2026-08-10",
+        "files_scanned": 557,
         "red_flags": [],
         "notes": [
           "cloud credential read in docs",
           "remote-exec pipe in docs"
         ]
       },
-      "review": {
+      "review_stale": {
         "does": "It gives your coding assistant a set of written playbooks that make it behave like different specialists on demand — a debugger, a Vue web developer, a C++ programmer, a command-line tool builder, a requirements interviewer, a software architect, a JavaScript developer, and a security auditor — each playbook laying out step-by-step working rules the assistant follows.",
         "touches": [
           "reads project files",
@@ -2389,7 +2402,9 @@
         "limits": "This review is based on reading the source, not running it — nothing here was executed, installed, or observed working. It covers only 9 of the repository's files; 70 more files were withheld because the repo exceeds the review size cap, and the author advertises 66 skills, so most of the collection is unreviewed. Each reviewed playbook also points to companion reference files (references/*.md) that were not provided, so their contents are unknown. The playbooks themselves are instruction text, not programs, but they direct the assistant to act on your project: reading and searching your code (spec-miner, security-reviewer), saving new specification files into your project (feature-forge, spec-miner), and running shell commands such as debuggers, linters, test runners, and security scanners (git bisect, eslint --fix, vue-tsc, semgrep, npm audit, gitleaks, trivy). 'Network calls' is listed because some of those instructed commands, like npm audit and the security scanners, fetch data from the internet when run; the playbooks do not make network calls by themselves. Whether the assistant actually performs any of these actions depends on your own tool permissions — that behavior cannot be verified by reading alone. The security-reviewer playbook includes penetration-testing guidance; the unreviewed reference file behind it could not be checked.",
         "reviewed_at": "2026-07-31",
         "reviewer": "automated-source-review v1",
-        "source_sha": "e8be415bc94d8d6ebddc2fb50e5d03c6e27d4319"
+        "source_sha": "e8be415bc94d8d6ebddc2fb50e5d03c6e27d4319",
+        "downgraded_on": "2026-08-10",
+        "stale_reason": "upstream HEAD moved from e8be415b to 882ef55e; the review described code that is no longer what a visitor would install"
       }
     },
     {
@@ -2405,11 +2420,11 @@
       "status": "reviewed",
       "scouted_on": "2026-07-27",
       "signals": {
-        "stars": 11004,
-        "forks": 1308,
-        "checked": "2026-08-03",
+        "stars": 11088,
+        "forks": 1318,
+        "checked": "2026-08-10",
         "head_sha": "d15eabbe5d2122eedc060bae8a771381e9873d1b",
-        "head_checked": "2026-08-03"
+        "head_checked": "2026-08-10"
       },
       "triage": {
         "provenance": "Repo verified real via GitHub API: nidhinjs/prompt-master, created 2026-03.",
@@ -2445,29 +2460,29 @@
       "category": "workflow",
       "summary": "Turn any technical book PDF into a Claude Code skill — ready to study, reference, and use while you work.",
       "pain_points": [],
-      "status": "reviewed",
+      "status": "scouted",
       "scouted_on": "2026-07-27",
       "signals": {
-        "stars": 15955,
-        "forks": 1705,
-        "checked": "2026-08-03",
-        "head_sha": "b74286d1277ff1ae048e7b7392985bf54aa2987a",
-        "head_checked": "2026-08-03"
+        "stars": 19432,
+        "forks": 2078,
+        "checked": "2026-08-10",
+        "head_sha": "442aaaa2d21dbe5ae0f7c6a396585ef3a9d2534e",
+        "head_checked": "2026-08-10"
       },
       "triage": {
         "provenance": "Repo verified real via GitHub API: virgiliojr94/book-to-skill, created 2026-05.",
         "license": "MIT",
         "freshness": "Last push 2026-07-27 (checked 2026-07-29) — actively maintained.",
-        "safety": "Automated safety skim (2026-07-27, 47 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Not a line-by-line read — treat as untrusted until graded."
+        "safety": "Automated safety skim (2026-08-10, 59 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Not a line-by-line read — treat as untrusted until graded."
       },
-      "next": "Queued for a full grading run (installed + probed).",
+      "next": "Upstream changed since the last source review — queued for re-review.",
       "skim": {
-        "date": "2026-07-27",
-        "files_scanned": 47,
+        "date": "2026-08-10",
+        "files_scanned": 59,
         "red_flags": [],
         "notes": []
       },
-      "review": {
+      "review_stale": {
         "does": "Lets you hand your agent a book or document (PDF, EPUB, Word, etc.) and get back a set of organized notes files — key frameworks, terms, and per-chapter summaries — that the agent can then look up and answer from while you work.",
         "touches": [
           "reads project files",
@@ -2481,7 +2496,9 @@
         "limits": "The code was read, not run. 20 of the repo's files were withheld from this review, and critically that includes the two Python programs the instructions actually execute (scripts/extract.py and tools/scan_generated_skill.py) — so what those programs really do, including whether they make network calls, could not be verified; only the instruction file telling the agent how to use them was reviewed. The README was also cut off at its first 9KB of 24KB. What the reviewed instructions do show: they direct the agent to run shell commands, to write generated files into your home folder (e.g. ~/.claude/skills or ~/.copilot/skills) or into the current project, to create and later delete a temporary working folder in the system temp directory, and to offer installing missing Python packages (the extraction script has an install-missing option; installs happen only after asking, per the instructions). One option in the workflow offers to delete and regenerate an existing skill folder if a name collides — that deletion is user-prompted but worth knowing. No removal or uninstall instructions appear anywhere in the reviewed files.",
         "reviewed_at": "2026-07-31",
         "reviewer": "automated-source-review v1",
-        "source_sha": "b74286d1277ff1ae048e7b7392985bf54aa2987a"
+        "source_sha": "b74286d1277ff1ae048e7b7392985bf54aa2987a",
+        "downgraded_on": "2026-08-10",
+        "stale_reason": "upstream HEAD moved from b74286d1 to 442aaaa2; the review described code that is no longer what a visitor would install"
       }
     },
     {
@@ -2495,11 +2512,11 @@
       "status": "reviewed",
       "scouted_on": "2026-07-27",
       "signals": {
-        "stars": 9984,
-        "forks": 1229,
-        "checked": "2026-08-03",
+        "stars": 9993,
+        "forks": 1230,
+        "checked": "2026-08-10",
         "head_sha": "07f75ce3c301259e857343596e7883b8ce5a9f50",
-        "head_checked": "2026-08-03"
+        "head_checked": "2026-08-10"
       },
       "triage": {
         "provenance": "Repo verified real via GitHub API: diet103/claude-code-infrastructure-showcase, created 2025-10.",
@@ -2534,58 +2551,6 @@
       }
     },
     {
-      "id": "agricidaniel-claude-obsidian",
-      "name": "claude-obsidian",
-      "repo_url": "https://github.com/AgriciDaniel/claude-obsidian",
-      "author": "AgriciDaniel",
-      "category": "context",
-      "summary": "Self-organizing AI second brain for Obsidian + Claude Code. Drop any source and Claude reads, links, and files it into one connected knowledge graph of plain Markdown you own. AI note-taking, personal knowledge managemen",
-      "pain_points": [
-        "context-bloat"
-      ],
-      "status": "scouted",
-      "scouted_on": "2026-07-27",
-      "signals": {
-        "stars": 10342,
-        "forks": 1201,
-        "checked": "2026-08-03",
-        "head_sha": "1c1bc49c03a685ee8f5d09c99efe52b42d6673f5",
-        "head_checked": "2026-08-03"
-      },
-      "triage": {
-        "provenance": "Repo verified real via GitHub API: AgriciDaniel/claude-obsidian, created 2026-04.",
-        "license": "MIT",
-        "freshness": "Last push 2026-07-29 (checked 2026-07-29) — actively maintained.",
-        "safety": "Automated safety skim (2026-07-27, 175 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: network call. Not a line-by-line read — treat as untrusted until graded."
-      },
-      "next": "Upstream changed since the last source review — queued for re-review.",
-      "skim": {
-        "date": "2026-07-27",
-        "files_scanned": 175,
-        "red_flags": [],
-        "notes": [
-          "network call"
-        ]
-      },
-      "review_stale": {
-        "does": "Lets your AI assistant manage your Obsidian notes for you: it can read and search your notes, check them for broken links and missing info, suggest where new notes belong, pull readable text from web pages you give it, and make edits to your notes through a preview-then-approve step instead of changing files directly.",
-        "touches": [
-          "reads project files",
-          "writes project files",
-          "runs shell commands",
-          "network calls"
-        ],
-        "undo": "not documented by the author",
-        "scope": "10 file(s), 40.0KB read: skills/wiki-cli/SKILL.md, skills/wiki-lint/SKILL.md, skills/wiki-mode/SKILL.md, skills/obsidian-markdown/SKILL.md, +6 more. AGENTS.md truncated at 4KB of 5KB. 41 further file(s) NOT read — repo exceeds the 40KB review cap",
-        "limits": "This review is based on reading the source, not running it — nothing was executed, installed, or observed working. It covers only part of the repo: 41 files were withheld because the repo exceeds the review size cap, and one instruction file (AGENTS.md) was cut off partway through. Critically, the withheld files include all of the actual programs these instructions run — the Python and shell scripts (claude-obsidian.py, detect-transport.sh, retrieve.py, wiki-mode.py, and others) that do the real reading, writing, and web fetching. The instruction files reviewed describe a careful, safety-conscious design: edits are confined to your selected notes vault and go through a preview-and-approve step, web access is limited to one optional page-cleaning skill and requires your explicit consent each time, and the assistant is told to treat note contents as data rather than commands. But whether the unseen scripts actually behave that way could not be verified from what was provided. The web-fetch feature also relies on a separate 'defuddle' program the author does not ship; what that program does when installed is outside this review. No uninstall or removal instructions appear anywhere in the files reviewed.",
-        "reviewed_at": "2026-07-31",
-        "reviewer": "automated-source-review v1",
-        "source_sha": "a3b3df4539802e150e942266fd310c1b5978a3c0",
-        "downgraded_on": "2026-08-03",
-        "stale_reason": "upstream HEAD moved from a3b3df45 to 1c1bc49c; the review described code that is no longer what a visitor would install"
-      }
-    },
-    {
       "id": "xixu-me-xget",
       "name": "xget",
       "repo_url": "https://github.com/xixu-me/xget",
@@ -2599,21 +2564,21 @@
       "status": "scouted",
       "scouted_on": "2026-07-27",
       "signals": {
-        "stars": 8177,
-        "forks": 1295,
-        "checked": "2026-08-03",
-        "head_sha": "d2ae4011accd437f407734e3399b9c7b7342b0f6",
-        "head_checked": "2026-08-03"
+        "stars": 8188,
+        "forks": 1300,
+        "checked": "2026-08-10",
+        "head_sha": "df6ba730ee727417be7828992c683892cc41a85c",
+        "head_checked": "2026-08-10"
       },
       "triage": {
         "provenance": "Repo verified real via GitHub API: xixu-me/xget, created 2024-11.",
         "license": "AGPL-3.0",
-        "freshness": "Last push 2026-07-27 (checked 2026-07-29) — actively maintained.",
-        "safety": "Automated safety skim (2026-07-27, 117 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: network call. Not a line-by-line read — treat as untrusted until graded."
+        "freshness": "Last push 2026-08-05 (checked 2026-08-10) — actively maintained.",
+        "safety": "Automated safety skim (2026-08-10, 117 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: network call. Not a line-by-line read — treat as untrusted until graded."
       },
       "next": "Upstream changed since the last source review — queued for re-review.",
       "skim": {
-        "date": "2026-07-27",
+        "date": "2026-08-10",
         "files_scanned": 117,
         "red_flags": [],
         "notes": [
@@ -2645,31 +2610,31 @@
       "pain_points": [
         "git-hygiene"
       ],
-      "status": "reviewed",
+      "status": "scouted",
       "scouted_on": "2026-07-27",
       "signals": {
-        "stars": 7107,
-        "forks": 526,
-        "checked": "2026-08-03",
-        "head_sha": "719fd3663b7ec702e2ff969231f42e167c3d556b",
-        "head_checked": "2026-08-03"
+        "stars": 7359,
+        "forks": 538,
+        "checked": "2026-08-10",
+        "head_sha": "2ee141e0ff183ce76dc405370aeb142c6961aa45",
+        "head_checked": "2026-08-10"
       },
       "triage": {
         "provenance": "Repo verified real via GitHub API: Agents365-ai/drawio-skill, created 2026-03.",
         "license": "MIT",
         "freshness": "Last push 2026-07-25 (checked 2026-07-29) — actively maintained.",
-        "safety": "Automated safety skim (2026-07-27, 95 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: network call. Not a line-by-line read — treat as untrusted until graded."
+        "safety": "Automated safety skim (2026-08-10, 95 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: network call. Not a line-by-line read — treat as untrusted until graded."
       },
-      "next": "Queued for a full grading run (installed + probed).",
+      "next": "Upstream changed since the last source review — queued for re-review.",
       "skim": {
-        "date": "2026-07-27",
+        "date": "2026-08-10",
         "files_scanned": 95,
         "red_flags": [],
         "notes": [
           "network call"
         ]
       },
-      "review": {
+      "review_stale": {
         "does": "Lets your agent turn plain-English requests (and your code, infrastructure files, or images) into draw.io diagrams saved on your computer as editable files and exported pictures (PNG, SVG, PDF).",
         "touches": [
           "reads project files",
@@ -2684,7 +2649,9 @@
         "limits": "This review is based on reading the source, not running it — nothing here was executed or observed working. It covers only 1 of the repo's 40 files: the main instruction file (SKILL.md), and even that was cut off near its end (40KB of 42KB seen). The 31+ helper scripts the instructions repeatedly invoke (Python programs that scan your codebase, query live Docker/Kubernetes/Terraform infrastructure, repair files, and build HTML/GIF/PowerPoint outputs) were NOT provided, so what those scripts actually do is unverified — the 'touches' list reflects what the instructions direct the agent to do, not inspected script code. Network activity noted includes fetching AI-brand logo images from a CDN and instructions pointing at a Docker-hosted export service as a fallback; a 'browser fallback' builds diagrams.net URLs that the file claims keep your diagram out of the server request, but that claim could not be verified without the script. The instructions also tell the agent to install software (draw.io desktop, Graphviz, Python packages) if missing, to run live commands like 'kubectl get secret ... -o json' (which pulls cluster secrets into the diagram pipeline), and to read/write a folder in your home directory (~/.drawio-skill/styles/) outside any project. No uninstall or disable steps appear in the portion reviewed; they may exist in the unseen files.",
         "reviewed_at": "2026-07-31",
         "reviewer": "automated-source-review v1",
-        "source_sha": "719fd3663b7ec702e2ff969231f42e167c3d556b"
+        "source_sha": "719fd3663b7ec702e2ff969231f42e167c3d556b",
+        "downgraded_on": "2026-08-10",
+        "stale_reason": "upstream HEAD moved from 719fd366 to 2ee141e0; the review described code that is no longer what a visitor would install"
       }
     },
     {
@@ -2700,22 +2667,22 @@
       "status": "scouted",
       "scouted_on": "2026-07-27",
       "signals": {
-        "stars": 6122,
-        "forks": 710,
-        "checked": "2026-08-03",
-        "head_sha": "40d2a7f10a3a9f9f080dc8877e33cdc5ab24b051",
-        "head_checked": "2026-08-03"
+        "stars": 6126,
+        "forks": 726,
+        "checked": "2026-08-10",
+        "head_sha": "7ad8fe05bf4d6d4688b055b392c30b0c84311503",
+        "head_checked": "2026-08-10"
       },
       "triage": {
         "provenance": "Repo verified real via GitHub API: ikaijua/Awesome-AITools, created 2023-04.",
         "license": "No license file detected via the GitHub API — usage rights unclear; a real triage red flag.",
-        "freshness": "Last push 2026-07-29 (checked 2026-07-29) — actively maintained.",
-        "safety": "Automated safety skim (2026-07-27, 54 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: remote-exec pipe in docs. A library, not one skill — each skill needs its own read before use."
+        "freshness": "Last push 2026-08-10 (checked 2026-08-10) — actively maintained.",
+        "safety": "Automated safety skim (2026-08-10, 81 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: remote-exec pipe in docs. A library, not one skill — each skill needs its own read before use."
       },
       "next": "Upstream changed since the last source review — queued for re-review.",
       "skim": {
-        "date": "2026-07-27",
-        "files_scanned": 54,
+        "date": "2026-08-10",
+        "files_scanned": 81,
         "red_flags": [],
         "notes": [
           "remote-exec pipe in docs"
@@ -2746,29 +2713,29 @@
       "pain_points": [
         "testing-discipline"
       ],
-      "status": "reviewed",
+      "status": "scouted",
       "scouted_on": "2026-07-27",
       "signals": {
-        "stars": 6234,
-        "forks": 758,
-        "checked": "2026-08-03",
-        "head_sha": "99710188c134acf590a02c0e4ee1f431e60004cf",
-        "head_checked": "2026-08-03"
+        "stars": 6355,
+        "forks": 767,
+        "checked": "2026-08-10",
+        "head_sha": "323b985b004ff263933f71005c17670916e43c82",
+        "head_checked": "2026-08-10"
       },
       "triage": {
         "provenance": "Repo verified real via GitHub API: deanpeters/Product-Manager-Skills, created 2026-02.",
         "license": "No license file detected via the GitHub API — usage rights unclear; a real triage red flag.",
         "freshness": "Last push 2026-07-17 (checked 2026-07-29) — actively maintained.",
-        "safety": "Automated safety skim (2026-07-27, 300 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. A library, not one skill — each skill needs its own read before use."
+        "safety": "Automated safety skim (2026-08-10, 302 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. A library, not one skill — each skill needs its own read before use."
       },
-      "next": "Queued for a full grading run (installed + probed).",
+      "next": "Upstream changed since the last source review — queued for re-review.",
       "skim": {
-        "date": "2026-07-27",
-        "files_scanned": 300,
+        "date": "2026-08-10",
+        "files_scanned": 302,
         "red_flags": [],
         "notes": []
       },
-      "review": {
+      "review_stale": {
         "does": "Gives your agent a set of step-by-step product-management playbooks — guided workshops, competitor pricing tracking, quarterly market scans, and a workflow for writing new playbooks — so it walks you through PM work one question at a time and produces structured write-ups.",
         "touches": [
           "reads project files",
@@ -2781,7 +2748,9 @@
         "limits": "This review is based on reading the source, not running or installing it. It covers only 5 files (about 40KB) of a repo with roughly 100 files — 95 files were withheld by the review size cap, and one reviewed file (skills/pestel-delta-monitor/SKILL.md) was cut off near its end. Importantly, the instructions tell the agent to run about a dozen helper scripts (shell and Python, e.g. add-a-skill.sh, test-a-skill.sh, package-claude-skills.sh) and mention a Streamlit web app with an environment-variable file — none of those scripts or app files were among the files provided, so what they actually do when run could not be verified. The 'network calls' finding comes from instructions directing the agent to fetch live competitor pricing pages and search regulatory/news sources, not from executable networking code seen in these files. The repo's own guidelines claim skill scripts should avoid network calls, but the scripts themselves were not available to confirm that.",
         "reviewed_at": "2026-07-31",
         "reviewer": "automated-source-review v1",
-        "source_sha": "99710188c134acf590a02c0e4ee1f431e60004cf"
+        "source_sha": "99710188c134acf590a02c0e4ee1f431e60004cf",
+        "downgraded_on": "2026-08-10",
+        "stale_reason": "upstream HEAD moved from 99710188 to 323b985b; the review described code that is no longer what a visitor would install"
       }
     },
     {
@@ -2792,24 +2761,24 @@
       "category": "workflow",
       "summary": "A visual, example-driven guide to Claude Code — from basic concepts to advanced agents, with copy-paste templates that bring immediate value.",
       "pain_points": [],
-      "status": "reviewed",
+      "status": "scouted",
       "scouted_on": "2026-07-27",
       "signals": {
-        "stars": 40815,
-        "forks": 4978,
-        "checked": "2026-08-03",
-        "head_sha": "343d6f0f992de4b5fadd10583388efde7cf39e71",
-        "head_checked": "2026-08-03"
+        "stars": 40949,
+        "forks": 5008,
+        "checked": "2026-08-10",
+        "head_sha": "4f3fa85d7ed0f0f77f0d8bba3f0b40ff10b2063b",
+        "head_checked": "2026-08-10"
       },
       "triage": {
         "provenance": "Repo verified real via GitHub API: luongnv89/claude-howto, created 2025-11.",
         "license": "MIT",
         "freshness": "Last push 2026-07-29 (checked 2026-07-29) — actively maintained.",
-        "safety": "Automated safety skim (2026-07-27, 600 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: network call, remote-exec pipe in docs. Not a line-by-line read — treat as untrusted until graded."
+        "safety": "Automated safety skim (2026-08-10, 600 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: network call, remote-exec pipe in docs. Not a line-by-line read — treat as untrusted until graded."
       },
-      "next": "Queued for a full grading run (installed + probed).",
+      "next": "Upstream changed since the last source review — queued for re-review.",
       "skim": {
-        "date": "2026-07-27",
+        "date": "2026-08-10",
         "files_scanned": 600,
         "red_flags": [],
         "notes": [
@@ -2817,7 +2786,7 @@
           "remote-exec pipe in docs"
         ]
       },
-      "review": {
+      "review_stale": {
         "does": "Gives your agent a set of ready-made instruction sheets (in English, Chinese, Japanese, Ukrainian, and Vietnamese) that tell it how to review code for problems, write API documentation, keep writing in a set brand voice, and create or tidy the project notes file (CLAUDE.md) your agent reads at the start of every session.",
         "touches": [
           "reads project files",
@@ -2829,7 +2798,73 @@
         "limits": "The code was read, not run — nothing here was installed, executed, or observed working. This review covers only a small slice of the repository: 16 files were provided and 173 files were withheld under the review size cap, so most of the repo is unreviewed. One of the 16, the CLAUDE.md-writing instruction sheet (03-skills/claude-md/SKILL.md), was cut off near its start, so almost all of its English version is unreviewed (a full Chinese translation of it was visible and is the basis for describing it). The 'runs shell commands' and 'reads/writes project files' findings come from what the instruction sheets tell the agent to do: the code-review sheet tells the agent to run two Python scripts (scripts/analyze-metrics.py and scripts/compare-complexity.py) on your files, and the CLAUDE.md sheet tells the agent to read project files and write a CLAUDE.md file after your approval. Those two Python scripts themselves were NOT among the files provided, so what they actually do when run is unknown — that is a real gap. The files reviewed contain example commands (like web requests with a placeholder token) that are shown as documentation templates for the agent to copy into docs, not instructions to execute; no instruction to make network calls or read your credentials was found in the reviewed files, but that cannot be confirmed for the 173 unseen files.",
         "reviewed_at": "2026-07-31",
         "reviewer": "automated-source-review v1",
-        "source_sha": "343d6f0f992de4b5fadd10583388efde7cf39e71"
+        "source_sha": "343d6f0f992de4b5fadd10583388efde7cf39e71",
+        "downgraded_on": "2026-08-10",
+        "stale_reason": "upstream HEAD moved from 343d6f0f to 4f3fa85d; the review described code that is no longer what a visitor would install"
+      }
+    },
+    {
+      "id": "panniantong-agent-reach",
+      "name": "Agent-Reach",
+      "repo_url": "https://github.com/Panniantong/Agent-Reach",
+      "author": "Panniantong",
+      "category": "research",
+      "summary": "Give your AI agent eyes to see the entire internet. Read & search Twitter, Reddit, YouTube, GitHub, Bilibili, XiaoHongShu — one CLI, zero API fees.",
+      "pain_points": [],
+      "status": "scouted",
+      "scouted_on": "2026-08-10",
+      "signals": {
+        "stars": 69720,
+        "forks": 5878,
+        "checked": "2026-08-10"
+      },
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: Panniantong/Agent-Reach, created 2026-02.",
+        "license": "MIT",
+        "freshness": "Last push 2026-08-06 (checked 2026-08-10) — actively maintained.",
+        "safety": "Automated safety skim (2026-08-10, 106 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: network call. Not a line-by-line read — treat as untrusted until graded."
+      },
+      "next": "Queued for a full grading run.",
+      "skim": {
+        "date": "2026-08-10",
+        "files_scanned": 106,
+        "red_flags": [],
+        "notes": [
+          "network call"
+        ]
+      }
+    },
+    {
+      "id": "diegosouzapw-omniroute",
+      "name": "OmniRoute",
+      "repo_url": "https://github.com/diegosouzapw/OmniRoute",
+      "author": "diegosouzapw",
+      "category": "context",
+      "summary": "Never stop coding. Free MIT AI gateway: one endpoint, 290+ providers (90+ free), 500+ models — Kimi, Claude, GPT, OpenAI, Gemini, GLM, DeepSeek, MiniMax. Works with Claude Code, Codex, Cursor, OpenCode, Cline & Copilot. ",
+      "pain_points": [
+        "context-bloat"
+      ],
+      "status": "scouted",
+      "scouted_on": "2026-08-10",
+      "signals": {
+        "stars": 44278,
+        "forks": 5954,
+        "checked": "2026-08-10"
+      },
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: diegosouzapw/OmniRoute, created 2026-02.",
+        "license": "MIT",
+        "freshness": "Last push 2026-08-09 (checked 2026-08-10) — actively maintained.",
+        "safety": "Automated safety skim (2026-08-10, 600 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: network call. Not a line-by-line read — treat as untrusted until graded."
+      },
+      "next": "Queued for a full grading run.",
+      "skim": {
+        "date": "2026-08-10",
+        "files_scanned": 600,
+        "red_flags": [],
+        "notes": [
+          "network call"
+        ]
       }
     }
   ]
