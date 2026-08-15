@@ -600,7 +600,7 @@
         "forks": 36412,
         "checked": "2026-08-13",
         "head_sha": "c9de8f5b2b3a225bca9befa2b7700aa5e3a4d1b8",
-        "head_checked": "2026-08-14"
+        "head_checked": "2026-08-15"
       },
       "skim": {
         "date": "2026-07-27",
@@ -613,14 +613,14 @@
         ]
       },
       "review": {
-        "does": "Adds a very large multilingual library of written playbooks for running an AI agent long-term — patterns for autonomous agent loops, operating cloud-hosted agents, and a small Markdown-based session tool called NanoClaw — though almost everything we could read this time was a placeholder page still waiting for its Japanese or Chinese translation rather than finished guidance.",
+        "does": "Adds a large library of written playbooks that steer how your agent works — covering long autonomous agent loops, operating always-on cloud agent systems, and a Markdown-based session tool called NanoClaw — but almost everything in the slice we could read is untranslated placeholder pages, not finished guidance.",
         "touches": [
           "no side effects"
         ],
         "undo": "not documented by the author",
         "scope": "40 file(s), 20.4KB read: docs/ja-JP/skills/motion-ui/SKILL.md, docs/ja-JP/skills/manim-video/SKILL.md, docs/ja-JP/skills/messages-ops/SKILL.md, docs/ja-JP/skills/mle-workflow/SKILL.md, +36 more. 1293 further file(s) NOT read — repo exceeds the 40KB review cap",
-        "limits": "The code was read, not run. This review covers 40 of roughly 1,333 files in the repo (a hard 40-file cap on this reviewer, not the byte cap — only 20.4KB was used) and none of those 40 was the README, so the author's own framing of the project was not part of this pass. Of the 40, most (over 30) are one-paragraph Japanese or Chinese stub pages that say only 'translation in progress, see the English file' and point at a Windows path (D:/tmp/everything-claude-code/...) on the author's own machine — they carry no instructions at all. The handful of real files (nanoclaw-repl, continuous-agent-loop, enterprise-agent-ops, ai-first-engineering) are plain instruction text with no executable code, which is the only basis for 'no side effects.' But nanoclaw-repl repeatedly tells the agent to run or extend a script, scripts/claw.js, described as a 'zero-dependency session-aware REPL built on claude -p' — that script was not among the files given to me, so what it actually does when run (file writes, network calls, anything else) is unverified. The other 1,293 unread files, including whatever the 78+ other named skills actually contain, are likewise unknown from this review.",
-        "reviewed_at": "2026-08-14",
+        "limits": "The code was read, not run. This review covers only 40 of about 1,333 files in the repo — 1,293 were withheld by the review cap — and this slice is not representative: roughly three-quarters of it is Japanese/Chinese stub files that all say a translation is still in progress and point back to an English file at a hard-coded path on the author's own Windows machine (D:/tmp/everything-claude-code/...). The handful of substantive files read (NanoClaw REPL, Continuous Agent Loop, Enterprise Agent Ops, AI-First Engineering) are plain instruction text with no executable code, which is the only basis for the 'no side effects' finding — it applies to these 40 files, not the whole package. Several of them repeatedly point to an executable script the repo ships (scripts/claw.js, described as a session tool that saves conversations and switches models) and to many other skills and slash commands (/harness-audit, /quality-gate), none of which were given to us — what that script and the 1,293 unread files actually do, touch, or send is unknown. The author's description promises far more (skills, instincts, memory, security across five agent tools) than this slice can confirm or deny. No install or removal instructions appeared in anything read.",
+        "reviewed_at": "2026-08-15",
         "reviewer": "automated-source-review v1",
         "source_sha": "c9de8f5b2b3a225bca9befa2b7700aa5e3a4d1b8"
       }
@@ -742,7 +742,7 @@
         "forks": 12500,
         "checked": "2026-08-13",
         "head_sha": "a38d04c3d5c298c851dbe5e6ee1965ee3de42cb5",
-        "head_checked": "2026-08-14"
+        "head_checked": "2026-08-15"
       },
       "skim": {
         "date": "2026-07-27",
@@ -751,7 +751,7 @@
         "notes": []
       },
       "review": {
-        "does": "Gives your agent a set of design playbooks — for slides, brand identity, design-token systems, and marketing banners — that walk it through running bundled helper scripts, generating images with outside AI image services, browsing Pinterest for reference images, and saving the finished files into your project.",
+        "does": "Gives your agent a set of design playbooks — for building slide decks, keeping a brand style guide in sync, styling components, and designing banners — that walk it through running bundled Node and Python helper scripts, calling outside AI image services, and saving the finished files into your project.",
         "touches": [
           "reads project files",
           "writes project files",
@@ -761,8 +761,8 @@
         ],
         "undo": "not documented by the author",
         "scope": "9 file(s), 40.0KB read: .claude/skills/slides/SKILL.md, cli/assets/skills/slides/SKILL.md, .claude/skills/brand/SKILL.md, cli/assets/skills/brand/SKILL.md, +5 more. .claude/skills/ui-styling/SKILL.md truncated at 2KB of 10KB. 102 further file(s) NOT read — repo exceeds the 40KB review cap",
-        "limits": "The code was read, not run. This review covers only 9 of the repo's files (40KB cap) — 102 files were withheld because the repo exceeds the review size cap, and one of the nine (ui-styling) was cut off after roughly its first fifth. What was reviewed is instruction text telling the agent to run helper scripts (Node .cjs files and Python scripts) — those scripts themselves were not among the files provided, so what they actually do when run, including exactly what data they send anywhere, could not be verified from source. The instructions do name specific outside destinations: Pinterest (browsed for design references), Pexels/Unsplash (background images), and Google's Gemini image-generation models (banner artwork) — all reached only if the agent follows the playbook. 'Installs dependencies' comes from an instruction to run a component installer (npx shadcn init). The banner-design file also instructs serving HTML over a local web server and screenshotting it — that traffic stays on the machine. Evidence for writing files covers project folders (assets, docs, generated HTML/PNG); nothing in what was read shows files being written outside the project, but the unread 102 files could contain more.",
-        "reviewed_at": "2026-08-14",
+        "limits": "The code was read, not run. This review covers 9 of the repo's 111 files (about 40KB); 102 files were withheld by the review cap, and one of the nine (the ui-styling instructions) was cut off after roughly its first fifth. What was read is instruction text that tells the agent to run helper scripts — Node .cjs scripts for syncing brand colors/tokens and validating assets, Python scripts for slide search and token-compliance checks — but the scripts themselves were not among the files provided, so what they actually do when run, including whether any of them read or transmit API keys, could not be verified. 'Network calls' and 'installs dependencies' come from documented steps: fetching reference images from Pinterest/Pexels/Unsplash, generating images with Google's Gemini image models (gemini-2.5-flash-image, gemini-3-pro-image-preview), and running `npx shadcn@latest init`, which downloads and adds third-party component code to your project. Evidence for writing files covers only project folders (assets, docs, generated HTML/PNG); whether anything writes outside the project cannot be determined from what was shown.",
+        "reviewed_at": "2026-08-15",
         "reviewer": "automated-source-review v1",
         "source_sha": "a38d04c3d5c298c851dbe5e6ee1965ee3de42cb5"
       }
@@ -839,8 +839,8 @@
         "stars": 85524,
         "forks": 10027,
         "checked": "2026-08-13",
-        "head_sha": "bdad26cfcb4fba241a5f78a6c5a7cb6b06d8e982",
-        "head_checked": "2026-08-14"
+        "head_sha": "30fc648f6f615fde5b162cbee1177f94ea2dba6c",
+        "head_checked": "2026-08-15"
       },
       "skim": {
         "date": "2026-07-27",
@@ -852,20 +852,19 @@
         ]
       },
       "review": {
-        "does": "Installs a local desktop app that turns your coding agent into a design tool for building prototypes, landing pages, slides, images and video as real files, and ships it with a large catalogue of pointer entries that tell the agent to go fetch and install dozens of separate third-party skills (from OpenAI, Google, Figma, fal.ai, Venice.ai, MiniMax and others) whenever one of those specific tasks comes up.",
+        "does": "Gives your agent a catalogue of design recipes — refining page mockups and turning an approved design into React, Vue, or Next.js code — plus dozens of entries that each point to an outside AI service (Venice.ai, OpenAI, fal.ai, MiniMax, WordPress, and others) for generating images, video, audio, or documents, by telling the agent to fetch that add-on's real code from its own separate GitHub repository.",
         "touches": [
-          "reads project files",
-          "writes project files",
-          "network calls",
           "runs shell commands",
+          "network calls",
+          "installs dependencies",
           "writes outside the project"
         ],
         "undo": "not documented by the author",
-        "scope": "38 file(s), 39.8KB read: plugins/community/registry-starter/SKILL.md, plugins/_official/scenarios/od-design-refine/SKILL.md, plugins/_official/scenarios/od-vue-export/SKILL.md, plugins/community/import-smoke-test/SKILL.md, +34 more. 2283 further file(s) NOT read — repo exceeds the 40KB review cap",
-        "limits": "The code was read, not run. This review covers 38 of roughly 2,321 files (a 40KB cap) — the 2,283 unread files include the actual Electron desktop app, the background daemon, and the 'sidecar' processes the docs describe, none of which were shown to me, so what the running application itself does is unverified. Almost all 38 files I did see are short catalogue entries that advertise a third-party skill (image/video/audio generation, PDF and slide builders, Figma tools, etc.) rather than implement one; each ends with a near-identical instruction telling the agent to run a shell command (`open https://github.com/...`) to view the upstream repo, then 'install the upstream bundle into your active agent's skills directory' — a location outside the current project, which is why I list writing outside the project. The network-calls finding rests on two things: fetching those upstream repos, and the catalogue entries' own descriptions of paid external APIs (OpenAI, fal.ai, Venice.ai, Replicate, and others) that the referenced skills call once installed — I did not see the code that makes those calls. One file (import-smoke-test) explicitly disclaims network access, shell commands, and secrets for itself; that carve-out does not extend to the rest of the catalogue. No credential-reading was shown in what I read, and no install or removal instructions for the app itself appeared in any of the 38 files.",
-        "reviewed_at": "2026-08-14",
+        "scope": "38 file(s), 39.8KB read: plugins/community/registry-starter/SKILL.md, plugins/_official/scenarios/od-design-refine/SKILL.md, plugins/_official/scenarios/od-vue-export/SKILL.md, plugins/community/import-smoke-test/SKILL.md, +34 more. 2300 further file(s) NOT read — repo exceeds the 40KB review cap",
+        "limits": "This code was read, not run — nothing here was installed, executed, or observed working. The review covers only 38 files (about 40KB) out of roughly 2,338 in the repository, so the vast majority of the project — including the desktop app itself and the actual program code behind most of these entries — was never seen. Most of the files read are thin 'catalogue entry' stubs: each one tells the agent that to run the real workflow it must install the named upstream skill bundle into the agent's own skills directory, using a shown command that opens a browser tab to that skill's separate GitHub repo. That is the basis for 'runs shell commands' (the `open` command), 'network calls' (fetching that web page and, per each stub's own description, calling the named third-party AI service), 'installs dependencies', and 'writes outside the project' (installing into the agent's global skills folder, not this project). The real working code for every one of those add-ons — which by their names would call paid services and likely need API keys — lives in other repositories and was not part of this review. A few files read (od-design-refine, od-vue-export, od-nextjs-export, od-react-export) are actual in-repo scenario instructions rather than stubs, and explicitly say not to require network access, shell commands, or secrets for their own step. The author's claims (local-first desktop app, HTML/PDF/PPTX/MP4 export) could not be checked against the withheld code.",
+        "reviewed_at": "2026-08-15",
         "reviewer": "automated-source-review v1",
-        "source_sha": "bdad26cfcb4fba241a5f78a6c5a7cb6b06d8e982"
+        "source_sha": "30fc648f6f615fde5b162cbee1177f94ea2dba6c"
       }
     },
     {
@@ -889,8 +888,8 @@
         "stars": 86779,
         "forks": 9323,
         "checked": "2026-08-13",
-        "head_sha": "be42637c5af93fdc8526b68ec2f2651b930f316c",
-        "head_checked": "2026-08-14"
+        "head_sha": "df1edb2e05487d0aa6d93c747141e0aed1187f25",
+        "head_checked": "2026-08-15"
       },
       "skim": {
         "date": "2026-07-27",
@@ -901,18 +900,18 @@
         ]
       },
       "review": {
-        "does": "Gives your agent a strict, mandatory workflow for real engineering work: it must write a spec before coding, break the spec into small ordered tasks, implement one thin slice at a time with tests and commits between each, and hand off review/security/testing to separate specialist personas that run in parallel and report back.",
+        "does": "Gives your coding agent a set of written working rules — turn a vague idea into a one-page brief, break work into a task plan, implement it in small tested slices, and write architecture decision records — plus a repo-configuration file explaining how those rules compose, so its work follows a stricter, more deliberate process.",
         "touches": [
           "reads project files",
           "writes project files",
           "runs shell commands"
         ],
         "undo": "not documented by the author",
-        "scope": "6 file(s), 40.0KB read: AGENTS.md, docs/agents.md, skills/planning-and-task-breakdown/SKILL.md, skills/idea-refine/SKILL.md, +2 more. skills/incremental-implementation/SKILL.md truncated at 4KB of 9KB. 41 further file(s) NOT read — repo exceeds the 40KB review cap",
-        "limits": "The code was read, not run. This review covers 6 of the repo's 47 files (a 40KB cap) — 41 files were withheld, including the 'personas' referenced throughout (code-reviewer, security-auditor, test-engineer, web-performance-auditor) and most of the individual skill files the workflow chains together, so what those specific files instruct is unverified. One file, incremental-implementation, was cut off after roughly its first half. Everything reviewed is written instructions for an AI agent, not a program: it directs the agent to scan the codebase (Glob/Grep/Read), write plan and task files into a tasks/ folder and idea write-ups into docs/ideas/, run the project's own test/build/lint commands as part of its verification steps, and make git commits between increments — none of that happens unless the agent follows the instructions, and whether it always does cannot be verified by reading. One skill (idea-refine) also has an optional setup script (skills/idea-refine/scripts/idea-refine.sh) that was not among the files shown, so its contents are unverified. Nothing in what was read shows network calls, credential access, or writes outside the project, but the 41 unread files could contain more — one persona, security-auditor, was not seen at all despite being central to the repo's flagship /ship workflow.",
-        "reviewed_at": "2026-08-14",
+        "scope": "6 file(s), 40.0KB read: AGENTS.md, docs/agents.md, skills/idea-refine/SKILL.md, skills/planning-and-task-breakdown/SKILL.md, +2 more. skills/documentation-and-adrs/SKILL.md truncated at 1KB of 10KB. 41 further file(s) NOT read — repo exceeds the 40KB review cap",
+        "limits": "This review is based on reading the source, not running it — nothing here was executed or observed working. It covers only 6 of roughly 47 files in the repository (about 40KB); 41 files were not provided, including all the persona files, slash-command files, reference documents, and any scripts other than the one named below. One reviewed file (documentation-and-adrs) was cut off after its first ninth. The 'reads project files' and 'writes project files' findings come from instructions telling the agent to review the existing codebase, implement changes in small increments, run the test suite, and commit progress. 'Runs shell commands' comes from one skill (idea-refine) that directs the agent to run a bundled shell script, `skills/idea-refine/scripts/idea-refine.sh` — that script's contents were not among the files provided, so what it actually does is unknown. This batch showed no instruction to fetch anything over the network or install a dependency, but the 41 unread files could contain either.",
+        "reviewed_at": "2026-08-15",
         "reviewer": "automated-source-review v1",
-        "source_sha": "be42637c5af93fdc8526b68ec2f2651b930f316c"
+        "source_sha": "df1edb2e05487d0aa6d93c747141e0aed1187f25"
       }
     },
     {
@@ -1085,8 +1084,8 @@
         "stars": 64433,
         "forks": 6401,
         "checked": "2026-08-13",
-        "head_sha": "e98438487933d32f97ffa85b5390843b603948fa",
-        "head_checked": "2026-08-14"
+        "head_sha": "8020188c61a4081399a6ae5aed662024d872d1ac",
+        "head_checked": "2026-08-15"
       },
       "skim": {
         "date": "2026-07-27",
@@ -1098,19 +1097,22 @@
         ]
       },
       "review": {
-        "does": "A teaching repo, not a single tool: it walks you through Claude Code concepts (prompting, agents, skills) using small worked examples — fetching the time or weather for Dubai and drawing an SVG card from it, driving a real web browser from the command line, and building a slide presentation — plus day-by-day setup guides for installing and logging into Claude Code itself.",
+        "does": "Gives your agent a bundle of tutorial examples: instructions for reporting the current time in Dubai or Pakistan, looking up Dubai's weather from a free online weather service, saving small picture-card and note files into the project, styling a slideshow that ships with the repo, and driving a web browser (opening pages, filling forms, logging into sites, taking screenshots) through a separate command-line program called agent-browser.",
         "touches": [
           "reads project files",
           "writes project files",
           "network calls",
-          "runs shell commands"
+          "reads credentials/keys",
+          "runs shell commands",
+          "installs dependencies",
+          "writes outside the project"
         ],
         "undo": "not documented by the author",
         "scope": "11 file(s), 39.9KB read: agent-teams/.claude/skills/time-fetcher/SKILL.md, .claude/skills/time-skill/SKILL.md, agent-teams/.claude/skills/time-svg-creator/SKILL.md, .claude/skills/weather-svg-creator/SKILL.md, +7 more. 3 further file(s) NOT read — repo exceeds the 40KB review cap",
-        "limits": "The code was read, not run. This review covers 11 of the repo's 14 files (a 40KB cap); 3 files were withheld. Everything here is written instructions and reference documentation for an AI agent, not a program that runs on its own — the shell commands (date, the agent-browser CLI), the outbound web request (a free, no-key call to the Open-Meteo weather API for Dubai's coordinates), and the file writes (SVG time/weather cards, markdown summaries) all happen only if and when the agent follows the instructions. The browser-automation skill (agent-browser) is the one with real reach: its documented commands can open any URL, fill in login forms, and save an authenticated session to a file (auth.json) for reuse — the skill's own file did not say where that file is written or how to remove it, and the tool it wraps (a separate agent-browser CLI, plus optional Appium for iOS) was not among the files I was given, so I could not verify what that CLI actually does when run. The setup guide (tutorial/day0) walks a human through installing Claude Code and entering either a subscription login or a pasted Anthropic API key that gets stored locally by Claude Code itself — this repo's own files do not read or transmit that key. No install/removal instructions for anything in this repo were shown in what I read.",
-        "reviewed_at": "2026-08-14",
+        "limits": "This review is based on reading the files, not running anything — nothing was installed, executed, or observed working. 3 files in the repo were withheld from the review because of a size cap, so this covers only part of the repo; the withheld files could do things not listed here. Several files these instructions point to (reference.md, examples.md, and .sh script templates for the browser skill) were also not provided, so what those scripts actually do is unknown. The agent-browser skill only contains instructions for using a separate program called agent-browser — that program's own code is not in this repo and was not reviewed, so what it truly does when it opens pages, saves login state, or takes screenshots cannot be verified from here. Its examples show filling in usernames and passwords from environment variables ($USERNAME, $PASSWORD) and saving login sessions to a file (auth.json), which is why credential handling is flagged; whether that is done safely depends entirely on the unreviewed external program. Two tutorial README files walk a human through installing and logging into Claude Code itself, including pasting an Anthropic API key — that is setup documentation for a person, not something this skill's own code reads automatically, but it is included in what was reviewed for completeness. The 'installs dependencies' flag comes from a documented setup command (a global npm install for iOS testing) rather than an automatic install step. The time and weather examples themselves are simple and match their descriptions in what was read.",
+        "reviewed_at": "2026-08-15",
         "reviewer": "automated-source-review v1",
-        "source_sha": "e98438487933d32f97ffa85b5390843b603948fa"
+        "source_sha": "8020188c61a4081399a6ae5aed662024d872d1ac"
       }
     },
     {
@@ -1136,8 +1138,8 @@
         "stars": 58075,
         "forks": 5045,
         "checked": "2026-08-13",
-        "head_sha": "698bfd0c3d051d3de8f147a784d04e225b8f2c8c",
-        "head_checked": "2026-08-14"
+        "head_sha": "c7460f6114449ddfe6ea3fc2f23c3d910c0e740c",
+        "head_checked": "2026-08-15"
       },
       "skim": {
         "date": "2026-07-27",
@@ -1148,22 +1150,20 @@
         ]
       },
       "review": {
-        "does": "Researches a topic you name across Reddit, X, YouTube, TikTok, Instagram, Hacker News, Polymarket and the open web from the last 30 days, and hands back a synthesized, cited summary of what people are actually saying — with an elaborate first-run setup that can read browser cookies, request access tokens for several of those platforms, and install a helper command-line tool.",
+        "does": "Adds a /last30days command that has your agent gather the past month's posts and reactions on a topic from Reddit, X, TikTok, Instagram, YouTube, Hacker News, Polymarket, and the web, then hands you a written summary with the sources counted up.",
         "touches": [
-          "reads project files",
-          "writes project files",
+          "runs shell commands",
           "network calls",
           "reads credentials/keys",
-          "runs shell commands",
           "installs dependencies",
           "writes outside the project"
         ],
         "undo": "not documented by the author",
-        "scope": "2 file(s), 40.0KB read: AGENTS.md, skills/last30days/SKILL.md. skills/last30days/SKILL.md truncated at 25KB of 222KB. 104 further file(s) NOT read — repo exceeds the 40KB review cap",
-        "limits": "The code was read, not run, and this is a thin slice of a large repository: only 2 of 106 files were provided (AGENTS.md and the start of SKILL.md), and SKILL.md itself is 222KB — I saw only its first 25KB (about 11%), so most of the skill's own instruction contract, and every one of the ~104 unread files including the actual Python engine (last30days.py and its lib/ modules), were not reviewed. Everything above comes from what those two partial files say the skill does, not from inspecting the engine code that does it. The setup flow they describe explicitly reads browser cookies (with consent prompts and a macOS Full-Disk-Access fallback), requests optional API keys and tokens for ten-plus services (ScrapeCreators, OpenAI, xAI, OpenRouter, Perplexity, Parallel, Brave, Apify, plus X/Bluesky/TruthSocial auth tokens), and on a successful setup step writes one of those keys (SCRAPECREATORS_API_KEY) to a local file with restricted permissions — which is why I list reading credentials. It also installs a separate command-line tool (a Digg client) into the user's home directory, and the documented install method copies the skill itself into a folder under the user's home directory outside any project, which is why I list writing outside the project. Because I could not read the engine code, I cannot confirm these behaviors happen exactly as the documentation describes, whether any of the described API keys or cookies are sent anywhere beyond the named platform each one is scoped to, or whether an undo/removal procedure exists later in the unread 88% of SKILL.md or in the unread README/CONFIGURATION.md files.",
-        "reviewed_at": "2026-08-14",
+        "scope": "2 file(s), 40.0KB read: AGENTS.md, skills/last30days/SKILL.md. skills/last30days/SKILL.md truncated at 25KB of 223KB. 105 further file(s) NOT read — repo exceeds the 40KB review cap",
+        "limits": "This review is based on reading the source, not running it — nothing here was executed or observed working. It covers only 2 of the repo's 107 files (a contributor guide and the skill's instruction file), and even the instruction file was cut off after roughly its first ninth (25KB of 223KB); the actual Python programs that do the searching were not provided at all, so every statement about what they do comes from the instruction file's own description, not from the code. Within what was readable: the skill directs the agent to run shell commands and a Python setup wizard; the first-run flow asks permission and then can read browser cookies, use many optional API keys (X/Twitter, Bluesky app password, ScrapeCreators, OpenAI, xAI, OpenRouter, Perplexity, Brave, Parallel), save a ScrapeCreators key to a config file with restricted file permissions once a GitHub sign-up flow completes, and install a helper CLI into the home folder's bin directory via a separate package. Where the saved research reports land depends on a user setting and was not verifiable here. The instructions tell contributors never to commit real API keys or cookies into this repo, which is guidance for the project's own maintainers, not a limit on what your agent can do with the keys you supply it. Whether the unseen Python code does anything beyond what the docs claim cannot be determined from this review.",
+        "reviewed_at": "2026-08-15",
         "reviewer": "automated-source-review v1",
-        "source_sha": "698bfd0c3d051d3de8f147a784d04e225b8f2c8c"
+        "source_sha": "c7460f6114449ddfe6ea3fc2f23c3d910c0e740c"
       }
     },
     {
@@ -1234,8 +1234,8 @@
         "stars": 52237,
         "forks": 4561,
         "checked": "2026-08-13",
-        "head_sha": "09cb02b756d5f86ba7c971b9516ed18e827491a4",
-        "head_checked": "2026-08-14"
+        "head_sha": "27d0532c17ff228e681e0a2de1e6c8d75943299a",
+        "head_checked": "2026-08-15"
       },
       "skim": {
         "date": "2026-07-27",
@@ -1246,16 +1246,16 @@
         ]
       },
       "review": {
-        "does": "A curated, annotated link directory of other people's Claude Code resources — skills, plugins, MCP servers, guides, and tools — organized by category with a short description and quality note for each entry; it does not add any capability to your agent by itself.",
+        "does": "Gives you a big browsable list of links to other people's Claude Code guides, tools, and add-ons, with short descriptions of each — it does not add any ability to your agent by itself.",
         "touches": [
           "no side effects"
         ],
         "undo": "not documented by the author",
         "scope": "1 file(s), 40.0KB read: README.md. README.md truncated at 40KB of 138KB. 21 further file(s) NOT read — repo exceeds the 40KB review cap",
-        "limits": "The code was read, not run. This review covers 1 of 22 files (README.md), and even that file was cut off after its first 40KB of 138KB total — roughly the first third of the list. What was read is a plain markdown link list with embedded image badges; it ships no scripts, executables, or install commands of its own, which is the basis for 'no side effects.' The 21 other files (including README_ALTERNATIVES/ and any repo scripts) were not shown to me. Because this is a directory, its real content is the hundreds of external repositories it links to — those were not reviewed here, and several of them (linked with descriptions like 'reads real browser cookies' or 'drives desktop apps via automation runtimes') sound far more invasive than this list itself; a reader should not assume the directory's own safety extends to what it points at.",
-        "reviewed_at": "2026-08-14",
+        "limits": "This review is based on reading the source, not running or installing anything. Only one file (README.md) was provided, and only its first 40KB of 138KB — the rest of that file and 21 other files in the repository were withheld from this review, so I cannot confirm the whole repository ships no executable code; the 'no side effects' finding applies only to the portion I saw, which is plain markdown made of links, descriptions, and badge images. The descriptions of the listed third-party projects (including any claims about their privacy, security, or behavior) are this list's own summaries, not verified facts — each linked project needs its own review before installing. The badge images in the README load from img.shields.io and awesome.re when the page is viewed, which is normal for such lists but means viewing the rendered page contacts those third-party services.",
+        "reviewed_at": "2026-08-15",
         "reviewer": "automated-source-review v1",
-        "source_sha": "09cb02b756d5f86ba7c971b9516ed18e827491a4"
+        "source_sha": "27d0532c17ff228e681e0a2de1e6c8d75943299a"
       }
     },
     {
@@ -1326,8 +1326,8 @@
         "stars": 42322,
         "forks": 3374,
         "checked": "2026-08-13",
-        "head_sha": "9636cb1bb7ddafc6a27326ff9cbbfff08d9a669d",
-        "head_checked": "2026-08-14"
+        "head_sha": "54507ece6992e35c4f024626a2e6860764a260cd",
+        "head_checked": "2026-08-15"
       },
       "skim": {
         "date": "2026-07-27",
@@ -1339,18 +1339,18 @@
         ]
       },
       "review": {
-        "does": "Turns your agent into a simulated academic journal: one skill runs a panel of five distinct AI reviewer personas (including a dedicated 'Devil's Advocate') over a paper you give it and produces review reports plus an editorial accept/revise/reject decision, while a companion skill runs a much larger 13-agent pipeline that researches a topic from scratch and writes up an APA-formatted literature report — both explicitly barred from editing your original manuscript, producing separate report documents instead.",
+        "does": "Gives your agent detailed step-by-step playbooks for academic research work — turning a topic into a research question, gathering and grading sources, writing an APA-style report, and running a simulated multi-agent peer review of a paper — as written instructions the agent follows in conversation.",
         "touches": [
           "reads project files",
           "writes project files",
-          "network calls"
+          "runs shell commands"
         ],
         "undo": "not documented by the author",
-        "scope": "2 file(s), 40.0KB read: academic-paper-reviewer/SKILL.md, deep-research/SKILL.md. deep-research/SKILL.md truncated at 5KB of 35KB. 374 further file(s) NOT read — repo exceeds the 40KB review cap",
-        "limits": "The code was read, not run. This review covers only 2 of the repository's 376 files (a 40KB cap): the two top-level SKILL.md entry points, and even one of those (deep-research) was cut off after roughly 4KB of 35KB. Every individual reviewer/research 'agent' this system dispatches (field_analyst, eic, methodology_reviewer, devils_advocate, editorial_synthesizer, and the entire 13-agent deep-research pipeline) lives in separate agent and reference files that were not shown to me, so I could not verify their actual instructions, only what the two entry-point files describe about them. The reviewer skill states outright that it is read-only — it must never edit the submitted manuscript, only produce separate report files — and treats the manuscript itself as untrusted data whose embedded text must not be allowed to redirect the reviewers. One explicit, consent-gated feature does leave the machine: an optional 'cross-model' verification track that uploads the manuscript to a different external AI provider, but only when a specific environment variable is set and the user has separately given consent. The entry files also reference several Python validator scripts (e.g. scripts/check_sprint_contract.py, scripts/check_panel_synthesis.py) that appear to run automatically via Claude Code's hook system rather than being invoked directly by the reviewer's own instructions, but their contents and exact trigger were not in what I read, so I have not listed 'runs shell commands' as confirmed. No credential access, installs, or writes outside the project were shown in the two files I read, but 374 unread files could show more.",
-        "reviewed_at": "2026-08-14",
+        "scope": "2 file(s), 40.0KB read: deep-research/SKILL.md, academic-paper-reviewer/SKILL.md. academic-paper-reviewer/SKILL.md truncated at 4KB of 37KB. 390 further file(s) NOT read — repo exceeds the 40KB review cap",
+        "limits": "This review is based on reading the source, not running it — nothing here was executed or tested. It covers only 2 of roughly 392 files in the repository (a 40KB review cap withheld the other 390), and one of the two files read was cut off after roughly its first ninth (4KB of 37KB), so most of the repository — including all the individual agent definition files, reference documents, templates, and any scripts — was not seen. The two files read are instruction documents (prose for the AI to follow), but they reference a Python script (scripts/check_pipeline_integrity.py), a PreToolUse hook that runs automatically in some setups, and environment-variable switches (ARS_MODEL_TIERING, ARS_SOCRATIC_READING_PROBE, ARS_PASSPORT_RESET) whose actual code I could not inspect. 'Writes project files' comes from instructions to save progress to allow the user to resume later; 'reads project files' and 'runs shell commands' reflect the referenced-but-unseen verifier script and hook. There may be additional behavior (network access, other file writes) in the unseen files that this review cannot rule out — the instructions also direct the agent to search literature databases, which in practice would mean network activity, though no network code appears in the files I was given. The author's claimed 13-agent pipeline and its safeguards could not be verified against the actual agent files.",
+        "reviewed_at": "2026-08-15",
         "reviewer": "automated-source-review v1",
-        "source_sha": "9636cb1bb7ddafc6a27326ff9cbbfff08d9a669d"
+        "source_sha": "54507ece6992e35c4f024626a2e6860764a260cd"
       }
     },
     {
@@ -1374,8 +1374,8 @@
         "stars": 37783,
         "forks": 4767,
         "checked": "2026-08-13",
-        "head_sha": "782200e3a4f7c17248974ac4a63284c868bc290f",
-        "head_checked": "2026-08-14"
+        "head_sha": "a80885b76044550770f60f360f8a0e5ae3524a31",
+        "head_checked": "2026-08-15"
       },
       "skim": {
         "date": "2026-07-27",
@@ -1387,19 +1387,20 @@
         ]
       },
       "review": {
-        "does": "A large, official GitHub grab-bag of community-submitted Copilot skills covering dozens of unrelated jobs — driving a real browser to fill in forms or explore websites, filing and updating GitHub issues from a spec file, Linux distro troubleshooting with copy-paste shell commands, running your test suite to raise coverage, database SDK code generation, VS Code extension localization, and more — so what any single install actually does depends entirely on which of the 808 skills you enable.",
+        "does": "Gives your agent a grab-bag of ready-made playbooks, each one changing how it behaves on a specific job — filling in a web form with a browser-automation tool, generating and running tests, troubleshooting Linux servers, filing GitHub issues from a specification, writing READMEs and code tutorials, tuning a Qdrant database — by telling it step by step what to do.",
         "touches": [
           "reads project files",
           "writes project files",
           "network calls",
-          "runs shell commands"
+          "runs shell commands",
+          "installs dependencies"
         ],
         "undo": "not documented by the author",
         "scope": "36 file(s), 40.0KB read: skills/playwright-automation-fill-in-form/SKILL.md, skills/dataverse-python-quickstart/SKILL.md, skills/playwright-explore-website/SKILL.md, skills/next-intl-add-language/SKILL.md, +32 more. skills/react-audit-grep-patterns/SKILL.md truncated at 1KB of 2KB. 772 further file(s) NOT read — repo exceeds the 40KB review cap",
-        "limits": "The code was read, not run. This review covers 36 of 808 files (a 40KB cap, capped further at 40 files) — one (react-audit-grep-patterns) was cut off almost immediately. Nearly every file I saw is plain instruction text for the agent, not executable code, so what happens depends on which skill you install and whether the agent follows it: some drive a real browser via the Playwright MCP server to navigate to and fill in web forms, some call GitHub's issue-creation and search tools, one explicitly runs pytest to generate and act on a coverage report, several Linux-triage skills hand the user (not necessarily the agent) copy-paste systemctl/dnf/pacman/apt commands, and two ('boost-prompt', 'first-ask') use a separate VS Code extension (Joyride) to write refined prompt text to the system clipboard — outside any project folder. One skill (ai-ready) is explicitly a pointer: it tells the user to run a command themselves to download a different, external skill from a separate repository (johnpapa/ai-ready) and states plainly it will not run that command on the user's behalf. Because 772 files were withheld by the review cap, this sample cannot characterize the collection as a whole — only that it is broad, uneven in what each entry touches, and that a reader installing a specific skill from it should judge that skill on its own, not on this summary.",
-        "reviewed_at": "2026-08-14",
+        "limits": "The code was read, not run. This review covers only a small slice of the repository: 36 files were provided and 772 files were withheld under the review size cap, so the vast majority of the repo is unreviewed and anything could be in it; one of the 36 files (react-audit-grep-patterns) was also cut off after roughly its first half. The files reviewed are plain-text instruction pages with no program code of their own — the categories listed reflect what these pages explicitly tell the agent to do: save and edit files in the project, run commands like pytest and dnf, install a Python package with pip, navigate web pages with a browser-automation tool, and file GitHub issues from a specification. Whether those actions actually happen depends on the agent and tools that read the instructions — no executable code was reviewed. One page hard-codes a specific Microsoft Forms web address and a file path in someone's personal Downloads folder as an example; another (the Dataverse skill) has the agent authenticate to a Microsoft cloud service via an interactive browser login. Nothing reviewed shows handling of stored passwords or API keys, but the 772 unreviewed files could differ.",
+        "reviewed_at": "2026-08-15",
         "reviewer": "automated-source-review v1",
-        "source_sha": "782200e3a4f7c17248974ac4a63284c868bc290f"
+        "source_sha": "a80885b76044550770f60f360f8a0e5ae3524a31"
       }
     },
     {
@@ -1425,8 +1426,8 @@
         "stars": 33415,
         "forks": 3275,
         "checked": "2026-08-13",
-        "head_sha": "13385c7c4db02fdcc84a020752c07cce91ef780e",
-        "head_checked": "2026-08-14"
+        "head_sha": "b2a92ba052dcae4ef48e850b9e31ebf75706be48",
+        "head_checked": "2026-08-15"
       },
       "skim": {
         "date": "2026-07-27",
@@ -1439,7 +1440,7 @@
         ]
       },
       "review": {
-        "does": "A large library of separate scientific tools your agent can call on individually — searching structured data from scientific papers, running a biology/drug knowledge-graph, doing academic-focused web search, managing a Zotero reference library, running cheminformatics calculations with RDKit, and launching a real genomics pipeline (tumor/normal sequencing analysis) on a compute cluster — each one is its own install with its own setup, not one unified capability.",
+        "does": "Gives your agent a large set of step-by-step playbooks for science research work — finding and pulling papers, querying biology/medicine databases, running chemistry and genomics tools, and doing web research — so it knows which outside tool or service to reach for and how to drive it.",
         "touches": [
           "reads project files",
           "writes project files",
@@ -1450,11 +1451,11 @@
           "writes outside the project"
         ],
         "undo": "not documented by the author",
-        "scope": "9 file(s), 40.0KB read: skills/bgpt-paper-search/SKILL.md, skills/paperzilla/SKILL.md, skills/primekg/SKILL.md, skills/exa-search/SKILL.md, +5 more. skills/parallel-web/SKILL.md truncated at 3KB of 6KB. 699 further file(s) NOT read — repo exceeds the 40KB review cap",
-        "limits": "The code was read, not run. This review covers 9 of 708 files (a 40KB cap) — 699 files were withheld, including nearly all of the 148 skills the repository advertises, so this can only describe the 8 skills actually sampled, not the library as a whole. Several of those 8 read API keys or credentials from environment variables or a project .env file (Exa, Parallel, Zotero, and an optional paid tier for BGPT), which is why I list reading credentials — none of the files I saw showed a key being sent anywhere other than the service it names. Several install packages via pip/uv/npm/brew or a platform-specific CLI, and one (pacsomatic) is a genuinely high-stakes operational tool: it validates and launches a real bioinformatics pipeline, can submit jobs to an HPC job scheduler (Slurm/LSF/PBS/SGE), and writes launch scripts and parameter files as part of that. One file (primekg) hard-codes a Windows developer path (C:\\Users\\eamon\\...) as its data location and is marked license 'Unknown' — both worth a second look before relying on it. The Pi-agent skill's own documentation states plainly that Pi 'is local and not sandboxed by default' and that extensions/skills run with the full permissions of the Pi process — a caution from the source itself, not my inference. I could not verify any of this by running it, and 699 unread files could show more of the same or different behavior.",
-        "reviewed_at": "2026-08-14",
+        "scope": "9 file(s), 40.0KB read: skills/bgpt-paper-search/SKILL.md, skills/paperzilla/SKILL.md, skills/primekg/SKILL.md, skills/exa-search/SKILL.md, +5 more. skills/pi-agent/SKILL.md truncated at 3KB of 6KB. 704 further file(s) NOT read — repo exceeds the 40KB review cap",
+        "limits": "The code was read, not run — nothing here was installed, executed, or observed working. This review is a small sample of the repository: only 9 files (about 40KB) were provided and 704 were withheld, so most of the library is unreviewed. One of the 9, skills/pi-agent/SKILL.md, was cut off after roughly its first half. Important gap: the files I saw are instruction documents, but they repeatedly point the agent at bundled program files that were NOT provided to me (for example query_primekg.py and exa_search.py). What those programs actually do is unverified — my category list comes from what the instructions plainly say happens, so the real behavior could be broader. Specific things the instructions do say, worth knowing: they tell the agent to check for a `.env` file or an exported environment variable holding an Exa API key; some use paid outside services (BGPT, Exa) that can cost money per query, with a free tier for one; installs can go system-wide (Homebrew, `uv pip install`), landing outside your project folder; and the PrimeKG skill has a hard-coded data path to another person's Windows folder (C:\\Users\\eamon\\...), which suggests these files are not uniformly cleaned up before publishing. The author's description claims 148 skills and 100+ scientific databases; I cannot confirm or deny that from 9 files, and saw no evidence either way about the quality or safety of the rest.",
+        "reviewed_at": "2026-08-15",
         "reviewer": "automated-source-review v1",
-        "source_sha": "13385c7c4db02fdcc84a020752c07cce91ef780e"
+        "source_sha": "b2a92ba052dcae4ef48e850b9e31ebf75706be48"
       }
     },
     {
