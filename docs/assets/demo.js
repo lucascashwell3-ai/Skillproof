@@ -29,13 +29,16 @@
     cli: {
       title: "skillproof — install the skill",
       lines: [
-        { t: "sh", type: true, html: "for f in SKILL.md references/…; do curl -fsSL --create-dirs …; done" },
-        { t: "out", html: '✓ 7 files → ~/.claude/skills/skillproof/ <span class="dim">— nothing piped to a shell</span>' },
+        { t: "sh", type: true, html: "for f in SKILL.md references/…; do curl -fsSL --create-dirs …/skills/skillproof/$f -o ~/.claude/skills/skillproof/$f; done" },
+        { t: "out", html: '<span class="ok">✓</span> SKILL.md <span class="dim">4.1 kB</span>' },
+        { t: "out", html: '<span class="ok">✓</span> references/consent.md · conflict-patterns.md · install-paths.md' },
+        { t: "out", html: '<span class="ok">✓</span> references/tiers.md · finding.md · security.md <span class="dim">— 7 files, nothing piped to a shell</span>' },
+        { t: "sh", type: true, html: "claude" },
         { t: "you", type: true, html: "make my agent better at frontend design" },
-        { t: "sp", html: 'Found <span class="ok">impeccable</span>. Your setup: 2 conflicts — a global style rule and an older design skill.' },
-        { t: "sp", html: "Here is each edit, one at a time. Nothing happens without your yes." },
+        { t: "sp", html: 'Found <span class="ok">impeccable</span> — source-read, clean. Read your setup: <span class="warn">2 conflicts</span> — a global style rule and an older design skill.' },
+        { t: "sp", html: 'Edit 1 of 2: retire <span class="hi">~/.claude/skills/design-old</span>. <span class="dim">Approve?</span>' },
         { t: "you", type: true, html: "go ahead on both" },
-        { t: "sp", html: '<span class="ok">✓ Done, verified, undo ready.</span> Your agent now loads one design skill, not two fighting.' }
+        { t: "sp", html: '<span class="ok">✓ Done, verified, undo ready.</span> One design skill loads now, not two fighting.' }
       ]
     },
     mcp: {

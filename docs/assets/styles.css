@@ -201,7 +201,7 @@ kbd{font-family:var(--mono);font-size:.71rem;padding:2px 5px;border-radius:5px;b
 /* the first screen belongs to the hero — the catalog starts below the fold */
 .hero-lead{min-height:calc(100svh - 84px);display:flex;align-items:center;padding:16px 0 30px}
 .hero-split{flex:1;display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);gap:28px;
-  align-items:end;scroll-margin-top:90px}
+  align-items:stretch;scroll-margin-top:90px}
 .hero-panel{width:100%;text-align:left}
 .hero h1{margin-bottom:12px}
 .hero-sub{margin-bottom:22px}
@@ -246,7 +246,7 @@ kbd{font-family:var(--mono);font-size:.71rem;padding:2px 5px;border-radius:5px;b
 .term-dots{margin-left:auto;display:flex;gap:6px}
 .mdot{width:7px;height:7px;border-radius:50%;background:#3A4C68;transition:background 300ms var(--ease-out)}
 .mdot.on{background:#8FBBE8}
-.term-body{padding:18px 20px 20px;font-family:var(--mono);font-size:.78rem;line-height:1.9;
+.term-body{padding:18px 20px 20px;font-family:var(--mono);font-size:.95rem;line-height:1.75;
   flex:1;min-height:380px;overflow:hidden;color:#E8EDF5;
   transition:opacity 300ms var(--ease-out),transform 300ms var(--ease-out)}
 /* 8: direction-aware swap — outgoing session slides toward the tab you left,
@@ -254,7 +254,7 @@ kbd{font-family:var(--mono);font-size:.71rem;padding:2px 5px;border-radius:5px;b
 .term-body.swap-l{opacity:0;transform:translateX(-16px)}
 .term-body.swap-r{opacity:0;transform:translateX(16px)}
 .tln{opacity:0;transform:translateY(4px);transition:opacity 320ms var(--ease-out),transform 320ms var(--ease-out);
-  min-height:1.85em}
+  min-height:1.75em}
 .tln.show{opacity:1;transform:none}
 .tln.you::before{content:"you  › ";color:#7C8EA9}
 .tln.sp{color:#A8C4E4}.tln.sp::before{content:"skill› ";color:#5A7396}
