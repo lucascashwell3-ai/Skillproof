@@ -153,8 +153,11 @@
     var prev = current;
     current = method;
     tabs.forEach(function (t) { t.setAttribute("aria-selected", String(t.dataset.m === method)); });
+    var fwd = ORDER.indexOf(method) >= ORDER.indexOf(prev);
     panes.forEach(function (p) {
       var on = p.dataset.pane === method;
+      p.classList.remove("from-l", "from-r");
+      if (on && fromUser) p.classList.add(fwd ? "from-r" : "from-l");
       p.classList.toggle("on", on);
       if (on) p.removeAttribute("hidden"); else p.setAttribute("hidden", "");
     });
