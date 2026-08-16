@@ -1,0 +1,95 @@
+# Skillproof feeder — v1 job 2 (automation/PIPELINE_V1.md). Auto-publishes
+# scouted entries to main. No PR, no review stage — the honesty gate and the
+# safety skim are the only gates. Publish is followed by a live-count verify;
+# a mismatch reverts the commit and fails the run loud (GitHub notifies Lucas).
+name: feeder
+
+on:
+  schedule:
+    - cron: "40 12 * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: feeder
+  cancel-in-progress: false
+
+jobs:
+  feed:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Unit test the check-stage filters
+        run: python3 -m unittest scripts/test_feeder.py
+
+      - name: Run feeder (feed -> check -> publish)
+        id: run
+        env:
+          GH_TOKEN: ${{ secrets.SKILLPROOF_FEEDER_TOKEN || github.token }}
+        run: |
+          python3 -c "import json;print(json.load(open('docs/data/skills.json'))['skills'].__len__())" > /tmp/count_before
+          python3 scripts/feeder.py
+
+      - name: Commit and push straight to main
+        env:
+          GH_TOKEN: ${{ secrets.SKILLPROOF_FEEDER_TOKEN || github.token }}
+        run: |
+          git config user.name "skillproof-feeder"
+          git config user.email "actions@users.noreply.github.com"
+          if git diff --quiet docs/data/skills.json grading/quarantine.json; then
+            echo "no changes — nothing to publish"
+            exit 0
+          fi
+          git add docs/data/skills.json grading/quarantine.json
+          git commit -m "feeder $(date -u +%Y-%m-%d)"
+          echo "PUBLISHED=1" >> "$GITHUB_ENV"
+          ok=0
+          for i in 1 2 3; do
+            if git push origin HEAD:main; then ok=1; break; fi
+            echo "push attempt $i rejected — rebasing on main"
+            git pull --rebase --autostash origin main || true
+            sleep 5
+          done
+          if [ "$ok" != "1" ]; then
+            echo "::error title=feeder push failed::catalog not published after 3 attempts"
+            exit 1
+          fi
+
+      - name: Wait for Pages deploy, then verify the live count matches
+        if: env.PUBLISHED == '1'
+        run: |
+          before=$(cat /tmp/count_before)
+          after=$(python3 -c "import json;print(json.load(open('docs/data/skills.json'))['skills'].__len__())")
+          url="https://lucascashwell3-ai.github.io/Skillproof/data/skills.json"
+          ok=0
+          for i in $(seq 1 30); do
+            live=$(curl -fsS "$url" | python3 -c "import json,sys;print(json.load(sys.stdin)['skills'].__len__())" 2>/dev/null || echo "-1")
+            if [ "$live" = "$after" ]; then ok=1; break; fi
+            echo "attempt $i: live=$live want=$after — waiting for Pages"
+            sleep 10
+          done
+          if [ "$ok" != "1" ]; then
+            echo "::error title=feeder verify failed::live count never matched (before=$before after=$after) — reverting"
+            git config user.name "skillproof-feeder"
+            git config user.email "actions@users.noreply.github.com"
+            git revert --no-edit HEAD
+            ok2=0
+            for i in 1 2 3; do
+              if git push origin HEAD:main; then ok2=1; break; fi
+              git pull --rebase --autostash origin main || true
+              sleep 5
+            done
+            [ "$ok2" = "1" ] || echo "::error title=feeder revert push failed::manual revert needed"
+            exit 1
+          fi
+          echo "verified: live count = $after"
