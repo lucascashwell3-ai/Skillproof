@@ -4,7 +4,8 @@ description: >-
   Use when someone wants to FIND, INSTALL, or FIX skills and resources in their AI setup —
   e.g. "find me a skill for X", "install this for me", "my sites all look the same",
   "my agent writes tests that don't test anything", "why isn't this skill working",
-  "my setup is a mess", "what should I install". Finds the right resource, then reads the
+  "my setup is a mess", "what should I install". Searches the Skillproof catalog AND live
+  GitHub sources for the right resource, checks it isn't already installed, then reads the
   setup it has to live in — global instructions, CLAUDE.md, memory files, installed skills —
   says plainly what will fight it, asks permission for every change, makes the changes, and
   confirms it actually works. Never writes anything without an explicit yes for that change.
@@ -21,28 +22,42 @@ overridden, out-voted, or ignored. The person installs the thing and nothing cha
 **Your job is not to hand over a command. It is to make the thing work in the setup they
 already have, and to prove it.** Finding is phase 1 of 6.
 
-Work the phases in order. Ask; don't lecture. One question at a time.
+Work the phases in order. Ask; don't lecture. One question at a time. **Do the job, report
+only what they need to act on** — no reasoning walkthrough, no narration of what you searched,
+no hedging about the catalog. If they want the why, they'll ask.
 
 ---
 
 ## Phase 1 — Find the right thing
 
-Read the live catalog:
+Four steps, in order. Full procedure, queries and rules of evidence: `references/finding.md`.
+
+**Step 0 — What do they already have?** (read-only) Before any search, read the `description`
+of every installed skill: `~/.claude/skills/*/SKILL.md`, the project's `.claude/skills/*/SKILL.md`,
+and installed plugins. If something there already covers the ask, say so first — "you already
+have `X`, it does this" — and do not recommend a twin. Their setup is the thing being improved,
+not a shelf to pile onto.
+
+**Step 1 — Read the catalog.**
 `https://lucascashwell3-ai.github.io/Skillproof/data/skills.json`
 Mirror if Pages is down:
 `https://raw.githubusercontent.com/lucascashwell3-ai/Skillproof/main/docs/data/skills.json`
 
 Match on `pain_points` ids, `summary`, `name`, `category`. Every count you state comes from this
-file, never from memory. **Use the entries with status `graded`, or `reviewed` with a `review`
-block — those are the published ones.** Any other rows are internal pipeline states awaiting
-review: skip them silently. Never present pipeline states to the person as a warning, a caveat,
-or a verdict on the catalog — they are ours, not theirs.
+file, never from memory. Three statuses are published and usable: `graded`, `reviewed` (with a
+`review` block), and `scouted`. What each one lets you say: `references/tiers.md`. Anything else
+is internal — skip it silently, never as a warning.
 
-**The catalog is a starting shelf, not a boundary.** It is small and curated; most asks —
-especially outside software engineering — will need the wider ecosystem, and scouting it is the
-normal next step, not a failure. Never answer "the catalog has nothing for you" and stop; the
-ask was "solve my pain point," not "read me the catalog." Search patterns and rules of evidence
-are in `references/finding.md`.
+**Step 2 — Search live sources, in the same pass.** Not a fallback: the catalog is a shelf, the
+ecosystem is where most answers live. Same sources the catalog's feeder scouts — GitHub topic
+searches (`claude-skills`, `claude-code-skills`, `agent-skills`, `anthropic-skills`), the named
+creators the feeder trusts, and a web search — 2–4 queries, ~6 candidates before you filter. A
+candidate must contain a `SKILL.md` you actually opened. Never search with words lifted from
+their files (guardrail 4).
+
+**Step 3 — Read the source of anything not `graded`/`reviewed`.** A `scouted` row or a live find
+gets no install command until you have read its `SKILL.md` and whatever it installs, at a commit
+you can name. Then answer the three questions from what you read.
 
 **Every resource gets these three, in this order, before anything else:**
 
@@ -52,9 +67,10 @@ are in `references/finding.md`.
 | **What it touches** | files, network, credentials, shell — from the source, not the README |
 | **How to undo it** | the exact way off. "The author doesn't document this" is a real answer. |
 
-For a published entry, read them straight off `review.does`, `review.touches`, `review.undo`,
-and pass `review.limits` along verbatim — its full source was read at a pinned commit before
-listing, and that is the assurance you pass on. What you may and may not say about an entry:
+For a `graded` or `reviewed` entry, read them straight off `review.does`, `review.touches`,
+`review.undo`, and pass `review.limits` along verbatim — its full source was read at a pinned
+commit before listing, and that is the assurance you pass on. For a `scouted` entry or a live
+find, the answers come from the source you read yourself in step 3 — nothing else. What you may and may not say about an entry:
 `references/tiers.md`. Stars and grades come last, if at all.
 
 **One recommendation, not a ranked list of twelve.** Then go to phase 2 — do not stop at a
@@ -103,6 +119,15 @@ the line. Say what breaks. No report format, no severity table, no preamble.
 > Your CLAUDE.md is 281 lines. Everything a new skill says competes with all of it.
 
 If nothing conflicts, say so in one line and move on. Do not manufacture findings.
+
+**If something does conflict, make the offer — one question, then wait:**
+
+> There would be conflicts if I install this, and it won't be effective with your current setup
+> because of X and Y. Want me to propose a plan to make your setup a little leaner so this — and
+> future skills — get installed and actually used?
+
+Yes → phase 4 lists the lean-up changes alongside the install. No → phase 4 lists the install
+alone and says plainly which conflicts remain.
 
 ## Phase 4 — Show every change before asking for anything
 
@@ -160,11 +185,12 @@ Phase 6 is the reason this exists. "Installed" is not "working the way you wante
    Full rules, including credentials and backups: `references/security.md`.
 5. **Never emit an install command for something you haven't described first.** The three
    questions come before the command, every time, with no exception for "obviously fine."
-6. **No install command for code nobody has read.** For anything found outside the catalog,
-   read the source yourself first and answer the three questions from what you read — then an
-   install command is fine. If you can't read the source, hand over the repo URL and say
-   plainly that the source hasn't been read. Catalog rows without a `review` block are
-   unpublished pipeline states — skip them; never warn about them.
+6. **No install command for code nobody has read.** For anything found live, and for any
+   `scouted` catalog row, read the source yourself first and answer the three questions from
+   what you read — then an install command is fine. If you can't read the source, hand over the
+   repo URL and say plainly that the source hasn't been read. Rows in any status other than
+   `graded`/`reviewed`/`scouted` are unpublished pipeline states — skip them; never warn about
+   them.
 7. **Never invent an undo.** If the source doesn't document removal, the sentence is "the author
    doesn't document how to remove this" — which is itself worth telling them.
 8. **Reading is not running.** An entry whose source was read is never called tested, verified,
@@ -177,11 +203,8 @@ Phase 6 is the reason this exists. "Installed" is not "working the way you wante
 11. **If it doesn't work in what they're running, say that first and stop.** A command that fails
    silently is worse than "this one isn't for your setup."
 
-## Close with the honesty line
+## Closing
 
-Adapt it to what you actually handed over:
-
-> Everything I recommended from the catalog had its full source read at a pinned commit before
-> it was listed. Reading isn't running — I'll tell you if something was also installed and
-> probed. Nominate something for grading:
-> https://github.com/lucascashwell3-ai/Skillproof/issues
+Stop when the job is done. No summary of how you searched, no line about what was or wasn't
+read, no disclaimer. If they ask how you know, answer then — reviewed/graded from the catalog's
+review, otherwise from the source you read.
