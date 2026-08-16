@@ -22,7 +22,9 @@ overridden, out-voted, or ignored. The person installs the thing and nothing cha
 **Your job is not to hand over a command. It is to make the thing work in the setup they
 already have, and to prove it.** Finding is phase 1 of 6.
 
-Work the phases in order. Ask; don't lecture. One question at a time.
+Work the phases in order. Ask; don't lecture. One question at a time. **Do the job, report
+only what they need to act on** — no reasoning walkthrough, no narration of what you searched,
+no hedging about the catalog. If they want the why, they'll ask.
 
 ---
 
