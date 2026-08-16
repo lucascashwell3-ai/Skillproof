@@ -199,12 +199,12 @@ kbd{font-family:var(--mono);font-size:.71rem;padding:2px 5px;border-radius:5px;b
    ===================================================================== */
 .hero{padding:0 0 22px}
 /* the first screen belongs to the hero — the catalog starts below the fold */
-.hero-lead{min-height:calc(100svh - 84px);display:flex;align-items:center;padding:16px 0 30px}
+.hero-lead{min-height:calc(100svh - 84px);display:flex;align-items:center;padding-top:16px;padding-bottom:30px}
 .hero-split{flex:1;display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);gap:28px;
   align-items:stretch;scroll-margin-top:90px}
 .hero-panel{width:100%;text-align:left}
-.hero h1{margin-bottom:12px}
-.hero-sub{margin-bottom:22px}
+.hero h1{margin-bottom:16px}
+.hero-sub{margin-bottom:30px}
 
 /* installer */
 .installer{background:var(--glass-strong);border-radius:var(--r-md);overflow:hidden;
@@ -314,6 +314,7 @@ kbd{font-family:var(--mono);font-size:.71rem;padding:2px 5px;border-radius:5px;b
 
 @media (max-width:900px){
   .hero-lead{min-height:0;padding-top:24px}
+  .hero-sub{margin-bottom:22px}
   .hero-split{grid-template-columns:1fr;gap:22px;align-items:start}
   .term{align-self:auto}
   .term-body{min-height:280px;flex:none;height:300px}
