@@ -827,7 +827,7 @@
     $("#copyPlan").addEventListener("click", function () { copyPlanNow(null); });
     $("#copy").addEventListener("click", function () { copyPlanNow($("#copy")); });
 
-    $$(".copy[data-copy]").forEach(function (btn) {
+    $$("[data-copy]").forEach(function (btn) {
       btn.addEventListener("click", function () {
         try { if (navigator.clipboard) navigator.clipboard.writeText(btn.getAttribute("data-copy")); } catch (err) {}
         btn.classList.add("done");

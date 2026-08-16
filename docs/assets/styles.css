@@ -227,7 +227,8 @@ kbd{font-family:var(--mono);font-size:.71rem;padding:2px 5px;border-radius:5px;b
   color:var(--ink-2);margin-bottom:9px}
 .inst-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .prompt-status{font-size:.75rem;color:var(--mint-d);font-weight:560}
-.inst-cmd{font-size:.68rem;max-height:76px;overflow-y:auto;scrollbar-width:thin}
+.inst-cmd{font-size:.68rem;max-height:76px;overflow-y:auto;scrollbar-width:thin;padding-right:44px}
+.installer .cmdwrap{margin-bottom:9px}
 .inst-fine{font-size:.72rem !important;color:var(--ink-3) !important;margin-top:9px}
 .inst-fine a{color:var(--violet-d)}
 .inst-fine code{font-family:var(--mono);font-size:.68rem;background:rgba(24,35,56,.07);
@@ -296,8 +297,6 @@ kbd{font-family:var(--mono);font-size:.71rem;padding:2px 5px;border-radius:5px;b
     transparent 1turn)}
   .term.beam-follow::before,.term.beam-follow::after{transition:none}
 }
-/* full-width copy button variant — same delegation as the corner icon */
-.copy-full{position:static;width:auto;height:auto;border-radius:var(--r-pill)}
 
 /* review "touches" chips — the fixed 8-word vocabulary, one chip each */
 .touch{display:inline-block;margin:0 5px 4px 0;padding:2px 9px;border-radius:var(--r-pill);
