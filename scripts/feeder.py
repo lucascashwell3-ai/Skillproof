@@ -286,6 +286,9 @@ def main():
     data["as_of"] = TODAY
     DATA.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n")
 
+    # a signal refresh can move HEAD past a pinned review; mark those stale first
+    # (the gate's own remedy), then run the gate for real
+    subprocess.run([sys.executable, str(ROOT / "validate_index.py"), "--downgrade-stale"])
     gate = subprocess.run([sys.executable, str(ROOT / "validate_index.py")])
     if gate.returncode != 0:
         print("honesty gate FAILED — feeder run rejected", file=sys.stderr)
