@@ -275,21 +275,26 @@ kbd{font-family:var(--mono);font-size:.71rem;padding:2px 5px;border-radius:5px;b
    compositor work (one animated custom property driving a conic gradient
    masked to the border ring) — nothing repaints inside the card. */
 @property --beam{syntax:"<angle>";inherits:false;initial-value:0deg}
-.term::after{content:"";position:absolute;inset:0;border-radius:inherit;padding:1.5px;
+.term::before,.term::after{content:"";position:absolute;inset:0;border-radius:inherit;padding:2.5px;
   pointer-events:none;
   background:conic-gradient(from var(--beam),
-    transparent 0turn, transparent .72turn,
-    rgba(143,187,232,.85) .80turn, #EAF3FC .90turn, rgba(143,187,232,.85) 1turn,
-    transparent 1.08turn);
+    transparent 0turn, transparent .52turn,
+    rgba(109,91,246,0) .56turn, #6D5BF6 .70turn, #8FBBE8 .82turn, #FFFFFF .90turn,
+    #7FD9B4 .96turn, rgba(127,217,180,0) 1turn);
   -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite:xor;mask-composite:exclude;
-  animation:beam 7s linear infinite}
+  animation:beam 6s linear infinite}
+/* the glow: same ring, blurred, under the crisp one */
+.term::before{padding:5px;filter:blur(9px);opacity:1}
+/* interactive: while the pointer is over the terminal, the beam follows it */
+.term.beam-follow::before,.term.beam-follow::after{animation:none;transition:--beam 320ms var(--ease-out)}
 @keyframes beam{to{--beam:360deg}}
 @media (prefers-reduced-motion: reduce){
-  .term::after{animation:none;background:conic-gradient(from 40deg,
-    transparent 0turn, transparent .78turn,
-    rgba(143,187,232,.55) .86turn, rgba(234,243,252,.7) .90turn, rgba(143,187,232,.55) .94turn,
+  .term::before,.term::after{animation:none;background:conic-gradient(from 40deg,
+    transparent 0turn, transparent .74turn,
+    rgba(109,91,246,.7) .82turn, #8FBBE8 .88turn, rgba(255,255,255,.9) .90turn, #7FD9B4 .94turn,
     transparent 1turn)}
+  .term.beam-follow::before,.term.beam-follow::after{transition:none}
 }
 /* full-width copy button variant — same delegation as the corner icon */
 .copy-full{position:static;width:auto;height:auto;border-radius:var(--r-pill)}
