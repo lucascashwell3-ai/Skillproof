@@ -209,8 +209,8 @@ kbd{font-family:var(--mono);font-size:.71rem;padding:2px 5px;border-radius:5px;b
 /* installer */
 .installer{background:var(--glass-strong);border-radius:var(--r-md);overflow:hidden;
   box-shadow:inset 0 0 0 1px rgba(255,255,255,.9), var(--shadow-md)}
-.inst-tabs{display:flex;gap:4px;border-bottom:1px solid rgba(40,48,65,.10);background:rgba(240,234,222,.75)}
-.inst-tab{appearance:none;border:0;background:none;cursor:pointer;padding:11px 20px;
+.inst-tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-bottom:1px solid rgba(40,48,65,.10);background:rgba(240,234,222,.75)}
+.inst-tab{appearance:none;border:0;background:none;cursor:pointer;padding:12px 10px;text-align:center;white-space:nowrap;
   font-size:.82rem;font-weight:640;color:var(--ink-3);border-bottom:2px solid transparent;
   transition:color 200ms var(--ease-out)}
 .inst-tab:hover{color:var(--ink)}
