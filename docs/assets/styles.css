@@ -200,7 +200,7 @@ kbd{font-family:var(--mono);font-size:.71rem;padding:2px 5px;border-radius:5px;b
 .hero{padding:0 0 22px}
 /* the first screen belongs to the hero — the catalog starts below the fold */
 .hero-lead{min-height:calc(100svh - 84px);display:flex;align-items:center;padding:16px 0 30px}
-.hero-split{flex:1;display:grid;grid-template-columns:minmax(0,.96fr) minmax(0,1.04fr);gap:40px;
+.hero-split{flex:1;display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);gap:28px;
   align-items:end;scroll-margin-top:90px}
 .hero-panel{width:100%;text-align:left}
 .hero h1{margin-bottom:12px}
@@ -209,8 +209,8 @@ kbd{font-family:var(--mono);font-size:.71rem;padding:2px 5px;border-radius:5px;b
 /* installer */
 .installer{background:var(--glass-strong);border-radius:var(--r-md);overflow:hidden;
   box-shadow:inset 0 0 0 1px rgba(255,255,255,.9), var(--shadow-md)}
-.inst-tabs{display:flex;border-bottom:1px solid rgba(40,48,65,.10);background:rgba(240,234,222,.75)}
-.inst-tab{appearance:none;border:0;background:none;cursor:pointer;padding:11px 15px;
+.inst-tabs{display:flex;gap:4px;border-bottom:1px solid rgba(40,48,65,.10);background:rgba(240,234,222,.75)}
+.inst-tab{appearance:none;border:0;background:none;cursor:pointer;padding:11px 20px;
   font-size:.82rem;font-weight:640;color:var(--ink-3);border-bottom:2px solid transparent;
   transition:color 200ms var(--ease-out)}
 .inst-tab:hover{color:var(--ink)}
@@ -246,8 +246,8 @@ kbd{font-family:var(--mono);font-size:.71rem;padding:2px 5px;border-radius:5px;b
 .term-dots{margin-left:auto;display:flex;gap:6px}
 .mdot{width:7px;height:7px;border-radius:50%;background:#3A4C68;transition:background 300ms var(--ease-out)}
 .mdot.on{background:#8FBBE8}
-.term-body{padding:16px 18px 18px;font-family:var(--mono);font-size:.76rem;line-height:1.85;
-  flex:1;min-height:330px;overflow:hidden;color:#E8EDF5;
+.term-body{padding:18px 20px 20px;font-family:var(--mono);font-size:.78rem;line-height:1.9;
+  flex:1;min-height:380px;overflow:hidden;color:#E8EDF5;
   transition:opacity 300ms var(--ease-out),transform 300ms var(--ease-out)}
 /* 8: direction-aware swap — outgoing session slides toward the tab you left,
    incoming arrives from the tab you chose */
@@ -278,9 +278,9 @@ kbd{font-family:var(--mono);font-size:.71rem;padding:2px 5px;border-radius:5px;b
 .term::after{content:"";position:absolute;inset:0;border-radius:inherit;padding:1.5px;
   pointer-events:none;
   background:conic-gradient(from var(--beam),
-    transparent 0turn, transparent .78turn,
-    rgba(143,187,232,.9) .86turn, #EAF3FC .90turn, rgba(143,187,232,.9) .94turn,
-    transparent 1turn);
+    transparent 0turn, transparent .72turn,
+    rgba(143,187,232,.85) .80turn, #EAF3FC .90turn, rgba(143,187,232,.85) 1turn,
+    transparent 1.08turn);
   -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite:xor;mask-composite:exclude;
   animation:beam 7s linear infinite}
