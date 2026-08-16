@@ -886,6 +886,8 @@
       try {
         if (navigator.clipboard) navigator.clipboard.writeText($("#promptText").value);
         $("#copyStatus").textContent = "Copied — paste it into any Claude chat.";
+        $("#copyPrompt").classList.add("done");
+        setTimeout(function () { $("#copyPrompt").classList.remove("done"); }, 1600);
       } catch (err) {}
     });
   }

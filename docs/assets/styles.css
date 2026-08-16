@@ -202,9 +202,15 @@ kbd{font-family:var(--mono);font-size:.71rem;padding:2px 5px;border-radius:5px;b
 .hero-lead{min-height:calc(100svh - 84px);display:flex;align-items:center;padding-top:16px;padding-bottom:30px}
 .hero-split{flex:1;display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);gap:28px;
   align-items:stretch;scroll-margin-top:90px}
-.hero-panel{width:100%;text-align:left}
-.hero h1{margin-bottom:16px}
-.hero-sub{margin-bottom:30px}
+.hero-panel{width:100%;text-align:left;display:flex;flex-direction:column;min-width:0}
+.hero-panel .installer{flex:1;display:flex;flex-direction:column}
+.hero-panel .inst-pane.on{flex:1;display:flex;flex-direction:column}
+.hero-panel .inst-pane .cmdwrap{flex:1;min-height:76px;display:flex;flex-direction:column}
+.hero-panel .inst-pane .cmdwrap > .cmdbox,.hero-panel .inst-pane .cmdwrap > textarea{flex:1;max-height:none}
+.hero h1{margin-bottom:22px}
+.term-col{display:flex;flex-direction:column;min-width:0}
+.term-col .hero-sub{margin:0 0 14px;max-width:none;font-size:clamp(.95rem,1.15vw,1.05rem)}
+.term-col .term{flex:1}
 
 /* installer */
 .installer{background:var(--glass-strong);border-radius:var(--r-md);overflow:hidden;
@@ -218,7 +224,7 @@ kbd{font-family:var(--mono);font-size:.71rem;padding:2px 5px;border-radius:5px;b
 .inst-tab:focus-visible{outline:2px solid var(--violet);outline-offset:-3px;border-radius:6px}
 /* every pane is the same height so switching methods never moves the page —
    the size-jump between tabs was a specific review note */
-.inst-pane{display:none;padding:13px 15px;min-height:172px}
+.inst-pane{display:none;padding:15px 16px 14px;min-height:196px}
 .inst-pane.on{display:block;animation:paneIn 260ms var(--ease-out)}
 .inst-pane.on.from-r{animation-name:paneInR}
 .inst-pane.on.from-l{animation-name:paneInL}
@@ -227,11 +233,11 @@ kbd{font-family:var(--mono);font-size:.71rem;padding:2px 5px;border-radius:5px;b
 @keyframes paneInL{from{opacity:0;transform:translateX(-40px)}to{opacity:1;transform:none}}
 .inst-pane > p{font-size:.8rem;color:var(--ink-2);line-height:1.5;margin-bottom:9px}
 .inst-prompt{width:100%;resize:none;border:0;border-radius:var(--r-xs);padding:8px 10px;
-  background:linear-gradient(150deg,#182338,#1E2C44);font-family:var(--mono);font-size:.7rem;line-height:1.5;
-  color:#C9D9EC;margin-bottom:9px;box-shadow:inset 0 1px 0 rgba(255,255,255,.08);scrollbar-width:thin}
+  background:linear-gradient(150deg,#182338,#1E2C44);font-family:var(--mono);font-size:.72rem;line-height:1.5;
+  color:#C9D9EC;margin-bottom:0;padding-right:44px;box-shadow:inset 0 1px 0 rgba(255,255,255,.08);scrollbar-width:thin}
 .inst-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .prompt-status{font-size:.75rem;color:var(--mint-d);font-weight:560}
-.inst-cmd{font-size:.68rem;max-height:76px;overflow-y:auto;scrollbar-width:thin;padding-right:44px}
+.inst-cmd{font-size:.72rem;max-height:120px;overflow-y:auto;scrollbar-width:thin;padding-right:44px}
 .installer .cmdwrap{margin-bottom:9px}
 .inst-fine{font-size:.72rem !important;color:var(--ink-3) !important;margin-top:9px}
 .inst-fine a{color:var(--violet-d)}
@@ -252,7 +258,7 @@ kbd{font-family:var(--mono);font-size:.71rem;padding:2px 5px;border-radius:5px;b
 .mdot{width:7px;height:7px;border-radius:50%;background:#3A4C68;transition:background 300ms var(--ease-out)}
 .mdot.on{background:#8FBBE8}
 .term-body{padding:18px 20px 20px;font-family:var(--mono);font-size:.95rem;line-height:1.75;
-  flex:1;min-height:380px;overflow:hidden;color:#E8EDF5;
+  flex:1;min-height:340px;overflow:hidden;color:#E8EDF5;
   transition:opacity 340ms var(--ease-out),transform 340ms var(--ease-out)}
 /* 8: direction-aware swap — outgoing session slides toward the tab you left,
    incoming arrives from the tab you chose */
@@ -318,7 +324,8 @@ kbd{font-family:var(--mono);font-size:.71rem;padding:2px 5px;border-radius:5px;b
 
 @media (max-width:900px){
   .hero-lead{min-height:0;padding-top:24px}
-  .hero-sub{margin-bottom:22px}
+  .term-col .hero-sub{margin-bottom:12px}
+  .hero-panel .inst-pane .cmdwrap > .cmdbox,.hero-panel .inst-pane .cmdwrap > textarea{max-height:130px;overflow-y:auto}
   .hero-split{grid-template-columns:1fr;gap:22px;align-items:start}
   .term{align-self:auto}
   .term-body{min-height:280px;flex:none;height:300px}

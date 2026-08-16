@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400..800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/styles.css?v=20" />
+  <link rel="stylesheet" href="assets/styles.css?v=23" />
 </head>
 <body>
 
@@ -67,8 +67,6 @@
     <div class="hero-split" id="install">
       <div class="hero-panel">
         <h1>Give your agents the skills <span class="grad">they need.</span></h1>
-        <p class="hero-sub">Skills don&rsquo;t work if your setup rejects them. Skillproof finds
-        what you need and fits it into your setup &mdash; seamlessly, with your permission.</p>
 
         <!-- Three ways in. The tabs also drive the terminal on the right:
              pick a method, watch that method's session play. -->
@@ -83,12 +81,9 @@
             <p>Nothing to install &mdash; paste one short prompt into Claude (browser or app) and
             that chat finds the right skill for your pain point &mdash; from our catalog or the
             wider web &mdash; and fits it into your setup, with your permission.</p>
-            <textarea id="promptText" readonly rows="3" aria-label="Advisor prompt" class="inst-prompt"></textarea>
-            <div class="inst-actions">
-              <button class="btn btn-primary btn-sm" id="copyPrompt" type="button" data-magnetic>Copy prompt</button>
-              <a class="btn btn-ghost btn-sm" href="data/skills.json" download="skillproof-catalog.json">Download the catalog</a>
-              <span class="prompt-status" id="copyStatus" role="status" aria-live="polite"></span>
-            </div>
+            <div class="cmdwrap"><textarea id="promptText" readonly rows="3" aria-label="Advisor prompt" class="inst-prompt"></textarea><button class="copy" id="copyPrompt" type="button" aria-label="Copy prompt"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2.5"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button></div>
+            <p class="inst-fine"><a href="data/skills.json" download="skillproof-catalog.json">Download the catalog ↓</a>
+              <span class="prompt-status" id="copyStatus" role="status" aria-live="polite"></span></p>
           </div>
 
           <div class="inst-pane" id="instPane-cli" role="tabpanel" data-pane="cli" aria-labelledby="instTab-cli" hidden>
@@ -96,9 +91,6 @@
             is piped into a shell, and it never edits your setup without asking first, per change.</p>
             <div class="cmdwrap"><div class="cmdbox inst-cmd">for f in SKILL.md references/consent.md references/conflict-patterns.md references/install-paths.md references/tiers.md references/finding.md references/security.md; do curl -fsSL --create-dirs https://raw.githubusercontent.com/lucascashwell3-ai/Skillproof/main/skills/skillproof/$f -o ~/.claude/skills/skillproof/$f; done
             </div><button class="copy" type="button" aria-label="Copy" data-copy="for f in SKILL.md references/consent.md references/conflict-patterns.md references/install-paths.md references/tiers.md references/finding.md references/security.md; do curl -fsSL --create-dirs https://raw.githubusercontent.com/lucascashwell3-ai/Skillproof/main/skills/skillproof/$f -o ~/.claude/skills/skillproof/$f; done"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2.5"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button></div>
-            <div class="inst-actions">
-              <button class="btn btn-primary btn-sm" type="button" data-copy="for f in SKILL.md references/consent.md references/conflict-patterns.md references/install-paths.md references/tiers.md references/finding.md references/security.md; do curl -fsSL --create-dirs https://raw.githubusercontent.com/lucascashwell3-ai/Skillproof/main/skills/skillproof/$f -o ~/.claude/skills/skillproof/$f; done">Copy install command</button>
-            </div>
             <p class="inst-fine">Read it before you run it &mdash; we&rsquo;d grade us too:
               <a href="https://github.com/lucascashwell3-ai/Skillproof/blob/main/skills/skillproof/SKILL.md" target="_blank" rel="noopener">SKILL.md ↗</a> &middot;
               <a href="https://github.com/lucascashwell3-ai/Skillproof/blob/main/skills/skillproof/references/consent.md" target="_blank" rel="noopener">what it will and won&rsquo;t touch ↗</a></p>
@@ -109,9 +101,6 @@
             four read-only tools your agent can query mid-task.</p>
             <div class="cmdwrap"><div class="cmdbox inst-cmd">git clone https://github.com/lucascashwell3-ai/Skillproof &amp;&amp; cd Skillproof/mcp &amp;&amp; npm install
             </div><button class="copy" type="button" aria-label="Copy" data-copy="git clone https://github.com/lucascashwell3-ai/Skillproof && cd Skillproof/mcp && npm install && claude mcp add skillproof -- node $(pwd)/server.js"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2.5"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button></div>
-            <div class="inst-actions">
-              <button class="btn btn-primary btn-sm" type="button" data-copy="git clone https://github.com/lucascashwell3-ai/Skillproof && cd Skillproof/mcp && npm install && claude mcp add skillproof -- node $(pwd)/server.js">Copy MCP setup</button>
-            </div>
             <p class="inst-fine">Then: <code>claude mcp add skillproof -- node /path/to/Skillproof/mcp/server.js</code> &middot;
               per-host setup in <a href="https://github.com/lucascashwell3-ai/Skillproof/blob/main/mcp/README.md" target="_blank" rel="noopener">mcp/README.md ↗</a></p>
           </div>
@@ -120,7 +109,11 @@
         <p class="hero-assure">✓ Every skill here is a real, licensed, actively maintained repo — vetted automatically, daily.</p>
       </div>
 
-      <!-- the living terminal: plays each install method's session, abridged -->
+      <!-- the living terminal: plays each install method's session, abridged.
+           The sub-header sits above it as its caption (round 3, Lucas's call). -->
+      <div class="term-col">
+      <p class="hero-sub">Skills don&rsquo;t work if your setup rejects them. Skillproof finds
+      what you need and fits it into your setup &mdash; seamlessly, with your permission.</p>
       <div class="term" id="term">
         <div class="term-bar">
           <span class="tdot"></span><span class="tdot"></span><span class="tdot"></span>
@@ -130,6 +123,7 @@
           </span>
         </div>
         <div class="term-body" id="termBody" aria-label="Abridged demo of the skill working"></div>
+      </div>
       </div>
     </div>
   </div>
@@ -305,6 +299,6 @@
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script src="assets/demo.js?v=4" defer></script>
-<script src="assets/app.js?v=99"></script>
+<script src="assets/app.js?v=100"></script>
 </body>
 </html>
