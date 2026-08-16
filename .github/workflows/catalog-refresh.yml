@@ -128,7 +128,7 @@ jobs:
           [ "${{ steps.installtest.outcome }}" = "failure" ] && FAILED="$FAILED install-command-test"
           RED=$(cat /tmp/redcount)
           DATE=$(date -u +%F)
-          BRANCH="auto/catalog-refresh-$DATE"
+          BRANCH="auto/catalog-refresh-$DATE-${{ github.run_id }}"
           git config user.name "skillproof-refresh[bot]"
           git config user.email "noreply@github.com"
           git checkout -b "$BRANCH"
