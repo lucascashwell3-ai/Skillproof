@@ -49,4 +49,4 @@ GH_TOKEN=$(gh auth token) python3 scripts/feeder.py --dry-run
 
 **Test:** `python3 -m unittest scripts/test_feeder.py`
 
-**Last-known-good:** not yet run.
+**Last-known-good: 2026-08-16 17:50Z, run 31962687613 — 17 added, live count verified 74.
