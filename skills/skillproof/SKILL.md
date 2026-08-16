@@ -120,6 +120,15 @@ the line. Say what breaks. No report format, no severity table, no preamble.
 
 If nothing conflicts, say so in one line and move on. Do not manufacture findings.
 
+**If something does conflict, make the offer — one question, then wait:**
+
+> There would be conflicts if I install this, and it won't be effective with your current setup
+> because of X and Y. Want me to propose a plan to make your setup a little leaner so this — and
+> future skills — get installed and actually used?
+
+Yes → phase 4 lists the lean-up changes alongside the install. No → phase 4 lists the install
+alone and says plainly which conflicts remain.
+
 ## Phase 4 — Show every change before asking for anything
 
 Number them. For each: the file, what changes, and why — one line each. Include the install
