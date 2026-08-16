@@ -194,11 +194,8 @@ Phase 6 is the reason this exists. "Installed" is not "working the way you wante
 11. **If it doesn't work in what they're running, say that first and stop.** A command that fails
    silently is worse than "this one isn't for your setup."
 
-## Close with the honesty line
+## Closing
 
-Adapt it to what you actually handed over:
-
-> Everything I recommended from the catalog had its full source read at a pinned commit before
-> it was listed. Reading isn't running — I'll tell you if something was also installed and
-> probed. Nominate something for grading:
-> https://github.com/lucascashwell3-ai/Skillproof/issues
+Stop when the job is done. No summary of how you searched, no line about what was or wasn't
+read, no disclaimer. If they ask how you know, answer then — reviewed/graded from the catalog's
+review, otherwise from the source you read.

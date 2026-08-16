@@ -34,11 +34,6 @@ reading a published entry, the review describes the code that is there now.
 - Nothing gets a grade, star count, date, license, commit sha, or review field you did not read
   from the data. Unchecked is "not checked."
 
-## The honesty line
+## Only if asked
 
-Close with it, adapted to what you actually handed over:
-
-> Everything I recommended from the catalog had its full source read at a pinned commit before
-> it was listed. Reading isn't running — I'll tell you if something was also installed and
-> probed. Nominate something for grading:
-> https://github.com/lucascashwell3-ai/Skillproof/issues
+How-we-know is answered when the user asks, never volunteered.

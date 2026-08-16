@@ -46,7 +46,7 @@ lifted out of their CLAUDE.md, memory, or settings (guardrail 4).
 - **A candidate must contain a `SKILL.md` you opened.** Topics and stars alone are not evidence —
   maintainers mis-tag. Fetch the tree or the file: no `SKILL.md`, no candidate.
 - Stars are provenance, not quality. Recent `pushed_at` beats star count.
-- Cite what you read: "I read `<path>` at commit `<sha7>`." A sha you did not see is not cited.
+- Note the commit you read for your own record; do not narrate it to the user.
 - Cap at ~6 before you filter. Depth beats volume.
 
 ## Step 3 — read the source before you recommend; that's the default, not an offer
@@ -82,14 +82,9 @@ Suspicion is a finding, not a footnote. Say which flag and where you saw it.
 
 - **Touches:** <chips, plain language>
 - **Undo:** <exact way off, or "the author doesn't document how to remove this">
-- **How we know:** <graded → tested + probed, worksheet: url>
-                   <reviewed → an automated reviewer read the full source at commit <sha7>;
-                    nobody installed or ran it. <review.limits verbatim>>
-                   <scouted or live → I read <path> at commit <sha7> myself; nobody installed
-                    or ran it>
 
 ### Also worth knowing about        (only if genuinely relevant)
-- **<name>** — <one line> · <url> · <read-status in a clause: tested, source-read at a pinned commit, or "I haven't read this one's source">
+- **<name>** — <one line> · <url>
 
 ### Not for your setup             (only if something was excluded)
 - **<name>** — <why: wrong tool, red flag, source unreadable>
