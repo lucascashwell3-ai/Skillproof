@@ -852,6 +852,378 @@
         ]
       },
       "quarantined_on": "2026-08-13"
+    },
+    {
+      "id": "anthropics-claude-cookbooks",
+      "name": "anthropics/claude-cookbooks",
+      "repo_url": "https://github.com/anthropics/claude-cookbooks",
+      "author": "anthropics",
+      "category": "library",
+      "summary": "A collection of notebooks/recipes showcasing some fun and effective ways of using Claude.",
+      "pain_points": [],
+      "status": "scouted",
+      "scouted_on": "2026-08-16",
+      "signals": {
+        "stars": 51577,
+        "forks": 6130,
+        "checked": "2026-08-16"
+      },
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: anthropics/claude-cookbooks, created 2023-08.",
+        "license": "MIT",
+        "freshness": "Last push 2026-08-14 (checked 2026-08-16) — actively maintained.",
+        "safety": "Automated safety skim (2026-08-16): flagged for human review — cloud credential read (capabilities/retrieval_augmented_generation/evaluation/docs_evaluation_dataset.json). Held out of recommendations until a person reads the flagged lines."
+      },
+      "next": "Queued for a full grading run.",
+      "skim": {
+        "date": "2026-08-16",
+        "files_scanned": 421,
+        "red_flags": [
+          "cloud credential read"
+        ],
+        "notes": [
+          "network call",
+          "remote-exec pipe in docker",
+          "remote-exec pipe in docs"
+        ]
+      },
+      "quarantined_on": "2026-08-16"
+    },
+    {
+      "id": "anthropics-financial-services",
+      "name": "financial-services",
+      "repo_url": "https://github.com/anthropics/financial-services",
+      "author": "anthropics",
+      "category": "workflow",
+      "summary": "anthropics/financial-services",
+      "pain_points": [],
+      "status": "scouted",
+      "scouted_on": "2026-08-16",
+      "signals": {
+        "stars": 34302,
+        "forks": 5109,
+        "checked": "2026-08-16"
+      },
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: anthropics/financial-services, created 2026-02.",
+        "license": "Apache-2.0",
+        "freshness": "Last push 2026-08-04 (checked 2026-08-16) — actively maintained.",
+        "safety": "Automated safety skim (2026-08-16): flagged for human review — remote-exec pipe (.github/workflows/plugin-validate.yml). Held out of recommendations until a person reads the flagged lines."
+      },
+      "next": "Queued for a full grading run.",
+      "skim": {
+        "date": "2026-08-16",
+        "files_scanned": 376,
+        "red_flags": [
+          "remote-exec pipe"
+        ],
+        "notes": [
+          "network call"
+        ]
+      },
+      "quarantined_on": "2026-08-16"
+    },
+    {
+      "id": "nanocoai-nanoclaw",
+      "name": "nanoclaw",
+      "repo_url": "https://github.com/nanocoai/nanoclaw",
+      "author": "nanocoai",
+      "category": "context",
+      "summary": "A lightweight alternative to OpenClaw that runs in containers for security. Connects to WhatsApp, Telegram, Slack, Discord, Gmail and other messaging apps,, has memory, scheduled jobs, and runs directly on Anthropic's Ag",
+      "pain_points": [
+        "context-bloat",
+        "security-worries"
+      ],
+      "status": "scouted",
+      "scouted_on": "2026-08-16",
+      "signals": {
+        "stars": 30517,
+        "forks": 12859,
+        "checked": "2026-08-16"
+      },
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: nanocoai/nanoclaw, created 2026-01.",
+        "license": "MIT",
+        "freshness": "Last push 2026-08-16 (checked 2026-08-16) — actively maintained.",
+        "safety": "Automated safety skim (2026-08-16): flagged for human review — remote-exec pipe (setup/install-claude.sh); cloud credential read (src/modules/mount-security/index.ts). Held out of recommendations until a person reads the flagged lines."
+      },
+      "next": "Queued for a full grading run.",
+      "skim": {
+        "date": "2026-08-16",
+        "files_scanned": 600,
+        "red_flags": [
+          "cloud credential read",
+          "remote-exec pipe"
+        ],
+        "notes": [
+          "cloud credential read in docs",
+          "network call",
+          "remote-exec pipe in docker",
+          "remote-exec pipe in docs"
+        ]
+      },
+      "quarantined_on": "2026-08-16"
+    },
+    {
+      "id": "jimliu-baoyu-skills",
+      "name": "JimLiu/baoyu-skills",
+      "repo_url": "https://github.com/JimLiu/baoyu-skills",
+      "author": "JimLiu",
+      "category": "library",
+      "summary": "JimLiu/baoyu-skills",
+      "pain_points": [],
+      "status": "scouted",
+      "scouted_on": "2026-08-16",
+      "signals": {
+        "stars": 25049,
+        "forks": 2791,
+        "checked": "2026-08-16"
+      },
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: JimLiu/baoyu-skills, created 2026-01.",
+        "license": "MIT",
+        "freshness": "Last push 2026-07-04 (checked 2026-08-16) — actively maintained.",
+        "safety": "Automated safety skim (2026-08-16): flagged for human review — ssh key read (skills/baoyu-post-to-wechat/scripts/wechat-extend-config.test.ts). Held out of recommendations until a person reads the flagged lines."
+      },
+      "next": "Queued for a full grading run.",
+      "skim": {
+        "date": "2026-08-16",
+        "files_scanned": 600,
+        "red_flags": [
+          "ssh key read"
+        ],
+        "notes": [
+          "remote-exec pipe in docs",
+          "ssh key read in docs"
+        ]
+      },
+      "quarantined_on": "2026-08-16"
+    },
+    {
+      "id": "anthropics-knowledge-work-plugins",
+      "name": "knowledge-work-plugins",
+      "repo_url": "https://github.com/anthropics/knowledge-work-plugins",
+      "author": "anthropics",
+      "category": "workflow",
+      "summary": "Open source repository of plugins primarily intended for knowledge workers to use in Claude Cowork",
+      "pain_points": [],
+      "status": "scouted",
+      "scouted_on": "2026-08-16",
+      "signals": {
+        "stars": 23509,
+        "forks": 2832,
+        "checked": "2026-08-16"
+      },
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: anthropics/knowledge-work-plugins, created 2026-01.",
+        "license": "Apache-2.0",
+        "freshness": "Last push 2026-08-16 (checked 2026-08-16) — actively maintained.",
+        "safety": "Automated safety skim (2026-08-16): flagged for human review — remote-exec pipe (bio-research/skills/nextflow-development/scripts/check_environment.py). Held out of recommendations until a person reads the flagged lines."
+      },
+      "next": "Queued for a full grading run.",
+      "skim": {
+        "date": "2026-08-16",
+        "files_scanned": 600,
+        "red_flags": [
+          "remote-exec pipe"
+        ],
+        "notes": [
+          "cloud credential read in docs",
+          "network call",
+          "remote-exec pipe in docs"
+        ]
+      },
+      "quarantined_on": "2026-08-16"
+    },
+    {
+      "id": "nvidia-skillspector",
+      "name": "SkillSpector",
+      "repo_url": "https://github.com/NVIDIA/SkillSpector",
+      "author": "NVIDIA",
+      "category": "security",
+      "summary": "Security scanner for AI agent skills. Detect vulnerabilities, malicious patterns, security risks, prompt injection, data exfiltration, and supply-chain risks in Claude Code, Codex, and MCP skills before you install them.",
+      "pain_points": [
+        "security-worries"
+      ],
+      "status": "scouted",
+      "scouted_on": "2026-08-16",
+      "signals": {
+        "stars": 14675,
+        "forks": 1225,
+        "checked": "2026-08-16"
+      },
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: NVIDIA/SkillSpector, created 2026-03.",
+        "license": "Apache-2.0",
+        "freshness": "Last push 2026-08-16 (checked 2026-08-16) — actively maintained.",
+        "safety": "Automated safety skim (2026-08-16): flagged for human review — remote-exec pipe (src/skillspector/nodes/analyzers/mcp_tool_poisoning.py); cloud credential read (src/skillspector/nodes/analyzers/static_patterns_privilege_escalation.py). Held out of recommendations until a person reads the flagged lines."
+      },
+      "next": "Queued for a full grading run.",
+      "skim": {
+        "date": "2026-08-16",
+        "files_scanned": 291,
+        "red_flags": [
+          "cloud credential read",
+          "remote-exec pipe"
+        ],
+        "notes": [
+          "cloud credential read in tests",
+          "decode-then-execute in tests",
+          "network call",
+          "remote-exec pipe in docs",
+          "remote-exec pipe in tests",
+          "ssh key read in tests"
+        ]
+      },
+      "quarantined_on": "2026-08-16"
+    },
+    {
+      "id": "anthropics-claude-agent-sdk-python",
+      "name": "claude-agent-sdk-python",
+      "repo_url": "https://github.com/anthropics/claude-agent-sdk-python",
+      "author": "anthropics",
+      "category": "workflow",
+      "summary": "anthropics/claude-agent-sdk-python",
+      "pain_points": [],
+      "status": "scouted",
+      "scouted_on": "2026-08-16",
+      "signals": {
+        "stars": 7900,
+        "forks": 1232,
+        "checked": "2026-08-16"
+      },
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: anthropics/claude-agent-sdk-python, created 2025-06.",
+        "license": "MIT",
+        "freshness": "Last push 2026-08-14 (checked 2026-08-16) — actively maintained.",
+        "safety": "Automated safety skim (2026-08-16): flagged for human review — remote-exec pipe (scripts/download_cli.py). Held out of recommendations until a person reads the flagged lines."
+      },
+      "next": "Queued for a full grading run.",
+      "skim": {
+        "date": "2026-08-16",
+        "files_scanned": 137,
+        "red_flags": [
+          "remote-exec pipe"
+        ],
+        "notes": [
+          "network call",
+          "remote-exec pipe in docs",
+          "remote-exec pipe in tests"
+        ]
+      },
+      "quarantined_on": "2026-08-16"
+    },
+    {
+      "id": "gosom-google-maps-scraper",
+      "name": "google-maps-scraper",
+      "repo_url": "https://github.com/gosom/google-maps-scraper",
+      "author": "gosom",
+      "category": "workflow",
+      "summary": "scrape data  from Google Maps. Extracts data such as the name, address, phone number, website URL, rating,  reviews number, latitude and longitude, reviews,email and more for each place",
+      "pain_points": [],
+      "status": "scouted",
+      "scouted_on": "2026-08-16",
+      "signals": {
+        "stars": 5531,
+        "forks": 863,
+        "checked": "2026-08-16"
+      },
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: gosom/google-maps-scraper, created 2023-04.",
+        "license": "MIT",
+        "freshness": "Last push 2026-08-06 (checked 2026-08-16) — actively maintained.",
+        "safety": "Automated safety skim (2026-08-16): flagged for human review — remote-exec pipe (PROVISION). Held out of recommendations until a person reads the flagged lines."
+      },
+      "next": "Queued for a full grading run.",
+      "skim": {
+        "date": "2026-08-16",
+        "files_scanned": 64,
+        "red_flags": [
+          "remote-exec pipe"
+        ],
+        "notes": [
+          "long base64 blob",
+          "network call",
+          "remote-exec pipe in docs"
+        ]
+      },
+      "quarantined_on": "2026-08-16"
+    },
+    {
+      "id": "parcadei-continuous-claude-v3",
+      "name": "Continuous-Claude-v3",
+      "repo_url": "https://github.com/parcadei/Continuous-Claude-v3",
+      "author": "parcadei",
+      "category": "context",
+      "summary": "Context management for Claude Code. Hooks maintain state via ledgers and handoffs. MCP execution without context pollution. Agent orchestration with isolated context windows.",
+      "pain_points": [
+        "context-bloat"
+      ],
+      "status": "scouted",
+      "scouted_on": "2026-08-16",
+      "signals": {
+        "stars": 3910,
+        "forks": 296,
+        "checked": "2026-08-16"
+      },
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: parcadei/Continuous-Claude-v3, created 2025-12.",
+        "license": "MIT",
+        "freshness": "Last push 2026-01-26 (checked 2026-08-16) — ~7 months quiet.",
+        "safety": "Automated safety skim (2026-08-16): flagged for human review — remote-exec pipe (opc/scripts/setup/math_features.py). Held out of recommendations until a person reads the flagged lines."
+      },
+      "next": "Queued for a full grading run.",
+      "skim": {
+        "date": "2026-08-16",
+        "files_scanned": 600,
+        "red_flags": [
+          "remote-exec pipe"
+        ],
+        "notes": [
+          "network call",
+          "remote-exec pipe in docs"
+        ]
+      },
+      "quarantined_on": "2026-08-16"
+    },
+    {
+      "id": "ljagiello-ctf-skills",
+      "name": "ljagiello/ctf-skills",
+      "repo_url": "https://github.com/ljagiello/ctf-skills",
+      "author": "ljagiello",
+      "category": "library",
+      "summary": "Agent skills for solving CTF challenges - web exploitation, binary pwn, crypto, reverse engineering, forensics, OSINT, and more",
+      "pain_points": [
+        "security-worries"
+      ],
+      "status": "scouted",
+      "scouted_on": "2026-08-16",
+      "signals": {
+        "stars": 3000,
+        "forks": 353,
+        "checked": "2026-08-16"
+      },
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: ljagiello/ctf-skills, created 2026-02.",
+        "license": "MIT",
+        "freshness": "Last push 2026-07-31 (checked 2026-08-16) — actively maintained.",
+        "safety": "Automated safety skim (2026-08-16): flagged for human review — remote-exec pipe (scripts/skill_security_auditor.py). Held out of recommendations until a person reads the flagged lines."
+      },
+      "next": "Queued for a full grading run.",
+      "skim": {
+        "date": "2026-08-16",
+        "files_scanned": 150,
+        "red_flags": [
+          "remote-exec pipe"
+        ],
+        "notes": [
+          "cloud credential read in docs",
+          "powershell encoded exec in docs",
+          "remote-exec pipe in tests",
+          "ssh key read in docs"
+        ]
+      },
+      "quarantined_on": "2026-08-16"
     }
   ]
 }

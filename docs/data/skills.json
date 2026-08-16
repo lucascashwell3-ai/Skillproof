@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-08-13",
+  "as_of": "2026-08-16",
   "rubric_version": "1.0",
   "notes": "Published entries are status 'graded' (installed, probed, source read by a person, worksheet on file — grades reflect version_tested on last_verified under the rubric version shown) or 'reviewed' with a review block (full source read at review.source_sha; does/touches/undo published). Rows in any other status are internal pipeline states awaiting a source read — not published, kept here so their history survives; consumers should skip them.",
   "pain_points": [
@@ -220,11 +220,11 @@
       "last_verified": "2026-07-21",
       "status": "graded",
       "signals": {
-        "stars": 20159,
-        "forks": 1233,
-        "checked": "2026-08-13",
+        "stars": 21072,
+        "forks": 1321,
+        "checked": "2026-08-16",
         "head_sha": "2ed064090711586e0c97a2fbbf15465fe8f1808b",
-        "head_checked": "2026-08-13"
+        "head_checked": "2026-08-16"
       }
     },
     {
@@ -249,9 +249,9 @@
       "signals": {
         "stars": 111,
         "forks": 6,
-        "checked": "2026-08-13",
+        "checked": "2026-08-16",
         "head_sha": "2dc917f7ea357f668201119371e2fe0eebd50299",
-        "head_checked": "2026-08-13"
+        "head_checked": "2026-08-16"
       },
       "skim": {
         "date": "2026-07-27",
@@ -298,9 +298,9 @@
       "signals": {
         "stars": 44,
         "forks": 8,
-        "checked": "2026-08-13",
+        "checked": "2026-08-16",
         "head_sha": "3660dca92424b91f1eb716b5815b476c3913450e",
-        "head_checked": "2026-08-13"
+        "head_checked": "2026-08-16"
       },
       "skim": {
         "date": "2026-07-27",
@@ -344,9 +344,9 @@
       "signals": {
         "stars": 38,
         "forks": 0,
-        "checked": "2026-08-13",
+        "checked": "2026-08-16",
         "head_sha": "15ed326ae7162c674d7a1e477724148fa4435528",
-        "head_checked": "2026-08-13"
+        "head_checked": "2026-08-16"
       },
       "skim": {
         "date": "2026-07-27",
@@ -389,11 +389,11 @@
       },
       "next": "Upstream changed since the last source review — queued for re-review.",
       "signals": {
-        "stars": 3023,
+        "stars": 3037,
         "forks": 231,
-        "checked": "2026-08-13",
-        "head_sha": "289abdea7df857dc7a6ece937dbe0c5ecc964ccd",
-        "head_checked": "2026-08-13"
+        "checked": "2026-08-16",
+        "head_sha": "dd47a6a023e249eb1b36e9e943eab89d0900865d",
+        "head_checked": "2026-08-16"
       },
       "skim": {
         "date": "2026-08-13",
@@ -441,11 +441,11 @@
       },
       "next": "Upstream changed since the last source review — queued for re-review.",
       "signals": {
-        "stars": 168822,
-        "forks": 20112,
-        "checked": "2026-08-13",
-        "head_sha": "f17010c9bb483898c1d9c9f42dde2b3a98889434",
-        "head_checked": "2026-08-13"
+        "stars": 169707,
+        "forks": 20202,
+        "checked": "2026-08-16",
+        "head_sha": "f6656c1256d5a8adfa37db9110046ef20bac644c",
+        "head_checked": "2026-08-16"
       },
       "skim": {
         "date": "2026-08-13",
@@ -493,11 +493,11 @@
       },
       "next": "Upstream changed since the last source review — queued for re-review.",
       "signals": {
-        "stars": 4723,
-        "forks": 575,
-        "checked": "2026-08-13",
+        "stars": 4834,
+        "forks": 599,
+        "checked": "2026-08-16",
         "head_sha": "22bacc4c4b5094001462d639df553a49a7642770",
-        "head_checked": "2026-08-13"
+        "head_checked": "2026-08-16"
       },
       "skim": {
         "date": "2026-08-13",
@@ -543,11 +543,11 @@
       },
       "next": "Upstream changed since the last source review — queued for re-review.",
       "signals": {
-        "stars": 271592,
-        "forks": 24285,
-        "checked": "2026-08-13",
+        "stars": 272730,
+        "forks": 24380,
+        "checked": "2026-08-16",
         "head_sha": "b36e0829c6d0140e93cfef2ca599b1b07d4a7797",
-        "head_checked": "2026-08-13"
+        "head_checked": "2026-08-16"
       },
       "skim": {
         "date": "2026-08-13",
@@ -596,9 +596,9 @@
       },
       "next": "Queued for a full grading run (installed + probed).",
       "signals": {
-        "stars": 239888,
-        "forks": 36412,
-        "checked": "2026-08-13",
+        "stars": 240432,
+        "forks": 36483,
+        "checked": "2026-08-16",
         "head_sha": "50743cec75852e32d6517c9894a3339a2462a713",
         "head_checked": "2026-08-16"
       },
@@ -643,11 +643,11 @@
       },
       "next": "Queued for a full grading run (installed + probed).",
       "signals": {
-        "stars": 202087,
-        "forks": 20736,
-        "checked": "2026-08-13",
+        "stars": 203033,
+        "forks": 20833,
+        "checked": "2026-08-16",
         "head_sha": "2c606141936f1eeef17fa3043a72095b4765b9c2",
-        "head_checked": "2026-08-13"
+        "head_checked": "2026-08-16"
       },
       "skim": {
         "date": "2026-07-27",
@@ -686,11 +686,11 @@
       },
       "next": "Upstream changed since the last source review — queued for re-review.",
       "signals": {
-        "stars": 216001,
-        "forks": 18629,
-        "checked": "2026-08-13",
-        "head_sha": "8b78b531ab965735c5dc74f6f7a219e1e37326df",
-        "head_checked": "2026-08-13"
+        "stars": 219086,
+        "forks": 18873,
+        "checked": "2026-08-16",
+        "head_sha": "068b6e0c62393147daf03530149cdce209c93da8",
+        "head_checked": "2026-08-16"
       },
       "skim": {
         "date": "2026-08-13",
@@ -738,9 +738,9 @@
       },
       "next": "Queued for a full grading run (installed + probed).",
       "signals": {
-        "stars": 116359,
-        "forks": 12500,
-        "checked": "2026-08-13",
+        "stars": 117274,
+        "forks": 12614,
+        "checked": "2026-08-16",
         "head_sha": "a38d04c3d5c298c851dbe5e6ee1965ee3de42cb5",
         "head_checked": "2026-08-16"
       },
@@ -785,11 +785,11 @@
       },
       "next": "Upstream changed since the last source review — queued for re-review.",
       "signals": {
-        "stars": 101964,
-        "forks": 5609,
-        "checked": "2026-08-13",
+        "stars": 103937,
+        "forks": 5718,
+        "checked": "2026-08-16",
         "head_sha": "2ed6c52c9d7e5e56942508591085fd45dea277d3",
-        "head_checked": "2026-08-13"
+        "head_checked": "2026-08-16"
       },
       "skim": {
         "date": "2026-08-13",
@@ -836,9 +836,9 @@
       },
       "next": "Queued for a full grading run (installed + probed).",
       "signals": {
-        "stars": 85524,
-        "forks": 10027,
-        "checked": "2026-08-13",
+        "stars": 87422,
+        "forks": 10147,
+        "checked": "2026-08-16",
         "head_sha": "62483a1947b5c5e7b3fffe24b52b685d93ad9209",
         "head_checked": "2026-08-16"
       },
@@ -882,9 +882,9 @@
       },
       "next": "Queued for a full grading run (installed + probed).",
       "signals": {
-        "stars": 86779,
-        "forks": 9323,
-        "checked": "2026-08-13",
+        "stars": 87691,
+        "forks": 9396,
+        "checked": "2026-08-16",
         "head_sha": "df1edb2e05487d0aa6d93c747141e0aed1187f25",
         "head_checked": "2026-08-16"
       },
@@ -927,11 +927,11 @@
       },
       "next": "Upstream changed since the last source review — queued for re-review.",
       "signals": {
-        "stars": 74117,
-        "forks": 12008,
-        "checked": "2026-08-13",
-        "head_sha": "eb4307f4e495d2ed22699e1e5682eb55f8076ade",
-        "head_checked": "2026-08-13"
+        "stars": 74376,
+        "forks": 12042,
+        "checked": "2026-08-16",
+        "head_sha": "b7de91139e336c4c4dad4d7b4530cbbafd7d6fa4",
+        "head_checked": "2026-08-16"
       },
       "skim": {
         "date": "2026-08-13",
@@ -980,11 +980,11 @@
       },
       "next": "Queued for a full grading run (installed + probed).",
       "signals": {
-        "stars": 72416,
-        "forks": 8252,
-        "checked": "2026-08-13",
+        "stars": 72606,
+        "forks": 8285,
+        "checked": "2026-08-16",
         "head_sha": "be2a406907dbc61b73e6827ded415c96139d13a2",
-        "head_checked": "2026-08-13"
+        "head_checked": "2026-08-16"
       },
       "skim": {
         "date": "2026-07-27",
@@ -1031,11 +1031,11 @@
       },
       "next": "Queued for a full grading run (installed + probed).",
       "signals": {
-        "stars": 76169,
-        "forks": 5219,
-        "checked": "2026-08-13",
+        "stars": 77055,
+        "forks": 5271,
+        "checked": "2026-08-16",
         "head_sha": "e988add20dab0fa97d7a76781c48961c8184288e",
-        "head_checked": "2026-08-13"
+        "head_checked": "2026-08-16"
       },
       "skim": {
         "date": "2026-07-27",
@@ -1076,9 +1076,9 @@
       },
       "next": "Queued for a full grading run (installed + probed).",
       "signals": {
-        "stars": 64433,
-        "forks": 6401,
-        "checked": "2026-08-13",
+        "stars": 64567,
+        "forks": 6412,
+        "checked": "2026-08-16",
         "head_sha": "d89f096ef6c3a7762219fec4e937cad85ddf3200",
         "head_checked": "2026-08-16"
       },
@@ -1127,9 +1127,9 @@
       },
       "next": "Queued for a full grading run (installed + probed).",
       "signals": {
-        "stars": 58075,
-        "forks": 5045,
-        "checked": "2026-08-13",
+        "stars": 58375,
+        "forks": 5075,
+        "checked": "2026-08-16",
         "head_sha": "c7460f6114449ddfe6ea3fc2f23c3d910c0e740c",
         "head_checked": "2026-08-16"
       },
@@ -1177,11 +1177,11 @@
       },
       "next": "Upstream changed since the last source review — queued for re-review.",
       "signals": {
-        "stars": 51928,
-        "forks": 4996,
-        "checked": "2026-08-13",
+        "stars": 51979,
+        "forks": 5001,
+        "checked": "2026-08-16",
         "head_sha": "9f93edd90ddfdc464c612583afa91aeaffb19f96",
-        "head_checked": "2026-08-13"
+        "head_checked": "2026-08-16"
       },
       "skim": {
         "date": "2026-08-13",
@@ -1214,7 +1214,7 @@
       "pain_points": [
         "shallow-research"
       ],
-      "status": "reviewed",
+      "status": "scouted",
       "scouted_on": "2026-07-25",
       "triage": {
         "provenance": "Repo verified real via GitHub API: hesreallyhim/awesome-claude-code, created 2025-04.",
@@ -1222,12 +1222,12 @@
         "freshness": "Last push 2026-08-13 (checked 2026-08-13) — actively maintained.",
         "safety": "Automated safety skim (2026-08-13, 49 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: network call. A library, not one skill — each skill needs its own read before use."
       },
-      "next": "Queued for a full grading run (installed + probed).",
+      "next": "Upstream changed since the last source review — queued for re-review.",
       "signals": {
-        "stars": 52237,
-        "forks": 4561,
-        "checked": "2026-08-13",
-        "head_sha": "64d5a388b3869a95fb5d0a05b93caa56f5470db2",
+        "stars": 52412,
+        "forks": 4588,
+        "checked": "2026-08-16",
+        "head_sha": "d33d6ca44fa680ea5380c57a6b6cba88f955216e",
         "head_checked": "2026-08-16"
       },
       "skim": {
@@ -1238,7 +1238,7 @@
           "network call"
         ]
       },
-      "review": {
+      "review_stale": {
         "does": "Gives your agent, or you, a curated, linked directory of other Claude Code resources such as guides, skills, plugins, and tools built by other people, organized by category, rather than providing any functionality of its own.",
         "touches": [
           "no side effects"
@@ -1248,7 +1248,9 @@
         "limits": "The code was read, not run. This review covers 1 of the repo's roughly 22 files (README.md), and that file is 137KB with only its first 40KB read, so most of it (sections covering Remote Control, Alternative Clients, Status Lines, Design, Writing, Creative Media, Infrastructure, Security, Agent Orchestration, Skills, Memory, and Observability) was not read. This document is itself just a list of links to hundreds of third-party repositories with a short description of each; none of those linked repositories were reviewed as part of this entry, so nothing about their actual behavior or safety is verified here, only that this file lists and briefly describes them.",
         "reviewed_at": "2026-08-16",
         "reviewer": "automated-source-review v1",
-        "source_sha": "64d5a388b3869a95fb5d0a05b93caa56f5470db2"
+        "source_sha": "64d5a388b3869a95fb5d0a05b93caa56f5470db2",
+        "downgraded_on": "2026-08-16",
+        "stale_reason": "upstream HEAD moved from 64d5a388 to d33d6ca4; the review described code that is no longer what a visitor would install"
       }
     },
     {
@@ -1269,11 +1271,11 @@
       },
       "next": "Queued for a full grading run (installed + probed).",
       "signals": {
-        "stars": 44123,
-        "forks": 6938,
-        "checked": "2026-08-13",
+        "stars": 44491,
+        "forks": 6981,
+        "checked": "2026-08-16",
         "head_sha": "7868cb9251fad80a73d26e488a5ad5f6c4a9f335",
-        "head_checked": "2026-08-13"
+        "head_checked": "2026-08-16"
       },
       "skim": {
         "date": "2026-07-27",
@@ -1316,9 +1318,9 @@
       },
       "next": "Queued for a full grading run (installed + probed).",
       "signals": {
-        "stars": 42322,
-        "forks": 3374,
-        "checked": "2026-08-13",
+        "stars": 42695,
+        "forks": 3398,
+        "checked": "2026-08-16",
         "head_sha": "6837b4dfeaabd5a6da886e199b44ae7b52e8b931",
         "head_checked": "2026-08-16"
       },
@@ -1362,9 +1364,9 @@
       },
       "next": "Queued for a full grading run (installed + probed).",
       "signals": {
-        "stars": 37783,
-        "forks": 4767,
-        "checked": "2026-08-13",
+        "stars": 37902,
+        "forks": 4782,
+        "checked": "2026-08-16",
         "head_sha": "a80885b76044550770f60f360f8a0e5ae3524a31",
         "head_checked": "2026-08-16"
       },
@@ -1413,9 +1415,9 @@
       },
       "next": "Queued for a full grading run (installed + probed).",
       "signals": {
-        "stars": 33415,
-        "forks": 3275,
-        "checked": "2026-08-13",
+        "stars": 33648,
+        "forks": 3289,
+        "checked": "2026-08-16",
         "head_sha": "336c4f838a6c21b54e1e1f58cbbeae143d151fe2",
         "head_checked": "2026-08-16"
       },
@@ -1465,11 +1467,11 @@
       },
       "next": "Queued for a full grading run (installed + probed).",
       "signals": {
-        "stars": 35448,
-        "forks": 3171,
-        "checked": "2026-08-13",
+        "stars": 35943,
+        "forks": 3199,
+        "checked": "2026-08-16",
         "head_sha": "523374dee72d67c7b2b5f858ea0094ffda49c3ac",
-        "head_checked": "2026-08-13"
+        "head_checked": "2026-08-16"
       },
       "skim": {
         "date": "2026-07-27",
@@ -1509,11 +1511,11 @@
       },
       "next": "Upstream changed since the last source review — queued for re-review.",
       "signals": {
-        "stars": 30229,
-        "forks": 3394,
-        "checked": "2026-08-13",
-        "head_sha": "48b5ee5f19d7c7a4d719d97c1011a1496d145b0f",
-        "head_checked": "2026-08-13"
+        "stars": 30262,
+        "forks": 3405,
+        "checked": "2026-08-16",
+        "head_sha": "ee13077789884024a4f23f4333079e74edb72c70",
+        "head_checked": "2026-08-16"
       },
       "skim": {
         "date": "2026-08-13",
@@ -1562,11 +1564,11 @@
       },
       "next": "Upstream changed since the last source review — queued for re-review.",
       "signals": {
-        "stars": 30200,
-        "forks": 3247,
-        "checked": "2026-08-13",
-        "head_sha": "947656d844327df4d826eec58d74e17cd4fdbc4d",
-        "head_checked": "2026-08-13"
+        "stars": 30389,
+        "forks": 3277,
+        "checked": "2026-08-16",
+        "head_sha": "3b4e590b801eff240bfdc68e047b08f5198694d2",
+        "head_checked": "2026-08-16"
       },
       "skim": {
         "date": "2026-08-13",
@@ -1610,11 +1612,11 @@
       },
       "next": "Upstream changed since the last source review — queued for re-review.",
       "signals": {
-        "stars": 27732,
-        "forks": 3366,
-        "checked": "2026-08-13",
+        "stars": 27957,
+        "forks": 3401,
+        "checked": "2026-08-16",
         "head_sha": "4c0b700ac5d280ba46695062077f0fe922ce3602",
-        "head_checked": "2026-08-13"
+        "head_checked": "2026-08-16"
       },
       "skim": {
         "date": "2026-08-13",
@@ -1668,11 +1670,11 @@
       },
       "next": "Upstream changed since the last source review — queued for re-review.",
       "signals": {
-        "stars": 26150,
-        "forks": 2189,
-        "checked": "2026-08-13",
-        "head_sha": "e8f505a4f5025df5b070494e46c25789582bff55",
-        "head_checked": "2026-08-13"
+        "stars": 26198,
+        "forks": 2190,
+        "checked": "2026-08-16",
+        "head_sha": "9b7d0a007946ae7694216642fd5be78c2f13b6db",
+        "head_checked": "2026-08-16"
       },
       "skim": {
         "date": "2026-08-13",
@@ -1716,11 +1718,11 @@
       },
       "next": "Queued for a full grading run (installed + probed).",
       "signals": {
-        "stars": 25229,
-        "forks": 2707,
-        "checked": "2026-08-13",
+        "stars": 25305,
+        "forks": 2721,
+        "checked": "2026-08-16",
         "head_sha": "18468a95b427e70e258b51389796367c6f684e7d",
-        "head_checked": "2026-08-13"
+        "head_checked": "2026-08-16"
       },
       "skim": {
         "date": "2026-07-27",
@@ -1761,11 +1763,11 @@
       },
       "next": "Upstream changed since the last source review — queued for re-review.",
       "signals": {
-        "stars": 24270,
-        "forks": 2815,
-        "checked": "2026-08-13",
+        "stars": 24368,
+        "forks": 2833,
+        "checked": "2026-08-16",
         "head_sha": "c9e51ec0b3d43f5dcdd0b558a6cd28ba6ada97c1",
-        "head_checked": "2026-08-13"
+        "head_checked": "2026-08-16"
       },
       "skim": {
         "date": "2026-08-13",
@@ -1812,11 +1814,11 @@
       },
       "next": "Upstream changed since the last source review — queued for re-review.",
       "signals": {
-        "stars": 24228,
-        "forks": 1767,
-        "checked": "2026-08-13",
+        "stars": 24340,
+        "forks": 1784,
+        "checked": "2026-08-16",
         "head_sha": "69ef37e9424c0a7ea9dd2293b559e43ec8176379",
-        "head_checked": "2026-08-13"
+        "head_checked": "2026-08-16"
       },
       "skim": {
         "date": "2026-08-13",
@@ -1860,11 +1862,11 @@
       },
       "next": "Queued for a full grading run (installed + probed).",
       "signals": {
-        "stars": 23847,
-        "forks": 3406,
-        "checked": "2026-08-13",
+        "stars": 23919,
+        "forks": 3418,
+        "checked": "2026-08-16",
         "head_sha": "984023ddac0d5e27624f2baacde6105e45de375f",
-        "head_checked": "2026-08-13"
+        "head_checked": "2026-08-16"
       },
       "skim": {
         "date": "2026-07-27",
@@ -1907,11 +1909,11 @@
       },
       "next": "Queued for a full grading run (installed + probed).",
       "signals": {
-        "stars": 24378,
-        "forks": 3429,
-        "checked": "2026-08-13",
+        "stars": 24515,
+        "forks": 3442,
+        "checked": "2026-08-16",
         "head_sha": "aa8d778811a557a2c28ccadda4cf3d0bd028a4cc",
-        "head_checked": "2026-08-13"
+        "head_checked": "2026-08-16"
       },
       "skim": {
         "date": "2026-07-27",
@@ -1945,7 +1947,7 @@
       "pain_points": [
         "generic-frontend"
       ],
-      "status": "reviewed",
+      "status": "scouted",
       "scouted_on": "2026-07-25",
       "triage": {
         "provenance": "Repo verified real via GitHub API: alchaincyf/huashu-design, created 2026-04.",
@@ -1953,13 +1955,13 @@
         "freshness": "Last push 2026-07-27 (checked 2026-07-29) — actively maintained.",
         "safety": "Automated safety skim (2026-07-27, 74 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: network call. A pattern scan, not a line-by-line read — the full source read happens before publication."
       },
-      "next": "Queued for a full grading run (installed + probed).",
+      "next": "Upstream changed since the last source review — queued for re-review.",
       "signals": {
-        "stars": 22963,
-        "forks": 2695,
-        "checked": "2026-08-13",
-        "head_sha": "1572d431f1411c82ec0baea94dea6a45f6063b26",
-        "head_checked": "2026-08-13"
+        "stars": 23143,
+        "forks": 2715,
+        "checked": "2026-08-16",
+        "head_sha": "e735935ca0553a32de7ba4ba204fe3c79150b1b8",
+        "head_checked": "2026-08-16"
       },
       "skim": {
         "date": "2026-07-27",
@@ -1969,7 +1971,7 @@
           "network call"
         ]
       },
-      "review": {
+      "review_stale": {
         "does": "Makes your agent work like a designer: it builds clickable web mockups, slide decks, app prototypes, and animated videos out of HTML, following a strict routine where it first searches the web to verify facts, downloads real brand logos and images, shows you three draft design directions, and only builds out the one you pick — then can export the result as PDF, PowerPoint, or MP4 video with music and sound effects.",
         "touches": [
           "reads project files",
@@ -1985,7 +1987,9 @@
         "limits": "This review is based on reading the source, not running it — nothing was executed or observed working. It covers only part of the repo: 21 files were withheld, and even the main instruction file (SKILL.md) was cut off at 40KB of its 59KB, so roughly a third of the instructions plus every helper script were unseen. The instructions repeatedly tell the agent to run bundled scripts (image downloaders, screenshot and video renderers, PDF/PowerPoint exporters, audio mixers) and to install packages such as playwright, sharp, pdf-lib, and pptxgenjs — those scripts were not provided, so what they actually connect to and do is unverified. The instructions also describe optional cloud features (a text-to-speech service, an AI video-review service, AI image generation) that use API keys the user supplies via a .env file and would send project content to those third-party services; the code behind these was not seen. The instructions direct copying a personal-asset file into the user's private memory/config folder outside the project, and by default stamp a 'Created by Huashu-Design' promotional watermark onto exported animation videos (removable on request). Everything reviewed is written instructions the agent is expected to follow; how faithfully any given agent follows them cannot be judged from reading alone.",
         "reviewed_at": "2026-07-31",
         "reviewer": "automated-source-review v1",
-        "source_sha": "1572d431f1411c82ec0baea94dea6a45f6063b26"
+        "source_sha": "1572d431f1411c82ec0baea94dea6a45f6063b26",
+        "downgraded_on": "2026-08-16",
+        "stale_reason": "upstream HEAD moved from 1572d431 to e735935c; the review described code that is no longer what a visitor would install"
       }
     },
     {
@@ -2009,11 +2013,11 @@
       },
       "next": "Upstream changed since the last source review — queued for re-review.",
       "signals": {
-        "stars": 19638,
-        "forks": 2140,
-        "checked": "2026-08-13",
-        "head_sha": "b896b0766a9e11761b7a80d43001251ea3db7bb6",
-        "head_checked": "2026-08-13"
+        "stars": 19737,
+        "forks": 2145,
+        "checked": "2026-08-16",
+        "head_sha": "7a5c4934be4106ac740ffdb95280bb81b3f4b83c",
+        "head_checked": "2026-08-16"
       },
       "skim": {
         "date": "2026-08-13",
@@ -2062,11 +2066,11 @@
       },
       "next": "Upstream changed since the last source review — queued for re-review.",
       "signals": {
-        "stars": 24587,
-        "forks": 1236,
-        "checked": "2026-08-13",
+        "stars": 25252,
+        "forks": 1284,
+        "checked": "2026-08-16",
         "head_sha": "13ac0ec7e148655948100b6396439e481361d690",
-        "head_checked": "2026-08-13"
+        "head_checked": "2026-08-16"
       },
       "skim": {
         "date": "2026-08-13",
@@ -2109,11 +2113,11 @@
       },
       "next": "Upstream changed since the last source review — queued for re-review.",
       "signals": {
-        "stars": 15985,
-        "forks": 1487,
-        "checked": "2026-08-13",
-        "head_sha": "93bdf3d770b99128daf35278218e5a666fe392f3",
-        "head_checked": "2026-08-13"
+        "stars": 16055,
+        "forks": 1496,
+        "checked": "2026-08-16",
+        "head_sha": "9c776fcb51ae681c046d6f619b55e5f337d4f900",
+        "head_checked": "2026-08-16"
       },
       "skim": {
         "date": "2026-08-13",
@@ -2163,11 +2167,11 @@
       },
       "next": "Queued for a full grading run (installed + probed).",
       "signals": {
-        "stars": 14633,
-        "forks": 1838,
-        "checked": "2026-08-13",
+        "stars": 14671,
+        "forks": 1846,
+        "checked": "2026-08-16",
         "head_sha": "1da55aa810f206d3fe2005e7e3989b15a275d942",
-        "head_checked": "2026-08-13"
+        "head_checked": "2026-08-16"
       },
       "skim": {
         "date": "2026-07-27",
@@ -2206,11 +2210,11 @@
       },
       "next": "Queued for a full grading run (installed + probed).",
       "signals": {
-        "stars": 15228,
-        "forks": 1033,
-        "checked": "2026-08-13",
+        "stars": 15413,
+        "forks": 1043,
+        "checked": "2026-08-16",
         "head_sha": "91f3d394db8419c20d67ebe22a96cf8fee0a404b",
-        "head_checked": "2026-08-13"
+        "head_checked": "2026-08-16"
       },
       "skim": {
         "date": "2026-07-27",
@@ -2243,11 +2247,11 @@
       "status": "scouted",
       "scouted_on": "2026-07-27",
       "signals": {
-        "stars": 12357,
-        "forks": 949,
-        "checked": "2026-08-13",
+        "stars": 12367,
+        "forks": 951,
+        "checked": "2026-08-16",
         "head_sha": "5b332ec027300603086d5df26b462fc7c8dd83f5",
-        "head_checked": "2026-08-13"
+        "head_checked": "2026-08-16"
       },
       "triage": {
         "provenance": "Repo verified real via GitHub API: simonw/llm, created 2023-04.",
@@ -2293,11 +2297,11 @@
       "status": "reviewed",
       "scouted_on": "2026-07-27",
       "signals": {
-        "stars": 11666,
-        "forks": 852,
-        "checked": "2026-08-13",
+        "stars": 11746,
+        "forks": 858,
+        "checked": "2026-08-16",
         "head_sha": "773a52944ba4747a18bd4ae9ade53fff041adcbc",
-        "head_checked": "2026-08-13"
+        "head_checked": "2026-08-16"
       },
       "triage": {
         "provenance": "Repo verified real via GitHub API: Orchestra-Research/AI-Research-SKILLs, created 2025-11.",
@@ -2343,11 +2347,11 @@
       "status": "scouted",
       "scouted_on": "2026-07-27",
       "signals": {
-        "stars": 11001,
-        "forks": 1031,
-        "checked": "2026-08-13",
+        "stars": 11036,
+        "forks": 1040,
+        "checked": "2026-08-16",
         "head_sha": "882ef55e377dbf9a4dbe496bb41ac6ccd0e555cf",
-        "head_checked": "2026-08-13"
+        "head_checked": "2026-08-16"
       },
       "triage": {
         "provenance": "Repo verified real via GitHub API: Jeffallan/claude-skills, created 2025-10.",
@@ -2396,11 +2400,11 @@
       "status": "reviewed",
       "scouted_on": "2026-07-27",
       "signals": {
-        "stars": 11128,
-        "forks": 1320,
-        "checked": "2026-08-13",
+        "stars": 11192,
+        "forks": 1328,
+        "checked": "2026-08-16",
         "head_sha": "d15eabbe5d2122eedc060bae8a771381e9873d1b",
-        "head_checked": "2026-08-13"
+        "head_checked": "2026-08-16"
       },
       "triage": {
         "provenance": "Repo verified real via GitHub API: nidhinjs/prompt-master, created 2026-03.",
@@ -2439,11 +2443,11 @@
       "status": "scouted",
       "scouted_on": "2026-07-27",
       "signals": {
-        "stars": 21090,
-        "forks": 2227,
-        "checked": "2026-08-13",
-        "head_sha": "c4c5e948caaa912c9e2024b925a7cdee9237b0c0",
-        "head_checked": "2026-08-13"
+        "stars": 22142,
+        "forks": 2336,
+        "checked": "2026-08-16",
+        "head_sha": "903d102fe8f67ea0fe3db7bea85eec7d8b505967",
+        "head_checked": "2026-08-16"
       },
       "triage": {
         "provenance": "Repo verified real via GitHub API: virgiliojr94/book-to-skill, created 2026-05.",
@@ -2488,11 +2492,11 @@
       "status": "reviewed",
       "scouted_on": "2026-07-27",
       "signals": {
-        "stars": 9996,
+        "stars": 10000,
         "forks": 1229,
-        "checked": "2026-08-13",
+        "checked": "2026-08-16",
         "head_sha": "07f75ce3c301259e857343596e7883b8ce5a9f50",
-        "head_checked": "2026-08-13"
+        "head_checked": "2026-08-16"
       },
       "triage": {
         "provenance": "Repo verified real via GitHub API: diet103/claude-code-infrastructure-showcase, created 2025-10.",
@@ -2540,11 +2544,11 @@
       "status": "scouted",
       "scouted_on": "2026-07-27",
       "signals": {
-        "stars": 8196,
-        "forks": 1303,
-        "checked": "2026-08-13",
-        "head_sha": "64293a1208fcbd9f4c1a2b0602e500aa911d8c25",
-        "head_checked": "2026-08-13"
+        "stars": 8201,
+        "forks": 1305,
+        "checked": "2026-08-16",
+        "head_sha": "e204e861d8eff437db806c5c331265bcd5eea2a2",
+        "head_checked": "2026-08-16"
       },
       "triage": {
         "provenance": "Repo verified real via GitHub API: xixu-me/xget, created 2024-11.",
@@ -2589,11 +2593,11 @@
       "status": "scouted",
       "scouted_on": "2026-07-27",
       "signals": {
-        "stars": 7568,
-        "forks": 550,
-        "checked": "2026-08-13",
+        "stars": 7689,
+        "forks": 556,
+        "checked": "2026-08-16",
         "head_sha": "2ee141e0ff183ce76dc405370aeb142c6961aa45",
-        "head_checked": "2026-08-13"
+        "head_checked": "2026-08-16"
       },
       "triage": {
         "provenance": "Repo verified real via GitHub API: Agents365-ai/drawio-skill, created 2026-03.",
@@ -2643,11 +2647,11 @@
       "status": "scouted",
       "scouted_on": "2026-07-27",
       "signals": {
-        "stars": 6133,
-        "forks": 725,
-        "checked": "2026-08-13",
-        "head_sha": "3dd4e5c7122cb770660757322a48860f7abac424",
-        "head_checked": "2026-08-13"
+        "stars": 6138,
+        "forks": 731,
+        "checked": "2026-08-16",
+        "head_sha": "7ed3fc01d788c11e73897e133a159ebff9ffd490",
+        "head_checked": "2026-08-16"
       },
       "triage": {
         "provenance": "Repo verified real via GitHub API: ikaijua/Awesome-AITools, created 2023-04.",
@@ -2692,11 +2696,11 @@
       "status": "scouted",
       "scouted_on": "2026-07-27",
       "signals": {
-        "stars": 6441,
-        "forks": 777,
-        "checked": "2026-08-13",
-        "head_sha": "e58cff6818f50142bcd64558bfad5bf7a99c6f9b",
-        "head_checked": "2026-08-13"
+        "stars": 6492,
+        "forks": 786,
+        "checked": "2026-08-16",
+        "head_sha": "a03af68414bb0b924746c97bddf9a5057d017af7",
+        "head_checked": "2026-08-16"
       },
       "triage": {
         "provenance": "Repo verified real via GitHub API: deanpeters/Product-Manager-Skills, created 2026-02.",
@@ -2740,11 +2744,11 @@
       "status": "scouted",
       "scouted_on": "2026-07-27",
       "signals": {
-        "stars": 41007,
-        "forks": 5016,
-        "checked": "2026-08-13",
+        "stars": 41057,
+        "forks": 5019,
+        "checked": "2026-08-16",
         "head_sha": "4f3fa85d7ed0f0f77f0d8bba3f0b40ff10b2063b",
-        "head_checked": "2026-08-13"
+        "head_checked": "2026-08-16"
       },
       "triage": {
         "provenance": "Repo verified real via GitHub API: luongnv89/claude-howto, created 2025-11.",
@@ -2790,9 +2794,11 @@
       "status": "scouted",
       "scouted_on": "2026-08-13",
       "signals": {
-        "stars": 71352,
-        "forks": 6052,
-        "checked": "2026-08-13"
+        "stars": 72263,
+        "forks": 6144,
+        "checked": "2026-08-16",
+        "head_sha": "93ae1d18c37b707dec053c7c4f9d91cd8ef8943d",
+        "head_checked": "2026-08-16"
       },
       "triage": {
         "provenance": "Repo verified real via GitHub API: Panniantong/Agent-Reach, created 2026-02.",
@@ -2823,9 +2829,11 @@
       "status": "scouted",
       "scouted_on": "2026-08-13",
       "signals": {
-        "stars": 47060,
-        "forks": 6360,
-        "checked": "2026-08-13"
+        "stars": 49035,
+        "forks": 6687,
+        "checked": "2026-08-16",
+        "head_sha": "e646fe84c76d2ddaf1aa8deb6bf49052852d839b",
+        "head_checked": "2026-08-16"
       },
       "triage": {
         "provenance": "Repo verified real via GitHub API: diegosouzapw/OmniRoute, created 2026-02.",
@@ -2855,9 +2863,11 @@
       "status": "scouted",
       "scouted_on": "2026-08-13",
       "signals": {
-        "stars": 44661,
-        "forks": 3113,
-        "checked": "2026-08-13"
+        "stars": 46483,
+        "forks": 3245,
+        "checked": "2026-08-16",
+        "head_sha": "516a269315f872701091f89756c04fe210ef1be8",
+        "head_checked": "2026-08-16"
       },
       "triage": {
         "provenance": "Repo verified real via GitHub API: stablyai/orca, created 2026-03.",
@@ -2888,9 +2898,11 @@
       "status": "scouted",
       "scouted_on": "2026-08-13",
       "signals": {
-        "stars": 20874,
-        "forks": 2032,
-        "checked": "2026-08-13"
+        "stars": 22789,
+        "forks": 2059,
+        "checked": "2026-08-16",
+        "head_sha": "22d96a76e05b91939493f604a0a46198d0d7f978",
+        "head_checked": "2026-08-16"
       },
       "triage": {
         "provenance": "Repo verified real via GitHub API: titanwings/colleague-skill, created 2026-03.",
@@ -2906,6 +2918,561 @@
         "notes": [
           "network call"
         ]
+      }
+    },
+    {
+      "id": "cherryhq-cherry-studio",
+      "name": "cherry-studio",
+      "repo_url": "https://github.com/CherryHQ/cherry-studio",
+      "author": "CherryHQ",
+      "category": "workflow",
+      "summary": "AI productivity studio with smart chat, autonomous agents, and 300+ assistants. Unified access to frontier LLMs",
+      "pain_points": [],
+      "status": "scouted",
+      "scouted_on": "2026-08-16",
+      "signals": {
+        "stars": 50548,
+        "forks": 4789,
+        "checked": "2026-08-16"
+      },
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: CherryHQ/cherry-studio, created 2024-05.",
+        "license": "AGPL-3.0",
+        "freshness": "Last push 2026-08-16 (checked 2026-08-16) — actively maintained.",
+        "safety": "Automated safety skim (2026-08-16, 600 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: network call. A pattern scan, not a line-by-line read — the full source read happens before publication."
+      },
+      "next": "Queued for a full grading run.",
+      "skim": {
+        "date": "2026-08-16",
+        "files_scanned": 600,
+        "red_flags": [],
+        "notes": [
+          "network call"
+        ]
+      }
+    },
+    {
+      "id": "anthropics-claude-plugins-official",
+      "name": "claude-plugins-official",
+      "repo_url": "https://github.com/anthropics/claude-plugins-official",
+      "author": "anthropics",
+      "category": "workflow",
+      "summary": "Official, Anthropic-managed directory of high quality Claude Code Plugins.",
+      "pain_points": [],
+      "status": "scouted",
+      "scouted_on": "2026-08-16",
+      "signals": {
+        "stars": 33582,
+        "forks": 3809,
+        "checked": "2026-08-16"
+      },
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: anthropics/claude-plugins-official, created 2025-11.",
+        "license": "Apache-2.0",
+        "freshness": "Last push 2026-08-16 (checked 2026-08-16) — actively maintained.",
+        "safety": "Automated safety skim (2026-08-16, 429 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: network call, cloud credential read in docs, remote-exec pipe in docs. A pattern scan, not a line-by-line read — the full source read happens before publication."
+      },
+      "next": "Queued for a full grading run.",
+      "skim": {
+        "date": "2026-08-16",
+        "files_scanned": 429,
+        "red_flags": [],
+        "notes": [
+          "cloud credential read in docs",
+          "network call",
+          "remote-exec pipe in docs"
+        ]
+      }
+    },
+    {
+      "id": "googleworkspace-cli",
+      "name": "cli",
+      "repo_url": "https://github.com/googleworkspace/cli",
+      "author": "googleworkspace",
+      "category": "docs",
+      "summary": "Google Workspace CLI — one command-line tool for Drive, Gmail, Calendar, Sheets, Docs, Chat, Admin, and more. Dynamically built from Google Discovery Service. Includes AI agent skills.",
+      "pain_points": [
+        "docs-drift"
+      ],
+      "status": "scouted",
+      "scouted_on": "2026-08-16",
+      "signals": {
+        "stars": 30407,
+        "forks": 1782,
+        "checked": "2026-08-16"
+      },
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: googleworkspace/cli, created 2026-03.",
+        "license": "Apache-2.0",
+        "freshness": "Last push 2026-08-01 (checked 2026-08-16) — actively maintained.",
+        "safety": "Automated safety skim (2026-08-16, 167 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: cloud credential read in docs, network call. A pattern scan, not a line-by-line read — the full source read happens before publication."
+      },
+      "next": "Queued for a full grading run.",
+      "skim": {
+        "date": "2026-08-16",
+        "files_scanned": 167,
+        "red_flags": [],
+        "notes": [
+          "cloud credential read in docs",
+          "network call"
+        ]
+      }
+    },
+    {
+      "id": "anthropics-claude-quickstarts",
+      "name": "anthropics/claude-quickstarts",
+      "repo_url": "https://github.com/anthropics/claude-quickstarts",
+      "author": "anthropics",
+      "category": "library",
+      "summary": "A collection of projects designed to help developers quickly get started with building deployable applications using the Claude API",
+      "pain_points": [
+        "generic-frontend"
+      ],
+      "status": "scouted",
+      "scouted_on": "2026-08-16",
+      "signals": {
+        "stars": 17446,
+        "forks": 3009,
+        "checked": "2026-08-16"
+      },
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: anthropics/claude-quickstarts, created 2024-08.",
+        "license": "MIT",
+        "freshness": "Last push 2026-08-06 (checked 2026-08-16) — actively maintained.",
+        "safety": "Automated safety skim (2026-08-16, 373 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: cloud credential read in docs, network call. A library, not one skill — each skill needs its own read before use."
+      },
+      "next": "Queued for a full grading run.",
+      "skim": {
+        "date": "2026-08-16",
+        "files_scanned": 373,
+        "red_flags": [],
+        "notes": [
+          "cloud credential read in docs",
+          "network call"
+        ]
+      }
+    },
+    {
+      "id": "tt-a1i-archify",
+      "name": "archify",
+      "repo_url": "https://github.com/tt-a1i/archify",
+      "author": "tt-a1i",
+      "category": "frontend",
+      "summary": "Agent skill for beautiful, verifiable architecture, workflow, sequence, data-flow, and lifecycle diagrams—self-contained HTML with motion and crisp export.",
+      "pain_points": [
+        "generic-frontend"
+      ],
+      "status": "scouted",
+      "scouted_on": "2026-08-16",
+      "signals": {
+        "stars": 13263,
+        "forks": 970,
+        "checked": "2026-08-16"
+      },
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: tt-a1i/archify, created 2026-04.",
+        "license": "MIT",
+        "freshness": "Last push 2026-08-14 (checked 2026-08-16) — actively maintained.",
+        "safety": "Automated safety skim (2026-08-16, 294 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. A pattern scan, not a line-by-line read — the full source read happens before publication."
+      },
+      "next": "Queued for a full grading run.",
+      "skim": {
+        "date": "2026-08-16",
+        "files_scanned": 294,
+        "red_flags": [],
+        "notes": []
+      }
+    },
+    {
+      "id": "voltagent-voltagent",
+      "name": "voltagent",
+      "repo_url": "https://github.com/VoltAgent/voltagent",
+      "author": "VoltAgent",
+      "category": "workflow",
+      "summary": "AI Agent Engineering Platform built on an Open Source TypeScript AI Agent Framework",
+      "pain_points": [],
+      "status": "scouted",
+      "scouted_on": "2026-08-16",
+      "signals": {
+        "stars": 10367,
+        "forks": 1090,
+        "checked": "2026-08-16"
+      },
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: VoltAgent/voltagent, created 2025-04.",
+        "license": "MIT",
+        "freshness": "Last push 2026-08-10 (checked 2026-08-16) — actively maintained.",
+        "safety": "Automated safety skim (2026-08-16, 600 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: network call. A pattern scan, not a line-by-line read — the full source read happens before publication."
+      },
+      "next": "Queued for a full grading run.",
+      "skim": {
+        "date": "2026-08-16",
+        "files_scanned": 600,
+        "red_flags": [],
+        "notes": [
+          "network call"
+        ]
+      }
+    },
+    {
+      "id": "anthropics-claude-for-legal",
+      "name": "claude-for-legal",
+      "repo_url": "https://github.com/anthropics/claude-for-legal",
+      "author": "anthropics",
+      "category": "automation",
+      "summary": "A suite of plugins for legal workflows",
+      "pain_points": [],
+      "status": "scouted",
+      "scouted_on": "2026-08-16",
+      "signals": {
+        "stars": 9124,
+        "forks": 1776,
+        "checked": "2026-08-16"
+      },
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: anthropics/claude-for-legal, created 2026-04.",
+        "license": "Apache-2.0",
+        "freshness": "Last push 2026-08-14 (checked 2026-08-16) — actively maintained.",
+        "safety": "Automated safety skim (2026-08-16, 315 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: network call. A pattern scan, not a line-by-line read — the full source read happens before publication."
+      },
+      "next": "Queued for a full grading run.",
+      "skim": {
+        "date": "2026-08-16",
+        "files_scanned": 315,
+        "red_flags": [],
+        "notes": [
+          "network call"
+        ]
+      }
+    },
+    {
+      "id": "worldwonderer-oh-story-claudecode",
+      "name": "oh-story-claudecode",
+      "repo_url": "https://github.com/worldwonderer/oh-story-claudecode",
+      "author": "worldwonderer",
+      "category": "workflow",
+      "summary": "网文/小说写作 skill 包，覆盖长篇与短篇网络小说的扫榜、拆文、写作、去AI味、封面图全流程 | An all-in-one skill pack for long- and short-form web fiction.",
+      "pain_points": [],
+      "status": "scouted",
+      "scouted_on": "2026-08-16",
+      "signals": {
+        "stars": 5653,
+        "forks": 850,
+        "checked": "2026-08-16"
+      },
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: worldwonderer/oh-story-claudecode, created 2026-04.",
+        "license": "MIT",
+        "freshness": "Last push 2026-08-16 (checked 2026-08-16) — actively maintained.",
+        "safety": "Automated safety skim (2026-08-16, 531 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: network call. A pattern scan, not a line-by-line read — the full source read happens before publication."
+      },
+      "next": "Queued for a full grading run.",
+      "skim": {
+        "date": "2026-08-16",
+        "files_scanned": 531,
+        "red_flags": [],
+        "notes": [
+          "network call"
+        ]
+      }
+    },
+    {
+      "id": "browser-act-skills",
+      "name": "browser-act/skills",
+      "repo_url": "https://github.com/browser-act/skills",
+      "author": "browser-act",
+      "category": "library",
+      "summary": "Browser automation CLI built for AI agents. Break through anti-bot walls, hand off to humans across platforms when stuck. Parallel multi-task execution, independent multi-session operation, isolated multi-account browsin",
+      "pain_points": [
+        "context-bloat",
+        "planning-drift"
+      ],
+      "status": "scouted",
+      "scouted_on": "2026-08-16",
+      "signals": {
+        "stars": 5336,
+        "forks": 255,
+        "checked": "2026-08-16"
+      },
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: browser-act/skills, created 2026-02.",
+        "license": "MIT",
+        "freshness": "Last push 2026-08-12 (checked 2026-08-16) — actively maintained.",
+        "safety": "Automated safety skim (2026-08-16, 271 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: network call. A library, not one skill — each skill needs its own read before use."
+      },
+      "next": "Queued for a full grading run.",
+      "skim": {
+        "date": "2026-08-16",
+        "files_scanned": 271,
+        "red_flags": [],
+        "notes": [
+          "network call"
+        ]
+      }
+    },
+    {
+      "id": "wenyuchiou-awesome-agentic-ai-zh",
+      "name": "WenyuChiou/awesome-agentic-ai-zh",
+      "repo_url": "https://github.com/WenyuChiou/awesome-agentic-ai-zh",
+      "author": "WenyuChiou",
+      "category": "library",
+      "summary": "A trilingual (繁中 / English / 简中) learning roadmap for agentic AI: from LLM basics to multi-agent systems, with 240+ curated resources and hands-on examples. 中文 AI agent 學習地圖。",
+      "pain_points": [
+        "shallow-research",
+        "context-bloat",
+        "planning-drift"
+      ],
+      "status": "scouted",
+      "scouted_on": "2026-08-16",
+      "signals": {
+        "stars": 5266,
+        "forks": 714,
+        "checked": "2026-08-16"
+      },
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: WenyuChiou/awesome-agentic-ai-zh, created 2026-05.",
+        "license": "MIT",
+        "freshness": "Last push 2026-08-15 (checked 2026-08-16) — actively maintained.",
+        "safety": "Automated safety skim (2026-08-16, 401 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: ssh key read in docs, remote-exec pipe in docs, network call. A library, not one skill — each skill needs its own read before use."
+      },
+      "next": "Queued for a full grading run.",
+      "skim": {
+        "date": "2026-08-16",
+        "files_scanned": 401,
+        "red_flags": [],
+        "notes": [
+          "network call",
+          "remote-exec pipe in docs",
+          "ssh key read in docs"
+        ]
+      }
+    },
+    {
+      "id": "vincentwei1021-video-shotcraft",
+      "name": "video-shotcraft",
+      "repo_url": "https://github.com/Vincentwei1021/video-shotcraft",
+      "author": "Vincentwei1021",
+      "category": "frontend",
+      "summary": "AI video skill for Claude Code & Codex — cinematic product videos with Remotion: 152 shot recipe cards, 209 motion previews, a production-ready template",
+      "pain_points": [
+        "generic-frontend"
+      ],
+      "status": "scouted",
+      "scouted_on": "2026-08-16",
+      "signals": {
+        "stars": 5225,
+        "forks": 449,
+        "checked": "2026-08-16"
+      },
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: Vincentwei1021/video-shotcraft, created 2026-07.",
+        "license": "Apache-2.0",
+        "freshness": "Last push 2026-08-14 (checked 2026-08-16) — actively maintained.",
+        "safety": "Automated safety skim (2026-08-16, 575 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. A pattern scan, not a line-by-line read — the full source read happens before publication."
+      },
+      "next": "Queued for a full grading run.",
+      "skim": {
+        "date": "2026-08-16",
+        "files_scanned": 575,
+        "red_flags": [],
+        "notes": []
+      }
+    },
+    {
+      "id": "zebbern-claude-code-guide",
+      "name": "claude-code-guide",
+      "repo_url": "https://github.com/zebbern/claude-code-guide",
+      "author": "zebbern",
+      "category": "automation",
+      "summary": "Claude Code Guide - Setup, Commands, workflows, agents, skills & tips-n-tricks from beginner to power user!",
+      "pain_points": [],
+      "status": "scouted",
+      "scouted_on": "2026-08-16",
+      "signals": {
+        "stars": 4573,
+        "forks": 458,
+        "checked": "2026-08-16"
+      },
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: zebbern/claude-code-guide, created 2025-06.",
+        "license": "MIT",
+        "freshness": "Last push 2026-08-15 (checked 2026-08-16) — actively maintained.",
+        "safety": "Automated safety skim (2026-08-16, 401 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: remote-exec pipe in docs, network call, ssh key read in docs, cloud credential read in docs, powershell encoded exec in docs, decode-then-execute in docs. A pattern scan, not a line-by-line read — the full source read happens before publication."
+      },
+      "next": "Queued for a full grading run.",
+      "skim": {
+        "date": "2026-08-16",
+        "files_scanned": 401,
+        "red_flags": [],
+        "notes": [
+          "cloud credential read in docs",
+          "decode-then-execute in docs",
+          "network call",
+          "powershell encoded exec in docs",
+          "remote-exec pipe in docs",
+          "ssh key read in docs"
+        ]
+      }
+    },
+    {
+      "id": "samuraigpt-generative-media-skills",
+      "name": "SamurAIGPT/Generative-Media-Skills",
+      "repo_url": "https://github.com/SamurAIGPT/Generative-Media-Skills",
+      "author": "SamurAIGPT",
+      "category": "library",
+      "summary": "Multi-modal Generative Media Skills for AI Agents (Claude Code, Cursor, Gemini CLI). High-quality image, video, and audio generation powered by muapi.ai.",
+      "pain_points": [],
+      "status": "scouted",
+      "scouted_on": "2026-08-16",
+      "signals": {
+        "stars": 4072,
+        "forks": 466,
+        "checked": "2026-08-16"
+      },
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: SamurAIGPT/Generative-Media-Skills, created 2023-05.",
+        "license": "MIT",
+        "freshness": "Last push 2026-08-15 (checked 2026-08-16) — actively maintained.",
+        "safety": "Automated safety skim (2026-08-16, 106 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: network call. A library, not one skill — each skill needs its own read before use."
+      },
+      "next": "Queued for a full grading run.",
+      "skim": {
+        "date": "2026-08-16",
+        "files_scanned": 106,
+        "red_flags": [],
+        "notes": [
+          "network call"
+        ]
+      }
+    },
+    {
+      "id": "glitternetwork-pinme",
+      "name": "pinme",
+      "repo_url": "https://github.com/glitternetwork/pinme",
+      "author": "glitternetwork",
+      "category": "frontend",
+      "summary": "Deploy Your Frontend in a Single Command. Claude Code Skills supported.",
+      "pain_points": [
+        "generic-frontend"
+      ],
+      "status": "scouted",
+      "scouted_on": "2026-08-16",
+      "signals": {
+        "stars": 3737,
+        "forks": 272,
+        "checked": "2026-08-16"
+      },
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: glitternetwork/pinme, created 2025-04.",
+        "license": "MIT",
+        "freshness": "Last push 2026-07-25 (checked 2026-08-16) — actively maintained.",
+        "safety": "Automated safety skim (2026-08-16, 131 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: network call. A pattern scan, not a line-by-line read — the full source read happens before publication."
+      },
+      "next": "Queued for a full grading run.",
+      "skim": {
+        "date": "2026-08-16",
+        "files_scanned": 131,
+        "red_flags": [],
+        "notes": [
+          "network call"
+        ]
+      }
+    },
+    {
+      "id": "elementalsouls-claude-bughunter",
+      "name": "elementalsouls/Claude-BugHunter",
+      "repo_url": "https://github.com/elementalsouls/Claude-BugHunter",
+      "author": "elementalsouls",
+      "category": "library",
+      "summary": "A Claude Code skill bundle for bug hunting and external red-team work - 82 skills, 15 slash commands, 681 disclosed-report patterns curated across 24 core vulnerability classes, plus enterprise identity + infrastructure ",
+      "pain_points": [
+        "security-worries"
+      ],
+      "status": "scouted",
+      "scouted_on": "2026-08-16",
+      "signals": {
+        "stars": 3619,
+        "forks": 560,
+        "checked": "2026-08-16"
+      },
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: elementalsouls/Claude-BugHunter, created 2026-05.",
+        "license": "MIT",
+        "freshness": "Last push 2026-08-16 (checked 2026-08-16) — actively maintained.",
+        "safety": "Automated safety skim (2026-08-16, 246 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: network call, remote-exec pipe in docs, cloud credential read in docs, ssh key read in docs, decode-then-execute in docs. A library, not one skill — each skill needs its own read before use."
+      },
+      "next": "Queued for a full grading run.",
+      "skim": {
+        "date": "2026-08-16",
+        "files_scanned": 246,
+        "red_flags": [],
+        "notes": [
+          "cloud credential read in docs",
+          "decode-then-execute in docs",
+          "network call",
+          "remote-exec pipe in docs",
+          "ssh key read in docs"
+        ]
+      }
+    },
+    {
+      "id": "khazp-vibe-coding-prompt-template",
+      "name": "KhazP/vibe-coding-prompt-template",
+      "repo_url": "https://github.com/KhazP/vibe-coding-prompt-template",
+      "author": "KhazP",
+      "category": "library",
+      "summary": "Templates and workflow for generating PRDs, Tech Designs, and MVP and more using LLMs for AI IDEs",
+      "pain_points": [
+        "generic-frontend"
+      ],
+      "status": "scouted",
+      "scouted_on": "2026-08-16",
+      "signals": {
+        "stars": 2840,
+        "forks": 361,
+        "checked": "2026-08-16"
+      },
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: KhazP/vibe-coding-prompt-template, created 2025-04.",
+        "license": "MIT",
+        "freshness": "Last push 2026-07-18 (checked 2026-08-16) — actively maintained.",
+        "safety": "Automated safety skim (2026-08-16, 71 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. A library, not one skill — each skill needs its own read before use."
+      },
+      "next": "Queued for a full grading run.",
+      "skim": {
+        "date": "2026-08-16",
+        "files_scanned": 71,
+        "red_flags": [],
+        "notes": []
+      }
+    },
+    {
+      "id": "wesammustafa-claude-code-everything-you-need-to-know",
+      "name": "Claude-Code-Everything-You-Need-to-Know",
+      "repo_url": "https://github.com/wesammustafa/Claude-Code-Everything-You-Need-to-Know",
+      "author": "wesammustafa",
+      "category": "automation",
+      "summary": "A practical Claude Code guide with clear mental models and copy-paste examples — setup, prompt engineering, slash commands, skills, hooks, subagents, agent teams, and MCP servers. Beginner path to power-user depth. Featu",
+      "pain_points": [],
+      "status": "scouted",
+      "scouted_on": "2026-08-16",
+      "signals": {
+        "stars": 2648,
+        "forks": 309,
+        "checked": "2026-08-16"
+      },
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: wesammustafa/Claude-Code-Everything-You-Need-to-Know, created 2025-08.",
+        "license": "MIT",
+        "freshness": "Last push 2026-07-28 (checked 2026-08-16) — actively maintained.",
+        "safety": "Automated safety skim (2026-08-16, 66 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. A pattern scan, not a line-by-line read — the full source read happens before publication."
+      },
+      "next": "Queued for a full grading run.",
+      "skim": {
+        "date": "2026-08-16",
+        "files_scanned": 66,
+        "red_flags": [],
+        "notes": []
       }
     }
   ]
