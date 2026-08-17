@@ -15,42 +15,46 @@
 
   var SCRIPTS = {
     prompt: {
-      title: "skillproof — paste the prompt",
+      title: "lucas — claude — 96×28",
       lines: [
+        { t: "banner", html: '<b>✻</b> Welcome to <b>Claude Code</b>! <span class="dim">/help for help · cwd: ~/projects/app</span>' },
         { t: "you", type: true, html: "my agent keeps writing tests that pass but don’t actually test anything" },
-        { t: "sp", html: 'Found <span class="ok">test-honesty</span> — well maintained, source read. Checking your setup first…' },
-        { t: "sp", html: 'Heads up: your CLAUDE.md, line 41, tells it to <span class="warn">“never block on failing tests.”</span> That rule will fight this skill.' },
-        { t: "sp", html: 'Want me to soften line 41? I’ll back it up first — <span class="dim">one line to undo.</span>' },
-        { t: "you", type: true, html: "yes, go ahead" },
-        { t: "sp", html: '<span class="ok">Done.</span> Line 41 softened, backup saved, test-honesty installed.' },
-        { t: "sp", html: "Try it — ask for a test. It should push back if there’s nothing real to test." }
+        { t: "tool", html: 'Skillproof: looking for a skill that fixes fake-passing tests…' },
+        { t: "sub", html: 'Found <span class="ok">test-honesty</span> <span class="dim">(★ 2.1k, MIT, source read — clean)</span>' },
+        { t: "tool", html: 'Read(<span class="y">CLAUDE.md</span>)' },
+        { t: "sub", html: 'line 41 says <span class="warn">“never block on failing tests”</span> — that rule will fight this skill' },
+        { t: "ask", html: 'Soften CLAUDE.md line 41? Backup first → CLAUDE.md.bak<br><span class="opt">❯ 1. Yes</span> &nbsp; 2. Yes, don’t ask again &nbsp; 3. No' },
+        { t: "tool", html: 'Edit(CLAUDE.md) <span class="dim">· 1 line</span> &nbsp; <span class="ok">✓</span>' },
+        { t: "tool", html: 'Installed <span class="ok">test-honesty</span> → ~/.claude/skills/ &nbsp; <span class="ok">✓ verified</span>' },
+        { t: "you", type: true, html: "write a test for the login flow" },
+        { t: "sub", html: 'The login flow has no real assertion yet — here’s a test that fails until it does.' }
       ]
     },
     cli: {
-      title: "skillproof — install the skill",
+      title: "lucas — zsh — 96×28",
       lines: [
         { t: "sh", type: true, html: "for f in SKILL.md references/…; do curl -fsSL --create-dirs …/skills/skillproof/$f -o ~/.claude/skills/skillproof/$f; done" },
-        { t: "out", html: '<span class="ok">✓</span> SKILL.md <span class="dim">4.1 kB</span>' },
-        { t: "out", html: '<span class="ok">✓</span> references/consent.md · conflict-patterns.md · install-paths.md' },
-        { t: "out", html: '<span class="ok">✓</span> references/tiers.md · finding.md · security.md <span class="dim">— 7 files, nothing piped to a shell</span>' },
+        { t: "out", html: '<span class="ok">✓</span> SKILL.md · consent.md · conflict-patterns.md · install-paths.md · tiers.md · finding.md · security.md <span class="dim">— 7 files, nothing piped to a shell</span>' },
         { t: "sh", type: true, html: "claude" },
+        { t: "banner", html: '<b>✻</b> Welcome to <b>Claude Code</b>! <span class="dim">skill loaded: skillproof</span>' },
         { t: "you", type: true, html: "make my agent better at frontend design" },
-        { t: "sp", html: 'Found <span class="ok">impeccable</span> — source-read, clean. Read your setup: <span class="warn">2 conflicts</span> — a global style rule and an older design skill.' },
-        { t: "sp", html: 'Edit 1 of 2: retire <span class="hi">~/.claude/skills/design-old</span>. <span class="dim">Approve?</span>' },
-        { t: "you", type: true, html: "go ahead on both" },
-        { t: "sp", html: '<span class="ok">✓ Done, verified, undo ready.</span> One design skill loads now, not two fighting.' }
+        { t: "tool", html: 'Skillproof: found <span class="ok">impeccable</span> <span class="dim">(★ 4.3k, source read — clean)</span>' },
+        { t: "sub", html: 'Your setup has an older design skill and a global style rule that would clash' },
+        { t: "ask", html: 'Retire ~/.claude/skills/design-old and relax the style rule? Backups first<br><span class="opt">❯ 1. Yes, both</span> &nbsp; 2. Show me each &nbsp; 3. No' },
+        { t: "tool", html: 'Done <span class="dim">· 2 edits, 2 backups</span> &nbsp; <span class="ok">✓ verified</span> — one design skill loads now, not two fighting' }
       ]
     },
     mcp: {
-      title: "skillproof — as an MCP server",
+      title: "lucas — zsh — 96×28",
       lines: [
         { t: "sh", type: true, html: "claude mcp add skillproof -- node mcp/server.js" },
-        { t: "out", html: "✓ skillproof available as a tool in every session" },
+        { t: "out", html: '<span class="ok">✓</span> skillproof is now a tool in every session' },
+        { t: "sh", type: true, html: "claude" },
         { t: "you", type: true, html: "audit my setup — what’s conflicting?" },
-        { t: "sp", html: 'Read 4 files. <span class="warn">2 findings:</span> duplicate memory rules; a skill your CLAUDE.md overrides silently.' },
-        { t: "sp", html: "Want fixes? I’ll show each edit and ask before touching anything." },
-        { t: "you", type: true, html: "show me" },
-        { t: "sp", html: '<span class="hi">Edit 1 of 2:</span> merge the duplicate rule into one line. <span class="dim">Approve?</span>' }
+        { t: "tool", html: 'skillproof.audit() <span class="dim">· read 4 files</span>' },
+        { t: "sub", html: '<span class="warn">2 findings:</span> a duplicated memory rule; a skill your CLAUDE.md quietly overrides' },
+        { t: "ask", html: 'Fix them? I’ll show each edit before touching anything<br><span class="opt">❯ 1. Show me</span> &nbsp; 2. Fix both &nbsp; 3. Not now' },
+        { t: "tool", html: 'Edit 1 of 2 <span class="dim">· merge the duplicate rule into one line</span> &nbsp; <span class="dim">Approve?</span>' }
       ]
     }
   };

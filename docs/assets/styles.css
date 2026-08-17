@@ -194,7 +194,7 @@ kbd{font-family:var(--mono);font-size:.71rem;padding:2px 5px;border-radius:5px;b
 /* the first screen belongs to the hero — the catalog starts below the fold */
 .hero-lead{min-height:min(calc(100svh - 84px),760px);display:flex;align-items:start;padding-top:52px;padding-bottom:64px}
 .hero-split{flex:1;display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);gap:28px;
-  align-items:stretch;scroll-margin-top:90px;grid-template-rows:1fr auto auto;row-gap:0}
+  align-items:stretch;scroll-margin-top:90px;grid-template-rows:1fr auto;row-gap:0}
 .hero-split > .hero-assure{grid-column:1;grid-row:2;margin-top:12px}
 .hero-panel{width:100%;text-align:left;display:flex;flex-direction:column;min-width:0}
 .hero-panel .installer{flex:1;display:flex;flex-direction:column}
@@ -240,34 +240,39 @@ kbd{font-family:var(--mono);font-size:.71rem;padding:2px 5px;border-radius:5px;b
   padding:1px 5px;border-radius:5px}
 .hero-assure{margin-top:12px;font-size:.78rem;color:var(--mint-d);font-weight:500}
 
-/* the living terminal */
-.term{position:relative;background:linear-gradient(150deg,#182338,#1E2C44);border-radius:var(--r-lg);
-  overflow:hidden;box-shadow:inset 0 1px 0 rgba(255,255,255,.10), var(--shadow-lg);
+/* the living terminal — P1: Claude Code inside a macOS Terminal window */
+.term{position:relative;background:#1E1E1E;border-radius:12px;
+  overflow:hidden;box-shadow:0 0 0 1px rgba(255,255,255,.08), var(--shadow-lg);
   display:flex;flex-direction:column;align-self:stretch}
-.term-bar{display:flex;align-items:center;gap:7px;padding:11px 15px;background:rgba(255,255,255,.05);
-  border-bottom:1px solid rgba(255,255,255,.08)}
-.tdot{width:11px;height:11px;border-radius:50%;flex:none}
-.tdot:nth-child(1){background:#C76A58}.tdot:nth-child(2){background:#C9A35C}.tdot:nth-child(3){background:#6F9C72}
-.term-title{margin-left:8px;font-size:.72rem;color:#8FA2BD;font-family:var(--mono)}
-.term-dots{margin-left:auto;display:flex;gap:6px}
-.mdot{width:7px;height:7px;border-radius:50%;background:#3A4C68;transition:background 300ms var(--ease-out)}
-.mdot.on{background:#8FBBE8}
-.term-body{padding:18px 20px 20px;font-family:var(--mono);font-size:.95rem;line-height:1.75;
-  flex:1;min-height:520px;overflow:hidden;color:#E8EDF5;
+.term-bar{display:flex;align-items:center;gap:8px;padding:0 12px;height:38px;position:relative;
+  background:linear-gradient(#3A3A3A,#2C2C2C);border-bottom:1px solid #111}
+.tdot{width:12px;height:12px;border-radius:50%;flex:none}
+.tdot:nth-child(1){background:#FF5F57}.tdot:nth-child(2){background:#FEBC2E}.tdot:nth-child(3){background:#28C840}
+.term-title{position:absolute;left:0;right:0;text-align:center;font:500 12px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#BBB;pointer-events:none}
+.term-dots{margin-left:auto;display:flex;gap:6px;position:relative;z-index:1}
+.mdot{width:7px;height:7px;border-radius:50%;background:#444;transition:background 300ms var(--ease-out)}
+.mdot.on{background:#8AB4FF}
+.term-body{padding:14px 18px 18px;font-family:var(--mono);font-size:.9rem;line-height:1.7;
+  flex:1;min-height:520px;overflow:hidden;color:#D4D4D4;
   transition:opacity 340ms var(--ease-out),transform 340ms var(--ease-out)}
 /* 8: direction-aware swap — outgoing session slides toward the tab you left,
    incoming arrives from the tab you chose */
 .term-body.swap-l{opacity:0;transform:translateX(-56px)}
 .term-body.swap-r{opacity:0;transform:translateX(56px)}
 .tln{opacity:0;transform:translateY(4px);transition:opacity 320ms var(--ease-out),transform 320ms var(--ease-out);
-  min-height:1.75em}
+  min-height:1.7em}
 .tln.show{opacity:1;transform:none}
-.tln.you::before{content:"you  › ";color:#7C8EA9}
-.tln.sp{color:#A8C4E4}.tln.sp::before{content:"skill› ";color:#5A7396}
-.tln.sh{color:#E8EDF5}.tln.sh::before{content:"$ ";color:#8FBBE8}
-.tln.out{color:#8FA2BD}
-.tln .ok{color:#8FC491}.tln .warn{color:#E09383}.tln .dim{color:#7C8EA9}.tln .hi{color:#F2F5FA}
-.tcaret{display:inline-block;width:7px;height:14px;background:#A8C4E4;vertical-align:-2px;
+.tln.you{color:#D4D4D4;margin-bottom:8px}.tln.you::before{content:"> ";color:#8AB4FF}
+.tln.sh{color:#D4D4D4}.tln.sh::before{content:"$ ";color:#8AB4FF}
+.tln.tool{color:#D4D4D4}.tln.tool::before{content:"⏺ ";color:#7EE787}
+.tln.sub{color:#8B949E;padding-left:18px}.tln.sub::before{content:"⎿ ";color:#555}
+.tln.ask{margin:8px 0;padding:8px 12px;border:1px solid #444;border-radius:6px;background:#242424;color:#D4D4D4}
+.tln.ask .opt{color:#7EE787}
+.tln.out{color:#8B949E}
+.tln.banner{display:inline-block;border:1px solid #6B5BD6;border-radius:6px;padding:6px 12px;color:#C9C2FF;margin-bottom:10px}
+.tln.banner b{color:#D97757;font-weight:600}
+.tln .ok{color:#7EE787}.tln .warn{color:#FF7B72}.tln .dim{color:#7A7A7A}.tln .hi{color:#F2F5FA}.tln .y{color:#E3B341}
+.tcaret{display:inline-block;width:8px;height:15px;background:#D4D4D4;vertical-align:-2px;
   animation:tblink 1s steps(1) infinite}
 @keyframes tblink{50%{opacity:0}}
 @media (prefers-reduced-motion: reduce){
@@ -1058,7 +1063,7 @@ footer{margin-top:10px;padding:42px 0 20px;
 .btn:disabled:hover,.copy:disabled:hover{transform:none}
 
 /* what's a skill — one small plain-English card, folded by default */
-.whatis{grid-column:1;grid-row:3;padding:6px 0 0;font-size:.78rem;color:var(--ink-2)}
+.whatis{grid-column:2;grid-row:2;padding:12px 0 0;font-size:.78rem;color:var(--ink-2)}
 .whatis summary{cursor:pointer;color:var(--violet-d);font-weight:700;list-style:none;display:inline-block}
 .whatis[open] summary{margin-bottom:6px}
 .whatis p{line-height:1.5;margin:0 0 6px}
