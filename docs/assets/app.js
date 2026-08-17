@@ -885,7 +885,7 @@
     $("#copyPrompt").addEventListener("click", function () {
       try {
         if (navigator.clipboard) navigator.clipboard.writeText($("#promptText").value);
-        toast("Copied — paste it into any AI chat.");
+        toast("Copied");
         $("#copyPrompt").classList.add("done");
         setTimeout(function () { $("#copyPrompt").classList.remove("done"); }, 1600);
       } catch (err) {}

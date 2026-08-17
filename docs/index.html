@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://api.fontshare.com" />
   <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin />
   <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&f[]=jetbrains-mono@400,500,600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/styles.css?v=31" />
+  <link rel="stylesheet" href="assets/styles.css?v=32" />
 </head>
 <body>
 
@@ -82,8 +82,6 @@
           <div class="inst-pane on" id="instPane-prompt" role="tabpanel" data-pane="prompt" aria-labelledby="instTab-prompt">
             <p>Paste one short prompt into an agentic AI &mdash; easiest way to start.</p>
             <div class="cmdwrap"><textarea id="promptText" readonly rows="3" aria-label="Advisor prompt" class="inst-prompt"></textarea><button class="copy" id="copyPrompt" type="button" aria-label="Copy prompt"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2.5"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button></div>
-            <p class="inst-fine"><a href="data/skills.json" download="skillproof-catalog.json">Download the catalog ↓</a>
-              <span class="prompt-status" id="copyStatus" role="status" aria-live="polite"></span></p>
           </div>
 
           <div class="inst-pane" id="instPane-cli" role="tabpanel" data-pane="cli" aria-labelledby="instTab-cli" hidden>
@@ -91,9 +89,6 @@
             is piped into a shell, and it never edits your setup without asking first, per change.</p>
             <div class="cmdwrap"><div class="cmdbox inst-cmd">for f in SKILL.md references/consent.md references/conflict-patterns.md references/install-paths.md references/tiers.md references/finding.md references/security.md; do curl -fsSL --create-dirs https://raw.githubusercontent.com/lucascashwell3-ai/Skillproof/main/skills/skillproof/$f -o ~/.claude/skills/skillproof/$f; done
             </div><button class="copy" type="button" aria-label="Copy" data-copy="for f in SKILL.md references/consent.md references/conflict-patterns.md references/install-paths.md references/tiers.md references/finding.md references/security.md; do curl -fsSL --create-dirs https://raw.githubusercontent.com/lucascashwell3-ai/Skillproof/main/skills/skillproof/$f -o ~/.claude/skills/skillproof/$f; done"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2.5"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button></div>
-            <p class="inst-fine">Read it before you run it &mdash; we&rsquo;d grade us too:
-              <a href="https://github.com/lucascashwell3-ai/Skillproof/blob/main/skills/skillproof/SKILL.md" target="_blank" rel="noopener">SKILL.md ↗</a> &middot;
-              <a href="https://github.com/lucascashwell3-ai/Skillproof/blob/main/skills/skillproof/references/consent.md" target="_blank" rel="noopener">what it will and won&rsquo;t touch ↗</a></p>
           </div>
 
           <div class="inst-pane" id="instPane-mcp" role="tabpanel" data-pane="mcp" aria-labelledby="instTab-mcp" hidden>
@@ -101,17 +96,19 @@
             four read-only tools your agent can query mid-task.</p>
             <div class="cmdwrap"><div class="cmdbox inst-cmd">git clone https://github.com/lucascashwell3-ai/Skillproof &amp;&amp; cd Skillproof/mcp &amp;&amp; npm install
             </div><button class="copy" type="button" aria-label="Copy" data-copy="git clone https://github.com/lucascashwell3-ai/Skillproof && cd Skillproof/mcp && npm install && claude mcp add skillproof -- node $(pwd)/server.js"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2.5"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button></div>
-            <p class="inst-fine">Then: <code>claude mcp add skillproof -- node /path/to/Skillproof/mcp/server.js</code> &middot;
-              per-host setup in <a href="https://github.com/lucascashwell3-ai/Skillproof/blob/main/mcp/README.md" target="_blank" rel="noopener">mcp/README.md ↗</a></p>
+          </div>
+          <div class="inst-foot">
+            <details class="whatis"><summary>What&rsquo;s a skill?</summary>
+              <p><b>Skill</b> — a small folder of instructions your AI reads so it does one job well (write honest tests, design cleaner pages).
+              <b>Agent</b> — the AI (Claude, ChatGPT, Cursor…) doing the work for you. <b>MCP</b> — a plug that lets other tools talk to it.
+              <b>Your setup</b> — the config files those tools already read (CLAUDE.md, installed skills, rules).</p></details>
+            <a href="https://github.com/lucascashwell3-ai/Skillproof/blob/main/skills/skillproof/SKILL.md" target="_blank" rel="noopener">SKILL.md ↗</a>
+            <a href="https://github.com/lucascashwell3-ai/Skillproof/blob/main/mcp/README.md" target="_blank" rel="noopener">MCP readme ↗</a>
           </div>
         </div>
 
       </div>
       <p class="hero-assure">✓ Every skill here is a real, licensed, actively maintained repo — vetted automatically, daily.</p>
-      <details class="whatis"><summary>What&rsquo;s a skill?</summary>
-            <p><b>Skill</b> — a small folder of instructions your AI reads so it does one job well (write honest tests, design cleaner pages).
-            <b>Agent</b> — the AI (Claude, ChatGPT, Cursor…) doing the work for you. <b>MCP</b> — a plug that lets other tools talk to it.
-            <b>Your setup</b> — the config files those tools already read (CLAUDE.md, installed skills, rules).</p></details>
 
       <!-- the living terminal: plays each install method's session, abridged.
            The sub-header sits above it as its caption (round 3, Lucas's call). -->
@@ -119,7 +116,7 @@
       <div class="term" id="term">
         <div class="term-bar">
           <span class="tdot"></span><span class="tdot"></span><span class="tdot"></span>
-          <span class="term-title" id="termTitle">lucas — claude — 96×28</span>
+          <span class="term-title" id="termTitle">claude — 96×28</span>
           <span class="term-dots" id="termDots" aria-hidden="true">
             <span class="mdot on"></span><span class="mdot"></span><span class="mdot"></span>
           </span>
@@ -310,7 +307,7 @@
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-<script src="assets/demo.js?v=6" defer></script>
-<script src="assets/app.js?v=101"></script>
+<script src="assets/demo.js?v=7" defer></script>
+<script src="assets/app.js?v=102"></script>
 </body>
 </html>

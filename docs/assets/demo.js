@@ -15,23 +15,23 @@
 
   var SCRIPTS = {
     prompt: {
-      title: "lucas — claude — 96×28",
+      title: "claude — 96×28",
       lines: [
         { t: "banner", html: '<b>✻</b> Welcome to <b>Claude Code</b>! <span class="dim">/help for help · cwd: ~/projects/app</span>' },
-        { t: "you", type: true, html: "my agent keeps writing tests that pass but don’t actually test anything" },
-        { t: "tool", html: 'Skillproof: looking for a skill that fixes fake-passing tests…' },
-        { t: "sub", html: 'Found <span class="ok">test-honesty</span> <span class="dim">(★ 2.1k, MIT, source read — clean)</span>' },
-        { t: "tool", html: 'Read(<span class="y">CLAUDE.md</span>)' },
-        { t: "sub", html: 'line 41 says <span class="warn">“never block on failing tests”</span> — that rule will fight this skill' },
-        { t: "ask", html: 'Soften CLAUDE.md line 41? Backup first → CLAUDE.md.bak<br><span class="opt">❯ 1. Yes</span> &nbsp; 2. Yes, don’t ask again &nbsp; 3. No' },
+        { t: "you", type: true, html: "I’m building an app — my frontend looks bad and the answers are always way too long" },
+        { t: "tool", html: 'Skillproof: two pain points, two skills. Searching…' },
+        { t: "sub", html: 'Design → <span class="ok">impeccable</span> <span class="dim">(★ 4.3k, source read — clean)</span> · Long answers → <span class="ok">terse-mode</span> <span class="dim">(★ 1.2k, clean)</span>' },
+        { t: "tool", html: 'Read(<span class="y">CLAUDE.md</span>, <span class="y">~/.claude/skills/</span>)' },
+        { t: "sub", html: 'one clash: your rule <span class="warn">“always explain your reasoning in full”</span> would cancel terse-mode' },
+        { t: "ask", html: 'Install both and soften that rule to “explain when asked”? Backup first<br><span class="opt">❯ 1. Yes</span> &nbsp; 2. Install only, leave the rule &nbsp; 3. No' },
         { t: "tool", html: 'Edit(CLAUDE.md) <span class="dim">· 1 line</span> &nbsp; <span class="ok">✓</span>' },
-        { t: "tool", html: 'Installed <span class="ok">test-honesty</span> → ~/.claude/skills/ &nbsp; <span class="ok">✓ verified</span>' },
-        { t: "you", type: true, html: "write a test for the login flow" },
-        { t: "sub", html: 'The login flow has no real assertion yet — here’s a test that fails until it does.' }
+        { t: "tool", html: 'Installed <span class="ok">impeccable</span>, <span class="ok">terse-mode</span> → ~/.claude/skills/ &nbsp; <span class="ok">✓ verified</span>' },
+        { t: "you", type: true, html: "redo the settings page" },
+        { t: "sub", html: 'On it — one screen, real spacing, and I’ll keep the notes short.' }
       ]
     },
     cli: {
-      title: "lucas — zsh — 96×28",
+      title: "zsh — 96×28",
       lines: [
         { t: "sh", type: true, html: "for f in SKILL.md references/…; do curl -fsSL --create-dirs …/skills/skillproof/$f -o ~/.claude/skills/skillproof/$f; done" },
         { t: "out", html: '<span class="ok">✓</span> SKILL.md · consent.md · conflict-patterns.md · install-paths.md · tiers.md · finding.md · security.md <span class="dim">— 7 files, nothing piped to a shell</span>' },
@@ -45,7 +45,7 @@
       ]
     },
     mcp: {
-      title: "lucas — zsh — 96×28",
+      title: "zsh — 96×28",
       lines: [
         { t: "sh", type: true, html: "claude mcp add skillproof -- node mcp/server.js" },
         { t: "out", html: '<span class="ok">✓</span> skillproof is now a tool in every session' },
