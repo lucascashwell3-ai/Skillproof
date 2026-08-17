@@ -199,28 +199,29 @@ kbd{font-family:var(--mono);font-size:.71rem;padding:2px 5px;border-radius:5px;b
    ===================================================================== */
 .hero{padding:0 0 22px}
 /* the first screen belongs to the hero — the catalog starts below the fold */
-.hero-lead{min-height:calc(100svh - 84px);display:flex;align-items:center;padding-top:16px;padding-bottom:30px}
+.hero-lead{min-height:min(calc(100svh - 84px),720px);display:flex;align-items:start;padding-top:28px;padding-bottom:30px}
 .hero-split{flex:1;display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);gap:28px;
-  align-items:stretch;scroll-margin-top:90px}
+  align-items:stretch;scroll-margin-top:90px;grid-template-rows:1fr auto;row-gap:0}
+.hero-split > .hero-assure{grid-column:1;grid-row:2;margin-top:12px}
 .hero-panel{width:100%;text-align:left;display:flex;flex-direction:column;min-width:0}
 .hero-panel .installer{flex:1;display:flex;flex-direction:column}
 .hero-panel .inst-pane.on{flex:1;display:flex;flex-direction:column}
 .hero-panel .inst-pane .cmdwrap{flex:1;min-height:76px;display:flex;flex-direction:column}
 .hero-panel .inst-pane .cmdwrap > .cmdbox,.hero-panel .inst-pane .cmdwrap > textarea{flex:1;max-height:none}
-.hero h1{margin-bottom:22px}
+.hero h1{margin-bottom:14px}
+.hero-sub{margin-bottom:24px}
 .term-col{display:flex;flex-direction:column;min-width:0}
-.term-col .hero-sub{margin:0 0 14px;max-width:none;font-size:clamp(.95rem,1.15vw,1.05rem)}
 .term-col .term{flex:1}
 
 /* installer */
 .installer{background:var(--glass-strong);border-radius:var(--r-md);overflow:hidden;
   box-shadow:inset 0 0 0 1px rgba(255,255,255,.9), var(--shadow-md)}
-.inst-tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-bottom:1px solid rgba(40,48,65,.10);background:rgba(240,234,222,.75)}
+.inst-tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-bottom:1px solid rgba(40,48,65,.14);background:rgba(226,220,208,.85)}
 .inst-tab{appearance:none;border:0;background:none;cursor:pointer;padding:12px 10px;text-align:center;white-space:nowrap;
-  font-size:.82rem;font-weight:640;color:var(--ink-3);border-bottom:2px solid transparent;
+  font-size:.84rem;font-weight:640;color:var(--ink-2);border-bottom:2px solid transparent;border-top:2px solid transparent;
   transition:color 200ms var(--ease-out)}
 .inst-tab:hover{color:var(--ink)}
-.inst-tab[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--violet);background:var(--glass-strong)}
+.inst-tab[aria-selected="true"]{color:var(--ink);border-top-color:var(--violet);border-bottom-color:transparent;background:#fff;margin-bottom:-1px;box-shadow:0 -1px 0 rgba(255,255,255,.9)}
 .inst-tab:focus-visible{outline:2px solid var(--violet);outline-offset:-3px;border-radius:6px}
 /* every pane is the same height so switching methods never moves the page —
    the size-jump between tabs was a specific review note */
@@ -324,7 +325,8 @@ kbd{font-family:var(--mono);font-size:.71rem;padding:2px 5px;border-radius:5px;b
 
 @media (max-width:900px){
   .hero-lead{min-height:0;padding-top:24px}
-  .term-col .hero-sub{margin-bottom:12px}
+  .hero-split{grid-template-rows:auto}
+  .hero-split > .hero-assure{grid-column:1;grid-row:auto}
   .hero-panel .inst-pane .cmdwrap > .cmdbox,.hero-panel .inst-pane .cmdwrap > textarea{max-height:130px;overflow-y:auto}
   .hero-split{grid-template-columns:1fr;gap:22px;align-items:start}
   .term{align-self:auto}
