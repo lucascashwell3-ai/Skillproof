@@ -17,13 +17,13 @@
     prompt: {
       title: "skillproof — paste the prompt",
       lines: [
-        { t: "you", type: true, html: "my agent writes tests that pass but don’t test anything" },
-        { t: "sp", html: 'Found <span class="ok">test-honesty</span> — source-read, clean. Before installing, I read your setup.' },
-        { t: "sp", html: '<span class="warn">Conflict:</span> CLAUDE.md line 41 says “never block on failing tests.” It will fight the new skill.' },
-        { t: "sp", html: 'May I soften line 41? <span class="dim">(backup first — undo: restore CLAUDE.md.bak)</span>' },
-        { t: "you", type: true, html: "yes" },
-        { t: "sp", html: '<span class="ok">✓ Edited, confirmed, backed up.</span> <span class="ok">✓ Installed test-honesty.</span>' },
-        { t: "sp", html: "Try it: ask for a test — it should now refuse to fake one." }
+        { t: "you", type: true, html: "my agent keeps writing tests that pass but don’t actually test anything" },
+        { t: "sp", html: 'Found <span class="ok">test-honesty</span> — well maintained, source read. Checking your setup first…' },
+        { t: "sp", html: 'Heads up: your CLAUDE.md, line 41, tells it to <span class="warn">“never block on failing tests.”</span> That rule will fight this skill.' },
+        { t: "sp", html: 'Want me to soften line 41? I’ll back it up first — <span class="dim">one line to undo.</span>' },
+        { t: "you", type: true, html: "yes, go ahead" },
+        { t: "sp", html: '<span class="ok">Done.</span> Line 41 softened, backup saved, test-honesty installed.' },
+        { t: "sp", html: "Try it — ask for a test. It should push back if there’s nothing real to test." }
       ]
     },
     cli: {
