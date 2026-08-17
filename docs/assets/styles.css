@@ -69,19 +69,12 @@ a{color:inherit}
 
 /* ---------------- ambient aurora (the thing the glass refracts) --------------- */
 .bg{position:fixed;inset:0;z-index:-2;overflow:hidden;pointer-events:none;
-  background:
-    radial-gradient(1100px 700px at 8% -6%,  rgba(61,109,166,.14),  transparent 62%),
-    radial-gradient(1000px 620px at 96% 2%,  rgba(94,143,199,.13),  transparent 60%),
-    radial-gradient(900px 640px at 74% 60%,  rgba(201,163,92,.08),  transparent 62%),
-    radial-gradient(820px 560px at 12% 78%,  rgba(110,135,173,.10), transparent 62%),
-    linear-gradient(180deg,#F9F4EA 0%, #F4EDDF 42%, #F6F1E5 100%)}
-.bg::after{content:"";position:absolute;inset:-20%;
-  background-image:
-    linear-gradient(rgba(40,48,65,.040) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(40,48,65,.040) 1px, transparent 1px);
-  background-size:56px 56px;
-  mask-image:radial-gradient(ellipse 78% 62% at 50% 22%, #000 8%, transparent 76%);
-  -webkit-mask-image:radial-gradient(ellipse 78% 62% at 50% 22%, #000 8%, transparent 76%)}
+  background:linear-gradient(180deg,#F8F3E9 0%,#F4EEE2 100%)}
+/* B1 · paper grain: one film-grain layer over warm cream. No blobs, no grid. */
+.bg::after{content:"";position:absolute;inset:0;opacity:1;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .075 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:180px 180px}
+.blob{display:none}
 /* blobs are soft radial gradients, NOT filter:blur — cheap to composite while scrolling */
 .blob{position:absolute;border-radius:50%;opacity:.5;will-change:transform}
 .blob-a{width:640px;height:640px;left:-10%;top:-16%;background:radial-gradient(circle,rgba(122,158,204,.85) 0%,rgba(122,158,204,.35) 34%,transparent 68%);animation:drift1 26s ease-in-out infinite}
