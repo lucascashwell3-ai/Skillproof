@@ -199,7 +199,7 @@ kbd{font-family:var(--mono);font-size:.71rem;padding:2px 5px;border-radius:5px;b
    ===================================================================== */
 .hero{padding:0 0 22px}
 /* the first screen belongs to the hero — the catalog starts below the fold */
-.hero-lead{min-height:min(calc(100svh - 84px),720px);display:flex;align-items:start;padding-top:28px;padding-bottom:30px}
+.hero-lead{min-height:min(calc(100svh - 84px),760px);display:flex;align-items:start;padding-top:52px;padding-bottom:64px}
 .hero-split{flex:1;display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);gap:28px;
   align-items:stretch;scroll-margin-top:90px;grid-template-rows:1fr auto;row-gap:0}
 .hero-split > .hero-assure{grid-column:1;grid-row:2;margin-top:12px}
@@ -1062,3 +1062,19 @@ footer{margin-top:10px;padding:42px 0 20px;
    solid-gradient primary on an empty tray and copied an empty string */
 .btn:disabled,.copy:disabled{opacity:.45;cursor:not-allowed;filter:saturate(.5)}
 .btn:disabled:hover,.copy:disabled:hover{transform:none}
+
+/* what's a skill — one small plain-English card, folded by default */
+.whatis{padding:8px 16px 0;font-size:.78rem;color:var(--ink-2)}
+.whatis summary{cursor:pointer;color:var(--violet-d);font-weight:600;list-style:none;display:inline-block}
+.whatis summary::before{content:"? ";opacity:.7}
+.whatis[open] summary{margin-bottom:6px}
+.whatis p{line-height:1.5;margin:0 0 6px}
+/* FAQ */
+.faq{padding:34px 34px 60px;max-width:860px}
+.faq h2{font-size:clamp(1.3rem,2.2vw,1.7rem);letter-spacing:-.02em;margin-bottom:14px}
+.faq details{border-top:1px solid rgba(40,48,65,.12);padding:12px 0}
+.faq details:last-child{border-bottom:1px solid rgba(40,48,65,.12)}
+.faq summary{cursor:pointer;font-weight:620;color:var(--ink);list-style:none;display:flex;justify-content:space-between;gap:12px}
+.faq summary::after{content:"+";color:var(--violet-d);font-weight:500}
+.faq details[open] summary::after{content:"–"}
+.faq p{margin-top:8px;color:var(--ink-2);line-height:1.55;max-width:66ch}
