@@ -827,7 +827,7 @@
     $("#copyPlan").addEventListener("click", function () { copyPlanNow(null); });
     $("#copy").addEventListener("click", function () { copyPlanNow($("#copy")); });
 
-    $$(".copy[data-copy]").forEach(function (btn) {
+    $$("[data-copy]").forEach(function (btn) {
       btn.addEventListener("click", function () {
         try { if (navigator.clipboard) navigator.clipboard.writeText(btn.getAttribute("data-copy")); } catch (err) {}
         btn.classList.add("done");
@@ -885,7 +885,9 @@
     $("#copyPrompt").addEventListener("click", function () {
       try {
         if (navigator.clipboard) navigator.clipboard.writeText($("#promptText").value);
-        $("#copyStatus").textContent = "Copied — paste it into any Claude chat.";
+        toast("Copied");
+        $("#copyPrompt").classList.add("done");
+        setTimeout(function () { $("#copyPrompt").classList.remove("done"); }, 1600);
       } catch (err) {}
     });
   }

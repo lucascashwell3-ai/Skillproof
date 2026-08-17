@@ -15,39 +15,46 @@
 
   var SCRIPTS = {
     prompt: {
-      title: "skillproof — paste the prompt",
+      title: "claude — 96×28",
       lines: [
-        { t: "you", type: true, html: "my agent writes tests that pass but don’t test anything" },
-        { t: "sp", html: 'Found <span class="ok">test-honesty</span> — source-read, clean. Before installing, I read your setup.' },
-        { t: "sp", html: '<span class="warn">Conflict:</span> CLAUDE.md line 41 says “never block on failing tests.” It will fight the new skill.' },
-        { t: "sp", html: 'May I soften line 41? <span class="dim">(backup first — undo: restore CLAUDE.md.bak)</span>' },
-        { t: "you", type: true, html: "yes" },
-        { t: "sp", html: '<span class="ok">✓ Edited, confirmed, backed up.</span> <span class="ok">✓ Installed test-honesty.</span>' },
-        { t: "sp", html: "Try it: ask for a test — it should now refuse to fake one." }
+        { t: "banner", html: '<b>✻</b> Welcome to <b>Claude Code</b>! <span class="dim">/help for help · cwd: ~/projects/app</span>' },
+        { t: "you", type: true, html: "I’m building an app — my frontend looks bad and the answers are always way too long" },
+        { t: "tool", html: 'Skillproof: two pain points, two skills. Searching…' },
+        { t: "sub", html: 'Design → <span class="ok">impeccable</span> <span class="dim">(★ 4.3k, source read — clean)</span> · Long answers → <span class="ok">terse-mode</span> <span class="dim">(★ 1.2k, clean)</span>' },
+        { t: "tool", html: 'Read(<span class="y">CLAUDE.md</span>, <span class="y">~/.claude/skills/</span>)' },
+        { t: "sub", html: 'one clash: your rule <span class="warn">“always explain your reasoning in full”</span> would cancel terse-mode' },
+        { t: "ask", html: 'Install both and soften that rule to “explain when asked”? Backup first<br><span class="opt">❯ 1. Yes</span> &nbsp; 2. Install only, leave the rule &nbsp; 3. No' },
+        { t: "tool", html: 'Edit(CLAUDE.md) <span class="dim">· 1 line</span> &nbsp; <span class="ok">✓</span>' },
+        { t: "tool", html: 'Installed <span class="ok">impeccable</span>, <span class="ok">terse-mode</span> → ~/.claude/skills/ &nbsp; <span class="ok">✓ verified</span>' },
+        { t: "you", type: true, html: "redo the settings page" },
+        { t: "sub", html: 'On it — one screen, real spacing, and I’ll keep the notes short.' }
       ]
     },
     cli: {
-      title: "skillproof — install the skill",
+      title: "zsh — 96×28",
       lines: [
-        { t: "sh", type: true, html: "for f in SKILL.md references/…; do curl -fsSL --create-dirs …; done" },
-        { t: "out", html: '✓ 7 files → ~/.claude/skills/skillproof/ <span class="dim">— nothing piped to a shell</span>' },
+        { t: "sh", type: true, html: "for f in SKILL.md references/…; do curl -fsSL --create-dirs …/skills/skillproof/$f -o ~/.claude/skills/skillproof/$f; done" },
+        { t: "out", html: '<span class="ok">✓</span> SKILL.md · consent.md · conflict-patterns.md · install-paths.md · tiers.md · finding.md · security.md <span class="dim">— 7 files, nothing piped to a shell</span>' },
+        { t: "sh", type: true, html: "claude" },
+        { t: "banner", html: '<b>✻</b> Welcome to <b>Claude Code</b>! <span class="dim">skill loaded: skillproof</span>' },
         { t: "you", type: true, html: "make my agent better at frontend design" },
-        { t: "sp", html: 'Found <span class="ok">impeccable</span>. Your setup: 2 conflicts — a global style rule and an older design skill.' },
-        { t: "sp", html: "Here is each edit, one at a time. Nothing happens without your yes." },
-        { t: "you", type: true, html: "go ahead on both" },
-        { t: "sp", html: '<span class="ok">✓ Done, verified, undo ready.</span> Your agent now loads one design skill, not two fighting.' }
+        { t: "tool", html: 'Skillproof: found <span class="ok">impeccable</span> <span class="dim">(★ 4.3k, source read — clean)</span>' },
+        { t: "sub", html: 'Your setup has an older design skill and a global style rule that would clash' },
+        { t: "ask", html: 'Retire ~/.claude/skills/design-old and relax the style rule? Backups first<br><span class="opt">❯ 1. Yes, both</span> &nbsp; 2. Show me each &nbsp; 3. No' },
+        { t: "tool", html: 'Done <span class="dim">· 2 edits, 2 backups</span> &nbsp; <span class="ok">✓ verified</span> — one design skill loads now, not two fighting' }
       ]
     },
     mcp: {
-      title: "skillproof — as an MCP server",
+      title: "zsh — 96×28",
       lines: [
         { t: "sh", type: true, html: "claude mcp add skillproof -- node mcp/server.js" },
-        { t: "out", html: "✓ skillproof available as a tool in every session" },
+        { t: "out", html: '<span class="ok">✓</span> skillproof is now a tool in every session' },
+        { t: "sh", type: true, html: "claude" },
         { t: "you", type: true, html: "audit my setup — what’s conflicting?" },
-        { t: "sp", html: 'Read 4 files. <span class="warn">2 findings:</span> duplicate memory rules; a skill your CLAUDE.md overrides silently.' },
-        { t: "sp", html: "Want fixes? I’ll show each edit and ask before touching anything." },
-        { t: "you", type: true, html: "show me" },
-        { t: "sp", html: '<span class="hi">Edit 1 of 2:</span> merge the duplicate rule into one line. <span class="dim">Approve?</span>' }
+        { t: "tool", html: 'skillproof.audit() <span class="dim">· read 4 files</span>' },
+        { t: "sub", html: '<span class="warn">2 findings:</span> a duplicated memory rule; a skill your CLAUDE.md quietly overrides' },
+        { t: "ask", html: 'Fix them? I’ll show each edit before touching anything<br><span class="opt">❯ 1. Show me</span> &nbsp; 2. Fix both &nbsp; 3. Not now' },
+        { t: "tool", html: 'Edit 1 of 2 <span class="dim">· merge the duplicate rule into one line</span> &nbsp; <span class="dim">Approve?</span>' }
       ]
     }
   };
@@ -150,8 +157,11 @@
     var prev = current;
     current = method;
     tabs.forEach(function (t) { t.setAttribute("aria-selected", String(t.dataset.m === method)); });
+    var fwd = ORDER.indexOf(method) >= ORDER.indexOf(prev);
     panes.forEach(function (p) {
       var on = p.dataset.pane === method;
+      p.classList.remove("from-l", "from-r");
+      if (on && fromUser) p.classList.add(fwd ? "from-r" : "from-l");
       p.classList.toggle("on", on);
       if (on) p.removeAttribute("hidden"); else p.setAttribute("hidden", "");
     });
@@ -175,6 +185,22 @@
   tabs.forEach(function (t) {
     t.addEventListener("click", function () { setMethod(t.dataset.m, true); });
   });
+
+  // border beam follows the pointer while it is over the terminal
+  var term = document.getElementById("term");
+  if (term && !reduced) {
+    term.addEventListener("pointermove", function (e) {
+      var r = term.getBoundingClientRect();
+      var a = Math.atan2(e.clientY - (r.top + r.height / 2), e.clientX - (r.left + r.width / 2));
+      // conic-gradient 0deg points up and the bright spot sits at .90turn → offset so it lands under the pointer
+      term.classList.add("beam-follow");
+      term.style.setProperty("--beam", (a * 180 / Math.PI + 90 - 324) + "deg");
+    });
+    term.addEventListener("pointerleave", function () {
+      term.classList.remove("beam-follow");
+      term.style.removeProperty("--beam");
+    });
+  }
 
   play(current);
 })();
