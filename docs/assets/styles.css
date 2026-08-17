@@ -194,7 +194,7 @@ kbd{font-family:var(--mono);font-size:.71rem;padding:2px 5px;border-radius:5px;b
 /* the first screen belongs to the hero — the catalog starts below the fold */
 .hero-lead{min-height:min(calc(100svh - 84px),760px);display:flex;align-items:start;padding-top:52px;padding-bottom:64px}
 .hero-split{flex:1;display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);gap:28px;
-  align-items:stretch;scroll-margin-top:90px;grid-template-rows:1fr auto;row-gap:0}
+  align-items:stretch;scroll-margin-top:90px;grid-template-rows:1fr auto auto;row-gap:0}
 .hero-split > .hero-assure{grid-column:1;grid-row:2;margin-top:12px}
 .hero-panel{width:100%;text-align:left;display:flex;flex-direction:column;min-width:0}
 .hero-panel .installer{flex:1;display:flex;flex-direction:column}
@@ -325,7 +325,7 @@ kbd{font-family:var(--mono);font-size:.71rem;padding:2px 5px;border-radius:5px;b
 @media (max-width:900px){
   .hero-lead{min-height:0;padding-top:24px}
   .hero-split{grid-template-rows:auto}
-  .hero-split > .hero-assure{grid-column:1;grid-row:auto}
+  .hero-split > .hero-assure,.hero-split > .whatis{grid-column:1;grid-row:auto}
   .hero-panel .inst-pane .cmdwrap > .cmdbox,.hero-panel .inst-pane .cmdwrap > textarea{max-height:130px;overflow-y:auto}
   .hero-split{grid-template-columns:1fr;gap:22px;align-items:start}
   .term{align-self:auto}
@@ -1066,12 +1066,9 @@ footer{margin-top:10px;padding:42px 0 20px;
 .inst-foot{display:flex;flex-wrap:wrap;gap:4px 16px;align-items:start;padding:10px 16px 12px;border-top:1px solid rgba(40,48,65,.08);font-size:.76rem;background:#FBF9F5}
 .inst-foot a{color:var(--violet-d);text-decoration:none;font-weight:500;line-height:1.5}
 .inst-foot a:hover{text-decoration:underline}
-.whatis{font-size:.76rem;color:var(--ink-2);flex:1 1 100%;order:-1}
+.whatis{grid-column:1;grid-row:3;padding:6px 0 0;font-size:.78rem;color:var(--ink-2)}
 .whatis summary{cursor:pointer;color:var(--violet-d);font-weight:700;list-style:none;display:inline-block}
 .whatis[open] summary{margin-bottom:6px}
-.whatis[open]{flex-basis:100%}
-.inst-foot .whatis{flex:0 0 auto;order:0}
-.inst-foot .whatis[open]{flex-basis:100%}
 .whatis p{line-height:1.5;margin:0 0 6px}
 /* FAQ */
 .faq{padding:34px 34px 60px;max-width:860px}
