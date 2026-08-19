@@ -12,8 +12,9 @@
 name: catalog-refresh
 
 on:
-  schedule:
-    - cron: "0 14 * * 1,4" # Mondays + Thursdays 14:00 UTC
+  # Schedule REMOVED 2026-08-18: superseded by feeder.yml, which has been green since 08-16.
+  # This job's failure mode was opening ⛔ DO-NOT-MERGE PRs into a queue that was already backed up.
+  # Kept dispatch-only so it can still be fired by hand if the feeder ever needs a fallback.
   workflow_dispatch:
 
 permissions:
