@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-08-19",
+  "as_of": "2026-08-20",
   "rubric_version": "1.0",
   "notes": "Published entries are status 'graded' (installed, probed, source read by a person, worksheet on file — grades reflect version_tested on last_verified under the rubric version shown) or 'reviewed' with a review block (full source read at review.source_sha; does/touches/undo published). Rows in any other status are internal pipeline states awaiting a source read — not published, kept here so their history survives; consumers should skip them.",
   "pain_points": [
@@ -220,11 +220,11 @@
       "last_verified": "2026-07-21",
       "status": "graded",
       "signals": {
-        "stars": 22188,
-        "forks": 1403,
-        "checked": "2026-08-19",
+        "stars": 22484,
+        "forks": 1435,
+        "checked": "2026-08-20",
         "head_sha": "e7555fcaf612dfa1739dc86610ea926a906db614",
-        "head_checked": "2026-08-19"
+        "head_checked": "2026-08-20"
       }
     },
     {
@@ -249,9 +249,9 @@
       "signals": {
         "stars": 111,
         "forks": 6,
-        "checked": "2026-08-19",
+        "checked": "2026-08-20",
         "head_sha": "2dc917f7ea357f668201119371e2fe0eebd50299",
-        "head_checked": "2026-08-19"
+        "head_checked": "2026-08-20"
       },
       "skim": {
         "date": "2026-07-27",
@@ -298,9 +298,9 @@
       "signals": {
         "stars": 45,
         "forks": 8,
-        "checked": "2026-08-19",
+        "checked": "2026-08-20",
         "head_sha": "3660dca92424b91f1eb716b5815b476c3913450e",
-        "head_checked": "2026-08-19"
+        "head_checked": "2026-08-20"
       },
       "skim": {
         "date": "2026-07-27",
@@ -344,9 +344,9 @@
       "signals": {
         "stars": 39,
         "forks": 0,
-        "checked": "2026-08-19",
+        "checked": "2026-08-20",
         "head_sha": "15ed326ae7162c674d7a1e477724148fa4435528",
-        "head_checked": "2026-08-19"
+        "head_checked": "2026-08-20"
       },
       "skim": {
         "date": "2026-07-27",
@@ -389,11 +389,11 @@
       },
       "next": "Upstream changed since the last source review — queued for re-review.",
       "signals": {
-        "stars": 3046,
+        "stars": 3048,
         "forks": 234,
-        "checked": "2026-08-19",
+        "checked": "2026-08-20",
         "head_sha": "dd47a6a023e249eb1b36e9e943eab89d0900865d",
-        "head_checked": "2026-08-19"
+        "head_checked": "2026-08-20"
       },
       "skim": {
         "date": "2026-08-13",
@@ -441,11 +441,11 @@
       },
       "next": "Upstream changed since the last source review — queued for re-review.",
       "signals": {
-        "stars": 170417,
-        "forks": 20274,
-        "checked": "2026-08-19",
+        "stars": 170624,
+        "forks": 20286,
+        "checked": "2026-08-20",
         "head_sha": "0a64e398ec6bb34a494f0c347e8ccae53a862f8e",
-        "head_checked": "2026-08-19"
+        "head_checked": "2026-08-20"
       },
       "skim": {
         "date": "2026-08-13",
@@ -493,11 +493,11 @@
       },
       "next": "Upstream changed since the last source review — queued for re-review.",
       "signals": {
-        "stars": 5053,
-        "forks": 626,
-        "checked": "2026-08-19",
+        "stars": 5097,
+        "forks": 628,
+        "checked": "2026-08-20",
         "head_sha": "4c716b516b6b0143f3037631306b3730d2832344",
-        "head_checked": "2026-08-19"
+        "head_checked": "2026-08-20"
       },
       "skim": {
         "date": "2026-08-13",
@@ -543,11 +543,11 @@
       },
       "next": "Upstream changed since the last source review — queued for re-review.",
       "signals": {
-        "stars": 274005,
-        "forks": 24529,
-        "checked": "2026-08-19",
+        "stars": 274683,
+        "forks": 24580,
+        "checked": "2026-08-20",
         "head_sha": "b36e0829c6d0140e93cfef2ca599b1b07d4a7797",
-        "head_checked": "2026-08-19"
+        "head_checked": "2026-08-20"
       },
       "skim": {
         "date": "2026-08-13",
@@ -596,11 +596,11 @@
       },
       "next": "Upstream changed since the last source review — queued for re-review.",
       "signals": {
-        "stars": 241084,
-        "forks": 36562,
-        "checked": "2026-08-19",
-        "head_sha": "06c5e118c4d3e6c3b7f9445f973a2194c82de193",
-        "head_checked": "2026-08-19"
+        "stars": 241308,
+        "forks": 36585,
+        "checked": "2026-08-20",
+        "head_sha": "d8409a4b0813771235555e32e3d8046a73988bfa",
+        "head_checked": "2026-08-20"
       },
       "skim": {
         "date": "2026-07-27",
@@ -645,11 +645,11 @@
       },
       "next": "Queued for a full grading run (installed + probed).",
       "signals": {
-        "stars": 203820,
-        "forks": 20902,
-        "checked": "2026-08-19",
+        "stars": 204210,
+        "forks": 20919,
+        "checked": "2026-08-20",
         "head_sha": "2c606141936f1eeef17fa3043a72095b4765b9c2",
-        "head_checked": "2026-08-19"
+        "head_checked": "2026-08-20"
       },
       "skim": {
         "date": "2026-07-27",
@@ -688,11 +688,11 @@
       },
       "next": "Upstream changed since the last source review — queued for re-review.",
       "signals": {
-        "stars": 222883,
-        "forks": 19192,
-        "checked": "2026-08-19",
-        "head_sha": "885e2ca4d842d139e9aef4e48d366c63cb1b8013",
-        "head_checked": "2026-08-19"
+        "stars": 225060,
+        "forks": 19334,
+        "checked": "2026-08-20",
+        "head_sha": "0ab1b63a410a03d3627979a109c8695de27af954",
+        "head_checked": "2026-08-20"
       },
       "skim": {
         "date": "2026-08-13",
@@ -740,11 +740,11 @@
       },
       "next": "Upstream changed since the last source review — queued for re-review.",
       "signals": {
-        "stars": 118132,
-        "forks": 12709,
-        "checked": "2026-08-19",
-        "head_sha": "8a1a6d857332da32252d77365da90c3f6293b47b",
-        "head_checked": "2026-08-19"
+        "stars": 118511,
+        "forks": 12737,
+        "checked": "2026-08-20",
+        "head_sha": "bc826e2267a36d98a2dcf5231e16c30ff546770f",
+        "head_checked": "2026-08-20"
       },
       "skim": {
         "date": "2026-07-27",
@@ -789,11 +789,11 @@
       },
       "next": "Upstream changed since the last source review — queued for re-review.",
       "signals": {
-        "stars": 105751,
-        "forks": 5844,
-        "checked": "2026-08-19",
+        "stars": 106465,
+        "forks": 5881,
+        "checked": "2026-08-20",
         "head_sha": "2ed6c52c9d7e5e56942508591085fd45dea277d3",
-        "head_checked": "2026-08-19"
+        "head_checked": "2026-08-20"
       },
       "skim": {
         "date": "2026-08-13",
@@ -840,11 +840,11 @@
       },
       "next": "Upstream changed since the last source review — queued for re-review.",
       "signals": {
-        "stars": 89202,
-        "forks": 10300,
-        "checked": "2026-08-19",
-        "head_sha": "a50a71b6563e5ac9b713ca765de1603c3966bfe3",
-        "head_checked": "2026-08-19"
+        "stars": 89601,
+        "forks": 10330,
+        "checked": "2026-08-20",
+        "head_sha": "3df6db478a86272585f16067b72907efe714378e",
+        "head_checked": "2026-08-20"
       },
       "skim": {
         "date": "2026-07-27",
@@ -888,11 +888,11 @@
       },
       "next": "Queued for a full grading run (installed + probed).",
       "signals": {
-        "stars": 88521,
-        "forks": 9483,
-        "checked": "2026-08-19",
+        "stars": 88738,
+        "forks": 9506,
+        "checked": "2026-08-20",
         "head_sha": "df1edb2e05487d0aa6d93c747141e0aed1187f25",
-        "head_checked": "2026-08-19"
+        "head_checked": "2026-08-20"
       },
       "skim": {
         "date": "2026-07-27",
@@ -933,11 +933,11 @@
       },
       "next": "Upstream changed since the last source review — queued for re-review.",
       "signals": {
-        "stars": 74655,
-        "forks": 12070,
-        "checked": "2026-08-19",
+        "stars": 74774,
+        "forks": 12077,
+        "checked": "2026-08-20",
         "head_sha": "f9e8b280f715f9ba107d4517fd39bc5f8ddda618",
-        "head_checked": "2026-08-19"
+        "head_checked": "2026-08-20"
       },
       "skim": {
         "date": "2026-08-13",
@@ -986,11 +986,11 @@
       },
       "next": "Queued for a full grading run (installed + probed).",
       "signals": {
-        "stars": 72790,
-        "forks": 8328,
-        "checked": "2026-08-19",
+        "stars": 72870,
+        "forks": 8332,
+        "checked": "2026-08-20",
         "head_sha": "be2a406907dbc61b73e6827ded415c96139d13a2",
-        "head_checked": "2026-08-19"
+        "head_checked": "2026-08-20"
       },
       "skim": {
         "date": "2026-07-27",
@@ -1037,11 +1037,11 @@
       },
       "next": "Upstream changed since the last source review — queued for re-review.",
       "signals": {
-        "stars": 78039,
-        "forks": 5330,
-        "checked": "2026-08-19",
+        "stars": 78432,
+        "forks": 5359,
+        "checked": "2026-08-20",
         "head_sha": "dfb6f9f9e93a39f673b1827c0889cc28326d1800",
-        "head_checked": "2026-08-19"
+        "head_checked": "2026-08-20"
       },
       "skim": {
         "date": "2026-07-27",
@@ -1084,11 +1084,11 @@
       },
       "next": "Upstream changed since the last source review — queued for re-review.",
       "signals": {
-        "stars": 64699,
-        "forks": 6434,
-        "checked": "2026-08-19",
-        "head_sha": "7b0332029fa1d828c36b7fc0c107975359c5a45a",
-        "head_checked": "2026-08-19"
+        "stars": 64784,
+        "forks": 6444,
+        "checked": "2026-08-20",
+        "head_sha": "902a28644fb0f5598982b530a6892c32d800529d",
+        "head_checked": "2026-08-20"
       },
       "skim": {
         "date": "2026-07-27",
@@ -1137,11 +1137,11 @@
       },
       "next": "Upstream changed since the last source review — queued for re-review.",
       "signals": {
-        "stars": 58691,
-        "forks": 5115,
-        "checked": "2026-08-19",
-        "head_sha": "9243a32d823c7c8659e44b92f2dedcf1b7397137",
-        "head_checked": "2026-08-19"
+        "stars": 58779,
+        "forks": 5130,
+        "checked": "2026-08-20",
+        "head_sha": "86a882510381532cf0d7aaacd96f87e1b5f3bf80",
+        "head_checked": "2026-08-20"
       },
       "skim": {
         "date": "2026-07-27",
@@ -1189,11 +1189,11 @@
       },
       "next": "Upstream changed since the last source review — queued for re-review.",
       "signals": {
-        "stars": 52052,
-        "forks": 5004,
-        "checked": "2026-08-19",
-        "head_sha": "b99912850fa94d12732ff556ab7422d9663c747e",
-        "head_checked": "2026-08-19"
+        "stars": 52072,
+        "forks": 5001,
+        "checked": "2026-08-20",
+        "head_sha": "90d14d9b85e8130435c594d99009cf943b21ee1a",
+        "head_checked": "2026-08-20"
       },
       "skim": {
         "date": "2026-08-13",
@@ -1236,11 +1236,11 @@
       },
       "next": "Upstream changed since the last source review — queued for re-review.",
       "signals": {
-        "stars": 52615,
-        "forks": 4600,
-        "checked": "2026-08-19",
-        "head_sha": "542fcd1ebd3bbfaa8a0e3c926b07a1a290598293",
-        "head_checked": "2026-08-19"
+        "stars": 52691,
+        "forks": 4599,
+        "checked": "2026-08-20",
+        "head_sha": "c966ed18fe025b03276ad37c36fc76d9bb39ba44",
+        "head_checked": "2026-08-20"
       },
       "skim": {
         "date": "2026-07-27",
@@ -1273,7 +1273,7 @@
       "category": "workflow",
       "summary": "Marketing skills for Claude Code and AI agents. CRO, copywriting, SEO, analytics, and growth engineering.",
       "pain_points": [],
-      "status": "reviewed",
+      "status": "scouted",
       "scouted_on": "2026-07-25",
       "triage": {
         "provenance": "Repo verified real via GitHub API: coreyhaines31/marketingskills, created 2026-01.",
@@ -1281,13 +1281,13 @@
         "freshness": "Last push 2026-07-29 (checked 2026-07-29) — actively maintained.",
         "safety": "Automated safety skim (2026-07-27, 419 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: network call. A pattern scan, not a line-by-line read — the full source read happens before publication."
       },
-      "next": "Queued for a full grading run (installed + probed).",
+      "next": "Upstream changed since the last source review — queued for re-review.",
       "signals": {
-        "stars": 44862,
-        "forks": 7040,
-        "checked": "2026-08-19",
-        "head_sha": "7868cb9251fad80a73d26e488a5ad5f6c4a9f335",
-        "head_checked": "2026-08-19"
+        "stars": 45020,
+        "forks": 7073,
+        "checked": "2026-08-20",
+        "head_sha": "c6ea12834be62bdc4180a1385f6455cde84ae60c",
+        "head_checked": "2026-08-20"
       },
       "skim": {
         "date": "2026-07-27",
@@ -1297,7 +1297,7 @@
           "network call"
         ]
       },
-      "review": {
+      "review_stale": {
         "does": "It gives your agent a set of marketing-consultant playbooks — step-by-step guidance for improving page conversions, upgrade screens, user onboarding, free lead-gen tools, search-result markup, press outreach, and a catalog of growth ideas — so when you ask marketing questions, the agent answers with these structured frameworks instead of generic advice.",
         "touches": [
           "reads project files"
@@ -1307,7 +1307,9 @@
         "limits": "This review is based on reading the source only; nothing was installed, run, or observed working. It covers just 7 of roughly 120 files — 113 files were withheld from the review because the repo exceeds the review size cap, so the majority of the repo (including the SEO, analytics, copywriting, and other skills the author's description promises, and every 'references/' companion file these skills point to) was not seen and could contain anything. One reviewed file (the public-relations skill) was cut off before its end. The reviewed files are instruction documents, not program code: they tell the agent to look for and read a project context file (.agents/product-marketing.md or similar) before answering, which is the only concrete action shown. Whether the unreviewed files instruct anything further cannot be determined from this review.",
         "reviewed_at": "2026-07-31",
         "reviewer": "automated-source-review v1",
-        "source_sha": "7868cb9251fad80a73d26e488a5ad5f6c4a9f335"
+        "source_sha": "7868cb9251fad80a73d26e488a5ad5f6c4a9f335",
+        "downgraded_on": "2026-08-20",
+        "stale_reason": "upstream HEAD moved from 7868cb92 to c6ea1283; the review described code that is no longer what a visitor would install"
       }
     },
     {
@@ -1330,11 +1332,11 @@
       },
       "next": "Upstream changed since the last source review — queued for re-review.",
       "signals": {
-        "stars": 43012,
-        "forks": 3415,
-        "checked": "2026-08-19",
-        "head_sha": "5714f3a3eb837a66514d2d3e6cf460df95b72a7f",
-        "head_checked": "2026-08-19"
+        "stars": 43132,
+        "forks": 3421,
+        "checked": "2026-08-20",
+        "head_sha": "7ef93e0cb52b93f9909e163aad912255d4471850",
+        "head_checked": "2026-08-20"
       },
       "skim": {
         "date": "2026-07-27",
@@ -1378,11 +1380,11 @@
       },
       "next": "Upstream changed since the last source review — queued for re-review.",
       "signals": {
-        "stars": 38004,
-        "forks": 4799,
-        "checked": "2026-08-19",
+        "stars": 38052,
+        "forks": 4805,
+        "checked": "2026-08-20",
         "head_sha": "318066d2213b510e89b500ed0d53506c54093ddc",
-        "head_checked": "2026-08-19"
+        "head_checked": "2026-08-20"
       },
       "skim": {
         "date": "2026-07-27",
@@ -1431,11 +1433,11 @@
       },
       "next": "Upstream changed since the last source review — queued for re-review.",
       "signals": {
-        "stars": 33892,
-        "forks": 3309,
-        "checked": "2026-08-19",
-        "head_sha": "48dc1cf173f01aea114a62d634066f6b272aaaf1",
-        "head_checked": "2026-08-19"
+        "stars": 33974,
+        "forks": 3307,
+        "checked": "2026-08-20",
+        "head_sha": "390f5146bf3c1877cf15636a3dd7b775e4f0f185",
+        "head_checked": "2026-08-20"
       },
       "skim": {
         "date": "2026-07-27",
@@ -1485,11 +1487,11 @@
       },
       "next": "Upstream changed since the last source review — queued for re-review.",
       "signals": {
-        "stars": 36533,
-        "forks": 3242,
-        "checked": "2026-08-19",
+        "stars": 36757,
+        "forks": 3254,
+        "checked": "2026-08-20",
         "head_sha": "e2e92e7b4b8229253ed5c8e81dc65463fdeddda5",
-        "head_checked": "2026-08-19"
+        "head_checked": "2026-08-20"
       },
       "skim": {
         "date": "2026-07-27",
@@ -1531,11 +1533,11 @@
       },
       "next": "Upstream changed since the last source review — queued for re-review.",
       "signals": {
-        "stars": 30290,
-        "forks": 3412,
-        "checked": "2026-08-19",
-        "head_sha": "ec2fed352da8251f4a5f1fa1d2080be5f36c850b",
-        "head_checked": "2026-08-19"
+        "stars": 30307,
+        "forks": 3418,
+        "checked": "2026-08-20",
+        "head_sha": "a94d336d1a16464801efcd610189e2506aa70144",
+        "head_checked": "2026-08-20"
       },
       "skim": {
         "date": "2026-08-13",
@@ -1584,11 +1586,11 @@
       },
       "next": "Upstream changed since the last source review — queued for re-review.",
       "signals": {
-        "stars": 30544,
-        "forks": 3293,
-        "checked": "2026-08-19",
+        "stars": 30608,
+        "forks": 3299,
+        "checked": "2026-08-20",
         "head_sha": "647c36ba2e8f56013326414cab5f14a6fd198222",
-        "head_checked": "2026-08-19"
+        "head_checked": "2026-08-20"
       },
       "skim": {
         "date": "2026-08-13",
@@ -1632,11 +1634,11 @@
       },
       "next": "Upstream changed since the last source review — queued for re-review.",
       "signals": {
-        "stars": 29568,
-        "forks": 3513,
-        "checked": "2026-08-19",
+        "stars": 30224,
+        "forks": 3589,
+        "checked": "2026-08-20",
         "head_sha": "4c0b700ac5d280ba46695062077f0fe922ce3602",
-        "head_checked": "2026-08-19"
+        "head_checked": "2026-08-20"
       },
       "skim": {
         "date": "2026-08-13",
@@ -1690,11 +1692,11 @@
       },
       "next": "Upstream changed since the last source review — queued for re-review.",
       "signals": {
-        "stars": 26246,
-        "forks": 2199,
-        "checked": "2026-08-19",
-        "head_sha": "9b7d0a007946ae7694216642fd5be78c2f13b6db",
-        "head_checked": "2026-08-19"
+        "stars": 26260,
+        "forks": 2201,
+        "checked": "2026-08-20",
+        "head_sha": "09740f7293ebb52dbfc54dd8ac6134caff8fe881",
+        "head_checked": "2026-08-20"
       },
       "skim": {
         "date": "2026-08-13",
@@ -1738,11 +1740,11 @@
       },
       "next": "Queued for a full grading run (installed + probed).",
       "signals": {
-        "stars": 25421,
-        "forks": 2729,
-        "checked": "2026-08-19",
+        "stars": 25457,
+        "forks": 2732,
+        "checked": "2026-08-20",
         "head_sha": "18468a95b427e70e258b51389796367c6f684e7d",
-        "head_checked": "2026-08-19"
+        "head_checked": "2026-08-20"
       },
       "skim": {
         "date": "2026-07-27",
@@ -1783,11 +1785,11 @@
       },
       "next": "Upstream changed since the last source review — queued for re-review.",
       "signals": {
-        "stars": 24457,
-        "forks": 2843,
-        "checked": "2026-08-19",
+        "stars": 24483,
+        "forks": 2846,
+        "checked": "2026-08-20",
         "head_sha": "c9e51ec0b3d43f5dcdd0b558a6cd28ba6ada97c1",
-        "head_checked": "2026-08-19"
+        "head_checked": "2026-08-20"
       },
       "skim": {
         "date": "2026-08-13",
@@ -1834,11 +1836,11 @@
       },
       "next": "Upstream changed since the last source review — queued for re-review.",
       "signals": {
-        "stars": 24465,
-        "forks": 1795,
-        "checked": "2026-08-19",
+        "stars": 24516,
+        "forks": 1800,
+        "checked": "2026-08-20",
         "head_sha": "69ef37e9424c0a7ea9dd2293b559e43ec8176379",
-        "head_checked": "2026-08-19"
+        "head_checked": "2026-08-20"
       },
       "skim": {
         "date": "2026-08-13",
@@ -1882,11 +1884,11 @@
       },
       "next": "Queued for a full grading run (installed + probed).",
       "signals": {
-        "stars": 24183,
-        "forks": 3459,
-        "checked": "2026-08-19",
+        "stars": 24265,
+        "forks": 3474,
+        "checked": "2026-08-20",
         "head_sha": "984023ddac0d5e27624f2baacde6105e45de375f",
-        "head_checked": "2026-08-19"
+        "head_checked": "2026-08-20"
       },
       "skim": {
         "date": "2026-07-27",
@@ -1929,11 +1931,11 @@
       },
       "next": "Queued for a full grading run (installed + probed).",
       "signals": {
-        "stars": 24656,
-        "forks": 3476,
-        "checked": "2026-08-19",
+        "stars": 24700,
+        "forks": 3480,
+        "checked": "2026-08-20",
         "head_sha": "aa8d778811a557a2c28ccadda4cf3d0bd028a4cc",
-        "head_checked": "2026-08-19"
+        "head_checked": "2026-08-20"
       },
       "skim": {
         "date": "2026-07-27",
@@ -1977,11 +1979,11 @@
       },
       "next": "Upstream changed since the last source review — queued for re-review.",
       "signals": {
-        "stars": 23293,
-        "forks": 2725,
-        "checked": "2026-08-19",
+        "stars": 23333,
+        "forks": 2726,
+        "checked": "2026-08-20",
         "head_sha": "e735935ca0553a32de7ba4ba204fe3c79150b1b8",
-        "head_checked": "2026-08-19"
+        "head_checked": "2026-08-20"
       },
       "skim": {
         "date": "2026-07-27",
@@ -2033,11 +2035,11 @@
       },
       "next": "Upstream changed since the last source review — queued for re-review.",
       "signals": {
-        "stars": 19848,
-        "forks": 2152,
-        "checked": "2026-08-19",
+        "stars": 19873,
+        "forks": 2151,
+        "checked": "2026-08-20",
         "head_sha": "7a5c4934be4106ac740ffdb95280bb81b3f4b83c",
-        "head_checked": "2026-08-19"
+        "head_checked": "2026-08-20"
       },
       "skim": {
         "date": "2026-08-13",
@@ -2086,11 +2088,11 @@
       },
       "next": "Upstream changed since the last source review — queued for re-review.",
       "signals": {
-        "stars": 25766,
-        "forks": 1317,
-        "checked": "2026-08-19",
+        "stars": 26000,
+        "forks": 1333,
+        "checked": "2026-08-20",
         "head_sha": "13ac0ec7e148655948100b6396439e481361d690",
-        "head_checked": "2026-08-19"
+        "head_checked": "2026-08-20"
       },
       "skim": {
         "date": "2026-08-13",
@@ -2133,11 +2135,11 @@
       },
       "next": "Upstream changed since the last source review — queued for re-review.",
       "signals": {
-        "stars": 16162,
-        "forks": 1507,
-        "checked": "2026-08-19",
+        "stars": 16191,
+        "forks": 1515,
+        "checked": "2026-08-20",
         "head_sha": "9c776fcb51ae681c046d6f619b55e5f337d4f900",
-        "head_checked": "2026-08-19"
+        "head_checked": "2026-08-20"
       },
       "skim": {
         "date": "2026-08-13",
@@ -2187,11 +2189,11 @@
       },
       "next": "Queued for a full grading run (installed + probed).",
       "signals": {
-        "stars": 14719,
-        "forks": 1875,
-        "checked": "2026-08-19",
+        "stars": 14738,
+        "forks": 1877,
+        "checked": "2026-08-20",
         "head_sha": "1da55aa810f206d3fe2005e7e3989b15a275d942",
-        "head_checked": "2026-08-19"
+        "head_checked": "2026-08-20"
       },
       "skim": {
         "date": "2026-07-27",
@@ -2230,11 +2232,11 @@
       },
       "next": "Queued for a full grading run (installed + probed).",
       "signals": {
-        "stars": 15638,
+        "stars": 15720,
         "forks": 1049,
-        "checked": "2026-08-19",
+        "checked": "2026-08-20",
         "head_sha": "91f3d394db8419c20d67ebe22a96cf8fee0a404b",
-        "head_checked": "2026-08-19"
+        "head_checked": "2026-08-20"
       },
       "skim": {
         "date": "2026-07-27",
@@ -2267,11 +2269,11 @@
       "status": "scouted",
       "scouted_on": "2026-07-27",
       "signals": {
-        "stars": 12376,
-        "forks": 956,
-        "checked": "2026-08-19",
-        "head_sha": "5b332ec027300603086d5df26b462fc7c8dd83f5",
-        "head_checked": "2026-08-19"
+        "stars": 12377,
+        "forks": 957,
+        "checked": "2026-08-20",
+        "head_sha": "e374af49d84a768e85f4902bff78e0b097dde322",
+        "head_checked": "2026-08-20"
       },
       "triage": {
         "provenance": "Repo verified real via GitHub API: simonw/llm, created 2023-04.",
@@ -2317,11 +2319,11 @@
       "status": "reviewed",
       "scouted_on": "2026-07-27",
       "signals": {
-        "stars": 11828,
-        "forks": 862,
-        "checked": "2026-08-19",
+        "stars": 11881,
+        "forks": 866,
+        "checked": "2026-08-20",
         "head_sha": "773a52944ba4747a18bd4ae9ade53fff041adcbc",
-        "head_checked": "2026-08-19"
+        "head_checked": "2026-08-20"
       },
       "triage": {
         "provenance": "Repo verified real via GitHub API: Orchestra-Research/AI-Research-SKILLs, created 2025-11.",
@@ -2367,11 +2369,11 @@
       "status": "scouted",
       "scouted_on": "2026-07-27",
       "signals": {
-        "stars": 11068,
-        "forks": 1047,
-        "checked": "2026-08-19",
+        "stars": 11080,
+        "forks": 1049,
+        "checked": "2026-08-20",
         "head_sha": "882ef55e377dbf9a4dbe496bb41ac6ccd0e555cf",
-        "head_checked": "2026-08-19"
+        "head_checked": "2026-08-20"
       },
       "triage": {
         "provenance": "Repo verified real via GitHub API: Jeffallan/claude-skills, created 2025-10.",
@@ -2420,11 +2422,11 @@
       "status": "reviewed",
       "scouted_on": "2026-07-27",
       "signals": {
-        "stars": 11426,
-        "forks": 1353,
-        "checked": "2026-08-19",
+        "stars": 11491,
+        "forks": 1355,
+        "checked": "2026-08-20",
         "head_sha": "d15eabbe5d2122eedc060bae8a771381e9873d1b",
-        "head_checked": "2026-08-19"
+        "head_checked": "2026-08-20"
       },
       "triage": {
         "provenance": "Repo verified real via GitHub API: nidhinjs/prompt-master, created 2026-03.",
@@ -2463,11 +2465,11 @@
       "status": "scouted",
       "scouted_on": "2026-07-27",
       "signals": {
-        "stars": 23023,
-        "forks": 2440,
-        "checked": "2026-08-19",
-        "head_sha": "a08859f69706277500ca4e8b741b3f3e101bf401",
-        "head_checked": "2026-08-19"
+        "stars": 23305,
+        "forks": 2462,
+        "checked": "2026-08-20",
+        "head_sha": "3a97a7115ab3c82edf47f315b544fbcefdd8559c",
+        "head_checked": "2026-08-20"
       },
       "triage": {
         "provenance": "Repo verified real via GitHub API: virgiliojr94/book-to-skill, created 2026-05.",
@@ -2512,11 +2514,11 @@
       "status": "reviewed",
       "scouted_on": "2026-07-27",
       "signals": {
-        "stars": 10004,
+        "stars": 10006,
         "forks": 1228,
-        "checked": "2026-08-19",
+        "checked": "2026-08-20",
         "head_sha": "07f75ce3c301259e857343596e7883b8ce5a9f50",
-        "head_checked": "2026-08-19"
+        "head_checked": "2026-08-20"
       },
       "triage": {
         "provenance": "Repo verified real via GitHub API: diet103/claude-code-infrastructure-showcase, created 2025-10.",
@@ -2564,11 +2566,11 @@
       "status": "scouted",
       "scouted_on": "2026-07-27",
       "signals": {
-        "stars": 8203,
+        "stars": 8202,
         "forks": 1305,
-        "checked": "2026-08-19",
+        "checked": "2026-08-20",
         "head_sha": "0f847f415d26690e69ba0ea2f94e0298ef49e827",
-        "head_checked": "2026-08-19"
+        "head_checked": "2026-08-20"
       },
       "triage": {
         "provenance": "Repo verified real via GitHub API: xixu-me/xget, created 2024-11.",
@@ -2613,11 +2615,11 @@
       "status": "scouted",
       "scouted_on": "2026-07-27",
       "signals": {
-        "stars": 7793,
-        "forks": 560,
-        "checked": "2026-08-19",
+        "stars": 7825,
+        "forks": 562,
+        "checked": "2026-08-20",
         "head_sha": "2ee141e0ff183ce76dc405370aeb142c6961aa45",
-        "head_checked": "2026-08-19"
+        "head_checked": "2026-08-20"
       },
       "triage": {
         "provenance": "Repo verified real via GitHub API: Agents365-ai/drawio-skill, created 2026-03.",
@@ -2667,11 +2669,11 @@
       "status": "scouted",
       "scouted_on": "2026-07-27",
       "signals": {
-        "stars": 6142,
-        "forks": 735,
-        "checked": "2026-08-19",
+        "stars": 6144,
+        "forks": 737,
+        "checked": "2026-08-20",
         "head_sha": "25ffc94fbd1288ab9c05a07a9e0de72276f8bd06",
-        "head_checked": "2026-08-19"
+        "head_checked": "2026-08-20"
       },
       "triage": {
         "provenance": "Repo verified real via GitHub API: ikaijua/Awesome-AITools, created 2023-04.",
@@ -2716,11 +2718,11 @@
       "status": "scouted",
       "scouted_on": "2026-07-27",
       "signals": {
-        "stars": 6538,
-        "forks": 792,
-        "checked": "2026-08-19",
+        "stars": 6558,
+        "forks": 796,
+        "checked": "2026-08-20",
         "head_sha": "a03af68414bb0b924746c97bddf9a5057d017af7",
-        "head_checked": "2026-08-19"
+        "head_checked": "2026-08-20"
       },
       "triage": {
         "provenance": "Repo verified real via GitHub API: deanpeters/Product-Manager-Skills, created 2026-02.",
@@ -2764,11 +2766,11 @@
       "status": "scouted",
       "scouted_on": "2026-07-27",
       "signals": {
-        "stars": 41103,
+        "stars": 41123,
         "forks": 5026,
-        "checked": "2026-08-19",
+        "checked": "2026-08-20",
         "head_sha": "1c04dbf88e3a0c388f55d5c0a660a8f8256661d3",
-        "head_checked": "2026-08-19"
+        "head_checked": "2026-08-20"
       },
       "triage": {
         "provenance": "Repo verified real via GitHub API: luongnv89/claude-howto, created 2025-11.",
@@ -2814,11 +2816,11 @@
       "status": "scouted",
       "scouted_on": "2026-08-13",
       "signals": {
-        "stars": 72968,
-        "forks": 6203,
-        "checked": "2026-08-19",
+        "stars": 73275,
+        "forks": 6235,
+        "checked": "2026-08-20",
         "head_sha": "93ae1d18c37b707dec053c7c4f9d91cd8ef8943d",
-        "head_checked": "2026-08-19"
+        "head_checked": "2026-08-20"
       },
       "triage": {
         "provenance": "Repo verified real via GitHub API: Panniantong/Agent-Reach, created 2026-02.",
@@ -2849,11 +2851,11 @@
       "status": "scouted",
       "scouted_on": "2026-08-13",
       "signals": {
-        "stars": 50901,
-        "forks": 6935,
-        "checked": "2026-08-19",
-        "head_sha": "b754e44e260ba888035b8ec077b4da8ea4483e48",
-        "head_checked": "2026-08-19"
+        "stars": 51648,
+        "forks": 7034,
+        "checked": "2026-08-20",
+        "head_sha": "bb98e9a34563625f8ca03e977acf16cd1e915b40",
+        "head_checked": "2026-08-20"
       },
       "triage": {
         "provenance": "Repo verified real via GitHub API: diegosouzapw/OmniRoute, created 2026-02.",
@@ -2883,11 +2885,11 @@
       "status": "scouted",
       "scouted_on": "2026-08-13",
       "signals": {
-        "stars": 48799,
-        "forks": 3377,
-        "checked": "2026-08-19",
-        "head_sha": "73f7767eddce1d359c4f2cf342bd9a5a8b6013b9",
-        "head_checked": "2026-08-19"
+        "stars": 49719,
+        "forks": 3444,
+        "checked": "2026-08-20",
+        "head_sha": "0f26ff4ad83e9ca736f6ad3bae6937cd0cdab7fc",
+        "head_checked": "2026-08-20"
       },
       "triage": {
         "provenance": "Repo verified real via GitHub API: stablyai/orca, created 2026-03.",
@@ -2918,11 +2920,11 @@
       "status": "scouted",
       "scouted_on": "2026-08-13",
       "signals": {
-        "stars": 23511,
-        "forks": 2087,
-        "checked": "2026-08-19",
+        "stars": 23619,
+        "forks": 2094,
+        "checked": "2026-08-20",
         "head_sha": "5a799b83b5d11aa0dbdc09df70fed46265d71f0b",
-        "head_checked": "2026-08-19"
+        "head_checked": "2026-08-20"
       },
       "triage": {
         "provenance": "Repo verified real via GitHub API: titanwings/colleague-skill, created 2026-03.",
@@ -2951,11 +2953,11 @@
       "status": "scouted",
       "scouted_on": "2026-08-16",
       "signals": {
-        "stars": 50769,
-        "forks": 4815,
-        "checked": "2026-08-19",
-        "head_sha": "4f425b7293a7bd0a67a4f5c75c13425402c32b2a",
-        "head_checked": "2026-08-19"
+        "stars": 50830,
+        "forks": 4827,
+        "checked": "2026-08-20",
+        "head_sha": "7bb6b40a6439708005013321080b60a3e5d7d31f",
+        "head_checked": "2026-08-20"
       },
       "triage": {
         "provenance": "Repo verified real via GitHub API: CherryHQ/cherry-studio, created 2024-05.",
@@ -2984,11 +2986,11 @@
       "status": "scouted",
       "scouted_on": "2026-08-16",
       "signals": {
-        "stars": 33691,
-        "forks": 3828,
-        "checked": "2026-08-19",
-        "head_sha": "ed279d8005254045c2e9806ba5c1d7c5b9e2f8c6",
-        "head_checked": "2026-08-19"
+        "stars": 33728,
+        "forks": 3835,
+        "checked": "2026-08-20",
+        "head_sha": "0fc2bb13a805969c14b0fe9398bad41db346d84e",
+        "head_checked": "2026-08-20"
       },
       "triage": {
         "provenance": "Repo verified real via GitHub API: anthropics/claude-plugins-official, created 2025-11.",
@@ -3021,11 +3023,11 @@
       "status": "scouted",
       "scouted_on": "2026-08-16",
       "signals": {
-        "stars": 30454,
-        "forks": 1782,
-        "checked": "2026-08-19",
+        "stars": 30474,
+        "forks": 1780,
+        "checked": "2026-08-20",
         "head_sha": "a3768d0e82ad83cca2da97724e46bea4ff0e6dbd",
-        "head_checked": "2026-08-19"
+        "head_checked": "2026-08-20"
       },
       "triage": {
         "provenance": "Repo verified real via GitHub API: googleworkspace/cli, created 2026-03.",
@@ -3057,11 +3059,11 @@
       "status": "scouted",
       "scouted_on": "2026-08-16",
       "signals": {
-        "stars": 17461,
-        "forks": 3009,
-        "checked": "2026-08-19",
-        "head_sha": "8a49be4c995d45a09d9a1ad197e35c0727f1ffd8",
-        "head_checked": "2026-08-19"
+        "stars": 17472,
+        "forks": 3011,
+        "checked": "2026-08-20",
+        "head_sha": "1b83e0f975499949186edaa64e0e9ceb34ec7453",
+        "head_checked": "2026-08-20"
       },
       "triage": {
         "provenance": "Repo verified real via GitHub API: anthropics/claude-quickstarts, created 2024-08.",
@@ -3093,11 +3095,11 @@
       "status": "scouted",
       "scouted_on": "2026-08-16",
       "signals": {
-        "stars": 14400,
-        "forks": 1041,
-        "checked": "2026-08-19",
-        "head_sha": "82e63c9ec3cc169b87d2829faae061f3dac8dba1",
-        "head_checked": "2026-08-19"
+        "stars": 14670,
+        "forks": 1056,
+        "checked": "2026-08-20",
+        "head_sha": "146b6d4e16ef52df33461b6dc3f33c49cf8d68d9",
+        "head_checked": "2026-08-20"
       },
       "triage": {
         "provenance": "Repo verified real via GitHub API: tt-a1i/archify, created 2026-04.",
@@ -3124,11 +3126,11 @@
       "status": "scouted",
       "scouted_on": "2026-08-16",
       "signals": {
-        "stars": 10380,
-        "forks": 1094,
-        "checked": "2026-08-19",
+        "stars": 10387,
+        "forks": 1097,
+        "checked": "2026-08-20",
         "head_sha": "35efe178d76b191d0399c9d8bdb576bcbb162f79",
-        "head_checked": "2026-08-19"
+        "head_checked": "2026-08-20"
       },
       "triage": {
         "provenance": "Repo verified real via GitHub API: VoltAgent/voltagent, created 2025-04.",
@@ -3157,11 +3159,11 @@
       "status": "scouted",
       "scouted_on": "2026-08-16",
       "signals": {
-        "stars": 9182,
-        "forks": 1788,
-        "checked": "2026-08-19",
+        "stars": 9198,
+        "forks": 1790,
+        "checked": "2026-08-20",
         "head_sha": "4a6c651889c97cc9140580363c73e0eb17379c2b",
-        "head_checked": "2026-08-19"
+        "head_checked": "2026-08-20"
       },
       "triage": {
         "provenance": "Repo verified real via GitHub API: anthropics/claude-for-legal, created 2026-04.",
@@ -3190,11 +3192,11 @@
       "status": "scouted",
       "scouted_on": "2026-08-16",
       "signals": {
-        "stars": 5793,
-        "forks": 866,
-        "checked": "2026-08-19",
+        "stars": 5842,
+        "forks": 872,
+        "checked": "2026-08-20",
         "head_sha": "6af052974fd86fbdbbafce3e363d643221c6ce27",
-        "head_checked": "2026-08-19"
+        "head_checked": "2026-08-20"
       },
       "triage": {
         "provenance": "Repo verified real via GitHub API: worldwonderer/oh-story-claudecode, created 2026-04.",
@@ -3226,11 +3228,11 @@
       "status": "scouted",
       "scouted_on": "2026-08-16",
       "signals": {
-        "stars": 5355,
+        "stars": 5362,
         "forks": 258,
-        "checked": "2026-08-19",
+        "checked": "2026-08-20",
         "head_sha": "8f287271faa0c1df79a44578cb059102ff004da2",
-        "head_checked": "2026-08-19"
+        "head_checked": "2026-08-20"
       },
       "triage": {
         "provenance": "Repo verified real via GitHub API: browser-act/skills, created 2026-02.",
@@ -3263,11 +3265,11 @@
       "status": "scouted",
       "scouted_on": "2026-08-16",
       "signals": {
-        "stars": 5786,
-        "forks": 784,
-        "checked": "2026-08-19",
-        "head_sha": "edca7269349d5aff5b7b94af8b3b3de9e24228c8",
-        "head_checked": "2026-08-19"
+        "stars": 6076,
+        "forks": 811,
+        "checked": "2026-08-20",
+        "head_sha": "918d75c251bcb9aacb22938fc75c50a021c66a5b",
+        "head_checked": "2026-08-20"
       },
       "triage": {
         "provenance": "Repo verified real via GitHub API: WenyuChiou/awesome-agentic-ai-zh, created 2026-05.",
@@ -3300,11 +3302,11 @@
       "status": "scouted",
       "scouted_on": "2026-08-16",
       "signals": {
-        "stars": 5473,
-        "forks": 479,
-        "checked": "2026-08-19",
+        "stars": 5612,
+        "forks": 491,
+        "checked": "2026-08-20",
         "head_sha": "0d6f0b57f0d4d6700761644c07f7ef03c3e50234",
-        "head_checked": "2026-08-19"
+        "head_checked": "2026-08-20"
       },
       "triage": {
         "provenance": "Repo verified real via GitHub API: Vincentwei1021/video-shotcraft, created 2026-07.",
@@ -3333,9 +3335,9 @@
       "signals": {
         "stars": 4583,
         "forks": 460,
-        "checked": "2026-08-19",
-        "head_sha": "90de9862b7ba2d0b526aeeb40726ad3caed17914",
-        "head_checked": "2026-08-19"
+        "checked": "2026-08-20",
+        "head_sha": "7d4401b5c2fe958524055c06ddaba5d7cd84b633",
+        "head_checked": "2026-08-20"
       },
       "triage": {
         "provenance": "Repo verified real via GitHub API: zebbern/claude-code-guide, created 2025-06.",
@@ -3369,11 +3371,11 @@
       "status": "scouted",
       "scouted_on": "2026-08-16",
       "signals": {
-        "stars": 4091,
-        "forks": 470,
-        "checked": "2026-08-19",
-        "head_sha": "3b62f7870496a10ebab42221e5e3226ad0ef8a9e",
-        "head_checked": "2026-08-19"
+        "stars": 4097,
+        "forks": 471,
+        "checked": "2026-08-20",
+        "head_sha": "185fe021aa5d78d70fc4453853d3a1cf61824da1",
+        "head_checked": "2026-08-20"
       },
       "triage": {
         "provenance": "Repo verified real via GitHub API: SamurAIGPT/Generative-Media-Skills, created 2023-05.",
@@ -3406,9 +3408,9 @@
       "signals": {
         "stars": 3738,
         "forks": 273,
-        "checked": "2026-08-19",
+        "checked": "2026-08-20",
         "head_sha": "7822b0501607786958ecb458f3bd02a061933efa",
-        "head_checked": "2026-08-19"
+        "head_checked": "2026-08-20"
       },
       "triage": {
         "provenance": "Repo verified real via GitHub API: glitternetwork/pinme, created 2025-04.",
@@ -3439,11 +3441,11 @@
       "status": "scouted",
       "scouted_on": "2026-08-16",
       "signals": {
-        "stars": 3679,
-        "forks": 570,
-        "checked": "2026-08-19",
-        "head_sha": "2e0c4dc5fee9e7c10321b116e1fdea72697aecd7",
-        "head_checked": "2026-08-19"
+        "stars": 3700,
+        "forks": 572,
+        "checked": "2026-08-20",
+        "head_sha": "4295a44d1ab0f2d961bfcb0760eeaf16c9deccee",
+        "head_checked": "2026-08-20"
       },
       "triage": {
         "provenance": "Repo verified real via GitHub API: elementalsouls/Claude-BugHunter, created 2026-05.",
@@ -3478,11 +3480,11 @@
       "status": "scouted",
       "scouted_on": "2026-08-16",
       "signals": {
-        "stars": 2850,
+        "stars": 2853,
         "forks": 362,
-        "checked": "2026-08-19",
-        "head_sha": "06d0796222097ea43b9d1ca3efed8f71f295e055",
-        "head_checked": "2026-08-19"
+        "checked": "2026-08-20",
+        "head_sha": "fd3036625a6230ccfa594c0749171a3f8bf7f4f7",
+        "head_checked": "2026-08-20"
       },
       "triage": {
         "provenance": "Repo verified real via GitHub API: KhazP/vibe-coding-prompt-template, created 2025-04.",
@@ -3511,9 +3513,9 @@
       "signals": {
         "stars": 2668,
         "forks": 314,
-        "checked": "2026-08-19",
+        "checked": "2026-08-20",
         "head_sha": "d9e93740193aeae2cd661c7ddf6f0c8f8989860b",
-        "head_checked": "2026-08-19"
+        "head_checked": "2026-08-20"
       },
       "triage": {
         "provenance": "Repo verified real via GitHub API: wesammustafa/Claude-Code-Everything-You-Need-to-Know, created 2025-08.",
@@ -3542,11 +3544,11 @@
       "status": "scouted",
       "scouted_on": "2026-08-17",
       "signals": {
-        "stars": 2638,
+        "stars": 2645,
         "forks": 239,
-        "checked": "2026-08-19",
+        "checked": "2026-08-20",
         "head_sha": "95d6e255afe1596b557d7a8498517884438f5b3a",
-        "head_checked": "2026-08-19"
+        "head_checked": "2026-08-20"
       },
       "triage": {
         "provenance": "Repo verified real via GitHub API: addyosmani/web-quality-skills, created 2026-01.",
@@ -3573,11 +3575,11 @@
       "status": "scouted",
       "scouted_on": "2026-08-17",
       "signals": {
-        "stars": 1997,
-        "forks": 573,
-        "checked": "2026-08-19",
+        "stars": 2001,
+        "forks": 576,
+        "checked": "2026-08-20",
         "head_sha": "059482de4cd4f20aa9771f1d1424c870a65eccbf",
-        "head_checked": "2026-08-19"
+        "head_checked": "2026-08-20"
       },
       "triage": {
         "provenance": "Repo verified real via GitHub API: anthropics/cwc-workshops, created 2026-05.",
@@ -3608,11 +3610,11 @@
       "status": "scouted",
       "scouted_on": "2026-08-17",
       "signals": {
-        "stars": 1981,
-        "forks": 161,
-        "checked": "2026-08-19",
+        "stars": 1989,
+        "forks": 164,
+        "checked": "2026-08-20",
         "head_sha": "e5479f857f484cde13fe69d2f3ce8de7af193bc7",
-        "head_checked": "2026-08-19"
+        "head_checked": "2026-08-20"
       },
       "triage": {
         "provenance": "Repo verified real via GitHub API: Weizhena/Deep-Research-skills, created 2025-12.",
@@ -3641,11 +3643,11 @@
       "status": "scouted",
       "scouted_on": "2026-08-17",
       "signals": {
-        "stars": 1966,
-        "forks": 196,
-        "checked": "2026-08-19",
+        "stars": 1974,
+        "forks": 197,
+        "checked": "2026-08-20",
         "head_sha": "6bac1534f9f256a56fc2b4dd0e70b9a692758966",
-        "head_checked": "2026-08-19"
+        "head_checked": "2026-08-20"
       },
       "triage": {
         "provenance": "Repo verified real via GitHub API: wondelai/skills, created 2026-01.",
@@ -3674,11 +3676,11 @@
       "status": "scouted",
       "scouted_on": "2026-08-17",
       "signals": {
-        "stars": 1707,
-        "forks": 101,
-        "checked": "2026-08-19",
+        "stars": 1712,
+        "forks": 102,
+        "checked": "2026-08-20",
         "head_sha": "f37cf56b759538aa5cbd9c93c567b9efc712957c",
-        "head_checked": "2026-08-19"
+        "head_checked": "2026-08-20"
       },
       "triage": {
         "provenance": "Repo verified real via GitHub API: a5c-ai/babysitter, created 2026-01.",
@@ -3710,11 +3712,11 @@
       "status": "scouted",
       "scouted_on": "2026-08-17",
       "signals": {
-        "stars": 1512,
-        "forks": 2946,
-        "checked": "2026-08-19",
+        "stars": 1516,
+        "forks": 2953,
+        "checked": "2026-08-20",
         "head_sha": "be53c12f235996dff41fb7f21580506fd2dd8d50",
-        "head_checked": "2026-08-19"
+        "head_checked": "2026-08-20"
       },
       "triage": {
         "provenance": "Repo verified real via GitHub API: pedrohcgs/claude-code-my-workflow, created 2026-02.",
@@ -3745,9 +3747,9 @@
       "signals": {
         "stars": 1304,
         "forks": 84,
-        "checked": "2026-08-19",
+        "checked": "2026-08-20",
         "head_sha": "ec9c70fe5f7bb752d5e5080f0515f6f43d9dc9cb",
-        "head_checked": "2026-08-19"
+        "head_checked": "2026-08-20"
       },
       "triage": {
         "provenance": "Repo verified real via GitHub API: specstoryai/getspecstory, created 2024-12.",
@@ -3778,11 +3780,11 @@
       "status": "scouted",
       "scouted_on": "2026-08-17",
       "signals": {
-        "stars": 1190,
+        "stars": 1193,
         "forks": 69,
-        "checked": "2026-08-19",
+        "checked": "2026-08-20",
         "head_sha": "4576cd5aee5e2f7c2fbd47557045b150906ce98c",
-        "head_checked": "2026-08-19"
+        "head_checked": "2026-08-20"
       },
       "triage": {
         "provenance": "Repo verified real via GitHub API: JuneYaooo/gpt-image2-ppt-skills, created 2026-04.",
@@ -3814,11 +3816,11 @@
       "status": "scouted",
       "scouted_on": "2026-08-18",
       "signals": {
-        "stars": 1177,
-        "forks": 111,
-        "checked": "2026-08-19",
-        "head_sha": "3b0900706e4fba88c13f590ea8dd43014c6a3e55",
-        "head_checked": "2026-08-19"
+        "stars": 1195,
+        "forks": 112,
+        "checked": "2026-08-20",
+        "head_sha": "2f13775aab0188e0ae0d1046eb1a53fe86d7df61",
+        "head_checked": "2026-08-20"
       },
       "triage": {
         "provenance": "Repo verified real via GitHub API: amElnagdy/delegate-skills, created 2026-06.",
@@ -3849,11 +3851,11 @@
       "status": "scouted",
       "scouted_on": "2026-08-18",
       "signals": {
-        "stars": 1014,
+        "stars": 1018,
         "forks": 15,
-        "checked": "2026-08-19",
+        "checked": "2026-08-20",
         "head_sha": "9bca227df9877e60dc45d49783c8cbd885eccd9b",
-        "head_checked": "2026-08-19"
+        "head_checked": "2026-08-20"
       },
       "triage": {
         "provenance": "Repo verified real via GitHub API: agiwhitelist/auteur, created 2026-07.",
@@ -3880,11 +3882,11 @@
       "status": "scouted",
       "scouted_on": "2026-08-18",
       "signals": {
-        "stars": 952,
-        "forks": 181,
-        "checked": "2026-08-19",
+        "stars": 953,
+        "forks": 183,
+        "checked": "2026-08-20",
         "head_sha": "c9e0f1378a252bd42deb7e9eb02ac0cbd07160bc",
-        "head_checked": "2026-08-19"
+        "head_checked": "2026-08-20"
       },
       "triage": {
         "provenance": "Repo verified real via GitHub API: anthropics/launch-your-agent, created 2026-06.",
@@ -3913,9 +3915,11 @@
       "status": "scouted",
       "scouted_on": "2026-08-19",
       "signals": {
-        "stars": 41127,
-        "forks": 4628,
-        "checked": "2026-08-19"
+        "stars": 41274,
+        "forks": 4636,
+        "checked": "2026-08-20",
+        "head_sha": "3221afda9ddfb03d6cce87927b0ce47338b4cfa8",
+        "head_checked": "2026-08-20"
       },
       "triage": {
         "provenance": "Repo verified real via GitHub API: amruthpillai/reactive-resume, created 2020-03.",
@@ -3949,9 +3953,11 @@
       "status": "scouted",
       "scouted_on": "2026-08-19",
       "signals": {
-        "stars": 953,
+        "stars": 952,
         "forks": 164,
-        "checked": "2026-08-19"
+        "checked": "2026-08-20",
+        "head_sha": "cc2becbe8b422facbb0a92c1e9e0a99c8260162f",
+        "head_checked": "2026-08-20"
       },
       "triage": {
         "provenance": "Repo verified real via GitHub API: guanyang/open-agent-hub, created 2026-01.",
@@ -3966,6 +3972,39 @@
         "red_flags": [],
         "notes": [
           "ssh key read in docs"
+        ]
+      }
+    },
+    {
+      "id": "cathrynlavery-diagram-design",
+      "name": "diagram-design",
+      "repo_url": "https://github.com/cathrynlavery/diagram-design",
+      "author": "cathrynlavery",
+      "category": "frontend",
+      "summary": "38 editorial diagram types for Claude Code, Codex, and Pi. Self-contained HTML + SVG. No shadows. No Mermaid slop.",
+      "pain_points": [
+        "generic-frontend"
+      ],
+      "status": "scouted",
+      "scouted_on": "2026-08-20",
+      "signals": {
+        "stars": 24000,
+        "forks": 1462,
+        "checked": "2026-08-20"
+      },
+      "triage": {
+        "provenance": "Repo verified real via GitHub API: cathrynlavery/diagram-design, created 2026-04.",
+        "license": "MIT",
+        "freshness": "Last push 2026-08-20 (checked 2026-08-20) — actively maintained.",
+        "safety": "Automated safety skim (2026-08-20, 124 files): no red-flag patterns (remote-exec, credential reads, obfuscated exec) found in a shallow-clone scan. Notes: network call. A pattern scan, not a line-by-line read — the full source read happens before publication."
+      },
+      "next": "Queued for a full grading run.",
+      "skim": {
+        "date": "2026-08-20",
+        "files_scanned": 124,
+        "red_flags": [],
+        "notes": [
+          "network call"
         ]
       }
     }
