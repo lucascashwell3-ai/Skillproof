@@ -3,21 +3,18 @@
 The Skillproof catalog, callable from any MCP host (Claude Desktop, Claude Code,
 Cursor, …) mid-workflow. Read-only, no auth, no side effects. It reads the **same
 `docs/data/skills.json`** the website renders and the honesty gate
-(`scripts/validate_index.py`) validates — and serves **published entries only**: every one had
-its full source read at a pinned commit before listing. Internal pipeline states (candidates
-awaiting review) are never returned.
+(`scripts/validate_index.py`) validates. One flat catalog: every entry was scanned
+for malicious patterns before listing — scanned, not endorsed, no warranty.
 
 ## Tools
 
-- `find_resources({ pain_point, limit? })` — matches for a described pain point: **graded**
-  (installed + probed, worksheet receipts) and **reviewed** (full source read at a pinned
-  commit; what it does / touches / how to undo it, install command included). Zero matches
-  returns the scout methodology instead of a guess — the catalog is a starting shelf, and
-  "not catalogued yet" never means "nothing exists."
-- `get_grade({ skill })` — one skill's full record: grade, per-dimension scores with reasons,
-  worksheet URL; or the review's does/touches/undo + limits for reviewed entries. Not in the
-  catalog at all → says so plainly.
-- `list_index({ status? })` — the published catalog, filterable by `graded` / `reviewed`.
+- `find_resources({ pain_point, limit? })` — matches for a described pain point, best
+  matches first. Zero matches returns the scout methodology instead of a guess — the
+  catalog is a starting shelf, and "not catalogued yet" never means "nothing exists."
+- `get_skill({ skill })` — one entry's full record: summary, repo, stars, license,
+  install command where known, and the date of its malice scan. Not in the catalog
+  at all → says so plainly.
+- `list_catalog({ category? })` — the whole catalog, optionally filtered by category.
 - `get_scout_methodology()` — how to search the wider ecosystem honestly, including the rule
   that unread code gets a repo URL and a plain "the source has not been read," never an
   install command.
@@ -64,11 +61,10 @@ SKILLPROOF_DATA_URL="https://lucascashwell3-ai.github.io/skillproof/data/skills.
 
 ## Honesty rules (enforced in code)
 
-- Only published entries are served — graded, or reviewed with a review block. Pipeline states
-  never leave the data file.
-- Graded answers always carry the worksheet URL — the receipts.
-- Reviewed answers carry does/touches/undo, `limits` verbatim, and the pinned commit — and are
-  never called tested. Reading is not running.
-- A skill missing from the catalog returns "no grade or review exists — do not infer one".
+- Every answer states what the catalog assures: scanned for malicious patterns before
+  listing — scanned, not endorsed, provided as-is.
+- No entry is ever called tested, graded, or verified.
+- The calling agent is told to read the source of anything before installing it.
+- A skill missing from the catalog says so plainly — nothing is inferred.
 
-Independent tool · MIT · Grades and receipts: https://github.com/lucascashwell3-ai/Skillproof
+Independent tool · MIT · Source: https://github.com/lucascashwell3-ai/Skillproof

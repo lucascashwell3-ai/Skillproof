@@ -2,20 +2,20 @@
 """Skillproof feeder — v1 job 2 (automation/PIPELINE_V1.md).
 
 Runs the full feed -> check -> publish stack in one deterministic script, no
-review stage, no model calls. Scouted entries are the product: baseline
-safety + freshness + popularity, then straight to the site.
+review stage, no model calls. One flat catalog (tiers nuked 2026-08-21): the
+only safety gate is the malice scan; pass = published as a full entry.
 
 Stages:
   feed    - GitHub topic search + named-creator seeds (scripts/feeder_sources.json),
             deduped against docs/data/skills.json by repo URL, capped at --cap new.
   check   - drop if quarantined, < min-stars (unless owner is a named source),
             stale (> 12 months since last push), archived, a fork, or has no OSS
-            license. Survivors get the existing safety_skim.scan_repo() skim;
+            license. Survivors get the safety_skim.scan_repo() malice scan;
             a red flag quarantines instead of listing.
-  publish - append status:"scouted" entries in the existing schema, refresh
-            signals for existing entries (cheap, 1 API call each), write
-            docs/data/skills.json, then run validate_index.py as the honesty
-            gate. Gate failure = exit nonzero, nothing written.
+  publish - append flat entries, refresh signals for existing entries (cheap,
+            1 API call each), write docs/data/skills.json, then run
+            validate_index.py as the honesty gate. Gate failure = exit
+            nonzero, nothing written.
 
 Usage:
   python3 scripts/feeder.py --dry-run
@@ -35,7 +35,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent
 sys.path.insert(0, str(ROOT))
 from quarantine import load_quarantine, save_quarantine  # noqa: E402
-from safety_skim import scan_repo, receipt  # noqa: E402
+from safety_skim import scan_repo  # noqa: E402
 from scout_scrape import (  # noqa: E402
     to_entry, is_library, kebab, months_since,
 )
@@ -196,18 +196,17 @@ def check(repos, named_owners, skim_new):
         if result is None:
             dropped.append((repo["full_name"], "clone failed during safety skim"))
             continue
-        is_lib = entry.get("category") == "library"
-        entry["triage"]["safety"] = receipt(result, is_lib)
-        entry["skim"] = {
-            "date": TODAY,
-            "files_scanned": result["files_scanned"],
-            "red_flags": sorted(result["reds"]),
-            "notes": sorted(result["notes"]),
-        }
         if result["reds"]:
-            quarantined_new.append(dict(entry, quarantined_on=TODAY))
+            # quarantine entries keep the full skim record so --list shows why
+            quarantined_new.append(dict(entry, quarantined_on=TODAY, skim={
+                "date": TODAY,
+                "files_scanned": result["files_scanned"],
+                "red_flags": sorted(result["reds"]),
+                "notes": sorted(result["notes"]),
+            }))
             dropped.append((repo["full_name"], f"quarantined: {sorted(result['reds'])}"))
             continue
+        entry["checked"] = {"date": TODAY, "files_scanned": result["files_scanned"]}
         kept.append(entry)
     return kept, dropped, quarantined_new
 
@@ -286,15 +285,12 @@ def main():
     data["as_of"] = TODAY
     DATA.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n")
 
-    # a signal refresh can move HEAD past a pinned review; mark those stale first
-    # (the gate's own remedy), then run the gate for real
-    subprocess.run([sys.executable, str(ROOT / "validate_index.py"), "--downgrade-stale"])
     gate = subprocess.run([sys.executable, str(ROOT / "validate_index.py")])
     if gate.returncode != 0:
         print("honesty gate FAILED — feeder run rejected", file=sys.stderr)
         return gate.returncode
 
-    print(f"\nfeeder: +{len(kept)} scouted, {len(quarantined_new)} quarantined, "
+    print(f"\nfeeder: +{len(kept)} listed, {len(quarantined_new)} quarantined, "
           f"{refreshed} existing entries' signals refreshed, gate passed.")
     return 0
 

@@ -1,8 +1,8 @@
 /* Skillproof workbench — improve-areas rail → catalog → build tray.
    Data contract: docs/data/skills.json (validated by scripts/validate_index.py).
-   Honesty rules: every claim on the page derives from a real field in the data.
-   Tested entries carry receipts; everything else is scouted and the install
-   plan says so — no fabricated grades, commands, or stats. */
+   One flat catalog (tiers removed 2026-08-21): every entry is a real repo that
+   passed the malice scan. Every claim on the page derives from a real field in
+   the data — no fabricated commands or stats. */
 (function () {
   "use strict";
 
@@ -140,7 +140,6 @@
   /* pills are capped at 2 and every string names a real data field */
   function evaluate(it) {
     var out = { pills: [], score: 0 };
-    var tr = it.triage || {};
 
     if (setupActive()) {
       S.pains.forEach(function (pid) {
@@ -149,11 +148,6 @@
           out.score += 10;
         }
       });
-    }
-    if (it.status === "graded") out.score += 1;
-    if (tr.license && /^no /i.test(tr.license)) {
-      out.pills.push(["bad", "No license — usage rights unclear"]);
-      out.score -= 2;
     }
     out.pills = out.pills.slice(0, 2);
     return out;
@@ -330,72 +324,46 @@
     return iso;
   }
   function detailHTML(it) {
-    var tr = it.triage || {};
     var rows = [];
 
     var repoSlug = it.repo_url.replace(/^https:\/\/github\.com\//, "");
     rows.push(["Source", "From a public GitHub repo by " + esc(it.author) +
       ' · <a href="' + esc(it.repo_url) + '" target="_blank" rel="noopener">' + esc(repoSlug) + " ↗</a>"]);
 
-    var created = (tr.provenance || "").match(/created (\d{4}-\d{2})/);
-    var pushed = (tr.freshness || "").match(/Last push (\d{4}-\d{2}-\d{2})/);
-    if (created || pushed) {
+    if (it.created || it.pushed) {
       rows.push(["Last updated",
-        esc((created ? "Created " + mdY(created[1]) + ". " : "") +
-            (pushed ? "Last push " + mdY(pushed[1]) + "." : ""))]);
+        esc((it.created ? "Created " + mdY(it.created) + ". " : "") +
+            (it.pushed ? "Last push " + mdY(it.pushed) + "." : ""))]);
     }
     if (it.signals) {
       rows.push(["Exposure", esc(it.signals.stars.toLocaleString() + " GitHub stars · " +
         (it.signals.forks || 0).toLocaleString() + " forks")]);
     }
-    if (tr.license) rows.push(["License", esc(tr.license.split("—")[0].trim().replace(/\.$/, ""))]);
+    if (it.license) rows.push(["License", esc(it.license)]);
 
-    /* The review tier's payoff: what it does, what it touches, how to undo it —
-       written by a reviewer that read the full source at a pinned commit. These
-       fields sat in the data invisible for a week; rows used to answer "is this
-       safe?" with "review the source yourself" — the exact dead end the product
-       exists to remove. */
-    if (it.review) {
-      if (it.review.does) rows.push(["What it does", esc(it.review.does)]);
-      if ((it.review.touches || []).length) {
-        rows.push(["Touches", it.review.touches.map(function (t) {
-          return '<span class="touch">' + esc(t) + "</span>";
-        }).join("")]);
-      }
-      if (it.review.undo) rows.push(["To undo it", esc(it.review.undo)]);
+    /* Optional plain-language help: what it does, what it touches, how to
+       undo it. Present where someone has written them; never invented. */
+    if (it.does) rows.push(["What it does", esc(it.does)]);
+    if ((it.touches || []).length) {
+      rows.push(["Touches", it.touches.map(function (t) {
+        return '<span class="touch">' + esc(t) + "</span>";
+      }).join("")]);
     }
+    if (it.undo) rows.push(["To undo it", esc(it.undo)]);
 
-    var sec;
-    if (it.status === "graded") {
-      sec = "Tested by Skillproof — installed, probed, and every line of source read. Graded " +
-        it.grade + " (" + it.score_total + "/24).";
-    } else if (it.status === "reviewed" && it.review) {
-      sec = "Full source read by an automated reviewer at a pinned commit — not installed, not run. " +
-        (it.review.limits ? "What the review could not establish: " + it.review.limits : "");
-    } else if (it.skim && !(it.skim.red_flags || []).length) {
-      sec = "Automatically screened for known malicious patterns — none found. Not yet hand-tested by Skillproof.";
-    } else if (it.skim && it.skim.human_review) {
-      sec = "Our automated screen flagged this repo, so it was pulled from the catalog. A human " +
-        "then read the source on " + it.skim.human_review.date + " and restored it: " +
-        it.skim.human_review.reason;
-    } else if (it.skim) {
-      sec = "Flagged by our automated screen — held from recommendations until reviewed.";
-    } else {
-      sec = "Not yet screened — review the source before installing.";
-    }
+    var sec = it.checked
+      ? "Scanned for malicious patterns" + (it.checked.date ? " on " + mdY(it.checked.date) : "") +
+        " — none found. Provided as-is: read anything before you run it."
+      : "Not yet scanned — read the source before installing.";
     rows.push(["Security", esc(sec)]);
 
-    var worksheet = it.status === "graded" && it.evidence_url
-      ? '<a class="btn btn-ghost btn-sm" href="' + REPO + "/blob/main/" + esc(it.evidence_url) + '" target="_blank" rel="noopener">Test worksheet ↗</a>'
-      : "";
-    var asOf = (it.skim && it.skim.date) || (it.signals && it.signals.checked) || DATA.as_of;
+    var asOf = (it.checked && it.checked.date) || (it.signals && it.signals.checked) || DATA.as_of;
     return '<div class="row-detail"><div class="rd-in">' +
       '<div class="rd-rows">' + rows.map(function (kv, i) {
         return '<div class="rd-row" style="animation-delay:' + (i * 40) + 'ms"><span class="rd-k">' + kv[0] +
           '</span><span class="rd-v">' + kv[1] + "</span></div>";
       }).join("") + "</div>" +
       '<div class="rd-actions">' +
-        worksheet +
         '<span class="rd-asof">As of ' + esc(mdY(asOf)) + "</span>" +
       "</div>" +
     "</div></div>";
@@ -544,35 +512,36 @@
   }
 
   /* ======================= install plan — two modes ======================= */
-  /* Terminal: real commands for tested entries, review-first links for scouted. */
+  /* Terminal: the known command where we have one, the repo to install from
+     where we don't. One flat catalog — no tier labels in the plan. */
   function planText() {
     var lines = ["# skillproof install plan"];
     state.tray.forEach(function (id, i) {
       var it = byId[id];
-      if (it.status === "graded" && it.install && it.install.command) {
-        lines.push("# " + (i + 1) + ". " + it.name + " — tested by Skillproof");
+      if (it.install && it.install.command) {
+        lines.push("# " + (i + 1) + ". " + it.name);
         lines.push(it.install.command);
       } else {
-        lines.push("# " + (i + 1) + ". " + it.name + " — not tested by us: review, then install per its README");
+        lines.push("# " + (i + 1) + ". " + it.name + " — install per its repo");
         lines.push("#    " + it.repo_url);
       }
     });
     return lines.join("\n");
   }
-  /* Agent: a prompt you paste at your agent; honest about tested vs not. */
+  /* Agent: a prompt you paste at your agent. */
   function agentPrompt() {
     var lines = ["Install this stack into my AI environment, one item at a time:"];
     state.tray.forEach(function (id, i) {
       var it = byId[id];
-      if (it.status === "graded" && it.install && it.install.command) {
-        lines.push((i + 1) + ". " + it.name + " (tested by Skillproof) — run: " + it.install.command);
+      if (it.install && it.install.command) {
+        lines.push((i + 1) + ". " + it.name + " — run: " + it.install.command);
       } else {
-        lines.push((i + 1) + ". " + it.name + " (listed but not tested by Skillproof) — fetch " + it.repo_url +
+        lines.push((i + 1) + ". " + it.name + " — fetch " + it.repo_url +
           ", read the README and source, then install per its instructions.");
       }
     });
     lines.push("");
-    lines.push("Rules: install only these items. Show me each command before running it. Flag anything that wants network access, credentials, or writes outside the project.");
+    lines.push("Rules: install only these items. Read the source of each before installing. Show me each command before running it. Flag anything that wants network access, credentials, or writes outside the project.");
     if (state.explain) {
       lines.push("Before each install, explain in 2-3 sentences what the item does, then ask me one short question to confirm I know when I'd use it.");
     }
@@ -711,7 +680,8 @@
      through), so this should never be true — but if bad data ever reaches the
      browser, it still cannot be added to a stack. */
   function isBlocked(it) {
-    return !!(it && it.skim && (it.skim.red_flags || []).length);
+    var rec = it && (it.checked || it.skim);
+    return !!(rec && (rec.red_flags || []).length);
   }
 
   function addItem(id, srcBtn) {
@@ -893,51 +863,12 @@
   }
 
   /* Any place the page states the catalog size reads it from the data, so a
-     stale hardcoded number can never contradict the catalog it is describing. */
-  function tierCounts() {
-    // Counts every status present, not a fixed pair. A hardcoded {graded,scouted}
-    // silently dropped the `reviewed` tier the moment it existed, so the stated
-    // split stopped summing to the catalog size — the exact shape of the lie the
-    // derived split was introduced to kill.
-    var c = {};
-    DATA.skills.forEach(function (s) { c[s.status] = (c[s.status] || 0) + 1; });
-    return c;
-  }
-  /* One word per tier, and the word has to be literally true. `reviewed` means an
-     automated reviewer READ the source at a pinned commit — it does not mean
-     tested, so it never borrows the tested label. */
-  var TIER_LABEL = {
-    graded:   { word: "Tested ✓", cls: "tested",
-                hint: "Installed, probed, and source-read by a person; worksheet on file" },
-    reviewed: { word: "Reviewed", cls: "scouted",
-                hint: "Full source read by an automated reviewer at a pinned commit — not installed, not run" },
-    scouted:  { word: "Scouted", cls: "scouted",
-                hint: "Found and screened for malicious code, but the source has not been read" }
-  };
-  function tierBadge() {
-    /* Tiers are no longer shown to users (Lucas, 2026-08-09): being listed IS
-       the assurance — the code was read at its current version. The tier
-       machinery stays in the data and the gates; only the badge went. */
-    return "";
-  }
+     stale hardcoded number can never contradict the catalog it is describing.
+     (The tier badge/split machinery died with the tiers, 2026-08-21.) */
+  function tierBadge() { return ""; }
   function syncCatalogCounts() {
-    var n = DATA.skills.length, c = tierCounts();
+    var n = DATA.skills.length;
     $$("[data-catalog-count]").forEach(function (el) { el.textContent = String(n); });
-    // The honest split, stated wherever the catalog is described. This used to
-    // read "54 skills & libraries with receipts" while 53 of the 54 had never
-    // been run by anyone here — the single worst line on the site, and both cold
-    // reviewers found it independently. Derived, so it can never drift again.
-    // Lists every tier that actually has entries, in descending strength, so the
-    // stated split always sums to the catalog size. When the reviewed tier fills
-    // up, this sentence changes on its own.
-    var split = [["graded", "tested"], ["reviewed", "source-reviewed"],
-                 ["scouted", "scouted"]]
-      .filter(function (p) { return c[p[0]]; })
-      .map(function (p) { return c[p[0]] + " " + p[1]; }).join(", ");
-    $$("[data-catalog-split]").forEach(function (el) { el.textContent = split; });
-    $$("[data-tier-count]").forEach(function (el) {
-      el.textContent = String(c[el.getAttribute("data-tier-count")] || 0);
-    });
   }
 
   /* ======================= take-it-with-you (chooser + preview + card) =======================
@@ -1047,33 +978,30 @@
      covers agents that can't fetch.
 
      The job it hands the agent is the product's job: pain point → find the
-     right thing → get it working, with per-change consent. The catalog is the
-     starting shelf, the wider web is in bounds, and the finish line is
-     "installed and confirmed working" — NOT a catalog reading. An earlier
-     version of this prompt described the internal review tiers to the agent;
-     pasted into a fresh chat, the agent read "only 1 tested, no install
-     commands for the rest" and told the user to avoid the whole site
-     (2026-08-10, Lucas's work machine). Pipeline states are ours, not the
-     agent's — the prompt now says what IS assured (published = source read at
-     a pinned commit) and keeps the rest internal. */
+     right thing → get it working, with the user's yes before any write. The
+     catalog is the starting shelf, the wider web is in bounds, and the finish
+     line is "installed and confirmed working" — NOT a catalog reading. The
+     prompt states exactly what the catalog assures (scanned for malice, not
+     endorsed) — an earlier tier-describing version made a fresh agent tell
+     the user to avoid the whole site (2026-08-10, Lucas's work machine). */
   var DATA_URL = "https://raw.githubusercontent.com/lucascashwell3-ai/Skillproof/main/docs/data/skills.json";
 
   function buildPrompt() {
     return [
       "You are my AI-setup upgrade agent, working the Skillproof method. When I describe a pain point or goal, find the right skill or tool for it and get it working in my setup. Finding it is the start — installed, integrated, and confirmed working is the finish.",
       "",
-      "Start with the curated catalog: " + DATA_URL,
-      "Use the entries with status \"graded\", or \"reviewed\" with a \"review\" block — those are the published ones. Any other rows are internal pipeline states awaiting review; skip them silently, and never present them as a warning or a verdict on the catalog. Every published entry had its full source read at a pinned commit before listing: review.does, review.touches and review.undo tell you what it does, what it touches, and how to undo it. If the fetch fails, say so and ask me to attach the file — it downloads from the Skillproof site.",
+      "Start with the catalog: " + DATA_URL,
+      "Every entry is a real GitHub repo that was scanned for malicious patterns before listing — scanned, not endorsed. If the fetch fails, say so and ask me to attach the file — it downloads from the Skillproof site.",
       "",
-      "The catalog is a starting shelf, not a boundary. If nothing in it fits my ask, search the wider ecosystem yourself — that is the normal next step, not a failure. Read the source of anything you find before recommending it, and answer the same three questions (does / touches / undo) from the code you read, never from the README alone. If you can't read the source, hand me the repo URL and say the source hasn't been read — no install command for unread code.",
+      "The catalog is a starting shelf, not a boundary. If nothing in it fits my ask, search the wider ecosystem yourself — that is the normal next step, not a failure. Read the source of anything before recommending it, and answer three questions (what it does / what it touches / how to undo it) from the code you read, never from the README alone. If you can't read the source, hand me the repo URL and say the source hasn't been read — no install command for unread code.",
       "",
       "Once you have the one right thing (one recommendation, not a ranked list):",
       "1. Tell me what it does, what it touches, and how to undo it — one line each.",
       "2. Read my setup (global instructions, CLAUDE.md, installed skills, settings) and say plainly what will fight it — or that nothing will.",
-      "3. Show me every change you propose, then ask my permission per change. Nothing is written without a yes.",
+      "3. Show me every change you propose in one plan, then get my yes before writing anything.",
       "4. Install it, confirm it actually triggers, and hand me the undo.",
       "",
-      "Honesty rules: reading source is not running it — only a \"graded\" entry may be called tested. Never invent stars, dates, licenses, or grades. Never pipe a download into a shell.",
+      "Honesty rules: never invent stars, dates, licenses, or claims of testing. Never pipe a download into a shell.",
       "",
       "Catalog as of " + DATA.as_of + "."
     ].join("\n");
@@ -1105,15 +1033,9 @@
 
   loadData().then(function (d) {
     DATA = d;
-    /* Listed means read (Lucas, 2026-08-09): the site shows ONLY entries whose
-       source was read at its current version — graded, or reviewed with the
-       review block present. Everything else stays in the data file with its
-       history intact and simply isn't listed; the nightly review routine
-       re-reads moved code and entries return on their own. No tier shown to
-       users, no "stale", no jargon they'd never have thought about. */
-    d.skills = d.skills.filter(function (s) {
-      return s.status === "graded" || (s.status === "reviewed" && s.review);
-    });
+    /* One flat catalog (Lucas, 2026-08-21): everything in the file is
+       published. The only gate is upstream — the malice scan; anything
+       flagged never reaches this file. */
     d.skills.forEach(function (s) { byId[s.id] = s; });
     d.pain_points.forEach(function (p) {
       PAIN_LBL[p.id] = p.label;
