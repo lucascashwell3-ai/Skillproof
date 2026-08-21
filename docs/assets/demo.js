@@ -34,7 +34,7 @@
       title: "zsh — 96×28",
       lines: [
         { t: "sh", type: true, html: "for f in SKILL.md references/…; do curl -fsSL --create-dirs …/skills/skillproof/$f -o ~/.claude/skills/skillproof/$f; done" },
-        { t: "out", html: '<span class="ok">✓</span> SKILL.md · consent.md · conflict-patterns.md · install-paths.md · tiers.md · finding.md · security.md <span class="dim">— 7 files, nothing piped to a shell</span>' },
+        { t: "out", html: '<span class="ok">✓</span> SKILL.md · consent.md · conflict-patterns.md · install-paths.md · finding.md · security.md <span class="dim">— 6 files, nothing piped to a shell</span>' },
         { t: "sh", type: true, html: "claude" },
         { t: "banner", html: '<b>✻</b> Welcome to <b>Claude Code</b>! <span class="dim">skill loaded: skillproof</span>' },
         { t: "you", type: true, html: "make my agent better at frontend design" },

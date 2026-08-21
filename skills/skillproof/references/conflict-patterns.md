@@ -3,7 +3,7 @@
 A skill that gets overridden by the setup it lands in is worse than no skill, because the person
 thinks it's working. These are the six ways that happens, in the order they're worth checking.
 
-Everything here is read-only. Finding a conflict never licenses fixing it — that's phases 4–6.
+Everything here is read-only. Finding a conflict never licenses fixing it — that's the plan and its yes (beats 3–5).
 
 ---
 
