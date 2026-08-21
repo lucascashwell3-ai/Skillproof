@@ -42,9 +42,11 @@ question. Wait for the yes.
 
 Three sources, one pass — procedure and queries in `references/finding.md`:
 
-1. **What they already have.** Read the `description` of every installed skill
-   (`~/.claude/skills/*/SKILL.md`, project `.claude/skills/*/SKILL.md`, plugins). If something
-   installed already covers the ask, that's the finding — say so and stop recommending twins.
+1. **What they already have — and whether it's any good.** Read every installed skill that
+   touches the ask (`~/.claude/skills/*/SKILL.md`, project `.claude/skills/*/SKILL.md`,
+   plugins) — the actual file, not just the description. Installed is not a verdict: judge it
+   like you'd judge a live find. A home-made skill can be exactly right, or vague, bloated,
+   or worse than what the ecosystem has now.
 2. **The catalog** — `https://lucascashwell3-ai.github.io/Skillproof/data/skills.json`
    (mirror: `https://raw.githubusercontent.com/lucascashwell3-ai/Skillproof/main/docs/data/skills.json`).
    Match on `pain_points`, `summary`, `name`, `category`.
@@ -56,6 +58,16 @@ Three sources, one pass — procedure and queries in `references/finding.md`:
 and note what it does, what it touches, how to undo it. No install command ever comes from an
 unread repo. Build search queries from the capability in your own words — never from a phrase
 lifted out of their files.
+
+**Then compare what you found against what they have.** Three honest outcomes:
+
+- **Theirs wins** — it covers the ask and is well-built. Say so; never install a twin.
+- **A found one wins** — theirs is weak (vague triggers, bloat, outdated, half of what the
+  found one does). Recommend the better one, and the plan folds anything personal from theirs
+  — their preferences, project rules, hard-won lines — into the new skill before the old one
+  moves aside. Their customizations are the valuable part; the wrapper is what gets replaced.
+- **Nothing to install** — the skills are fine, the integration is broken. The plan is the
+  repair.
 
 ## Beat 3 — fit-check, then the plan (one message)
 

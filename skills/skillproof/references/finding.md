@@ -4,12 +4,19 @@ Beat 2's procedure. All of this happens silently; the user sees only the result 
 
 ## 1. What they already have (read-only)
 
-Read the `description` line of every installed skill before you search:
-`~/.claude/skills/*/SKILL.md`, the project's `.claude/skills/*/SKILL.md`, and any plugin skill
-list. If one already covers the ask, lead with it in beat 3 — "you already have `X`, it does
-this" — and do not recommend a near-twin. Clutter is the problem this product exists to stop.
-When something installed clearly covers it, you can skip the searches below entirely — the
-finding is consolidation or repair, not a new install. Search only when it's a partial fit.
+Read every installed skill before you search: `~/.claude/skills/*/SKILL.md`, the project's
+`.claude/skills/*/SKILL.md`, and any plugin skill list. For anything touching the ask, read
+the full file, not just the description — you're judging it, not inventorying it. Signs an
+installed skill is weak: vague or colliding trigger words, instructions that contradict the
+setup around it, bloat that buries the point, or it simply does half of what current
+ecosystem skills do.
+
+**Installed never ends the search.** Run the catalog and live passes below regardless, then
+compare. "You already have `X` and it's good" is a great outcome — but only after you've
+looked at what else exists. If a found skill clearly beats theirs, say so plainly and plan a
+replace-and-fold: their personal rules and preferences from the old skill get folded into the
+new one, the old wrapper moves aside (never deleted). What you never do is add a twin on top
+of a weak skill — clutter is the problem this product exists to stop.
 
 ## 2. The catalog
 
