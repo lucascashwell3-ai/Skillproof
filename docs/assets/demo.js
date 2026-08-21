@@ -186,21 +186,8 @@
     t.addEventListener("click", function () { setMethod(t.dataset.m, true); });
   });
 
-  // border beam follows the pointer while it is over the terminal
-  var term = document.getElementById("term");
-  if (term && !reduced) {
-    term.addEventListener("pointermove", function (e) {
-      var r = term.getBoundingClientRect();
-      var a = Math.atan2(e.clientY - (r.top + r.height / 2), e.clientX - (r.left + r.width / 2));
-      // conic-gradient 0deg points up and the bright spot sits at .90turn → offset so it lands under the pointer
-      term.classList.add("beam-follow");
-      term.style.setProperty("--beam", (a * 180 / Math.PI + 90 - 324) + "deg");
-    });
-    term.addEventListener("pointerleave", function () {
-      term.classList.remove("beam-follow");
-      term.style.removeProperty("--beam");
-    });
-  }
+  // (pointer-follow beam removed 2026-08-21 — restarting the loop on
+  // pointerleave read as a glitch; the beam just orbits continuously now)
 
   play(current);
 })();
