@@ -26,7 +26,7 @@
         "checked": "2026-07-27"
       },
       "skim": {
-        "date": "2026-08-21",
+        "date": "2026-08-22",
         "files_scanned": 224,
         "red_flags": [
           "cloud credential read",
@@ -65,7 +65,7 @@
         "checked": "2026-07-27"
       },
       "skim": {
-        "date": "2026-08-21",
+        "date": "2026-08-22",
         "files_scanned": 590,
         "red_flags": [
           "cloud credential read"
@@ -107,7 +107,7 @@
       },
       "next": "Queued for a full grading run.",
       "skim": {
-        "date": "2026-08-21",
+        "date": "2026-08-22",
         "files_scanned": 379,
         "red_flags": [
           "remote-exec pipe"
@@ -142,7 +142,7 @@
       },
       "next": "Queued for a full grading run.",
       "skim": {
-        "date": "2026-08-21",
+        "date": "2026-08-22",
         "files_scanned": 369,
         "red_flags": [
           "remote-exec pipe"
@@ -178,7 +178,7 @@
       },
       "next": "Queued for a full grading run.",
       "skim": {
-        "date": "2026-08-21",
+        "date": "2026-08-22",
         "files_scanned": 600,
         "red_flags": [
           "cloud credential read",
@@ -186,8 +186,7 @@
         ],
         "notes": [
           "network call",
-          "remote-exec pipe in docs",
-          "ssh key read in tests"
+          "remote-exec pipe in docs"
         ]
       },
       "quarantined_on": "2026-07-27"
@@ -217,7 +216,7 @@
       },
       "next": "Queued for a full grading run.",
       "skim": {
-        "date": "2026-08-21",
+        "date": "2026-08-22",
         "files_scanned": 259,
         "red_flags": [
           "remote-exec pipe"
@@ -253,7 +252,7 @@
       },
       "next": "Queued for a full grading run.",
       "skim": {
-        "date": "2026-08-21",
+        "date": "2026-08-22",
         "files_scanned": 600,
         "red_flags": [
           "remote-exec pipe"
@@ -288,16 +287,14 @@
       },
       "next": "Queued for a full grading run.",
       "skim": {
-        "date": "2026-08-21",
+        "date": "2026-08-22",
         "files_scanned": 600,
         "red_flags": [
           "remote-exec pipe"
         ],
         "notes": [
-          "cloud credential read in docs",
           "network call",
-          "remote-exec pipe in docker",
-          "ssh key read in tests"
+          "remote-exec pipe in docker"
         ]
       },
       "quarantined_on": "2026-07-27"
@@ -327,7 +324,7 @@
       },
       "next": "Queued for a full grading run.",
       "skim": {
-        "date": "2026-08-21",
+        "date": "2026-08-22",
         "files_scanned": 600,
         "red_flags": [
           "remote-exec pipe"
@@ -366,7 +363,7 @@
       },
       "next": "Upstream changed since the last source review — queued for re-review.",
       "skim": {
-        "date": "2026-08-21",
+        "date": "2026-08-22",
         "files_scanned": 192,
         "red_flags": [
           "cloud credential read"
@@ -419,10 +416,11 @@
       },
       "next": "Queued for a full grading run.",
       "skim": {
-        "date": "2026-08-21",
+        "date": "2026-08-22",
         "files_scanned": 600,
         "red_flags": [
-          "cloud credential read"
+          "cloud credential read",
+          "ssh key read"
         ],
         "notes": [
           "cloud credential read in docs",
@@ -460,14 +458,16 @@
       },
       "next": "Queued for a full grading run.",
       "skim": {
-        "date": "2026-08-21",
+        "date": "2026-08-22",
         "files_scanned": 600,
         "red_flags": [
           "cloud credential read",
-          "remote-exec pipe"
+          "remote-exec pipe",
+          "ssh key read"
         ],
         "notes": [
           "cloud credential read in docs",
+          "long base64 blob",
           "network call",
           "remote-exec pipe in docs",
           "remote-exec pipe in tests"
@@ -500,15 +500,15 @@
       },
       "next": "Queued for a full grading run.",
       "skim": {
-        "date": "2026-08-21",
+        "date": "2026-08-22",
         "files_scanned": 600,
         "red_flags": [
           "powershell encoded exec",
           "remote-exec pipe"
         ],
         "notes": [
+          "long base64 blob",
           "network call",
-          "remote-exec pipe in docker",
           "remote-exec pipe in docs"
         ]
       },
@@ -539,7 +539,7 @@
       },
       "next": "Queued for a full grading run.",
       "skim": {
-        "date": "2026-08-21",
+        "date": "2026-08-22",
         "files_scanned": 464,
         "red_flags": [
           "remote-exec pipe"
@@ -576,7 +576,7 @@
       },
       "next": "Queued for a full grading run.",
       "skim": {
-        "date": "2026-08-21",
+        "date": "2026-08-22",
         "files_scanned": 270,
         "red_flags": [
           "remote-exec pipe"
@@ -613,7 +613,7 @@
       },
       "next": "Queued for a full grading run.",
       "skim": {
-        "date": "2026-08-21",
+        "date": "2026-08-22",
         "files_scanned": 600,
         "red_flags": [
           "remote-exec pipe"
@@ -650,7 +650,7 @@
       },
       "next": "Queued for a full grading run.",
       "skim": {
-        "date": "2026-08-13",
+        "date": "2026-08-22",
         "files_scanned": 600,
         "red_flags": [
           "cloud credential read"
@@ -688,17 +688,13 @@
       },
       "next": "Queued for a full grading run.",
       "skim": {
-        "date": "2026-08-21",
+        "date": "2026-08-22",
         "files_scanned": 600,
         "red_flags": [
           "remote-exec pipe"
         ],
         "notes": [
-          "cloud credential read in docs",
-          "network call",
-          "remote-exec pipe in docs",
-          "remote-exec pipe in tests",
-          "ssh key read in docs"
+          "remote-exec pipe in docs"
         ]
       },
       "quarantined_on": "2026-08-13"
@@ -730,7 +726,7 @@
       },
       "next": "Queued for a full grading run.",
       "skim": {
-        "date": "2026-08-21",
+        "date": "2026-08-22",
         "files_scanned": 563,
         "red_flags": [
           "powershell encoded exec",
@@ -771,7 +767,7 @@
       },
       "next": "Queued for a full grading run.",
       "skim": {
-        "date": "2026-08-21",
+        "date": "2026-08-22",
         "files_scanned": 421,
         "red_flags": [
           "cloud credential read"
@@ -807,7 +803,7 @@
       },
       "next": "Queued for a full grading run.",
       "skim": {
-        "date": "2026-08-21",
+        "date": "2026-08-22",
         "files_scanned": 376,
         "red_flags": [
           "remote-exec pipe"
@@ -844,9 +840,10 @@
       },
       "next": "Queued for a full grading run.",
       "skim": {
-        "date": "2026-08-21",
+        "date": "2026-08-22",
         "files_scanned": 600,
         "red_flags": [
+          "cloud credential read",
           "remote-exec pipe"
         ],
         "notes": [
@@ -881,7 +878,7 @@
       },
       "next": "Queued for a full grading run.",
       "skim": {
-        "date": "2026-08-21",
+        "date": "2026-08-22",
         "files_scanned": 600,
         "red_flags": [
           "ssh key read"
@@ -916,12 +913,13 @@
       },
       "next": "Queued for a full grading run.",
       "skim": {
-        "date": "2026-08-21",
+        "date": "2026-08-22",
         "files_scanned": 600,
         "red_flags": [
           "remote-exec pipe"
         ],
         "notes": [
+          "cloud credential read in docs",
           "network call",
           "remote-exec pipe in docs"
         ]
@@ -953,7 +951,7 @@
       },
       "next": "Queued for a full grading run.",
       "skim": {
-        "date": "2026-08-21",
+        "date": "2026-08-22",
         "files_scanned": 314,
         "red_flags": [
           "cloud credential read",
@@ -993,7 +991,7 @@
       },
       "next": "Queued for a full grading run.",
       "skim": {
-        "date": "2026-08-21",
+        "date": "2026-08-22",
         "files_scanned": 142,
         "red_flags": [
           "remote-exec pipe"
@@ -1029,7 +1027,7 @@
       },
       "next": "Queued for a full grading run.",
       "skim": {
-        "date": "2026-08-21",
+        "date": "2026-08-22",
         "files_scanned": 64,
         "red_flags": [
           "remote-exec pipe"
@@ -1067,7 +1065,7 @@
       },
       "next": "Queued for a full grading run.",
       "skim": {
-        "date": "2026-08-21",
+        "date": "2026-08-22",
         "files_scanned": 600,
         "red_flags": [
           "remote-exec pipe"
@@ -1104,7 +1102,7 @@
       },
       "next": "Queued for a full grading run.",
       "skim": {
-        "date": "2026-08-21",
+        "date": "2026-08-22",
         "files_scanned": 150,
         "red_flags": [
           "remote-exec pipe"
@@ -1136,7 +1134,7 @@
       "license": "Apache-2.0",
       "quarantined_on": "2026-08-21",
       "skim": {
-        "date": "2026-08-21",
+        "date": "2026-08-22",
         "files_scanned": 600,
         "red_flags": [
           "remote-exec pipe"
@@ -1166,7 +1164,7 @@
       "license": "MIT",
       "quarantined_on": "2026-08-21",
       "skim": {
-        "date": "2026-08-21",
+        "date": "2026-08-22",
         "files_scanned": 600,
         "red_flags": [
           "remote-exec pipe"
@@ -1195,7 +1193,7 @@
       "license": "Apache-2.0",
       "quarantined_on": "2026-08-21",
       "skim": {
-        "date": "2026-08-21",
+        "date": "2026-08-22",
         "files_scanned": 318,
         "red_flags": [
           "remote-exec pipe"
@@ -1225,7 +1223,7 @@
       "license": "MIT",
       "quarantined_on": "2026-08-21",
       "skim": {
-        "date": "2026-08-21",
+        "date": "2026-08-22",
         "files_scanned": 600,
         "red_flags": [
           "cloud credential read",
@@ -1264,7 +1262,7 @@
       },
       "quarantined_on": "2026-08-21",
       "skim": {
-        "date": "2026-08-21",
+        "date": "2026-08-22",
         "files_scanned": 418,
         "red_flags": [
           "remote-exec pipe"
@@ -1299,14 +1297,224 @@
       },
       "quarantined_on": "2026-08-21",
       "skim": {
-        "date": "2026-08-21",
+        "date": "2026-08-22",
         "files_scanned": 600,
         "red_flags": [
-          "ssh key read"
+          "powershell encoded exec"
         ],
         "notes": [
           "network call",
           "ssh key read in docs"
+        ]
+      }
+    },
+    {
+      "id": "coleam00-archon",
+      "name": "Archon",
+      "repo_url": "https://github.com/coleam00/Archon",
+      "author": "coleam00",
+      "category": "automation",
+      "summary": "The first open-source harness builder for AI coding. Make AI coding deterministic and repeatable.",
+      "pain_points": [],
+      "created": "2025-02",
+      "pushed": "2026-08-22",
+      "signals": {
+        "stars": 23242,
+        "forks": 3463,
+        "checked": "2026-08-22"
+      },
+      "license": "MIT",
+      "quarantined_on": "2026-08-22",
+      "skim": {
+        "date": "2026-08-22",
+        "files_scanned": 600,
+        "red_flags": [
+          "remote-exec pipe",
+          "ssh key read"
+        ],
+        "notes": [
+          "network call",
+          "remote-exec pipe in docs",
+          "remote-exec pipe in tests"
+        ]
+      }
+    },
+    {
+      "id": "danielmiessler-lifeos",
+      "name": "LifeOS",
+      "repo_url": "https://github.com/danielmiessler/LifeOS",
+      "author": "danielmiessler",
+      "category": "workflow",
+      "summary": "⛰️ The Life Operating System — an intent engineering platform that moves you from your current state to your ideal state, in life and work.",
+      "pain_points": [],
+      "created": "2025-09",
+      "pushed": "2026-08-14",
+      "signals": {
+        "stars": 18659,
+        "forks": 2430,
+        "checked": "2026-08-22"
+      },
+      "license": "MIT",
+      "quarantined_on": "2026-08-22",
+      "skim": {
+        "date": "2026-08-22",
+        "files_scanned": 600,
+        "red_flags": [
+          "cloud credential read",
+          "remote-exec pipe"
+        ],
+        "notes": [
+          "network call",
+          "remote-exec pipe in docs"
+        ]
+      }
+    },
+    {
+      "id": "cloudflare-vinext",
+      "name": "vinext",
+      "repo_url": "https://github.com/cloudflare/vinext",
+      "author": "cloudflare",
+      "category": "workflow",
+      "summary": "Vite plugin that reimplements the Next.js API surface — deploy anywhere",
+      "pain_points": [],
+      "created": "2026-02",
+      "pushed": "2026-08-22",
+      "signals": {
+        "stars": 8640,
+        "forks": 388,
+        "checked": "2026-08-22"
+      },
+      "license": "MIT",
+      "quarantined_on": "2026-08-22",
+      "skim": {
+        "date": "2026-08-22",
+        "files_scanned": 600,
+        "red_flags": [
+          "remote-exec pipe"
+        ],
+        "notes": [
+          "network call"
+        ]
+      }
+    },
+    {
+      "id": "vercel-labs-deepsec",
+      "name": "deepsec",
+      "repo_url": "https://github.com/vercel-labs/deepsec",
+      "author": "vercel-labs",
+      "category": "security",
+      "summary": "Deepsec is a security harness for finding vulnerabilities in your codebase powered by coding agents",
+      "pain_points": [
+        "security-worries"
+      ],
+      "created": "2026-04",
+      "pushed": "2026-08-18",
+      "signals": {
+        "stars": 7779,
+        "forks": 464,
+        "checked": "2026-08-22"
+      },
+      "license": "Apache-2.0",
+      "quarantined_on": "2026-08-22",
+      "skim": {
+        "date": "2026-08-22",
+        "files_scanned": 600,
+        "red_flags": [
+          "cloud credential read",
+          "remote-exec pipe",
+          "ssh key read"
+        ],
+        "notes": [
+          "long base64 blob",
+          "network call",
+          "remote-exec pipe in docker"
+        ]
+      }
+    },
+    {
+      "id": "mattpocock-sandcastle",
+      "name": "sandcastle",
+      "repo_url": "https://github.com/mattpocock/sandcastle",
+      "author": "mattpocock",
+      "category": "workflow",
+      "summary": "Orchestrate sandboxed coding agents in TypeScript with sandcastle.run()",
+      "pain_points": [],
+      "created": "2026-03",
+      "pushed": "2026-06-29",
+      "signals": {
+        "stars": 7549,
+        "forks": 779,
+        "checked": "2026-08-22"
+      },
+      "license": "MIT",
+      "quarantined_on": "2026-08-22",
+      "skim": {
+        "date": "2026-08-22",
+        "files_scanned": 243,
+        "red_flags": [
+          "remote-exec pipe"
+        ],
+        "notes": [
+          "network call",
+          "remote-exec pipe in docker"
+        ]
+      }
+    },
+    {
+      "id": "vercel-labs-zerolang",
+      "name": "zerolang",
+      "repo_url": "https://github.com/vercel-labs/zerolang",
+      "author": "vercel-labs",
+      "category": "workflow",
+      "summary": "The Programming Language for Agents",
+      "pain_points": [],
+      "created": "2026-05",
+      "pushed": "2026-07-26",
+      "signals": {
+        "stars": 5334,
+        "forks": 338,
+        "checked": "2026-08-22"
+      },
+      "license": "Apache-2.0",
+      "quarantined_on": "2026-08-22",
+      "skim": {
+        "date": "2026-08-22",
+        "files_scanned": 192,
+        "red_flags": [
+          "remote-exec pipe"
+        ],
+        "notes": [
+          "network call",
+          "remote-exec pipe in docs"
+        ]
+      }
+    },
+    {
+      "id": "cloudflare-vibesdk",
+      "name": "vibesdk",
+      "repo_url": "https://github.com/cloudflare/vibesdk",
+      "author": "cloudflare",
+      "category": "workflow",
+      "summary": "An open-source vibe coding platform that helps you build your own vibe-coding platform, built entirely on Cloudflare stack",
+      "pain_points": [],
+      "created": "2025-08",
+      "pushed": "2026-08-20",
+      "signals": {
+        "stars": 5326,
+        "forks": 1250,
+        "checked": "2026-08-22"
+      },
+      "license": "MIT",
+      "quarantined_on": "2026-08-22",
+      "skim": {
+        "date": "2026-08-22",
+        "files_scanned": 600,
+        "red_flags": [
+          "remote-exec pipe"
+        ],
+        "notes": [
+          "network call",
+          "remote-exec pipe in docs"
         ]
       }
     }
