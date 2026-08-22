@@ -1,6 +1,6 @@
 {
   "as_of": "2026-08-21",
-  "notes": "One flat catalog. Every entry is a real GitHub repo scanned for malicious patterns (piped-shell installs, credential reads, obfuscated code) before listing; `checked.date` is when. Provided as-is, no warranty - read anything before you run it.",
+  "notes": "One flat catalog. Every entry is a real GitHub repo checked for malicious code (piped-shell installs, credential reads, obfuscated code) before listing and re-checked whenever its code changes; `checked.date` is the latest scan. Provided as-is - read anything before you run it.",
   "pain_points": [
     {
       "id": "buried-answers",
@@ -180,7 +180,7 @@
       "repo_url": "https://github.com/ayghri/i-have-adhd",
       "author": "Ayoub G. (ayghri)",
       "category": "output-style",
-      "summary": "Ten markdown rules that make replies action-first: answer in line one, numbered steps, time estimates, no preamble or closers. Opt-in via /i-have-adhd.",
+      "summary": "A skill to stop your coding agent from burying the answer. ADHD-friendly output.",
       "pain_points": [
         "buried-answers"
       ],
@@ -189,15 +189,17 @@
         "notes": "Opt-in by design: nothing changes until you type /i-have-adhd. 'stop adhd mode' turns it off."
       },
       "signals": {
-        "stars": 22859,
-        "forks": 1464,
+        "stars": 22995,
+        "forks": 1474,
         "checked": "2026-08-21",
-        "head_sha": "e7555fcaf612dfa1739dc86610ea926a906db614",
+        "head_sha": "b42a45a068e080294924bfba19a7a2e8944c48ff",
         "head_checked": "2026-08-21"
       },
       "checked": {
-        "date": "2026-07-21"
-      }
+        "date": "2026-08-21",
+        "files_scanned": 55
+      },
+      "pushed": "2026-08-21"
     },
     {
       "id": "claude-code-debug-mode",
@@ -205,7 +207,7 @@
       "repo_url": "https://github.com/doraemonkeys/claude-code-debug-mode",
       "author": "doraemonkeys",
       "category": "workflow",
-      "summary": "Cursor-style Debug Mode skill: hypothesis-driven debugging with runtime log instrumentation and human-in-the-loop verification, instead of guess-edit loops.",
+      "summary": "Cursor-style Debug Mode skill for coding agents. Hypothesis-driven debugging with runtime log instrumentation and human-in-the-loop verification.",
       "pain_points": [
         "debugging-loops"
       ],
@@ -239,7 +241,7 @@
       "repo_url": "https://github.com/aidankinzett/claude-git-pr-skill",
       "author": "Aidan Kinzett (aidankinzett)",
       "category": "git",
-      "summary": "GitHub PR review skill for Claude Code: pending reviews, inline code suggestions, and a user-approval workflow before anything posts.",
+      "summary": "Professional GitHub PR review skill for Claude Code with pending reviews, code suggestions, and user approval workflow",
       "pain_points": [
         "git-hygiene"
       ],
@@ -269,7 +271,7 @@
       "repo_url": "https://github.com/Anjos2/recursive-research",
       "author": "Anjos2",
       "category": "research",
-      "summary": "Recursive research skill with source tiering, weighted-decision-matrix + inversion checks, and disk checkpointing to survive context compaction.",
+      "summary": "Claude Code skill for recursive research up to PhD level across any domain. Source tiering, WDM + Munger inversion for autonomous decisions, and disk checkpointing to survive context compaction.",
       "pain_points": [
         "shallow-research"
       ],
@@ -284,8 +286,8 @@
       ],
       "undo": "not documented by the author",
       "signals": {
-        "stars": 39,
-        "forks": 0,
+        "stars": 40,
+        "forks": 1,
         "checked": "2026-08-21",
         "head_sha": "15ed326ae7162c674d7a1e477724148fa4435528",
         "head_checked": "2026-08-21"
@@ -301,15 +303,15 @@
       "repo_url": "https://github.com/lackeyjb/playwright-skill",
       "author": "lackeyjb",
       "category": "testing",
-      "summary": "Browser automation skill: Claude writes and runs Playwright scripts itself to test and validate real pages instead of claiming untested success.",
+      "summary": "General-purpose Playwright automation for coding agents",
       "pain_points": [
         "testing-discipline"
       ],
       "license": "MIT",
       "created": "2025-10",
-      "pushed": "2025-12-19",
+      "pushed": "2026-08-14",
       "signals": {
-        "stars": 3048,
+        "stars": 3049,
         "forks": 234,
         "checked": "2026-08-21",
         "head_sha": "dd47a6a023e249eb1b36e9e943eab89d0900865d",
@@ -326,23 +328,23 @@
       "repo_url": "https://github.com/anthropics/skills",
       "author": "Anthropic",
       "category": "library",
-      "summary": "Anthropic's official public Agent Skills library — document skills (docx/pptx/xlsx/pdf), design and artifact builders, and the canonical skill-authoring examples.",
+      "summary": "Public repository for Agent Skills",
       "pain_points": [
         "generic-frontend",
         "docs-drift"
       ],
       "created": "2025-09",
-      "pushed": "2026-07-24",
+      "pushed": "2026-08-21",
       "signals": {
-        "stars": 170791,
-        "forks": 20304,
+        "stars": 170872,
+        "forks": 20314,
         "checked": "2026-08-21",
-        "head_sha": "0a64e398ec6bb34a494f0c347e8ccae53a862f8e",
+        "head_sha": "3b3fad96af16a10759d930941b4520ba0c40edae",
         "head_checked": "2026-08-21"
       },
       "checked": {
-        "date": "2026-08-13",
-        "files_scanned": 229
+        "date": "2026-08-21",
+        "files_scanned": 235
       }
     },
     {
@@ -351,16 +353,16 @@
       "repo_url": "https://github.com/MengTo/Skills",
       "author": "Meng To (Design+Code)",
       "category": "library",
-      "summary": "78+ agent skills for designers and builders — layout systems, visual styles, motion patterns — aimed squarely at making AI frontend output less generic.",
+      "summary": "Agent skills for designers and builders using Codex, Claude, Cursor, and other AI coding agents",
       "pain_points": [
         "generic-frontend"
       ],
       "license": "MIT",
       "created": "2026-02",
-      "pushed": "2026-07-28",
+      "pushed": "2026-08-18",
       "signals": {
-        "stars": 5137,
-        "forks": 629,
+        "stars": 5166,
+        "forks": 632,
         "checked": "2026-08-21",
         "head_sha": "4c716b516b6b0143f3037631306b3730d2832344",
         "head_checked": "2026-08-21"
@@ -376,17 +378,17 @@
       "repo_url": "https://github.com/obra/superpowers",
       "author": "Jesse Vincent (obra)",
       "category": "library",
-      "summary": "An agentic skills framework and full software-development methodology — planning, TDD, and subagent-driven development as installable skills.",
+      "summary": "An agentic skills framework & software development methodology that works.",
       "pain_points": [
         "planning-drift",
         "testing-discipline"
       ],
       "license": "MIT",
       "created": "2025-10",
-      "pushed": "2026-07-28",
+      "pushed": "2026-08-19",
       "signals": {
-        "stars": 275380,
-        "forks": 24629,
+        "stars": 275670,
+        "forks": 24645,
         "checked": "2026-08-21",
         "head_sha": "b36e0829c6d0140e93cfef2ca599b1b07d4a7797",
         "head_checked": "2026-08-21"
@@ -410,10 +412,10 @@
       ],
       "license": "MIT",
       "created": "2026-01",
-      "pushed": "2026-08-12",
+      "pushed": "2026-08-21",
       "signals": {
-        "stars": 241614,
-        "forks": 36627,
+        "stars": 241808,
+        "forks": 36656,
         "checked": "2026-08-21",
         "head_sha": "d8409a4b0813771235555e32e3d8046a73988bfa",
         "head_checked": "2026-08-21"
@@ -439,8 +441,8 @@
       ],
       "undo": "not documented by the author",
       "signals": {
-        "stars": 204745,
-        "forks": 20974,
+        "stars": 204891,
+        "forks": 20989,
         "checked": "2026-08-21",
         "head_sha": "2c606141936f1eeef17fa3043a72095b4765b9c2",
         "head_checked": "2026-08-21"
@@ -456,14 +458,14 @@
       "repo_url": "https://github.com/mattpocock/skills",
       "author": "mattpocock",
       "category": "library",
-      "summary": "Skills for Real Engineers — straight from Matt Pocock's own .agents directory.",
+      "summary": "Skills for Real Engineers. Straight from my .agents directory.",
       "pain_points": [],
       "license": "MIT",
       "created": "2026-02",
-      "pushed": "2026-07-29",
+      "pushed": "2026-08-21",
       "signals": {
-        "stars": 228337,
-        "forks": 19547,
+        "stars": 229581,
+        "forks": 19625,
         "checked": "2026-08-21",
         "head_sha": "5b15a47f2d7150f545fbcacbfe381787fc0230dc",
         "head_checked": "2026-08-21"
@@ -479,16 +481,16 @@
       "repo_url": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill",
       "author": "nextlevelbuilder",
       "category": "frontend",
-      "summary": "An AI SKILL that provide design intelligence for building professional UI/UX multiple platforms",
+      "summary": "An AI skill that provides design intelligence for building professional UI/UX across multiple platforms.",
       "pain_points": [
         "generic-frontend"
       ],
       "license": "MIT",
       "created": "2025-11",
-      "pushed": "2026-08-13",
+      "pushed": "2026-08-20",
       "signals": {
-        "stars": 119137,
-        "forks": 12799,
+        "stars": 119376,
+        "forks": 12819,
         "checked": "2026-08-21",
         "head_sha": "bc826e2267a36d98a2dcf5231e16c30ff546770f",
         "head_checked": "2026-08-21"
@@ -508,10 +510,10 @@
       "pain_points": [],
       "license": "MIT",
       "created": "2026-06",
-      "pushed": "2026-07-15",
+      "pushed": "2026-08-07",
       "signals": {
-        "stars": 107145,
-        "forks": 5917,
+        "stars": 107531,
+        "forks": 5942,
         "checked": "2026-08-21",
         "head_sha": "2ed6c52c9d7e5e56942508591085fd45dea277d3",
         "head_checked": "2026-08-21"
@@ -527,22 +529,22 @@
       "repo_url": "https://github.com/nexu-io/open-design",
       "author": "nexu-io",
       "category": "frontend",
-      "summary": "🎨 The open-source Claude Design alternative. 🖥️ Local-first desktop app. 🖼️ Your coding agent becomes the design engine: prototypes, landing pages, dashboards, slides, images & video — real files, HTML/PDF/PPTX/MP4 expor",
+      "summary": "🎨 Best DeepSeek Harness Design Plugin. The open-source Claude Design alternative. 🖥️ Local-first desktop app. 🖼️ Your coding agent becomes the design engine: prototypes, landing pages, dashboards, slides, images & video ",
       "pain_points": [
         "generic-frontend"
       ],
       "license": "Apache-2.0",
       "created": "2026-04",
-      "pushed": "2026-08-13",
+      "pushed": "2026-08-22",
       "signals": {
-        "stars": 90038,
-        "forks": 10382,
+        "stars": 90180,
+        "forks": 10395,
         "checked": "2026-08-21",
-        "head_sha": "57de7436076ea348611fb083a8bacaa6f0ef8b2f",
+        "head_sha": "05f5b33ef59f078df10ac1125986e00e4a796cf3",
         "head_checked": "2026-08-21"
       },
       "checked": {
-        "date": "2026-07-27",
+        "date": "2026-08-21",
         "files_scanned": 600
       }
     },
@@ -556,22 +558,22 @@
       "pain_points": [],
       "license": "MIT",
       "created": "2026-02",
-      "pushed": "2026-08-11",
+      "pushed": "2026-08-21",
       "does": "Installs a library of structured workflow instructions, covering things like spec writing, task breakdown, incremental implementation, and documentation, plus reviewer, security, and test-engineer role prompts that tell your agent to follow a fixed process and switch roles automatically whenever a matching task comes up.",
       "touches": [
         "runs shell commands"
       ],
       "undo": "not documented by the author",
       "signals": {
-        "stars": 88895,
-        "forks": 9525,
+        "stars": 88956,
+        "forks": 9529,
         "checked": "2026-08-21",
-        "head_sha": "df1edb2e05487d0aa6d93c747141e0aed1187f25",
+        "head_sha": "5a5ea45e806f82273549fd85e60adb95d55f510d",
         "head_checked": "2026-08-21"
       },
       "checked": {
-        "date": "2026-07-27",
-        "files_scanned": 172
+        "date": "2026-08-21",
+        "files_scanned": 184
       }
     },
     {
@@ -584,10 +586,10 @@
       "pain_points": [],
       "license": "MIT",
       "created": "2025-06",
-      "pushed": "2026-07-28",
+      "pushed": "2026-08-18",
       "signals": {
-        "stars": 74881,
-        "forks": 12089,
+        "stars": 74904,
+        "forks": 12092,
         "checked": "2026-08-21",
         "head_sha": "f9e8b280f715f9ba107d4517fd39bc5f8ddda618",
         "head_checked": "2026-08-21"
@@ -608,7 +610,7 @@
         "shallow-research"
       ],
       "created": "2025-10",
-      "pushed": "2026-07-24",
+      "pushed": "2026-08-10",
       "does": "Gives your agent a grab-bag of ready-made instruction sheets — most of them tell it to route your requests (email, calendar, SEO tools, etc.) through Composio's external \"Rube\" service, and a few add standalone tasks like downloading YouTube videos, enhancing images, and writing company updates in set formats.",
       "touches": [
         "reads project files",
@@ -621,8 +623,8 @@
       ],
       "undo": "not documented by the author",
       "signals": {
-        "stars": 72950,
-        "forks": 8349,
+        "stars": 72977,
+        "forks": 8356,
         "checked": "2026-08-21",
         "head_sha": "be2a406907dbc61b73e6827ded415c96139d13a2",
         "head_checked": "2026-08-21"
@@ -644,16 +646,16 @@
       ],
       "license": "MIT",
       "created": "2026-02",
-      "pushed": "2026-07-23",
+      "pushed": "2026-08-21",
       "signals": {
-        "stars": 78846,
-        "forks": 5382,
+        "stars": 79020,
+        "forks": 5397,
         "checked": "2026-08-21",
-        "head_sha": "c607b117f37df9ce35e335b543972ca8353f327f",
+        "head_sha": "843c8dd4d18ccff0d5a9cd4b0b71d7dbf7278293",
         "head_checked": "2026-08-21"
       },
       "checked": {
-        "date": "2026-07-27",
+        "date": "2026-08-21",
         "files_scanned": 40
       }
     },
@@ -669,10 +671,10 @@
       ],
       "license": "MIT",
       "created": "2025-10",
-      "pushed": "2026-08-13",
+      "pushed": "2026-08-21",
       "signals": {
-        "stars": 64827,
-        "forks": 6446,
+        "stars": 64842,
+        "forks": 6448,
         "checked": "2026-08-21",
         "head_sha": "d4df0acdfe1c149d80a3c97bbd41a1dbb6132175",
         "head_checked": "2026-08-21"
@@ -680,31 +682,6 @@
       "checked": {
         "date": "2026-07-27",
         "files_scanned": 135
-      }
-    },
-    {
-      "id": "mvanhorn-last30days-skill",
-      "name": "last30days-skill",
-      "repo_url": "https://github.com/mvanhorn/last30days-skill",
-      "author": "mvanhorn",
-      "category": "research",
-      "summary": "AI agent skill that researches any topic across Reddit, X, YouTube, HN, Polymarket, and the web - then synthesizes a grounded summary",
-      "pain_points": [
-        "shallow-research"
-      ],
-      "license": "MIT",
-      "created": "2026-01",
-      "pushed": "2026-08-09",
-      "signals": {
-        "stars": 58864,
-        "forks": 5141,
-        "checked": "2026-08-21",
-        "head_sha": "86a882510381532cf0d7aaacd96f87e1b5f3bf80",
-        "head_checked": "2026-08-21"
-      },
-      "checked": {
-        "date": "2026-07-27",
-        "files_scanned": 383
       }
     },
     {
@@ -717,9 +694,9 @@
       "pain_points": [],
       "license": "MIT",
       "created": "2026-01",
-      "pushed": "2026-07-16",
+      "pushed": "2026-08-20",
       "signals": {
-        "stars": 52096,
+        "stars": 52106,
         "forks": 5003,
         "checked": "2026-08-21",
         "head_sha": "90d14d9b85e8130435c594d99009cf943b21ee1a",
@@ -741,16 +718,16 @@
         "shallow-research"
       ],
       "created": "2025-04",
-      "pushed": "2026-08-13",
+      "pushed": "2026-08-22",
       "signals": {
-        "stars": 52758,
-        "forks": 4604,
+        "stars": 52784,
+        "forks": 4605,
         "checked": "2026-08-21",
-        "head_sha": "a024341a78f4203bfe3ec609ec10de791464f449",
+        "head_sha": "24033fb6dc66e6f5669b21924d9d9abede1d2292",
         "head_checked": "2026-08-21"
       },
       "checked": {
-        "date": "2026-07-27",
+        "date": "2026-08-21",
         "files_scanned": 49
       }
     },
@@ -764,17 +741,17 @@
       "pain_points": [],
       "license": "MIT",
       "created": "2026-01",
-      "pushed": "2026-07-29",
+      "pushed": "2026-08-22",
       "signals": {
-        "stars": 45134,
-        "forks": 7092,
+        "stars": 45199,
+        "forks": 7095,
         "checked": "2026-08-21",
-        "head_sha": "c6ea12834be62bdc4180a1385f6455cde84ae60c",
+        "head_sha": "3df87f97621e18fbed7f6aa684edba54f49779a7",
         "head_checked": "2026-08-21"
       },
       "checked": {
-        "date": "2026-07-27",
-        "files_scanned": 419
+        "date": "2026-08-21",
+        "files_scanned": 431
       }
     },
     {
@@ -788,10 +765,10 @@
         "shallow-research"
       ],
       "created": "2026-02",
-      "pushed": "2026-08-13",
+      "pushed": "2026-08-20",
       "signals": {
-        "stars": 43217,
-        "forks": 3426,
+        "stars": 43246,
+        "forks": 3428,
         "checked": "2026-08-21",
         "head_sha": "7ef93e0cb52b93f9909e163aad912255d4471850",
         "head_checked": "2026-08-21"
@@ -811,10 +788,10 @@
       "pain_points": [],
       "license": "MIT",
       "created": "2025-06",
-      "pushed": "2026-08-13",
+      "pushed": "2026-08-21",
       "signals": {
-        "stars": 38091,
-        "forks": 4810,
+        "stars": 38107,
+        "forks": 4815,
         "checked": "2026-08-21",
         "head_sha": "83561bd7d8a46fcda0581aedabdf8eac7cb196b6",
         "head_checked": "2026-08-21"
@@ -830,16 +807,16 @@
       "repo_url": "https://github.com/K-Dense-AI/scientific-agent-skills",
       "author": "K-Dense-AI",
       "category": "library",
-      "summary": "Turn any AI agent into an AI Scientist. The #1 Agent Skills library for science, used by 160,000+ scientists worldwide. 148 ready-to-use skills plus 100+ scientific databases covering biology, chemistry, medicine, and dr",
+      "summary": "Turn any AI agent into an AI Scientist. The #1 Agent Skills library for science, used by 175,000+ scientists worldwide. 163 ready-to-use validated skills plus 100+ scientific databases covering biology, chemistry, medici",
       "pain_points": [
         "shallow-research"
       ],
       "license": "MIT",
       "created": "2025-10",
-      "pushed": "2026-08-12",
+      "pushed": "2026-08-19",
       "signals": {
-        "stars": 34053,
-        "forks": 3311,
+        "stars": 34077,
+        "forks": 3314,
         "checked": "2026-08-21",
         "head_sha": "390f5146bf3c1877cf15636a3dd7b775e4f0f185",
         "head_checked": "2026-08-21"
@@ -859,10 +836,10 @@
       "pain_points": [],
       "license": "MIT",
       "created": "2026-01",
-      "pushed": "2026-07-22",
+      "pushed": "2026-08-19",
       "signals": {
-        "stars": 36988,
-        "forks": 3271,
+        "stars": 37065,
+        "forks": 3278,
         "checked": "2026-08-21",
         "head_sha": "e2e92e7b4b8229253ed5c8e81dc65463fdeddda5",
         "head_checked": "2026-08-21"
@@ -882,16 +859,16 @@
       "pain_points": [],
       "license": "MIT",
       "created": "2025-07",
-      "pushed": "2026-08-13",
+      "pushed": "2026-08-21",
       "signals": {
-        "stars": 30312,
-        "forks": 3419,
+        "stars": 30321,
+        "forks": 3423,
         "checked": "2026-08-21",
-        "head_sha": "62439fad252f7f581dd1fd4be8eff7ba52c2cb3c",
+        "head_sha": "47b0b8ce7b5af28a3c909124692d96f878622569",
         "head_checked": "2026-08-21"
       },
       "checked": {
-        "date": "2026-08-13",
+        "date": "2026-08-21",
         "files_scanned": 600
       }
     },
@@ -905,10 +882,10 @@
       "pain_points": [],
       "license": "MIT",
       "created": "2025-10",
-      "pushed": "2026-08-13",
+      "pushed": "2026-08-21",
       "signals": {
-        "stars": 30661,
-        "forks": 3308,
+        "stars": 30749,
+        "forks": 3316,
         "checked": "2026-08-21",
         "head_sha": "90566136ede9a20351f452c5f99e9e593e961a84",
         "head_checked": "2026-08-21"
@@ -931,10 +908,10 @@
       ],
       "license": "Apache-2.0",
       "created": "2026-02",
-      "pushed": "2026-08-08",
+      "pushed": "2026-08-20",
       "signals": {
-        "stars": 30476,
-        "forks": 3623,
+        "stars": 30525,
+        "forks": 3629,
         "checked": "2026-08-21",
         "head_sha": "f76261573a539ec40c3d434ecbb9e657d26aa921",
         "head_checked": "2026-08-21"
@@ -957,10 +934,10 @@
       ],
       "license": "MIT",
       "created": "2026-01",
-      "pushed": "2026-08-09",
+      "pushed": "2026-08-21",
       "signals": {
         "stars": 26267,
-        "forks": 2200,
+        "forks": 2199,
         "checked": "2026-08-21",
         "head_sha": "39d75d8acf72846e9616e40c2017e59f3bfbeafb",
         "head_checked": "2026-08-21"
@@ -989,7 +966,7 @@
       ],
       "undo": "not documented by the author",
       "signals": {
-        "stars": 25492,
+        "stars": 25505,
         "forks": 2734,
         "checked": "2026-08-21",
         "head_sha": "18468a95b427e70e258b51389796367c6f684e7d",
@@ -1010,10 +987,10 @@
       "pain_points": [],
       "license": "MIT",
       "created": "2025-07",
-      "pushed": "2026-07-10",
+      "pushed": "2026-08-12",
       "signals": {
-        "stars": 24509,
-        "forks": 2847,
+        "stars": 24529,
+        "forks": 2849,
         "checked": "2026-08-21",
         "head_sha": "c9e51ec0b3d43f5dcdd0b558a6cd28ba6ada97c1",
         "head_checked": "2026-08-21"
@@ -1037,8 +1014,8 @@
       "created": "2025-12",
       "pushed": "2026-08-09",
       "signals": {
-        "stars": 24541,
-        "forks": 1805,
+        "stars": 24567,
+        "forks": 1809,
         "checked": "2026-08-21",
         "head_sha": "69ef37e9424c0a7ea9dd2293b559e43ec8176379",
         "head_checked": "2026-08-21"
@@ -1069,8 +1046,8 @@
       ],
       "undo": "not documented by the author",
       "signals": {
-        "stars": 24369,
-        "forks": 3483,
+        "stars": 24391,
+        "forks": 3486,
         "checked": "2026-08-21",
         "head_sha": "984023ddac0d5e27624f2baacde6105e45de375f",
         "head_checked": "2026-08-21"
@@ -1092,10 +1069,10 @@
       ],
       "license": "MIT",
       "created": "2025-10",
-      "pushed": "2026-07-17",
+      "pushed": "2026-08-21",
       "signals": {
-        "stars": 24750,
-        "forks": 3488,
+        "stars": 24776,
+        "forks": 3491,
         "checked": "2026-08-21",
         "head_sha": "98180dafc4f0bc9d629bd479fc6107674cfb3cf8",
         "head_checked": "2026-08-21"
@@ -1117,10 +1094,10 @@
       ],
       "license": "MIT",
       "created": "2026-04",
-      "pushed": "2026-07-27",
+      "pushed": "2026-08-13",
       "signals": {
-        "stars": 23369,
-        "forks": 2729,
+        "stars": 23382,
+        "forks": 2732,
         "checked": "2026-08-21",
         "head_sha": "e735935ca0553a32de7ba4ba204fe3c79150b1b8",
         "head_checked": "2026-08-21"
@@ -1136,17 +1113,17 @@
       "repo_url": "https://github.com/KKKKhazix/khazix-skills",
       "author": "KKKKhazix",
       "category": "library",
-      "summary": "数字生命卡兹克开源的 AI Skills 合集 | Agent Skills: neat-freak 洁癖 (docs/memory closeout), hv-analysis, khazix-writer & more — Claude Code, Codex & 40+ agents",
+      "summary": "数字生命卡兹克开源的 AI Skills 合集 | Agent Skills: leader（帮你定义目标）, neat-freak 洁癖, hv-analysis, khazix-writer & more — Claude Code, Codex & 40+ agents",
       "pain_points": [
         "context-bloat",
         "docs-drift"
       ],
       "license": "MIT",
       "created": "2026-04",
-      "pushed": "2026-08-13",
+      "pushed": "2026-08-16",
       "signals": {
-        "stars": 19924,
-        "forks": 2154,
+        "stars": 19933,
+        "forks": 2155,
         "checked": "2026-08-21",
         "head_sha": "7a5c4934be4106ac740ffdb95280bb81b3f4b83c",
         "head_checked": "2026-08-21"
@@ -1168,10 +1145,10 @@
       ],
       "license": "MIT",
       "created": "2026-04",
-      "pushed": "2026-06-26",
+      "pushed": "2026-08-06",
       "signals": {
-        "stars": 26342,
-        "forks": 1344,
+        "stars": 26394,
+        "forks": 1349,
         "checked": "2026-08-21",
         "head_sha": "13ac0ec7e148655948100b6396439e481361d690",
         "head_checked": "2026-08-21"
@@ -1191,17 +1168,17 @@
       "pain_points": [],
       "license": "MIT",
       "created": "2026-05",
-      "pushed": "2026-08-13",
+      "pushed": "2026-08-21",
       "signals": {
-        "stars": 16223,
+        "stars": 16235,
         "forks": 1518,
         "checked": "2026-08-21",
-        "head_sha": "3c8873f016397817dcd40c3e5436d92fe19372b8",
+        "head_sha": "bdfdc30a8e17309c06cdbe8449f01bdecc120203",
         "head_checked": "2026-08-21"
       },
       "checked": {
-        "date": "2026-08-13",
-        "files_scanned": 374
+        "date": "2026-08-21",
+        "files_scanned": 402
       }
     },
     {
@@ -1222,7 +1199,7 @@
       ],
       "undo": "not documented by the author",
       "signals": {
-        "stars": 14752,
+        "stars": 14765,
         "forks": 1883,
         "checked": "2026-08-21",
         "head_sha": "1da55aa810f206d3fe2005e7e3989b15a275d942",
@@ -1251,8 +1228,8 @@
       ],
       "undo": "not documented by the author",
       "signals": {
-        "stars": 15806,
-        "forks": 1053,
+        "stars": 15827,
+        "forks": 1054,
         "checked": "2026-08-21",
         "head_sha": "91f3d394db8419c20d67ebe22a96cf8fee0a404b",
         "head_checked": "2026-08-21"
@@ -1272,16 +1249,16 @@
       "pain_points": [],
       "license": "Apache-2.0",
       "created": "2023-04",
-      "pushed": "2026-08-12",
+      "pushed": "2026-08-21",
       "signals": {
-        "stars": 12379,
+        "stars": 12382,
         "forks": 959,
         "checked": "2026-08-21",
-        "head_sha": "e374af49d84a768e85f4902bff78e0b097dde322",
+        "head_sha": "0b22f8615f5cdf5299c98c700065ec00a608d400",
         "head_checked": "2026-08-21"
       },
       "checked": {
-        "date": "2026-08-13",
+        "date": "2026-08-21",
         "files_scanned": 113
       }
     },
@@ -1307,8 +1284,8 @@
       ],
       "undo": "not documented by the author",
       "signals": {
-        "stars": 11921,
-        "forks": 868,
+        "stars": 11928,
+        "forks": 867,
         "checked": "2026-08-21",
         "head_sha": "773a52944ba4747a18bd4ae9ade53fff041adcbc",
         "head_checked": "2026-08-21"
@@ -1328,9 +1305,9 @@
       "pain_points": [],
       "license": "MIT",
       "created": "2025-10",
-      "pushed": "2026-05-20",
+      "pushed": "2026-08-07",
       "signals": {
-        "stars": 11097,
+        "stars": 11105,
         "forks": 1053,
         "checked": "2026-08-21",
         "head_sha": "882ef55e377dbf9a4dbe496bb41ac6ccd0e555cf",
@@ -1360,8 +1337,8 @@
       ],
       "undo": "not documented by the author",
       "signals": {
-        "stars": 11552,
-        "forks": 1363,
+        "stars": 11578,
+        "forks": 1367,
         "checked": "2026-08-21",
         "head_sha": "d15eabbe5d2122eedc060bae8a771381e9873d1b",
         "head_checked": "2026-08-21"
@@ -1381,10 +1358,10 @@
       "pain_points": [],
       "license": "MIT",
       "created": "2026-05",
-      "pushed": "2026-07-27",
+      "pushed": "2026-08-19",
       "signals": {
-        "stars": 23576,
-        "forks": 2494,
+        "stars": 23685,
+        "forks": 2500,
         "checked": "2026-08-21",
         "head_sha": "3a97a7115ab3c82edf47f315b544fbcefdd8559c",
         "head_checked": "2026-08-21"
@@ -1415,7 +1392,7 @@
       ],
       "undo": "not documented by the author",
       "signals": {
-        "stars": 10005,
+        "stars": 10006,
         "forks": 1228,
         "checked": "2026-08-21",
         "head_sha": "07f75ce3c301259e857343596e7883b8ce5a9f50",
@@ -1464,9 +1441,9 @@
       ],
       "license": "MIT",
       "created": "2026-03",
-      "pushed": "2026-07-25",
+      "pushed": "2026-08-21",
       "signals": {
-        "stars": 7864,
+        "stars": 7874,
         "forks": 563,
         "checked": "2026-08-21",
         "head_sha": "4d9b31166022ad4c299180038792372d3f5bcc95",
@@ -1488,10 +1465,10 @@
         "git-hygiene"
       ],
       "created": "2023-04",
-      "pushed": "2026-08-13",
+      "pushed": "2026-08-18",
       "signals": {
-        "stars": 6145,
-        "forks": 739,
+        "stars": 6146,
+        "forks": 742,
         "checked": "2026-08-21",
         "head_sha": "25ffc94fbd1288ab9c05a07a9e0de72276f8bd06",
         "head_checked": "2026-08-21"
@@ -1512,9 +1489,9 @@
         "testing-discipline"
       ],
       "created": "2026-02",
-      "pushed": "2026-07-17",
+      "pushed": "2026-08-13",
       "signals": {
-        "stars": 6579,
+        "stars": 6585,
         "forks": 798,
         "checked": "2026-08-21",
         "head_sha": "a03af68414bb0b924746c97bddf9a5057d017af7",
@@ -1535,10 +1512,10 @@
       "pain_points": [],
       "license": "MIT",
       "created": "2025-11",
-      "pushed": "2026-07-29",
+      "pushed": "2026-08-19",
       "signals": {
-        "stars": 41139,
-        "forks": 5026,
+        "stars": 41147,
+        "forks": 5028,
         "checked": "2026-08-21",
         "head_sha": "1c04dbf88e3a0c388f55d5c0a660a8f8256661d3",
         "head_checked": "2026-08-21"
@@ -1554,45 +1531,22 @@
       "repo_url": "https://github.com/diegosouzapw/OmniRoute",
       "author": "diegosouzapw",
       "category": "context",
-      "summary": "Never stop coding. Free MIT AI gateway: one endpoint, 330+ providers (90+ free), 1200+ models — Kimi, Claude, GPT, Gemini, GLM, DeepSeek, MiniMax. Works with Claude Code, Codex, Cursor, OpenCode, Cline & Copilot. Quota-a",
+      "summary": "Never stop coding. Free MIT AI gateway: one endpoint, 340 providers (90+ free), 1200+ models — Kimi, Claude, GPT, Gemini, GLM, DeepSeek, MiniMax. Works with Claude Code, Codex, Cursor, OpenCode, Cline & Copilot. Quota-aw",
       "pain_points": [
         "context-bloat"
       ],
       "license": "MIT",
       "created": "2026-02",
-      "pushed": "2026-08-13",
+      "pushed": "2026-08-22",
       "signals": {
-        "stars": 52342,
-        "forks": 7140,
+        "stars": 52722,
+        "forks": 7184,
         "checked": "2026-08-21",
-        "head_sha": "c130f2aa1ccc7aaddd7a7685bd6a0e08136dccf1",
+        "head_sha": "6cd4d38e2107c4ee7b73de017de01101b71fd1a8",
         "head_checked": "2026-08-21"
       },
       "checked": {
-        "date": "2026-08-13",
-        "files_scanned": 600
-      }
-    },
-    {
-      "id": "stablyai-orca",
-      "name": "orca",
-      "repo_url": "https://github.com/stablyai/orca",
-      "author": "stablyai",
-      "category": "workflow",
-      "summary": "Orca is the ADE for working with a fleet of parallel agents. Run any coding agent with your own subscription. Available on desktop, mobile and VPS.",
-      "pain_points": [],
-      "license": "MIT",
-      "created": "2026-03",
-      "pushed": "2026-08-13",
-      "signals": {
-        "stars": 50468,
-        "forks": 3485,
-        "checked": "2026-08-21",
-        "head_sha": "4fd93ead1999dc34e13ac5915693ad8467a39a6e",
-        "head_checked": "2026-08-21"
-      },
-      "checked": {
-        "date": "2026-08-13",
+        "date": "2026-08-21",
         "files_scanned": 600
       }
     },
@@ -1606,10 +1560,10 @@
       "pain_points": [],
       "license": "MIT",
       "created": "2026-03",
-      "pushed": "2026-08-13",
+      "pushed": "2026-08-21",
       "signals": {
-        "stars": 23726,
-        "forks": 2098,
+        "stars": 23746,
+        "forks": 2100,
         "checked": "2026-08-21",
         "head_sha": "7a77c7cb67622057d9af55778a6f5884901a7ba8",
         "head_checked": "2026-08-21"
@@ -1629,16 +1583,16 @@
       "pain_points": [],
       "license": "AGPL-3.0",
       "created": "2024-05",
-      "pushed": "2026-08-16",
+      "pushed": "2026-08-22",
       "signals": {
-        "stars": 50877,
-        "forks": 4835,
+        "stars": 50888,
+        "forks": 4838,
         "checked": "2026-08-21",
-        "head_sha": "442a00f1a225bbc4761bc15b783538995dec59db",
+        "head_sha": "ca2c7e54748d998f5c5260dbc25f9c10eda610fa",
         "head_checked": "2026-08-21"
       },
       "checked": {
-        "date": "2026-08-16",
+        "date": "2026-08-21",
         "files_scanned": 600
       }
     },
@@ -1652,17 +1606,17 @@
       "pain_points": [],
       "license": "Apache-2.0",
       "created": "2025-11",
-      "pushed": "2026-08-16",
+      "pushed": "2026-08-21",
       "signals": {
-        "stars": 33773,
-        "forks": 3842,
+        "stars": 33797,
+        "forks": 3845,
         "checked": "2026-08-21",
-        "head_sha": "67a666efc8524ff7abaa266f84e514aa77aee48f",
+        "head_sha": "340e33aef211d95769d252324854497af871dafe",
         "head_checked": "2026-08-21"
       },
       "checked": {
-        "date": "2026-08-16",
-        "files_scanned": 429
+        "date": "2026-08-21",
+        "files_scanned": 442
       }
     },
     {
@@ -1679,7 +1633,7 @@
       "created": "2026-03",
       "pushed": "2026-08-01",
       "signals": {
-        "stars": 30495,
+        "stars": 30503,
         "forks": 1783,
         "checked": "2026-08-21",
         "head_sha": "a3768d0e82ad83cca2da97724e46bea4ff0e6dbd",
@@ -1702,17 +1656,17 @@
       ],
       "license": "MIT",
       "created": "2024-08",
-      "pushed": "2026-08-06",
+      "pushed": "2026-08-21",
       "signals": {
-        "stars": 17498,
-        "forks": 3017,
+        "stars": 17508,
+        "forks": 3018,
         "checked": "2026-08-21",
-        "head_sha": "1b83e0f975499949186edaa64e0e9ceb34ec7453",
+        "head_sha": "5264b729deda905dba3e5402d717bebed000325c",
         "head_checked": "2026-08-21"
       },
       "checked": {
-        "date": "2026-08-16",
-        "files_scanned": 373
+        "date": "2026-08-21",
+        "files_scanned": 395
       }
     },
     {
@@ -1727,17 +1681,17 @@
       ],
       "license": "MIT",
       "created": "2026-04",
-      "pushed": "2026-08-14",
+      "pushed": "2026-08-21",
       "signals": {
-        "stars": 14899,
-        "forks": 1068,
+        "stars": 14962,
+        "forks": 1074,
         "checked": "2026-08-21",
-        "head_sha": "98648ce928d2bda5516ec85b699e0b1ae8530885",
+        "head_sha": "95e8a3a9d50136bc34e1093edbca7d4a52e974aa",
         "head_checked": "2026-08-21"
       },
       "checked": {
-        "date": "2026-08-16",
-        "files_scanned": 294
+        "date": "2026-08-21",
+        "files_scanned": 312
       }
     },
     {
@@ -1752,7 +1706,7 @@
       "created": "2025-04",
       "pushed": "2026-08-10",
       "signals": {
-        "stars": 10391,
+        "stars": 10395,
         "forks": 1097,
         "checked": "2026-08-21",
         "head_sha": "35efe178d76b191d0399c9d8bdb576bcbb162f79",
@@ -1773,10 +1727,10 @@
       "pain_points": [],
       "license": "Apache-2.0",
       "created": "2026-04",
-      "pushed": "2026-08-14",
+      "pushed": "2026-08-21",
       "signals": {
-        "stars": 9212,
-        "forks": 1796,
+        "stars": 9217,
+        "forks": 1798,
         "checked": "2026-08-21",
         "head_sha": "4a6c651889c97cc9140580363c73e0eb17379c2b",
         "head_checked": "2026-08-21"
@@ -1796,10 +1750,10 @@
       "pain_points": [],
       "license": "MIT",
       "created": "2026-04",
-      "pushed": "2026-08-16",
+      "pushed": "2026-08-21",
       "signals": {
-        "stars": 5886,
-        "forks": 880,
+        "stars": 5902,
+        "forks": 881,
         "checked": "2026-08-21",
         "head_sha": "6af052974fd86fbdbbafce3e363d643221c6ce27",
         "head_checked": "2026-08-21"
@@ -1849,10 +1803,10 @@
       ],
       "license": "MIT",
       "created": "2026-05",
-      "pushed": "2026-08-15",
+      "pushed": "2026-08-19",
       "signals": {
-        "stars": 6183,
-        "forks": 823,
+        "stars": 6197,
+        "forks": 824,
         "checked": "2026-08-21",
         "head_sha": "918d75c251bcb9aacb22938fc75c50a021c66a5b",
         "head_checked": "2026-08-21"
@@ -1874,17 +1828,17 @@
       ],
       "license": "Apache-2.0",
       "created": "2026-07",
-      "pushed": "2026-08-14",
+      "pushed": "2026-08-21",
       "signals": {
-        "stars": 5900,
-        "forks": 507,
+        "stars": 5971,
+        "forks": 511,
         "checked": "2026-08-21",
-        "head_sha": "0d6f0b57f0d4d6700761644c07f7ef03c3e50234",
+        "head_sha": "5131392b6161e44157dd8db26007bf2673de275e",
         "head_checked": "2026-08-21"
       },
       "checked": {
-        "date": "2026-08-16",
-        "files_scanned": 575
+        "date": "2026-08-21",
+        "files_scanned": 581
       }
     },
     {
@@ -1897,17 +1851,17 @@
       "pain_points": [],
       "license": "MIT",
       "created": "2025-06",
-      "pushed": "2026-08-15",
+      "pushed": "2026-08-22",
       "signals": {
-        "stars": 4583,
-        "forks": 460,
+        "stars": 4584,
+        "forks": 461,
         "checked": "2026-08-21",
-        "head_sha": "411bf993147e6d6c039ed0775fad9fd0e005f1e4",
+        "head_sha": "fa192e67b94953131192121b6cf0c9f92c9435da",
         "head_checked": "2026-08-21"
       },
       "checked": {
-        "date": "2026-08-16",
-        "files_scanned": 401
+        "date": "2026-08-21",
+        "files_scanned": 400
       }
     },
     {
@@ -1920,9 +1874,9 @@
       "pain_points": [],
       "license": "MIT",
       "created": "2023-05",
-      "pushed": "2026-08-15",
+      "pushed": "2026-08-20",
       "signals": {
-        "stars": 4105,
+        "stars": 4109,
         "forks": 472,
         "checked": "2026-08-21",
         "head_sha": "185fe021aa5d78d70fc4453853d3a1cf61824da1",
@@ -1970,10 +1924,10 @@
       ],
       "license": "MIT",
       "created": "2026-05",
-      "pushed": "2026-08-16",
+      "pushed": "2026-08-21",
       "signals": {
-        "stars": 3709,
-        "forks": 573,
+        "stars": 3721,
+        "forks": 576,
         "checked": "2026-08-21",
         "head_sha": "ee2568043f6e5b5c3f323c3d4c057115d68a845c",
         "head_checked": "2026-08-21"
@@ -1995,10 +1949,10 @@
       ],
       "license": "MIT",
       "created": "2025-04",
-      "pushed": "2026-07-18",
+      "pushed": "2026-08-21",
       "signals": {
-        "stars": 2857,
-        "forks": 362,
+        "stars": 2859,
+        "forks": 363,
         "checked": "2026-08-21",
         "head_sha": "254bae5682d11fb27012f407d619bf55828ae639",
         "head_checked": "2026-08-21"
@@ -2020,7 +1974,7 @@
       "created": "2025-08",
       "pushed": "2026-07-28",
       "signals": {
-        "stars": 2673,
+        "stars": 2678,
         "forks": 317,
         "checked": "2026-08-21",
         "head_sha": "d9e93740193aeae2cd661c7ddf6f0c8f8989860b",
@@ -2045,8 +1999,8 @@
       "created": "2026-01",
       "pushed": "2026-06-14",
       "signals": {
-        "stars": 2651,
-        "forks": 239,
+        "stars": 2654,
+        "forks": 240,
         "checked": "2026-08-21",
         "head_sha": "95d6e255afe1596b557d7a8498517884438f5b3a",
         "head_checked": "2026-08-21"
@@ -2066,10 +2020,10 @@
       "pain_points": [],
       "license": "Apache-2.0",
       "created": "2026-05",
-      "pushed": "2026-06-26",
+      "pushed": "2026-08-20",
       "signals": {
-        "stars": 2001,
-        "forks": 580,
+        "stars": 2004,
+        "forks": 581,
         "checked": "2026-08-21",
         "head_sha": "068b84bb03d2ae87c51edb2837dda25c84c1d686",
         "head_checked": "2026-08-21"
@@ -2093,7 +2047,7 @@
       "created": "2025-12",
       "pushed": "2026-05-07",
       "signals": {
-        "stars": 1997,
+        "stars": 1998,
         "forks": 164,
         "checked": "2026-08-21",
         "head_sha": "e5479f857f484cde13fe69d2f3ce8de7af193bc7",
@@ -2118,7 +2072,7 @@
       "created": "2026-01",
       "pushed": "2026-08-10",
       "signals": {
-        "stars": 1982,
+        "stars": 1987,
         "forks": 198,
         "checked": "2026-08-21",
         "head_sha": "6bac1534f9f256a56fc2b4dd0e70b9a692758966",
@@ -2141,9 +2095,9 @@
       ],
       "license": "MIT",
       "created": "2026-01",
-      "pushed": "2026-08-17",
+      "pushed": "2026-08-21",
       "signals": {
-        "stars": 1713,
+        "stars": 1715,
         "forks": 102,
         "checked": "2026-08-21",
         "head_sha": "f37cf56b759538aa5cbd9c93c567b9efc712957c",
@@ -2167,10 +2121,10 @@
       ],
       "license": "MIT",
       "created": "2026-02",
-      "pushed": "2026-06-10",
+      "pushed": "2026-08-21",
       "signals": {
-        "stars": 1519,
-        "forks": 2960,
+        "stars": 1520,
+        "forks": 2962,
         "checked": "2026-08-21",
         "head_sha": "be53c12f235996dff41fb7f21580506fd2dd8d50",
         "head_checked": "2026-08-21"
@@ -2190,7 +2144,7 @@
       "pain_points": [],
       "license": "Apache-2.0",
       "created": "2024-12",
-      "pushed": "2026-08-16",
+      "pushed": "2026-08-17",
       "signals": {
         "stars": 1307,
         "forks": 85,
@@ -2239,10 +2193,10 @@
       ],
       "license": "MIT",
       "created": "2026-06",
-      "pushed": "2026-08-16",
+      "pushed": "2026-08-21",
       "signals": {
-        "stars": 1210,
-        "forks": 114,
+        "stars": 1220,
+        "forks": 115,
         "checked": "2026-08-21",
         "head_sha": "2ecfa84d140cb34521471ce6cf5d358264865cbc",
         "head_checked": "2026-08-21"
@@ -2268,7 +2222,7 @@
       "created": "2026-07",
       "pushed": "2026-08-06",
       "signals": {
-        "stars": 1016,
+        "stars": 1018,
         "forks": 15,
         "checked": "2026-08-21",
         "head_sha": "9bca227df9877e60dc45d49783c8cbd885eccd9b",
@@ -2314,10 +2268,10 @@
       ],
       "license": "MIT",
       "created": "2020-03",
-      "pushed": "2026-08-19",
+      "pushed": "2026-08-20",
       "signals": {
-        "stars": 41422,
-        "forks": 4641,
+        "stars": 41463,
+        "forks": 4644,
         "checked": "2026-08-21",
         "head_sha": "3221afda9ddfb03d6cce87927b0ce47338b4cfa8",
         "head_checked": "2026-08-21"
@@ -2341,16 +2295,16 @@
       ],
       "license": "MIT",
       "created": "2026-01",
-      "pushed": "2026-08-19",
+      "pushed": "2026-08-22",
       "signals": {
-        "stars": 952,
-        "forks": 164,
+        "stars": 953,
+        "forks": 165,
         "checked": "2026-08-21",
-        "head_sha": "4c502f4be5d85cf865e52b215400aa2ddce84301",
+        "head_sha": "2539440da18ac96fd7006469df3d257dd51d713a",
         "head_checked": "2026-08-21"
       },
       "checked": {
-        "date": "2026-08-19",
+        "date": "2026-08-21",
         "files_scanned": 600
       }
     },
@@ -2366,17 +2320,112 @@
       ],
       "license": "MIT",
       "created": "2026-04",
-      "pushed": "2026-08-20",
+      "pushed": "2026-08-21",
       "signals": {
-        "stars": 24761,
-        "forks": 1506,
+        "stars": 25030,
+        "forks": 1527,
         "checked": "2026-08-21",
-        "head_sha": "5538b35116bf5392cabe2cd68bdbc3cf3d09cc9a",
+        "head_sha": "648c2a597839301e06df1e7434a08bde9f42eed3",
         "head_checked": "2026-08-21"
       },
       "checked": {
-        "date": "2026-08-20",
-        "files_scanned": 124
+        "date": "2026-08-21",
+        "files_scanned": 141
+      }
+    },
+    {
+      "id": "panniantong-agent-reach",
+      "name": "Agent-Reach",
+      "repo_url": "https://github.com/Panniantong/Agent-Reach",
+      "author": "Panniantong",
+      "category": "research",
+      "summary": "Give your AI agent eyes to see the entire internet. Read & search Twitter, Reddit, YouTube, GitHub, Bilibili, XiaoHongShu — one CLI, zero API fees.",
+      "pain_points": [],
+      "created": "2026-02",
+      "pushed": "2026-08-12",
+      "signals": {
+        "stars": 73884,
+        "forks": 6297,
+        "checked": "2026-08-21",
+        "head_sha": "93ae1d18c37b707dec053c7c4f9d91cd8ef8943d",
+        "head_checked": "2026-08-21"
+      },
+      "license": "MIT",
+      "checked": {
+        "date": "2026-08-21",
+        "files_scanned": 106
+      }
+    },
+    {
+      "id": "wshobson-agents",
+      "name": "wshobson/agents",
+      "repo_url": "https://github.com/wshobson/agents",
+      "author": "wshobson",
+      "category": "library",
+      "summary": "Multi-harness agentic plugin marketplace for Claude Code, Codex, Cursor, OpenCode, GitHub Copilot, and Google Antigravity",
+      "pain_points": [],
+      "created": "2025-07",
+      "pushed": "2026-08-18",
+      "signals": {
+        "stars": 39009,
+        "forks": 4151,
+        "checked": "2026-08-21",
+        "head_sha": "367cb6a4a182cf7e9b0a17c9429f7411ddd9cf35",
+        "head_checked": "2026-08-21"
+      },
+      "license": "MIT",
+      "checked": {
+        "date": "2026-08-21",
+        "files_scanned": 600
+      }
+    },
+    {
+      "id": "topoteretes-cognee",
+      "name": "cognee",
+      "repo_url": "https://github.com/topoteretes/cognee",
+      "author": "topoteretes",
+      "category": "context",
+      "summary": "Cognee is the open-source AI memory platform for agents. Give your AI agents persistent long-term memory across sessions with a self-hosted knowledge graph engine.",
+      "pain_points": [
+        "context-bloat",
+        "git-hygiene"
+      ],
+      "created": "2023-08",
+      "pushed": "2026-08-21",
+      "signals": {
+        "stars": 30174,
+        "forks": 2945,
+        "checked": "2026-08-21",
+        "head_sha": "c659c51cc8f5a93973e1e29df6f805f6025d8c51",
+        "head_checked": "2026-08-21"
+      },
+      "license": "Apache-2.0",
+      "checked": {
+        "date": "2026-08-21",
+        "files_scanned": 600
+      }
+    },
+    {
+      "id": "emilkowalski-skills",
+      "name": "emilkowalski/skills",
+      "repo_url": "https://github.com/emilkowalski/skills",
+      "author": "emilkowalski",
+      "category": "library",
+      "summary": "Skills for Designers and Engineers.",
+      "pain_points": [
+        "generic-frontend"
+      ],
+      "created": "2026-03",
+      "pushed": "2026-08-21",
+      "signals": {
+        "stars": 31388,
+        "forks": 1758,
+        "checked": "2026-08-21"
+      },
+      "license": "MIT",
+      "checked": {
+        "date": "2026-08-21",
+        "files_scanned": 23
       }
     }
   ]

@@ -8,8 +8,11 @@ THE RULE
     catalog and parked here. Listing something we suspect is malicious — even
     behind a warning — is still advertising it.
 
-    Nothing automated can put a quarantined repo back. Only a human, having read
-    the source, using --restore.
+    The feeder re-scans every quarantined repo on each run, on its CURRENT
+    code. Clean -> re-admitted automatically (2026-08-21: a flag that was only
+    ever in a README never sticks; the scanner treats docs as notes, not
+    kills). Still flagged -> stays. Set "hold": true on an entry to stop the
+    automatic re-admit; --restore still works for a human who read the source.
 
 Usage:
     python3 scripts/quarantine.py --list

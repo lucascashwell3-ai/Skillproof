@@ -7,8 +7,8 @@
 
    One flat catalog (tiers removed 2026-08-21). The promise served
    here is exactly the site's: every entry was scanned for malicious
-   patterns before listing — scanned, not endorsed, no warranty.
-   Never state or imply an entry was tested, graded, or reviewed.
+   patterns before listing and re-scanned when its code changes. Never
+   state or imply an entry was tested, graded, or reviewed.
    ============================================================ */
 import { Server } from '@modelcontextprotocol/sdk/server/index.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
@@ -78,7 +78,7 @@ const brief = (s) => {
     last_push: s.pushed ?? null,
     license: s.license ?? null,
     checked: s.checked?.date
-      ? `Scanned for malicious patterns on ${s.checked.date} — scanned, not endorsed. Read the source before installing.`
+      ? `Checked for malicious code on ${s.checked.date}. Read the source before installing.`
       : 'Not yet scanned — read the source before installing.',
   };
   if (s.install?.command) out.install = s.install.command;
@@ -106,7 +106,7 @@ const SCOUT_METHODOLOGY = {
 const TOOLS = [
   {
     name: 'find_resources',
-    description: 'Find skills/libraries/resources for an AI-usage pain point. Every entry was scanned for malicious patterns before listing — scanned, not endorsed. Call when the user wants a skill/tool/resource to fix a described problem. The catalog is a starting shelf — an empty result means "not catalogued yet", and get_scout_methodology tells you how to search the wider ecosystem honestly.',
+    description: 'Find skills/libraries/resources for an AI-usage pain point. Every entry was checked for malicious code before listing and re-checked when its code changes. Call when the user wants a skill/tool/resource to fix a described problem. The catalog is a starting shelf — an empty result means "not catalogued yet", and get_scout_methodology tells you how to search the wider ecosystem honestly.',
     inputSchema: {
       type: 'object',
       properties: {
@@ -136,7 +136,7 @@ const TOOLS = [
 async function handleTool(name, args = {}) {
   const data = await getData();
   const skills = data.skills || [];
-  const disclaimer = `Data as of ${data.as_of}. Every entry was scanned for malicious patterns before listing — scanned, not endorsed, provided as-is with no warranty. Never call an entry tested or verified. Read the source of anything before installing it. ${REPO}`;
+  const disclaimer = `Data as of ${data.as_of}. Every entry was checked for malicious code before listing and re-checked when its code changes. Never call an entry tested or verified. Read the source of anything before installing it. ${REPO}`;
 
   if (name === 'find_resources') {
     const tokens = tokenize(args.pain_point);

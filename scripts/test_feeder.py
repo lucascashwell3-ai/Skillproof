@@ -247,5 +247,173 @@ class TestFeedDedupe(unittest.TestCase):
             feeder.load_quarantine = orig_q
 
 
+class TestRefreshIsGrowthOnly(unittest.TestCase):
+    """The refresh stage may only remove an entry for a red flag in its current
+    code. Every other failure keeps the entry exactly as it was."""
+
+    def entry(self, **kw):
+        base = {"id": "acme-skill", "name": "skill", "repo_url": "https://github.com/acme/skill",
+                "author": "acme", "category": "workflow", "summary": "old summary",
+                "pain_points": [], "signals": {"stars": 1, "forks": 0, "head_sha": "aaa"},
+                "checked": {"date": "2026-08-01", "files_scanned": 3}}
+        base.update(kw)
+        return base
+
+    def run_refresh(self, gh_map, scan_status, scan_result=None, entry=None):
+        data = {"skills": [entry or self.entry()]}
+        orig_gh, orig_rescan = feeder.gh, feeder.rescan
+        feeder.gh = lambda path: gh_map(path)
+        feeder.rescan = lambda url: (scan_status, scan_result)
+        try:
+            out = feeder.refresh_existing(data)
+        finally:
+            feeder.gh, feeder.rescan = orig_gh, orig_rescan
+        return data, out
+
+    def test_api_down_keeps_entry_untouched(self):
+        data, _ = self.run_refresh(lambda p: None, "clean")
+        self.assertEqual(len(data["skills"]), 1)
+        self.assertEqual(data["skills"][0]["summary"], "old summary")
+
+    def test_unchanged_code_is_not_rescanned(self):
+        calls = []
+        def gh(p):
+            if p.startswith("repos/acme/skill/commits"): return [{"sha": "aaa"}]
+            return repo(description="new summary")
+        orig = feeder.rescan
+        feeder.rescan = lambda url: calls.append(url) or ("clean", {"files_scanned": 1, "reds": {}})
+        try:
+            data = {"skills": [self.entry()]}
+            orig_gh = feeder.gh; feeder.gh = gh
+            try: feeder.refresh_existing(data)
+            finally: feeder.gh = orig_gh
+        finally:
+            feeder.rescan = orig
+        self.assertEqual(calls, [])
+        self.assertEqual(data["skills"][0]["summary"], "new summary")  # summary refreshed anyway
+
+    def test_moved_code_rescanned_clean_updates_checked(self):
+        def gh(p):
+            if "commits" in p: return [{"sha": "bbb"}]
+            return repo()
+        data, (refreshed, rescanned, pulled) = self.run_refresh(gh, "clean", {"files_scanned": 9, "reds": {}})
+        self.assertEqual(rescanned, 1)
+        self.assertEqual(data["skills"][0]["checked"]["files_scanned"], 9)
+        self.assertEqual(data["skills"][0]["signals"]["head_sha"], "bbb")
+        self.assertEqual(pulled, [])
+
+    def test_moved_code_flagged_is_pulled_to_quarantine(self):
+        def gh(p):
+            if "commits" in p: return [{"sha": "bbb"}]
+            return repo()
+        data, (_, _, pulled) = self.run_refresh(gh, "flagged", {"files_scanned": 9, "reds": {"remote-exec pipe": "install.sh"}, "notes": {}})
+        self.assertEqual(data["skills"], [])
+        self.assertEqual(len(pulled), 1)
+        self.assertIn("remote-exec pipe", pulled[0]["skim"]["red_flags"])
+
+    def test_moved_code_scan_error_keeps_entry(self):
+        def gh(p):
+            if "commits" in p: return [{"sha": "bbb"}]
+            return repo()
+        data, (_, rescanned, pulled) = self.run_refresh(gh, "error", None)
+        self.assertEqual(len(data["skills"]), 1)
+        self.assertEqual(rescanned, 0)
+        self.assertEqual(pulled, [])
+        self.assertEqual(data["skills"][0]["checked"]["date"], "2026-08-01")  # old record stands
+
+    def test_exception_on_one_entry_never_touches_the_others(self):
+        bad = self.entry(id="bad", repo_url="https://github.com/acme/bad", signals=None)  # signals=None -> attribute error inside
+        good = self.entry()
+        def gh(p):
+            if "commits" in p: return [{"sha": "aaa"}]
+            return repo()
+        data = {"skills": [bad, good]}
+        orig_gh = feeder.gh; feeder.gh = gh
+        try: feeder.refresh_existing(data)
+        finally: feeder.gh = orig_gh
+        self.assertEqual([s["id"] for s in data["skills"]], ["bad", "acme-skill"])
+
+
+class TestQuarantineRecheck(unittest.TestCase):
+    def q_entry(self, **kw):
+        base = {"id": "acme-bad", "name": "bad", "repo_url": "https://github.com/acme/bad",
+                "quarantined_on": "2026-07-27", "skim": {"red_flags": ["remote-exec pipe"]}}
+        base.update(kw)
+        return base
+
+    def run_recheck(self, scan_status, scan_result=None, qentry=None, gh_fn=None):
+        q = {"entries": [qentry or self.q_entry()]}
+        data = {"skills": []}
+        def gh(p):
+            if "commits" in p: return [{"sha": "ccc"}]
+            if p.startswith("repos/acme/bad/git/trees"): return {"truncated": False, "tree": [{"path": "SKILL.md"}]}
+            return repo(full_name="acme/bad", html_url="https://github.com/acme/bad", name="bad", default_branch="main")
+        orig_gh, orig_rescan = feeder.gh, feeder.rescan
+        feeder.gh = gh_fn or gh
+        feeder.rescan = lambda url: (scan_status, scan_result)
+        try:
+            readmitted = feeder.recheck_quarantine(q, data, [])
+        finally:
+            feeder.gh, feeder.rescan = orig_gh, orig_rescan
+        return q, data, readmitted
+
+    def test_clean_on_current_code_is_readmitted_flat(self):
+        q, data, readmitted = self.run_recheck("clean", {"files_scanned": 4, "reds": {}})
+        self.assertEqual(q["entries"], [])
+        self.assertEqual(len(data["skills"]), 1)
+        e = data["skills"][0]
+        self.assertEqual(e["checked"]["files_scanned"], 4)
+        for k in ("status", "triage", "skim", "quarantined_on"):
+            self.assertNotIn(k, e)
+
+    def test_still_flagged_stays_with_fresh_record(self):
+        q, data, readmitted = self.run_recheck("flagged", {"files_scanned": 4, "reds": {"ssh key read": "x.py"}, "notes": {}})
+        self.assertEqual(len(q["entries"]), 1)
+        self.assertEqual(q["entries"][0]["skim"]["red_flags"], ["ssh key read"])
+        self.assertEqual(data["skills"], [])
+
+    def test_scan_error_stays_for_next_run(self):
+        q, data, _ = self.run_recheck("error", None)
+        self.assertEqual(len(q["entries"]), 1)
+        self.assertEqual(data["skills"], [])
+
+    def test_human_hold_is_never_readmitted(self):
+        q, data, _ = self.run_recheck("clean", {"files_scanned": 4, "reds": {}}, qentry=self.q_entry(hold=True))
+        self.assertEqual(len(q["entries"]), 1)
+        self.assertEqual(data["skills"], [])
+
+    def test_clean_but_no_skill_md_stays_out(self):
+        def gh(p):
+            if "commits" in p: return [{"sha": "ccc"}]
+            if "git/trees" in p: return {"truncated": False, "tree": [{"path": "README.md"}]}
+            return repo(full_name="acme/bad", html_url="https://github.com/acme/bad", name="bad", default_branch="main")
+        q, data, _ = self.run_recheck("clean", {"files_scanned": 4, "reds": {}}, gh_fn=gh)
+        self.assertEqual(len(q["entries"]), 1)
+        self.assertEqual(data["skills"], [])
+
+
+class TestRefreshBudget(unittest.TestCase):
+    def test_oldest_checked_go_first_and_rest_untouched(self):
+        def mk(i, checked):
+            return {"id": f"s{i}", "name": f"s{i}", "repo_url": f"https://github.com/acme/s{i}",
+                    "summary": "old", "signals": {"stars": 0, "checked": checked, "head_sha": "a"},
+                    "checked": {"date": checked}}
+        data = {"skills": [mk(0, "2026-08-20"), mk(1, "2026-08-01"), mk(2, "2026-08-10")]}
+        def gh(p):
+            if "commits" in p: return [{"sha": "a"}]
+            return repo(description="new")
+        orig = feeder.gh; feeder.gh = gh
+        try:
+            refreshed, _, _ = feeder.refresh_existing(data, budget=2)
+        finally:
+            feeder.gh = orig
+        self.assertEqual(refreshed, 2)
+        by = {s["id"]: s["summary"] for s in data["skills"]}
+        self.assertEqual(by["s1"], "new")   # oldest
+        self.assertEqual(by["s2"], "new")   # second oldest
+        self.assertEqual(by["s0"], "old")   # newest waits for the next run
+        self.assertEqual([s["id"] for s in data["skills"]], ["s0", "s1", "s2"])  # order preserved
+
+
 if __name__ == "__main__":
     unittest.main()

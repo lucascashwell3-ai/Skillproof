@@ -80,7 +80,7 @@
           </div>
 
           <div class="inst-pane on" id="instPane-prompt" role="tabpanel" data-pane="prompt" aria-labelledby="instTab-prompt">
-            <p>Paste one short prompt into an agentic AI &mdash; easiest way to start.</p>
+            <p>Paste one short prompt into any agentic AI &mdash; it installs Skillproof and starts your first session.</p>
             <div class="cmdwrap"><textarea id="promptText" readonly rows="3" aria-label="Advisor prompt" class="inst-prompt"></textarea><button class="copy" id="copyPrompt" type="button" aria-label="Copy prompt"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2.5"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button></div>
           </div>
 
@@ -262,7 +262,7 @@
   <h2 id="faqH">Questions people ask first</h2>
   <details><summary>What is a skill, in plain words?</summary><p>A small folder of instructions your AI reads so it does one job well — honest tests, cleaner design, tighter research. Skillproof finds the right one and fits it into what you already have.</p></details>
   <details><summary>Does it change my files?</summary><p>Only with your yes, one edit at a time. It shows each change first, keeps a backup, and tells you how to undo.</p></details>
-  <details><summary>Is it safe?</summary><p>Every listed skill was scanned for malicious code before listing — anything flagged is pulled and never shown. Checked, not endorsed: the skill still reads a source before it ever runs a command from it, and nothing is piped into a shell.</p></details>
+  <details><summary>Is it safe?</summary><p>Every listed skill was checked for malicious code before it was listed, and re-checked whenever its code changes — anything flagged is pulled and never shown. The Skillproof skill also reads a skill&rsquo;s source before it runs a command from it, and nothing is ever piped into a shell. Still read anything before you run it.</p></details>
   <details><summary>What does it cost?</summary><p>Free and open source. No account.</p></details>
   <details><summary>Which tools does it work with?</summary><p>Any AI chat via the prompt (Claude, ChatGPT, Grok…); Claude Code via the skill; Cursor, Claude Desktop and any MCP-capable agent via the server.</p></details>
 </section>
@@ -298,7 +298,7 @@
       </div>
     </div>
     <div class="foot-legal">
-      <span>© 2026 Skillproof · MIT · provided as-is, no warranty</span>
+      <span>© 2026 Skillproof · MIT · provided as-is</span>
       <span id="footAsOf"></span>
     </div>
   </div>
@@ -307,6 +307,6 @@
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script src="assets/demo.js?v=7" defer></script>
-<script src="assets/app.js?v=102"></script>
+<script src="assets/app.js?v=103"></script>
 </body>
 </html>
