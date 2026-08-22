@@ -727,7 +727,7 @@
       "next": "Queued for a full grading run.",
       "skim": {
         "date": "2026-08-22",
-        "files_scanned": 563,
+        "files_scanned": 569,
         "red_flags": [
           "powershell encoded exec",
           "remote-exec pipe",
