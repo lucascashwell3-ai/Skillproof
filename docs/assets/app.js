@@ -353,7 +353,7 @@
 
     var sec = it.checked
       ? "Scanned for malicious patterns" + (it.checked.date ? " on " + mdY(it.checked.date) : "") +
-        " — none found. Provided as-is: read anything before you run it."
+        " — none found. Read anything before you run it."
       : "Not yet scanned — read the source before installing.";
     rows.push(["Security", esc(sec)]);
 
@@ -981,9 +981,9 @@
      right thing → get it working, with the user's yes before any write. The
      catalog is the starting shelf, the wider web is in bounds, and the finish
      line is "installed and confirmed working" — NOT a catalog reading. The
-     prompt states exactly what the catalog assures (scanned for malice, not
-     endorsed) — an earlier tier-describing version made a fresh agent tell
-     the user to avoid the whole site (2026-08-10, Lucas's work machine). */
+     prompt states what the catalog assures (checked for malicious code) and
+     nothing self-defeating — an earlier tier-describing version made a fresh
+     agent tell the user to avoid the whole site (2026-08-10). */
   var DATA_URL = "https://raw.githubusercontent.com/lucascashwell3-ai/Skillproof/main/docs/data/skills.json";
 
   function buildPrompt() {
@@ -991,7 +991,7 @@
       "You are my AI-setup upgrade agent, working the Skillproof method. When I describe a pain point or goal, find the right skill or tool for it and get it working in my setup. Finding it is the start — installed, integrated, and confirmed working is the finish.",
       "",
       "Start with the catalog: " + DATA_URL,
-      "Every entry is a real GitHub repo that was scanned for malicious patterns before listing — scanned, not endorsed. If the fetch fails, say so and ask me to attach the file — it downloads from the Skillproof site.",
+      "Every entry is a real GitHub repo that was checked for malicious code before listing and re-checked when its code changes. If the fetch fails, say so and ask me to attach the file — it downloads from the Skillproof site.",
       "",
       "The catalog is a starting shelf, not a boundary. If nothing in it fits my ask, search the wider ecosystem yourself — that is the normal next step, not a failure. Read the source of anything before recommending it, and answer three questions (what it does / what it touches / how to undo it) from the code you read, never from the README alone. If you can't read the source, hand me the repo URL and say the source hasn't been read — no install command for unread code.",
       "",

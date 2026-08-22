@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>What "checked" means — Skillproof</title>
-  <meta name="description" content="Every skill on Skillproof was checked to make sure it isn't malicious before it was listed. This page says exactly what that check is — and what it isn't." />
+  <title>What we check — Skillproof</title>
+  <meta name="description" content="How skills get onto Skillproof: found daily, checked for malicious code, re-checked when the code changes." />
   <meta name="theme-color" content="#F6F7FC" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='1' y='1' width='22' height='22' rx='7' fill='%236D5BF6'/%3E%3Cpath d='M12 5.5l6 3-6 3-6-3 6-3z' fill='white'/%3E%3Cpath d='M6 12.4l6 3 6-3M6 15.6l6 3 6-3' fill='none' stroke='white' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://api.fontshare.com" />
@@ -34,46 +34,53 @@
 
 <main class="doc">
   <div class="doc-card">
-    <h1>What "checked" means</h1>
+    <h1>What we check</h1>
     <p>
-      Every skill here was checked to make sure it isn't malicious before it was listed.
-      That is the whole promise, so here is exactly what the check is — and what it isn't.
+      Every skill here was checked for malicious code before it was listed, and the catalog
+      keeps itself current. Here is exactly how.
     </p>
 
-    <h2>What the check is</h2>
+    <h2>How a skill gets listed</h2>
     <ul>
-      <li>Before a repo is listed, an automated scanner clones it and reads every file for
-        known-dangerous patterns: install lines that pipe a download straight into a shell,
-        code that reads credentials or SSH keys, hooks that run on every session start, and
-        obfuscated or encoded blobs hiding what the code does.</li>
-      <li>Anything flagged is quarantined — pulled out and never listed, not listed with a
-        warning. Only a human who has read the flagged lines can restore it.</li>
-      <li>The catalog only admits repos that are real, carry an open-source license, were
-        pushed to in the last year, and actually contain a skill.</li>
-      <li>The date of each repo's scan is in the catalog data (<code>checked.date</code>),
-        which is public, so you can see when it was checked.</li>
+      <li>Every day, an automated job searches GitHub — by topic, by keyword, and through the
+        repos of trusted creators — for new skills. A repo qualifies if it is real, carries an
+        open-source license, was pushed to in the last year, and actually contains a skill.</li>
+      <li>Before listing, a scanner clones the repo and reads every file for known-dangerous
+        patterns: install lines that pipe a download straight into a shell, code that reads
+        credentials or SSH keys, and obfuscated or encoded code hiding what it does.</li>
+      <li>Anything flagged in runnable code is quarantined — never listed, not even with a
+        warning. An install command quoted in a README is noted, not treated as malice.</li>
     </ul>
 
-    <h2>What the check is not</h2>
+    <h2>How it stays current</h2>
     <ul>
-      <li><b>Not an endorsement.</b> Listed means "we found nothing malicious," not "this is
-        good" or "this will work for you."</li>
-      <li><b>Not a guarantee.</b> A pattern scan catches obvious malice, not clever malice.
-        Code can also change after we scan it — that's why the Skillproof skill re-reads the
-        current source at install time, before it runs anything.</li>
-      <li><b>Not a warranty.</b> Everything here is provided as-is. Read anything before you
-        run it.</li>
+      <li>Every listed skill is refreshed daily — stars, last push, description.</li>
+      <li>When a skill&rsquo;s code changes, it is re-scanned on the new code before it stays
+        listed. Creators who ship a new version every week show up here the next day.</li>
+      <li>Quarantined repos are re-scanned too; one that comes up clean on its current code
+        comes back automatically.</li>
+      <li>The date of each repo&rsquo;s latest scan is in the public catalog data
+        (<code>checked.date</code>).</li>
     </ul>
 
-    <p style="margin-top:36px"><a href="index.html">← Back to the catalog</a> ·
-    <a href="https://github.com/lucascashwell3-ai/Skillproof/blob/main/scripts/safety_skim.py">The scanner's source on GitHub</a></p>
+    <h2>What this does and doesn&rsquo;t cover</h2>
+    <p>
+      The scan catches known malicious patterns; it is not a line-by-line review and not a
+      guarantee that a skill will work for you. Everything here is provided as-is. The
+      Skillproof skill reads a skill&rsquo;s current source before it runs anything from it —
+      and you should read anything before you run it too.
+    </p>
+
+    <p style="margin-top:36px"><a href="index.html">&larr; Back to the catalog</a> &middot;
+    <a href="https://github.com/lucascashwell3-ai/Skillproof/blob/main/scripts/safety_skim.py">The scanner&rsquo;s source</a> &middot;
+    <a href="https://github.com/lucascashwell3-ai/Skillproof/blob/main/scripts/feeder.py">The daily job&rsquo;s source</a></p>
   </div>
 </main>
 
 <footer>
   <div class="wrap">
     <div class="foot-legal" style="margin-top:0;border-top:0">
-      <span>© 2026 Skillproof · MIT · no warranty</span>
+      <span>© 2026 Skillproof · MIT · provided as-is</span>
       <span>Part of the <em>-proof</em> family:
         <a href="https://lucascashwell3-ai.github.io/modelproof/" style="color:var(--violet-d)">Modelproof</a> ·
         <a href="https://lucascashwell3-ai.github.io/datproof/" style="color:var(--violet-d)">DATproof</a></span>

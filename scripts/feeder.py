@@ -12,10 +12,17 @@ Stages:
             stale (> 12 months since last push), archived, a fork, or has no OSS
             license. Survivors get the safety_skim.scan_repo() malice scan;
             a red flag quarantines instead of listing.
-  publish - append flat entries, refresh signals for existing entries (cheap,
-            1 API call each), write docs/data/skills.json, then run
+  refresh - every listed entry: stars/forks/pushed/summary from the API; if
+            the repo's code moved since we last scanned it, re-run the malice
+            scan on the current code. Flag in code -> quarantined; scan
+            error/timeout -> entry kept as-is, retried next run. Growth-only:
+            nothing leaves the catalog for any reason but malice.
+  recheck - every quarantined repo is re-scanned on its current code; clean
+            -> re-admitted (a flag that was only ever in docs never sticks).
+  publish - write docs/data/skills.json + grading/quarantine.json, then run
             validate_index.py as the honesty gate. Gate failure = exit
             nonzero, nothing written.
+  Every repo is handled in isolation: one bad repo never kills the run.
 
 Usage:
   python3 scripts/feeder.py --dry-run
@@ -49,6 +56,14 @@ TOPIC_QUERIES = [
     "topic:claude-code-skills",
     "topic:agent-skills",
     "topic:anthropic-skills",
+]
+# Repos whose authors never added a topic label are invisible to the searches
+# above. These keyword sweeps catch them; the SKILL.md-evidence check downstream
+# keeps non-skills out.
+KEYWORD_QUERIES = [
+    "claude+skill+in:name,description",
+    "claude+code+skill+in:name,description",
+    "agent+skills+in:name,description",
 ]
 
 MAX_AGE_MONTHS = 12
@@ -99,9 +114,15 @@ def feed(cap, named_owners):
         for repo in repos:
             candidates.setdefault(repo["full_name"].lower(), repo)
 
-    # topic search
+    # topic search — by stars (the established) and by recent update (the new)
     for q_str in TOPIC_QUERIES:
-        res = gh(f"search/repositories?q={q_str}&sort=stars&order=desc&per_page=30")
+        for sort in ("stars", "updated"):
+            res = gh(f"search/repositories?q={q_str}&sort={sort}&order=desc&per_page=30")
+            for repo in (res or {}).get("items") or []:
+                candidates.setdefault(repo["full_name"].lower(), repo)
+    # keyword sweep for untagged repos
+    for q_str in KEYWORD_QUERIES:
+        res = gh(f"search/repositories?q={q_str}&sort=updated&order=desc&per_page=30")
         for repo in (res or {}).get("items") or []:
             candidates.setdefault(repo["full_name"].lower(), repo)
 
@@ -188,22 +209,13 @@ def check(repos, named_owners, skim_new):
         if not skim_new:
             kept.append(entry)
             continue
-        with tempfile.TemporaryDirectory() as tmp:
-            try:
-                result = scan_repo(entry["repo_url"], tmp)
-            except subprocess.TimeoutExpired:
-                result = None
-        if result is None:
-            dropped.append((repo["full_name"], "clone failed during safety skim"))
+        status, result = rescan(entry["repo_url"])
+        if status == "error":
+            dropped.append((repo["full_name"], "clone failed during safety skim (retried next run)"))
             continue
-        if result["reds"]:
+        if status == "flagged":
             # quarantine entries keep the full skim record so --list shows why
-            quarantined_new.append(dict(entry, quarantined_on=TODAY, skim={
-                "date": TODAY,
-                "files_scanned": result["files_scanned"],
-                "red_flags": sorted(result["reds"]),
-                "notes": sorted(result["notes"]),
-            }))
+            quarantined_new.append(dict(entry, quarantined_on=TODAY, skim=skim_record(result)))
             dropped.append((repo["full_name"], f"quarantined: {sorted(result['reds'])}"))
             continue
         entry["checked"] = {"date": TODAY, "files_scanned": result["files_scanned"]}
@@ -211,29 +223,127 @@ def check(repos, named_owners, skim_new):
     return kept, dropped, quarantined_new
 
 
-# ------------------------------------------------------------- signals refresh
-def refresh_existing_signals(data):
-    """Cheap (1 API call/entry) refresh of stars/head_sha/pushed_at for
-    entries already in the catalog, so catalog-refresh's signal job becomes
-    redundant. Best-effort: a failed lookup leaves the entry untouched."""
-    refreshed = 0
+# ------------------------------------------------------------- refresh stage
+def rescan(url):
+    """Malice scan on the repo's CURRENT code. Returns (status, result) where
+    status is "clean" | "flagged" | "error". An error is an infrastructure
+    problem (clone failed, timeout), never a verdict on the repo."""
+    with tempfile.TemporaryDirectory() as tmp:
+        try:
+            result = scan_repo(url, tmp)
+        except Exception:
+            result = None
+    if result is None:
+        return "error", None
+    return ("flagged" if result["reds"] else "clean"), result
+
+
+def skim_record(result):
+    return {
+        "date": TODAY,
+        "files_scanned": result["files_scanned"],
+        "red_flags": sorted(result["reds"]),
+        "notes": sorted(result["notes"]),
+    }
+
+
+def refresh_existing(data, do_rescan=True):
+    """Refresh every listed entry from the API, and re-scan the ones whose code
+    moved since we last scanned. Growth-only: an entry only leaves the catalog
+    when the scan finds a red flag in its current code. API misses, clone
+    failures and timeouts keep the entry exactly as it was (retried next run).
+    Each entry is isolated — an exception on one never touches the others."""
+    refreshed, rescanned, quarantined = 0, 0, []
+    kept = []
     for s in data["skills"]:
-        m = re.match(r"https://github\.com/([^/]+/[^/]+)/?$", s.get("repo_url", ""))
-        if not m:
-            continue
-        repo = gh(f"repos/{m.group(1)}")
-        if not repo:
-            continue
-        s.setdefault("signals", {})
-        s["signals"]["stars"] = repo["stargazers_count"]
-        s["signals"]["forks"] = repo["forks_count"]
-        s["signals"]["checked"] = TODAY
-        commits = gh(f"repos/{m.group(1)}/commits?per_page=1")
-        if commits:
-            s["signals"]["head_sha"] = commits[0]["sha"]
-            s["signals"]["head_checked"] = TODAY
-        refreshed += 1
-    return refreshed
+        try:
+            m = re.match(r"https://github\.com/([^/]+/[^/]+)/?$", s.get("repo_url", ""))
+            repo = gh(f"repos/{m.group(1)}") if m else None
+            if not repo:
+                kept.append(s)
+                continue
+            sig = s.setdefault("signals", {})
+            sig["stars"] = repo["stargazers_count"]
+            sig["forks"] = repo["forks_count"]
+            sig["checked"] = TODAY
+            if repo.get("pushed_at"):
+                s["pushed"] = repo["pushed_at"][:10]
+            desc = (repo.get("description") or "").strip()
+            if desc:
+                s["summary"] = desc[:220]
+            refreshed += 1
+
+            commits = gh(f"repos/{m.group(1)}/commits?per_page=1")
+            new_sha = commits[0]["sha"] if commits else None
+            old_sha = sig.get("head_sha")
+            if new_sha:
+                sig["head_sha"] = new_sha
+                sig["head_checked"] = TODAY
+            moved = bool(new_sha and old_sha and new_sha != old_sha)
+            never_scanned = "checked" not in s
+            if do_rescan and (moved or never_scanned):
+                status, result = rescan(s["repo_url"])
+                if status == "clean":
+                    s["checked"] = {"date": TODAY, "files_scanned": result["files_scanned"]}
+                    rescanned += 1
+                elif status == "flagged":
+                    quarantined.append(dict(s, quarantined_on=TODAY, skim=skim_record(result)))
+                    print(f"  pulled to quarantine: {s['name']} {sorted(result['reds'])}")
+                    continue
+                # "error": keep as-is, retry next run
+            kept.append(s)
+        except Exception as e:  # noqa: BLE001 — isolation is the point
+            print(f"  refresh error on {s.get('id')}: {e} — kept as-is")
+            kept.append(s)
+    data["skills"] = kept
+    return refreshed, rescanned, quarantined
+
+
+def recheck_quarantine(q, data, named_owners):
+    """Re-scan every quarantined repo on its current code. Clean -> back into
+    the catalog as a fresh flat entry (must still pass the baseline + SKILL.md
+    checks). Still flagged -> stays, with the skim record updated. Error ->
+    stays, retried next run. An entry a human marked `hold: true` is never
+    re-admitted automatically."""
+    readmitted, still = [], []
+    existing = {s["repo_url"].lower().rstrip("/") for s in data["skills"]}
+    for e in q.get("entries", []):
+        try:
+            if e.get("hold"):
+                still.append(e)
+                continue
+            status, result = rescan(e["repo_url"])
+            if status != "clean":
+                if status == "flagged":
+                    e["skim"] = skim_record(result)
+                still.append(e)
+                continue
+            m = re.match(r"https://github\.com/([^/]+/[^/]+)/?$", e["repo_url"])
+            repo = gh(f"repos/{m.group(1)}") if m else None
+            if not repo or e["repo_url"].lower().rstrip("/") in existing:
+                still.append(e)
+                continue
+            ok, _ = passes_baseline(repo, named_owners)
+            if ok:
+                ok, _ = is_skill_evidence(repo)
+            if not ok:
+                still.append(e)
+                continue
+            entry = to_entry(repo)
+            entry["checked"] = {"date": TODAY, "files_scanned": result["files_scanned"]}
+            commits = gh(f"repos/{m.group(1)}/commits?per_page=1")
+            if commits:
+                entry["signals"]["head_sha"] = commits[0]["sha"]
+                entry["signals"]["head_checked"] = TODAY
+            data["skills"].append(entry)
+            existing.add(entry["repo_url"].lower().rstrip("/"))
+            readmitted.append(entry)
+            print(f"  re-admitted from quarantine (clean on current code): {entry['name']}")
+        except Exception as ex:  # noqa: BLE001
+            print(f"  recheck error on {e.get('id')}: {ex} — left in quarantine")
+            still.append(e)
+    q["entries"] = still
+    return readmitted
 
 
 def main():
@@ -271,18 +381,19 @@ def main():
               f"{len(kept)} would be added.")
         return 0
 
-    if quarantined_new:
-        q = load_quarantine()
-        ids = {e["id"] for e in quarantined_new}
-        q["entries"] = [e for e in q.get("entries", []) if e["id"] not in ids] + quarantined_new
-        save_quarantine(q)
+    q = load_quarantine()
 
-    refreshed = 0
+    refreshed, rescanned, pulled = 0, 0, []
     if not args.no_signal_refresh:
-        refreshed = refresh_existing_signals(data)
+        refreshed, rescanned, pulled = refresh_existing(data)
+    readmitted = recheck_quarantine(q, data, verified)
 
     data["skills"].extend(kept)
     data["as_of"] = TODAY
+
+    ids = {e["id"] for e in quarantined_new + pulled}
+    q["entries"] = [e for e in q.get("entries", []) if e["id"] not in ids] + quarantined_new + pulled
+    save_quarantine(q)
     DATA.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n")
 
     gate = subprocess.run([sys.executable, str(ROOT / "validate_index.py")])
@@ -290,8 +401,9 @@ def main():
         print("honesty gate FAILED — feeder run rejected", file=sys.stderr)
         return gate.returncode
 
-    print(f"\nfeeder: +{len(kept)} listed, {len(quarantined_new)} quarantined, "
-          f"{refreshed} existing entries' signals refreshed, gate passed.")
+    print(f"\nfeeder: +{len(kept)} new, {len(readmitted)} re-admitted, "
+          f"{len(quarantined_new) + len(pulled)} quarantined, {refreshed} refreshed, "
+          f"{rescanned} re-scanned after a code change, gate passed.")
     return 0
 
 

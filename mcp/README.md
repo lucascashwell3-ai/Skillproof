@@ -4,7 +4,7 @@ The Skillproof catalog, callable from any MCP host (Claude Desktop, Claude Code,
 Cursor, …) mid-workflow. Read-only, no auth, no side effects. It reads the **same
 `docs/data/skills.json`** the website renders and the honesty gate
 (`scripts/validate_index.py`) validates. One flat catalog: every entry was scanned
-for malicious patterns before listing — scanned, not endorsed, no warranty.
+for malicious code before listing and re-scanned whenever its code changes.
 
 ## Tools
 
@@ -62,7 +62,7 @@ SKILLPROOF_DATA_URL="https://lucascashwell3-ai.github.io/skillproof/data/skills.
 ## Honesty rules (enforced in code)
 
 - Every answer states what the catalog assures: scanned for malicious patterns before
-  listing — scanned, not endorsed, provided as-is.
+  listing and re-checked when the code changes.
 - No entry is ever called tested, graded, or verified.
 - The calling agent is told to read the source of anything before installing it.
 - A skill missing from the catalog says so plainly — nothing is inferred.
