@@ -1,14 +1,17 @@
 # Install paths — where the thing actually goes
 
-You cannot give a working install command without knowing what they're running. Ask once, plainly,
-and accept "I don't know":
+You cannot give a working install command without knowing what they're running. Usually the
+session itself tells you (you're running inside their tool; their config files name it) —
+don't ask what you can see. Ask only when it's genuinely unknowable, folded into the beat-1
+readback, and accept "I don't know":
 
 > Quick thing so I give you a command that actually works — what are you using?
 > **Claude Code** (terminal or the desktop app) · **Cursor** · **Claude Desktop** ·
 > **Codex / something else** · not sure
 
 If they don't know: ask whether they type commands into a terminal to work with AI (→ Claude
-Code) or use an editor with AI built in (→ Cursor). That resolves it nearly always.
+Code) or use an editor with AI built in (→ Cursor). That resolves it nearly always. None of
+this applies when the plan installs nothing.
 
 | They're running | Path |
 |---|---|
@@ -22,17 +25,18 @@ the first time you use it; never leave the acronym bare.
 
 ## Global or project?
 
-Ask in phase 2, before reading anything:
-
-> Do you want this everywhere you work, or just in one project?
+Their existing pattern usually answers this — someone whose skills all live in
+`~/.claude/skills/` gets a global install. Assume the pattern, state the assumption in the
+beat-3 plan ("installing globally, next to your other skills"), and let the yes/no correct
+it. Ask as a question only when it genuinely could go either way.
 
 - **Everywhere** → global (`~/.claude/skills/`), and the conflicts that matter are in the global
   CLAUDE.md and the other global skills.
 - **One project** → project (`<project>/.claude/skills/`), and you read that project's CLAUDE.md
   too. Project instructions load *on top of* global ones, so both can conflict.
 
-When in doubt, project scope is the safer default — it's easier to undo and it can't affect
-their other work.
+With no pattern to follow, project scope is the safer default — it's easier to undo and it
+can't affect their other work.
 
 ## If it genuinely doesn't fit
 
