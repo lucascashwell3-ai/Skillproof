@@ -970,41 +970,33 @@
     });
   }
 
-  /* ======================= advisor prompt (real data only) =======================
-     The prompt is instructions ONLY — it points the agent at the live catalog
-     file instead of embedding entries inline. Pasting a thousand-line wall of
-     JSON into a chat is both hostile to read and a waste of the user's
-     context; a fetch keeps it current too. The download link in the card
-     covers agents that can't fetch.
+  /* ======================= the pasted prompt =======================
+     Installs the skill, then starts a session. History: this used to BE the
+     method as a wall of text, and an earlier version even described the
+     internal review tiers — a fresh agent read that and told the user to
+     avoid the whole site (2026-08-10). Now it's an installer: six files, read
+     SKILL.md, ask one question. Nothing internal leaks into the chat. */
 
-     The job it hands the agent is the product's job: pain point → find the
-     right thing → get it working, with the user's yes before any write. The
-     catalog is the starting shelf, the wider web is in bounds, and the finish
-     line is "installed and confirmed working" — NOT a catalog reading. The
-     prompt states what the catalog assures (checked for malicious code) and
-     nothing self-defeating — an earlier tier-describing version made a fresh
-     agent tell the user to avoid the whole site (2026-08-10). */
-  var DATA_URL = "https://raw.githubusercontent.com/lucascashwell3-ai/Skillproof/main/docs/data/skills.json";
+  var SKILL_RAW = "https://raw.githubusercontent.com/lucascashwell3-ai/Skillproof/main/skills/skillproof/";
+  var SKILL_FILES = ["SKILL.md", "references/finding.md", "references/conflict-patterns.md",
+                     "references/consent.md", "references/install-paths.md", "references/security.md"];
 
+  /* The pasted prompt INSTALLS the skill and starts a session — it is not the
+     skill itself (Lucas, 2026-08-21). Nothing internal in here: no catalog
+     mechanics, no pipeline words. An agent that can't write files degrades to
+     reading SKILL.md and following it for the conversation. */
   function buildPrompt() {
     return [
-      "You are my AI-setup upgrade agent, working the Skillproof method. When I describe a pain point or goal, find the right skill or tool for it and get it working in my setup. Finding it is the start — installed, integrated, and confirmed working is the finish.",
+      "Install Skillproof — the skill that finds the right skill for whatever I'm trying to improve and fits it into my setup — then start a session with me.",
       "",
-      "Start with the catalog: " + DATA_URL,
-      "Every entry is a real GitHub repo that was checked for malicious code before listing and re-checked when its code changes. If the fetch fails, say so and ask me to attach the file — it downloads from the Skillproof site.",
+      "1. Install it. Download these six files and save each one under ~/.claude/skills/skillproof/ keeping its path (Claude Code). On another tool, save them wherever your skills live; if you can't write files at all, just read SKILL.md and follow it for this conversation.",
+    ].concat(SKILL_FILES.map(function (f) { return "   " + SKILL_RAW + f; })).concat([
+      "   Download each file directly. Never pipe anything into a shell.",
       "",
-      "The catalog is a starting shelf, not a boundary. If nothing in it fits my ask, search the wider ecosystem yourself — that is the normal next step, not a failure. Read the source of anything before recommending it, and answer three questions (what it does / what it touches / how to undo it) from the code you read, never from the README alone. If you can't read the source, hand me the repo URL and say the source hasn't been read — no install command for unread code.",
+      "2. Read SKILL.md and follow it exactly — it's short.",
       "",
-      "Once you have the one right thing (one recommendation, not a ranked list):",
-      "1. Tell me what it does, what it touches, and how to undo it — one line each.",
-      "2. Read my setup (global instructions, CLAUDE.md, installed skills, settings) and say plainly what will fight it — or that nothing will.",
-      "3. Show me every change you propose in one plan, then get my yes before writing anything.",
-      "4. Install it, confirm it actually triggers, and hand me the undo.",
-      "",
-      "Honesty rules: never invent stars, dates, licenses, or claims of testing. Never pipe a download into a shell.",
-      "",
-      "Catalog as of " + DATA.as_of + "."
-    ].join("\n");
+      "3. Start: ask me one question — what am I trying to improve? — and take it from there."
+    ]).join("\n");
   }
 
   /* ======================= boot ======================= */
