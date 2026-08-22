@@ -57,7 +57,7 @@ their files. "skill for reducing context bloat" is fine. Their CLAUDE.md's wordi
 - **Never write a credential anywhere**, including into a backup you create.
 - If a file you must back up contains what looks like a secret, say so before backing it up and
   let the user decide.
-- If a resource asks for an API key to work, say so in phase 3 and let them supply it
+- If a resource asks for an API key to work, say so in the beat-3 plan and let them supply it
   themselves, in their own tool. You never handle the value.
 
 ## 4. Bash
@@ -77,14 +77,14 @@ command to pass along.
 
 Backups land in `~/.claude/skillproof-backups/<date>/`. Two duties:
 
-- **Tell the user the folder exists**, in phase 6, with the path. A copy of their config they
+- **Tell the user the folder exists**, in the beat-5 close, with the path. A copy of their config they
   don't know about is a privacy problem of your making.
 - **Never put a backup anywhere synced or shared** — not in a cloud-synced folder, not in a git
   repo, not in `/tmp`. If their home is inside a synced tree, say so and ask where to put it.
 
 ## 6. Scope
 
-- Only read inside the home or project the user picked in phase 2. Do not wander the filesystem.
+- Only read inside the home or project the user picked. Do not wander the filesystem.
 - Never read another user's files, system config, browser data, SSH keys, or credential stores.
 - Never touch files that belong to another running session or agent.
 

@@ -3,14 +3,14 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>The quality bar — Skillproof</title>
-  <meta name="description" content="The published protocol behind every Skillproof listing: what 'tested & graded' means, what 'reviewed' means, what 'scouted' means, and the honesty gate that keeps the three from ever blurring." />
+  <title>What we check — Skillproof</title>
+  <meta name="description" content="How skills get onto Skillproof: found daily, checked for malicious code, re-checked when the code changes." />
   <meta name="theme-color" content="#F6F7FC" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='1' y='1' width='22' height='22' rx='7' fill='%236D5BF6'/%3E%3Cpath d='M12 5.5l6 3-6 3-6-3 6-3z' fill='white'/%3E%3Cpath d='M6 12.4l6 3 6-3M6 15.6l6 3 6-3' fill='none' stroke='white' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://api.fontshare.com" />
   <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin />
   <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&f[]=jetbrains-mono@400,500,600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/styles.css?v=3" />
+  <link rel="stylesheet" href="assets/styles.css?v=4" />
 </head>
 <body>
 
@@ -34,270 +34,58 @@
 
 <main class="doc">
   <div class="doc-card">
-    <h1>The quality bar</h1>
+    <h1>What we check</h1>
     <p>
-      Skillproof is a tool for upgrading your AI environment — and the reason you can trust
-      what it hands you is this protocol. Every listing is checked against its real source
-      before it appears, and labeled by exactly how far that check went. Three tiers, in
-      descending strength:
+      Every skill here was checked for malicious code before it was listed, and the catalog
+      keeps itself current. Here is exactly how.
     </p>
-    <table>
-      <tr><th>Tier</th><th>Live count</th><th>What was actually done</th><th>What it does <em>not</em> establish</th></tr>
-      <tr>
-        <td><b>tested &amp; graded</b></td>
-        <td><b data-tier-count="graded">&hellip;</b></td>
-        <td>Installed in a sandbox, probed, source read by a person, worksheet published</td>
-        <td>—</td>
-      </tr>
-      <tr>
-        <td><b>reviewed</b></td>
-        <td><b data-tier-count="reviewed">&hellip;</b></td>
-        <td>Full source read by an automated reviewer, pinned to one commit</td>
-        <td>That it works. Nothing was installed or executed.</td>
-      </tr>
-      <tr>
-        <td><b>scouted</b></td>
-        <td><b data-tier-count="scouted">&hellip;</b></td>
-        <td>Repo verified real, scanned for known-malicious patterns</td>
-        <td>What the code does. Nobody read it.</td>
-      </tr>
-    </table>
-    <p class="callout" data-tier-empty="reviewed" hidden>
-      <b>As of right now, no entry has reached the reviewed tier.</b> The protocol below is
-      published and enforced, but it has not been pointed at the catalogue yet — so every entry
-      is still labelled <code>scouted</code> on the site, and nothing claims otherwise. This
-      sentence disappears on its own once the first review lands.
-    </p>
-    <p>
-      If we didn't run it, we don't grade it. If we didn't read it, we don't say we reviewed it.
-      There are no placeholder grades, and the counts on every page are computed from the
-      catalog file rather than typed in.
-    </p>
-    <div class="callout">
-      <b>Conflict of interest:</b> we do not grade our own skills. Skillproof-family tools,
-      if ever listed, are tagged <code>house — not graded</code>.
-    </div>
 
-    <h2>Tested &amp; graded — five dimensions · 0–4 each · effectiveness ×2 · total /24</h2>
-
-    <h3>1. Triggering (×1) — fires when it should, quiet when it shouldn't</h3>
-    <p>Install into a clean fixture project, then run <b>5 headless probes</b> in fresh sessions:
-    3 natural prompts that SHOULD activate it, 2 adjacent near-misses that should NOT.
-    A should-fire probe counts only if the harness actually invokes the skill.</p>
-    <table>
-      <tr><th>Score</th><th>Result</th></tr>
-      <tr><td>4</td><td>5/5 probes correct</td></tr>
-      <tr><td>3</td><td>4/5</td></tr>
-      <tr><td>2</td><td>3/5</td></tr>
-      <tr><td>1</td><td>2/5</td></tr>
-      <tr><td>0</td><td>worse</td></tr>
-    </table>
-    <p><b>Opt-in skills</b> (<code>disable-model-invocation: true</code>) are scored against their own
-    declared design: should-fire probes test explicit <code>/name</code> invocation; near-misses confirm
-    it stays quiet uninvoked. A skill is graded against the activation model it promises, not one we impose.</p>
-
-    <h3>2. Does what it claims (×2) — the heart of the grade</h3>
-    <p>We run the skill's <b>primary claimed job once</b> — the headline use case its own README sells —
-    and compare output against its own claims, usually against a control run without the skill.</p>
-    <table>
-      <tr><th>Score</th><th>Result</th></tr>
-      <tr><td>4</td><td>Delivers the claim outright</td></tr>
-      <tr><td>3</td><td>Delivers with minor gaps</td></tr>
-      <tr><td>2</td><td>Partial — some claimed value, clearly short of the pitch</td></tr>
-      <tr><td>1</td><td>Mostly fails</td></tr>
-      <tr><td>0</td><td>Fails, or the claims are false</td></tr>
-    </table>
-
-    <h3>3. Docs &amp; install (×1) — additive checklist</h3>
-    <table>
-      <tr><th>Points</th><th>Check</th></tr>
-      <tr><td>+2</td><td>Installs first try following its own README</td></tr>
-      <tr><td>+1</td><td>README states triggers, requirements, and limitations honestly</td></tr>
-      <tr><td>+1</td><td>Frontmatter in spec; description matches actual behavior</td></tr>
-    </table>
-
-    <h3>4. Maintenance (×1) — objective recency</h3>
-    <p>Last meaningful commit: <b>&lt;3 months = 4 · &lt;6 = 3 · &lt;12 = 2 · older = 1 · dead = 0.</b>
-    Deductions (floor 0): −1 for issues ignored &gt;60 days; −1 for hardcoded dead models/APIs.</p>
-
-    <h3>5. Safety (×1) — every line gets read</h3>
-    <p>Before anything executes, <b>every line of the skill's source is read</b> — SKILL.md, scripts,
-    manifests, hooks. Start at 4, deduct: −1 undisclosed network calls · −1 ungated writes outside the
-    project · −1 remote-exec patterns even if disclosed · −1 credential/env reads without need.</p>
-    <div class="callout">
-      <b>Auto-F override:</b> undisclosed exfiltration, credential harvesting, destructive defaults,
-      or deliberately obfuscated code = F overall regardless of other scores, delisted with the reason published.
-    </div>
-
-    <h2>Letter mapping</h2>
-    <table>
-      <tr><th>Total /24</th><th>Grade</th></tr>
-      <tr><td>23–24</td><td>A</td></tr>
-      <tr><td>21–22</td><td>A−</td></tr>
-      <tr><td>20</td><td>B+</td></tr>
-      <tr><td>18–19</td><td>B</td></tr>
-      <tr><td>17</td><td>B−</td></tr>
-      <tr><td>15–16</td><td>C+</td></tr>
-      <tr><td>13–14</td><td>C</td></tr>
-      <tr><td>12</td><td>C−</td></tr>
-      <tr><td>10–11</td><td>D+</td></tr>
-      <tr><td>8–9</td><td>D</td></tr>
-      <tr><td>≤7 or auto-F</td><td>F</td></tr>
-    </table>
-    <p>Grades are <b>derived from the dimension scores by this table, never hand-set</b> — an automated
-    honesty gate (<code>scripts/validate_index.py</code>) recomputes every grade and fails the build on any mismatch.</p>
-
-    <h2>The reviewed tier — read is not run</h2>
-    <p>
-      "Review the source before installing" is useless advice for the person who came here
-      <em>because</em> they can't. So an automated reviewer (<code>scripts/deep_review.py</code>,
-      Claude Opus&nbsp;5) reads the source and answers the three questions that actually decide
-      whether you install something. It publishes exactly four fields plus its own receipts:
-    </p>
+    <h2>How a skill gets listed</h2>
     <ul>
-      <li><b>What it does</b> (<code>review.does</code>) — one plain sentence.</li>
-      <li><b>What it touches</b> (<code>review.touches</code>) — from a <b>fixed vocabulary</b>
-      of eight values (reads/writes project files · network calls · reads credentials/keys ·
-      runs shell commands · installs dependencies · writes outside the project · no side
-      effects). The build rejects any value outside that list, so the labels mean the same
-      thing on every entry and can be filtered on.</li>
-      <li><b>How to undo it</b> (<code>review.undo</code>) — taken from what the source says.
-      Where the source doesn't say, the field reads <code>not documented by the author</code>.
-      That is a finding we publish, not a gap we fill with a guess.</li>
-      <li><b>What the review couldn't tell you</b> (<code>review.limits</code>) — published
-      verbatim, including on the entries where it is unflattering.</li>
-      <li><b>Scope</b> (<code>review.scope</code>) — which files were read, how many bytes, and
-      what was left out. Reviews are capped at <b>40KB</b> per entry, so a 200-skill library is
-      reviewed in part and says so; oversized documents are truncated and the cut is named.</li>
+      <li>Every day, an automated job searches GitHub — by topic, by keyword, and through the
+        repos of trusted creators — for new skills. A repo qualifies if it is real, carries an
+        open-source license, was pushed to in the last year, and actually contains a skill.</li>
+      <li>Before listing, a scanner clones the repo and reads every file for known-dangerous
+        patterns: install lines that pipe a download straight into a shell, code that reads
+        credentials or SSH keys, and obfuscated or encoded code hiding what it does.</li>
+      <li>Anything flagged in runnable code is quarantined — never listed, not even with a
+        warning. An install command quoted in a README is noted, not treated as malice.</li>
     </ul>
 
-    <h3>What "reviewed" does not mean</h3>
-    <p>
-      Nothing was installed. Nothing was executed. Nobody watched it work. A reviewed entry
-      carries <b>no grade, no score, and no worksheet</b> — the build fails if one ever tries to.
-      A source read can be fooled by code that behaves differently at runtime, and it cannot tell
-      you whether the thing is any good. Reading is not running; the tier exists to name that gap
-      rather than paper over it.
-    </p>
-    <div class="callout">
-      <b>Enforced, not promised:</b> the honesty gate scans review prose for phrases that imply
-      execution — "we tested", "we ran", "verified working" — and <b>fails the build</b> on a hit.
-      The word choice is not left to whoever writes the prompt.
-    </div>
-
-    <h3>The pinning rule — why a review can't quietly go stale</h3>
-    <p>
-      Every review records <code>review.source_sha</code>: the exact commit whose bytes were read,
-      taken from the clone the reviewer read (<code>git rev-parse HEAD</code>), not from a
-      branch name. A branch moves; a commit doesn't.
-    </p>
+    <h2>How it stays current</h2>
     <ul>
-      <li>Each refresh re-reads the repo's current HEAD into <code>signals.head_sha</code>.</li>
-      <li>When <code>review.source_sha</code> no longer matches it, the build
-      <b>automatically demotes the entry back to <code>scouted</code></b>, archives the old review
-      under <code>review_stale</code> with the reason, and logs the demotion
-      (<code>validate_index.py --downgrade-stale</code>).</li>
-      <li>If that step is ever skipped or broken, the honesty gate treats a stale review as a
-      <b>blocking error</b> and the build stops. Belt and braces, deliberately: the fix keeps the
-      catalog current without a human, and the gate means a decayed claim cannot ship even if the
-      fix fails.</li>
-    </ul>
-    <p>
-      So a <code>reviewed</code> badge on this site means: <em>the source at the commit that is
-      live right now was read end to end.</em> It expires by itself.
-    </p>
-
-    <h2>The scouted tier — found is not read</h2>
-    <p>The scout (the workbench's fallback, the installable scout skill, and the MCP server's
-    <code>find_resources</code>) surfaces resources we have <b>not</b> graded. Each scouted entry
-    carries exactly four triage receipts, checked on the date shown:</p>
-    <ul>
-      <li><b>Provenance</b> — repo verified real via the GitHub API: author, stars, created-when.</li>
-      <li><b>License</b> — the license field/file as found; "none detected" is reported plainly.</li>
-      <li><b>Freshness</b> — last push date, with a flag when it's been quiet &gt;6 months.</li>
-      <li><b>Safety skim</b> — an automated scan of the repo's text for known-malicious
-      patterns: remote-exec pipes, credential and SSH-key reads, decode-then-execute. It is a
-      pattern match, not a reading. Anything it flags is <b>pulled off the site entirely</b>
-      and parked in <code>grading/quarantine.json</code> — we don't list something we suspect
-      and label it, because listing it is still advertising it. Only a person, having read the
-      flagged lines, can restore one.</li>
-    </ul>
-    <p>
-      So <code>scouted</code> means <em>nothing known-bad was found</em>, not <em>nothing bad is
-      there</em>. The full read is the <code>reviewed</code> tier above; until an entry reaches it,
-      the catalog says so plainly rather than letting the absence of a warning read as a clearance.
-    </p>
-    <div class="callout">
-      <b>Hard wall:</b> neither scouted nor reviewed entries ever carry a grade, a score, or a
-      worksheet, and scouted entries carry no install command. The honesty gate
-      (<code>scripts/validate_index.py</code>) fails the build if one tries. A scan is a screen,
-      a read is a description, and a grade is a test — the three are never merged.
-    </div>
-
-    <h2>Freshness &amp; disputes</h2>
-    <ul>
-      <li>Grades older than <b>90 days</b> are flagged <code>stale — re-verify pending</code> on the site.</li>
-      <li>Reviews don't expire on a clock, they expire on a <b>commit</b>: the moment upstream moves
-      past the reviewed sha, the entry drops to <code>scouted</code> until it is re-read. A review
-      is never "a few weeks old" — it either describes the live code or it is gone.</li>
-      <li>Re-grading a newer version supersedes the old worksheet — append-only, history never edited.</li>
-      <li>Authors who dispute a grade can open an issue; we re-run the protocol and publish the re-test either way.</li>
+      <li>Every listed skill is refreshed daily — stars, last push, description.</li>
+      <li>When a skill&rsquo;s code changes, it is re-scanned on the new code before it stays
+        listed. Creators who ship a new version every week show up here the next day.</li>
+      <li>Quarantined repos are re-scanned too; one that comes up clean on its current code
+        comes back automatically.</li>
+      <li>The date of each repo&rsquo;s latest scan is in the public catalog data
+        (<code>checked.date</code>).</li>
     </ul>
 
-    <h2>Protocol notes (v1.0)</h2>
-    <ul>
-      <li>Probe model pinned to a mainstream daily-driver tier (Claude Sonnet class), fresh headless session per probe.</li>
-      <li>Test environment: disposable Linux container, clean fixture project per skill; mutating probes get isolated fixtures.</li>
-      <li>Safety read-through happens <b>before</b> anything executes; third-party skills run only inside the sandbox.</li>
-      <li>Every score carries a one-line "why" — in the worksheet and in the site data. A number without a reason doesn't ship.</li>
-      <li>Protocol mistakes (a contaminated fixture, a failed run) are re-run and recorded in the worksheet, not papered over.</li>
-    </ul>
+    <h2>What this does and doesn&rsquo;t cover</h2>
+    <p>
+      The scan catches known malicious patterns; it is not a line-by-line review and not a
+      guarantee that a skill will work for you. Everything here is provided as-is. The
+      Skillproof skill reads a skill&rsquo;s current source before it runs anything from it —
+      and you should read anything before you run it too.
+    </p>
 
-    <p style="margin-top:36px"><a href="index.html">← Back to the workbench</a> ·
-    <a href="https://github.com/lucascashwell3-ai/Skillproof/blob/main/grading/RUBRIC.md">Canonical rubric text on GitHub</a></p>
+    <p style="margin-top:36px"><a href="index.html">&larr; Back to the catalog</a> &middot;
+    <a href="https://github.com/lucascashwell3-ai/Skillproof/blob/main/scripts/safety_skim.py">The scanner&rsquo;s source</a> &middot;
+    <a href="https://github.com/lucascashwell3-ai/Skillproof/blob/main/scripts/feeder.py">The daily job&rsquo;s source</a></p>
   </div>
 </main>
 
 <footer>
   <div class="wrap">
     <div class="foot-legal" style="margin-top:0;border-top:0">
-      <span>© 2026 Skillproof · MIT</span>
+      <span>© 2026 Skillproof · MIT · provided as-is</span>
       <span>Part of the <em>-proof</em> family:
         <a href="https://lucascashwell3-ai.github.io/modelproof/" style="color:var(--violet-d)">Modelproof</a> ·
         <a href="https://lucascashwell3-ai.github.io/datproof/" style="color:var(--violet-d)">DATproof</a></span>
     </div>
   </div>
 </footer>
-
-<script>
-/* Counts come from the catalogue itself — same idiom as how.html. This page
-   describes the protocol in the present tense, so if it named a tier without
-   saying how many entries have actually reached it, the page would imply the tier
-   is in use. That is the exact overclaim the reviewed tier exists to remove, so
-   the numbers are read from the data and the "none yet" note reveals itself. */
-(function () {
-  var counts = document.querySelectorAll("[data-tier-count]");
-  var empties = document.querySelectorAll("[data-tier-empty]");
-  if (!counts.length && !empties.length) return;
-  fetch("data/skills.json").then(function (r) {
-    if (!r.ok) throw new Error("HTTP " + r.status);
-    return r.json();
-  }).then(function (d) {
-    var c = {};
-    d.skills.forEach(function (s) { c[s.status] = (c[s.status] || 0) + 1; });
-    Array.prototype.forEach.call(counts, function (el) {
-      el.textContent = String(c[el.getAttribute("data-tier-count")] || 0);
-    });
-    Array.prototype.forEach.call(empties, function (el) {
-      el.hidden = (c[el.getAttribute("data-tier-empty")] || 0) > 0;
-    });
-  }).catch(function () {
-    // Never leave a placeholder ellipsis where a number should be, and never
-    // leave the "none yet" note showing on a guess — drop both instead.
-    Array.prototype.forEach.call(counts, function (el) { el.remove(); });
-    Array.prototype.forEach.call(empties, function (el) { el.remove(); });
-  });
-})();
-</script>
 </body>
 </html>

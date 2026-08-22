@@ -172,6 +172,9 @@ def classify(text):
 
 
 def to_entry(repo):
+    """One flat entry — the catalog has a single class (2026-08-21, Lucas: the
+    tier system is gone). The malice check (`checked`) is stamped on by the
+    feeder after safety_skim runs; everything else comes straight off the API."""
     full = repo["full_name"]
     desc = (repo.get("description") or "").strip()
     owner = repo["owner"]["login"]
@@ -180,13 +183,7 @@ def to_entry(repo):
     category, pains = classify(text)
     if is_lib:
         category = "library"
-    safety = (
-        "A library, not one skill — each skill needs its own read before use. Not graded; "
-        "individual skills may be graded separately later."
-        if is_lib else
-        "Source NOT yet read line-by-line — that read happens in grading. Treat as untrusted until graded."
-    )
-    return {
+    entry = {
         "id": kebab(full),
         "name": full if is_lib else repo["name"],
         "repo_url": repo["html_url"],
@@ -194,27 +191,18 @@ def to_entry(repo):
         "category": category,
         "summary": desc[:220] if desc else full,
         "pain_points": pains,
-        "status": "scouted",
-        "scouted_on": TODAY,
+        "created": repo["created_at"][:7],
+        "pushed": repo["pushed_at"][:10],
         "signals": {
             "stars": repo["stargazers_count"],
             "forks": repo["forks_count"],
             "checked": TODAY,
         },
-        "triage": {
-            # No star count here on purpose: signals.stars is refreshed weekly and
-            # carries its own `checked` date, so restating it in frozen prose just
-            # guarantees the record ends up contradicting itself.
-            "provenance": (
-                f"Repo verified real via GitHub API: {full}, "
-                f"created {repo['created_at'][:7]}."
-            ),
-            "license": license_line(repo),
-            "freshness": freshness_line(repo["pushed_at"]),
-            "safety": safety,
-        },
-        "next": "Queued for a full grading run.",
     }
+    lic = (repo.get("license") or {}).get("spdx_id")
+    if lic and lic != "NOASSERTION":
+        entry["license"] = lic
+    return entry
 
 
 def quality_ok(repo, min_stars):

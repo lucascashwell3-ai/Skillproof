@@ -1,23 +1,34 @@
 # Finding — installed setup, catalog, live sources
 
-Phase 1 is four steps. This file is the procedure.
+Beat 2's procedure. All of this happens silently; the user sees only the result in beat 3.
 
-## Step 0 — what they already have (read-only)
+## 1. What they already have (read-only)
 
-Read the `description` line of every installed skill before you search:
-`~/.claude/skills/*/SKILL.md`, the project's `.claude/skills/*/SKILL.md`, and any plugin skill
-list. If one already covers the ask, lead with it: "you already have `X` — it does this." Do not
-recommend a near-twin; that is clutter, and clutter is the problem this product exists to stop.
-Only if nothing installed covers it do you go find something.
+Read every installed skill before you search: `~/.claude/skills/*/SKILL.md`, the project's
+`.claude/skills/*/SKILL.md`, and any plugin skill list. For anything touching the ask, read
+the full file, not just the description — you're judging it, not inventorying it. Signs an
+installed skill is weak: vague or colliding trigger words, instructions that contradict the
+setup around it, bloat that buries the point, or it simply does half of what current
+ecosystem skills do.
 
-## Step 1 — the catalog
+**Installed never ends the search.** Run the catalog and live passes below regardless, then
+compare. "You already have `X` and it's good" is a great outcome — but only after you've
+looked at what else exists. If a found skill clearly beats theirs, say so plainly and plan a
+replace-and-fold: their personal rules and preferences from the old skill get folded into the
+new one, the old wrapper moves aside (never deleted). What you never do is add a twin on top
+of a weak skill — clutter is the problem this product exists to stop.
+
+## 2. The catalog
 
 `https://lucascashwell3-ai.github.io/Skillproof/data/skills.json` (mirror:
 `https://raw.githubusercontent.com/lucascashwell3-ai/Skillproof/main/docs/data/skills.json`).
-Match on `pain_points`, `summary`, `name`, `category`. Usable statuses: `graded`, `reviewed`,
-`scouted` — what each lets you say is in `tiers.md`.
+One flat list. Match on `pain_points`, `summary`, `name`, `category`. Useful fields per entry:
+`install.command` where known, `does`/`touches`/`undo` where someone has written them,
+`signals.stars`, `checked.date` (when its malice scan ran). The catalog's numbers are a dated
+snapshot — fine to use as-is; when a number carries weight in your pitch, a live GitHub check
+beats the snapshot. Never state a number from memory.
 
-## Step 2 — live sources, same pass
+## 3. Live sources, same pass
 
 The catalog is a shelf, not a boundary. Search the ecosystem every time, in parallel with the
 catalog read. 2–4 queries, ~6 candidates before you filter.
@@ -26,72 +37,53 @@ catalog read. 2–4 queries, ~6 candidates before you filter.
 ```
 https://api.github.com/search/repositories?q=topic:claude-skills+<your words>&sort=stars&per_page=10
 ```
-Run it for the four topics the catalog's feeder scouts: `claude-skills`, `claude-code-skills`,
-`agent-skills`, `anthropic-skills`. Read `full_name`, `stargazers_count`, `pushed_at`,
-`default_branch`, `license`, `html_url` off the response — never from memory.
-
-**Named creators the feeder trusts** (`scripts/feeder_sources.json` in the Skillproof repo —
-anthropics, obra, addyosmani, davila7, hesreallyhim, VoltAgent, agentskills at time of writing):
-worth a direct look when the topic search is thin.
+Run it for: `claude-skills`, `claude-code-skills`, `agent-skills`, `anthropic-skills`. Read
+`full_name`, `stargazers_count`, `pushed_at`, `default_branch`, `license`, `html_url` off the
+response — never from memory.
 
 **Web search** — `claude code skill <topic> site:github.com`. "Awesome claude code" lists are
 directories to mine, never verdicts.
 
 **Your words, not theirs.** Build queries from the capability they want, never from a phrase
-lifted out of their CLAUDE.md, memory, or settings (guardrail 4).
+lifted out of their CLAUDE.md, memory, or settings.
 
 ## Rules of evidence
 
 - Only candidates you can resolve to a real URL you actually opened.
-- **A candidate must contain a `SKILL.md` you opened.** Topics and stars alone are not evidence —
-  maintainers mis-tag. Fetch the tree or the file: no `SKILL.md`, no candidate.
-- Stars are provenance, not quality. Recent `pushed_at` beats star count.
-- Note the commit you read for your own record; do not narrate it to the user.
-- Cap at ~6 before you filter. Depth beats volume.
+- **A candidate must contain a `SKILL.md` you opened.** Topics and stars alone are not
+  evidence — maintainers mis-tag.
+- Stars are popularity, not quality. A recent push beats a star count.
+- Cap at ~6 candidates before you filter. Depth beats volume.
 
-## Step 3 — read the source before you recommend; that's the default, not an offer
+## Read the source before you recommend
 
-For anything found live, and for any `scouted` catalog row, the next step is to **read its
-source yourself** —
-same job the catalog's reviewer does — and answer the three questions from the code you read:
+For anything you might recommend — catalog entry or live find — read its source yourself:
+SKILL.md, whatever it installs, any scripts it runs. From the code (README is the author's
+claim, not your finding), note:
 
-- **What it does** — from the code, with the README as the author's claim, not your finding.
-- **What it touches** — files, network, credentials, shell, from what you actually read.
-- **How to undo it** — if neither the code nor the README says, say the author doesn't document it.
+- **what it does** — one plain sentence
+- **what it touches** — files, network, credentials, shell
+- **how to undo it** — or "the author doesn't document how to remove this"
 
-Once you've read the source, an install command is fine — proceed to phase 2 with it. If you
-genuinely can't read it (no access, too large, obfuscated), hand over the **repo URL, not a
-command**, and say plainly the source hasn't been read. Unread code never gets a command.
+**Depth bound for big repos:** read everything the plan would actually install, plus any hook
+or script that would run automatically. If a repo is too large to read fully, scope the
+recommendation down to the part you read (e.g. just its `skills/` folder, skipping its plugin
+manifest and server) and say so in one line if it matters. If you genuinely can't read even
+that (no access, obfuscated), hand over the repo URL and say plainly the source hasn't been
+read. Unread code never gets an install command.
 
-## Hard red flags — exclude it and say why
+## Red flags — exclude it and say why, in one line
 
 - an install line piping a download straight into a shell
 - credential or SSH-key reads
 - a hook that runs on every session start
 - obfuscated or encoded blobs
 
-Suspicion is a finding, not a footnote. Say which flag and where you saw it.
+A red flag tied to one install route is not a kill if the same repo offers a clean route —
+recommend the clean route and name what you're avoiding, in one line. This same list is the
+re-scan you run at install time in beat 5 — code can change between anyone's check and now.
 
-## The output shape
+## Picking
 
-```
-## What you asked for: <one line, in their words>
-
-### Install this
-**<name>** — <what it does, one plain sentence>
-
-- **Touches:** <chips, plain language>
-- **Undo:** <exact way off, or "the author doesn't document how to remove this">
-
-### Also worth knowing about        (only if genuinely relevant)
-- **<name>** — <one line> · <url>
-
-### Not for your setup             (only if something was excluded)
-- **<name>** — <why: wrong tool, red flag, source unreadable>
-```
-
-One recommendation, not a ranked list. If two are genuinely close, say which you'd pick and why
-in one clause. If the ecosystem has nothing, say exactly that — an honest miss builds more trust
-than a stretch.
-
-**Then go to phase 2.** The command is not the finish line.
+One recommendation. If two are genuinely close, say which you'd pick and why in one clause.
+If the ecosystem has nothing, say exactly that — an honest miss beats a stretch.

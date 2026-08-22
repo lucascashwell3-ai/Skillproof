@@ -8,37 +8,37 @@ Most skills fail *after* they're installed. They land in a setup that already ha
 CLAUDE.md, memory files, a dozen other skills and standing instructions — and they get
 overridden, out-voted, or ignored. The person installs the thing and nothing changes.
 
-This skill does the whole job in six phases:
+This skill does the whole job in one short conversation — five beats:
 
-1. **Find** the right resource for what you described — Skillproof's catalog first, the wider
-   ecosystem after, with what-it-does / what-it-touches / how-to-undo-it on every candidate.
-2. **Read your setup**, read-only — global and project `CLAUDE.md`, installed skills, settings,
-   memory, plugins.
-3. **Say what will fight it**, in plain words: contradictions, overlap, instruction dilution,
-   trigger collisions, blocked tools, automation that will overwrite it.
-4. **Show every change** it wants to make, numbered, before asking for anything.
-5. **Ask permission per change.** One yes does not carry to the next file.
-6. **Make the change, confirm it works, hand over the undo.**
+1. **Readback.** Your problem in one line: "here's what I think is wrong — right?"
+2. **Find.** What you already have installed, then the Skillproof catalog and live GitHub
+   sources in the same pass. It reads the source of anything before recommending it.
+3. **Fit-check + plan.** It reads your setup (CLAUDE.md, installed skills, settings), names
+   what would fight the install in plain words, and shows one numbered plan — every file it
+   would touch.
+4. **Your yes.** Nothing is written before it. A no to any part just cuts that part.
+5. **Execute + confirm.** Backup first, install, verify it actually triggers, hand you the
+   undo. "You're all set."
 
-It edits your setup — that's the point — but it never writes anything without an explicit yes
-for that specific change, it backs up before every edit, and it never deletes. The full contract
-is in [`references/consent.md`](skillproof/references/consent.md); read it before you install.
+It edits your setup — that's the point — but never without the plan and your yes, it backs up
+before every edit, and it never deletes. The full contract is in
+[`references/consent.md`](skillproof/references/consent.md); read it before you install.
 
 ### Install (Claude Code)
 
 ```bash
-for f in SKILL.md references/consent.md references/conflict-patterns.md references/install-paths.md references/tiers.md references/finding.md references/security.md; do curl -fsSL --create-dirs https://raw.githubusercontent.com/lucascashwell3-ai/Skillproof/main/skills/skillproof/$f -o ~/.claude/skills/skillproof/$f; done
+for f in SKILL.md references/consent.md references/conflict-patterns.md references/install-paths.md references/finding.md references/security.md; do curl -fsSL --create-dirs https://raw.githubusercontent.com/lucascashwell3-ai/Skillproof/main/skills/skillproof/$f -o ~/.claude/skills/skillproof/$f; done
 ```
 
-Seven files to disk, nothing piped into a shell. Or clone this repo and copy `skills/skillproof/`
+Six files to disk, nothing piped into a shell. Or clone this repo and copy `skills/skillproof/`
 into `~/.claude/skills/` (everywhere) or `<project>/.claude/skills/` (one project).
 
 Then ask naturally: *"find me a skill that makes my frontend output less generic"*, *"install
 this for me"*, or *"why isn't this skill working"*.
 
-**Renamed 2026-08-03** from `skillproof-scout`. Scouting is phase 1 of 6, so the old name
-undersold it. If you installed the old one, delete `~/.claude/skills/skillproof-scout/` after
-installing this — otherwise both fire on the same requests.
+**Renamed 2026-08-03** from `skillproof-scout`. Scouting is only the first beat, so the old
+name undersold it. If you installed the old one, delete `~/.claude/skills/skillproof-scout/`
+after installing this — otherwise both fire on the same requests.
 
 ### Relationship to the root SKILL.md
 
@@ -46,4 +46,4 @@ The repo root's `SKILL.md` is the deeper **research engine** (YouTube/X mining, 
 fan-out, findings review gates) that Skillproof itself uses for discovery sessions. This one is
 the user-facing product: your problem in, a working install out.
 
-MIT · Grades and receipts: https://github.com/lucascashwell3-ai/Skillproof
+MIT · Source: https://github.com/lucascashwell3-ai/Skillproof
