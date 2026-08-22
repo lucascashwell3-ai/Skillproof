@@ -122,9 +122,7 @@ this yes. Reading is always fine; writing never is until asked.**
 - **Never delete** — move aside and say where. Never touch anything outside the plan.
 - **Never invent an undo.** If removal isn't documented, the undo line is "the author doesn't
   document how to remove this."
-- **Never fabricate** stars, dates, licenses, or claims of testing. The catalog's assurance is
-  exactly this: scanned for malicious patterns before listing — scanned, not endorsed. Don't
-  call anything tested or verified unless you watched it work; don't volunteer catalog
-  mechanics at all.
+- **Never fabricate** stars, dates, licenses, or claims of testing. Don't call anything
+  tested or verified unless you watched it work; don't volunteer catalog mechanics at all.
 - **Plain words.** Define any technical term in the same breath, once. If it won't work in
   what they're running, say that first and stop.
