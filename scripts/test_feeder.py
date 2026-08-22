@@ -114,6 +114,21 @@ class TestSkillEvidence(unittest.TestCase):
         self.assertTrue(ok)
         self.assertEqual(reason, "ok")
 
+    def test_skill_md_under_dot_folder_is_not_evidence(self):
+        # cloudflare/workerd, mattpocock/ts-reset: the repo's own dev skills
+        orig = feeder.gh
+        feeder.gh = lambda path: {"truncated": False, "tree": [
+            {"path": ".opencode/skills/ci-report/SKILL.md"},
+            {"path": ".claude/skills/research/SKILL.md"},
+            {"path": "src/index.ts"},
+        ]}
+        try:
+            ok, reason = feeder.is_skill_evidence(repo(topics=[], default_branch="main"))
+        finally:
+            feeder.gh = orig
+        self.assertFalse(ok)
+        self.assertIn("SKILL.md", reason)
+
     def test_skill_md_in_subdirectory_counts(self):
         orig = feeder.gh
         feeder.gh = lambda path: {"truncated": False, "tree": [

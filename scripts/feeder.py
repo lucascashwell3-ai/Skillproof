@@ -177,6 +177,11 @@ def has_skill_md(full_name, default_branch):
     for item in tree.get("tree", []):
         path = item.get("path", "")
         if path == "SKILL.md" or path.endswith("/SKILL.md"):
+            # A SKILL.md inside a dot-folder (.claude/skills/, .opencode/skills/)
+            # is the repo's OWN dev tooling, not an installable skill — product
+            # repos like cloudflare/workerd carry dozens (2026-08-22).
+            if any(part.startswith(".") for part in path.split("/")[:-1]):
+                continue
             return True
     return False
 
