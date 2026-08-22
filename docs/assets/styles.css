@@ -241,10 +241,14 @@ kbd{font-family:var(--mono);font-size:.71rem;padding:2px 5px;border-radius:5px;b
 .hero-assure{margin-top:12px;font-size:.78rem;color:var(--mint-d);font-weight:500}
 
 /* the living terminal — P1: Claude Code inside a macOS Terminal window */
+/* no overflow:hidden here — it would clip the border beam, which orbits just
+   OUTSIDE the card (inset:-3px). The bar and body carry their own corner
+   radii instead. */
 .term{position:relative;background:#1E1E1E;border-radius:12px;
-  overflow:hidden;box-shadow:0 0 0 1px rgba(255,255,255,.08), var(--shadow-lg);
+  box-shadow:0 0 0 1px rgba(255,255,255,.08), var(--shadow-lg);
   display:flex;flex-direction:column;align-self:stretch}
 .term-bar{display:flex;align-items:center;gap:8px;padding:0 12px;height:38px;position:relative;
+  border-radius:12px 12px 0 0;
   background:linear-gradient(#3A3A3A,#2C2C2C);border-bottom:1px solid #111}
 .tdot{width:12px;height:12px;border-radius:50%;flex:none}
 .tdot:nth-child(1){background:#FF5F57}.tdot:nth-child(2){background:#FEBC2E}.tdot:nth-child(3){background:#28C840}
@@ -253,7 +257,7 @@ kbd{font-family:var(--mono);font-size:.71rem;padding:2px 5px;border-radius:5px;b
 .mdot{width:7px;height:7px;border-radius:50%;background:#444;transition:background 300ms var(--ease-out)}
 .mdot.on{background:#8AB4FF}
 .term-body{padding:14px 18px 18px;font-family:var(--mono);font-size:.9rem;line-height:1.7;
-  flex:1;min-height:520px;overflow:hidden;color:#D4D4D4;
+  flex:1;min-height:520px;overflow:hidden;color:#D4D4D4;border-radius:0 0 12px 12px;
   transition:opacity 340ms var(--ease-out),transform 340ms var(--ease-out)}
 /* 8: direction-aware swap — outgoing session slides toward the tab you left,
    incoming arrives from the tab you chose */
@@ -282,11 +286,16 @@ kbd{font-family:var(--mono);font-size:.71rem;padding:2px 5px;border-radius:5px;b
   .inst-pane.on{animation:none}
 }
 
-/* border beam: a bright segment travelling the terminal's border. Pure
+/* border beam: ONE bright segment travelling the terminal's border. Pure
    compositor work (one animated custom property driving a conic gradient
-   masked to the border ring) — nothing repaints inside the card. */
+   masked to the border ring) — nothing repaints inside the card.
+   Both rings share the exact same geometry, sitting just OUTSIDE the card
+   (inset:-3px) so the card's dark rounded corners never poke through the
+   band; the glow is the same ring blurred, so it reads as one beam with a
+   halo, not two segments side by side. (Hover-follow removed 2026-08-21 —
+   the leave-restart looked like a glitch.) */
 @property --beam{syntax:"<angle>";inherits:false;initial-value:0deg}
-.term::before,.term::after{content:"";position:absolute;inset:0;border-radius:inherit;padding:2.5px;
+.term::before,.term::after{content:"";position:absolute;inset:-3px;border-radius:15px;padding:3px;
   pointer-events:none;z-index:3;
   background:conic-gradient(from var(--beam),
     transparent 0turn, transparent .52turn,
@@ -295,17 +304,14 @@ kbd{font-family:var(--mono);font-size:.71rem;padding:2px 5px;border-radius:5px;b
   -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite:xor;mask-composite:exclude;
   animation:beam 6s linear infinite}
-/* the glow: same ring, blurred, under the crisp one */
-.term::before{padding:5px;filter:blur(9px);opacity:1}
-/* interactive: while the pointer is over the terminal, the beam follows it */
-.term.beam-follow::before,.term.beam-follow::after{animation:none;transition:--beam 320ms var(--ease-out)}
+/* the glow: identical ring, blurred, under the crisp one */
+.term::before{filter:blur(7px)}
 @keyframes beam{to{--beam:360deg}}
 @media (prefers-reduced-motion: reduce){
   .term::before,.term::after{animation:none;background:conic-gradient(from 40deg,
     transparent 0turn, transparent .74turn,
     rgba(109,91,246,.7) .82turn, #8FBBE8 .88turn, rgba(255,255,255,.9) .90turn, #7FD9B4 .94turn,
     transparent 1turn)}
-  .term.beam-follow::before,.term.beam-follow::after{transition:none}
 }
 
 /* review "touches" chips — the fixed 8-word vocabulary, one chip each */
