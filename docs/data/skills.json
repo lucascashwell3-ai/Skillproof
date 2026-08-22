@@ -660,31 +660,6 @@
       }
     },
     {
-      "id": "shanraisshan-claude-code-best-practice",
-      "name": "claude-code-best-practice",
-      "repo_url": "https://github.com/shanraisshan/claude-code-best-practice",
-      "author": "shanraisshan",
-      "category": "context",
-      "summary": "from vibe coding to agentic engineering - practice makes claude perfect",
-      "pain_points": [
-        "context-bloat"
-      ],
-      "license": "MIT",
-      "created": "2025-10",
-      "pushed": "2026-08-21",
-      "signals": {
-        "stars": 64842,
-        "forks": 6448,
-        "checked": "2026-08-22",
-        "head_sha": "d4df0acdfe1c149d80a3c97bbd41a1dbb6132175",
-        "head_checked": "2026-08-22"
-      },
-      "checked": {
-        "date": "2026-07-27",
-        "files_scanned": 135
-      }
-    },
-    {
       "id": "voltagent-awesome-openclaw-skills",
       "name": "VoltAgent/awesome-openclaw-skills",
       "repo_url": "https://github.com/VoltAgent/awesome-openclaw-skills",
@@ -1026,38 +1001,6 @@
       }
     },
     {
-      "id": "donchitos-claude-code-game-studios",
-      "name": "Claude-Code-Game-Studios",
-      "repo_url": "https://github.com/Donchitos/Claude-Code-Game-Studios",
-      "author": "Donchitos",
-      "category": "frontend",
-      "summary": "Turn Claude Code into a full game dev studio — 49 AI agents, 72 workflow skills, and a complete coordination system mirroring real studio hierarchy.",
-      "pain_points": [
-        "generic-frontend"
-      ],
-      "license": "MIT",
-      "created": "2026-02",
-      "pushed": "2026-05-21",
-      "does": "It gives your agent a set of game-studio routines — it can write onboarding guides, audit game assets, estimate task effort, check for scope creep, analyze game balance, track technical debt, review milestones, and turn playtest notes into reports, saving many of these as documents in your project after asking you first.",
-      "touches": [
-        "reads project files",
-        "writes project files",
-        "runs shell commands"
-      ],
-      "undo": "not documented by the author",
-      "signals": {
-        "stars": 24392,
-        "forks": 3487,
-        "checked": "2026-08-22",
-        "head_sha": "984023ddac0d5e27624f2baacde6105e45de375f",
-        "head_checked": "2026-08-22"
-      },
-      "checked": {
-        "date": "2026-07-27",
-        "files_scanned": 417
-      }
-    },
-    {
       "id": "alirezarezvani-claude-skills",
       "name": "alirezarezvani/claude-skills",
       "repo_url": "https://github.com/alirezarezvani/claude-skills",
@@ -1372,38 +1315,6 @@
       }
     },
     {
-      "id": "diet103-claude-code-infrastructure-showcase",
-      "name": "claude-code-infrastructure-showcase",
-      "repo_url": "https://github.com/diet103/claude-code-infrastructure-showcase",
-      "author": "diet103",
-      "category": "automation",
-      "summary": "Examples of my Claude Code infrastructure with skill auto-activation, hooks, and agents",
-      "pain_points": [],
-      "license": "MIT",
-      "created": "2025-10",
-      "pushed": "2026-07-13",
-      "does": "Gives your agent a set of written playbooks it will follow while coding — style rules for backend and frontend work, a rule that every error gets reported to the Sentry monitoring service, and one playbook that tells the agent to run a setup health-check script and automatically fix whatever it finds broken.",
-      "touches": [
-        "reads project files",
-        "writes project files",
-        "runs shell commands",
-        "installs dependencies",
-        "network calls"
-      ],
-      "undo": "not documented by the author",
-      "signals": {
-        "stars": 10006,
-        "forks": 1228,
-        "checked": "2026-08-22",
-        "head_sha": "07f75ce3c301259e857343596e7883b8ce5a9f50",
-        "head_checked": "2026-08-22"
-      },
-      "checked": {
-        "date": "2026-07-27",
-        "files_scanned": 130
-      }
-    },
-    {
       "id": "xixu-me-xget",
       "name": "xget",
       "repo_url": "https://github.com/xixu-me/xget",
@@ -1642,31 +1553,6 @@
       "checked": {
         "date": "2026-08-16",
         "files_scanned": 167
-      }
-    },
-    {
-      "id": "anthropics-claude-quickstarts",
-      "name": "anthropics/claude-quickstarts",
-      "repo_url": "https://github.com/anthropics/claude-quickstarts",
-      "author": "anthropics",
-      "category": "library",
-      "summary": "A collection of projects designed to help developers quickly get started with building deployable applications using the Claude API",
-      "pain_points": [
-        "generic-frontend"
-      ],
-      "license": "MIT",
-      "created": "2024-08",
-      "pushed": "2026-08-21",
-      "signals": {
-        "stars": 17509,
-        "forks": 3018,
-        "checked": "2026-08-22",
-        "head_sha": "5264b729deda905dba3e5402d717bebed000325c",
-        "head_checked": "2026-08-22"
-      },
-      "checked": {
-        "date": "2026-08-21",
-        "files_scanned": 395
       }
     },
     {
@@ -1938,54 +1824,6 @@
       }
     },
     {
-      "id": "khazp-vibe-coding-prompt-template",
-      "name": "KhazP/vibe-coding-prompt-template",
-      "repo_url": "https://github.com/KhazP/vibe-coding-prompt-template",
-      "author": "KhazP",
-      "category": "library",
-      "summary": "Templates and workflow for generating PRDs, Tech Designs, and MVP and more using LLMs for AI IDEs",
-      "pain_points": [
-        "generic-frontend"
-      ],
-      "license": "MIT",
-      "created": "2025-04",
-      "pushed": "2026-08-21",
-      "signals": {
-        "stars": 2859,
-        "forks": 363,
-        "checked": "2026-08-22",
-        "head_sha": "254bae5682d11fb27012f407d619bf55828ae639",
-        "head_checked": "2026-08-22"
-      },
-      "checked": {
-        "date": "2026-08-16",
-        "files_scanned": 71
-      }
-    },
-    {
-      "id": "wesammustafa-claude-code-everything-you-need-to-know",
-      "name": "Claude-Code-Everything-You-Need-to-Know",
-      "repo_url": "https://github.com/wesammustafa/Claude-Code-Everything-You-Need-to-Know",
-      "author": "wesammustafa",
-      "category": "automation",
-      "summary": "A practical Claude Code guide with clear mental models and copy-paste examples — setup, prompt engineering, slash commands, skills, hooks, subagents, agent teams, and MCP servers. Beginner path to power-user depth. Featu",
-      "pain_points": [],
-      "license": "MIT",
-      "created": "2025-08",
-      "pushed": "2026-07-28",
-      "signals": {
-        "stars": 2678,
-        "forks": 317,
-        "checked": "2026-08-22",
-        "head_sha": "d9e93740193aeae2cd661c7ddf6f0c8f8989860b",
-        "head_checked": "2026-08-22"
-      },
-      "checked": {
-        "date": "2026-08-16",
-        "files_scanned": 66
-      }
-    },
-    {
       "id": "addyosmani-web-quality-skills",
       "name": "addyosmani/web-quality-skills",
       "repo_url": "https://github.com/addyosmani/web-quality-skills",
@@ -2109,32 +1947,6 @@
       }
     },
     {
-      "id": "pedrohcgs-claude-code-my-workflow",
-      "name": "claude-code-my-workflow",
-      "repo_url": "https://github.com/pedrohcgs/claude-code-my-workflow",
-      "author": "pedrohcgs",
-      "category": "research",
-      "summary": "A ready-to-fork Claude Code template for academics using LaTeX/Beamer + R. Multi-agent review, quality gates, adversarial QA, and replication protocols.",
-      "pain_points": [
-        "testing-discipline",
-        "shallow-research"
-      ],
-      "license": "MIT",
-      "created": "2026-02",
-      "pushed": "2026-08-22",
-      "signals": {
-        "stars": 1520,
-        "forks": 2962,
-        "checked": "2026-08-22",
-        "head_sha": "be53c12f235996dff41fb7f21580506fd2dd8d50",
-        "head_checked": "2026-08-22"
-      },
-      "checked": {
-        "date": "2026-08-17",
-        "files_scanned": 186
-      }
-    },
-    {
       "id": "specstoryai-getspecstory",
       "name": "getspecstory",
       "repo_url": "https://github.com/specstoryai/getspecstory",
@@ -2231,29 +2043,6 @@
       "checked": {
         "date": "2026-08-18",
         "files_scanned": 37
-      }
-    },
-    {
-      "id": "anthropics-launch-your-agent",
-      "name": "launch-your-agent",
-      "repo_url": "https://github.com/anthropics/launch-your-agent",
-      "author": "anthropics",
-      "category": "workflow",
-      "summary": "Claude Code skills that take a founder from idea to a live Claude Managed Agent: interview, scope a v0, launch in their own account, grade it, iterate, and schedule it",
-      "pain_points": [],
-      "license": "Apache-2.0",
-      "created": "2026-06",
-      "pushed": "2026-07-07",
-      "signals": {
-        "stars": 957,
-        "forks": 185,
-        "checked": "2026-08-22",
-        "head_sha": "c9e0f1378a252bd42deb7e9eb02ac0cbd07160bc",
-        "head_checked": "2026-08-22"
-      },
-      "checked": {
-        "date": "2026-08-18",
-        "files_scanned": 14
       }
     },
     {
@@ -2452,27 +2241,6 @@
       }
     },
     {
-      "id": "steipete-codexbar",
-      "name": "CodexBar",
-      "repo_url": "https://github.com/steipete/CodexBar",
-      "author": "steipete",
-      "category": "workflow",
-      "summary": "Show usage stats for OpenAI Codex and Claude Code, without having to login.",
-      "pain_points": [],
-      "created": "2025-11",
-      "pushed": "2026-08-22",
-      "signals": {
-        "stars": 20442,
-        "forks": 1758,
-        "checked": "2026-08-22"
-      },
-      "license": "MIT",
-      "checked": {
-        "date": "2026-08-22",
-        "files_scanned": 305
-      }
-    },
-    {
       "id": "vercel-labs-json-render",
       "name": "json-render",
       "repo_url": "https://github.com/vercel-labs/json-render",
@@ -2519,27 +2287,6 @@
       }
     },
     {
-      "id": "cloudflare-quiche",
-      "name": "quiche",
-      "repo_url": "https://github.com/cloudflare/quiche",
-      "author": "cloudflare",
-      "category": "workflow",
-      "summary": "🥧 Savoury implementation of the QUIC transport protocol and HTTP/3",
-      "pain_points": [],
-      "created": "2018-09",
-      "pushed": "2026-08-14",
-      "signals": {
-        "stars": 11787,
-        "forks": 1065,
-        "checked": "2026-08-22"
-      },
-      "license": "BSD-2-Clause",
-      "checked": {
-        "date": "2026-08-22",
-        "files_scanned": 600
-      }
-    },
-    {
       "id": "vercel-labs-portless",
       "name": "portless",
       "repo_url": "https://github.com/vercel-labs/portless",
@@ -2558,94 +2305,6 @@
       "checked": {
         "date": "2026-08-22",
         "files_scanned": 172
-      }
-    },
-    {
-      "id": "cloudflare-cloudflare-os",
-      "name": "cloudflare-os",
-      "repo_url": "https://github.com/cloudflare/cloudflare-os",
-      "author": "cloudflare",
-      "category": "context",
-      "summary": "Agent workspace built on Cloudflare Workers for creating documents, building apps, and running agents with your company’s context and systems.",
-      "pain_points": [
-        "context-bloat"
-      ],
-      "created": "2026-04",
-      "pushed": "2026-08-21",
-      "signals": {
-        "stars": 8733,
-        "forks": 998,
-        "checked": "2026-08-22"
-      },
-      "license": "Apache-2.0",
-      "checked": {
-        "date": "2026-08-22",
-        "files_scanned": 600
-      }
-    },
-    {
-      "id": "cloudflare-workerd",
-      "name": "workerd",
-      "repo_url": "https://github.com/cloudflare/workerd",
-      "author": "cloudflare",
-      "category": "workflow",
-      "summary": "The JavaScript / Wasm runtime that powers Cloudflare Workers",
-      "pain_points": [],
-      "created": "2022-09",
-      "pushed": "2026-08-22",
-      "signals": {
-        "stars": 8622,
-        "forks": 707,
-        "checked": "2026-08-22"
-      },
-      "license": "Apache-2.0",
-      "checked": {
-        "date": "2026-08-22",
-        "files_scanned": 600
-      }
-    },
-    {
-      "id": "mattpocock-ts-reset",
-      "name": "ts-reset",
-      "repo_url": "https://github.com/mattpocock/ts-reset",
-      "author": "mattpocock",
-      "category": "frontend",
-      "summary": "A 'CSS reset' for TypeScript, improving types for common JavaScript API's",
-      "pain_points": [
-        "generic-frontend"
-      ],
-      "created": "2023-02",
-      "pushed": "2026-04-01",
-      "signals": {
-        "stars": 8585,
-        "forks": 144,
-        "checked": "2026-08-22"
-      },
-      "license": "MIT",
-      "checked": {
-        "date": "2026-08-22",
-        "files_scanned": 58
-      }
-    },
-    {
-      "id": "cloudflare-computer",
-      "name": "computer",
-      "repo_url": "https://github.com/cloudflare/computer",
-      "author": "cloudflare",
-      "category": "workflow",
-      "summary": "Give your agent a computer 👾",
-      "pain_points": [],
-      "created": "2026-06",
-      "pushed": "2026-08-21",
-      "signals": {
-        "stars": 8467,
-        "forks": 463,
-        "checked": "2026-08-22"
-      },
-      "license": "MIT",
-      "checked": {
-        "date": "2026-08-22",
-        "files_scanned": 592
       }
     },
     {
@@ -2694,27 +2353,6 @@
       }
     },
     {
-      "id": "steipete-summarize",
-      "name": "summarize",
-      "repo_url": "https://github.com/steipete/summarize",
-      "author": "steipete",
-      "category": "workflow",
-      "summary": "Point at any URL/YouTube/Podcast or file. Get the gist. CLI and Chrome Extension.",
-      "pain_points": [],
-      "created": "2025-12",
-      "pushed": "2026-08-13",
-      "signals": {
-        "stars": 6570,
-        "forks": 441,
-        "checked": "2026-08-22"
-      },
-      "license": "MIT",
-      "checked": {
-        "date": "2026-08-22",
-        "files_scanned": 600
-      }
-    },
-    {
       "id": "steipete-agent-scripts",
       "name": "agent-scripts",
       "repo_url": "https://github.com/steipete/agent-scripts",
@@ -2733,48 +2371,6 @@
       "checked": {
         "date": "2026-08-22",
         "files_scanned": 183
-      }
-    },
-    {
-      "id": "vercel-labs-open-agents",
-      "name": "vercel-labs/open-agents",
-      "repo_url": "https://github.com/vercel-labs/open-agents",
-      "author": "vercel-labs",
-      "category": "library",
-      "summary": "An open source template for building cloud agents.",
-      "pain_points": [],
-      "created": "2025-12",
-      "pushed": "2026-08-20",
-      "signals": {
-        "stars": 5786,
-        "forks": 755,
-        "checked": "2026-08-22"
-      },
-      "license": "MIT",
-      "checked": {
-        "date": "2026-08-22",
-        "files_scanned": 600
-      }
-    },
-    {
-      "id": "coleam00-ottomator-agents",
-      "name": "coleam00/ottomator-agents",
-      "repo_url": "https://github.com/coleam00/ottomator-agents",
-      "author": "coleam00",
-      "category": "library",
-      "summary": "All the open source AI Agents hosted on the oTTomator Live Agent Studio platform!",
-      "pain_points": [],
-      "created": "2024-12",
-      "pushed": "2025-11-09",
-      "signals": {
-        "stars": 5734,
-        "forks": 1947,
-        "checked": "2026-08-22"
-      },
-      "license": "MIT",
-      "checked": {
-        "date": "2026-08-22",
-        "files_scanned": 600
       }
     },
     {
