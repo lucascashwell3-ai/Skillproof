@@ -247,15 +247,27 @@ def skim_record(result):
     }
 
 
-def refresh_existing(data, do_rescan=True):
-    """Refresh every listed entry from the API, and re-scan the ones whose code
+REFRESH_PER_RUN = 150  # ~2 API calls each; keeps a run well inside GitHub's hourly limit
+
+
+def refresh_existing(data, do_rescan=True, budget=REFRESH_PER_RUN):
+    """Refresh listed entries from the API, and re-scan the ones whose code
     moved since we last scanned. Growth-only: an entry only leaves the catalog
     when the scan finds a red flag in its current code. API misses, clone
     failures and timeouts keep the entry exactly as it was (retried next run).
-    Each entry is isolated — an exception on one never touches the others."""
+    Each entry is isolated — an exception on one never touches the others.
+    Rotating slice: the `budget` entries with the oldest `signals.checked` go
+    first, so a catalog of any size is fully cycled every few days without a
+    single run ever blowing the API limit."""
     refreshed, rescanned, quarantined = 0, 0, []
     kept = []
-    for s in data["skills"]:
+    order = sorted(range(len(data["skills"])),
+                   key=lambda i: (data["skills"][i].get("signals") or {}).get("checked") or "")
+    due = set(order[:budget])
+    for i, s in enumerate(data["skills"]):
+        if i not in due:
+            kept.append(s)
+            continue
         try:
             m = re.match(r"https://github\.com/([^/]+/[^/]+)/?$", s.get("repo_url", ""))
             repo = gh(f"repos/{m.group(1)}") if m else None

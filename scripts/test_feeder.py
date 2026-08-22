@@ -392,5 +392,28 @@ class TestQuarantineRecheck(unittest.TestCase):
         self.assertEqual(data["skills"], [])
 
 
+class TestRefreshBudget(unittest.TestCase):
+    def test_oldest_checked_go_first_and_rest_untouched(self):
+        def mk(i, checked):
+            return {"id": f"s{i}", "name": f"s{i}", "repo_url": f"https://github.com/acme/s{i}",
+                    "summary": "old", "signals": {"stars": 0, "checked": checked, "head_sha": "a"},
+                    "checked": {"date": checked}}
+        data = {"skills": [mk(0, "2026-08-20"), mk(1, "2026-08-01"), mk(2, "2026-08-10")]}
+        def gh(p):
+            if "commits" in p: return [{"sha": "a"}]
+            return repo(description="new")
+        orig = feeder.gh; feeder.gh = gh
+        try:
+            refreshed, _, _ = feeder.refresh_existing(data, budget=2)
+        finally:
+            feeder.gh = orig
+        self.assertEqual(refreshed, 2)
+        by = {s["id"]: s["summary"] for s in data["skills"]}
+        self.assertEqual(by["s1"], "new")   # oldest
+        self.assertEqual(by["s2"], "new")   # second oldest
+        self.assertEqual(by["s0"], "old")   # newest waits for the next run
+        self.assertEqual([s["id"] for s in data["skills"]], ["s0", "s1", "s2"])  # order preserved
+
+
 if __name__ == "__main__":
     unittest.main()
