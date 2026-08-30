@@ -2,123 +2,75 @@
 
 # ✦ Skillproof
 
-**The rating agency for Claude skills.**
+**Give your agents the skills they need.**
 
-Thousands of community skills exist; directories count them, nobody grades them.
-Skillproof is a small, curated index where every skill was **installed, probed in real
-sessions, and graded A–F** against a [published rubric](grading/RUBRIC.md) — with a
-filled [grading worksheet](grading/worksheets/) behind every grade. Tell the site your
-pain point; it hands you a vetted stack.
+Skills don't work if your setup rejects them. Skillproof finds what you need and fits it
+into the setup you already have — one short conversation, one plan, one yes.
 
-`MIT` · a static site + a Claude Code research skill · part of the `-proof` family (DATproof · Modelproof)
+`MIT` · a static site + a Claude Code skill + an MCP server · part of the `-proof` family (DATproof · Modelproof)
 
-<img src="docs/assets/og-preview.png" alt="Skillproof — the graded index and pain-point matcher on a dark starfield" width="840">
+<img src="docs/assets/readme-preview.png" alt="Skillproof — the catalog and pain-point matcher" width="840">
+
+**[skillproof live →](https://lucascashwell3-ai.github.io/Skillproof/)**
 
 </div>
 
 ---
 
-## The site — [`docs/`](docs/)
+## Three ways in
 
-- **Pain-point matcher.** Pick up to three frustrations (or type your own words) → a ranked
-  stack of 3–5 graded skills. Honest by design: keyword matching over a curated set, and an
-  explicit *"no match means we haven't graded one yet"* empty state.
-- **The graded index.** Every entry shows its grade, all five dimension scores *with the
-  one-line why*, install command, and a link to the worksheet that produced the grade.
-- **[Methodology page](docs/methodology.html).** The rubric is the product: five dimensions
-  (triggering · does-what-it-claims ×2 · docs & install · maintenance · safety), a fixed
-  per-skill protocol a solo operator can run in 30–60 minutes, an auto-F safety override,
-  90-day staleness flags, and a public dispute path.
-- **Take-it-with-you advisor.** One click generates a paste-in prompt embedding the graded
-  index, so your own Claude becomes the skill-picker.
-
-**No placeholder grades, ever.** The index starts small (first seeds graded 2026-07-21;
-target 25) because every entry costs a real grading run: full source read before anything
-executes, five headless trigger probes in fresh sessions, the skill's headline job run in a
-sandboxed container against a control. `scripts/validate_index.py` is the honesty gate — it
-re-derives every grade from its dimension scores and fails the build on any mismatch.
-
-## The grades — how they're made
-
-```
-candidate skill
-   │  1. safety read — EVERY line of source, before anything executes
-   ▼
-clean fixture project (disposable container)
-   │  2. five trigger probes, fresh headless session each (3 should-fire, 2 near-miss)
-   │  3. its headline claimed job, run once — usually vs a no-skill control run
-   ▼
-worksheet (grading/worksheets/<id>.md)  ──▶  docs/data/skills.json  ──▶  validate_index.py
-                the receipts                     the index                the honesty gate
-```
-
-Canonical rubric: [`grading/RUBRIC.md`](grading/RUBRIC.md) ·
-worksheet template: [`grading/WORKSHEET_TEMPLATE.md`](grading/WORKSHEET_TEMPLATE.md).
-Disagree with a grade? Open an issue — we re-run the protocol and publish the re-test either way.
-
-## The research skill — the engine underneath
-
-Skillproof began as (and still ships) a Claude Code skill that mines YouTube and X for
-**sourced, confidence-graded** upgrades to your Claude setup — now also the scouting engine
-that finds and vets candidates for the index. Give it a loose prompt; it fans out research
-sub-agents, distills findings with a source URL + confidence grade each (anything unsourced
-is dropped, not guessed), and proposes changes as diffs you approve. Dry-run by default.
-
-<details>
-<summary><strong>Install & use the research skill</strong></summary>
+1. **Paste a prompt** — one short prompt into any agentic AI installs Skillproof and starts
+   your first session. On the [site](https://lucascashwell3-ai.github.io/Skillproof/), under *Install*.
+2. **The skill** (Claude Code) — six plain files downloaded to disk so you can read them.
+   Nothing is piped into a shell, and it never edits your setup without showing you the plan
+   and getting your yes.
+3. **The MCP server** — the catalog as four read-only tools any MCP-capable agent
+   (Cursor, Claude Desktop, …) can query mid-task. [`mcp/`](mcp/)
 
 ```bash
-git clone https://github.com/lucascashwell3-ai/skillproof.git ~/.claude/skills/skillproof
-# Local (residential) transcript backend:
-pip install youtube-transcript-api
+for f in SKILL.md references/consent.md references/conflict-patterns.md references/install-paths.md references/finding.md references/security.md; do curl -fsSL --create-dirs https://raw.githubusercontent.com/lucascashwell3-ai/Skillproof/main/skills/skillproof/$f -o ~/.claude/skills/skillproof/$f; done
 ```
 
-```
-/skillproof make my Claude Code sub-agents more token-efficient
-/skillproof "AI agent eval techniques" --include-x --apply
-```
+## The skill — the whole job is one conversation
 
-| Flag | Default | Meaning |
-|---|---|---|
-| `--include-x` | off | Also read X/Twitter. Needs `SKILLPROOF_X_API_KEY`, else skipped silently. |
-| `--max-x-reads N` | 200 | Hard cap on X posts read per run. |
-| `--backend local\|hosted` | `local` | Transcript backend. **Local works from residential IPs only** — YouTube blocks datacenter IPs; use `hosted` (Supadata / youtube-transcript.io) for cloud runs. |
-| `--apply` | off | Propose diffs and write approved ones. Omitted = dry-run. |
-| `--auto` | off | Skip the findings-review gate (default is interactive). |
-| `--out DIR` | `runs/<date>-<slug>/` | Where `report.md` + `findings.json` land. |
+Tell it what hurts ("my sites all look the same", "my setup is a mess", "find me a skill
+for X"). It plays five beats:
 
-Every run writes `report.md` + machine-readable `findings.json`
-(schema: [`references/output-contract.md`](references/output-contract.md); a complete real
-run lives in [`examples/`](examples/)). X reads use a third-party API (~$0.03 per 200-read
-run), never the official X API. Config: [`.env.example`](.env.example).
+1. **Readback** — one line confirming what you actually want. You say yes.
+2. **Find** — silently checks what you already have installed, then the Skillproof catalog,
+   then live GitHub.
+3. **Fit-check** — reads your CLAUDE.md, rules, and installed skills; finds what the new
+   skill would clash with or duplicate.
+4. **One plan, one yes** — everything it wants to do, as one numbered plan. Backups first.
+5. **Execute + confirm** — installs, verifies it triggers, tells you how to undo it.
 
-</details>
+It integrates into the setup you have — it doesn't pile files on top of it.
+
+## The catalog — 90+ skills, refreshed daily
+
+- **One bar for listing: every skill was checked to make sure it isn't malicious.** Full
+  source read before it's listed. That's the promise — no grades, no rankings; skills are
+  provided as-is by their authors.
+- **It maintains itself.** A daily GitHub Action ([`feeder.yml`](.github/workflows/feeder.yml))
+  finds new skills from trusted creators and community sources, re-scans entries when their
+  code changes, and re-checks quarantined ones — only a malice flag in runnable code removes
+  an entry.
+- **The site** ([`docs/`](docs/)) — pick up to five frustrations (or type your own words) and
+  get matching skills, or sort the whole catalog. Data: [`docs/data/skills.json`](docs/data/skills.json).
 
 ## Repo layout
 
 ```
-skillproof/
-├── docs/                        # THE SITE (GitHub Pages source once public)
-│   ├── index.html               #   matcher + graded index
-│   ├── methodology.html         #   the published rubric
-│   ├── data/skills.json         #   the dataset (validated)
-│   └── assets/                  #   styles, app.js, preview image
-├── grading/                     # THE RECEIPTS
-│   ├── RUBRIC.md                #   canonical rubric, versioned
-│   ├── WORKSHEET_TEMPLATE.md
-│   └── worksheets/<id>.md       #   one filled worksheet per graded skill
-├── scripts/
-│   ├── validate_index.py        #   honesty gate for skills.json
-│   ├── fetch_transcript.py      #   research-skill backends
-│   ├── x_read.py · render_report.py
-├── SKILL.md · references/       # the research skill (the scouting engine)
-├── examples/                    # a real end-to-end research run
-└── docs/architecture.md         # decision record
+Skillproof/
+├── docs/                   # the site (GitHub Pages) — matcher, catalog, install
+├── skills/skillproof/      # the Claude Code skill (SKILL.md + references/)
+├── mcp/                    # the MCP server (read-only catalog tools)
+├── automation/             # the feeder job — owner docs
+├── .github/workflows/      # feeder.yml (daily catalog refresh)
+└── scripts/                # feeder + scan pipeline and its tests
 ```
 
 ## Credits
 
-Built by [Lucas Cashwell](https://github.com/lucascashwell3-ai). Transcript retrieval by
-[`youtube-transcript-api`](https://github.com/jdepoix/youtube-transcript-api) (local) and
-[Supadata](https://supadata.ai) / [youtube-transcript.io](https://www.youtube-transcript.io)
-(hosted). X reads via [TwitterAPI.io](https://twitterapi.io). MIT licensed.
+Built by [Lucas Cashwell](https://github.com/lucascashwell3-ai). MIT licensed. Skills in
+the catalog belong to their authors — Skillproof indexes and checks them, nothing more.
