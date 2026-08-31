@@ -7,3 +7,8 @@ __pycache__/
 _*.png
 reviews-work/
 design/
+.claude/
+PRODUCT.md
+ROADMAP.md
+scripts/REVIEW_RUNBOOK.md
+RUN-REVIEW.command

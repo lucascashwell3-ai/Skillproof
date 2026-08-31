@@ -1,7 +1,7 @@
 # Skillproof feeder — v1 job 2 (automation/PIPELINE_V1.md). Auto-publishes
 # scouted entries to main. No PR, no review stage — the honesty gate and the
 # safety skim are the only gates. Publish is followed by a live-count verify;
-# a mismatch reverts the commit and fails the run loud (GitHub notifies Lucas).
+# a mismatch reverts the commit and fails the run loud (GitHub notifies the owner).
 name: feeder
 
 on:

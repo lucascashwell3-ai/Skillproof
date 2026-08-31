@@ -982,7 +982,7 @@
                      "references/consent.md", "references/install-paths.md", "references/security.md"];
 
   /* The pasted prompt INSTALLS the skill and starts a session — it is not the
-     skill itself (Lucas, 2026-08-21). Nothing internal in here: no catalog
+     skill itself (2026-08-21). Nothing internal in here: no catalog
      mechanics, no pipeline words. An agent that can't write files degrades to
      reading SKILL.md and following it for the conversation. */
   function buildPrompt() {
@@ -1025,7 +1025,7 @@
 
   loadData().then(function (d) {
     DATA = d;
-    /* One flat catalog (Lucas, 2026-08-21): everything in the file is
+    /* One flat catalog (2026-08-21): everything in the file is
        published. The only gate is upstream — the malice scan; anything
        flagged never reaches this file. */
     d.skills.forEach(function (s) { byId[s.id] = s; });

@@ -1,5 +1,5 @@
 {
-  "_comment": "Named creators/orgs the feeder trusts to skip the star bar. Broad on purpose (Lucas 08-21: not picky). Verified via the GitHub API on every run; a login that no longer exists is dropped silently, not edited out here by hand.",
+  "_comment": "Named creators/orgs the feeder trusts to skip the star bar. Broad on purpose (08-21: not picky). Verified via the GitHub API on every run; a login that no longer exists is dropped silently, not edited out here by hand.",
   "creators": [
     "anthropics",
     "obra",

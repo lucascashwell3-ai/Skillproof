@@ -172,7 +172,7 @@ def classify(text):
 
 
 def to_entry(repo):
-    """One flat entry — the catalog has a single class (2026-08-21, Lucas: the
+    """One flat entry — the catalog has a single class (2026-08-21: the
     tier system is gone). The malice check (`checked`) is stamped on by the
     feeder after safety_skim runs; everything else comes straight off the API."""
     full = repo["full_name"]
