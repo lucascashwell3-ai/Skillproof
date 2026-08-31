@@ -1,10 +1,10 @@
-# Weekly catalog refresh — the automated updater Lucas approved (2026-07-25).
+# Weekly catalog refresh — the automated updater (2026-07-25).
 #
 # v0, superseded by feeder.yml — retire after feeder is green 2 weeks.
 #
 # Runs the same pipeline a session would: refresh signals + freshness receipts,
 # scout new candidates, safety-skim anything new, honesty-gate the result.
-# It NEVER pushes to main: changes go up as a PR for Lucas's review, and any
+# It NEVER pushes to main: changes go up as a PR for owner review, and any
 # safety-skim red flag is named in the PR body and held for a human read.
 #
 # Requires (one-time, repo Settings → Actions → General):
