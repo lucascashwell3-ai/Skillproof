@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-09-06",
+  "as_of": "2026-09-07",
   "notes": "One flat catalog. Every entry is a real GitHub repo checked for malicious code (piped-shell installs, credential reads, obfuscated code) before listing and re-checked whenever its code changes; `checked.date` is the latest scan. Provided as-is - read anything before you run it.",
   "pain_points": [
     {
@@ -189,11 +189,11 @@
         "notes": "Opt-in by design: nothing changes until you type /i-have-adhd. 'stop adhd mode' turns it off."
       },
       "signals": {
-        "stars": 27340,
-        "forks": 1716,
-        "checked": "2026-09-06",
+        "stars": 27655,
+        "forks": 1735,
+        "checked": "2026-09-07",
         "head_sha": "58494af57962b2d7a996b4d419474380a299af5e",
-        "head_checked": "2026-09-06"
+        "head_checked": "2026-09-07"
       },
       "checked": {
         "date": "2026-09-02",
@@ -226,9 +226,9 @@
       "signals": {
         "stars": 113,
         "forks": 6,
-        "checked": "2026-09-06",
+        "checked": "2026-09-07",
         "head_sha": "c34f9e3ec806bc50b6f871b3c572a9772f489951",
-        "head_checked": "2026-09-06"
+        "head_checked": "2026-09-07"
       },
       "checked": {
         "date": "2026-09-02",
@@ -256,9 +256,9 @@
       "signals": {
         "stars": 49,
         "forks": 8,
-        "checked": "2026-09-06",
+        "checked": "2026-09-07",
         "head_sha": "3660dca92424b91f1eb716b5815b476c3913450e",
-        "head_checked": "2026-09-06"
+        "head_checked": "2026-09-07"
       },
       "checked": {
         "date": "2026-07-27",
@@ -288,9 +288,9 @@
       "signals": {
         "stars": 43,
         "forks": 1,
-        "checked": "2026-09-06",
+        "checked": "2026-09-07",
         "head_sha": "15ed326ae7162c674d7a1e477724148fa4435528",
-        "head_checked": "2026-09-06"
+        "head_checked": "2026-09-07"
       },
       "checked": {
         "date": "2026-07-27",
@@ -311,11 +311,11 @@
       "created": "2025-10",
       "pushed": "2026-08-14",
       "signals": {
-        "stars": 3107,
-        "forks": 237,
-        "checked": "2026-09-06",
+        "stars": 3108,
+        "forks": 239,
+        "checked": "2026-09-07",
         "head_sha": "dd47a6a023e249eb1b36e9e943eab89d0900865d",
-        "head_checked": "2026-09-06"
+        "head_checked": "2026-09-07"
       },
       "checked": {
         "date": "2026-08-13",
@@ -336,11 +336,11 @@
       "created": "2025-09",
       "pushed": "2026-09-03",
       "signals": {
-        "stars": 174804,
-        "forks": 20692,
-        "checked": "2026-09-06",
+        "stars": 175004,
+        "forks": 20720,
+        "checked": "2026-09-07",
         "head_sha": "41bbe19d1a1a7eaab5e7bb9050a417e5c6cffc8f",
-        "head_checked": "2026-09-06"
+        "head_checked": "2026-09-07"
       },
       "checked": {
         "date": "2026-09-03",
@@ -361,11 +361,11 @@
       "created": "2026-02",
       "pushed": "2026-08-28",
       "signals": {
-        "stars": 5829,
+        "stars": 5858,
         "forks": 696,
-        "checked": "2026-09-06",
+        "checked": "2026-09-07",
         "head_sha": "321c769739b823de5eb94eb3a52aa1974fe783a2",
-        "head_checked": "2026-09-06"
+        "head_checked": "2026-09-07"
       },
       "checked": {
         "date": "2026-08-28",
@@ -387,11 +387,11 @@
       "created": "2025-10",
       "pushed": "2026-09-04",
       "signals": {
-        "stars": 282297,
-        "forks": 25292,
-        "checked": "2026-09-06",
+        "stars": 282769,
+        "forks": 25341,
+        "checked": "2026-09-07",
         "head_sha": "b36e0829c6d0140e93cfef2ca599b1b07d4a7797",
-        "head_checked": "2026-09-06"
+        "head_checked": "2026-09-07"
       },
       "checked": {
         "date": "2026-08-13",
@@ -412,13 +412,13 @@
       ],
       "license": "MIT",
       "created": "2026-01",
-      "pushed": "2026-09-05",
+      "pushed": "2026-09-07",
       "signals": {
-        "stars": 250723,
-        "forks": 37713,
-        "checked": "2026-09-06",
+        "stars": 252554,
+        "forks": 37896,
+        "checked": "2026-09-07",
         "head_sha": "e04ea0b9cc8248686edf5ac751cadff550e162b8",
-        "head_checked": "2026-09-06"
+        "head_checked": "2026-09-07"
       },
       "checked": {
         "date": "2026-09-04",
@@ -441,11 +441,11 @@
       ],
       "undo": "not documented by the author",
       "signals": {
-        "stars": 210542,
-        "forks": 21406,
-        "checked": "2026-09-06",
+        "stars": 210844,
+        "forks": 21433,
+        "checked": "2026-09-07",
         "head_sha": "2c606141936f1eeef17fa3043a72095b4765b9c2",
-        "head_checked": "2026-09-06"
+        "head_checked": "2026-09-07"
       },
       "checked": {
         "date": "2026-07-27",
@@ -464,11 +464,11 @@
       "created": "2026-02",
       "pushed": "2026-09-04",
       "signals": {
-        "stars": 253988,
-        "forks": 21432,
-        "checked": "2026-09-06",
+        "stars": 255951,
+        "forks": 21551,
+        "checked": "2026-09-07",
         "head_sha": "3cca18b368ae95cdbdebbff572ccafa662551015",
-        "head_checked": "2026-09-06"
+        "head_checked": "2026-09-07"
       },
       "checked": {
         "date": "2026-09-04",
@@ -489,11 +489,11 @@
       "created": "2025-11",
       "pushed": "2026-09-06",
       "signals": {
-        "stars": 125450,
-        "forks": 13426,
-        "checked": "2026-09-06",
+        "stars": 125751,
+        "forks": 13448,
+        "checked": "2026-09-07",
         "head_sha": "4aad0584d92131626b16d4ff4d77f0455385013c",
-        "head_checked": "2026-09-06"
+        "head_checked": "2026-09-07"
       },
       "checked": {
         "date": "2026-09-06",
@@ -510,16 +510,16 @@
       "pain_points": [],
       "license": "MIT",
       "created": "2026-06",
-      "pushed": "2026-09-04",
+      "pushed": "2026-09-07",
       "signals": {
-        "stars": 128905,
-        "forks": 6901,
-        "checked": "2026-09-06",
-        "head_sha": "974d940a1c5344210874150b98ff0d2c861fab6a",
-        "head_checked": "2026-09-06"
+        "stars": 130718,
+        "forks": 7001,
+        "checked": "2026-09-07",
+        "head_sha": "356918eba965ee1eac64bd3a7f0dd02108350de5",
+        "head_checked": "2026-09-07"
       },
       "checked": {
-        "date": "2026-09-04",
+        "date": "2026-09-07",
         "files_scanned": 146
       }
     },
@@ -535,16 +535,16 @@
       ],
       "license": "Apache-2.0",
       "created": "2026-04",
-      "pushed": "2026-09-06",
+      "pushed": "2026-09-07",
       "signals": {
-        "stars": 94410,
-        "forks": 10903,
-        "checked": "2026-09-06",
-        "head_sha": "c5ae6292c464094de80d0191fab50144bff8a027",
-        "head_checked": "2026-09-06"
+        "stars": 94641,
+        "forks": 10944,
+        "checked": "2026-09-07",
+        "head_sha": "a07dc736fd0d8caac3c6c0cee147bb609b75114c",
+        "head_checked": "2026-09-07"
       },
       "checked": {
-        "date": "2026-09-06",
+        "date": "2026-09-07",
         "files_scanned": 600
       }
     },
@@ -565,11 +565,11 @@
       ],
       "undo": "not documented by the author",
       "signals": {
-        "stars": 92533,
-        "forks": 9867,
-        "checked": "2026-09-06",
+        "stars": 92771,
+        "forks": 9891,
+        "checked": "2026-09-07",
         "head_sha": "48cb1168aeaaa70dfc2bbf709eddfa2a8ed8129a",
-        "head_checked": "2026-09-06"
+        "head_checked": "2026-09-07"
       },
       "checked": {
         "date": "2026-09-06",
@@ -588,11 +588,11 @@
       "created": "2025-06",
       "pushed": "2026-08-26",
       "signals": {
-        "stars": 76171,
-        "forks": 12260,
-        "checked": "2026-09-06",
+        "stars": 76269,
+        "forks": 12270,
+        "checked": "2026-09-07",
         "head_sha": "0dcafa2ae053a1ddd6a72f265431104b08a5aa13",
-        "head_checked": "2026-09-06"
+        "head_checked": "2026-09-07"
       },
       "checked": {
         "date": "2026-08-27",
@@ -623,11 +623,11 @@
       ],
       "undo": "not documented by the author",
       "signals": {
-        "stars": 74582,
-        "forks": 8586,
-        "checked": "2026-09-06",
+        "stars": 74629,
+        "forks": 8603,
+        "checked": "2026-09-07",
         "head_sha": "be2a406907dbc61b73e6827ded415c96139d13a2",
-        "head_checked": "2026-09-06"
+        "head_checked": "2026-09-07"
       },
       "checked": {
         "date": "2026-07-27",
@@ -648,11 +648,11 @@
       "created": "2026-02",
       "pushed": "2026-08-24",
       "signals": {
-        "stars": 84798,
-        "forks": 5806,
-        "checked": "2026-09-06",
+        "stars": 85095,
+        "forks": 5831,
+        "checked": "2026-09-07",
         "head_sha": "ccbc15639c97057cbfcf32ecebc38ef716e4bb37",
-        "head_checked": "2026-09-06"
+        "head_checked": "2026-09-07"
       },
       "checked": {
         "date": "2026-08-25",
@@ -671,11 +671,11 @@
       "created": "2026-01",
       "pushed": "2026-09-05",
       "signals": {
-        "stars": 52409,
+        "stars": 52426,
         "forks": 5019,
-        "checked": "2026-09-06",
+        "checked": "2026-09-07",
         "head_sha": "37ad08c1b8e243d5f501c6fcaf7ac0b507bd83a1",
-        "head_checked": "2026-09-06"
+        "head_checked": "2026-09-07"
       },
       "checked": {
         "date": "2026-09-05",
@@ -693,16 +693,16 @@
         "shallow-research"
       ],
       "created": "2025-04",
-      "pushed": "2026-09-06",
+      "pushed": "2026-09-07",
       "signals": {
-        "stars": 53588,
-        "forks": 4668,
-        "checked": "2026-09-06",
-        "head_sha": "1b39ee3cc25c6f898bb90148286589b021c355fa",
-        "head_checked": "2026-09-06"
+        "stars": 53647,
+        "forks": 4675,
+        "checked": "2026-09-07",
+        "head_sha": "f439e9b0952038a1821f36a1c9dbd306456add5a",
+        "head_checked": "2026-09-07"
       },
       "checked": {
-        "date": "2026-09-06",
+        "date": "2026-09-07",
         "files_scanned": 49
       }
     },
@@ -718,11 +718,11 @@
       "created": "2026-01",
       "pushed": "2026-09-05",
       "signals": {
-        "stars": 47332,
-        "forks": 7377,
-        "checked": "2026-09-06",
+        "stars": 47986,
+        "forks": 7419,
+        "checked": "2026-09-07",
         "head_sha": "5b2c0007766c6a1cf1d53fd8fc73e979e0821022",
-        "head_checked": "2026-09-06"
+        "head_checked": "2026-09-07"
       },
       "checked": {
         "date": "2026-09-05",
@@ -742,11 +742,11 @@
       "created": "2026-02",
       "pushed": "2026-09-06",
       "signals": {
-        "stars": 46534,
-        "forks": 3650,
-        "checked": "2026-09-06",
+        "stars": 46788,
+        "forks": 3660,
+        "checked": "2026-09-07",
         "head_sha": "6b7ee6dcae29c0fbb46e0017538f9cef84c3136b",
-        "head_checked": "2026-09-06"
+        "head_checked": "2026-09-07"
       },
       "checked": {
         "date": "2026-09-06",
@@ -763,16 +763,16 @@
       "pain_points": [],
       "license": "MIT",
       "created": "2025-06",
-      "pushed": "2026-09-06",
+      "pushed": "2026-09-07",
       "signals": {
-        "stars": 38684,
-        "forks": 4892,
-        "checked": "2026-09-06",
-        "head_sha": "7b1ebe6333397841ca918dec904d24d4695fe953",
-        "head_checked": "2026-09-06"
+        "stars": 38723,
+        "forks": 4905,
+        "checked": "2026-09-07",
+        "head_sha": "f38fb6cf039b835990d0f49dc161d7c2af99ef69",
+        "head_checked": "2026-09-07"
       },
       "checked": {
-        "date": "2026-09-04",
+        "date": "2026-09-07",
         "files_scanned": 600
       }
     },
@@ -788,16 +788,16 @@
       ],
       "license": "MIT",
       "created": "2025-10",
-      "pushed": "2026-09-02",
+      "pushed": "2026-09-07",
       "signals": {
-        "stars": 43215,
-        "forks": 3939,
-        "checked": "2026-09-06",
-        "head_sha": "1e5eeffbdad3749125afe7ab48a39694e27f181c",
-        "head_checked": "2026-09-06"
+        "stars": 43584,
+        "forks": 3969,
+        "checked": "2026-09-07",
+        "head_sha": "9cf7d9aea7d84754db4c167ab04b299d33c444bc",
+        "head_checked": "2026-09-07"
       },
       "checked": {
-        "date": "2026-09-02",
+        "date": "2026-09-07",
         "files_scanned": 600
       }
     },
@@ -811,16 +811,16 @@
       "pain_points": [],
       "license": "MIT",
       "created": "2026-01",
-      "pushed": "2026-08-19",
+      "pushed": "2026-09-06",
       "signals": {
-        "stars": 43980,
-        "forks": 3670,
-        "checked": "2026-09-06",
-        "head_sha": "e2e92e7b4b8229253ed5c8e81dc65463fdeddda5",
-        "head_checked": "2026-09-06"
+        "stars": 44892,
+        "forks": 3705,
+        "checked": "2026-09-07",
+        "head_sha": "9862685f575c65a8247f90369951df1b3416e3d6",
+        "head_checked": "2026-09-07"
       },
       "checked": {
-        "date": "2026-07-27",
+        "date": "2026-09-07",
         "files_scanned": 9
       }
     },
@@ -834,16 +834,16 @@
       "pain_points": [],
       "license": "MIT",
       "created": "2025-07",
-      "pushed": "2026-09-06",
+      "pushed": "2026-09-07",
       "signals": {
-        "stars": 30546,
-        "forks": 3463,
-        "checked": "2026-09-06",
-        "head_sha": "87e8e5bd60e3ab67a704e93804115bcee8d9b1ff",
-        "head_checked": "2026-09-06"
+        "stars": 30557,
+        "forks": 3465,
+        "checked": "2026-09-07",
+        "head_sha": "d610764e53d954926b4215efea52bcb58ae24782",
+        "head_checked": "2026-09-07"
       },
       "checked": {
-        "date": "2026-09-06",
+        "date": "2026-09-07",
         "files_scanned": 600
       }
     },
@@ -857,16 +857,16 @@
       "pain_points": [],
       "license": "MIT",
       "created": "2025-10",
-      "pushed": "2026-09-06",
+      "pushed": "2026-09-07",
       "signals": {
-        "stars": 33829,
-        "forks": 3579,
-        "checked": "2026-09-06",
-        "head_sha": "e4f7a502a78253550890e8b356d43f50192415ae",
-        "head_checked": "2026-09-06"
+        "stars": 33883,
+        "forks": 3589,
+        "checked": "2026-09-07",
+        "head_sha": "8873794bcb26ff5dcf9cd518c87cf5638ca44b92",
+        "head_checked": "2026-09-07"
       },
       "checked": {
-        "date": "2026-09-06",
+        "date": "2026-09-07",
         "files_scanned": 4
       }
     },
@@ -885,11 +885,11 @@
       "created": "2026-02",
       "pushed": "2026-08-31",
       "signals": {
-        "stars": 32280,
-        "forks": 3897,
-        "checked": "2026-09-06",
+        "stars": 32352,
+        "forks": 3900,
+        "checked": "2026-09-07",
         "head_sha": "54a798831d2266a3ca61ce68a7acb80b81160d57",
-        "head_checked": "2026-09-06"
+        "head_checked": "2026-09-07"
       },
       "checked": {
         "date": "2026-08-31",
@@ -915,11 +915,11 @@
       ],
       "undo": "not documented by the author",
       "signals": {
-        "stars": 26043,
-        "forks": 2798,
-        "checked": "2026-09-06",
+        "stars": 26086,
+        "forks": 2801,
+        "checked": "2026-09-07",
         "head_sha": "18468a95b427e70e258b51389796367c6f684e7d",
-        "head_checked": "2026-09-06"
+        "head_checked": "2026-09-07"
       },
       "checked": {
         "date": "2026-07-27",
@@ -936,16 +936,16 @@
       "pain_points": [],
       "license": "MIT",
       "created": "2025-07",
-      "pushed": "2026-09-04",
+      "pushed": "2026-09-07",
       "signals": {
-        "stars": 24893,
-        "forks": 2880,
-        "checked": "2026-09-06",
-        "head_sha": "beb9a0f0d74a222f5e24aeb390e6d7c3005d9e27",
-        "head_checked": "2026-09-06"
+        "stars": 24909,
+        "forks": 2881,
+        "checked": "2026-09-07",
+        "head_sha": "3097abe2d0d1e83a9023c7a8d054c00aace24990",
+        "head_checked": "2026-09-07"
       },
       "checked": {
-        "date": "2026-09-04",
+        "date": "2026-09-07",
         "files_scanned": 193
       }
     },
@@ -963,11 +963,11 @@
       "created": "2025-12",
       "pushed": "2026-08-09",
       "signals": {
-        "stars": 25081,
-        "forks": 1881,
-        "checked": "2026-09-06",
+        "stars": 25114,
+        "forks": 1885,
+        "checked": "2026-09-07",
         "head_sha": "69ef37e9424c0a7ea9dd2293b559e43ec8176379",
-        "head_checked": "2026-09-06"
+        "head_checked": "2026-09-07"
       },
       "checked": {
         "date": "2026-08-13",
@@ -988,11 +988,11 @@
       "created": "2025-10",
       "pushed": "2026-08-30",
       "signals": {
-        "stars": 25599,
-        "forks": 3620,
-        "checked": "2026-09-06",
+        "stars": 25657,
+        "forks": 3626,
+        "checked": "2026-09-07",
         "head_sha": "19392f7a08264ed00486a251f5b2098321771f94",
-        "head_checked": "2026-09-06"
+        "head_checked": "2026-09-07"
       },
       "checked": {
         "date": "2026-08-27",
@@ -1013,11 +1013,11 @@
       "created": "2026-04",
       "pushed": "2026-08-25",
       "signals": {
-        "stars": 23912,
-        "forks": 2769,
-        "checked": "2026-09-06",
+        "stars": 23954,
+        "forks": 2767,
+        "checked": "2026-09-07",
         "head_sha": "a790f704d85f277cc93d2081b0840d00036969bb",
-        "head_checked": "2026-09-06"
+        "head_checked": "2026-09-07"
       },
       "checked": {
         "date": "2026-08-25",
@@ -1039,11 +1039,11 @@
       "created": "2026-04",
       "pushed": "2026-08-16",
       "signals": {
-        "stars": 20457,
-        "forks": 2188,
-        "checked": "2026-09-06",
+        "stars": 20492,
+        "forks": 2189,
+        "checked": "2026-09-07",
         "head_sha": "7a5c4934be4106ac740ffdb95280bb81b3f4b83c",
-        "head_checked": "2026-09-06"
+        "head_checked": "2026-09-07"
       },
       "checked": {
         "date": "2026-08-13",
@@ -1064,11 +1064,11 @@
       "created": "2026-04",
       "pushed": "2026-08-06",
       "signals": {
-        "stars": 28154,
-        "forks": 1437,
-        "checked": "2026-09-06",
+        "stars": 28224,
+        "forks": 1445,
+        "checked": "2026-09-07",
         "head_sha": "13ac0ec7e148655948100b6396439e481361d690",
-        "head_checked": "2026-09-06"
+        "head_checked": "2026-09-07"
       },
       "checked": {
         "date": "2026-08-13",
@@ -1087,11 +1087,11 @@
       "created": "2026-05",
       "pushed": "2026-09-05",
       "signals": {
-        "stars": 16722,
-        "forks": 1571,
-        "checked": "2026-09-06",
+        "stars": 16748,
+        "forks": 1572,
+        "checked": "2026-09-07",
         "head_sha": "79124b37e9a6371e13b753f8bcd7adb1e493ade1",
-        "head_checked": "2026-09-06"
+        "head_checked": "2026-09-07"
       },
       "checked": {
         "date": "2026-09-06",
@@ -1116,11 +1116,11 @@
       ],
       "undo": "not documented by the author",
       "signals": {
-        "stars": 14978,
-        "forks": 1941,
-        "checked": "2026-09-06",
+        "stars": 14990,
+        "forks": 1944,
+        "checked": "2026-09-07",
         "head_sha": "1da55aa810f206d3fe2005e7e3989b15a275d942",
-        "head_checked": "2026-09-06"
+        "head_checked": "2026-09-07"
       },
       "checked": {
         "date": "2026-07-27",
@@ -1145,11 +1145,11 @@
       ],
       "undo": "not documented by the author",
       "signals": {
-        "stars": 16765,
+        "stars": 16846,
         "forks": 1117,
-        "checked": "2026-09-06",
+        "checked": "2026-09-07",
         "head_sha": "91f3d394db8419c20d67ebe22a96cf8fee0a404b",
-        "head_checked": "2026-09-06"
+        "head_checked": "2026-09-07"
       },
       "checked": {
         "date": "2026-07-27",
@@ -1166,16 +1166,16 @@
       "pain_points": [],
       "license": "Apache-2.0",
       "created": "2023-04",
-      "pushed": "2026-09-02",
+      "pushed": "2026-09-07",
       "signals": {
-        "stars": 12470,
-        "forks": 976,
-        "checked": "2026-09-06",
-        "head_sha": "2f49eec9c6a00e7fcfda72c54a6799e8bc23275d",
-        "head_checked": "2026-09-06"
+        "stars": 12472,
+        "forks": 978,
+        "checked": "2026-09-07",
+        "head_sha": "3e6b8428212a6fc82d39527ff8d4491e978ea3c9",
+        "head_checked": "2026-09-07"
       },
       "checked": {
-        "date": "2026-09-03",
+        "date": "2026-09-07",
         "files_scanned": 113
       }
     },
@@ -1201,11 +1201,11 @@
       ],
       "undo": "not documented by the author",
       "signals": {
-        "stars": 12363,
-        "forks": 896,
-        "checked": "2026-09-06",
+        "stars": 12407,
+        "forks": 897,
+        "checked": "2026-09-07",
         "head_sha": "773a52944ba4747a18bd4ae9ade53fff041adcbc",
-        "head_checked": "2026-09-06"
+        "head_checked": "2026-09-07"
       },
       "checked": {
         "date": "2026-07-27",
@@ -1224,11 +1224,11 @@
       "created": "2025-10",
       "pushed": "2026-08-07",
       "signals": {
-        "stars": 11342,
-        "forks": 1088,
-        "checked": "2026-09-06",
+        "stars": 11353,
+        "forks": 1089,
+        "checked": "2026-09-07",
         "head_sha": "882ef55e377dbf9a4dbe496bb41ac6ccd0e555cf",
-        "head_checked": "2026-09-06"
+        "head_checked": "2026-09-07"
       },
       "checked": {
         "date": "2026-08-13",
@@ -1254,11 +1254,11 @@
       ],
       "undo": "not documented by the author",
       "signals": {
-        "stars": 12424,
-        "forks": 1455,
-        "checked": "2026-09-06",
+        "stars": 12483,
+        "forks": 1463,
+        "checked": "2026-09-07",
         "head_sha": "2bd92518e26bf659e21e3d9ab90573fcf3ddeccb",
-        "head_checked": "2026-09-06"
+        "head_checked": "2026-09-07"
       },
       "checked": {
         "date": "2026-08-24",
@@ -1275,13 +1275,13 @@
       "pain_points": [],
       "license": "MIT",
       "created": "2026-05",
-      "pushed": "2026-09-01",
+      "pushed": "2026-09-06",
       "signals": {
-        "stars": 28767,
-        "forks": 2988,
-        "checked": "2026-09-06",
+        "stars": 28944,
+        "forks": 3009,
+        "checked": "2026-09-07",
         "head_sha": "a6cad12dee07a7700068e2aa51cba871ef3b5349",
-        "head_checked": "2026-09-06"
+        "head_checked": "2026-09-07"
       },
       "checked": {
         "date": "2026-09-01",
@@ -1328,11 +1328,11 @@
       "created": "2026-03",
       "pushed": "2026-09-03",
       "signals": {
-        "stars": 9076,
-        "forks": 639,
-        "checked": "2026-09-06",
+        "stars": 9112,
+        "forks": 641,
+        "checked": "2026-09-07",
         "head_sha": "65f5fa0505f43d8af104d00c6087cb02c8c0e2f3",
-        "head_checked": "2026-09-06"
+        "head_checked": "2026-09-07"
       },
       "checked": {
         "date": "2026-09-03",
@@ -1350,17 +1350,17 @@
         "git-hygiene"
       ],
       "created": "2023-04",
-      "pushed": "2026-09-06",
+      "pushed": "2026-09-07",
       "signals": {
         "stars": 6168,
-        "forks": 760,
-        "checked": "2026-09-06",
-        "head_sha": "09ce19b294e8e8c2c6cb941b2d1869190440b814",
-        "head_checked": "2026-09-06"
+        "forks": 761,
+        "checked": "2026-09-07",
+        "head_sha": "8c2c2f8721881e2a00e81593b2571aea18f6d6e6",
+        "head_checked": "2026-09-07"
       },
       "checked": {
-        "date": "2026-09-06",
-        "files_scanned": 115
+        "date": "2026-09-07",
+        "files_scanned": 113
       }
     },
     {
@@ -1376,11 +1376,11 @@
       "created": "2026-02",
       "pushed": "2026-09-01",
       "signals": {
-        "stars": 6848,
-        "forks": 825,
-        "checked": "2026-09-06",
+        "stars": 6866,
+        "forks": 824,
+        "checked": "2026-09-07",
         "head_sha": "1b5a524ebb95e9497fa3f25002d8b8ec528d4444",
-        "head_checked": "2026-09-06"
+        "head_checked": "2026-09-07"
       },
       "checked": {
         "date": "2026-09-02",
@@ -1399,11 +1399,11 @@
       "created": "2025-11",
       "pushed": "2026-09-06",
       "signals": {
-        "stars": 41385,
-        "forks": 5067,
-        "checked": "2026-09-06",
+        "stars": 41402,
+        "forks": 5073,
+        "checked": "2026-09-07",
         "head_sha": "97bfb0685e03112ad39845889061d02cef6e534c",
-        "head_checked": "2026-09-06"
+        "head_checked": "2026-09-07"
       },
       "checked": {
         "date": "2026-09-06",
@@ -1422,16 +1422,16 @@
       ],
       "license": "MIT",
       "created": "2026-02",
-      "pushed": "2026-09-06",
+      "pushed": "2026-09-07",
       "signals": {
-        "stars": 61886,
-        "forks": 8641,
-        "checked": "2026-09-06",
-        "head_sha": "f9a1cc8a9b7336e394ef921c753f5da691798df9",
-        "head_checked": "2026-09-06"
+        "stars": 62397,
+        "forks": 8714,
+        "checked": "2026-09-07",
+        "head_sha": "d6f315018af6ed59ff0df253f857ca17abad4974",
+        "head_checked": "2026-09-07"
       },
       "checked": {
-        "date": "2026-09-06",
+        "date": "2026-09-07",
         "files_scanned": 600
       }
     },
@@ -1447,11 +1447,11 @@
       "created": "2026-03",
       "pushed": "2026-09-06",
       "signals": {
-        "stars": 24387,
-        "forks": 2135,
-        "checked": "2026-09-06",
+        "stars": 24418,
+        "forks": 2134,
+        "checked": "2026-09-07",
         "head_sha": "cf15171f37fcfc4ab7638210705a2973f2b8186a",
-        "head_checked": "2026-09-06"
+        "head_checked": "2026-09-07"
       },
       "checked": {
         "date": "2026-09-06",
@@ -1468,16 +1468,16 @@
       "pain_points": [],
       "license": "AGPL-3.0",
       "created": "2024-05",
-      "pushed": "2026-09-06",
+      "pushed": "2026-09-07",
       "signals": {
-        "stars": 51513,
-        "forks": 4927,
-        "checked": "2026-09-06",
-        "head_sha": "6f7a5833fb10d1b924724c39e0694a14b527d17c",
-        "head_checked": "2026-09-06"
+        "stars": 51550,
+        "forks": 4932,
+        "checked": "2026-09-07",
+        "head_sha": "e131f495a9af593ec873bea34b935e97d644f586",
+        "head_checked": "2026-09-07"
       },
       "checked": {
-        "date": "2026-09-06",
+        "date": "2026-09-07",
         "files_scanned": 600
       }
     },
@@ -1491,13 +1491,13 @@
       "pain_points": [],
       "license": "Apache-2.0",
       "created": "2025-11",
-      "pushed": "2026-09-05",
+      "pushed": "2026-09-07",
       "signals": {
-        "stars": 35964,
-        "forks": 4020,
-        "checked": "2026-09-06",
+        "stars": 36009,
+        "forks": 4030,
+        "checked": "2026-09-07",
         "head_sha": "85cce0381e7860082641b59d961a2b8c368b8b79",
-        "head_checked": "2026-09-06"
+        "head_checked": "2026-09-07"
       },
       "checked": {
         "date": "2026-09-05",
@@ -1518,11 +1518,11 @@
       "created": "2026-03",
       "pushed": "2026-09-05",
       "signals": {
-        "stars": 30756,
+        "stars": 30773,
         "forks": 1803,
-        "checked": "2026-09-06",
+        "checked": "2026-09-07",
         "head_sha": "a3768d0e82ad83cca2da97724e46bea4ff0e6dbd",
-        "head_checked": "2026-09-06"
+        "head_checked": "2026-09-07"
       },
       "checked": {
         "date": "2026-08-16",
@@ -1541,16 +1541,16 @@
       ],
       "license": "MIT",
       "created": "2026-04",
-      "pushed": "2026-09-06",
+      "pushed": "2026-09-07",
       "signals": {
-        "stars": 50405,
-        "forks": 3276,
-        "checked": "2026-09-06",
-        "head_sha": "c6519401f7b91b9d43011657880893b0a8955548",
-        "head_checked": "2026-09-06"
+        "stars": 52431,
+        "forks": 3425,
+        "checked": "2026-09-07",
+        "head_sha": "920543baa1c6137803c5b45a69d8977152773d35",
+        "head_checked": "2026-09-07"
       },
       "checked": {
-        "date": "2026-09-06",
+        "date": "2026-09-07",
         "files_scanned": 364
       }
     },
@@ -1566,11 +1566,11 @@
       "created": "2025-04",
       "pushed": "2026-08-27",
       "signals": {
-        "stars": 10557,
-        "forks": 1123,
-        "checked": "2026-09-06",
+        "stars": 10566,
+        "forks": 1125,
+        "checked": "2026-09-07",
         "head_sha": "44b4c8e4998ce56095b2f0e4eaf1a988f5e6d0de",
-        "head_checked": "2026-09-06"
+        "head_checked": "2026-09-07"
       },
       "checked": {
         "date": "2026-08-27",
@@ -1589,11 +1589,11 @@
       "created": "2026-04",
       "pushed": "2026-08-21",
       "signals": {
-        "stars": 9379,
-        "forks": 1825,
-        "checked": "2026-09-06",
+        "stars": 9387,
+        "forks": 1827,
+        "checked": "2026-09-07",
         "head_sha": "4a6c651889c97cc9140580363c73e0eb17379c2b",
-        "head_checked": "2026-09-06"
+        "head_checked": "2026-09-07"
       },
       "checked": {
         "date": "2026-08-16",
@@ -1610,17 +1610,17 @@
       "pain_points": [],
       "license": "MIT",
       "created": "2026-04",
-      "pushed": "2026-09-05",
+      "pushed": "2026-09-07",
       "signals": {
-        "stars": 6565,
-        "forks": 962,
-        "checked": "2026-09-06",
-        "head_sha": "5de060f9a47e7c4781c81edb320436b772e2955e",
-        "head_checked": "2026-09-06"
+        "stars": 6612,
+        "forks": 965,
+        "checked": "2026-09-07",
+        "head_sha": "4daac79077928d0d5ba0eda93e46ce68dfcd40ae",
+        "head_checked": "2026-09-07"
       },
       "checked": {
-        "date": "2026-08-30",
-        "files_scanned": 583
+        "date": "2026-09-07",
+        "files_scanned": 592
       }
     },
     {
@@ -1638,11 +1638,11 @@
       "created": "2026-02",
       "pushed": "2026-08-24",
       "signals": {
-        "stars": 5715,
-        "forks": 284,
-        "checked": "2026-09-06",
+        "stars": 5791,
+        "forks": 291,
+        "checked": "2026-09-07",
         "head_sha": "11c057b03f92101642cadc9f840564574120d184",
-        "head_checked": "2026-09-06"
+        "head_checked": "2026-09-07"
       },
       "checked": {
         "date": "2026-08-25",
@@ -1663,11 +1663,11 @@
       "created": "2026-07",
       "pushed": "2026-09-05",
       "signals": {
-        "stars": 7595,
-        "forks": 675,
-        "checked": "2026-09-06",
+        "stars": 7693,
+        "forks": 686,
+        "checked": "2026-09-07",
         "head_sha": "5f047c7cfe10d6616fe59160a750fcfaea510b2e",
-        "head_checked": "2026-09-06"
+        "head_checked": "2026-09-07"
       },
       "checked": {
         "date": "2026-09-05",
@@ -1684,16 +1684,16 @@
       "pain_points": [],
       "license": "MIT",
       "created": "2025-06",
-      "pushed": "2026-09-05",
+      "pushed": "2026-09-07",
       "signals": {
-        "stars": 4604,
+        "stars": 4608,
         "forks": 462,
-        "checked": "2026-09-06",
-        "head_sha": "59c5fc42d33ce0675929d593ee1e01affd6c5699",
-        "head_checked": "2026-09-06"
+        "checked": "2026-09-07",
+        "head_sha": "a3b2f3030a3ade9e7eec271639ddcf02340130a5",
+        "head_checked": "2026-09-07"
       },
       "checked": {
-        "date": "2026-09-05",
+        "date": "2026-09-07",
         "files_scanned": 400
       }
     },
@@ -1709,11 +1709,11 @@
       "created": "2023-05",
       "pushed": "2026-08-27",
       "signals": {
-        "stars": 4229,
-        "forks": 484,
-        "checked": "2026-09-06",
+        "stars": 4235,
+        "forks": 486,
+        "checked": "2026-09-07",
         "head_sha": "74df8cb76bb454532e9462d56b5b0053ba0b52fa",
-        "head_checked": "2026-09-06"
+        "head_checked": "2026-09-07"
       },
       "checked": {
         "date": "2026-08-27",
@@ -1736,9 +1736,9 @@
       "signals": {
         "stars": 3738,
         "forks": 275,
-        "checked": "2026-09-06",
+        "checked": "2026-09-07",
         "head_sha": "7822b0501607786958ecb458f3bd02a061933efa",
-        "head_checked": "2026-09-06"
+        "head_checked": "2026-09-07"
       },
       "checked": {
         "date": "2026-08-16",
@@ -1757,16 +1757,16 @@
       ],
       "license": "MIT",
       "created": "2026-05",
-      "pushed": "2026-09-06",
+      "pushed": "2026-09-07",
       "signals": {
-        "stars": 4310,
-        "forks": 655,
-        "checked": "2026-09-06",
-        "head_sha": "e49b9da698bfe830302f0ae49ea02e41cc5cf876",
-        "head_checked": "2026-09-06"
+        "stars": 4350,
+        "forks": 661,
+        "checked": "2026-09-07",
+        "head_sha": "2ad7a75ac2057d54da3f66ae56a3334b58714d91",
+        "head_checked": "2026-09-07"
       },
       "checked": {
-        "date": "2026-09-06",
+        "date": "2026-09-07",
         "files_scanned": 277
       }
     },
@@ -1784,11 +1784,11 @@
       "created": "2026-01",
       "pushed": "2026-08-24",
       "signals": {
-        "stars": 2757,
+        "stars": 2761,
         "forks": 249,
-        "checked": "2026-09-06",
+        "checked": "2026-09-07",
         "head_sha": "afa8da942115f2961fdbfa80807ea0b232ff6c00",
-        "head_checked": "2026-09-06"
+        "head_checked": "2026-09-07"
       },
       "checked": {
         "date": "2026-08-25",
@@ -1807,11 +1807,11 @@
       "created": "2026-05",
       "pushed": "2026-08-27",
       "signals": {
-        "stars": 2046,
-        "forks": 598,
-        "checked": "2026-09-06",
+        "stars": 2048,
+        "forks": 600,
+        "checked": "2026-09-07",
         "head_sha": "068b84bb03d2ae87c51edb2837dda25c84c1d686",
-        "head_checked": "2026-09-06"
+        "head_checked": "2026-09-07"
       },
       "checked": {
         "date": "2026-08-17",
@@ -1832,11 +1832,11 @@
       "created": "2025-12",
       "pushed": "2026-08-23",
       "signals": {
-        "stars": 2104,
+        "stars": 2112,
         "forks": 171,
-        "checked": "2026-09-06",
+        "checked": "2026-09-07",
         "head_sha": "6ce38f60e3f8b22502c29873f96503a4e0c5addb",
-        "head_checked": "2026-09-06"
+        "head_checked": "2026-09-07"
       },
       "checked": {
         "date": "2026-08-23",
@@ -1857,11 +1857,11 @@
       "created": "2026-01",
       "pushed": "2026-08-29",
       "signals": {
-        "stars": 2112,
-        "forks": 217,
-        "checked": "2026-09-06",
+        "stars": 2119,
+        "forks": 218,
+        "checked": "2026-09-07",
         "head_sha": "eade5d170b3a593c5b6ebcaca898102134aee108",
-        "head_checked": "2026-09-06"
+        "head_checked": "2026-09-07"
       },
       "checked": {
         "date": "2026-08-30",
@@ -1882,11 +1882,11 @@
       "created": "2026-01",
       "pushed": "2026-09-05",
       "signals": {
-        "stars": 1773,
+        "stars": 1778,
         "forks": 105,
-        "checked": "2026-09-06",
+        "checked": "2026-09-07",
         "head_sha": "feb68abe397acc14f32b34984975c48fedba2b33",
-        "head_checked": "2026-09-06"
+        "head_checked": "2026-09-07"
       },
       "checked": {
         "date": "2026-08-31",
@@ -1905,11 +1905,11 @@
       "created": "2026-04",
       "pushed": "2026-08-22",
       "signals": {
-        "stars": 1251,
-        "forks": 73,
-        "checked": "2026-09-06",
+        "stars": 1256,
+        "forks": 74,
+        "checked": "2026-09-07",
         "head_sha": "2d57ef8127b83e8232a1be4e9515f0b3cc9fc91e",
-        "head_checked": "2026-09-06"
+        "head_checked": "2026-09-07"
       },
       "checked": {
         "date": "2026-08-23",
@@ -1931,11 +1931,11 @@
       "created": "2026-06",
       "pushed": "2026-08-31",
       "signals": {
-        "stars": 1719,
-        "forks": 144,
-        "checked": "2026-09-06",
+        "stars": 1775,
+        "forks": 148,
+        "checked": "2026-09-07",
         "head_sha": "b781ee2e23089630e2fbee1cfd6174afe4edeb76",
-        "head_checked": "2026-09-06"
+        "head_checked": "2026-09-07"
       },
       "checked": {
         "date": "2026-08-31",
@@ -1960,9 +1960,9 @@
       "signals": {
         "stars": 1023,
         "forks": 15,
-        "checked": "2026-09-06",
+        "checked": "2026-09-07",
         "head_sha": "9bca227df9877e60dc45d49783c8cbd885eccd9b",
-        "head_checked": "2026-09-06"
+        "head_checked": "2026-09-07"
       },
       "checked": {
         "date": "2026-08-18",
@@ -1981,16 +1981,16 @@
       ],
       "license": "MIT",
       "created": "2020-03",
-      "pushed": "2026-09-06",
+      "pushed": "2026-09-07",
       "signals": {
-        "stars": 42247,
-        "forks": 4690,
-        "checked": "2026-09-06",
-        "head_sha": "86a72bef138ae51771ea3bdeda9b2871a3a838c8",
-        "head_checked": "2026-09-06"
+        "stars": 42288,
+        "forks": 4693,
+        "checked": "2026-09-07",
+        "head_sha": "ad91a0838c7d739eec4df5b2622750b0a4f1f7f3",
+        "head_checked": "2026-09-07"
       },
       "checked": {
-        "date": "2026-09-06",
+        "date": "2026-09-07",
         "files_scanned": 600
       }
     },
@@ -2006,17 +2006,17 @@
       ],
       "license": "MIT",
       "created": "2026-04",
-      "pushed": "2026-09-03",
+      "pushed": "2026-09-07",
       "signals": {
-        "stars": 32108,
-        "forks": 2069,
-        "checked": "2026-09-06",
-        "head_sha": "4451eadc484d76aa860edf3289c16fcd082dcdbf",
-        "head_checked": "2026-09-06"
+        "stars": 33208,
+        "forks": 2122,
+        "checked": "2026-09-07",
+        "head_sha": "2724fd2efd8c6737f6fa704fbf5da52d67375497",
+        "head_checked": "2026-09-07"
       },
       "checked": {
-        "date": "2026-09-03",
-        "files_scanned": 156
+        "date": "2026-09-07",
+        "files_scanned": 160
       }
     },
     {
@@ -2030,11 +2030,11 @@
       "created": "2026-02",
       "pushed": "2026-09-01",
       "signals": {
-        "stars": 78379,
-        "forks": 6755,
-        "checked": "2026-09-06",
+        "stars": 78573,
+        "forks": 6766,
+        "checked": "2026-09-07",
         "head_sha": "da5044d26fc6adddb6554d5679c94ac22e76e428",
-        "head_checked": "2026-09-06"
+        "head_checked": "2026-09-07"
       },
       "license": "MIT",
       "checked": {
@@ -2051,13 +2051,13 @@
       "summary": "Multi-harness agentic plugin marketplace for Claude Code, Codex, Cursor, OpenCode, GitHub Copilot, and Google Antigravity",
       "pain_points": [],
       "created": "2025-07",
-      "pushed": "2026-09-01",
+      "pushed": "2026-09-07",
       "signals": {
-        "stars": 39456,
-        "forks": 4207,
-        "checked": "2026-09-06",
+        "stars": 39470,
+        "forks": 4213,
+        "checked": "2026-09-07",
         "head_sha": "a30778f8c4e6b0a87567941b7cca4f534bf642b6",
-        "head_checked": "2026-09-06"
+        "head_checked": "2026-09-07"
       },
       "license": "MIT",
       "checked": {
@@ -2077,13 +2077,13 @@
         "git-hygiene"
       ],
       "created": "2023-08",
-      "pushed": "2026-09-06",
+      "pushed": "2026-09-07",
       "signals": {
-        "stars": 30515,
-        "forks": 3006,
-        "checked": "2026-09-06",
+        "stars": 30562,
+        "forks": 3010,
+        "checked": "2026-09-07",
         "head_sha": "e93a4f0c76e6af27142c25189f14c200e1749d51",
-        "head_checked": "2026-09-06"
+        "head_checked": "2026-09-07"
       },
       "license": "Apache-2.0",
       "checked": {
@@ -2104,11 +2104,11 @@
       "created": "2026-03",
       "pushed": "2026-08-21",
       "signals": {
-        "stars": 35835,
-        "forks": 2015,
-        "checked": "2026-09-06",
+        "stars": 36012,
+        "forks": 2027,
+        "checked": "2026-09-07",
         "head_sha": "d23d7f88a2e21c9e4b1418c7abe420f5c1052ba7",
-        "head_checked": "2026-09-06"
+        "head_checked": "2026-09-07"
       },
       "license": "MIT",
       "checked": {
@@ -2125,18 +2125,18 @@
       "summary": "The open agent skills tool - npx skills",
       "pain_points": [],
       "created": "2026-01",
-      "pushed": "2026-08-18",
+      "pushed": "2026-09-06",
       "signals": {
-        "stars": 30503,
-        "forks": 2617,
-        "checked": "2026-09-06",
-        "head_sha": "435076e78988e1e6ec40d00b0b1d76bdbbc5419a",
-        "head_checked": "2026-09-06"
+        "stars": 30611,
+        "forks": 2623,
+        "checked": "2026-09-07",
+        "head_sha": "1682051d48c34f5eb135e6475c1a965dce05e820",
+        "head_checked": "2026-09-07"
       },
       "license": "MIT",
       "checked": {
-        "date": "2026-08-22",
-        "files_scanned": 118
+        "date": "2026-09-07",
+        "files_scanned": 120
       }
     },
     {
@@ -2152,11 +2152,11 @@
       "created": "2026-01",
       "pushed": "2026-08-30",
       "signals": {
-        "stars": 16099,
-        "forks": 876,
-        "checked": "2026-09-06",
+        "stars": 16106,
+        "forks": 875,
+        "checked": "2026-09-07",
         "head_sha": "ea3326046f57138671a238f7b1110ce5de015778",
-        "head_checked": "2026-09-06"
+        "head_checked": "2026-09-07"
       },
       "license": "Apache-2.0",
       "checked": {
@@ -2178,10 +2178,10 @@
       "pushed": "2026-03-16",
       "signals": {
         "stars": 13822,
-        "forks": 2725,
-        "checked": "2026-09-06",
+        "forks": 2724,
+        "checked": "2026-09-07",
         "head_sha": "a2d84b021cee1e2f4e77ba854bba0be8cb319035",
-        "head_checked": "2026-09-06"
+        "head_checked": "2026-09-07"
       },
       "license": "MIT",
       "checked": {
@@ -2200,11 +2200,11 @@
       "created": "2026-02",
       "pushed": "2026-08-29",
       "signals": {
-        "stars": 12182,
-        "forks": 400,
-        "checked": "2026-09-06",
+        "stars": 12282,
+        "forks": 406,
+        "checked": "2026-09-07",
         "head_sha": "1ad573bb95810daf6cd50c1718707015450f3f09",
-        "head_checked": "2026-09-06"
+        "head_checked": "2026-09-07"
       },
       "license": "Apache-2.0",
       "checked": {
@@ -2221,17 +2221,17 @@
       "summary": "Toolkit for building native desktop apps",
       "pain_points": [],
       "created": "2026-05",
-      "pushed": "2026-09-03",
+      "pushed": "2026-09-06",
       "signals": {
-        "stars": 7633,
+        "stars": 7635,
         "forks": 313,
-        "checked": "2026-09-06",
-        "head_sha": "5665a355cae768dff734d79dd4c0bd9d099f83fb",
-        "head_checked": "2026-09-06"
+        "checked": "2026-09-07",
+        "head_sha": "31663e16b054f212f0377878eb901330bbc94b53",
+        "head_checked": "2026-09-07"
       },
       "license": "Apache-2.0",
       "checked": {
-        "date": "2026-09-03",
+        "date": "2026-09-07",
         "files_scanned": 514
       }
     },
@@ -2249,11 +2249,11 @@
       "created": "2026-01",
       "pushed": "2026-09-02",
       "signals": {
-        "stars": 6982,
-        "forks": 604,
-        "checked": "2026-09-06",
+        "stars": 7004,
+        "forks": 606,
+        "checked": "2026-09-07",
         "head_sha": "d3323cefbcf645678b8dc481de204b02ad3d02dc",
-        "head_checked": "2026-09-06"
+        "head_checked": "2026-09-07"
       },
       "license": "CC-BY-SA-4.0",
       "checked": {
@@ -2270,17 +2270,17 @@
       "summary": "Scripts for agents, shared between my repositories.",
       "pain_points": [],
       "created": "2025-11",
-      "pushed": "2026-09-06",
+      "pushed": "2026-09-07",
       "signals": {
         "stars": 6599,
         "forks": 545,
-        "checked": "2026-09-06",
-        "head_sha": "fc8757310ba5bf041a0e5ae8982d179b3d918e5f",
-        "head_checked": "2026-09-06"
+        "checked": "2026-09-07",
+        "head_sha": "faf7b37dacf0a90c30b9bc72192d56039401b5d1",
+        "head_checked": "2026-09-07"
       },
       "license": "MIT",
       "checked": {
-        "date": "2026-09-06",
+        "date": "2026-09-07",
         "files_scanned": 185
       }
     },
@@ -2295,11 +2295,11 @@
       "created": "2025-01",
       "pushed": "2026-09-04",
       "signals": {
-        "stars": 5524,
-        "forks": 700,
-        "checked": "2026-09-06",
+        "stars": 5529,
+        "forks": 703,
+        "checked": "2026-09-07",
         "head_sha": "ec93caf6ec1efebb521aa9ab30c0a8cb2b4d50d5",
-        "head_checked": "2026-09-06"
+        "head_checked": "2026-09-07"
       },
       "license": "MIT",
       "checked": {
@@ -2318,17 +2318,17 @@
         "context-bloat"
       ],
       "created": "2026-01",
-      "pushed": "2026-09-06",
+      "pushed": "2026-09-07",
       "signals": {
-        "stars": 35757,
-        "forks": 2724,
-        "checked": "2026-09-06",
-        "head_sha": "f97ce530029472c4744f3f5676d2bc0dc4e59ae7",
-        "head_checked": "2026-09-06"
+        "stars": 35917,
+        "forks": 2742,
+        "checked": "2026-09-07",
+        "head_sha": "a843ab6bf220b2b3bc82321576d623d1c55c6598",
+        "head_checked": "2026-09-07"
       },
       "license": "AGPL-3.0",
       "checked": {
-        "date": "2026-09-06",
+        "date": "2026-09-07",
         "files_scanned": 600
       }
     },
@@ -2343,11 +2343,11 @@
       "created": "2026-03",
       "pushed": "2026-09-06",
       "signals": {
-        "stars": 24387,
-        "forks": 2135,
-        "checked": "2026-09-06",
+        "stars": 24418,
+        "forks": 2133,
+        "checked": "2026-09-07",
         "head_sha": "cf15171f37fcfc4ab7638210705a2973f2b8186a",
-        "head_checked": "2026-09-06"
+        "head_checked": "2026-09-07"
       },
       "license": "MIT",
       "checked": {
@@ -2367,17 +2367,17 @@
         "docs-drift"
       ],
       "created": "2026-03",
-      "pushed": "2026-09-05",
+      "pushed": "2026-09-07",
       "signals": {
-        "stars": 17034,
+        "stars": 17048,
         "forks": 1380,
-        "checked": "2026-09-06",
-        "head_sha": "7fd6ef3c07182257ce776cdc5a614e122d5bd4b3",
-        "head_checked": "2026-09-06"
+        "checked": "2026-09-07",
+        "head_sha": "c2afcce1b52c95d0d5e9508fdf9ac5585f545ceb",
+        "head_checked": "2026-09-07"
       },
       "license": "MIT",
       "checked": {
-        "date": "2026-09-04",
+        "date": "2026-09-07",
         "files_scanned": 600
       }
     },
@@ -2390,18 +2390,18 @@
       "summary": "网文/小说写作 skill 包，覆盖长篇与短篇网络小说的扫榜、拆文、写作、去AI味、封面图全流程 | An all-in-one skill pack for long- and short-form web fiction.",
       "pain_points": [],
       "created": "2026-04",
-      "pushed": "2026-09-05",
+      "pushed": "2026-09-07",
       "signals": {
-        "stars": 6565,
-        "forks": 962,
-        "checked": "2026-09-06",
-        "head_sha": "5de060f9a47e7c4781c81edb320436b772e2955e",
-        "head_checked": "2026-09-06"
+        "stars": 6612,
+        "forks": 965,
+        "checked": "2026-09-07",
+        "head_sha": "4daac79077928d0d5ba0eda93e46ce68dfcd40ae",
+        "head_checked": "2026-09-07"
       },
       "license": "MIT",
       "checked": {
-        "date": "2026-08-30",
-        "files_scanned": 583
+        "date": "2026-09-07",
+        "files_scanned": 592
       }
     },
     {
@@ -2415,17 +2415,17 @@
         "security-worries"
       ],
       "created": "2023-02",
-      "pushed": "2026-09-06",
+      "pushed": "2026-09-07",
       "signals": {
-        "stars": 42861,
-        "forks": 8875,
-        "checked": "2026-09-06",
-        "head_sha": "000349681e4d80b7c7d2fc4a1f6b68f775bc943d",
-        "head_checked": "2026-09-06"
+        "stars": 42895,
+        "forks": 8887,
+        "checked": "2026-09-07",
+        "head_sha": "3f27726e10bdd35d98f5fbbae7aab35af94c8436",
+        "head_checked": "2026-09-07"
       },
       "license": "MIT",
       "checked": {
-        "date": "2026-09-05",
+        "date": "2026-09-07",
         "files_scanned": 600
       }
     },
@@ -2440,11 +2440,11 @@
       "created": "2026-01",
       "pushed": "2026-09-05",
       "signals": {
-        "stars": 23906,
-        "forks": 2877,
-        "checked": "2026-09-06",
+        "stars": 23911,
+        "forks": 2879,
+        "checked": "2026-09-07",
         "head_sha": "1f517b9de47e827c80cd933ed364e16838072239",
-        "head_checked": "2026-09-06"
+        "head_checked": "2026-09-07"
       },
       "license": "Apache-2.0",
       "checked": {
@@ -2461,17 +2461,17 @@
       "summary": "Orca is the ADE for working with a fleet of parallel agents. Run any coding agent with your own subscription. Available on desktop, mobile and remote runtime.",
       "pain_points": [],
       "created": "2026-03",
-      "pushed": "2026-09-06",
+      "pushed": "2026-09-07",
       "signals": {
-        "stars": 62615,
-        "forks": 4173,
-        "checked": "2026-09-06",
-        "head_sha": "3631f886a7a4baf9a24cb525b68828281954631d",
-        "head_checked": "2026-09-06"
+        "stars": 63385,
+        "forks": 4225,
+        "checked": "2026-09-07",
+        "head_sha": "83b1558ecce27decfe46fe01de8b95a4b4d1337e",
+        "head_checked": "2026-09-07"
       },
       "license": "MIT",
       "checked": {
-        "date": "2026-09-06",
+        "date": "2026-09-07",
         "files_scanned": 600
       }
     }
