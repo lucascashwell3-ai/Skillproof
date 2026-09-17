@@ -1042,7 +1042,7 @@ footer{margin-top:10px;padding:42px 0 20px;
 .foot-brand{flex:0 0 270px}
 .foot-brand p{margin-top:12px;font-size:.86rem;color:var(--ink-3);max-width:32ch;font-weight:500}
 .foot-cols{display:flex;gap:60px;margin-left:auto;flex-wrap:wrap}
-.foot-col h4{font-size:.73rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-4);margin-bottom:11px}
+.foot-col h3,.foot-col h4{font-size:.73rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-4);margin-bottom:11px}
 .foot-col ul{list-style:none;display:flex;flex-direction:column;gap:8px}
 .foot-col a{text-decoration:none;font-size:.87rem;color:var(--ink-2);font-weight:500;transition:color 200ms var(--ease-out)}
 .foot-col a:hover{color:var(--violet-d)}
