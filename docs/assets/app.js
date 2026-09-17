@@ -1062,3 +1062,83 @@
     if (window.console && console.warn) console.warn("Skillproof: catalog load failed —", e);
   });
 })();
+
+/* =====================================================================
+   Hero controls for the collapsed installer.
+   One click from the hero copies the prompt. One click opens the sheet
+   that holds all three ways in. Everything the sheet contains is in the
+   markup on load, so nothing here is required for the page to be usable.
+   ===================================================================== */
+(function () {
+  var dlg = document.getElementById("ways");
+  var toastEl = document.getElementById("toast");
+  var toastTimer = null;
+
+  function toast(msg) {
+    if (!toastEl) return;
+    toastEl.textContent = msg;
+    toastEl.classList.add("on");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { toastEl.classList.remove("on"); }, 1700);
+  }
+
+  /* Copy the prompt straight from the hero — the sheet never has to open. */
+  Array.prototype.forEach.call(document.querySelectorAll("[data-copy-prompt]"), function (btn) {
+    btn.addEventListener("click", function () {
+      var src = document.getElementById("promptText");
+      var text = src && src.value;
+      if (!text) { open("prompt"); return; }          // never a dead button
+      try { if (navigator.clipboard) navigator.clipboard.writeText(text); } catch (err) {}
+      toast("Copied");
+      btn.classList.add("done");
+      setTimeout(function () { btn.classList.remove("done"); }, 1600);
+    });
+  });
+
+  function open(method) {
+    if (!dlg) return;
+    if (method) {
+      var tab = document.querySelector('.inst-tab[data-m="' + method + '"]');
+      if (tab) tab.click();                            // demo.js owns the switch
+    }
+    if (typeof dlg.showModal === "function" && !dlg.open) dlg.showModal();
+    else dlg.setAttribute("open", "");
+  }
+
+  Array.prototype.forEach.call(document.querySelectorAll("[data-ways]"), function (btn) {
+    btn.addEventListener("click", function () { open(btn.getAttribute("data-ways")); });
+  });
+
+  var whatis = document.getElementById("whatisOpen");
+  if (whatis) whatis.addEventListener("click", function () {
+    open(null);
+    var d = document.getElementById("whatis");
+    if (d) d.open = true;
+  });
+
+  var x = document.getElementById("waysClose");
+  if (x) x.addEventListener("click", function () { if (dlg) dlg.close(); });
+
+  /* click the backdrop to dismiss */
+  if (dlg) dlg.addEventListener("click", function (e) {
+    if (e.target === dlg) dlg.close();
+  });
+})();
+
+/* The prompt in the sheet shows its opening lines in a light box; one
+   control opens the whole thing. Without this script the box still
+   scrolls natively, so nothing depends on it. */
+(function () {
+  var wrap = document.getElementById("promptWrap");
+  var box = document.getElementById("promptText");
+  var more = document.getElementById("promptMore");
+  if (!wrap || !box || !more) return;
+  wrap.classList.add("is-collapsed");
+  more.addEventListener("click", function () {
+    var open = wrap.classList.toggle("is-open");
+    wrap.classList.toggle("is-collapsed", !open);
+    box.style.height = open ? (box.scrollHeight + 2) + "px" : "";
+    more.setAttribute("aria-expanded", String(open));
+    more.textContent = open ? "Show less" : "Show the full prompt";
+  });
+})();
