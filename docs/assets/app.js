@@ -385,7 +385,7 @@
       : "";
     var open = state.open === it.id;
     return '<div class="row t-' + kind + (inTray ? " in-tray" : "") + (open ? " open" : "") + (i === state.cursor ? " cursor" : "") +
-      '" data-id="' + it.id + '" draggable="true" role="option" aria-selected="' + (i === state.cursor) + '" aria-expanded="' + open + '">' +
+      '" data-id="' + it.id + '" draggable="true" role="option" aria-selected="' + (i === state.cursor) + '">' +
       '<span class="tico">' + icon(kind) + "</span>" +
       '<div class="row-body">' +
         '<div class="row-top"><span class="row-name">' + hi(it.name, q) + "</span>" + tested + sig + "</div>" +
@@ -730,13 +730,11 @@
       if (state.open === id) {
         state.open = null;
         row.classList.remove("open");
-        row.setAttribute("aria-expanded", "false");
       } else {
         var prev = $("#list").querySelector(".row.open");
-        if (prev) { prev.classList.remove("open"); prev.setAttribute("aria-expanded", "false"); }
+        if (prev) prev.classList.remove("open");
         state.open = id;
         row.classList.add("open");
-        row.setAttribute("aria-expanded", "true");
       }
     });
     $("#trayList").addEventListener("click", function (e) {
