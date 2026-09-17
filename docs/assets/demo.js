@@ -97,15 +97,23 @@
     })();
   }
 
-  function play(method) {
+  // keep: on first load the page already shows this session's opening lines
+  // (they're in the markup so the terminal is never empty without the script).
+  // Continue typing after them instead of wiping and retyping them.
+  function play(method, keep) {
     clearTimers();
     var script = SCRIPTS[method];
-    body.innerHTML = "";
-    body.scrollTop = 0;
+    var kept = keep ? body.querySelectorAll(".tln.show").length : 0;
+    if (kept !== body.children.length || kept > script.lines.length) kept = 0;
+    if (!kept) {
+      body.innerHTML = "";
+      body.scrollTop = 0;
+    }
     title.textContent = script.title;
     for (var d = 0; d < dots.length; d++) dots[d].classList.toggle("on", ORDER[d] === method);
 
-    var els = script.lines.map(function (l) {
+    var els = script.lines.map(function (l, n) {
+      if (n < kept) return body.children[n];
       var div = document.createElement("div");
       div.className = "tln " + l.t;
       body.appendChild(div);
@@ -114,6 +122,7 @@
 
     if (reduced) {
       script.lines.forEach(function (l, i) {
+        if (i < kept) return;
         els[i].innerHTML = l.html;
         els[i].classList.add("show");
       });
@@ -122,7 +131,7 @@
       return;
     }
 
-    var i = 0;
+    var i = kept;
     (function next() {
       if (i >= script.lines.length) { scheduleNext(4200); return; }
       var l = script.lines[i], el = els[i];
@@ -189,5 +198,5 @@
   // (pointer-follow beam removed 2026-08-21 — restarting the loop on
   // pointerleave read as a glitch; the beam just orbits continuously now)
 
-  play(current);
+  play(current, true);
 })();
