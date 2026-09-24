@@ -26,7 +26,7 @@
         "checked": "2026-07-27"
       },
       "skim": {
-        "date": "2026-09-23",
+        "date": "2026-09-24",
         "files_scanned": 239,
         "red_flags": [
           "cloud credential read",
@@ -65,7 +65,7 @@
         "checked": "2026-07-27"
       },
       "skim": {
-        "date": "2026-09-23",
+        "date": "2026-09-24",
         "files_scanned": 600,
         "red_flags": [
           "cloud credential read"
@@ -107,7 +107,7 @@
       },
       "next": "Queued for a full grading run.",
       "skim": {
-        "date": "2026-09-23",
+        "date": "2026-09-24",
         "files_scanned": 444,
         "red_flags": [
           "cloud credential read",
@@ -144,8 +144,8 @@
       },
       "next": "Queued for a full grading run.",
       "skim": {
-        "date": "2026-09-23",
-        "files_scanned": 397,
+        "date": "2026-09-24",
+        "files_scanned": 424,
         "red_flags": [
           "remote-exec pipe"
         ],
@@ -180,7 +180,7 @@
       },
       "next": "Queued for a full grading run.",
       "skim": {
-        "date": "2026-09-23",
+        "date": "2026-09-24",
         "files_scanned": 600,
         "red_flags": [
           "cloud credential read",
@@ -219,7 +219,7 @@
       },
       "next": "Queued for a full grading run.",
       "skim": {
-        "date": "2026-09-23",
+        "date": "2026-09-24",
         "files_scanned": 260,
         "red_flags": [
           "remote-exec pipe"
@@ -255,7 +255,7 @@
       },
       "next": "Queued for a full grading run.",
       "skim": {
-        "date": "2026-09-23",
+        "date": "2026-09-24",
         "files_scanned": 600,
         "red_flags": [
           "remote-exec pipe"
@@ -290,7 +290,7 @@
       },
       "next": "Queued for a full grading run.",
       "skim": {
-        "date": "2026-09-23",
+        "date": "2026-09-24",
         "files_scanned": 600,
         "red_flags": [
           "remote-exec pipe"
@@ -331,7 +331,7 @@
       },
       "next": "Upstream changed since the last source review — queued for re-review.",
       "skim": {
-        "date": "2026-09-23",
+        "date": "2026-09-24",
         "files_scanned": 196,
         "red_flags": [
           "cloud credential read"
@@ -384,10 +384,11 @@
       },
       "next": "Queued for a full grading run.",
       "skim": {
-        "date": "2026-09-23",
+        "date": "2026-09-24",
         "files_scanned": 600,
         "red_flags": [
-          "cloud credential read"
+          "cloud credential read",
+          "ssh key read"
         ],
         "notes": [
           "cloud credential read in docs",
@@ -425,15 +426,15 @@
       },
       "next": "Queued for a full grading run.",
       "skim": {
-        "date": "2026-09-23",
+        "date": "2026-09-24",
         "files_scanned": 600,
         "red_flags": [
           "cloud credential read",
-          "remote-exec pipe"
+          "remote-exec pipe",
+          "ssh key read"
         ],
         "notes": [
           "cloud credential read in docs",
-          "long base64 blob",
           "network call",
           "remote-exec pipe in docs",
           "remote-exec pipe in tests"
@@ -466,14 +467,14 @@
       },
       "next": "Queued for a full grading run.",
       "skim": {
-        "date": "2026-09-23",
+        "date": "2026-09-24",
         "files_scanned": 600,
         "red_flags": [
-          "powershell encoded exec",
           "remote-exec pipe"
         ],
         "notes": [
           "network call",
+          "remote-exec pipe in docker",
           "remote-exec pipe in docs",
           "ssh key read in tests"
         ]
@@ -505,7 +506,7 @@
       },
       "next": "Queued for a full grading run.",
       "skim": {
-        "date": "2026-09-23",
+        "date": "2026-09-24",
         "files_scanned": 480,
         "red_flags": [
           "remote-exec pipe"
@@ -542,7 +543,7 @@
       },
       "next": "Queued for a full grading run.",
       "skim": {
-        "date": "2026-09-23",
+        "date": "2026-09-24",
         "files_scanned": 401,
         "red_flags": [
           "remote-exec pipe"
@@ -579,7 +580,7 @@
       },
       "next": "Queued for a full grading run.",
       "skim": {
-        "date": "2026-09-23",
+        "date": "2026-09-24",
         "files_scanned": 600,
         "red_flags": [
           "remote-exec pipe"
@@ -616,7 +617,7 @@
       },
       "next": "Queued for a full grading run.",
       "skim": {
-        "date": "2026-09-03",
+        "date": "2026-09-24",
         "files_scanned": 600,
         "red_flags": [
           "cloud credential read"
@@ -654,13 +655,15 @@
       },
       "next": "Queued for a full grading run.",
       "skim": {
-        "date": "2026-09-23",
+        "date": "2026-09-24",
         "files_scanned": 600,
         "red_flags": [
           "remote-exec pipe"
         ],
         "notes": [
-          "remote-exec pipe in docs"
+          "cloud credential read in docs",
+          "remote-exec pipe in docs",
+          "ssh key read in docs"
         ]
       },
       "quarantined_on": "2026-08-13"
@@ -692,7 +695,7 @@
       },
       "next": "Queued for a full grading run.",
       "skim": {
-        "date": "2026-09-23",
+        "date": "2026-09-24",
         "files_scanned": 586,
         "red_flags": [
           "powershell encoded exec",
@@ -733,7 +736,7 @@
       },
       "next": "Queued for a full grading run.",
       "skim": {
-        "date": "2026-09-23",
+        "date": "2026-09-24",
         "files_scanned": 358,
         "red_flags": [
           "cloud credential read"
@@ -769,7 +772,7 @@
       },
       "next": "Queued for a full grading run.",
       "skim": {
-        "date": "2026-09-23",
+        "date": "2026-09-24",
         "files_scanned": 362,
         "red_flags": [
           "remote-exec pipe"
@@ -806,7 +809,7 @@
       },
       "next": "Queued for a full grading run.",
       "skim": {
-        "date": "2026-09-23",
+        "date": "2026-09-24",
         "files_scanned": 600,
         "red_flags": [
           "remote-exec pipe"
@@ -843,7 +846,7 @@
       },
       "next": "Queued for a full grading run.",
       "skim": {
-        "date": "2026-09-23",
+        "date": "2026-09-24",
         "files_scanned": 600,
         "red_flags": [
           "ssh key read"
@@ -880,8 +883,8 @@
       },
       "next": "Queued for a full grading run.",
       "skim": {
-        "date": "2026-09-23",
-        "files_scanned": 377,
+        "date": "2026-09-24",
+        "files_scanned": 382,
         "red_flags": [
           "cloud credential read",
           "remote-exec pipe"
@@ -920,7 +923,7 @@
       },
       "next": "Queued for a full grading run.",
       "skim": {
-        "date": "2026-09-23",
+        "date": "2026-09-24",
         "files_scanned": 145,
         "red_flags": [
           "remote-exec pipe"
@@ -956,7 +959,7 @@
       },
       "next": "Queued for a full grading run.",
       "skim": {
-        "date": "2026-09-23",
+        "date": "2026-09-24",
         "files_scanned": 64,
         "red_flags": [
           "remote-exec pipe"
@@ -994,7 +997,7 @@
       },
       "next": "Queued for a full grading run.",
       "skim": {
-        "date": "2026-09-23",
+        "date": "2026-09-24",
         "files_scanned": 600,
         "red_flags": [
           "remote-exec pipe"
@@ -1031,7 +1034,7 @@
       },
       "next": "Queued for a full grading run.",
       "skim": {
-        "date": "2026-09-23",
+        "date": "2026-09-24",
         "files_scanned": 167,
         "red_flags": [
           "remote-exec pipe"
@@ -1064,7 +1067,7 @@
       "license": "Apache-2.0",
       "quarantined_on": "2026-08-21",
       "skim": {
-        "date": "2026-09-23",
+        "date": "2026-09-24",
         "files_scanned": 600,
         "red_flags": [
           "remote-exec pipe"
@@ -1094,7 +1097,7 @@
       "license": "MIT",
       "quarantined_on": "2026-08-21",
       "skim": {
-        "date": "2026-09-23",
+        "date": "2026-09-24",
         "files_scanned": 600,
         "red_flags": [
           "remote-exec pipe"
@@ -1123,7 +1126,7 @@
       "license": "Apache-2.0",
       "quarantined_on": "2026-08-21",
       "skim": {
-        "date": "2026-09-23",
+        "date": "2026-09-24",
         "files_scanned": 319,
         "red_flags": [
           "remote-exec pipe"
@@ -1153,18 +1156,16 @@
       "license": "MIT",
       "quarantined_on": "2026-08-21",
       "skim": {
-        "date": "2026-09-23",
+        "date": "2026-09-24",
         "files_scanned": 600,
         "red_flags": [
           "cloud credential read",
           "remote-exec pipe"
         ],
         "notes": [
-          "cloud credential read in docs",
           "network call",
           "remote-exec pipe in docs",
-          "remote-exec pipe in tests",
-          "ssh key read in docs"
+          "remote-exec pipe in tests"
         ]
       }
     },
@@ -1194,7 +1195,7 @@
       },
       "quarantined_on": "2026-08-21",
       "skim": {
-        "date": "2026-09-23",
+        "date": "2026-09-24",
         "files_scanned": 455,
         "red_flags": [
           "cloud credential read",
@@ -1224,7 +1225,7 @@
       "license": "MIT",
       "quarantined_on": "2026-08-22",
       "skim": {
-        "date": "2026-09-23",
+        "date": "2026-09-24",
         "files_scanned": 600,
         "red_flags": [
           "remote-exec pipe",
@@ -1232,7 +1233,8 @@
         ],
         "notes": [
           "network call",
-          "remote-exec pipe in docs"
+          "remote-exec pipe in docs",
+          "remote-exec pipe in tests"
         ]
       }
     },
@@ -1254,13 +1256,15 @@
       "license": "MIT",
       "quarantined_on": "2026-08-22",
       "skim": {
-        "date": "2026-09-23",
+        "date": "2026-09-24",
         "files_scanned": 600,
         "red_flags": [
           "cloud credential read",
-          "remote-exec pipe"
+          "remote-exec pipe",
+          "ssh key read"
         ],
         "notes": [
+          "cloud credential read in docs",
           "network call",
           "remote-exec pipe in docs"
         ]
@@ -1284,7 +1288,7 @@
       "license": "MIT",
       "quarantined_on": "2026-08-22",
       "skim": {
-        "date": "2026-09-23",
+        "date": "2026-09-24",
         "files_scanned": 600,
         "red_flags": [
           "remote-exec pipe"
@@ -1314,7 +1318,7 @@
       "license": "Apache-2.0",
       "quarantined_on": "2026-08-22",
       "skim": {
-        "date": "2026-09-23",
+        "date": "2026-09-24",
         "files_scanned": 600,
         "red_flags": [
           "cloud credential read",
@@ -1346,7 +1350,7 @@
       "license": "MIT",
       "quarantined_on": "2026-08-22",
       "skim": {
-        "date": "2026-09-23",
+        "date": "2026-09-24",
         "files_scanned": 243,
         "red_flags": [
           "remote-exec pipe"
@@ -1375,7 +1379,7 @@
       "license": "Apache-2.0",
       "quarantined_on": "2026-08-22",
       "skim": {
-        "date": "2026-09-23",
+        "date": "2026-09-24",
         "files_scanned": 192,
         "red_flags": [
           "remote-exec pipe"
@@ -1404,7 +1408,7 @@
       "license": "MIT",
       "quarantined_on": "2026-08-22",
       "skim": {
-        "date": "2026-09-23",
+        "date": "2026-09-24",
         "files_scanned": 600,
         "red_flags": [
           "remote-exec pipe"
@@ -1442,7 +1446,7 @@
       },
       "quarantined_on": "2026-08-30",
       "skim": {
-        "date": "2026-09-23",
+        "date": "2026-09-24",
         "files_scanned": 600,
         "red_flags": [
           "powershell encoded exec"
@@ -1478,7 +1482,7 @@
       },
       "quarantined_on": "2026-08-30",
       "skim": {
-        "date": "2026-09-23",
+        "date": "2026-09-24",
         "files_scanned": 535,
         "red_flags": [
           "remote-exec pipe"
@@ -1513,7 +1517,7 @@
       },
       "quarantined_on": "2026-09-03",
       "skim": {
-        "date": "2026-09-23",
+        "date": "2026-09-24",
         "files_scanned": 446,
         "red_flags": [
           "remote-exec pipe"
@@ -1553,45 +1557,13 @@
       },
       "quarantined_on": "2026-09-04",
       "skim": {
-        "date": "2026-09-23",
+        "date": "2026-09-24",
         "files_scanned": 600,
         "red_flags": [
           "ssh key read"
         ],
         "notes": [
           "ssh key read in docs"
-        ]
-      }
-    },
-    {
-      "id": "nanmicoder-cc-haha",
-      "name": "cc-haha",
-      "repo_url": "https://github.com/NanmiCoder/cc-haha",
-      "author": "NanmiCoder",
-      "category": "git",
-      "summary": "Local-first cross-platform desktop workspace for Claude Code / agents: multi-agent, Git worktrees, code diffs, skill marketplace, multi-model, Computer Use, task-aware desktop pets, with WeChat, Feishu, DingTalk, Telegra",
-      "pain_points": [
-        "planning-drift",
-        "git-hygiene"
-      ],
-      "created": "2026-03",
-      "pushed": "2026-09-05",
-      "signals": {
-        "stars": 14287,
-        "forks": 8541,
-        "checked": "2026-09-05"
-      },
-      "license": "MIT",
-      "quarantined_on": "2026-09-05",
-      "skim": {
-        "date": "2026-09-23",
-        "files_scanned": 600,
-        "red_flags": [
-          "ssh key read"
-        ],
-        "notes": [
-          "long base64 blob",
-          "network call"
         ]
       }
     },
@@ -1619,7 +1591,7 @@
       },
       "quarantined_on": "2026-09-06",
       "skim": {
-        "date": "2026-09-23",
+        "date": "2026-09-24",
         "files_scanned": 600,
         "red_flags": [
           "decode-then-execute"
@@ -1652,7 +1624,7 @@
       "license": "MIT",
       "quarantined_on": "2026-09-09",
       "skim": {
-        "date": "2026-09-23",
+        "date": "2026-09-24",
         "files_scanned": 600,
         "red_flags": [
           "remote-exec pipe"
@@ -1662,6 +1634,150 @@
           "network call",
           "remote-exec pipe in docs",
           "ssh key read in docs"
+        ]
+      }
+    },
+    {
+      "id": "davila7-claude-code-templates",
+      "name": "davila7/claude-code-templates",
+      "repo_url": "https://github.com/davila7/claude-code-templates",
+      "author": "davila7",
+      "category": "library",
+      "summary": "CLI tool for configuring and monitoring Claude Code",
+      "pain_points": [],
+      "license": "MIT",
+      "created": "2025-07",
+      "pushed": "2026-09-24",
+      "signals": {
+        "stars": 31703,
+        "forks": 3602,
+        "checked": "2026-09-24",
+        "head_sha": "104042f4128889fcf6e487f6f8ef7851648f552c",
+        "head_checked": "2026-09-24"
+      },
+      "checked": {
+        "date": "2026-09-23",
+        "files_scanned": 600
+      },
+      "quarantined_on": "2026-09-24",
+      "skim": {
+        "date": "2026-09-24",
+        "files_scanned": 600,
+        "red_flags": [
+          "remote-exec pipe"
+        ],
+        "notes": [
+          "network call",
+          "remote-exec pipe in docs"
+        ]
+      }
+    },
+    {
+      "id": "volcengine-openviking",
+      "name": "OpenViking",
+      "repo_url": "https://github.com/volcengine/OpenViking",
+      "author": "volcengine",
+      "category": "context",
+      "summary": "Self-evolving Context Database for AI Agents. Unify Agent Memory, Knowledge RAG and Skills.",
+      "pain_points": [
+        "context-bloat"
+      ],
+      "created": "2026-01",
+      "pushed": "2026-09-24",
+      "signals": {
+        "stars": 38618,
+        "forks": 3015,
+        "checked": "2026-09-24",
+        "head_sha": "4edc30b068934893bc94a4e1b8e87bab2100bce5",
+        "head_checked": "2026-09-24"
+      },
+      "license": "AGPL-3.0",
+      "checked": {
+        "date": "2026-09-23",
+        "files_scanned": 600
+      },
+      "quarantined_on": "2026-09-24",
+      "skim": {
+        "date": "2026-09-24",
+        "files_scanned": 600,
+        "red_flags": [
+          "remote-exec pipe"
+        ],
+        "notes": [
+          "network call",
+          "remote-exec pipe in docs"
+        ]
+      }
+    },
+    {
+      "id": "anthropics-knowledge-work-plugins",
+      "name": "knowledge-work-plugins",
+      "repo_url": "https://github.com/anthropics/knowledge-work-plugins",
+      "author": "anthropics",
+      "category": "workflow",
+      "summary": "Open source repository of plugins primarily intended for knowledge workers to use in Claude Cowork",
+      "pain_points": [],
+      "created": "2026-01",
+      "pushed": "2026-09-24",
+      "signals": {
+        "stars": 25543,
+        "forks": 3025,
+        "checked": "2026-09-24",
+        "head_sha": "c9da829cc54f570c8837402a9fca28a095966276",
+        "head_checked": "2026-09-24"
+      },
+      "license": "Apache-2.0",
+      "checked": {
+        "date": "2026-09-23",
+        "files_scanned": 600
+      },
+      "quarantined_on": "2026-09-24",
+      "skim": {
+        "date": "2026-09-24",
+        "files_scanned": 600,
+        "red_flags": [
+          "remote-exec pipe"
+        ],
+        "notes": [
+          "cloud credential read in docs",
+          "network call",
+          "remote-exec pipe in docs"
+        ]
+      }
+    },
+    {
+      "id": "dotnet-skills",
+      "name": "dotnet/skills",
+      "repo_url": "https://github.com/dotnet/skills",
+      "author": "dotnet",
+      "category": "library",
+      "summary": "Repository for skills to assist AI coding agents with .NET and C#",
+      "pain_points": [],
+      "created": "2026-02",
+      "pushed": "2026-09-24",
+      "signals": {
+        "stars": 5473,
+        "forks": 417,
+        "checked": "2026-09-24",
+        "head_sha": "668790f7aeba58a3ec9b151c1fe6a1642ba35cd7",
+        "head_checked": "2026-09-24"
+      },
+      "license": "MIT",
+      "checked": {
+        "date": "2026-09-23",
+        "files_scanned": 600
+      },
+      "quarantined_on": "2026-09-24",
+      "skim": {
+        "date": "2026-09-24",
+        "files_scanned": 600,
+        "red_flags": [
+          "remote-exec pipe"
+        ],
+        "notes": [
+          "decode-then-execute in docs",
+          "network call",
+          "remote-exec pipe in docs"
         ]
       }
     }
