@@ -61,6 +61,7 @@ _Times are from the paste; they include the AI's own work (downloads, reading, i
 | Installed in the right place | PASS — `~/.claude/skills/grill-me`, `grilling`, `verification-before-completion`, `frontend-design` |
 | One clear line per skill, no bare "it" | PASS |
 | Nothing changed before the yes | PASS — fingerprint before the yes = start (`6d5984b4`) |
+| Note | Before the yes the agent also saved copies of the skills it was reading into a scratch folder next to (not inside) the home folder. The person's setup was untouched, but the skill now says to read without saving, or use a temp folder |
 | Only the planned edit | PASS — CLAUDE.md differs from the original by exactly the planned line |
 | Backup + undo | PASS — `CLAUDE.md` and `frontend-polish` backed up to `~/.claude/skillproof-backups/2026-09-27/`, both identical to the originals; the undo names every folder and both backups |
 | Time | The person's own time ~1.9 min (274 words + 3 replies). The AI's own work: 7:53. Paste to "Installed.": 8:13 |

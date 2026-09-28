@@ -11,7 +11,7 @@ this branch.
 | [2](2-claude-code.md) | Shop owner, real CLAUDE.md + 2 skills | Claude Code | three complaints | grill-me, verification-before-completion, frontend-design; a clash with their own rule named in the plan; a weak old skill and a duplicate rule moved out, both backed up | ~1.9 min | 7:53 | 8:13 |
 | [3](3-codex.md) | Developer, AGENTS.md + 1 skill | Codex | "look" | diagnosing-bugs, grill-me, humanizer — picked for what the setup lacks, skipping what their own rules already cover | ~0.9 min | 7:58 | 8:18 |
 | [4](4-claude-app.md) | Beginner | Claude app (free) | "idk", then "1" | humanizer, copywriting as ready zips + one upload step | ~1.2 min | 8:21 | 9:15 |
-| [5](5-chatgpt-plus.md) | ChatGPT Plus user | ChatGPT | nothing needed | the one line, as the first reply: ChatGPT Free/Plus can't keep skills, and where it can | a few seconds | 0:34 | 0:34 |
+| [5](5-chatgpt-plus.md) | ChatGPT Plus user | ChatGPT | nothing needed | the one line, as the first reply: ChatGPT Free/Plus can't keep skills, and where it can | a few seconds | 0:34 | 1:02 |
 | [before](0-before-beginner.md) | The same beginner as run 1 | Claude Code, old version | "idk" | three rounds of questions, then one skill with no install count behind it | — | — | — |
 
 *Reading the AI's messages at 238 words a minute plus typing the replies. "The AI's own work"

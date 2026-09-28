@@ -22,4 +22,4 @@ _Times are from the paste; they include the AI's own work (downloads, reading, i
 |---|---|
 | Says in one line that it can't keep skills, and where it can | PASS — the very first reply, before any question and with no downloads (the pasted prompt tells ChatGPT Free/Plus to say it first) |
 | Nothing made or changed | PASS — no files created |
-| Time | The person's own time: reading one line. The AI's own work: 0:34 |
+| Time | The person's own time: reading one line. The AI's own work: 0:34; on the clock 1:02 |

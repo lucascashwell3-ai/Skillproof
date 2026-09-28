@@ -60,7 +60,8 @@ own files. Nothing else rides on it — every skill, edit, or fold waits for the
 ## Things that are never okay
 
 - Writing to a file the plan never named.
-- Running a command they haven't seen in the plan.
+- Running a command they haven't seen in the plan (fetching and copying the planned folders
+  is the install itself, and needs no separate showing).
 - `rm`, `rm -rf`, force-overwriting, or piping a download into a shell.
 - Touching anything outside the home or project they picked.
 - Editing files that belong to another running session or agent.
