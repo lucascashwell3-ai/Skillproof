@@ -1,6 +1,6 @@
 {
   "as_of": "2026-09-27",
-  "notes": "One flat catalog. Every entry is a real GitHub repo checked for malicious code (piped-shell installs, credential reads, obfuscated code) before listing and re-checked whenever its code changes; `checked.date` is the latest scan. Provided as-is - read anything before you run it.",
+  "notes": "A short list of proven single skills. Every entry is one skill folder on GitHub with real use (install counts or stars) or a builder with a record, useful to a normal AI user, and checked for malicious code (piped-shell installs, credential reads, obfuscated code) in the files it installs; re-checked whenever those files change. `checked.date` is the latest scan. Provided as-is - read anything before you run it.",
   "pain_points": [
     {
       "id": "buried-answers",
@@ -16,28 +16,108 @@
         "direct",
         "concise",
         "wall of text",
-        "rambling"
+        "rambling",
+        "too long",
+        "shorter",
+        "brief",
+        "wordy"
+      ]
+    },
+    {
+      "id": "hard-to-follow",
+      "label": "Answers are hard to follow or understand",
+      "short": "Clear answers",
+      "keywords": [
+        "confusing",
+        "hard to read",
+        "hard to understand",
+        "jargon",
+        "visual",
+        "picture",
+        "page",
+        "overwhelmed",
+        "too much text",
+        "simple",
+        "plain english",
+        "explain"
+      ]
+    },
+    {
+      "id": "ai-sounding",
+      "label": "Writing sounds like AI or falls flat",
+      "short": "Writing",
+      "keywords": [
+        "robotic",
+        "ai sounding",
+        "sounds like ai",
+        "slop",
+        "sloppy",
+        "email",
+        "copy",
+        "writing",
+        "essay",
+        "human",
+        "tone",
+        "marketing",
+        "headline",
+        "blog"
+      ]
+    },
+    {
+      "id": "planning-drift",
+      "label": "Your AI charges ahead before the plan is clear",
+      "short": "Planning",
+      "keywords": [
+        "plan",
+        "planning",
+        "questions",
+        "decision",
+        "idea",
+        "think",
+        "spec",
+        "requirements",
+        "misunderstands",
+        "wrong thing",
+        "assumes"
       ]
     },
     {
       "id": "context-bloat",
-      "label": "Context fills up; long sessions degrade",
-      "short": "Token usage",
+      "label": "Long chats get slow, forgetful, or costly",
+      "short": "Long chats",
       "keywords": [
         "context",
         "compact",
         "tokens",
         "memory",
         "long session",
-        "context window",
+        "long chat",
+        "forgets",
         "token cost",
-        "degrade"
+        "degrade",
+        "new chat",
+        "handoff"
+      ]
+    },
+    {
+      "id": "learning",
+      "label": "You want to learn something, not just get answers",
+      "short": "Learning",
+      "keywords": [
+        "learn",
+        "teach",
+        "study",
+        "tutor",
+        "course",
+        "understand",
+        "school",
+        "lesson"
       ]
     },
     {
       "id": "generic-frontend",
-      "label": "Frontend output looks generic",
-      "short": "Frontend design",
+      "label": "Pages and apps your AI builds look generic",
+      "short": "Design",
       "keywords": [
         "design",
         "ui",
@@ -48,110 +128,44 @@
         "frontend",
         "styling",
         "generic",
-        "templated"
+        "templated",
+        "website",
+        "ugly",
+        "animation"
       ]
     },
     {
       "id": "testing-discipline",
-      "label": "Tests get skipped, gamed, or written weak",
+      "label": "Your AI says “done” when tests are weak or missing",
       "short": "Testing",
       "keywords": [
-        "tdd",
         "test",
         "tests",
-        "coverage",
-        "red-green",
-        "unit test",
-        "regression",
-        "flaky"
-      ]
-    },
-    {
-      "id": "planning-drift",
-      "label": "Big tasks drift off the rails without a plan",
-      "short": "Planning",
-      "keywords": [
-        "plan",
-        "planning",
-        "breakdown",
-        "spec",
-        "scope",
-        "drift",
-        "requirements",
-        "tasks",
-        "roadmap"
-      ]
-    },
-    {
-      "id": "git-hygiene",
-      "label": "Messy commits, branches, and PRs",
-      "short": "Git & PRs",
-      "keywords": [
-        "commit",
-        "pr",
-        "git",
-        "changelog",
-        "conventional commits",
-        "branch",
-        "pull request",
-        "review"
-      ]
-    },
-    {
-      "id": "shallow-research",
-      "label": "Web research comes back shallow or unsourced",
-      "short": "Research",
-      "keywords": [
-        "research",
-        "sources",
-        "citations",
-        "hallucinate",
+        "tdd",
+        "done",
+        "fixed",
         "verify",
-        "web search",
-        "fact check"
+        "claims",
+        "broken",
+        "passing"
       ]
     },
     {
       "id": "code-quality",
-      "label": "Code works but is over-engineered or inconsistent",
+      "label": "Code works but is over-built or hard to change",
       "short": "Code quality",
       "keywords": [
         "refactor",
-        "simplify",
-        "review",
-        "lint",
-        "clean",
         "over-engineered",
-        "complexity",
-        "consistency"
-      ]
-    },
-    {
-      "id": "docs-drift",
-      "label": "Docs and READMEs go stale or never get written",
-      "short": "Docs",
-      "keywords": [
-        "docs",
-        "readme",
-        "documentation",
-        "comments",
-        "api docs",
-        "stale"
-      ]
-    },
-    {
-      "id": "security-worries",
-      "label": "Unsure what AI-written code and skills can touch",
-      "short": "Security",
-      "keywords": [
-        "security",
-        "secrets",
-        "audit",
-        "vulnerability",
-        "injection",
-        "credentials",
-        "safety",
-        "permissions"
+        "bloat",
+        "simplify",
+        "architecture",
+        "review",
+        "messy",
+        "complex",
+        "quality",
+        "lazy",
+        "minimal"
       ]
     },
     {
@@ -159,2525 +173,829 @@
       "label": "Bug hunts go in circles",
       "short": "Debugging",
       "keywords": [
-        "debug",
-        "debugging",
         "bug",
-        "bugs",
+        "debug",
         "error",
-        "errors",
-        "stack trace",
-        "root cause",
-        "broken",
         "crash",
-        "regression hunt"
+        "slow",
+        "failing",
+        "broken",
+        "regression"
+      ]
+    },
+    {
+      "id": "instructions-ignored",
+      "label": "Your AI ignores your instructions; the setup is cluttered",
+      "short": "Lean setup",
+      "keywords": [
+        "ignores",
+        "instructions",
+        "claude.md",
+        "agents.md",
+        "setup",
+        "cluttered",
+        "messy setup",
+        "memory",
+        "rules",
+        "bloated"
       ]
     }
   ],
   "skills": [
     {
-      "id": "i-have-adhd",
-      "name": "i-have-adhd",
-      "repo_url": "https://github.com/ayghri/i-have-adhd",
-      "author": "Ayoub G. (ayghri)",
-      "category": "output-style",
-      "summary": "A skill to stop your coding agent from burying the answer. ADHD-friendly output.",
+      "id": "grill-me",
+      "name": "grill-me",
+      "repo_url": "https://github.com/mattpocock/skills/tree/main/skills/productivity/grill-me",
+      "author": "Matt Pocock (mattpocock)",
+      "category": "planning",
+      "summary": "Asks you questions in rounds, each with a suggested answer, until your plan or decision holds up.",
+      "line": "Type /grill-me before a plan or big decision, and your AI asks questions until the plan holds up.",
+      "calls": "you",
+      "for": "anyone",
+      "needs": [],
       "pain_points": [
+        "planning-drift"
+      ],
+      "source": {
+        "repo": "mattpocock/skills",
+        "branch": "main",
+        "path": "skills/productivity/grill-me",
+        "with": [
+          "skills/productivity/grilling"
+        ]
+      },
+      "install": {
+        "command": "d=$(mktemp -d) && git clone --depth 1 -q https://github.com/mattpocock/skills \"$d\" && mkdir -p ~/.claude/skills/ && cp -R \"$d/skills/productivity/grill-me\" \"$d/skills/productivity/grilling\" ~/.claude/skills/",
+        "notes": "Claude Code folder shown. Codex: ~/.agents/skills/ · Cursor: ~/.cursor/skills/ · Gemini CLI: ~/.gemini/skills/ · Copilot: ~/.copilot/skills/. Loads in a new session."
+      },
+      "signals": {
+        "stars": 270719,
+        "forks": 22801,
+        "checked": "2026-09-27",
+        "head_sha": "fcf0071560d32913c9d4f820e0d7ca467c881619",
+        "head_checked": "2026-09-27",
+        "installs": 1235073,
+        "installs_source": "skills.sh"
+      },
+      "checked": {
+        "date": "2026-09-27",
+        "files_scanned": 4
+      },
+      "pushed": "2026-09-24",
+      "license": "MIT"
+    },
+    {
+      "id": "show-me",
+      "name": "show-me",
+      "repo_url": "https://github.com/lucascashwell3-ai/skills/tree/main/show-me",
+      "author": "Lucas Cashwell (lucascashwell3-ai)",
+      "category": "output-style",
+      "summary": "Turns a long, many-part answer into one page you can scan instead of a wall of text.",
+      "line": "Your AI now shows long answers as one page you can scan, instead of a wall of text.",
+      "calls": "auto",
+      "for": "anyone",
+      "needs": [],
+      "pain_points": [
+        "hard-to-follow",
         "buried-answers"
       ],
+      "source": {
+        "repo": "lucascashwell3-ai/skills",
+        "branch": "main",
+        "path": "show-me"
+      },
       "install": {
-        "command": "claude plugin marketplace add ayghri/i-have-adhd && claude plugin install i-have-adhd@i-have-adhd",
-        "notes": "Opt-in by design: nothing changes until you type /i-have-adhd. 'stop adhd mode' turns it off."
+        "command": "d=$(mktemp -d) && git clone --depth 1 -q https://github.com/lucascashwell3-ai/skills \"$d\" && mkdir -p ~/.claude/skills/ && cp -R \"$d/show-me\" ~/.claude/skills/",
+        "notes": "Claude Code folder shown. Codex: ~/.agents/skills/ · Cursor: ~/.cursor/skills/ · Gemini CLI: ~/.gemini/skills/ · Copilot: ~/.copilot/skills/. Loads in a new session."
       },
       "signals": {
-        "stars": 51541,
-        "forks": 2973,
+        "stars": 0,
+        "forks": 0,
         "checked": "2026-09-27",
-        "head_sha": "839872f9d1cd634fed642b4589ce7226199cc15f",
-        "head_checked": "2026-09-27"
-      },
-      "checked": {
-        "date": "2026-09-20",
-        "files_scanned": 70
-      },
-      "pushed": "2026-09-19"
-    },
-    {
-      "id": "claude-code-debug-mode",
-      "name": "claude-code-debug-mode",
-      "repo_url": "https://github.com/doraemonkeys/claude-code-debug-mode",
-      "author": "doraemonkeys",
-      "category": "workflow",
-      "summary": "Cursor-style Debug Mode skill for coding agents. Hypothesis-driven debugging with runtime log instrumentation and human-in-the-loop verification.",
-      "pain_points": [
-        "debugging-loops"
-      ],
-      "license": "MIT",
-      "created": "2026-02",
-      "pushed": "2026-09-02",
-      "does": "When your coding agent hits a stubborn bug, this makes it work like a methodical detective: list possible causes, add temporary logging lines to your code, wait for you to re-trigger the bug, read the log to prove which cause is real, fix it, and then strip the temporary lines back out.",
-      "touches": [
-        "reads project files",
-        "writes project files",
-        "runs shell commands",
-        "network calls",
-        "writes outside the project"
-      ],
-      "undo": "The author documents removal: delete the installed skill folder (for Claude Code, `rm -rf ~/.claude/skills/debug-mode`; similar delete commands are given for Codex and Gemini CLI, or `gemini skills uninstall debug-mode`). Separately, the workflow itself tells the agent to remove all its temporary logging lines and delete the debug log file once you confirm the bug is fixed.",
-      "signals": {
-        "stars": 115,
-        "forks": 6,
-        "checked": "2026-09-27",
-        "head_sha": "c34f9e3ec806bc50b6f871b3c572a9772f489951",
-        "head_checked": "2026-09-27"
-      },
-      "checked": {
-        "date": "2026-09-02",
-        "files_scanned": 3
-      }
-    },
-    {
-      "id": "claude-git-pr-skill",
-      "name": "claude-git-pr-skill",
-      "repo_url": "https://github.com/aidankinzett/claude-git-pr-skill",
-      "author": "Aidan Kinzett (aidankinzett)",
-      "category": "git",
-      "summary": "Professional GitHub PR review skill for Claude Code with pending reviews, code suggestions, and user approval workflow",
-      "pain_points": [
-        "git-hygiene"
-      ],
-      "created": "2025-12",
-      "pushed": "2025-12-02",
-      "does": "It gives your agent a step-by-step routine for posting review comments on GitHub pull requests: draft all comments first, show you exactly what will be posted and wait for your yes, then publish everything as one batched review using GitHub's command-line tool.",
-      "touches": [
-        "runs shell commands",
-        "network calls"
-      ],
-      "undo": "not documented by the author",
-      "signals": {
-        "stars": 50,
-        "forks": 8,
-        "checked": "2026-09-27",
-        "head_sha": "3660dca92424b91f1eb716b5815b476c3913450e",
-        "head_checked": "2026-09-27"
-      },
-      "checked": {
-        "date": "2026-07-27",
-        "files_scanned": 6
-      }
-    },
-    {
-      "id": "recursive-research",
-      "name": "recursive-research",
-      "repo_url": "https://github.com/Anjos2/recursive-research",
-      "author": "Anjos2",
-      "category": "research",
-      "summary": "Claude Code skill for recursive research up to PhD level across any domain. Source tiering, WDM + Munger inversion for autonomous decisions, and disk checkpointing to survive context compaction.",
-      "pain_points": [
-        "shallow-research"
-      ],
-      "license": "MIT",
-      "created": "2026-04",
-      "pushed": "2026-04-22",
-      "does": "Turns a topic you name into a long-running research project: your agent repeatedly searches the web (and any local folders you point it at), grades every source it uses by trustworthiness, saves its progress into files inside your project so it can pick up again in a later session, and keeps going until a strict quality checklist passes or you tell it to stop.",
-      "touches": [
-        "reads project files",
-        "writes project files",
-        "network calls"
-      ],
-      "undo": "not documented by the author",
-      "signals": {
-        "stars": 46,
-        "forks": 3,
-        "checked": "2026-09-27",
-        "head_sha": "15ed326ae7162c674d7a1e477724148fa4435528",
-        "head_checked": "2026-09-27"
-      },
-      "checked": {
-        "date": "2026-07-27",
-        "files_scanned": 7
-      }
-    },
-    {
-      "id": "playwright-skill",
-      "name": "playwright-skill",
-      "repo_url": "https://github.com/lackeyjb/playwright-skill",
-      "author": "lackeyjb",
-      "category": "testing",
-      "summary": "General-purpose Playwright automation for coding agents",
-      "pain_points": [
-        "testing-discipline"
-      ],
-      "license": "MIT",
-      "created": "2025-10",
-      "pushed": "2026-08-14",
-      "signals": {
-        "stars": 3151,
-        "forks": 244,
-        "checked": "2026-09-27",
-        "head_sha": "dd47a6a023e249eb1b36e9e943eab89d0900865d",
-        "head_checked": "2026-09-27"
-      },
-      "checked": {
-        "date": "2026-08-13",
-        "files_scanned": 22
-      }
-    },
-    {
-      "id": "anthropics-skills",
-      "name": "anthropics/skills",
-      "repo_url": "https://github.com/anthropics/skills",
-      "author": "Anthropic",
-      "category": "library",
-      "summary": "Public repository for Agent Skills",
-      "pain_points": [
-        "generic-frontend",
-        "docs-drift"
-      ],
-      "created": "2025-09",
-      "pushed": "2026-09-24",
-      "signals": {
-        "stars": 178645,
-        "forks": 21139,
-        "checked": "2026-09-27",
-        "head_sha": "33375500bcea98d610eb30ce10ac4e59b89c390d",
-        "head_checked": "2026-09-27"
-      },
-      "checked": {
-        "date": "2026-09-24",
-        "files_scanned": 237
-      }
-    },
-    {
-      "id": "mengto-skills",
-      "name": "MengTo/Skills",
-      "repo_url": "https://github.com/MengTo/Skills",
-      "author": "Meng To (Design+Code)",
-      "category": "library",
-      "summary": "Agent skills for designers and builders using Codex, Claude, Cursor, and other AI coding agents",
-      "pain_points": [
-        "generic-frontend"
-      ],
-      "license": "MIT",
-      "created": "2026-02",
-      "pushed": "2026-09-23",
-      "signals": {
-        "stars": 6305,
-        "forks": 750,
-        "checked": "2026-09-27",
-        "head_sha": "a965851e27dc179e693fde1bee94457a64e1a7a5",
-        "head_checked": "2026-09-27"
-      },
-      "checked": {
-        "date": "2026-09-23",
-        "files_scanned": 495
-      }
-    },
-    {
-      "id": "superpowers",
-      "name": "superpowers",
-      "repo_url": "https://github.com/obra/superpowers",
-      "author": "Jesse Vincent (obra)",
-      "category": "library",
-      "summary": "An agentic skills framework & software development methodology that works.",
-      "pain_points": [
-        "planning-drift",
-        "testing-discipline"
-      ],
-      "license": "MIT",
-      "created": "2025-10",
-      "pushed": "2026-09-27",
-      "signals": {
-        "stars": 292133,
-        "forks": 26143,
-        "checked": "2026-09-27",
-        "head_sha": "8ca22dba9a94f28898bbce59f2537ff4d87c747d",
-        "head_checked": "2026-09-27"
-      },
-      "checked": {
-        "date": "2026-09-26",
-        "files_scanned": 225
-      }
-    },
-    {
-      "id": "affaan-m-ecc",
-      "name": "ECC",
-      "repo_url": "https://github.com/affaan-m/ECC",
-      "author": "affaan-m",
-      "category": "research",
-      "summary": "The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond.",
-      "pain_points": [
-        "shallow-research",
-        "context-bloat",
-        "security-worries"
-      ],
-      "license": "MIT",
-      "created": "2026-01",
-      "pushed": "2026-09-24",
-      "signals": {
-        "stars": 268243,
-        "forks": 40079,
-        "checked": "2026-09-27",
-        "head_sha": "e482e579415fde18357cafce70f177ae19fd7f03",
-        "head_checked": "2026-09-27"
-      },
-      "checked": {
-        "date": "2026-09-24",
-        "files_scanned": 600
-      }
-    },
-    {
-      "id": "multica-ai-andrej-karpathy-skills",
-      "name": "multica-ai/andrej-karpathy-skills",
-      "repo_url": "https://github.com/multica-ai/andrej-karpathy-skills",
-      "author": "multica-ai",
-      "category": "library",
-      "summary": "A single CLAUDE.md file to improve Claude Code behavior, derived from Andrej Karpathy's observations on LLM coding pitfalls.",
-      "pain_points": [],
-      "created": "2026-01",
-      "pushed": "2026-04-20",
-      "does": "It adds a page of written advice that your coding agent reads before working, telling it to ask instead of guessing, keep changes small and simple, avoid touching code it wasn't asked to change, and prove its work with tests.",
-      "touches": [
-        "no side effects"
-      ],
-      "undo": "not documented by the author",
-      "signals": {
-        "stars": 215512,
-        "forks": 21755,
-        "checked": "2026-09-27",
-        "head_sha": "2c606141936f1eeef17fa3043a72095b4765b9c2",
-        "head_checked": "2026-09-27"
-      },
-      "checked": {
-        "date": "2026-07-27",
-        "files_scanned": 8
-      }
-    },
-    {
-      "id": "mattpocock-skills",
-      "name": "mattpocock/skills",
-      "repo_url": "https://github.com/mattpocock/skills",
-      "author": "mattpocock",
-      "category": "library",
-      "summary": "Skills for Real Engineers. Straight from my .agents directory.",
-      "pain_points": [],
-      "license": "MIT",
-      "created": "2026-02",
-      "pushed": "2026-09-24",
-      "signals": {
-        "stars": 270588,
-        "forks": 22784,
-        "checked": "2026-09-27",
-        "head_sha": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7",
-        "head_checked": "2026-09-27"
-      },
-      "checked": {
-        "date": "2026-09-18",
-        "files_scanned": 168
-      }
-    },
-    {
-      "id": "nextlevelbuilder-ui-ux-pro-max-skill",
-      "name": "ui-ux-pro-max-skill",
-      "repo_url": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill",
-      "author": "nextlevelbuilder",
-      "category": "frontend",
-      "summary": "An AI skill that provides design intelligence for building professional UI/UX across multiple platforms.",
-      "pain_points": [
-        "generic-frontend"
-      ],
-      "license": "MIT",
-      "created": "2025-11",
-      "pushed": "2026-09-27",
-      "signals": {
-        "stars": 130995,
-        "forks": 13927,
-        "checked": "2026-09-27",
-        "head_sha": "09170eec67eefd46a7ae85de61b40c194020f997",
+        "head_sha": "b0de2e18889974806691c91b8ba8c8373a41f9b8",
         "head_checked": "2026-09-27"
       },
       "checked": {
         "date": "2026-09-27",
-        "files_scanned": 468
-      }
-    },
-    {
-      "id": "dietrichgebert-ponytail",
-      "name": "ponytail",
-      "repo_url": "https://github.com/DietrichGebert/ponytail",
-      "author": "DietrichGebert",
-      "category": "workflow",
-      "summary": "Makes your AI agent think like the laziest senior dev in the room. The best code is the code you never wrote.",
-      "pain_points": [],
-      "license": "MIT",
-      "created": "2026-06",
-      "pushed": "2026-09-14",
-      "signals": {
-        "stars": 146823,
-        "forks": 7886,
-        "checked": "2026-09-27",
-        "head_sha": "e3ba2aa6f1e6f0bc4d69eb09c9f0d0a93af56156",
-        "head_checked": "2026-09-27"
+        "files_scanned": 1
       },
-      "checked": {
-        "date": "2026-09-14",
-        "files_scanned": 150
-      }
+      "pushed": "2026-09-28",
+      "license": "MIT"
     },
     {
-      "id": "nexu-io-open-design",
-      "name": "open-design",
-      "repo_url": "https://github.com/nexu-io/open-design",
-      "author": "nexu-io",
-      "category": "frontend",
-      "summary": "🎨 Best DeepSeek Harness Design Plugin. The open-source Claude Design alternative. 🖥️ Local-first desktop app. 🖼️ Your coding agent becomes the design engine: prototypes, landing pages, dashboards, slides, images & video ",
-      "pain_points": [
-        "generic-frontend"
-      ],
-      "license": "Apache-2.0",
-      "created": "2026-04",
-      "pushed": "2026-09-27",
-      "signals": {
-        "stars": 98301,
-        "forks": 11399,
-        "checked": "2026-09-27",
-        "head_sha": "1b47e60bd46641469fcd8b69c496c4e3a548bc28",
-        "head_checked": "2026-09-27"
-      },
-      "checked": {
-        "date": "2026-09-24",
-        "files_scanned": 600
-      }
-    },
-    {
-      "id": "addyosmani-agent-skills",
-      "name": "addyosmani/agent-skills",
-      "repo_url": "https://github.com/addyosmani/agent-skills",
-      "author": "addyosmani",
-      "category": "library",
-      "summary": "Production-grade engineering skills for AI coding agents.",
-      "pain_points": [],
-      "license": "MIT",
-      "created": "2026-02",
-      "pushed": "2026-09-26",
-      "does": "Installs a library of structured workflow instructions, covering things like spec writing, task breakdown, incremental implementation, and documentation, plus reviewer, security, and test-engineer role prompts that tell your agent to follow a fixed process and switch roles automatically whenever a matching task comes up.",
-      "touches": [
-        "runs shell commands"
-      ],
-      "undo": "not documented by the author",
-      "signals": {
-        "stars": 99431,
-        "forks": 10441,
-        "checked": "2026-09-27",
-        "head_sha": "2686b620fc1fed2e8f60c704839c766b8594c6b6",
-        "head_checked": "2026-09-27"
-      },
-      "checked": {
-        "date": "2026-09-26",
-        "files_scanned": 204
-      }
-    },
-    {
-      "id": "shareai-lab-learn-claude-code",
-      "name": "learn-claude-code",
-      "repo_url": "https://github.com/shareAI-lab/learn-claude-code",
-      "author": "shareAI-lab",
-      "category": "workflow",
-      "summary": "Bash is all you need -  A nano claude code–like 「agent harness」, built from 0 to 1",
-      "pain_points": [],
-      "license": "MIT",
-      "created": "2025-06",
-      "pushed": "2026-08-26",
-      "signals": {
-        "stars": 77678,
-        "forks": 12484,
-        "checked": "2026-09-27",
-        "head_sha": "0dcafa2ae053a1ddd6a72f265431104b08a5aa13",
-        "head_checked": "2026-09-27"
-      },
-      "checked": {
-        "date": "2026-08-27",
-        "files_scanned": 259
-      }
-    },
-    {
-      "id": "composiohq-awesome-claude-skills",
-      "name": "ComposioHQ/awesome-claude-skills",
-      "repo_url": "https://github.com/ComposioHQ/awesome-claude-skills",
-      "author": "ComposioHQ",
-      "category": "library",
-      "summary": "A curated list of awesome Claude Skills, resources, and tools for customizing Claude AI workflows",
-      "pain_points": [
-        "shallow-research"
-      ],
-      "created": "2025-10",
-      "pushed": "2026-09-18",
-      "does": "Gives your agent a grab-bag of ready-made instruction sheets — most of them tell it to route your requests (email, calendar, SEO tools, etc.) through Composio's external \"Rube\" service, and a few add standalone tasks like downloading YouTube videos, enhancing images, and writing company updates in set formats.",
-      "touches": [
-        "reads project files",
-        "writes project files",
-        "network calls",
-        "reads credentials/keys",
-        "runs shell commands",
-        "installs dependencies",
-        "writes outside the project"
-      ],
-      "undo": "not documented by the author",
-      "signals": {
-        "stars": 75729,
-        "forks": 8807,
-        "checked": "2026-09-27",
-        "head_sha": "be2a406907dbc61b73e6827ded415c96139d13a2",
-        "head_checked": "2026-09-27"
-      },
-      "checked": {
-        "date": "2026-07-27",
-        "files_scanned": 600
-      }
-    },
-    {
-      "id": "leonxlnx-taste-skill",
-      "name": "taste-skill",
-      "repo_url": "https://github.com/Leonxlnx/taste-skill",
-      "author": "Leonxlnx",
-      "category": "frontend",
-      "summary": "Taste-Skill - gives your AI good taste. stops the AI from generating boring, generic slop",
-      "pain_points": [
-        "generic-frontend"
-      ],
-      "license": "MIT",
-      "created": "2026-02",
-      "pushed": "2026-09-26",
-      "signals": {
-        "stars": 90582,
-        "forks": 6167,
-        "checked": "2026-09-27",
-        "head_sha": "ce26fc25c0e5e8cab638f883de62d9a86ee5e45b",
-        "head_checked": "2026-09-27"
-      },
-      "checked": {
-        "date": "2026-09-26",
-        "files_scanned": 40
-      }
-    },
-    {
-      "id": "voltagent-awesome-openclaw-skills",
-      "name": "VoltAgent/awesome-openclaw-skills",
-      "repo_url": "https://github.com/VoltAgent/awesome-openclaw-skills",
-      "author": "VoltAgent",
-      "category": "library",
-      "summary": "The awesome collection of OpenClaw skills. 5,400+ skills filtered and categorized from the official OpenClaw Skills Registry.🦞",
-      "pain_points": [],
-      "license": "MIT",
-      "created": "2026-01",
-      "pushed": "2026-09-22",
-      "signals": {
-        "stars": 52827,
-        "forks": 5053,
-        "checked": "2026-09-27",
-        "head_sha": "305f732810adf9a289d5d33b913f774e1eb93d84",
-        "head_checked": "2026-09-27"
-      },
-      "checked": {
-        "date": "2026-09-22",
-        "files_scanned": 35
-      }
-    },
-    {
-      "id": "hesreallyhim-awesome-claude-code",
-      "name": "hesreallyhim/awesome-claude-code",
-      "repo_url": "https://github.com/hesreallyhim/awesome-claude-code",
-      "author": "hesreallyhim",
-      "category": "library",
-      "summary": "A hand-picked collection of the finest of resources for the most awesome of agents, Claude Code, the undisputed champion of coding companions, from the unstoppable team at Anthropic PBC. A delectable showcase of top tier",
-      "pain_points": [
-        "shallow-research"
-      ],
-      "created": "2025-04",
-      "pushed": "2026-09-27",
-      "signals": {
-        "stars": 54685,
-        "forks": 4769,
-        "checked": "2026-09-27",
-        "head_sha": "2c724b9b5787513eb94fa6d860294ab112e1ca07",
-        "head_checked": "2026-09-27"
-      },
-      "checked": {
-        "date": "2026-09-27",
-        "files_scanned": 49
-      }
-    },
-    {
-      "id": "coreyhaines31-marketingskills",
-      "name": "marketingskills",
-      "repo_url": "https://github.com/coreyhaines31/marketingskills",
-      "author": "coreyhaines31",
-      "category": "workflow",
-      "summary": "Marketing skills for Claude Code and AI agents. CRO, copywriting, SEO, analytics, and growth engineering.",
-      "pain_points": [],
-      "license": "MIT",
-      "created": "2026-01",
-      "pushed": "2026-09-05",
-      "signals": {
-        "stars": 51666,
-        "forks": 7799,
-        "checked": "2026-09-27",
-        "head_sha": "5b2c0007766c6a1cf1d53fd8fc73e979e0821022",
-        "head_checked": "2026-09-27"
-      },
-      "checked": {
-        "date": "2026-09-05",
-        "files_scanned": 463
-      }
-    },
-    {
-      "id": "imbad0202-academic-research-skills",
-      "name": "Imbad0202/academic-research-skills",
-      "repo_url": "https://github.com/Imbad0202/academic-research-skills",
-      "author": "Imbad0202",
-      "category": "library",
-      "summary": "Academic Research Skills for Claude Code: research → write → review → revise → finalize",
-      "pain_points": [
-        "shallow-research"
-      ],
-      "created": "2026-02",
-      "pushed": "2026-09-25",
-      "signals": {
-        "stars": 49633,
-        "forks": 3841,
-        "checked": "2026-09-27",
-        "head_sha": "e79085d0d38609984ef8cfe0faf2d254aac9e0a9",
-        "head_checked": "2026-09-27"
-      },
-      "checked": {
-        "date": "2026-09-25",
-        "files_scanned": 600
-      }
-    },
-    {
-      "id": "github-awesome-copilot",
-      "name": "github/awesome-copilot",
-      "repo_url": "https://github.com/github/awesome-copilot",
-      "author": "github",
-      "category": "library",
-      "summary": "Community-contributed instructions, agents, skills, and configurations to help you make the most of GitHub Copilot.",
-      "pain_points": [],
-      "license": "MIT",
-      "created": "2025-06",
-      "pushed": "2026-09-27",
-      "signals": {
-        "stars": 39445,
-        "forks": 5013,
-        "checked": "2026-09-27",
-        "head_sha": "6c4d33b9cfca967a28bb2962ef4d55e4a384c88c",
-        "head_checked": "2026-09-27"
-      },
-      "checked": {
-        "date": "2026-09-25",
-        "files_scanned": 600
-      }
-    },
-    {
-      "id": "k-dense-ai-scientific-agent-skills",
-      "name": "K-Dense-AI/scientific-agent-skills",
-      "repo_url": "https://github.com/K-Dense-AI/scientific-agent-skills",
-      "author": "K-Dense-AI",
-      "category": "library",
-      "summary": "Turn any AI agent into an AI Scientist. The #1 Agent Skills library for science, used by 190,000+ scientists worldwide. 165 ready-to-use validated skills plus 100+ scientific databases covering biology, chemistry, medici",
-      "pain_points": [
-        "shallow-research"
-      ],
-      "license": "MIT",
-      "created": "2025-10",
-      "pushed": "2026-09-21",
-      "signals": {
-        "stars": 46826,
-        "forks": 4228,
-        "checked": "2026-09-27",
-        "head_sha": "49c6e97775eaa18ba791bebe23162a70ae601c18",
-        "head_checked": "2026-09-27"
-      },
-      "checked": {
-        "date": "2026-09-21",
-        "files_scanned": 600
-      }
-    },
-    {
-      "id": "blader-humanizer",
+      "id": "humanizer",
       "name": "humanizer",
       "repo_url": "https://github.com/blader/humanizer",
       "author": "blader",
-      "category": "workflow",
-      "summary": "Agent skill that removes signs of AI-generated writing from text",
-      "pain_points": [],
-      "license": "MIT",
-      "created": "2026-01",
-      "pushed": "2026-09-06",
+      "category": "writing",
+      "summary": "Rewrites AI-sounding text so it reads like a person, without changing what it says.",
+      "line": "Say “humanize this” on any draft, and your AI rewrites the draft in a plain human voice.",
+      "calls": "you",
+      "for": "anyone",
+      "needs": [],
+      "pain_points": [
+        "ai-sounding"
+      ],
+      "source": {
+        "repo": "blader/humanizer",
+        "branch": "main",
+        "path": ""
+      },
+      "install": {
+        "command": "git clone --depth 1 -q https://github.com/blader/humanizer ~/.claude/skills/humanizer",
+        "notes": "Claude Code folder shown. Codex: ~/.agents/skills/ · Cursor: ~/.cursor/skills/ · Gemini CLI: ~/.gemini/skills/ · Copilot: ~/.copilot/skills/. Loads in a new session."
+      },
       "signals": {
-        "stars": 52301,
-        "forks": 4183,
+        "stars": 52375,
+        "forks": 4185,
         "checked": "2026-09-27",
         "head_sha": "9862685f575c65a8247f90369951df1b3416e3d6",
-        "head_checked": "2026-09-27"
+        "head_checked": "2026-09-27",
+        "installs": 7907,
+        "installs_source": "skills.sh"
       },
       "checked": {
-        "date": "2026-09-07",
+        "date": "2026-09-27",
         "files_scanned": 9
-      }
-    },
-    {
-      "id": "voltagent-awesome-agent-skills",
-      "name": "VoltAgent/awesome-agent-skills",
-      "repo_url": "https://github.com/VoltAgent/awesome-agent-skills",
-      "author": "VoltAgent",
-      "category": "library",
-      "summary": "A curated collection of 1000+ agent skills from official dev teams and the community, compatible with Claude Code, Codex, Gemini CLI, Cursor, and more.",
-      "pain_points": [],
-      "license": "MIT",
-      "created": "2025-10",
-      "pushed": "2026-09-23",
-      "signals": {
-        "stars": 34926,
-        "forks": 3728,
-        "checked": "2026-09-27",
-        "head_sha": "d9111a919d4f5be5b81135a5e71fa2770340bfc1",
-        "head_checked": "2026-09-27"
       },
-      "checked": {
-        "date": "2026-09-23",
-        "files_scanned": 4
-      }
+      "pushed": "2026-09-06",
+      "license": "MIT"
     },
     {
-      "id": "mukul975-anthropic-cybersecurity-skills",
-      "name": "mukul975/Anthropic-Cybersecurity-Skills",
-      "repo_url": "https://github.com/mukul975/Anthropic-Cybersecurity-Skills",
-      "author": "mukul975",
-      "category": "library",
-      "summary": "817 structured cybersecurity skills for AI agents · Mapped to 6 frameworks: MITRE ATT&CK, NIST CSF 2.0, MITRE ATLAS, D3FEND, NIST AI RMF & MITRE F3 (Fight Fraud) · agentskills.io standard · Works with Claude Code, GitHub",
+      "id": "caveman",
+      "name": "caveman",
+      "repo_url": "https://github.com/JuliusBrussee/caveman/tree/main/skills/caveman",
+      "author": "Julius Brussee (JuliusBrussee)",
+      "category": "output-style",
+      "summary": "Makes your AI answer in far fewer words while keeping every fact.",
+      "line": "Type /caveman, and your AI answers in far fewer words until you say “normal mode”.",
+      "calls": "you",
+      "for": "anyone",
+      "needs": [],
       "pain_points": [
-        "testing-discipline",
-        "security-worries"
+        "buried-answers",
+        "context-bloat"
       ],
-      "license": "Apache-2.0",
-      "created": "2026-02",
-      "pushed": "2026-08-31",
+      "source": {
+        "repo": "JuliusBrussee/caveman",
+        "branch": "main",
+        "path": "skills/caveman"
+      },
+      "install": {
+        "command": "d=$(mktemp -d) && git clone --depth 1 -q https://github.com/JuliusBrussee/caveman \"$d\" && mkdir -p ~/.claude/skills/ && cp -R \"$d/skills/caveman\" ~/.claude/skills/",
+        "notes": "Claude Code folder shown. Codex: ~/.agents/skills/ · Cursor: ~/.cursor/skills/ · Gemini CLI: ~/.gemini/skills/ · Copilot: ~/.copilot/skills/. Loads in a new session."
+      },
       "signals": {
-        "stars": 33453,
-        "forks": 4063,
+        "stars": 108077,
+        "forks": 6268,
         "checked": "2026-09-27",
-        "head_sha": "54a798831d2266a3ca61ce68a7acb80b81160d57",
-        "head_checked": "2026-09-27"
+        "head_sha": "82d2a600843944844d254791bafbec1255793370",
+        "head_checked": "2026-09-27",
+        "installs": 541712,
+        "installs_source": "skills.sh"
       },
       "checked": {
-        "date": "2026-08-31",
-        "files_scanned": 600
-      }
-    },
-    {
-      "id": "phuryn-pm-skills",
-      "name": "phuryn/pm-skills",
-      "repo_url": "https://github.com/phuryn/pm-skills",
-      "author": "phuryn",
-      "category": "library",
-      "summary": "PM Skills Marketplace: 100+ agentic skills, commands, and plugins — from discovery to strategy, execution, launch, and growth.",
-      "pain_points": [],
-      "license": "MIT",
-      "created": "2026-03",
-      "pushed": "2026-09-14",
-      "does": "Gives your agent ready-made step-by-step playbooks for common product-manager jobs — summarizing customer interviews, prioritizing features and assumptions, planning sprints, writing release notes and retros, mapping stakeholders, and building competitor battlecards — each producing a structured written document.",
-      "touches": [
-        "reads project files",
-        "writes project files",
-        "network calls"
-      ],
-      "undo": "not documented by the author",
-      "signals": {
-        "stars": 26616,
-        "forks": 2834,
-        "checked": "2026-09-27",
-        "head_sha": "8607e3b077817f89bf4a9b623246219734ac3be0",
-        "head_checked": "2026-09-27"
+        "date": "2026-09-27",
+        "files_scanned": 2
       },
-      "checked": {
-        "date": "2026-09-15",
-        "files_scanned": 146
-      }
+      "pushed": "2026-09-27"
     },
     {
-      "id": "voltagent-awesome-claude-code-subagents",
-      "name": "VoltAgent/awesome-claude-code-subagents",
-      "repo_url": "https://github.com/VoltAgent/awesome-claude-code-subagents",
-      "author": "VoltAgent",
-      "category": "library",
-      "summary": "A collection of 100+ specialized Claude Code subagents covering a wide range of development use cases",
-      "pain_points": [],
-      "license": "MIT",
-      "created": "2025-07",
-      "pushed": "2026-09-21",
-      "signals": {
-        "stars": 25355,
-        "forks": 2928,
-        "checked": "2026-09-27",
-        "head_sha": "82b73821baa7a911d5b14cfb6da238b7f0db6b42",
-        "head_checked": "2026-09-27"
-      },
-      "checked": {
-        "date": "2026-09-21",
-        "files_scanned": 196
-      }
-    },
-    {
-      "id": "agentskills-agentskills",
-      "name": "agentskills",
-      "repo_url": "https://github.com/agentskills/agentskills",
-      "author": "agentskills",
-      "category": "docs",
-      "summary": "Specification and documentation for Agent Skills",
+      "id": "plain",
+      "name": "plain",
+      "repo_url": "https://github.com/lucascashwell3-ai/skills/tree/main/plain",
+      "author": "Lucas Cashwell (lucascashwell3-ai)",
+      "category": "output-style",
+      "summary": "Rewrites the last answer as a few short, plain bullets you can read in ten seconds.",
+      "line": "Type /plain after a long reply, and your AI says the reply again in a few short, plain bullets.",
+      "calls": "you",
+      "for": "anyone",
+      "needs": [],
       "pain_points": [
-        "docs-drift"
+        "hard-to-follow",
+        "buried-answers"
       ],
-      "license": "Apache-2.0",
-      "created": "2025-12",
-      "pushed": "2026-08-09",
+      "source": {
+        "repo": "lucascashwell3-ai/skills",
+        "branch": "main",
+        "path": "plain"
+      },
+      "install": {
+        "command": "d=$(mktemp -d) && git clone --depth 1 -q https://github.com/lucascashwell3-ai/skills \"$d\" && mkdir -p ~/.claude/skills/ && cp -R \"$d/plain\" ~/.claude/skills/",
+        "notes": "Claude Code folder shown. Codex: ~/.agents/skills/ · Cursor: ~/.cursor/skills/ · Gemini CLI: ~/.gemini/skills/ · Copilot: ~/.copilot/skills/. Loads in a new session."
+      },
       "signals": {
-        "stars": 25734,
-        "forks": 1944,
+        "stars": 0,
+        "forks": 0,
         "checked": "2026-09-27",
-        "head_sha": "69ef37e9424c0a7ea9dd2293b559e43ec8176379",
+        "head_sha": "b0de2e18889974806691c91b8ba8c8373a41f9b8",
         "head_checked": "2026-09-27"
       },
       "checked": {
-        "date": "2026-08-13",
-        "files_scanned": 29
-      }
+        "date": "2026-09-27",
+        "files_scanned": 1
+      },
+      "pushed": "2026-09-28",
+      "license": "MIT"
     },
     {
-      "id": "alirezarezvani-claude-skills",
-      "name": "alirezarezvani/claude-skills",
-      "repo_url": "https://github.com/alirezarezvani/claude-skills",
-      "author": "alirezarezvani",
-      "category": "library",
-      "summary": "380 Claude Code skills & agent skills & plugins (30+ Agents, 70+ custom commands, 380+ skills, customizable references, scripts)for Claude Code, Codex, Gemini CLI, Cursor, and 8 more coding agents — engineering, marketin",
+      "id": "i-have-adhd",
+      "name": "i-have-adhd",
+      "repo_url": "https://github.com/ayghri/i-have-adhd/tree/main/skills/i-have-adhd",
+      "author": "Ayoub G. (ayghri)",
+      "category": "output-style",
+      "summary": "Makes your AI lead with the next step, number the work, and cut tangents.",
+      "line": "Type /i-have-adhd, and your AI leads with the next step and cuts tangents until you say “stop adhd mode”.",
+      "calls": "you",
+      "for": "anyone",
+      "needs": [],
       "pain_points": [
-        "shallow-research"
+        "buried-answers"
       ],
-      "license": "MIT",
-      "created": "2025-10",
-      "pushed": "2026-08-30",
+      "source": {
+        "repo": "ayghri/i-have-adhd",
+        "branch": "main",
+        "path": "skills/i-have-adhd"
+      },
+      "install": {
+        "command": "d=$(mktemp -d) && git clone --depth 1 -q https://github.com/ayghri/i-have-adhd \"$d\" && mkdir -p ~/.claude/skills/ && cp -R \"$d/skills/i-have-adhd\" ~/.claude/skills/",
+        "notes": "Claude Code folder shown. Codex: ~/.agents/skills/ · Cursor: ~/.cursor/skills/ · Gemini CLI: ~/.gemini/skills/ · Copilot: ~/.copilot/skills/. Loads in a new session."
+      },
       "signals": {
-        "stars": 26600,
-        "forks": 3749,
+        "stars": 51613,
+        "forks": 2977,
         "checked": "2026-09-27",
-        "head_sha": "19392f7a08264ed00486a251f5b2098321771f94",
-        "head_checked": "2026-09-27"
+        "head_sha": "4c76175b17421d61babfc35c10ab07604ef578d0",
+        "head_checked": "2026-09-27",
+        "installs": 21550,
+        "installs_source": "skills.sh"
       },
       "checked": {
-        "date": "2026-08-27",
-        "files_scanned": 600
-      }
-    },
-    {
-      "id": "alchaincyf-huashu-design",
-      "name": "huashu-design",
-      "repo_url": "https://github.com/alchaincyf/huashu-design",
-      "author": "alchaincyf",
-      "category": "frontend",
-      "summary": "Huashu Design · HTML-native design skill for Claude Code · Claude Code 里 HTML 原生的设计 skill · 高保真原型 / 幻灯片 / 动画 + 20 设计哲学 + 5 维评审 + MP4 导出 · Agent-agnostic",
-      "pain_points": [
-        "generic-frontend"
-      ],
-      "license": "MIT",
-      "created": "2026-04",
-      "pushed": "2026-09-22",
-      "signals": {
-        "stars": 24490,
-        "forks": 2796,
-        "checked": "2026-09-27",
-        "head_sha": "0830494ecb1c117e25b313a8114fe55a6bf2b125",
-        "head_checked": "2026-09-27"
-      },
-      "checked": {
-        "date": "2026-09-22",
-        "files_scanned": 76
-      }
-    },
-    {
-      "id": "kkkkhazix-khazix-skills",
-      "name": "KKKKhazix/khazix-skills",
-      "repo_url": "https://github.com/KKKKhazix/khazix-skills",
-      "author": "KKKKhazix",
-      "category": "library",
-      "summary": "数字生命卡兹克开源的 AI Skills 合集 | Agent Skills: leader（帮你定义目标）, neat-freak 洁癖, hv-analysis, khazix-writer & more — Claude Code, Codex & 40+ agents",
-      "pain_points": [
-        "context-bloat",
-        "docs-drift"
-      ],
-      "license": "MIT",
-      "created": "2026-04",
-      "pushed": "2026-09-25",
-      "signals": {
-        "stars": 20956,
-        "forks": 2216,
-        "checked": "2026-09-27",
-        "head_sha": "b81ad3b442e778bb7bf27047034c1d0d9f0637ff",
-        "head_checked": "2026-09-27"
-      },
-      "checked": {
-        "date": "2026-09-26",
-        "files_scanned": 113
-      }
-    },
-    {
-      "id": "nutlope-hallmark",
-      "name": "hallmark",
-      "repo_url": "https://github.com/Nutlope/hallmark",
-      "author": "Nutlope",
-      "category": "frontend",
-      "summary": "Anti-AI-slop design skill for Claude Code, Cursor, and Codex.",
-      "pain_points": [
-        "generic-frontend"
-      ],
-      "license": "MIT",
-      "created": "2026-04",
-      "pushed": "2026-08-06",
-      "signals": {
-        "stars": 29207,
-        "forks": 1501,
-        "checked": "2026-09-27",
-        "head_sha": "13ac0ec7e148655948100b6396439e481361d690",
-        "head_checked": "2026-09-27"
-      },
-      "checked": {
-        "date": "2026-08-13",
-        "files_scanned": 152
-      }
-    },
-    {
-      "id": "microsoft-skillopt",
-      "name": "SkillOpt",
-      "repo_url": "https://github.com/microsoft/SkillOpt",
-      "author": "microsoft",
-      "category": "workflow",
-      "summary": "SkillOpt is a text-space optimizer that trains reusable natural-language skills for frozen LLM agents through trajectory-driven edits, validation-gated updates, and deployable best_skill.md artifacts.",
-      "pain_points": [],
-      "license": "MIT",
-      "created": "2026-05",
-      "pushed": "2026-09-05",
-      "signals": {
-        "stars": 17648,
-        "forks": 1647,
-        "checked": "2026-09-27",
-        "head_sha": "79124b37e9a6371e13b753f8bcd7adb1e493ade1",
-        "head_checked": "2026-09-27"
-      },
-      "checked": {
-        "date": "2026-09-06",
-        "files_scanned": 421
-      }
-    },
-    {
-      "id": "travisvn-awesome-claude-skills",
-      "name": "travisvn/awesome-claude-skills",
-      "repo_url": "https://github.com/travisvn/awesome-claude-skills",
-      "author": "travisvn",
-      "category": "library",
-      "summary": "A curated list of awesome Claude Skills, resources, and tools for customizing Claude AI workflows — particularly Claude Code",
-      "pain_points": [
-        "shallow-research"
-      ],
-      "created": "2025-10",
-      "pushed": "2026-04-28",
-      "does": "Gives you a reading list: a single page of links pointing to other people's Claude skills, tutorials, and documentation, with short descriptions and setup notes -- it adds nothing to your agent by itself.",
-      "touches": [
-        "no side effects"
-      ],
-      "undo": "not documented by the author",
-      "signals": {
-        "stars": 15188,
-        "forks": 1994,
-        "checked": "2026-09-27",
-        "head_sha": "1da55aa810f206d3fe2005e7e3989b15a275d942",
-        "head_checked": "2026-09-27"
-      },
-      "checked": {
-        "date": "2026-07-27",
+        "date": "2026-09-27",
         "files_scanned": 3
-      }
+      },
+      "pushed": "2026-09-19",
+      "license": "MIT"
     },
     {
-      "id": "op7418-humanizer-zh",
-      "name": "Humanizer-zh",
-      "repo_url": "https://github.com/op7418/Humanizer-zh",
-      "author": "op7418",
-      "category": "workflow",
-      "summary": "Humanizer 的汉化版本，Claude Code Skills，旨在消除文本中 AI 生成的痕迹。",
-      "pain_points": [],
-      "license": "MIT",
-      "created": "2026-01",
+      "id": "handoff",
+      "name": "handoff",
+      "repo_url": "https://github.com/mattpocock/skills/tree/main/skills/productivity/handoff",
+      "author": "Matt Pocock (mattpocock)",
+      "category": "context",
+      "summary": "Writes a short handoff note so a fresh chat can pick up a long conversation where you left off.",
+      "line": "Type /handoff when a chat gets long, and your AI writes a note a fresh chat can pick up from.",
+      "calls": "you",
+      "for": "anyone",
+      "needs": [
+        "files"
+      ],
+      "pain_points": [
+        "context-bloat"
+      ],
+      "source": {
+        "repo": "mattpocock/skills",
+        "branch": "main",
+        "path": "skills/productivity/handoff"
+      },
+      "install": {
+        "command": "d=$(mktemp -d) && git clone --depth 1 -q https://github.com/mattpocock/skills \"$d\" && mkdir -p ~/.claude/skills/ && cp -R \"$d/skills/productivity/handoff\" ~/.claude/skills/",
+        "notes": "Claude Code folder shown. Codex: ~/.agents/skills/ · Cursor: ~/.cursor/skills/ · Gemini CLI: ~/.gemini/skills/ · Copilot: ~/.copilot/skills/. Loads in a new session."
+      },
+      "signals": {
+        "stars": 270719,
+        "forks": 22801,
+        "checked": "2026-09-27",
+        "head_sha": "d28dfdc39beadc3142a33359b5cfa4765dcbd0bc",
+        "head_checked": "2026-09-27",
+        "installs": 877632,
+        "installs_source": "skills.sh"
+      },
+      "checked": {
+        "date": "2026-09-27",
+        "files_scanned": 2
+      },
+      "pushed": "2026-09-24",
+      "license": "MIT"
+    },
+    {
+      "id": "teach",
+      "name": "teach",
+      "repo_url": "https://github.com/mattpocock/skills/tree/main/skills/productivity/teach",
+      "author": "Matt Pocock (mattpocock)",
+      "category": "learning",
+      "summary": "Turns your AI into a tutor that teaches a topic over several sessions, saving lessons and notes in a folder.",
+      "line": "Type /teach and a topic, and your AI teaches the topic step by step, saving each lesson.",
+      "calls": "you",
+      "for": "anyone",
+      "needs": [
+        "files"
+      ],
+      "pain_points": [
+        "learning"
+      ],
+      "source": {
+        "repo": "mattpocock/skills",
+        "branch": "main",
+        "path": "skills/productivity/teach"
+      },
+      "install": {
+        "command": "d=$(mktemp -d) && git clone --depth 1 -q https://github.com/mattpocock/skills \"$d\" && mkdir -p ~/.claude/skills/ && cp -R \"$d/skills/productivity/teach\" ~/.claude/skills/",
+        "notes": "Claude Code folder shown. Codex: ~/.agents/skills/ · Cursor: ~/.cursor/skills/ · Gemini CLI: ~/.gemini/skills/ · Copilot: ~/.copilot/skills/. Loads in a new session."
+      },
+      "signals": {
+        "stars": 270719,
+        "forks": 22801,
+        "checked": "2026-09-27",
+        "head_sha": "321658273cb1d20b76026717d027d505790106d4",
+        "head_checked": "2026-09-27",
+        "installs": 718632,
+        "installs_source": "skills.sh"
+      },
+      "checked": {
+        "date": "2026-09-27",
+        "files_scanned": 6
+      },
+      "pushed": "2026-09-24",
+      "license": "MIT"
+    },
+    {
+      "id": "copywriting",
+      "name": "copywriting",
+      "repo_url": "https://github.com/coreyhaines31/marketingskills/tree/main/skills/copywriting",
+      "author": "Corey Haines (coreyhaines31)",
+      "category": "writing",
+      "summary": "Writes and tightens page copy — headlines, value lines, calls to action — that persuades.",
+      "line": "Your AI now writes page copy — headlines, pitches, buttons — using proven marketing patterns.",
+      "calls": "auto",
+      "for": "writing",
+      "needs": [],
+      "pain_points": [
+        "ai-sounding"
+      ],
+      "source": {
+        "repo": "coreyhaines31/marketingskills",
+        "branch": "main",
+        "path": "skills/copywriting"
+      },
+      "install": {
+        "command": "d=$(mktemp -d) && git clone --depth 1 -q https://github.com/coreyhaines31/marketingskills \"$d\" && mkdir -p ~/.claude/skills/ && cp -R \"$d/skills/copywriting\" ~/.claude/skills/",
+        "notes": "Claude Code folder shown. Codex: ~/.agents/skills/ · Cursor: ~/.cursor/skills/ · Gemini CLI: ~/.gemini/skills/ · Copilot: ~/.copilot/skills/. Loads in a new session."
+      },
+      "signals": {
+        "stars": 51704,
+        "forks": 7802,
+        "checked": "2026-09-27",
+        "head_sha": "27cd9479a55188ed18910010c992a0caf5836234",
+        "head_checked": "2026-09-27",
+        "installs": 209176,
+        "installs_source": "skills.sh"
+      },
+      "checked": {
+        "date": "2026-09-27",
+        "files_scanned": 4
+      },
+      "pushed": "2026-09-05",
+      "license": "MIT"
+    },
+    {
+      "id": "frontend-design",
+      "name": "frontend-design",
+      "repo_url": "https://github.com/anthropics/skills/tree/main/skills/frontend-design",
+      "author": "Anthropic (anthropics)",
+      "category": "frontend",
+      "summary": "Gives the pages and apps your AI builds a clear visual direction instead of the usual template look.",
+      "line": "Your AI now designs pages with a clear visual direction instead of the usual template look.",
+      "calls": "auto",
+      "for": "design",
+      "needs": [],
+      "pain_points": [
+        "generic-frontend"
+      ],
+      "source": {
+        "repo": "anthropics/skills",
+        "branch": "main",
+        "path": "skills/frontend-design"
+      },
+      "install": {
+        "command": "d=$(mktemp -d) && git clone --depth 1 -q https://github.com/anthropics/skills \"$d\" && mkdir -p ~/.claude/skills/ && cp -R \"$d/skills/frontend-design\" ~/.claude/skills/",
+        "notes": "Claude Code folder shown. Codex: ~/.agents/skills/ · Cursor: ~/.cursor/skills/ · Gemini CLI: ~/.gemini/skills/ · Copilot: ~/.copilot/skills/. Loads in a new session."
+      },
+      "signals": {
+        "stars": 178673,
+        "forks": 21138,
+        "checked": "2026-09-27",
+        "head_sha": "41bbe19d1a1a7eaab5e7bb9050a417e5c6cffc8f",
+        "head_checked": "2026-09-27",
+        "installs": 927810,
+        "installs_source": "skills.sh"
+      },
+      "checked": {
+        "date": "2026-09-27",
+        "files_scanned": 2
+      },
+      "pushed": "2026-09-24"
+    },
+    {
+      "id": "design-taste-frontend",
+      "name": "design-taste-frontend",
+      "repo_url": "https://github.com/Leonxlnx/taste-skill/tree/main/skills/taste-skill",
+      "author": "Leonxlnx",
+      "category": "frontend",
+      "summary": "Reads your brief, picks a fitting design direction, and builds landing pages and portfolios that don't look templated.",
+      "line": "Your AI now reads the brief first and builds landing pages that don't look templated.",
+      "calls": "auto",
+      "for": "design",
+      "needs": [],
+      "pain_points": [
+        "generic-frontend"
+      ],
+      "source": {
+        "repo": "Leonxlnx/taste-skill",
+        "branch": "main",
+        "path": "skills/taste-skill"
+      },
+      "install": {
+        "command": "d=$(mktemp -d) && git clone --depth 1 -q https://github.com/Leonxlnx/taste-skill \"$d\" && mkdir -p ~/.claude/skills/ && cp -R \"$d/skills/taste-skill\" ~/.claude/skills/",
+        "notes": "Claude Code folder shown. Codex: ~/.agents/skills/ · Cursor: ~/.cursor/skills/ · Gemini CLI: ~/.gemini/skills/ · Copilot: ~/.copilot/skills/. Loads in a new session."
+      },
+      "signals": {
+        "stars": 90651,
+        "forks": 6171,
+        "checked": "2026-09-27",
+        "head_sha": "3c7017d636c3a4aad378433ea6d0cfa6c921da4a",
+        "head_checked": "2026-09-27",
+        "installs": 527001,
+        "installs_source": "skills.sh"
+      },
+      "checked": {
+        "date": "2026-09-27",
+        "files_scanned": 1
+      },
+      "pushed": "2026-09-26",
+      "license": "MIT"
+    },
+    {
+      "id": "emil-design-eng",
+      "name": "emil-design-eng",
+      "repo_url": "https://github.com/emilkowalski/skills/tree/main/skills/emil-design-eng",
+      "author": "Emil Kowalski (emilkowalski)",
+      "category": "frontend",
+      "summary": "Emil Kowalski's rules for UI polish: motion, components, and the small details that make software feel great.",
+      "line": "Your AI now adds the small interface details — motion, spacing, feel — that make an app feel polished.",
+      "calls": "auto",
+      "for": "design",
+      "needs": [],
+      "pain_points": [
+        "generic-frontend"
+      ],
+      "source": {
+        "repo": "emilkowalski/skills",
+        "branch": "main",
+        "path": "skills/emil-design-eng"
+      },
+      "install": {
+        "command": "d=$(mktemp -d) && git clone --depth 1 -q https://github.com/emilkowalski/skills \"$d\" && mkdir -p ~/.claude/skills/ && cp -R \"$d/skills/emil-design-eng\" ~/.claude/skills/",
+        "notes": "Claude Code folder shown. Codex: ~/.agents/skills/ · Cursor: ~/.cursor/skills/ · Gemini CLI: ~/.gemini/skills/ · Copilot: ~/.copilot/skills/. Loads in a new session."
+      },
+      "signals": {
+        "stars": 41496,
+        "forks": 2361,
+        "checked": "2026-09-27",
+        "head_sha": "85e8e2363b713506e1d5b6e07a0eb2da66be1bc3",
+        "head_checked": "2026-09-27",
+        "installs": 301841,
+        "installs_source": "skills.sh"
+      },
+      "checked": {
+        "date": "2026-09-27",
+        "files_scanned": 1
+      },
       "pushed": "2026-09-23",
-      "does": "When your agent edits or reviews text, it will rewrite it to strip common signs of AI-generated writing (in Chinese) — inflated significance claims, filler phrases, promotional wording, overused dashes and lists — and make the result read like a real person wrote it.",
-      "touches": [
-        "reads project files",
-        "writes project files"
+      "license": "MIT"
+    },
+    {
+      "id": "verification-before-completion",
+      "name": "verification-before-completion",
+      "repo_url": "https://github.com/obra/superpowers/tree/main/skills/verification-before-completion",
+      "author": "Jesse Vincent (obra)",
+      "category": "testing",
+      "summary": "Makes your AI run the checks and read the output before saying anything is done or fixed.",
+      "line": "Your AI now runs the checks before saying “done”, so “fixed” means fixed.",
+      "calls": "auto",
+      "for": "coding",
+      "needs": [
+        "files"
       ],
-      "undo": "not documented by the author",
-      "signals": {
-        "stars": 18578,
-        "forks": 1207,
-        "checked": "2026-09-27",
-        "head_sha": "f4518a8eab97b8bfebc66a89d34320a89bef6930",
-        "head_checked": "2026-09-27"
-      },
-      "checked": {
-        "date": "2026-09-23",
-        "files_scanned": 9
-      }
-    },
-    {
-      "id": "simonw-llm",
-      "name": "llm",
-      "repo_url": "https://github.com/simonw/llm",
-      "author": "simonw",
-      "category": "workflow",
-      "summary": "Access large language models from the command-line",
-      "pain_points": [],
-      "license": "Apache-2.0",
-      "created": "2023-04",
-      "pushed": "2026-09-22",
-      "signals": {
-        "stars": 12558,
-        "forks": 1004,
-        "checked": "2026-09-27",
-        "head_sha": "764dc386c58b625f3ad9d203e699715ad208455f",
-        "head_checked": "2026-09-27"
-      },
-      "checked": {
-        "date": "2026-09-23",
-        "files_scanned": 115
-      }
-    },
-    {
-      "id": "orchestra-research-ai-research-skills",
-      "name": "Orchestra-Research/AI-Research-SKILLs",
-      "repo_url": "https://github.com/Orchestra-Research/AI-Research-SKILLs",
-      "author": "Orchestra-Research",
-      "category": "library",
-      "summary": "Comprehensive open-source library of AI research and engineering skills for any AI model. Package the skills and your claude code/codex/gemini agent will be an AI research agent with full horsepower. Maintained by Orches",
-      "pain_points": [
-        "shallow-research"
-      ],
-      "license": "MIT",
-      "created": "2025-11",
-      "pushed": "2026-06-16",
-      "does": "Gives your agent a library of ready-made instruction guides for popular AI research tools (model fine-tuning, tokenizers, fast model serving, vector search), so when you ask about those tools it can walk you through installing, configuring, and running them with worked examples.",
-      "touches": [
-        "runs shell commands",
-        "installs dependencies",
-        "network calls",
-        "writes project files"
-      ],
-      "undo": "not documented by the author",
-      "signals": {
-        "stars": 13075,
-        "forks": 931,
-        "checked": "2026-09-27",
-        "head_sha": "773a52944ba4747a18bd4ae9ade53fff041adcbc",
-        "head_checked": "2026-09-27"
-      },
-      "checked": {
-        "date": "2026-07-27",
-        "files_scanned": 455
-      }
-    },
-    {
-      "id": "jeffallan-claude-skills",
-      "name": "Jeffallan/claude-skills",
-      "repo_url": "https://github.com/Jeffallan/claude-skills",
-      "author": "Jeffallan",
-      "category": "library",
-      "summary": "67 Specialized Skills for Full-Stack Developers. Transform Claude Code into your expert pair programmer.",
-      "pain_points": [],
-      "license": "MIT",
-      "created": "2025-10",
-      "pushed": "2026-08-07",
-      "signals": {
-        "stars": 11646,
-        "forks": 1124,
-        "checked": "2026-09-27",
-        "head_sha": "882ef55e377dbf9a4dbe496bb41ac6ccd0e555cf",
-        "head_checked": "2026-09-27"
-      },
-      "checked": {
-        "date": "2026-08-13",
-        "files_scanned": 557
-      }
-    },
-    {
-      "id": "nidhinjs-prompt-master",
-      "name": "prompt-master",
-      "repo_url": "https://github.com/nidhinjs/prompt-master",
-      "author": "nidhinjs",
-      "category": "context",
-      "summary": "A Claude skill that writes the accurate prompts for any AI tool. Zero tokens or credits wasted. Full context and memory retention",
-      "pain_points": [
-        "context-bloat"
-      ],
-      "license": "MIT",
-      "created": "2026-03",
-      "pushed": "2026-08-24",
-      "does": "When you ask for help writing a prompt for some AI tool, your assistant will follow this playbook to hand you one polished, ready-to-paste prompt tailored to that specific tool, asking you at most three clarifying questions first.",
-      "touches": [
-        "no side effects"
-      ],
-      "undo": "not documented by the author",
-      "signals": {
-        "stars": 13711,
-        "forks": 1582,
-        "checked": "2026-09-27",
-        "head_sha": "2bd92518e26bf659e21e3d9ab90573fcf3ddeccb",
-        "head_checked": "2026-09-27"
-      },
-      "checked": {
-        "date": "2026-08-24",
-        "files_scanned": 5
-      }
-    },
-    {
-      "id": "virgiliojr94-book-to-skill",
-      "name": "book-to-skill",
-      "repo_url": "https://github.com/virgiliojr94/book-to-skill",
-      "author": "virgiliojr94",
-      "category": "workflow",
-      "summary": "Turn any technical book PDF into a Claude Code skill — ready to study, reference, and use while you work.",
-      "pain_points": [],
-      "license": "MIT",
-      "created": "2026-05",
-      "pushed": "2026-09-22",
-      "signals": {
-        "stars": 32708,
-        "forks": 3411,
-        "checked": "2026-09-27",
-        "head_sha": "80ae087784ddbc21dbbfde355fe5509631e0e322",
-        "head_checked": "2026-09-27"
-      },
-      "checked": {
-        "date": "2026-09-23",
-        "files_scanned": 105
-      }
-    },
-    {
-      "id": "xixu-me-xget",
-      "name": "xget",
-      "repo_url": "https://github.com/xixu-me/xget",
-      "author": "xixu-me",
-      "category": "security",
-      "summary": "Ultra-high-performance, secure, all-in-one acceleration engine for developer resources",
-      "pain_points": [
-        "shallow-research",
-        "security-worries"
-      ],
-      "license": "AGPL-3.0",
-      "created": "2024-11",
-      "pushed": "2026-08-10",
-      "signals": {
-        "stars": 8202,
-        "forks": 1305,
-        "checked": "2026-08-20",
-        "head_sha": "0f847f415d26690e69ba0ea2f94e0298ef49e827",
-        "head_checked": "2026-08-20"
-      },
-      "checked": {
-        "date": "2026-08-13",
-        "files_scanned": 117
-      }
-    },
-    {
-      "id": "agents365-ai-drawio-skill",
-      "name": "drawio-skill",
-      "repo_url": "https://github.com/Agents365-ai/drawio-skill",
-      "author": "Agents365-ai",
-      "category": "git",
-      "summary": "Agent skill that turns natural language, code, Terraform/K8s, SQL, OpenAPI, AsyncAPI, Protobuf and GraphQL sources into editable, tested draw.io architecture diagrams: incremental sync, multi-view projection, drift diff,",
-      "pain_points": [
-        "git-hygiene"
-      ],
-      "license": "MIT",
-      "created": "2026-03",
-      "pushed": "2026-09-14",
-      "signals": {
-        "stars": 9699,
-        "forks": 681,
-        "checked": "2026-09-27",
-        "head_sha": "7aa92f73819766eb914fffac66762cf2adb5d828",
-        "head_checked": "2026-09-27"
-      },
-      "checked": {
-        "date": "2026-09-14",
-        "files_scanned": 141
-      }
-    },
-    {
-      "id": "ikaijua-awesome-aitools",
-      "name": "ikaijua/Awesome-AITools",
-      "repo_url": "https://github.com/ikaijua/Awesome-AITools",
-      "author": "ikaijua",
-      "category": "library",
-      "summary": "Collection of AI-related utilities. Welcome to submit pull requests /收藏AI相关的实用工具，欢迎提交pull requests",
-      "pain_points": [
-        "git-hygiene"
-      ],
-      "created": "2023-04",
-      "pushed": "2026-09-27",
-      "signals": {
-        "stars": 6198,
-        "forks": 805,
-        "checked": "2026-09-27",
-        "head_sha": "ecd03cdaeb07d27d9dec4839c60c307c4b525fe3",
-        "head_checked": "2026-09-27"
-      },
-      "checked": {
-        "date": "2026-09-27",
-        "files_scanned": 111
-      }
-    },
-    {
-      "id": "deanpeters-product-manager-skills",
-      "name": "deanpeters/Product-Manager-Skills",
-      "repo_url": "https://github.com/deanpeters/Product-Manager-Skills",
-      "author": "deanpeters",
-      "category": "library",
-      "summary": "Product Management skills framework built on battle-tested methods for Claude Code, Cowork, Codex, and AI agents.",
       "pain_points": [
         "testing-discipline"
       ],
-      "created": "2026-02",
-      "pushed": "2026-09-01",
-      "signals": {
-        "stars": 7090,
-        "forks": 846,
-        "checked": "2026-09-27",
-        "head_sha": "1b5a524ebb95e9497fa3f25002d8b8ec528d4444",
-        "head_checked": "2026-09-27"
+      "source": {
+        "repo": "obra/superpowers",
+        "branch": "main",
+        "path": "skills/verification-before-completion"
       },
-      "checked": {
-        "date": "2026-09-02",
-        "files_scanned": 363
-      }
-    },
-    {
-      "id": "luongnv89-claude-howto",
-      "name": "claude-howto",
-      "repo_url": "https://github.com/luongnv89/claude-howto",
-      "author": "luongnv89",
-      "category": "workflow",
-      "summary": "A visual, example-driven guide to Claude Code — from basic concepts to advanced agents, with copy-paste templates that bring immediate value.",
-      "pain_points": [],
-      "license": "MIT",
-      "created": "2025-11",
-      "pushed": "2026-09-26",
-      "signals": {
-        "stars": 41684,
-        "forks": 5117,
-        "checked": "2026-09-27",
-        "head_sha": "4f5703855c723a1d0ab0285a497ad0e0ecc5b69a",
-        "head_checked": "2026-09-27"
+      "install": {
+        "command": "d=$(mktemp -d) && git clone --depth 1 -q https://github.com/obra/superpowers \"$d\" && mkdir -p ~/.claude/skills/ && cp -R \"$d/skills/verification-before-completion\" ~/.claude/skills/",
+        "notes": "Claude Code folder shown. Codex: ~/.agents/skills/ · Cursor: ~/.cursor/skills/ · Gemini CLI: ~/.gemini/skills/ · Copilot: ~/.copilot/skills/. Loads in a new session."
       },
-      "checked": {
-        "date": "2026-09-26",
-        "files_scanned": 600
-      }
-    },
-    {
-      "id": "diegosouzapw-omniroute",
-      "name": "OmniRoute",
-      "repo_url": "https://github.com/diegosouzapw/OmniRoute",
-      "author": "diegosouzapw",
-      "category": "context",
-      "summary": "Never stop coding. Free MIT AI gateway: one endpoint, 359 providers (150+ free), 1200+ models Kimi, Claude, GPT, Gemini, GLM, DeepSeek, MiniMax. Works with Claude Code, Codex, Cursor, OpenCode, Cline & Copilot. Quota-awa",
-      "pain_points": [
-        "context-bloat"
-      ],
-      "license": "MIT",
-      "created": "2026-02",
-      "pushed": "2026-09-27",
       "signals": {
-        "stars": 70701,
-        "forks": 10051,
+        "stars": 292194,
+        "forks": 26150,
         "checked": "2026-09-27",
-        "head_sha": "a58000c7685f4091c7a6fd8ddf3ebce7d2ec67c3",
-        "head_checked": "2026-09-27"
+        "head_sha": "3be5aad3dd2400ef23b15680969f4bcd3b6d7b8b",
+        "head_checked": "2026-09-27",
+        "installs": 222921,
+        "installs_source": "skills.sh"
       },
       "checked": {
         "date": "2026-09-27",
-        "files_scanned": 600
-      }
-    },
-    {
-      "id": "titanwings-colleague-skill",
-      "name": "colleague-skill",
-      "repo_url": "https://github.com/titanwings/colleague-skill",
-      "author": "titanwings",
-      "category": "workflow",
-      "summary": "Distilly — Distill how they think into reusable Skills for any Agent or Bot. Formerly Colleague Skill（原同事 Skill）.",
-      "pain_points": [],
-      "license": "MIT",
-      "created": "2026-03",
-      "pushed": "2026-09-22",
-      "signals": {
-        "stars": 25065,
-        "forks": 2172,
-        "checked": "2026-09-27",
-        "head_sha": "b830d3dcbde006370f141155795b89021e3a947b",
-        "head_checked": "2026-09-27"
+        "files_scanned": 1
       },
-      "checked": {
-        "date": "2026-09-13",
-        "files_scanned": 108
-      }
-    },
-    {
-      "id": "cherryhq-cherry-studio",
-      "name": "cherry-studio",
-      "repo_url": "https://github.com/CherryHQ/cherry-studio",
-      "author": "CherryHQ",
-      "category": "workflow",
-      "summary": "AI productivity studio with smart chat, autonomous agents, and 300+ assistants. Unified access to frontier LLMs",
-      "pain_points": [],
-      "license": "AGPL-3.0",
-      "created": "2024-05",
       "pushed": "2026-09-27",
-      "signals": {
-        "stars": 52183,
-        "forks": 5015,
-        "checked": "2026-09-27",
-        "head_sha": "5846b0e6b71adfd46baf094259823e1519e3afd6",
-        "head_checked": "2026-09-27"
-      },
-      "checked": {
-        "date": "2026-09-27",
-        "files_scanned": 600
-      }
+      "license": "MIT"
     },
     {
-      "id": "anthropics-claude-plugins-official",
-      "name": "claude-plugins-official",
-      "repo_url": "https://github.com/anthropics/claude-plugins-official",
-      "author": "anthropics",
-      "category": "workflow",
-      "summary": "Official, Anthropic-managed directory of high quality Claude Code Plugins.",
-      "pain_points": [],
-      "license": "Apache-2.0",
-      "created": "2025-11",
-      "pushed": "2026-09-25",
-      "signals": {
-        "stars": 37089,
-        "forks": 4165,
-        "checked": "2026-09-27",
-        "head_sha": "fa59bc9037741ecfa131aa27938272605710d7b2",
-        "head_checked": "2026-09-27"
-      },
-      "checked": {
-        "date": "2026-09-26",
-        "files_scanned": 512
-      }
-    },
-    {
-      "id": "googleworkspace-cli",
-      "name": "cli",
-      "repo_url": "https://github.com/googleworkspace/cli",
-      "author": "googleworkspace",
-      "category": "docs",
-      "summary": "Google Workspace CLI — one command-line tool for Drive, Gmail, Calendar, Sheets, Docs, Chat, Admin, and more. Dynamically built from Google Discovery Service. Includes AI agent skills.",
-      "pain_points": [
-        "docs-drift"
+      "id": "tdd",
+      "name": "tdd",
+      "repo_url": "https://github.com/mattpocock/skills/tree/main/skills/engineering/tdd",
+      "author": "Matt Pocock (mattpocock)",
+      "category": "testing",
+      "summary": "Builds features and fixes bugs test-first: a failing test, then the code, then a cleanup.",
+      "line": "Your AI now writes a failing test first, then the code, whenever you build a feature or fix a bug.",
+      "calls": "auto",
+      "for": "coding",
+      "needs": [
+        "files"
       ],
-      "license": "Apache-2.0",
-      "created": "2026-03",
-      "pushed": "2026-09-24",
-      "signals": {
-        "stars": 31168,
-        "forks": 1853,
-        "checked": "2026-09-27",
-        "head_sha": "a3768d0e82ad83cca2da97724e46bea4ff0e6dbd",
-        "head_checked": "2026-09-27"
-      },
-      "checked": {
-        "date": "2026-08-16",
-        "files_scanned": 167
-      }
-    },
-    {
-      "id": "tt-a1i-archify",
-      "name": "archify",
-      "repo_url": "https://github.com/tt-a1i/archify",
-      "author": "tt-a1i",
-      "category": "frontend",
-      "summary": "Agent skill for beautiful, verifiable architecture, workflow, sequence, data-flow, and lifecycle diagrams—self-contained HTML with motion and crisp export.",
-      "pain_points": [
-        "generic-frontend"
-      ],
-      "license": "MIT",
-      "created": "2026-04",
-      "pushed": "2026-09-27",
-      "signals": {
-        "stars": 72652,
-        "forks": 4906,
-        "checked": "2026-09-27",
-        "head_sha": "9e35d2b0b39b155553ba9fcfe0b4f2a5198dd993",
-        "head_checked": "2026-09-27"
-      },
-      "checked": {
-        "date": "2026-09-23",
-        "files_scanned": 428
-      }
-    },
-    {
-      "id": "voltagent-voltagent",
-      "name": "voltagent",
-      "repo_url": "https://github.com/VoltAgent/voltagent",
-      "author": "VoltAgent",
-      "category": "workflow",
-      "summary": "AI Agent Engineering Platform built on an Open Source TypeScript AI Agent Framework",
-      "pain_points": [],
-      "license": "MIT",
-      "created": "2025-04",
-      "pushed": "2026-08-27",
-      "signals": {
-        "stars": 10681,
-        "forks": 1137,
-        "checked": "2026-09-27",
-        "head_sha": "44b4c8e4998ce56095b2f0e4eaf1a988f5e6d0de",
-        "head_checked": "2026-09-27"
-      },
-      "checked": {
-        "date": "2026-08-27",
-        "files_scanned": 600
-      }
-    },
-    {
-      "id": "anthropics-claude-for-legal",
-      "name": "claude-for-legal",
-      "repo_url": "https://github.com/anthropics/claude-for-legal",
-      "author": "anthropics",
-      "category": "automation",
-      "summary": "A suite of plugins for legal workflows",
-      "pain_points": [],
-      "license": "Apache-2.0",
-      "created": "2026-04",
-      "pushed": "2026-09-24",
-      "signals": {
-        "stars": 9540,
-        "forks": 1869,
-        "checked": "2026-09-27",
-        "head_sha": "4a6c651889c97cc9140580363c73e0eb17379c2b",
-        "head_checked": "2026-09-27"
-      },
-      "checked": {
-        "date": "2026-08-16",
-        "files_scanned": 315
-      }
-    },
-    {
-      "id": "worldwonderer-oh-story-claudecode",
-      "name": "oh-story-claudecode",
-      "repo_url": "https://github.com/worldwonderer/oh-story-claudecode",
-      "author": "worldwonderer",
-      "category": "workflow",
-      "summary": "Claude Code / Codex / OpenCode agent skills for writing Chinese web novels (网文): 扫榜、拆文、写作、去AI味、封面全流程，长篇短篇都支持 | 13 skills for novel writing and long-form fiction with file-based continuity tracking. MIT.",
-      "pain_points": [],
-      "license": "MIT",
-      "created": "2026-04",
-      "pushed": "2026-09-27",
-      "signals": {
-        "stars": 7134,
-        "forks": 1011,
-        "checked": "2026-09-27",
-        "head_sha": "4a50d5583590eb7f207037e35136c1168bc02201",
-        "head_checked": "2026-09-27"
-      },
-      "checked": {
-        "date": "2026-09-27",
-        "files_scanned": 600
-      }
-    },
-    {
-      "id": "browser-act-skills",
-      "name": "browser-act/skills",
-      "repo_url": "https://github.com/browser-act/skills",
-      "author": "browser-act",
-      "category": "library",
-      "summary": "Browser automation CLI built for AI agents. Break through anti-bot walls, hand off to humans across platforms when stuck. Parallel multi-task execution, independent multi-session operation, isolated multi-account browsin",
-      "pain_points": [
-        "context-bloat",
-        "planning-drift"
-      ],
-      "license": "MIT",
-      "created": "2026-02",
-      "pushed": "2026-08-24",
-      "signals": {
-        "stars": 6030,
-        "forks": 305,
-        "checked": "2026-09-27",
-        "head_sha": "11c057b03f92101642cadc9f840564574120d184",
-        "head_checked": "2026-09-27"
-      },
-      "checked": {
-        "date": "2026-08-25",
-        "files_scanned": 271
-      }
-    },
-    {
-      "id": "vincentwei1021-video-shotcraft",
-      "name": "video-shotcraft",
-      "repo_url": "https://github.com/Vincentwei1021/video-shotcraft",
-      "author": "Vincentwei1021",
-      "category": "frontend",
-      "summary": "AI video skill for Claude Code & Codex — cinematic product videos with Remotion: 152 shot recipe cards, 209 motion previews, a production-ready template",
-      "pain_points": [
-        "generic-frontend"
-      ],
-      "license": "Apache-2.0",
-      "created": "2026-07",
-      "pushed": "2026-09-27",
-      "signals": {
-        "stars": 9690,
-        "forks": 875,
-        "checked": "2026-09-27",
-        "head_sha": "e2d8928c57ef84701f9b0119ca4a1c28a62050c1",
-        "head_checked": "2026-09-27"
-      },
-      "checked": {
-        "date": "2026-09-27",
-        "files_scanned": 600
-      }
-    },
-    {
-      "id": "zebbern-claude-code-guide",
-      "name": "claude-code-guide",
-      "repo_url": "https://github.com/zebbern/claude-code-guide",
-      "author": "zebbern",
-      "category": "automation",
-      "summary": "Claude Code Guide - Setup, Commands, workflows, agents, skills & tips-n-tricks from beginner to power user!",
-      "pain_points": [],
-      "license": "MIT",
-      "created": "2025-06",
-      "pushed": "2026-09-26",
-      "signals": {
-        "stars": 4640,
-        "forks": 469,
-        "checked": "2026-09-27",
-        "head_sha": "0cb35f7f17b212930e14b30deac96fae0e48af1f",
-        "head_checked": "2026-09-27"
-      },
-      "checked": {
-        "date": "2026-09-26",
-        "files_scanned": 400
-      }
-    },
-    {
-      "id": "samuraigpt-generative-media-skills",
-      "name": "SamurAIGPT/Generative-Media-Skills",
-      "repo_url": "https://github.com/SamurAIGPT/Generative-Media-Skills",
-      "author": "SamurAIGPT",
-      "category": "library",
-      "summary": "Multi-modal Generative Media Skills for AI Agents (Claude Code, Cursor, Gemini CLI). High-quality image, video, and audio generation powered by muapi.ai.",
-      "pain_points": [],
-      "license": "MIT",
-      "created": "2023-05",
-      "pushed": "2026-09-08",
-      "signals": {
-        "stars": 4330,
-        "forks": 496,
-        "checked": "2026-09-27",
-        "head_sha": "5519622e885abc60217a65c8e090bcb1d9830746",
-        "head_checked": "2026-09-27"
-      },
-      "checked": {
-        "date": "2026-09-09",
-        "files_scanned": 106
-      }
-    },
-    {
-      "id": "glitternetwork-pinme",
-      "name": "pinme",
-      "repo_url": "https://github.com/glitternetwork/pinme",
-      "author": "glitternetwork",
-      "category": "frontend",
-      "summary": "Deploy Your Frontend in a Single Command. Claude Code Skills supported.",
-      "pain_points": [
-        "generic-frontend"
-      ],
-      "license": "MIT",
-      "created": "2025-04",
-      "pushed": "2026-09-12",
-      "signals": {
-        "stars": 3745,
-        "forks": 277,
-        "checked": "2026-09-27",
-        "head_sha": "7822b0501607786958ecb458f3bd02a061933efa",
-        "head_checked": "2026-09-27"
-      },
-      "checked": {
-        "date": "2026-08-16",
-        "files_scanned": 131
-      }
-    },
-    {
-      "id": "elementalsouls-claude-bughunter",
-      "name": "elementalsouls/Claude-BugHunter",
-      "repo_url": "https://github.com/elementalsouls/Claude-BugHunter",
-      "author": "elementalsouls",
-      "category": "library",
-      "summary": "A Claude Code skill bundle for bug hunting and external red-team work - 82 skills, 15 slash commands, 681 disclosed-report patterns curated across 24 core vulnerability classes, plus enterprise identity + infrastructure ",
-      "pain_points": [
-        "security-worries"
-      ],
-      "license": "MIT",
-      "created": "2026-05",
-      "pushed": "2026-09-27",
-      "signals": {
-        "stars": 4684,
-        "forks": 708,
-        "checked": "2026-09-27",
-        "head_sha": "7e8545ed54927bd1f35731567d91fc6c70a04c34",
-        "head_checked": "2026-09-27"
-      },
-      "checked": {
-        "date": "2026-09-27",
-        "files_scanned": 277
-      }
-    },
-    {
-      "id": "addyosmani-web-quality-skills",
-      "name": "addyosmani/web-quality-skills",
-      "repo_url": "https://github.com/addyosmani/web-quality-skills",
-      "author": "addyosmani",
-      "category": "library",
-      "summary": "Agent Skills for optimizing web quality based on Lighthouse and Core Web Vitals.",
       "pain_points": [
         "testing-discipline"
       ],
-      "license": "MIT",
-      "created": "2026-01",
-      "pushed": "2026-08-24",
+      "source": {
+        "repo": "mattpocock/skills",
+        "branch": "main",
+        "path": "skills/engineering/tdd"
+      },
+      "install": {
+        "command": "d=$(mktemp -d) && git clone --depth 1 -q https://github.com/mattpocock/skills \"$d\" && mkdir -p ~/.claude/skills/ && cp -R \"$d/skills/engineering/tdd\" ~/.claude/skills/",
+        "notes": "Claude Code folder shown. Codex: ~/.agents/skills/ · Cursor: ~/.cursor/skills/ · Gemini CLI: ~/.gemini/skills/ · Copilot: ~/.copilot/skills/. Loads in a new session."
+      },
       "signals": {
-        "stars": 2848,
-        "forks": 249,
+        "stars": 270719,
+        "forks": 22801,
         "checked": "2026-09-27",
-        "head_sha": "afa8da942115f2961fdbfa80807ea0b232ff6c00",
-        "head_checked": "2026-09-27"
+        "head_sha": "321658273cb1d20b76026717d027d505790106d4",
+        "head_checked": "2026-09-27",
+        "installs": 973621,
+        "installs_source": "skills.sh"
       },
       "checked": {
-        "date": "2026-08-25",
-        "files_scanned": 29
-      }
+        "date": "2026-09-27",
+        "files_scanned": 4
+      },
+      "pushed": "2026-09-24",
+      "license": "MIT"
     },
     {
-      "id": "anthropics-cwc-workshops",
-      "name": "cwc-workshops",
-      "repo_url": "https://github.com/anthropics/cwc-workshops",
-      "author": "anthropics",
+      "id": "diagnosing-bugs",
+      "name": "diagnosing-bugs",
+      "repo_url": "https://github.com/mattpocock/skills/tree/main/skills/engineering/diagnosing-bugs",
+      "author": "Matt Pocock (mattpocock)",
       "category": "workflow",
-      "summary": "anthropics/cwc-workshops",
-      "pain_points": [],
-      "license": "Apache-2.0",
-      "created": "2026-05",
-      "pushed": "2026-08-27",
-      "signals": {
-        "stars": 2137,
-        "forks": 635,
-        "checked": "2026-09-27",
-        "head_sha": "068b84bb03d2ae87c51edb2837dda25c84c1d686",
-        "head_checked": "2026-09-27"
-      },
-      "checked": {
-        "date": "2026-08-17",
-        "files_scanned": 361
-      }
-    },
-    {
-      "id": "weizhena-deep-research-skills",
-      "name": "Weizhena/Deep-Research-skills",
-      "repo_url": "https://github.com/Weizhena/Deep-Research-skills",
-      "author": "Weizhena",
-      "category": "library",
-      "summary": "Structured deep research skill for Claude Code/Open Code/Codex with human-in-the-loop control",
-      "pain_points": [
-        "shallow-research"
+      "summary": "Gives your AI a step-by-step loop for hard bugs and slowdowns instead of guessing.",
+      "line": "Your AI now works hard bugs step by step — reproduce, narrow down, prove the fix — instead of guessing.",
+      "calls": "auto",
+      "for": "coding",
+      "needs": [
+        "files"
       ],
-      "license": "MIT",
-      "created": "2025-12",
-      "pushed": "2026-08-23",
-      "signals": {
-        "stars": 2249,
-        "forks": 187,
-        "checked": "2026-09-27",
-        "head_sha": "6ce38f60e3f8b22502c29873f96503a4e0c5addb",
-        "head_checked": "2026-09-27"
-      },
-      "checked": {
-        "date": "2026-08-23",
-        "files_scanned": 43
-      }
-    },
-    {
-      "id": "wondelai-skills",
-      "name": "wondelai/skills",
-      "repo_url": "https://github.com/wondelai/skills",
-      "author": "wondelai",
-      "category": "library",
-      "summary": "Wondel.ai Agent Skills — Business, Marketing, UX & Coding Frameworks from Bestselling Books. 50 skills + 12 guided journeys for Claude Code, Codex, Cursor & other agentskills.io agents.",
       "pain_points": [
-        "generic-frontend"
+        "debugging-loops"
       ],
-      "license": "MIT",
-      "created": "2026-01",
-      "pushed": "2026-09-10",
+      "source": {
+        "repo": "mattpocock/skills",
+        "branch": "main",
+        "path": "skills/engineering/diagnosing-bugs"
+      },
+      "install": {
+        "command": "d=$(mktemp -d) && git clone --depth 1 -q https://github.com/mattpocock/skills \"$d\" && mkdir -p ~/.claude/skills/ && cp -R \"$d/skills/engineering/diagnosing-bugs\" ~/.claude/skills/",
+        "notes": "Claude Code folder shown. Codex: ~/.agents/skills/ · Cursor: ~/.cursor/skills/ · Gemini CLI: ~/.gemini/skills/ · Copilot: ~/.copilot/skills/. Loads in a new session."
+      },
       "signals": {
-        "stars": 2272,
-        "forks": 230,
+        "stars": 270719,
+        "forks": 22801,
         "checked": "2026-09-27",
-        "head_sha": "c172996495bed0fcd26896a9416b2093fd7073f0",
-        "head_checked": "2026-09-27"
+        "head_sha": "321658273cb1d20b76026717d027d505790106d4",
+        "head_checked": "2026-09-27",
+        "installs": 671161,
+        "installs_source": "skills.sh"
       },
       "checked": {
-        "date": "2026-09-11",
-        "files_scanned": 600
-      }
+        "date": "2026-09-27",
+        "files_scanned": 3
+      },
+      "pushed": "2026-09-24",
+      "license": "MIT"
     },
     {
-      "id": "a5c-ai-babysitter",
-      "name": "babysitter",
-      "repo_url": "https://github.com/a5c-ai/babysitter",
-      "author": "a5c-ai",
-      "category": "automation",
-      "summary": "Babysitter enforces obedience on agentic workforces and enables them to manage extremely complex tasks and workflows through deterministic, hallucination-free self-orchestration",
-      "pain_points": [
-        "planning-drift"
+      "id": "karpathy-guidelines",
+      "name": "karpathy-guidelines",
+      "repo_url": "https://github.com/multica-ai/andrej-karpathy-skills/tree/main/skills/karpathy-guidelines",
+      "author": "multica-ai",
+      "category": "workflow",
+      "summary": "Rules against common AI coding mistakes: overbuilding, sweeping edits, and hidden assumptions.",
+      "line": "Your AI now keeps code changes small, names assumptions up front, and stops overbuilding.",
+      "calls": "auto",
+      "for": "coding",
+      "needs": [
+        "files"
       ],
-      "license": "MIT",
-      "created": "2026-01",
-      "pushed": "2026-09-16",
-      "signals": {
-        "stars": 1816,
-        "forks": 111,
-        "checked": "2026-09-27",
-        "head_sha": "feb68abe397acc14f32b34984975c48fedba2b33",
-        "head_checked": "2026-09-27"
-      },
-      "checked": {
-        "date": "2026-08-31",
-        "files_scanned": 600
-      }
-    },
-    {
-      "id": "juneyaooo-gpt-image2-ppt-skills",
-      "name": "JuneYaooo/gpt-image2-ppt-skills",
-      "repo_url": "https://github.com/JuneYaooo/gpt-image2-ppt-skills",
-      "author": "JuneYaooo",
-      "category": "library",
-      "summary": "Clone any .pptx into your own deck — OpenAI gpt-image-2 mimics the layout, you supply the content. 10 bundled styles. | 把任何 .pptx 模板\"抄\"成你的 PPT：gpt-image-2 仿版式、你换内容，另含 10 套精选风格。Claude Code / OpenClaw skill.",
-      "pain_points": [],
-      "license": "Apache-2.0",
-      "created": "2026-04",
-      "pushed": "2026-08-22",
-      "signals": {
-        "stars": 1310,
-        "forks": 76,
-        "checked": "2026-09-27",
-        "head_sha": "2d57ef8127b83e8232a1be4e9515f0b3cc9fc91e",
-        "head_checked": "2026-09-27"
-      },
-      "checked": {
-        "date": "2026-08-23",
-        "files_scanned": 579
-      }
-    },
-    {
-      "id": "amelnagdy-delegate-skills",
-      "name": "amElnagdy/delegate-skills",
-      "repo_url": "https://github.com/amElnagdy/delegate-skills",
-      "author": "amElnagdy",
-      "category": "library",
-      "summary": "Delegate a coding task to a separate coding agent CLI, review the diff, land the commit yourself — one per implementer.",
       "pain_points": [
-        "planning-drift",
-        "git-hygiene"
-      ],
-      "license": "MIT",
-      "created": "2026-06",
-      "pushed": "2026-09-20",
-      "signals": {
-        "stars": 2220,
-        "forks": 184,
-        "checked": "2026-09-27",
-        "head_sha": "6826b363085dcc80875372315fe7d208c4bf733f",
-        "head_checked": "2026-09-27"
-      },
-      "checked": {
-        "date": "2026-09-21",
-        "files_scanned": 157
-      }
-    },
-    {
-      "id": "agiwhitelist-auteur",
-      "name": "auteur",
-      "repo_url": "https://github.com/agiwhitelist/auteur",
-      "author": "agiwhitelist",
-      "category": "frontend",
-      "summary": "The Claude Code skill that directs a website like a film. Commit-sheet, generated assets, build, and an executable anti-slop linter that gates every ship.",
-      "pain_points": [
-        "generic-frontend",
-        "git-hygiene",
         "code-quality"
       ],
-      "license": "MIT",
-      "created": "2026-07",
-      "pushed": "2026-08-06",
-      "signals": {
-        "stars": 1032,
-        "forks": 17,
-        "checked": "2026-09-27",
-        "head_sha": "9bca227df9877e60dc45d49783c8cbd885eccd9b",
-        "head_checked": "2026-09-27"
+      "source": {
+        "repo": "multica-ai/andrej-karpathy-skills",
+        "branch": "main",
+        "path": "skills/karpathy-guidelines"
       },
-      "checked": {
-        "date": "2026-08-18",
-        "files_scanned": 37
-      }
-    },
-    {
-      "id": "amruthpillai-reactive-resume",
-      "name": "reactive-resume",
-      "repo_url": "https://github.com/amruthpillai/reactive-resume",
-      "author": "amruthpillai",
-      "category": "security",
-      "summary": "A one-of-a-kind resume builder that keeps your privacy in mind. Completely secure, customizable, portable, open-source and free forever. Try it out today!",
-      "pain_points": [
-        "security-worries"
-      ],
-      "license": "MIT",
-      "created": "2020-03",
-      "pushed": "2026-09-27",
+      "install": {
+        "command": "d=$(mktemp -d) && git clone --depth 1 -q https://github.com/multica-ai/andrej-karpathy-skills \"$d\" && mkdir -p ~/.claude/skills/ && cp -R \"$d/skills/karpathy-guidelines\" ~/.claude/skills/",
+        "notes": "Claude Code folder shown. Codex: ~/.agents/skills/ · Cursor: ~/.cursor/skills/ · Gemini CLI: ~/.gemini/skills/ · Copilot: ~/.copilot/skills/. Loads in a new session."
+      },
       "signals": {
-        "stars": 43476,
-        "forks": 4793,
+        "stars": 215550,
+        "forks": 21760,
         "checked": "2026-09-27",
-        "head_sha": "b48a9c21425bffdcd60b83ccff0055d5264d84ec",
-        "head_checked": "2026-09-27"
+        "head_sha": "64723a49ea6117894304eb491f0d32a60570bf45",
+        "head_checked": "2026-09-27",
+        "installs": 38144,
+        "installs_source": "skills.sh"
       },
       "checked": {
         "date": "2026-09-27",
-        "files_scanned": 600
-      }
-    },
-    {
-      "id": "cathrynlavery-diagram-design",
-      "name": "diagram-design",
-      "repo_url": "https://github.com/cathrynlavery/diagram-design",
-      "author": "cathrynlavery",
-      "category": "frontend",
-      "summary": "Editorial diagram design for Claude Code, Codex, and Pi. Self-contained HTML + SVG. No shadows. No Mermaid slop.",
-      "pain_points": [
-        "generic-frontend"
-      ],
-      "license": "MIT",
-      "created": "2026-04",
-      "pushed": "2026-09-27",
-      "signals": {
-        "stars": 42563,
-        "forks": 2742,
-        "checked": "2026-09-27",
-        "head_sha": "cea465e7f5ea1043d8dab21a99f2dd3f7f661beb",
-        "head_checked": "2026-09-27"
+        "files_scanned": 1
       },
-      "checked": {
-        "date": "2026-09-27",
-        "files_scanned": 178
-      }
+      "pushed": "2026-04-20"
     },
     {
-      "id": "panniantong-agent-reach",
-      "name": "Agent-Reach",
-      "repo_url": "https://github.com/Panniantong/Agent-Reach",
-      "author": "Panniantong",
-      "category": "research",
-      "summary": "Give your AI agent eyes to see the entire internet. Read & search Twitter, Reddit, YouTube, GitHub, Bilibili, XiaoHongShu — one CLI, zero API fees.",
-      "pain_points": [],
-      "created": "2026-02",
-      "pushed": "2026-09-15",
-      "signals": {
-        "stars": 85737,
-        "forks": 7537,
-        "checked": "2026-09-27",
-        "head_sha": "a19a171fa980a0785849596492e0af4db800c82f",
-        "head_checked": "2026-09-27"
-      },
-      "license": "MIT",
-      "checked": {
-        "date": "2026-09-15",
-        "files_scanned": 108
-      }
-    },
-    {
-      "id": "wshobson-agents",
-      "name": "wshobson/agents",
-      "repo_url": "https://github.com/wshobson/agents",
-      "author": "wshobson",
-      "category": "library",
-      "summary": "Multi-harness agentic plugin marketplace for Claude Code, Codex, Cursor, OpenCode, GitHub Copilot, Google Antigravity, and Pi",
-      "pain_points": [],
-      "created": "2025-07",
-      "pushed": "2026-09-26",
-      "signals": {
-        "stars": 40030,
-        "forks": 4271,
-        "checked": "2026-09-27",
-        "head_sha": "9b15b34b0bfc13a815cbfc2366e14ea549e09422",
-        "head_checked": "2026-09-27"
-      },
-      "license": "MIT",
-      "checked": {
-        "date": "2026-09-27",
-        "files_scanned": 600
-      }
-    },
-    {
-      "id": "emilkowalski-skills",
-      "name": "emilkowalski/skills",
-      "repo_url": "https://github.com/emilkowalski/skills",
-      "author": "emilkowalski",
-      "category": "library",
-      "summary": "Skills for Designers and Engineers.",
-      "pain_points": [
-        "generic-frontend"
-      ],
-      "created": "2026-03",
-      "pushed": "2026-09-23",
-      "signals": {
-        "stars": 41441,
-        "forks": 2359,
-        "checked": "2026-09-27",
-        "head_sha": "d16ebe60d09a5ba2afcb7054ede9d0a10c9f6128",
-        "head_checked": "2026-09-27"
-      },
-      "license": "MIT",
-      "checked": {
-        "date": "2026-09-24",
-        "files_scanned": 26
-      }
-    },
-    {
-      "id": "vercel-labs-skills",
-      "name": "vercel-labs/skills",
-      "repo_url": "https://github.com/vercel-labs/skills",
-      "author": "vercel-labs",
-      "category": "library",
-      "summary": "The open agent skills tool - npx skills",
-      "pain_points": [],
-      "created": "2026-01",
-      "pushed": "2026-09-18",
-      "signals": {
-        "stars": 32611,
-        "forks": 2781,
-        "checked": "2026-09-27",
-        "head_sha": "7407f3893ad4dceab546ac002c3ef806e4000c73",
-        "head_checked": "2026-09-27"
-      },
-      "license": "MIT",
-      "checked": {
-        "date": "2026-09-17",
-        "files_scanned": 124
-      }
-    },
-    {
-      "id": "vercel-labs-json-render",
-      "name": "json-render",
-      "repo_url": "https://github.com/vercel-labs/json-render",
-      "author": "vercel-labs",
-      "category": "frontend",
-      "summary": "The Generative UI framework",
-      "pain_points": [
-        "generic-frontend"
-      ],
-      "created": "2026-01",
-      "pushed": "2026-09-25",
-      "signals": {
-        "stars": 18331,
-        "forks": 971,
-        "checked": "2026-09-27",
-        "head_sha": "c2600d73908ed505e6d726f5b6f969ba8f597ce7",
-        "head_checked": "2026-09-27"
-      },
-      "license": "Apache-2.0",
-      "checked": {
-        "date": "2026-09-23",
-        "files_scanned": 600
-      }
-    },
-    {
-      "id": "coleam00-context-engineering-intro",
-      "name": "context-engineering-intro",
-      "repo_url": "https://github.com/coleam00/context-engineering-intro",
-      "author": "coleam00",
-      "category": "context",
-      "summary": "Context engineering is the new vibe coding - it's the way to actually make AI coding assistants work. Claude Code is the best for this so that's what this repo is centered around, but you can apply this strategy with any",
-      "pain_points": [
-        "context-bloat"
-      ],
-      "created": "2025-07",
-      "pushed": "2026-03-16",
-      "signals": {
-        "stars": 13886,
-        "forks": 2724,
-        "checked": "2026-09-27",
-        "head_sha": "a2d84b021cee1e2f4e77ba854bba0be8cb319035",
-        "head_checked": "2026-09-27"
-      },
-      "license": "MIT",
-      "checked": {
-        "date": "2026-08-22",
-        "files_scanned": 238
-      }
-    },
-    {
-      "id": "vercel-labs-portless",
-      "name": "portless",
-      "repo_url": "https://github.com/vercel-labs/portless",
-      "author": "vercel-labs",
+      "id": "ponytail",
+      "name": "ponytail",
+      "repo_url": "https://github.com/DietrichGebert/ponytail/tree/main/skills/ponytail",
+      "author": "Dietrich Gebert (DietrichGebert)",
       "category": "workflow",
-      "summary": "Replace port numbers with stable, named local URLs. For humans and agents.",
-      "pain_points": [],
-      "created": "2026-02",
-      "pushed": "2026-09-25",
-      "signals": {
-        "stars": 12608,
-        "forks": 425,
-        "checked": "2026-09-27",
-        "head_sha": "b52c2d6ed4abef51e69da841bcee3fc717820ce3",
-        "head_checked": "2026-09-27"
-      },
-      "license": "Apache-2.0",
-      "checked": {
-        "date": "2026-09-23",
-        "files_scanned": 188
-      }
-    },
-    {
-      "id": "vercel-labs-native",
-      "name": "native",
-      "repo_url": "https://github.com/vercel-labs/native",
-      "author": "vercel-labs",
-      "category": "workflow",
-      "summary": "Toolkit for building native desktop apps",
-      "pain_points": [],
-      "created": "2026-05",
-      "pushed": "2026-09-16",
-      "signals": {
-        "stars": 7714,
-        "forks": 318,
-        "checked": "2026-09-27",
-        "head_sha": "6b053188dc8ac415f602618be12717889cb0a986",
-        "head_checked": "2026-09-27"
-      },
-      "license": "Apache-2.0",
-      "checked": {
-        "date": "2026-09-17",
-        "files_scanned": 514
-      }
-    },
-    {
-      "id": "trailofbits-skills",
-      "name": "trailofbits/skills",
-      "repo_url": "https://github.com/trailofbits/skills",
-      "author": "trailofbits",
-      "category": "library",
-      "summary": "Trail of Bits Claude Code skills for security research, vulnerability detection, and audit workflows",
-      "pain_points": [
-        "shallow-research",
-        "security-worries"
+      "summary": "Pushes your AI toward the simplest code that works: built-in tools first, fewer lines, no extras.",
+      "line": "Your AI now reaches for the simplest code that works and skips needless extras.",
+      "calls": "auto",
+      "for": "coding",
+      "needs": [
+        "files"
       ],
-      "created": "2026-01",
-      "pushed": "2026-09-25",
-      "signals": {
-        "stars": 7266,
-        "forks": 619,
-        "checked": "2026-09-27",
-        "head_sha": "0cc1c73a5e96749ab32d7ea5e14892fafa6972ae",
-        "head_checked": "2026-09-27"
+      "pain_points": [
+        "code-quality"
+      ],
+      "source": {
+        "repo": "DietrichGebert/ponytail",
+        "branch": "main",
+        "path": "skills/ponytail"
       },
-      "license": "CC-BY-SA-4.0",
-      "checked": {
-        "date": "2026-09-25",
-        "files_scanned": 600
-      }
-    },
-    {
-      "id": "steipete-agent-scripts",
-      "name": "agent-scripts",
-      "repo_url": "https://github.com/steipete/agent-scripts",
-      "author": "steipete",
-      "category": "workflow",
-      "summary": "Scripts for agents, shared between my repositories.",
-      "pain_points": [],
-      "created": "2025-11",
-      "pushed": "2026-09-27",
-      "signals": {
-        "stars": 6655,
-        "forks": 547,
-        "checked": "2026-09-27",
-        "head_sha": "391e08aab366674af82cc838649dedc99c8f0405",
-        "head_checked": "2026-09-27"
+      "install": {
+        "command": "d=$(mktemp -d) && git clone --depth 1 -q https://github.com/DietrichGebert/ponytail \"$d\" && mkdir -p ~/.claude/skills/ && cp -R \"$d/skills/ponytail\" ~/.claude/skills/",
+        "notes": "Claude Code folder shown. Codex: ~/.agents/skills/ · Cursor: ~/.cursor/skills/ · Gemini CLI: ~/.gemini/skills/ · Copilot: ~/.copilot/skills/. Loads in a new session."
       },
-      "license": "MIT",
+      "signals": {
+        "stars": 146950,
+        "forks": 7896,
+        "checked": "2026-09-27",
+        "head_sha": "b6c04480c03e8db2f035751d7c46289779ec3362",
+        "head_checked": "2026-09-27",
+        "installs": 66143,
+        "installs_source": "skills.sh"
+      },
       "checked": {
         "date": "2026-09-27",
-        "files_scanned": 191
-      }
-    },
-    {
-      "id": "cloudflare-agents",
-      "name": "cloudflare/agents",
-      "repo_url": "https://github.com/cloudflare/agents",
-      "author": "cloudflare",
-      "category": "library",
-      "summary": "Build and deploy AI Agents on Cloudflare",
-      "pain_points": [],
-      "created": "2025-01",
-      "pushed": "2026-09-27",
-      "signals": {
-        "stars": 5659,
-        "forks": 738,
-        "checked": "2026-09-27",
-        "head_sha": "dbf170cf7d0313ffe79d7d6a84201841f2e12184",
-        "head_checked": "2026-09-27"
+        "files_scanned": 1
       },
-      "license": "MIT",
-      "checked": {
-        "date": "2026-09-26",
-        "files_scanned": 600
-      }
-    },
-    {
-      "id": "titanwings-distilly",
-      "name": "distilly",
-      "repo_url": "https://github.com/titanwings/distilly",
-      "author": "titanwings",
-      "category": "workflow",
-      "summary": "Distilly — Distill how they think into reusable Skills for any Agent or Bot. Formerly Colleague Skill（原同事 Skill）.",
-      "pain_points": [],
-      "created": "2026-03",
-      "pushed": "2026-09-22",
-      "signals": {
-        "stars": 25065,
-        "forks": 2172,
-        "checked": "2026-09-27",
-        "head_sha": "b830d3dcbde006370f141155795b89021e3a947b",
-        "head_checked": "2026-09-27"
-      },
-      "license": "MIT",
-      "checked": {
-        "date": "2026-09-13",
-        "files_scanned": 108
-      }
-    },
-    {
-      "id": "larksuite-cli",
-      "name": "larksuite/cli",
-      "repo_url": "https://github.com/larksuite/cli",
-      "author": "larksuite",
-      "category": "library",
-      "summary": "The official Lark/飞书 CLI tool, maintained by the larksuite team — built for humans and AI Agents. Covers core business domains including Messenger, Docs, Base, Sheets, Calendar, Mail, Tasks, Meetings, and more, with 200+",
-      "pain_points": [
-        "planning-drift",
-        "docs-drift"
-      ],
-      "created": "2026-03",
-      "pushed": "2026-09-27",
-      "signals": {
-        "stars": 17476,
-        "forks": 1392,
-        "checked": "2026-09-27",
-        "head_sha": "32e14dea9041e7876c8b41aead963b10866267d1",
-        "head_checked": "2026-09-27"
-      },
-      "license": "MIT",
-      "checked": {
-        "date": "2026-09-27",
-        "files_scanned": 600
-      }
-    },
-    {
-      "id": "zenstory-ai-oh-story-claudecode",
-      "name": "oh-story-claudecode",
-      "repo_url": "https://github.com/zenstory-ai/oh-story-claudecode",
-      "author": "zenstory-ai",
-      "category": "workflow",
-      "summary": "Claude Code / Codex / OpenCode agent skills for writing Chinese web novels (网文): 扫榜、拆文、写作、去AI味、封面全流程，长篇短篇都支持 | 13 skills for novel writing and long-form fiction with file-based continuity tracking. MIT.",
-      "pain_points": [],
-      "created": "2026-04",
-      "pushed": "2026-09-27",
-      "signals": {
-        "stars": 7134,
-        "forks": 1011,
-        "checked": "2026-09-27",
-        "head_sha": "4a50d5583590eb7f207037e35136c1168bc02201",
-        "head_checked": "2026-09-27"
-      },
-      "license": "MIT",
-      "checked": {
-        "date": "2026-09-27",
-        "files_scanned": 600
-      }
-    },
-    {
-      "id": "danny-avila-librechat",
-      "name": "LibreChat",
-      "repo_url": "https://github.com/danny-avila/LibreChat",
-      "author": "danny-avila",
-      "category": "research",
-      "summary": "Enhanced ChatGPT Clone: Features Agents, MCP, Skills, DeepSeek, Anthropic, AWS, OpenAI, Responses API, Azure, Groq, o1, GPT-5, Mistral, OpenRouter, Vertex AI, Gemini, Artifacts, AI model switching, message search, Code I",
-      "pain_points": [
-        "security-worries"
-      ],
-      "created": "2023-02",
-      "pushed": "2026-09-27",
-      "signals": {
-        "stars": 44991,
-        "forks": 9218,
-        "checked": "2026-09-27",
-        "head_sha": "d297530def0228607627ea4c01a6147a71f1c0c1",
-        "head_checked": "2026-09-27"
-      },
-      "license": "MIT",
-      "checked": {
-        "date": "2026-09-27",
-        "files_scanned": 600
-      }
-    },
-    {
-      "id": "stablyai-orca",
-      "name": "orca",
-      "repo_url": "https://github.com/stablyai/orca",
-      "author": "stablyai",
-      "category": "workflow",
-      "summary": "Orca is the ADE for working with a fleet of parallel agents. Run any coding agent with your own subscription. Available on desktop, mobile and remote runtime.",
-      "pain_points": [],
-      "created": "2026-03",
-      "pushed": "2026-09-27",
-      "signals": {
-        "stars": 79398,
-        "forks": 5197,
-        "checked": "2026-09-27",
-        "head_sha": "27b823f934f739bc85914dd717b776835f60bcf7",
-        "head_checked": "2026-09-27"
-      },
-      "license": "MIT",
-      "checked": {
-        "date": "2026-09-27",
-        "files_scanned": 600
-      }
-    },
-    {
-      "id": "pascalorg-editor",
-      "name": "editor",
-      "repo_url": "https://github.com/pascalorg/editor",
-      "author": "pascalorg",
-      "category": "frontend",
-      "summary": "Open-source 3D architectural editor with a local CLI, MCP tools, and practical workflows for humans and AI agents.",
-      "pain_points": [
-        "generic-frontend",
-        "context-bloat"
-      ],
-      "created": "2025-10",
-      "pushed": "2026-09-27",
-      "signals": {
-        "stars": 24332,
-        "forks": 3015,
-        "checked": "2026-09-27",
-        "head_sha": "b53a907b7cbdfaa10007ec761789c3fd43df46a6",
-        "head_checked": "2026-09-27"
-      },
-      "license": "MIT",
-      "checked": {
-        "date": "2026-09-27",
-        "files_scanned": 600
-      }
-    },
-    {
-      "id": "reactive-resume-app",
-      "name": "app",
-      "repo_url": "https://github.com/reactive-resume/app",
-      "author": "reactive-resume",
-      "category": "security",
-      "summary": "A one-of-a-kind resume builder that keeps your privacy in mind. Completely secure, customizable, portable, open-source and free forever. Try it out today!",
-      "pain_points": [
-        "security-worries"
-      ],
-      "created": "2020-03",
-      "pushed": "2026-09-27",
-      "signals": {
-        "stars": 43476,
-        "forks": 4793,
-        "checked": "2026-09-27",
-        "head_sha": "b48a9c21425bffdcd60b83ccff0055d5264d84ec",
-        "head_checked": "2026-09-27"
-      },
-      "license": "MIT",
-      "checked": {
-        "date": "2026-09-27",
-        "files_scanned": 600
-      }
-    },
-    {
-      "id": "reactive-resume-reactive-resume",
-      "name": "reactive-resume",
-      "repo_url": "https://github.com/reactive-resume/reactive-resume",
-      "author": "reactive-resume",
-      "category": "security",
-      "summary": "A one-of-a-kind resume builder that keeps your privacy in mind. Completely secure, customizable, portable, open-source and free forever. Try it out today!",
-      "pain_points": [
-        "security-worries"
-      ],
-      "created": "2020-03",
-      "pushed": "2026-09-27",
-      "signals": {
-        "stars": 43476,
-        "forks": 4793,
-        "checked": "2026-09-27",
-        "head_sha": "b48a9c21425bffdcd60b83ccff0055d5264d84ec",
-        "head_checked": "2026-09-27"
-      },
-      "license": "MIT",
-      "checked": {
-        "date": "2026-09-27",
-        "files_scanned": 600
-      }
-    },
-    {
-      "id": "yusufkaraaslan-skill-seekers",
-      "name": "Skill_Seekers",
-      "repo_url": "https://github.com/yusufkaraaslan/Skill_Seekers",
-      "author": "yusufkaraaslan",
-      "category": "docs",
-      "summary": "Convert documentation websites, GitHub repositories, and PDFs into Claude AI skills with automatic conflict detection",
-      "pain_points": [
-        "docs-drift"
-      ],
-      "created": "2025-10",
-      "pushed": "2026-09-20",
-      "signals": {
-        "stars": 15039,
-        "forks": 1535,
-        "checked": "2026-09-27",
-        "head_sha": "76d59ab4eaee61522eec6cb357cf901305ca74e1",
-        "head_checked": "2026-09-27"
-      },
-      "license": "MIT",
-      "checked": {
-        "date": "2026-09-20",
-        "files_scanned": 600
-      }
-    },
-    {
-      "id": "snailsploit-claude-red",
-      "name": "SnailSploit/Claude-Red",
-      "repo_url": "https://github.com/SnailSploit/Claude-Red",
-      "author": "SnailSploit",
-      "category": "library",
-      "summary": "claude-red is a curated library of offensive security skills designed for the Claude skills system. Each skill is a structured SKILL.md file that primes Claude with expert-level methodology for a specific attack surface ",
-      "pain_points": [
-        "generic-frontend",
-        "security-worries"
-      ],
-      "created": "2026-03",
-      "pushed": "2026-09-19",
-      "signals": {
-        "stars": 6996,
-        "forks": 917,
-        "checked": "2026-09-27",
-        "head_sha": "739512a8588b28ff3b554e669391c22508602878",
-        "head_checked": "2026-09-27"
-      },
-      "license": "MIT",
-      "checked": {
-        "date": "2026-09-20",
-        "files_scanned": 94
-      }
-    },
-    {
-      "id": "cloudflare-security-audit-skill",
-      "name": "security-audit-skill",
-      "repo_url": "https://github.com/cloudflare/security-audit-skill",
-      "author": "cloudflare",
-      "category": "security",
-      "summary": "A coding-agent skill for multi-phase security audits with independently verified, machine-readable findings",
-      "pain_points": [
-        "security-worries"
-      ],
-      "created": "2026-06",
       "pushed": "2026-09-14",
-      "signals": {
-        "stars": 22248,
-        "forks": 1291,
-        "checked": "2026-09-27",
-        "head_sha": "c1c8a8c1471069fb0e188eeaff69b8e8db6564a8",
-        "head_checked": "2026-09-27"
-      },
-      "license": "MIT",
-      "checked": {
-        "date": "2026-09-15",
-        "files_scanned": 22
-      }
+      "license": "MIT"
     },
     {
-      "id": "conorbronsdon-avoid-ai-writing",
-      "name": "avoid-ai-writing",
-      "repo_url": "https://github.com/conorbronsdon/avoid-ai-writing",
-      "author": "conorbronsdon",
-      "category": "security",
-      "summary": "Skill that audits and rewrites content to remove AI writing patterns. Use it with your favorite agents including Claude Code, OpenClaw, Codex, and Hermes.",
-      "pain_points": [
-        "security-worries"
-      ],
-      "created": "2026-03",
-      "pushed": "2026-09-27",
-      "signals": {
-        "stars": 4739,
-        "forks": 410,
-        "checked": "2026-09-27",
-        "head_sha": "2a7e99946510004d78faf96987c2435d2d7d6b4b",
-        "head_checked": "2026-09-27"
-      },
-      "license": "MIT",
-      "checked": {
-        "date": "2026-09-27",
-        "files_scanned": 410
-      }
-    },
-    {
-      "id": "anthropics-claude-plugins-community",
-      "name": "claude-plugins-community",
-      "repo_url": "https://github.com/anthropics/claude-plugins-community",
-      "author": "anthropics",
+      "id": "improve-codebase-architecture",
+      "name": "improve-codebase-architecture",
+      "repo_url": "https://github.com/mattpocock/skills/tree/main/skills/engineering/improve-codebase-architecture",
+      "author": "Matt Pocock (mattpocock)",
       "category": "workflow",
-      "summary": "Community plugin marketplace for Claude Cowork and Claude Code. Read-only mirror — submit plugins at clau.de/plugin-directory-submission.",
-      "pain_points": [],
-      "created": "2026-03",
-      "pushed": "2026-08-25",
-      "signals": {
-        "stars": 4418,
-        "forks": 312,
-        "checked": "2026-09-27",
-        "head_sha": "a727be1c7bd6064419b6f60d71993a19198adc17",
-        "head_checked": "2026-09-27"
-      },
-      "license": "Apache-2.0",
-      "checked": {
-        "date": "2026-09-17",
-        "files_scanned": 118
-      }
-    },
-    {
-      "id": "thinkinaixyz-deepchat",
-      "name": "deepchat",
-      "repo_url": "https://github.com/ThinkInAIXYZ/deepchat",
-      "author": "ThinkInAIXYZ",
-      "category": "frontend",
-      "summary": "🐬DeepChat - A smart assistant that connects powerful AI to your personal world",
-      "pain_points": [
-        "generic-frontend"
+      "summary": "Scans your codebase for places to simplify, shows them as a visual report, then talks one through with you.",
+      "line": "Type /improve-codebase-architecture, and your AI maps where the code could be simpler and walks you through one.",
+      "calls": "you",
+      "for": "coding",
+      "needs": [
+        "files"
       ],
-      "created": "2025-02",
-      "pushed": "2026-09-26",
-      "signals": {
-        "stars": 6347,
-        "forks": 742,
-        "checked": "2026-09-27",
-        "head_sha": "8546d8e92191384d08c93554edff9a6be8cf67a2",
-        "head_checked": "2026-09-27"
+      "pain_points": [
+        "code-quality"
+      ],
+      "source": {
+        "repo": "mattpocock/skills",
+        "branch": "main",
+        "path": "skills/engineering/improve-codebase-architecture"
       },
-      "license": "Apache-2.0",
+      "install": {
+        "command": "d=$(mktemp -d) && git clone --depth 1 -q https://github.com/mattpocock/skills \"$d\" && mkdir -p ~/.claude/skills/ && cp -R \"$d/skills/engineering/improve-codebase-architecture\" ~/.claude/skills/",
+        "notes": "Claude Code folder shown. Codex: ~/.agents/skills/ · Cursor: ~/.cursor/skills/ · Gemini CLI: ~/.gemini/skills/ · Copilot: ~/.copilot/skills/. Loads in a new session."
+      },
+      "signals": {
+        "stars": 270719,
+        "forks": 22801,
+        "checked": "2026-09-27",
+        "head_sha": "321658273cb1d20b76026717d027d505790106d4",
+        "head_checked": "2026-09-27",
+        "installs": 1002104,
+        "installs_source": "skills.sh"
+      },
       "checked": {
-        "date": "2026-09-26",
-        "files_scanned": 600
-      }
+        "date": "2026-09-27",
+        "files_scanned": 3
+      },
+      "pushed": "2026-09-24",
+      "license": "MIT"
     },
     {
-      "id": "steipete-oracle",
-      "name": "oracle",
-      "repo_url": "https://github.com/steipete/oracle",
-      "author": "steipete",
+      "id": "linus-review",
+      "name": "linus-review",
+      "repo_url": "https://github.com/lucascashwell3-ai/skills/tree/main/linus-review",
+      "author": "Lucas Cashwell (lucascashwell3-ai)",
+      "category": "workflow",
+      "summary": "A cold code review that checks whether a build does what was claimed, then hands back a ranked fix plan.",
+      "line": "Type /linus-review before you ship, and your AI checks the build against what was claimed and ranks the fixes.",
+      "calls": "you",
+      "for": "coding",
+      "needs": [
+        "files"
+      ],
+      "pain_points": [
+        "code-quality"
+      ],
+      "source": {
+        "repo": "lucascashwell3-ai/skills",
+        "branch": "main",
+        "path": "linus-review"
+      },
+      "install": {
+        "command": "d=$(mktemp -d) && git clone --depth 1 -q https://github.com/lucascashwell3-ai/skills \"$d\" && mkdir -p ~/.claude/skills/ && cp -R \"$d/linus-review\" ~/.claude/skills/",
+        "notes": "Claude Code folder shown. Codex: ~/.agents/skills/ · Cursor: ~/.cursor/skills/ · Gemini CLI: ~/.gemini/skills/ · Copilot: ~/.copilot/skills/. Loads in a new session."
+      },
+      "signals": {
+        "stars": 0,
+        "forks": 0,
+        "checked": "2026-09-27",
+        "head_sha": "b0de2e18889974806691c91b8ba8c8373a41f9b8",
+        "head_checked": "2026-09-27"
+      },
+      "checked": {
+        "date": "2026-09-27",
+        "files_scanned": 4
+      },
+      "pushed": "2026-09-28",
+      "license": "MIT"
+    },
+    {
+      "id": "boris",
+      "name": "boris",
+      "repo_url": "https://github.com/lucascashwell3-ai/skills/tree/main/boris",
+      "author": "Lucas Cashwell (lucascashwell3-ai)",
       "category": "context",
-      "summary": "Ask the oracle when you're stuck. Invoke GPT-5 Pro with a custom context and files.",
-      "pain_points": [
-        "context-bloat"
+      "summary": "Trims your AI's instruction files, memory and skills to what's true now — archived, never deleted.",
+      "line": "Type /boris when your AI starts ignoring your instructions, and your AI trims the setup — archived, never deleted.",
+      "calls": "you",
+      "for": "coding",
+      "needs": [
+        "files"
       ],
-      "created": "2025-11",
-      "pushed": "2026-09-25",
+      "pain_points": [
+        "instructions-ignored"
+      ],
+      "source": {
+        "repo": "lucascashwell3-ai/skills",
+        "branch": "main",
+        "path": "boris"
+      },
+      "install": {
+        "command": "d=$(mktemp -d) && git clone --depth 1 -q https://github.com/lucascashwell3-ai/skills \"$d\" && mkdir -p ~/.claude/skills/ && cp -R \"$d/boris\" ~/.claude/skills/",
+        "notes": "Claude Code folder shown. Codex: ~/.agents/skills/ · Cursor: ~/.cursor/skills/ · Gemini CLI: ~/.gemini/skills/ · Copilot: ~/.copilot/skills/. Loads in a new session."
+      },
       "signals": {
-        "stars": 4029,
-        "forks": 415,
+        "stars": 0,
+        "forks": 0,
         "checked": "2026-09-27",
-        "head_sha": "9c8684db43037069b412a52515e34f491f244a61",
+        "head_sha": "b0de2e18889974806691c91b8ba8c8373a41f9b8",
         "head_checked": "2026-09-27"
       },
-      "license": "MIT",
-      "checked": {
-        "date": "2026-09-24",
-        "files_scanned": 514
-      }
-    },
-    {
-      "id": "inkeep-open-knowledge",
-      "name": "open-knowledge",
-      "repo_url": "https://github.com/inkeep/open-knowledge",
-      "author": "inkeep",
-      "category": "docs",
-      "summary": "Beautiful, AI-native markdown IDE and LLM wiki",
-      "pain_points": [
-        "docs-drift"
-      ],
-      "created": "2026-06",
-      "pushed": "2026-09-27",
-      "signals": {
-        "stars": 4337,
-        "forks": 289,
-        "checked": "2026-09-27",
-        "head_sha": "ae981cc4ab4849fc1e88da617bbca954f189bac9",
-        "head_checked": "2026-09-27"
-      },
-      "license": "GPL-3.0",
       "checked": {
         "date": "2026-09-27",
-        "files_scanned": 600
-      }
-    },
-    {
-      "id": "nanmicoder-cc-haha",
-      "name": "cc-haha",
-      "repo_url": "https://github.com/NanmiCoder/cc-haha",
-      "author": "NanmiCoder",
-      "category": "git",
-      "summary": "Local-first cross-platform desktop workspace for Claude Code / agents: multi-agent, Git worktrees, code diffs, skill marketplace, multi-model, Computer Use, task-aware desktop pets, with WeChat, Feishu, DingTalk, Telegra",
-      "pain_points": [
-        "planning-drift",
-        "git-hygiene"
-      ],
-      "created": "2026-03",
-      "pushed": "2026-09-27",
-      "signals": {
-        "stars": 14736,
-        "forks": 8586,
-        "checked": "2026-09-27",
-        "head_sha": "9ce414ae4c42bc733271920208e4595b1142a661",
-        "head_checked": "2026-09-27"
+        "files_scanned": 1
       },
-      "license": "MIT",
-      "checked": {
-        "date": "2026-09-27",
-        "files_scanned": 600
-      }
+      "pushed": "2026-09-28",
+      "license": "MIT"
     }
   ]
 }

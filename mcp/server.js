@@ -74,7 +74,13 @@ const brief = (s) => {
     category: s.category,
     pain_points: s.pain_points,
     repo: s.repo_url,
+    line: s.line ?? null,
+    calls: s.calls ?? null,
+    for: s.for ?? null,
+    needs: s.needs ?? [],
+    source: s.source ?? null,
     stars: s.signals?.stars ?? null,
+    installs: s.signals?.installs ?? null,
     last_push: s.pushed ?? null,
     license: s.license ?? null,
     checked: s.checked?.date
@@ -106,7 +112,7 @@ const SCOUT_METHODOLOGY = {
 const TOOLS = [
   {
     name: 'find_resources',
-    description: 'Find skills/libraries/resources for an AI-usage pain point. Every entry was checked for malicious code before listing and re-checked when its code changes. Call when the user wants a skill/tool/resource to fix a described problem. The catalog is a starting shelf — an empty result means "not catalogued yet", and get_scout_methodology tells you how to search the wider ecosystem honestly.',
+    description: 'Find proven single skills for an AI-usage pain point. Every entry is one skill folder on GitHub with real use behind it, checked for malicious code before listing and re-checked when its code changes. Call when the user wants a skill/tool/resource to fix a described problem. The catalog is a starting shelf — an empty result means "not catalogued yet", and get_scout_methodology tells you how to search the wider ecosystem honestly.',
     inputSchema: {
       type: 'object',
       properties: {
@@ -123,8 +129,8 @@ const TOOLS = [
   },
   {
     name: 'list_catalog',
-    description: 'List the Skillproof catalog — one flat list, optionally filtered by category.',
-    inputSchema: { type: 'object', properties: { category: { type: 'string', description: 'e.g. "frontend", "testing", "library"' } } },
+    description: 'List the Skillproof short list — proven single skills, one flat list, optionally filtered by category.',
+    inputSchema: { type: 'object', properties: { category: { type: 'string', description: 'e.g. "frontend", "testing", "writing"' } } },
   },
   {
     name: 'get_scout_methodology',
