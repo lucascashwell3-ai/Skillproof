@@ -46,6 +46,8 @@ New skills load in a **new** session. Say so in the undo line when it applies.
 code execution on: Settings → Capabilities. The upload takes a ZIP whose root is the skill
 folder (`grill-me.zip` → `grill-me/SKILL.md`).
 
+- **Skillproof itself needs no upload here** — it runs from this chat. Only the skills in the
+  plan get a zip, after the yes.
 - If you can create files here, build that zip from the skill's source files and hand it over.
 - If you can't, give the skill's folder link from `repo_url` and say: "Download the folder,
   zip it, then upload the zip."

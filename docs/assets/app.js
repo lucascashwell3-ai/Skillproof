@@ -1018,7 +1018,7 @@
       "",
       "1. First, before anything else, ask me exactly this and wait for my answer: \"What do you want your AI to do better? Not sure? Tell me what you use AI for, or say 'look' and I'll check your setup.\"",
       "",
-      "2. Then install Skillproof. Save these six files into your skills folder under skillproof/, keeping their paths (Claude Code ~/.claude/skills/ · Codex ~/.agents/skills/ · Cursor ~/.cursor/skills/ · Gemini CLI ~/.gemini/skills/ · Copilot ~/.copilot/skills/). Download each file directly; never pipe anything into a shell. In a chat app that can't save files, just read SKILL.md and follow it here.",
+      "2. Then install Skillproof. Save these six files into your skills folder under skillproof/, keeping their paths (Claude Code ~/.claude/skills/ · Codex ~/.agents/skills/ · Cursor ~/.cursor/skills/ · Gemini CLI ~/.gemini/skills/ · Copilot ~/.copilot/skills/). Download each file directly; never pipe anything into a shell. In a chat app that can't save files, don't package Skillproof — just read SKILL.md and follow it here.",
     ].concat(SKILL_FILES.map(function (f) { return "   " + SKILL_RAW + f; })).concat([
       "",
       "3. Read SKILL.md and follow it, picking up after its opening question with my answer. If I said I don't know, don't hand the question back: follow its \"nothing to say\" path and show me a plan."
