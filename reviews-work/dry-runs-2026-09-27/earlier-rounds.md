@@ -1,6 +1,6 @@
 # Earlier rounds — what went wrong on earlier drafts
 
-**Why this exists:** the earlier rounds on earlier drafts (all three people in rounds 1–2; all five in round 3; the Claude Code user again in round 4), kept so the fixes can be checked against what went wrong. Every slip below was fixed, then everyone was re-run from scratch.
+**Why this exists:** the earlier rounds on earlier drafts (all three people in rounds 1–2; all five in round 3; five again in round 4, with the Claude Code, Codex and ChatGPT people re-run after fixes), kept so the fixes can be checked against what went wrong. Every slip below was fixed, then everyone was re-run from scratch.
 
 ## Conversation
 
@@ -477,6 +477,67 @@ _Times are from the paste; they include the AI's own work (downloads, reading, i
 >
 > Undo: move grill-me, grilling, frontend-design and verification-before-completion out of `~/.claude/skills/`, and move frontend-polish back from `~/.claude/skillproof-backups/2026-09-27/skills/frontend-polish/`. All four new skills load in a new session.
 
+**User** · 0:00 · setup fingerprint `a0e4afaa`
+
+> (pastes the Skillproof prompt)
+
+**AI** · 1:29 · setup fingerprint `a0e4afaa`
+
+> What do you want your AI to do better? Not sure? Tell me what you use AI for, or say "look" and I'll check your setup.
+
+**User** · 1:29 · setup fingerprint `a0e4afaa`
+
+> look
+
+**AI** · 5:02 · setup fingerprint `a0e4afaa`
+
+> Your setup: a Python FastAPI service, with "run tests before saying it works" and "keep diffs minimal" rules in AGENTS.md, plus a commit-msg skill — solo coding work. Adding these to your personal skills, next to commit-msg:
+>
+> 1. Add **verification-before-completion** — Your AI now runs the checks before saying "done", so "fixed" means fixed.
+> 2. Add **karpathy-guidelines** — Your AI now keeps code changes small, names assumptions up front, and stops overbuilding.
+> 3. Add **grill-me** (with grilling, the helper grill-me calls) — Type $grill-me before a plan or big decision, and your AI asks questions until the plan holds up.
+>
+> Nothing changes until you say go, and you can undo anytime. Go?
+
+**User** · 5:02 · setup fingerprint `a0e4afaa`
+
+> yes
+
+**AI** · 6:16 · setup fingerprint `5df814b8`
+
+> Installed.
+> - verification-before-completion: Your AI now runs the checks before saying "done", so "fixed" means fixed.
+> - karpathy-guidelines: Your AI now keeps code changes small, names assumptions up front, and stops overbuilding.
+> - grill-me: Type $grill-me before a plan or big decision, and your AI asks questions until the plan holds up.
+>
+> Undo: move verification-before-completion, karpathy-guidelines, grill-me and grilling out of ~/.agents/skills/. They load in a new session.
+
+**User** · 0:00 · setup fingerprint `d41d8cd9`
+
+> (pastes the Skillproof prompt)
+
+**AI** · 1:57 · setup fingerprint `d41d8cd9`
+
+> What do you want your AI to do better? Not sure? Tell me what you use AI for, or say "look" and I'll check your setup.
+
+**User** · 1:57 · setup fingerprint `d41d8cd9`
+
+> my answers are way too long
+
+**AI** · 3:49 · setup fingerprint `d41d8cd9`
+
+> Got it — keeping things short from here.
+>
+> Still need your answer to start the install: what do you want your AI to do better? Or say "look" and I'll check your setup.
+
+**User** · 3:49 · setup fingerprint `d41d8cd9`
+
+> no i mean my AI in general, its answers are always way too long
+
+**AI** · 5:22 · setup fingerprint `d41d8cd9`
+
+> ChatGPT Free and Plus can't keep skills. The free Claude app can (claude.ai → Customize → Skills), and so can ChatGPT Business, Codex, Cursor and Gemini — paste this prompt there.
+
 ## Checks
 
 | Round | Slip | Fix |
@@ -495,3 +556,6 @@ _Times are from the paste; they include the AI's own work (downloads, reading, i
 | 3 | The multiple-choice question was skipped once in a chat app | The skill says it's the easy version of the question, not handing it back |
 | 3 | A bare "it" in a clash line; "delete" in undo lines | No bare "it" anywhere they read; undo says "move out" |
 | 4 | A clash in a helper skill was found only at install | Helpers' SKILL.md are opened before the plan too |
+| 4 | ChatGPT Plus read "my answers are way too long" as a note about the chat and asked the opening again, so the one line came late | The pasted prompt now tells ChatGPT Free/Plus to say the one line first, before any question |
+| 4 | "look" on a setup whose AGENTS.md already says "run tests before saying anything works" and "keep diffs minimal" got skills doing the same jobs | A need their own rules cover counts as one they have: pick for what the setup lacks, or plan the swap and name the line that moves out |
+| 4 | The first reply still took 1–2 minutes on the clock in these runs | Not a product step any more — the opening now comes with zero downloads or file reads; the rest is the model's own reply time in this test setup |

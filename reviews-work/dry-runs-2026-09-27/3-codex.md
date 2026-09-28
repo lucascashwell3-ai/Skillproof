@@ -14,46 +14,45 @@ _Times are from the paste; they include the AI's own work (downloads, reading, i
 
 > (pastes the Skillproof prompt)
 
-**AI** · 1:29 · setup fingerprint `a0e4afaa`
+**AI** · 1:24 · setup fingerprint `a0e4afaa`
 
 > What do you want your AI to do better? Not sure? Tell me what you use AI for, or say "look" and I'll check your setup.
 
-**User** · 1:29 · setup fingerprint `a0e4afaa`
+**User** · 1:24 · setup fingerprint `a0e4afaa`
 
 > look
 
-**AI** · 5:02 · setup fingerprint `a0e4afaa`
+**AI** · 5:35 · setup fingerprint `a0e4afaa`
 
-> Your setup: a Python FastAPI service, with "run tests before saying it works" and "keep diffs minimal" rules in AGENTS.md, plus a commit-msg skill — solo coding work. Adding these to your personal skills, next to commit-msg:
+> Here's the plan:
+> 1. Add **diagnosing-bugs** — Your AI now works hard bugs step by step — reproduce, narrow down, prove the fix — instead of guessing.
+> 2. Add **grill-me** (with grilling, the helper grill-me calls) — Type $grill-me before a plan or big decision, and your AI asks questions until the plan holds up.
+> 3. Add **humanizer** — Say "humanize this" on any draft, and your AI rewrites the draft in a plain human voice.
 >
-> 1. Add **verification-before-completion** — Your AI now runs the checks before saying "done", so "fixed" means fixed.
-> 2. Add **karpathy-guidelines** — Your AI now keeps code changes small, names assumptions up front, and stops overbuilding.
-> 3. Add **grill-me** (with grilling, the helper grill-me calls) — Type $grill-me before a plan or big decision, and your AI asks questions until the plan holds up.
->
-> Nothing changes until you say go, and you can undo anytime. Go?
+> All three join your personal skills in `~/.agents/skills/`, next to commit-msg. Nothing changes until you say go, and you can undo anytime. Go?
 
-**User** · 5:02 · setup fingerprint `a0e4afaa`
+**User** · 5:35 · setup fingerprint `a0e4afaa`
 
 > yes
 
-**AI** · 6:16 · setup fingerprint `5df814b8`
+**AI** · 8:18 · setup fingerprint `8462b93a`
 
 > Installed.
-> - verification-before-completion: Your AI now runs the checks before saying "done", so "fixed" means fixed.
-> - karpathy-guidelines: Your AI now keeps code changes small, names assumptions up front, and stops overbuilding.
+> - diagnosing-bugs: Your AI now works hard bugs step by step — reproduce, narrow down, prove the fix — instead of guessing.
 > - grill-me: Type $grill-me before a plan or big decision, and your AI asks questions until the plan holds up.
+> - humanizer: Say "humanize this" on any draft, and your AI rewrites the draft in a plain human voice.
 >
-> Undo: move verification-before-completion, karpathy-guidelines, grill-me and grilling out of ~/.agents/skills/. They load in a new session.
+> Undo: move diagnosing-bugs, grill-me, grilling and humanizer out of `~/.agents/skills/`. They load in a new session.
 
 ## Checks
 
 | Check | Result |
 |---|---|
 | "look" leads to a plan with no more questions | PASS |
-| What the setup shows counts as the answer | PASS — a Python/FastAPI service with "run pytest before saying anything works" and "keep diffs minimal" → verification-before-completion and karpathy-guidelines, then grill-me |
+| What the setup shows counts as the answer — and no twins of their own rules | PASS — their AGENTS.md already covers "run tests before saying anything works" and "keep diffs minimal", so the plan skips skills for those and picks what the setup lacks: diagnosing-bugs for a coding project, then grill-me and humanizer |
 | Installed in Codex's own folder | PASS — `~/.agents/skills/` (Codex's personal skills folder per its docs); `commit-msg` untouched |
 | Calls a skill the Codex way | PASS — `$grill-me` |
-| One clear line per skill, no bare "it" | PASS for the plan and install lines. The one-line summary of their setup quoted their rule loosely ("before saying it works") |
+| One clear line per skill, no bare "it"; helpers named | PASS — grill-me's plan line names grilling |
 | Nothing changed before the yes | PASS — fingerprint before the yes = start (`a0e4afaa`) |
 | Backup + undo | PASS — "move … out of" every folder, helper included; nothing existing touched |
-| Time | The person's own time ~0.9 min (206 words + "look" and "yes"). The AI's own work: 5:30. Paste to "Installed.": 6:16 |
+| Time | The person's own time ~0.9 min (203 words + "look" and "yes"). The AI's own work: 7:58. Paste to "Installed.": 8:18 |
