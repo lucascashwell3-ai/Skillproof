@@ -1,8 +1,10 @@
-# Skillproof feeder (v1 job 2)
+# Skillproof feeder
 
-**Purpose:** grow the catalog past 30 entries without a human review stage.
-Finds candidate repos, applies a baseline safety/quality bar, and
-auto-publishes them as `status: "scouted"` — listed, screened, not read.
+**Purpose:** keep the short list of proven single skills current without a
+human review stage. The list was chosen by hand on 2026-09-27; the feeder adds
+only what is new since — a new skill folder from a proven author once it shows
+real use, or a skill that newly crosses the install bar — and keeps every
+listed entry's numbers and malice scan fresh.
 
 **Schedule:** daily 12:40 UTC via `.github/workflows/feeder.yml` (cron
 `40 12 * * *`) + manual `workflow_dispatch`.
@@ -10,43 +12,50 @@ auto-publishes them as `status: "scouted"` — listed, screened, not read.
 **Inputs:**
 - `GH_TOKEN` env var (repo secret `SKILLPROOF_FEEDER_TOKEN`, falls back to
   `github.token`).
-- `scripts/feeder_sources.json` — named creators exempt from the star bar,
-  verified via the API every run.
-- Existing `docs/data/skills.json` (dedupe) and `grading/quarantine.json`
-  (never re-add a flagged repo).
+- `scripts/feeder_sources.json` — `authors`: proven builders followed skill by
+  skill, verified via the API every run; `skip`: skills that clear the numbers
+  but don't fit a normal AI user's list, each with its reason.
+- skills.sh install counts (leaderboard page + search API). Unreachable = no
+  one is admitted on installs that run; listed counts are kept.
+- `docs/data/skills.json`, `grading/quarantine.json`,
+  `grading/feeder_seen.json` (every folder already judged, with its verdict).
+
+**The one bar** (same for every entry): real use (≥200,000 installs; ≥20,000
+for a proven author; or ≥5,000 stars on a repo that is just this skill) · an
+original (source repo ≥1,000 stars) · not tied to one vendor's product or a
+paid service · open license · pushed within 12 months · malice scan of exactly
+the folders it installs. At most 1 new entry per run, never past 30 entries.
 
 **Outputs:**
-- `docs/data/skills.json` — new scouted entries appended, signals refreshed
-  for existing entries.
-- `grading/quarantine.json` — any new repo the safety skim flags.
+- `docs/data/skills.json` — at most one new entry; stars, installs, pushed
+  date and folder commit refreshed for listed entries; a folder that changed
+  is re-scanned.
+- `grading/quarantine.json` — anything the scan flags (pulled, never listed).
+- `grading/feeder_seen.json` — verdicts, so nothing is judged twice. A new
+  skill without enough use yet stays "waiting" for 90 days, then closes.
 
-**Failure behavior:** unit test and the honesty gate (`validate_index.py`)
+**Failure behavior:** unit tests and the honesty gate (`validate_index.py`)
 must pass before anything is written. After publish, the workflow polls the
-live site JSON for up to 5 minutes; if the count never matches, it
-`git revert`s the commit and pushes, then fails the run — GitHub's own
-notification (email + mobile) is the alert.
+live site JSON; if the count never matches, it `git revert`s the commit and
+pushes, then fails the run — GitHub's own notification is the alert.
 
-**Caps:** 1 run/day, ≤50 new entries/run, 0 model tokens.
+**Caps:** 1 run/day, ≤1 new entry/run, ≤30 entries, ≤200 skills.sh lookups,
+0 model tokens.
 
-**Dropped-with-reason counts:** every run logs why candidates were cut, one
-line per distinct reason, highest count first:
+**Log format** — why new folders weren't added, one line per reason, highest
+count first:
 ```
-check: 28 passed the bar, 22 dropped
-  dropped: 12 no OSS license
-  dropped: 8 no skill evidence (no skill topic, no SKILL.md)
-  dropped: 2 no push in > 12 months
+check: 0 cleared the bar and fit, 12 not added
+  not added: 7 not enough real use yet
+  not added: 3 tied to one vendor's product or a paid service
+  not added: 2 part of caveman, which is already listed
 ```
-Skill evidence = repo topics include one of `claude-skills`,
-`claude-code-skills`, `agent-skills`, `anthropic-skills`,
-`claude-code-plugin`, `claude-skill`, OR the repo contains a file named
-`SKILL.md`. A truncated/unreadable file tree counts as unknown and is
-dropped, never assumed to have it.
 
 **Run locally (dry run only):**
 ```
 GH_TOKEN=$(gh auth token) python3 scripts/feeder.py --dry-run
 ```
+`--baseline` records every folder visible now as judged and admits nothing —
+used once when the list was chosen by hand.
 
-**Test:** `python3 -m unittest scripts/test_feeder.py`
-
-**Last-known-good: 2026-08-16 17:50Z, run 31962687613 — 17 added, live count verified 74.
+**Test:** `python3 -m unittest scripts/test_feeder.py scripts/test_catalog_gate.py`
