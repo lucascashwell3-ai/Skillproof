@@ -5,7 +5,8 @@ __pycache__/
 *.pyc
 .DS_Store
 _*.png
-reviews-work/
+reviews-work/*
+!reviews-work/dry-runs-*/
 design/
 .claude/
 PRODUCT.md
