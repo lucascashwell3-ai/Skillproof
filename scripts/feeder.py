@@ -287,7 +287,19 @@ def candidate(repo, folder, tree=None):
         files = [i["path"] for i in tree.get("tree", [])
                  if i.get("type") == "blob" and i["path"].startswith(prefix)]
     return {"repo": repo, "folder": folder, "name": name, "fm": fm, "files": files,
-            "single": bool(tree) and len(skill_folders(tree)) == 1}
+            "single": bool(tree) and len(skill_folders(tree)) == 1,
+            "helpers": helper_folders(text, folder, skill_folders(tree) if tree else [])}
+
+
+CALLS_SKILL = re.compile(r"""Skill tool with\s+["'`]?([a-z0-9][a-z0-9-]*)""", re.I)
+
+
+def helper_folders(text, folder, siblings):
+    """Sibling skill folders this SKILL.md tells the AI to call ("call the
+    Skill tool with "grilling""). They install with it and are named in the
+    plan — a skill whose helper is missing half-works."""
+    by_name = {f.split("/")[-1]: f for f in siblings if f and f != folder}
+    return sorted({by_name[n] for n in CALLS_SKILL.findall(text or "") if n in by_name})
 
 
 # ---------------------------------------------------------------- feed stage
@@ -547,8 +559,9 @@ def to_entry(c, installs, pain_ids):
     summary = first_sentence(desc) or name
     line = make_line(name, calls, summary)
     dest = "~/.claude/skills/"
+    copies = " ".join(f'"$d/{p}"' for p in [folder] + list(c.get("helpers") or []))
     cmd = (f"d=$(mktemp -d) && git clone --depth 1 -q https://github.com/{full} \"$d\" && "
-           f"mkdir -p {dest} && cp -R \"$d/{folder}\" {dest}") if folder else \
+           f"mkdir -p {dest} && cp -R {copies} {dest}") if folder else \
           f"git clone --depth 1 -q https://github.com/{full} {dest}{name}"
     entry = {
         "id": kebab(name),
@@ -562,7 +575,8 @@ def to_entry(c, installs, pain_ids):
         "for": for_,
         "needs": needs,
         "pain_points": pains,
-        "source": {"repo": full, "branch": branch, "path": folder},
+        "source": dict({"repo": full, "branch": branch, "path": folder},
+                       **({"with": c["helpers"]} if c.get("helpers") else {})),
         "install": {"command": cmd,
                     "notes": "Claude Code folder shown. Codex: ~/.agents/skills/ · Cursor: "
                              "~/.cursor/skills/ · Gemini CLI: ~/.gemini/skills/ · Copilot: "

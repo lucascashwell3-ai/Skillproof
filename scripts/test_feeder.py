@@ -337,6 +337,25 @@ class TestMakeLine(unittest.TestCase):
         self.assertIsNone(feeder.make_line("x", "you", "x"))
 
 
+class TestHelpers(unittest.TestCase):
+    def test_called_sibling_becomes_a_helper(self):
+        text = 'Once they pick one, call the Skill tool with "grilling" to walk it through.'
+        self.assertEqual(feeder.helper_folders(text, "skills/a", ["skills/a", "skills/p/grilling", "skills/b"]),
+                         ["skills/p/grilling"])
+
+    def test_plain_mention_is_not_a_helper(self):
+        self.assertEqual(feeder.helper_folders("see copy-editing for more", "skills/a",
+                                               ["skills/a", "skills/copy-editing"]), [])
+
+    def test_helper_installs_with_the_skill(self):
+        c = {"repo": repo(), "folder": "skills/x", "name": "x", "files": [],
+             "helpers": ["skills/p/grilling"],
+             "fm": {"name": "x", "description": "Plans a change with you, step by step."}}
+        e = feeder.to_entry(c, None, set())
+        self.assertEqual(e["source"]["with"], ["skills/p/grilling"])
+        self.assertIn('"$d/skills/p/grilling"', e["install"]["command"])
+
+
 class TestToEntry(unittest.TestCase):
     def test_user_called_skill(self):
         c = {"repo": repo(), "folder": "skills/x", "name": "x", "files": [],

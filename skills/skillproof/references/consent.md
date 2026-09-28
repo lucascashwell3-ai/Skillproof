@@ -51,8 +51,8 @@ own files. Nothing else rides on it — every skill, edit, or fold waits for the
 
 - **Re-read each file you wrote** — confirm the actual text is what the plan said. A write
   that silently did nothing looks exactly like a write that worked.
-- **Confirm it works.** Say what should now be different and how they'd see it. Check what you
-  can check.
+- **Confirm it works** — check what you can check. What's now different is said once, in each
+  skill's one install line; don't add a recap after it.
 - **Give the undo, exact:** the backup path, the file, and what to put back.
 - **Say what you couldn't confirm.** "I can't verify this triggers until you start a new
   session" is a real and useful sentence.

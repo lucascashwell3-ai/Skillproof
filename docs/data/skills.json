@@ -736,10 +736,13 @@
       "source": {
         "repo": "mattpocock/skills",
         "branch": "main",
-        "path": "skills/engineering/tdd"
+        "path": "skills/engineering/tdd",
+        "with": [
+          "skills/engineering/codebase-design"
+        ]
       },
       "install": {
-        "command": "d=$(mktemp -d) && git clone --depth 1 -q https://github.com/mattpocock/skills \"$d\" && mkdir -p ~/.claude/skills/ && cp -R \"$d/skills/engineering/tdd\" ~/.claude/skills/",
+        "command": "d=$(mktemp -d) && git clone --depth 1 -q https://github.com/mattpocock/skills \"$d\" && mkdir -p ~/.claude/skills/ && cp -R \"$d/skills/engineering/tdd\" \"$d/skills/engineering/codebase-design\" ~/.claude/skills/",
         "notes": "Claude Code folder shown. Codex: ~/.agents/skills/ · Cursor: ~/.cursor/skills/ · Gemini CLI: ~/.gemini/skills/ · Copilot: ~/.copilot/skills/. Loads in a new session."
       },
       "signals": {
@@ -753,7 +756,7 @@
       },
       "checked": {
         "date": "2026-09-27",
-        "files_scanned": 4
+        "files_scanned": 8
       },
       "pushed": "2026-09-24",
       "license": "MIT"
@@ -900,10 +903,15 @@
       "source": {
         "repo": "mattpocock/skills",
         "branch": "main",
-        "path": "skills/engineering/improve-codebase-architecture"
+        "path": "skills/engineering/improve-codebase-architecture",
+        "with": [
+          "skills/engineering/codebase-design",
+          "skills/productivity/grilling",
+          "skills/engineering/domain-modeling"
+        ]
       },
       "install": {
-        "command": "d=$(mktemp -d) && git clone --depth 1 -q https://github.com/mattpocock/skills \"$d\" && mkdir -p ~/.claude/skills/ && cp -R \"$d/skills/engineering/improve-codebase-architecture\" ~/.claude/skills/",
+        "command": "d=$(mktemp -d) && git clone --depth 1 -q https://github.com/mattpocock/skills \"$d\" && mkdir -p ~/.claude/skills/ && cp -R \"$d/skills/engineering/improve-codebase-architecture\" \"$d/skills/engineering/codebase-design\" \"$d/skills/productivity/grilling\" \"$d/skills/engineering/domain-modeling\" ~/.claude/skills/",
         "notes": "Claude Code folder shown. Codex: ~/.agents/skills/ · Cursor: ~/.cursor/skills/ · Gemini CLI: ~/.gemini/skills/ · Copilot: ~/.copilot/skills/. Loads in a new session."
       },
       "signals": {
@@ -917,7 +925,7 @@
       },
       "checked": {
         "date": "2026-09-27",
-        "files_scanned": 3
+        "files_scanned": 13
       },
       "pushed": "2026-09-24",
       "license": "MIT"

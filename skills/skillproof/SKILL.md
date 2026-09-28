@@ -153,9 +153,9 @@ file they already have, add "I back up that file first."
 **The install line** — the skill's name, a colon, then one line:
 
 - **They call it** (`calls: you`): what it does and how to call it.
-  "grill-me: say "grill me" before a plan and your AI asks questions until the plan holds up."
+  "grill-me: Type /grill-me before a plan or big decision, and your AI asks questions until the plan holds up."
 - **The AI uses it on its own** (`calls: auto`): the effect, concretely. No how-to needed.
-  "show-me: your AI now shows long answers as one page instead of dumping text."
+  "show-me: Your AI now shows long answers as one page you can scan, instead of a wall of text."
 - **Never a bare pronoun.** Not "it", "this" or "that" — name the skill or "your AI". "Your AI
   uses it on its own" says nothing; say what changes.
 - For a shelf skill, use its `line` word for word — the same line the plan showed — and only

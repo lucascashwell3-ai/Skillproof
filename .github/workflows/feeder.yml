@@ -18,6 +18,9 @@ concurrency:
 
 jobs:
   feed:
+    # publishes straight to main, so it only ever runs from main — a manual run
+    # on a branch would otherwise push that branch's list live before merge
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
