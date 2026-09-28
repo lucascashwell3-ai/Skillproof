@@ -1,6 +1,6 @@
 # Earlier rounds — what went wrong on earlier drafts
 
-**Why this exists:** the two earlier rounds on earlier drafts, kept so the fixes can be checked against what went wrong. Every slip below was fixed, then everyone was re-run from scratch.
+**Why this exists:** the earlier rounds on earlier drafts (all three people in rounds 1–2; all five in round 3; the Claude Code user again in round 4), kept so the fixes can be checked against what went wrong. Every slip below was fixed, then everyone was re-run from scratch.
 
 ## Conversation
 
@@ -214,6 +214,269 @@ _Times are from the paste; they include the AI's own work (downloads, reading, i
 >
 > show-me didn't make it in — its source (lucascashwell3-ai/skills) doesn't resolve on GitHub, so there was nothing to read or verify. Dropped, not installed. Want caveman instead — next on the shelf: type $caveman, and your AI answers in far fewer words until you say "normal mode"?
 
+**User** · 0:00 · setup fingerprint `f3c6e9e7`
+
+> (pastes the Skillproof prompt)
+
+**AI** · 1:30 · setup fingerprint `f3c6e9e7`
+
+> What do you want your AI to do better? Not sure? Tell me what you use AI for, or say "look" and I'll check your setup.
+
+**User** · 1:30 · setup fingerprint `f3c6e9e7`
+
+> idk honestly. i just got this and dont really know what to use it for
+
+**AI** · 3:43 · setup fingerprint `f3c6e9e7`
+
+> Your setup's empty — no existing skills or AI rules to go on — so here's a solid all-around starting set:
+>
+> Here's the plan:
+> 1. Add **grill-me** — Type /grill-me before a plan or big decision, and your AI asks questions until the plan holds up.
+> 2. Add **humanizer** — Say "humanize this" on any draft, and your AI rewrites the draft in a plain human voice.
+> 3. Add **caveman** — Type /caveman, and your AI answers in far fewer words until you say "normal mode".
+>
+> These go in your personal skills folder, next to Skillproof itself. Nothing changes until you say go, and you can undo anytime. Go?
+
+**User** · 3:43 · setup fingerprint `f3c6e9e7`
+
+> yes
+
+**AI** · 5:26 · setup fingerprint `8911be87`
+
+> Installed.
+> - grill-me: Type /grill-me before a plan or big decision, and your AI asks questions until the plan holds up.
+> - humanizer: Say "humanize this" on any draft, and your AI rewrites the draft in a plain human voice.
+> - caveman: Type /caveman, and your AI answers in far fewer words until you say "normal mode".
+> Undo: delete `~/.claude/skills/grill-me`, `~/.claude/skills/grilling`, `~/.claude/skills/humanizer`, and `~/.claude/skills/caveman`. Takes effect in a new session.
+
+**User** · 0:00 · setup fingerprint `6d5984b4`
+
+> (pastes the Skillproof prompt)
+
+**AI** · 1:30 · setup fingerprint `6d5984b4`
+
+> What do you want your AI to do better? Not sure? Tell me what you use AI for, or say "look" and I'll check your setup.
+
+**User** · 1:30 · setup fingerprint `6d5984b4`
+
+> my AI starts writing code before it gets what I want, it tells me stuff is fixed when it isn't, and my store pages look generic
+
+**AI** · 2:39 · setup fingerprint `6d5984b4`
+
+> So: your AI should hold off writing code until it's clear on what you want, stop claiming things are fixed when they're not, and your store pages need to look less generic — right?
+
+**User** · 2:39 · setup fingerprint `6d5984b4`
+
+> yes
+
+**AI** · 5:32 · setup fingerprint `6d5984b4`
+
+> Here's the plan:
+>
+> 1. Add **grill-me** — Type /grill-me before a plan or big decision, and your AI asks questions until the plan holds up.
+> 2. Add **verification-before-completion** — Your AI now runs the checks before saying "done," so "fixed" means fixed.
+> 3. Swap **frontend-polish** for **frontend-design** — Your AI now designs pages with a clear visual direction instead of the usual template look. I back up frontend-polish first.
+>
+> Clash: your CLAUDE.md line 6 says never use sub-agents — grill-me normally sends one off to look up facts. Plan: it looks things up here in the chat instead.
+>
+> Nothing changes until you say go, and you can undo anytime. Go?
+
+**User** · 5:32 · setup fingerprint `6d5984b4`
+
+> yes
+
+**AI** · 6:53 · setup fingerprint `806394b9`
+
+> Installed.
+> - grill-me: Type /grill-me before a plan or big decision, and your AI asks questions until the plan holds up.
+> - verification-before-completion: Your AI now runs the checks before saying "done," so "fixed" means fixed.
+> - frontend-design: Your AI now designs pages with a clear visual direction instead of the usual template look.
+>
+> Undo: move grill-me, grilling, verification-before-completion, and frontend-design out of `~/.claude/skills/`. frontend-polish is backed up at `~/.claude/skillproof-backups/2026-09-27/frontend-polish` — move it back if you want it instead. Takes effect in a new session.
+
+**User** · 0:00 · setup fingerprint `a0e4afaa`
+
+> (pastes the Skillproof prompt)
+
+**AI** · 1:37 · setup fingerprint `a0e4afaa`
+
+> What do you want your AI to do better? Not sure? Tell me what you use AI for, or say "look" and I'll check your setup.
+
+**User** · 1:37 · setup fingerprint `a0e4afaa`
+
+> look
+
+**AI** · 4:13 · setup fingerprint `a0e4afaa`
+
+> Read your setup — nothing asked, since files told the story: `api-service` is a Python 3.12 FastAPI project, your AGENTS.md already says "keep diffs minimal" and "run tests before saying anything works," and you've already got a `commit-msg` skill for conventional commits. Here's the plan:
+>
+> 1. Add **verification-before-completion** — Your AI now runs the checks before saying "done," so "fixed" means fixed.
+> 2. Add **karpathy-guidelines** — Your AI now keeps code changes small, names assumptions up front, and stops overbuilding.
+>
+> Both go in your personal skills, next to commit-msg. Nothing changes until you say go, and you can undo anytime. Go?
+
+**User** · 4:13 · setup fingerprint `a0e4afaa`
+
+> yes
+
+**AI** · 5:01 · setup fingerprint `25b1eabb`
+
+> Installed.
+> - verification-before-completion: your AI now runs the checks before saying "done," so "fixed" means fixed.
+> - karpathy-guidelines: your AI now keeps code changes small, names assumptions up front, and stops overbuilding.
+> Undo: delete `~/.agents/skills/verification-before-completion/` and `~/.agents/skills/karpathy-guidelines/`. Both take effect in a new session.
+
+**User** · 0:00 · setup fingerprint `d41d8cd9`
+
+> (pastes the Skillproof prompt)
+
+**AI** · 2:54 · setup fingerprint `d41d8cd9`
+
+> What do you want your AI to do better? Not sure? Tell me what you use AI for, or say "look" and I'll check your setup.
+
+**User** · 2:54 · setup fingerprint `d41d8cd9`
+
+> idk honestly. i just got this and dont really know what to use it for
+
+**AI** · 8:05 · setup fingerprint `4127e879`
+
+> Skillproof's installed — skillproof.zip is ready above. Upload it: Customize → Skills → add → upload the zip (turn on code execution first, if it isn't already: Settings → Capabilities).
+>
+> Which is closest? Reply with a number: 1 Writing and email · 2 Learning · 3 Planning and decisions · 4 Coding · 5 A bit of everything
+
+**User** · 8:05 · setup fingerprint `4127e879`
+
+> 1
+
+**AI** · 11:03 · setup fingerprint `4127e879`
+
+> 1. Add **grill-me** — Say "use grill-me" before a plan or big decision, and your AI asks questions until the plan holds up.
+> 2. Add **caveman** — Say "use caveman", and your AI answers in far fewer words until you say "normal mode".
+> 3. Add **humanizer** — Say "humanize this" on any draft, and your AI rewrites the draft in a plain human voice.
+>
+> Nothing changes until you say go, and you can undo anytime. Go?
+
+**User** · 11:03 · setup fingerprint `4127e879`
+
+> yes
+
+**AI** · 13:54 · setup fingerprint `2c8cf15c`
+
+> Installed.
+> - grill-me: Say "use grill-me" before a plan or big decision, and your AI asks questions until the plan holds up.
+> - caveman: Say "use caveman", and your AI answers in far fewer words until you say "normal mode".
+> - humanizer: Say "humanize this" on any draft, and your AI rewrites the draft in a plain human voice.
+>
+> Upload each zip above to use them — Customize → Skills → add → upload the zip (grill-me needs its small grilling.zip companion uploaded too, four zips total).
+>
+> Undo: remove any of them under Customize → Skills. They take effect in a new chat.
+
+**User** · 0:00 · setup fingerprint `d41d8cd9`
+
+> (pastes the Skillproof prompt)
+
+**AI** · 1:29 · setup fingerprint `d41d8cd9`
+
+> What do you want your AI to do better? Not sure? Tell me what you use AI for, or say "look" and I'll check your setup.
+
+**User** · 1:29 · setup fingerprint `d41d8cd9`
+
+> idk honestly. i just got this and dont really know what to use it for
+
+**AI** · 4:46 · setup fingerprint `d41d8cd9`
+
+> Here's the plan:
+> 1. Add **grill-me** — Say "use grill-me" before a plan or big decision, and your AI asks questions until the plan holds up.
+> 2. Add **humanizer** — Say "humanize this" on any draft, and your AI rewrites the draft in a plain human voice.
+> 3. Add **caveman** — Say "use caveman", and your AI answers in far fewer words until you say "normal mode".
+>
+> Nothing changes until you say go, and you can undo anytime. Go?
+
+**User** · 4:46 · setup fingerprint `d41d8cd9`
+
+> yes
+
+**AI** · 8:00 · setup fingerprint `f8979efd`
+
+> Installed.
+> - grill-me: Say "use grill-me" before a plan or big decision, and your AI asks questions until the plan holds up.
+> - humanizer: Say "humanize this" on any draft, and your AI rewrites the draft in a plain human voice.
+> - caveman: Say "use caveman", and your AI answers in far fewer words until you say "normal mode".
+>
+> Undo: delete grill-me, humanizer, and caveman under Skills.
+>
+> Upload each zip first — grill-me.zip, humanizer.zip, caveman.zip — via Customize → Skills → add; takes effect in a new chat.
+
+**User** · 0:00 · setup fingerprint `d41d8cd9`
+
+> (pastes the Skillproof prompt)
+
+**AI** · 1:37 · setup fingerprint `d41d8cd9`
+
+> What do you want your AI to do better? Not sure? Tell me what you use AI for, or say "look" and I'll check your setup.
+
+**User** · 1:37 · setup fingerprint `d41d8cd9`
+
+> my answers are way too long
+
+**AI** · 4:47 · setup fingerprint `d41d8cd9`
+
+> Got it — you want shorter answers, not walls of text. Right?
+
+**User** · 4:47 · setup fingerprint `d41d8cd9`
+
+> yes
+
+**AI** · 5:06 · setup fingerprint `d41d8cd9`
+
+> ChatGPT Free and Plus can't keep skills. The free Claude app can (claude.ai → Customize → Skills), and so can ChatGPT Business, Codex, Cursor and Gemini — paste this prompt there.
+
+**User** · 0:00 · setup fingerprint `6d5984b4`
+
+> (pastes the Skillproof prompt)
+
+**AI** · 1:29 · setup fingerprint `6d5984b4`
+
+> What do you want your AI to do better? Not sure? Tell me what you use AI for, or say "look" and I'll check your setup.
+
+**User** · 1:29 · setup fingerprint `6d5984b4`
+
+> my AI starts writing code before it gets what I want, it tells me stuff is fixed when it isn't, and my store pages look generic
+
+**AI** · 3:19 · setup fingerprint `6d5984b4`
+
+> You want your AI to stop writing code before it's clear what you're asking for, stop saying things are fixed when they're not, and make your store pages look less generic. Right?
+
+**User** · 3:20 · setup fingerprint `6d5984b4`
+
+> yes
+
+**AI** · 6:01 · setup fingerprint `6d5984b4`
+
+> Here's the plan:
+> 1. Swap **frontend-polish** for **frontend-design** — Your AI now designs pages with a clear visual direction instead of the usual template look.
+> 2. Add **grill-me** (with grilling, the helper grill-me calls) — Type /grill-me before a plan or big decision, and your AI asks questions until the plan holds up.
+> 3. Add **verification-before-completion** — Your AI now runs the checks before saying "done", so "fixed" means fixed.
+>
+> I back up frontend-polish first. Nothing changes until you say go, and you can undo anytime. Go?
+
+**User** · 6:01 · setup fingerprint `6d5984b4`
+
+> yes
+
+**AI** · 8:30 · setup fingerprint `b9986637`
+
+> All installed and verified. Frontend-polish is moved aside, not deleted.
+>
+> Installed.
+> - frontend-design: Your AI now designs pages with a clear visual direction instead of the usual template look.
+> - grill-me: Type /grill-me before a plan or big decision, and your AI asks questions until the plan holds up.
+> - verification-before-completion: Your AI now runs the checks before saying "done", so "fixed" means fixed.
+>
+> One clash worth knowing: grilling's own instructions (grill-me's helper) say to dispatch a sub-agent for fact-finding — your CLAUDE.md says never use sub-agents, do everything in this chat. Your CLAUDE.md wins, silently: grill-me will still ask its rounds of questions, it just won't spin up a sub-agent to look things up first. Nothing to fix unless you want that sub-agent step; your call.
+>
+> Undo: move grill-me, grilling, frontend-design and verification-before-completion out of `~/.claude/skills/`, and move frontend-polish back from `~/.claude/skillproof-backups/2026-09-27/skills/frontend-polish/`. All four new skills load in a new session.
+
 ## Checks
 
 | Round | Slip | Fix |
@@ -225,3 +488,10 @@ _Times are from the paste; they include the AI's own work (downloads, reading, i
 | 2 | 5–9 minutes on the clock; the first reply took ~2 minutes | The opening is asked before anything downloads; list skills are offered after opening their SKILL.md only, and read in full once, at install |
 | 2 | "look" ignored the setup (a Python service got the same picks as an empty setup) | What the setup shows counts as the answer; all-rounders fill what's left |
 | 2 | A skill whose repo wouldn't open was offered, then dropped after the yes | A pick whose SKILL.md won't open is left out before the plan |
+| 3 | The Claude app zipped Skillproof itself and asked for that upload first | A chat app runs Skillproof from the chat; only the planned skills get zips, after the yes |
+| 3 | grill-me's helper folder went into the same zip; the Claude app reads one folder per zip | One zip per skill folder, helpers included |
+| 3 | The helper folder (grilling) was installed without being named in the plan | Helpers are named in the plan line |
+| 3 | ChatGPT Plus gave a readback before its one line | The line comes first, no readback |
+| 3 | The multiple-choice question was skipped once in a chat app | The skill says it's the easy version of the question, not handing it back |
+| 3 | A bare "it" in a clash line; "delete" in undo lines | No bare "it" anywhere they read; undo says "move out" |
+| 4 | A clash in a helper skill was found only at install | Helpers' SKILL.md are opened before the plan too |

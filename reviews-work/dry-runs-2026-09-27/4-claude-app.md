@@ -12,55 +12,51 @@ _Times are from the paste; they include the AI's own work (downloads, reading, i
 
 > (pastes the Skillproof prompt)
 
-**AI** · 2:54 · setup fingerprint `d41d8cd9`
+**AI** · 1:43 · setup fingerprint `d41d8cd9`
 
 > What do you want your AI to do better? Not sure? Tell me what you use AI for, or say "look" and I'll check your setup.
 
-**User** · 2:54 · setup fingerprint `d41d8cd9`
+**User** · 1:43 · setup fingerprint `d41d8cd9`
 
 > idk honestly. i just got this and dont really know what to use it for
 
-**AI** · 8:05 · setup fingerprint `4127e879`
+**AI** · 2:58 · setup fingerprint `d41d8cd9`
 
-> Skillproof's installed — skillproof.zip is ready above. Upload it: Customize → Skills → add → upload the zip (turn on code execution first, if it isn't already: Settings → Capabilities).
->
 > Which is closest? Reply with a number: 1 Writing and email · 2 Learning · 3 Planning and decisions · 4 Coding · 5 A bit of everything
 
-**User** · 8:05 · setup fingerprint `4127e879`
+**User** · 2:58 · setup fingerprint `d41d8cd9`
 
 > 1
 
-**AI** · 11:03 · setup fingerprint `4127e879`
+**AI** · 5:52 · setup fingerprint `d41d8cd9`
 
-> 1. Add **grill-me** — Say "use grill-me" before a plan or big decision, and your AI asks questions until the plan holds up.
-> 2. Add **caveman** — Say "use caveman", and your AI answers in far fewer words until you say "normal mode".
-> 3. Add **humanizer** — Say "humanize this" on any draft, and your AI rewrites the draft in a plain human voice.
+> Here's the plan:
+> 1. Add **humanizer** — Say "humanize this" on any draft, and your AI rewrites the draft in a plain human voice.
+> 2. Add **copywriting** — Your AI now writes page copy — headlines, pitches, buttons — using proven marketing patterns.
 >
 > Nothing changes until you say go, and you can undo anytime. Go?
 
-**User** · 11:03 · setup fingerprint `4127e879`
+**User** · 5:52 · setup fingerprint `d41d8cd9`
 
 > yes
 
-**AI** · 13:54 · setup fingerprint `2c8cf15c`
+**AI** · 9:15 · setup fingerprint `39fd6f34`
 
 > Installed.
-> - grill-me: Say "use grill-me" before a plan or big decision, and your AI asks questions until the plan holds up.
-> - caveman: Say "use caveman", and your AI answers in far fewer words until you say "normal mode".
 > - humanizer: Say "humanize this" on any draft, and your AI rewrites the draft in a plain human voice.
+> - copywriting: Your AI now writes page copy — headlines, pitches, buttons — using proven marketing patterns.
 >
-> Upload each zip above to use them — Customize → Skills → add → upload the zip (grill-me needs its small grilling.zip companion uploaded too, four zips total).
+> Two zips are ready above: humanizer.zip and copywriting.zip. Upload each one: Customize → Skills → add → upload the zip (you'll need code execution turned on first, under Settings → Capabilities, if it isn't already).
 >
-> Undo: remove any of them under Customize → Skills. They take effect in a new chat.
+> Undo: remove humanizer and copywriting under Skills. Takes effect once you've uploaded them, in a new chat.
 
 ## Checks
 
 | Check | Result |
 |---|---|
-| Nothing to say → one multiple-choice question → a plan | PASS — "Which is closest? Reply with a number…", then a plan after "1" |
-| Calls a skill the chat-app way | PASS — "use grill-me" instead of `/grill-me` |
-| A ready zip + one upload step | PASS — one zip per skill folder, each with the folder at its root (grill-me.zip, grilling.zip, humanizer.zip, caveman.zip); "Customize → Skills → add → upload the zip" |
+| Nothing to say → one multiple-choice question → a plan that fits the answer | PASS — "Which is closest?…"; "1 Writing and email" → humanizer and copywriting |
+| No file made before the yes | PASS — the download folder stayed empty until "yes"; Skillproof itself was not packaged |
+| A ready zip + one upload step | PASS — humanizer.zip and copywriting.zip, one skill folder at each zip's root; "Customize → Skills → add → upload the zip", with the code-execution setting named |
 | One clear line per skill, no bare "it" | PASS |
-| Undo | PASS — "remove any of them under Customize → Skills" |
-| Slip found | It also zipped Skillproof itself and asked for that upload first. Fixed: a chat app runs Skillproof from the chat; only the planned skills get zips. The re-run below confirms no file is made before the yes |
-| Time | The person's own time ~1.5 min (263 words + 3 replies). The AI's own work: 13:00, most of it building zips |
+| Undo | PASS — "remove humanizer and copywriting under Skills" |
+| Time | The person's own time ~1.2 min (198 words + 3 replies). The AI's own work: 8:21, including building the zips. Paste to "Installed.": 9:15 |
