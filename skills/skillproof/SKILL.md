@@ -22,17 +22,17 @@ The whole job is one short conversation:
 > "look" and I'll check your setup.
 > **Them:** idk
 > **You:** *(reads their setup, read-only, silently)* Here's the plan:
-> 1. Add **grill-me** — say "grill me" and your AI asks questions until your plan holds up.
-> 2. Add **show-me** — your AI shows long answers as one page instead of a wall of text.
-> 3. Add **humanizer** — say "humanize this" and your AI rewrites text so it stops sounding like AI.
+> 1. Add **grill-me** — Type /grill-me before a plan or big decision, and your AI asks questions until the plan holds up.
+> 2. Add **show-me** — Your AI now shows long answers as one page you can scan, instead of a wall of text.
+> 3. Add **humanizer** — Say “humanize this” on any draft, and your AI rewrites the draft in a plain human voice.
 > Nothing changes until you say go, and you can undo anytime. Go?
 > **Them:** yes
-> **You:** *(backs up, installs, checks — silently)*
+> **You:** *(installs, checks — silently)*
 > Installed.
-> - grill-me: say "grill me" before a plan and your AI asks questions until the plan holds up.
-> - show-me: your AI now shows long answers as one page instead of dumping text.
-> - humanizer: say "humanize this" and your AI rewrites the text so it reads like a person.
-> Undo: move those three folders out of `~/.claude/skills/`.
+> - grill-me: Type /grill-me before a plan or big decision, and your AI asks questions until the plan holds up.
+> - show-me: Your AI now shows long answers as one page you can scan, instead of a wall of text.
+> - humanizer: Say “humanize this” on any draft, and your AI rewrites the draft in a plain human voice.
+> Undo: move those three folders out of `~/.claude/skills/`. They load in a new session.
 
 Five beats. Talk only at the beats; work silently between them — no narration of what you're
 reading or searching, no reasoning walkthroughs, no disclaimers. This conversation is the plan:
@@ -82,8 +82,8 @@ installed.
    `source` (the repo and folder to install from). Match their want to `summary`,
    `pain_points` and `for`.
 4. **Proven all-rounders.** When their input is thin — or when one would clearly help anyway —
-   add `for: anyone` entries they don't have yet, most-used first (`signals.installs`, then
-   `signals.stars`).
+   add `for: anyone` entries they don't have yet, **in the shelf's own order**. The list is
+   ordered on purpose, most broadly helpful first; install counts are not the order.
 5. **Pick 1–3 skills. Never a pile.** More skills make answers worse, not better.
 6. **Off the shelf** only when nothing on it fits a clear want: `references/finding.md`. Proven
    only — real usage or a known builder — and never a copy riding a popular name.
@@ -97,7 +97,8 @@ installed.
 ## Beat 3 — the plan (one message)
 
 A short numbered list. One line per change: what you'll add or edit, and what it does for them
-in plain words. Every file you'll touch is in it — each install, each edit, each fold. End with
+in plain words. **For a shelf skill, that line is its `line`, word for word** — change only the
+call to this app's form. Don't paraphrase: rewording is where a bare "it" creeps in. Every file you'll touch is in it — each install, each edit, each fold. End with
 "Nothing changes until you say go, and you can undo anytime. Go?" — and when the plan edits a
 file they already have, add "I back up that file first."
 
@@ -134,9 +135,10 @@ file they already have, add "I back up that file first."
   "show-me: your AI now shows long answers as one page instead of dumping text."
 - **Never a bare pronoun.** Not "it", "this" or "that" — name the skill or "your AI". "Your AI
   uses it on its own" says nothing; say what changes.
-- Start from the entry's `line`, and say the call the way this app does (`/name` in Claude
-  Code, `$name` in Codex — `references/install-paths.md`). One line. No feature list, no how
-  it works, no second sentence.
+- For a shelf skill, use its `line` word for word — the same line the plan showed — and only
+  change the call to this app's form (`/name` in Claude Code, `$name` in Codex —
+  `references/install-paths.md`). One line. No feature list, no how it works, no second
+  sentence.
 
 **The undo line:** the exact folders to remove (in a chat app, the skill to delete under
 Skills), plus the backup path when you changed a file they already had. If something can't be

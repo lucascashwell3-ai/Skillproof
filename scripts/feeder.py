@@ -775,8 +775,8 @@ def main():
         print(f"baseline: {len(seen) - before} folder(s) recorded as judged ({len(seen)} total)")
         return 0
     judged = sum(1 for v in seen.values() if v.get("verdict") != "waiting")
-    print(f"seen: {judged} folder(s) judged before, "
-          f"{len(seen) - judged} new one(s) still waiting for real use")
+    print(f"seen: {judged} record(s) of skill folders already judged (by folder and by name), "
+          f"{len(seen) - judged} still waiting for real use")
 
     cands, feed_dropped = feed(data, q, verified, skip, usage, seen=seen)
     print(f"feed: {len(cands)} new skill folder(s) with real use, from {len(verified)} proven "

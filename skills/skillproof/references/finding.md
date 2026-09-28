@@ -34,8 +34,9 @@ Fields you'll use: `summary`, `line`, `calls`, `for`, `needs`, `pain_points`, `s
 scan last ran). Numbers are a dated snapshot — never quote them to the person unless asked.
 
 **Proven all-rounders** are the `for: anyone` entries. They help nearly everyone, so offer the
-ones they lack when their input is thin, or alongside a specific pick when they'd clearly help.
-Three skills total is the ceiling.
+ones they lack when their input is thin, or alongside a specific pick when they'd clearly help —
+in the order the list gives them (most broadly helpful first). Three skills total is the
+ceiling. `line` is the exact line to show in the plan and at install; don't reword it.
 
 ## 3. Off the shelf — only when the shelf has no fit
 
