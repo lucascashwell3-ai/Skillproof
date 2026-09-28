@@ -1,8 +1,9 @@
-/* Skillproof workbench — improve-areas rail → catalog → build tray.
+/* Skillproof workbench — improve-areas rail → short list → build tray.
    Data contract: docs/data/skills.json (validated by scripts/validate_index.py).
-   One flat catalog (tiers removed 2026-08-21): every entry is a real repo that
-   passed the malice scan. Every claim on the page derives from a real field in
-   the data — no fabricated commands or stats. */
+   One flat short list (tiers removed 2026-08-21; short list 2026-09-27): every
+   entry is one proven skill's folder that passed the malice scan. Every claim
+   on the page derives from a real field in the data — no fabricated commands
+   or stats. */
 (function () {
   "use strict";
 
@@ -10,10 +11,13 @@
   var REPO = "https://github.com/lucascashwell3-ai/Skillproof";
   var DATA = null;
 
+  /* Who a skill is for — the list's only split. Never a quality label. */
   var FACETS = [
     { k: "all",     label: "All" },
-    { k: "skill",   label: "Skills" },
-    { k: "library", label: "Libraries" }
+    { k: "anyone",  label: "Anyone" },
+    { k: "writing", label: "Writing" },
+    { k: "design",  label: "Design" },
+    { k: "coding",  label: "Coding" }
   ];
   var MODES = [
     { id: "terminal", label: "Terminal" },
@@ -21,7 +25,7 @@
   ];
   var SORTS = [
     { id: "match", label: "Best match" },
-    { id: "stars", label: "★ Stars" }
+    { id: "used", label: "Most used" }
   ];
 
   var S = { pains: [], applied: false };
@@ -46,6 +50,7 @@
   }
   function kindOf(s) { return s.category === "library" ? "library" : "skill"; }
   function stars(s) { return (s.signals && s.signals.stars) || 0; }
+  function installs(s) { return (s.signals && s.signals.installs) || 0; }
   function fmtNum(n) {
     if (n >= 1e6) return (n / 1e6).toFixed(1).replace(/\.0$/, "") + "M";
     if (n >= 1e3) return (n / 1e3).toFixed(1).replace(/\.0$/, "") + "k";
@@ -154,7 +159,7 @@
   }
 
   function matches(it) {
-    if (state.facet !== "all" && kindOf(it) !== state.facet) return false;
+    if (state.facet !== "all" && it.for !== state.facet) return false;
     var q = state.q.trim();
     if (!q) return true;
     var tokens = tokenize(q);
@@ -165,13 +170,13 @@
   }
 
   function counts() {
-    var c = { all: 0, skill: 0, library: 0 };
+    var c = { all: 0 };
     DATA.skills.forEach(function (it) {
       var facetSave = state.facet;
       state.facet = "all";
       var ok = matches(it);
       state.facet = facetSave;
-      if (ok) { c.all++; c[kindOf(it)]++; }
+      if (ok) { c.all++; c[it.for] = (c[it.for] || 0) + 1; }
     });
     return c;
   }
@@ -326,8 +331,16 @@
   function detailHTML(it) {
     var rows = [];
 
-    var repoSlug = it.repo_url.replace(/^https:\/\/github\.com\//, "");
-    rows.push(["Source", "From a public GitHub repo by " + esc(it.author) +
+    if (it.line) rows.push(["How to use", esc(it.line)]);
+    rows.push(["Works in", (it.needs || []).indexOf("files") > -1
+      ? "Apps that work with your files: Claude Code, Codex, Cursor, Gemini CLI, Copilot"
+      : "Any app that supports skills, including the free Claude app"]);
+
+    var src = it.source || {};
+    var repoSlug = src.repo
+      ? src.repo + (src.path ? " › " + src.path.split("/").pop() : "")
+      : it.repo_url.replace(/^https:\/\/github\.com\//, "");
+    rows.push(["Source", "By " + esc(it.author) +
       ' · <a href="' + esc(it.repo_url) + '" target="_blank" rel="noopener">' + esc(repoSlug) + " ↗</a>"]);
 
     if (it.created || it.pushed) {
@@ -336,8 +349,10 @@
             (it.pushed ? "Last push " + mdY(it.pushed) + "." : ""))]);
     }
     if (it.signals) {
-      rows.push(["Exposure", esc(it.signals.stars.toLocaleString() + " GitHub stars · " +
-        (it.signals.forks || 0).toLocaleString() + " forks")]);
+      var used = [];
+      if (installs(it)) used.push(installs(it).toLocaleString() + " installs (skills.sh)");
+      if (stars(it)) used.push(stars(it).toLocaleString() + " stars on its GitHub repo");
+      rows.push(["Used by", esc(used.length ? used.join(" · ") : "No public install count yet")]);
     }
     if (it.license) rows.push(["License", esc(it.license)]);
 
@@ -378,11 +393,15 @@
         }).join("") + "</div>"
       : "";
     var tested = tierBadge(it);
-    var sig = it.signals && it.signals.stars
-      ? '<span class="row-stars" title="' + it.signals.stars.toLocaleString() + " stars · " +
-        (it.signals.forks || 0).toLocaleString() + " forks on GitHub, checked " + esc(it.signals.checked) + '">★ ' +
-        fmtNum(it.signals.stars) + "</span>"
-      : "";
+    /* installs say how many people use this one skill; a repo's stars can
+       cover a whole collection, so they only show when there is no count */
+    var sig = installs(it)
+      ? '<span class="row-stars" title="' + installs(it).toLocaleString() + " installs on skills.sh, checked " +
+        esc(it.signals.checked) + '">' + fmtNum(installs(it)) + " installs</span>"
+      : stars(it)
+        ? '<span class="row-stars" title="' + stars(it).toLocaleString() + " stars on GitHub, checked " +
+          esc(it.signals.checked) + '">★ ' + fmtNum(stars(it)) + "</span>"
+        : "";
     var open = state.open === it.id;
     return '<div class="row t-' + kind + (inTray ? " in-tray" : "") + (open ? " open" : "") + (i === state.cursor ? " cursor" : "") +
       '" data-id="' + it.id + '" draggable="true" role="option" aria-selected="' + (i === state.cursor) + '">' +
@@ -416,17 +435,20 @@
     $("#clearQ").classList.toggle("on", !!q);
 
     var res = DATA.skills.filter(matches).map(function (it, i) { return { it: it, ev: evaluate(it), i: i }; });
-    /* best match: pain-point fit first, stars break ties; stars: pure exposure order */
+    /* best match: pain-point fit first, then the list's own order (the
+       all-rounders lead); most used: installs, then stars */
     res.sort(function (a, b) {
-      if (state.sort === "stars") return (stars(b.it) - stars(a.it)) || (a.i - b.i);
-      return (b.ev.score - a.ev.score) || (stars(b.it) - stars(a.it)) || (a.i - b.i);
+      if (state.sort === "used") {
+        return (installs(b.it) - installs(a.it)) || (stars(b.it) - stars(a.it)) || (a.i - b.i);
+      }
+      return (b.ev.score - a.ev.score) || (a.i - b.i);
     });
     $("#catCount").textContent = res.length;
 
     var bar = $("#rankbar");
-    if (state.sort === "stars") {
+    if (state.sort === "used") {
       bar.hidden = false;
-      $("#rankmsg").innerHTML = "Sorted by <b>GitHub stars</b>";
+      $("#rankmsg").innerHTML = "Sorted by <b>installs</b>, then GitHub stars";
     } else if (setupActive()) {
       bar.hidden = false;
       $("#rankmsg").innerHTML = "Sorted for <b>" +
@@ -469,7 +491,7 @@
     if (!state.tray.length) {
       wrap.innerHTML = '<div class="tray-empty">' +
         '<span class="drop-ring"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg></span>' +
-        "<b>Your tray is empty</b><p>Add or drag items from the catalog.</p></div>";
+        "<b>Your tray is empty</b><p>Add or drag skills from the list.</p></div>";
     } else {
       wrap.innerHTML = state.tray.map(function (id) {
         var it = byId[id], kind = kindOf(it);
@@ -533,7 +555,12 @@
     var lines = ["Install this stack into my AI environment, one item at a time:"];
     state.tray.forEach(function (id, i) {
       var it = byId[id];
-      if (it.install && it.install.command) {
+      if (it.source) {
+        lines.push((i + 1) + ". " + it.name + " — copy the skill folder " + it.repo_url +
+          ((it.source.with || []).length ? " (and its " + it.source.with.map(function (w) {
+            return w.split("/").pop(); }).join(", ") + " folder, which it needs)" : "") +
+          " into my skills folder.");
+      } else if (it.install && it.install.command) {
         lines.push((i + 1) + ". " + it.name + " — run: " + it.install.command);
       } else {
         lines.push((i + 1) + ". " + it.name + " — fetch " + it.repo_url +
@@ -541,9 +568,9 @@
       }
     });
     lines.push("");
-    lines.push("Rules: install only these items. Read the source of each before installing. Show me each command before running it. Flag anything that wants network access, credentials, or writes outside the project.");
+    lines.push("Rules: install only these items. Read the source of each before installing. Show me each command before running it. Flag anything that wants network access, credentials, or writes outside the project. When done, tell me in one line per skill what changed or how to call it.");
     if (state.explain) {
-      lines.push("Before each install, explain in 2-3 sentences what the item does, then ask me one short question to confirm I know when I'd use it.");
+      lines.push("Before installing, show me the plan: one line per skill saying what it does, then wait for my yes.");
     }
     return lines.join("\n");
   }
@@ -973,7 +1000,9 @@
      method as a wall of text, and an earlier version even described the
      internal review tiers — a fresh agent read that and told the user to
      avoid the whole site (2026-08-10). Now it's an installer: six files, read
-     SKILL.md, ask one question. Nothing internal leaks into the chat. */
+     SKILL.md, open with its one short question. The last line exists because
+     a first-time user with nothing to say got nothing back (2026-09-27): the
+     skill never waits on them. Nothing internal leaks into the chat. */
 
   var SKILL_RAW = "https://raw.githubusercontent.com/lucascashwell3-ai/Skillproof/main/skills/skillproof/";
   var SKILL_FILES = ["SKILL.md", "references/finding.md", "references/conflict-patterns.md",
@@ -985,15 +1014,14 @@
      reading SKILL.md and following it for the conversation. */
   function buildPrompt() {
     return [
-      "Install Skillproof — the skill that finds the right skill for whatever I'm trying to improve and fits it into my setup — then start a session with me.",
+      "Install Skillproof — the skill that fits proven skills into my AI setup — then run it with me.",
       "",
-      "1. Install it. Download these six files and save each one under ~/.claude/skills/skillproof/ keeping its path (Claude Code). On another tool, save them wherever your skills live; if you can't write files at all, just read SKILL.md and follow it for this conversation.",
+      "1. Install it. Save these six files into your skills folder under skillproof/, keeping their paths (Claude Code ~/.claude/skills/ · Codex ~/.agents/skills/ · Cursor ~/.cursor/skills/ · Gemini CLI ~/.gemini/skills/ · Copilot ~/.copilot/skills/). Download each file directly; never pipe anything into a shell. In a chat app that can't save files, just read SKILL.md and follow it here.",
     ].concat(SKILL_FILES.map(function (f) { return "   " + SKILL_RAW + f; })).concat([
-      "   Download each file directly. Never pipe anything into a shell.",
       "",
       "2. Read SKILL.md and follow it exactly — it's short.",
       "",
-      "3. Start: ask me one question — what am I trying to improve? — and take it from there."
+      "3. Start with its opening message. If I don't know what to say, don't wait on me: follow its \"nothing to say\" path and show me a plan."
     ]).join("\n");
   }
 

@@ -51,7 +51,7 @@
     </a>
     <nav class="nav-pills" aria-label="Site">
       <a href="#install">Install</a>
-      <a href="#bench">Catalog</a>
+      <a href="#bench">Short list</a>
       <a href="how.html">How it works</a>
       <a href="methodology.html">What we check</a>
     </nav>
@@ -141,7 +141,7 @@
         </div>
 
         <div class="inst-pane" id="instPane-mcp" role="tabpanel" data-pane="mcp" aria-labelledby="instTab-mcp" hidden>
-          <p>For Cursor, Claude Desktop, and any other MCP-capable agent &mdash; the catalog as
+          <p>For Cursor, Claude Desktop, and any other MCP-capable agent &mdash; the short list as
           four read-only tools your agent can query mid-task.</p>
           <div class="cmdwrap"><div class="cmdbox inst-cmd">git clone https://github.com/lucascashwell3-ai/Skillproof &amp;&amp; cd Skillproof/mcp &amp;&amp; npm install
           </div><button class="copy" type="button" aria-label="Copy" data-copy="git clone https://github.com/lucascashwell3-ai/Skillproof && cd Skillproof/mcp && npm install && claude mcp add skillproof -- node $(pwd)/server.js"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2.5"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button></div>
@@ -174,7 +174,7 @@
           <div class="chips chips-lg" id="grpPain"></div>
           <button class="btn btn-primary" id="applySetup" type="button" data-magnetic disabled>
             <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13l5 5L20 7"/></svg>
-            Sort the catalog
+            Sort the list
           </button>
         </div>
 
@@ -187,13 +187,13 @@
           </span>
           <input type="text" id="painSay" autocomplete="off" spellcheck="false"
                  aria-label="Describe what you want to improve"
-                 placeholder="Say it your way — &ldquo;my agent writes tests that pass but don&rsquo;t test anything&rdquo;">
+                 placeholder="Say it your way — &ldquo;my AI&rsquo;s answers are way too long&rdquo;">
           <button class="btn btn-ghost btn-sm" id="painSayGo" type="button">Find my areas</button>
         </div>
         <div class="setup-egs" id="setupEgs" aria-label="Examples">
           <span class="eg-lab">Try:</span>
-          <button class="eg" type="button">my frontend output looks generic</button>
-          <button class="eg" type="button">long sessions get dumb and forgetful</button>
+          <button class="eg" type="button">my writing sounds like AI</button>
+          <button class="eg" type="button">answers are hard to follow</button>
           <button class="eg" type="button">bug hunts go in circles</button>
         </div>
 
@@ -212,14 +212,14 @@
         <!-- ============ REGION 2 · CATALOG ============ -->
         <div class="panel">
           <div class="panel-head">
-            <span class="panel-title">Catalog <b id="catCount">&hellip;</b></span>
-            <span class="panel-meta">★ = GitHub stars</span>
+            <span class="panel-title">Short list <b id="catCount">&hellip;</b></span>
+            <span class="panel-meta">installs from skills.sh</span>
           </div>
 
           <div class="cmdbar">
             <div class="cmd-field">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6"/></svg>
-              <input type="text" id="q" placeholder="Search — try &ldquo;design&rdquo; or &ldquo;tests&rdquo;" aria-label="Search catalog" autocomplete="off" spellcheck="false">
+              <input type="text" id="q" placeholder="Search — try &ldquo;design&rdquo; or &ldquo;tests&rdquo;" aria-label="Search the short list" autocomplete="off" spellcheck="false">
               <button class="cmd-clear" id="clearQ" type="button" aria-label="Clear search">
                 <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
               </button>
@@ -237,7 +237,7 @@
             <span id="rankmsg"></span>
           </div>
 
-          <div class="list" id="list" role="listbox" aria-label="Catalog results"></div>
+          <div class="list" id="list" role="listbox" aria-label="Short list results"></div>
         </div>
 
         <!-- ============ REGION 3 · TRAY ============ -->
@@ -264,7 +264,7 @@
               <label class="check" id="explainWrap" hidden>
                 <input type="checkbox" id="explainChk" checked>
                 <span class="check-box" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none"><path d="M3.5 8.4l3 3L12.8 5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-                <span><b>Explain each skill to me on install</b> — your agent explains your build briefly before it runs</span>
+                <span><b>Show me the plan first</b> — one line per skill, then your agent waits for your yes</span>
               </label>
               <div class="cmdwrap">
                 <div class="cmdbox" id="cmdbox"><span class="muted"># add items to build your install plan</span></div>
@@ -317,7 +317,7 @@
       <div class="foot-cols">
         <div class="foot-col"><h3>Product</h3><ul>
           <li><a href="#install">Install</a></li>
-          <li><a href="#bench">Catalog</a></li>
+          <li><a href="#bench">Short list</a></li>
           <li><a href="how.html">How it works</a></li>
           <li><a href="methodology.html">What we check</a></li>
         </ul></div>
