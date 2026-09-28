@@ -41,7 +41,8 @@ never switch into a plan mode or wait on one.
 ## Beat 1 — open
 
 If they already said what they want, read it back in one line ending "Right?" and wait. If
-not, send exactly this, nothing more:
+not, send exactly this, nothing more — then wait for their answer, even when you could look
+at their setup right away:
 
 > What do you want your AI to do better? Not sure? Tell me what you use AI for, or say "look"
 > and I'll check your setup.

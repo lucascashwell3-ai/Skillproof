@@ -1021,7 +1021,7 @@
       "",
       "2. Read SKILL.md and follow it exactly — it's short.",
       "",
-      "3. Start with its opening message. If I don't know what to say, don't wait on me: follow its \"nothing to say\" path and show me a plan."
+      "3. Start with its opening message, then wait for my answer. If I say I don't know, don't hand the question back: follow its \"nothing to say\" path and show me a plan."
     ]).join("\n");
   }
 
