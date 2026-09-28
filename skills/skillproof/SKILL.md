@@ -126,7 +126,8 @@ file they already have, add "I back up that file first."
 2. Install each skill the app's way (`references/install-paths.md`): copy the skill's folder into
    the app's skills folder; in a chat app, build the ready zip and give the one upload step.
 3. Re-read what you wrote. Confirm each folder landed with its SKILL.md.
-4. Reply with `Installed.`, then **one line per skill**, then **one undo line**. Nothing else.
+4. Reply with `Installed.` as the very first word, then **one line per skill**, then **one undo
+   line**. Nothing before it, nothing after — no "all folders landed", no recap of checks.
 
 **The install line** — the skill's name, a colon, then one line:
 
