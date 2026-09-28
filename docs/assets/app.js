@@ -557,8 +557,8 @@
       var it = byId[id];
       if (it.source) {
         lines.push((i + 1) + ". " + it.name + " — copy the skill folder " + it.repo_url +
-          ((it.source.with || []).length ? " (and its " + it.source.with.map(function (w) {
-            return w.split("/").pop(); }).join(", ") + " folder, which it needs)" : "") +
+          ((it.source.with || []).length ? " (plus " + it.source.with.map(function (w) {
+            return w.split("/").pop(); }).join(", ") + ", the helper folder " + it.name + " needs)" : "") +
           " into my skills folder.");
       } else if (it.install && it.install.command) {
         lines.push((i + 1) + ". " + it.name + " — run: " + it.install.command);
@@ -1021,7 +1021,7 @@
       "2. Then install Skillproof. Save these six files into your skills folder under skillproof/, keeping their paths (Claude Code ~/.claude/skills/ · Codex ~/.agents/skills/ · Cursor ~/.cursor/skills/ · Gemini CLI ~/.gemini/skills/ · Copilot ~/.copilot/skills/). Download each file directly; never pipe anything into a shell. In a chat app that can't save files, don't package Skillproof — just read SKILL.md and follow it here.",
     ].concat(SKILL_FILES.map(function (f) { return "   " + SKILL_RAW + f; })).concat([
       "",
-      "3. Read SKILL.md and follow it, picking up after its opening question with my answer. If I said I don't know, don't hand the question back: follow its \"nothing to say\" path and show me a plan."
+      "3. Read SKILL.md and follow it, picking up after its opening question with my answer. If I said I don't know, don't ask me the same question again: follow its \"nothing to say\" path and show me a plan."
     ]).join("\n");
   }
 

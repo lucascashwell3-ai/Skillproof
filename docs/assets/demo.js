@@ -23,7 +23,7 @@
         { t: "tool", html: 'Read(<span class="y">CLAUDE.md</span>, <span class="y">~/.claude/skills/</span>) <span class="dim">· read-only</span>' },
         { t: "sub", html: '1. Add <span class="ok">caveman</span> — Type /caveman, and your AI answers in far fewer words' },
         { t: "sub", html: '2. Add <span class="ok">show-me</span> — Your AI shows long answers as one page you can scan' },
-        { t: "ask", html: 'One clash: your rule <span class="warn">“always explain your reasoning in full”</span> would cancel caveman. Soften it to “explain when asked”? Backup first<br><span class="opt">❯ 1. Go</span> &nbsp; 2. Skip the rule change &nbsp; 3. No' },
+        { t: "ask", html: 'One clash: your rule <span class="warn">“always explain your reasoning in full”</span> would cancel caveman. Soften that rule to “explain when asked”? Backup first<br><span class="opt">❯ 1. Go</span> &nbsp; 2. Skip the rule change &nbsp; 3. No' },
         { t: "tool", html: 'Edit(CLAUDE.md) <span class="dim">· 1 line, backed up</span> &nbsp; <span class="ok">✓</span>' },
         { t: "tool", html: 'Installed. <span class="ok">caveman</span> · <span class="ok">show-me</span> → ~/.claude/skills/ <span class="dim">· undo: move both folders out</span>' },
         { t: "you", type: true, html: "why is my checkout page slow?" },

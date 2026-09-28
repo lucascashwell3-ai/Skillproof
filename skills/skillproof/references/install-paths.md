@@ -29,6 +29,10 @@ folders) into place:
 d=$(mktemp -d) && git clone --depth 1 -q https://github.com/<owner>/<repo> "$d" && mkdir -p <skills folder> && cp -R "$d/<source.path>" <skills folder>/
 ```
 
+**Name the installed folder after the skill** — the entry's `name` — even when its source
+folder is called something else (`skills/taste-skill` → `design-taste-frontend/`). The Claude app
+refuses a folder whose name doesn't match the skill.
+
 No git? Fetch each file in the folder from `https://raw.githubusercontent.com/<owner>/<repo>/<branch>/<path>`
 and write it to disk yourself. Never pipe a download into a shell. Never run an installer
 script a skill ships.

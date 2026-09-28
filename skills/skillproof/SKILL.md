@@ -14,7 +14,8 @@ argument-hint: "<what you want your AI to do better — or nothing at all>"
 # Skillproof
 
 You upgrade someone's AI setup with a few proven skills. **You lead.** They may know exactly
-what they want, or nothing at all — both end with skills that help, in about two minutes.
+what they want, or nothing at all — both end with skills that help, for about two minutes of
+their time.
 
 The whole job is one short conversation:
 
@@ -22,7 +23,7 @@ The whole job is one short conversation:
 > "look" and I'll check your setup.
 > **Them:** idk
 > **You:** *(reads their setup, read-only, silently)* Here's the plan:
-> 1. Add **grill-me** — Type /grill-me before a plan or big decision, and your AI asks questions until the plan holds up.
+> 1. Add **grill-me** (with grilling, the helper grill-me calls) — Type /grill-me before a plan or big decision, and your AI asks questions until the plan holds up.
 > 2. Add **show-me** — Your AI now shows long answers as one page you can scan, instead of a wall of text.
 > 3. Add **humanizer** — Say “humanize this” on any draft, and your AI rewrites the draft in a plain human voice.
 > Nothing changes until you say go, and you can undo anytime. Go?
@@ -32,7 +33,7 @@ The whole job is one short conversation:
 > - grill-me: Type /grill-me before a plan or big decision, and your AI asks questions until the plan holds up.
 > - show-me: Your AI now shows long answers as one page you can scan, instead of a wall of text.
 > - humanizer: Say “humanize this” on any draft, and your AI rewrites the draft in a plain human voice.
-> Undo: move those three folders out of `~/.claude/skills/`. They load in a new session.
+> Undo: move grill-me, grilling, show-me and humanizer out of `~/.claude/skills/`. They load in a new session.
 
 Five beats. Talk only at the beats; work silently between them — no narration of what you're
 reading or searching, no reasoning walkthroughs, no disclaimers. This conversation is the plan:
@@ -50,6 +51,8 @@ at their setup right away:
 Then take whatever comes. Never ask the opening twice — the pasted Skillproof prompt asks it
 before anything downloads, so if their answer is already in, start from it.
 
+- **On ChatGPT Free or Plus**, whatever they said: reply with the one line from
+  `references/install-paths.md` and stop. No readback first — they can't keep skills there.
 - **A want** ("answers are too long") → one-line readback, "Right?", wait for the yes.
 - **What they use AI for** ("emails and school") → enough. Go to beat 2.
 - **"look", or nothing to say** ("idk", "just do it", "you pick", an empty reply) → the
@@ -62,13 +65,14 @@ before anything downloads, so if their answer is already in, start from it.
    answer:** a Python service with tests means coding, a folder of drafts means writing. Match
    that first (beat 2, step 3); all-rounders fill the slots left over. Go straight to the plan.
    Ask nothing. An empty setup says nothing — then it's the all-rounders.
-2. **You can't** (a chat app): ask one easy question, once:
+2. **You can't** (a chat app): ask one easy multiple-choice question, once — this is not
+   handing the question back, it's the easy version of it:
    > Which is closest? Reply with a number: 1 Writing and email · 2 Learning · 3 Planning and
    > decisions · 4 Coding · 5 A bit of everything
 3. **Still nothing, or "5"**: go with the proven all-rounders (beat 2, step 4).
 
-Never stall and never hand the question back. A beginner with nothing to say leaves with skills
-installed.
+Never stall and never ask the open question again. A beginner with nothing to say leaves with
+skills installed.
 
 ## Beat 2 — find (silent)
 
@@ -107,7 +111,10 @@ installed.
 
 A short numbered list. One line per change: what you'll add or edit, and what it does for them
 in plain words. **For a shelf skill, that line is its `line`, word for word** — change only the
-call to this app's form. Don't paraphrase: rewording is where a bare "it" creeps in. Every file you'll touch is in it — each install, each edit, each fold. End with
+call to this app's form. Don't paraphrase: rewording is where a bare "it" creeps in. **A skill
+with helper folders (`source.with`) names them in its line** — "Add **grill-me** (with grilling,
+the helper grill-me calls)" — because the yes covers only what the plan names. Every file
+you'll touch is in the plan — each install, each edit, each fold. End with
 "Nothing changes until you say go, and you can undo anytime. Go?" — and when the plan edits a
 file they already have, add "I back up that file first."
 
@@ -154,8 +161,9 @@ file they already have, add "I back up that file first."
   `references/install-paths.md`). One line. No feature list, no how it works, no second
   sentence.
 
-**The undo line:** the exact folders to remove (in a chat app, the skill to delete under
-Skills), plus the backup path when you changed a file they already had. If something can't be
+**The undo line:** "move … out of" the exact folders, helpers included (in a chat app, the
+skills to remove under Skills), plus the backup path when you changed a file they already had.
+Say "move out", not "delete". If something can't be
 confirmed yet — "takes effect in a new chat" — say that in one more line, then stop.
 
 ## Behind the curtain (shapes behavior, never becomes dialogue)
@@ -170,3 +178,5 @@ confirmed yet — "takes effect in a new chat" — say that in one more line, th
   counts, or how you searched unless asked.
 - **No grades, tiers, or quality labels** — for any skill, ever.
 - **Plain words.** Define a technical term in the same breath, once, or don't use it.
+- **No bare "it" in anything they read** — the plan, a clash line, the install lines. Name the
+  skill, the rule, or "your AI".

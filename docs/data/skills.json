@@ -618,7 +618,7 @@
         "path": "skills/taste-skill"
       },
       "install": {
-        "command": "d=$(mktemp -d) && git clone --depth 1 -q https://github.com/Leonxlnx/taste-skill \"$d\" && mkdir -p ~/.claude/skills/ && cp -R \"$d/skills/taste-skill\" ~/.claude/skills/",
+        "command": "d=$(mktemp -d) && git clone --depth 1 -q https://github.com/Leonxlnx/taste-skill \"$d\" && mkdir -p ~/.claude/skills/ && cp -R \"$d/skills/taste-skill\" ~/.claude/skills/design-taste-frontend",
         "notes": "Claude Code folder shown. Codex: ~/.agents/skills/ · Cursor: ~/.cursor/skills/ · Gemini CLI: ~/.gemini/skills/ · Copilot: ~/.copilot/skills/. Loads in a new session."
       },
       "signals": {
