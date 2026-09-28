@@ -64,7 +64,9 @@ before anything downloads, so if their answer is already in, start from it.
    read-only — and work out what they use AI for from it. **What the setup shows is their
    answer:** a Python service with tests means coding, a folder of drafts means writing. Match
    that first (beat 2, step 3); all-rounders fill the slots left over. Go straight to the plan.
-   Ask nothing. An empty setup says nothing — then it's the all-rounders.
+   Ask nothing. An empty setup says nothing — then it's the all-rounders. **A need their own
+   rules already cover counts as one they have:** pick for what the setup lacks, or — if a
+   skill clearly does that job better — plan the swap and say which of their lines moves out.
 2. **You can't** (a chat app): ask one easy multiple-choice question, once — this is not
    handing the question back, it's the easy version of it:
    > Which is closest? Reply with a number: 1 Writing and email · 2 Learning · 3 Planning and
@@ -97,7 +99,8 @@ skills installed.
 5. **Pick 1–3 skills. Never a pile.** More skills make answers worse, not better.
 6. **Off the shelf** only when nothing on it fits a clear want: `references/finding.md`. Proven
    only — real usage or a known builder — and never a copy riding a popular name.
-7. **Fit.** Skip anything they already have in any form: never install a twin. If theirs is
+7. **Fit.** Skip anything they already have in any form — a skill, or a rule in their own
+   instruction files that does the same job: never install a twin. If theirs is
    weak and a shelf skill clearly beats it, plan a swap and fold their personal lines into the
    new one. Skip anything the app can't run (`needs: files` in a chat app, scripts or tools the
    app lacks). Check their rules for clashes: `references/conflict-patterns.md`.
