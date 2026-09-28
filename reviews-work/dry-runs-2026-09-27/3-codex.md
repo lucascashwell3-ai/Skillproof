@@ -1,4 +1,4 @@
-# Dry run 3 — a Codex user who says "look"
+# Run 3 — a Codex user who says "look"
 
 **Who:** a developer who uses the Codex CLI on a Python API service.
 **App:** Codex CLI (played by a fresh Sonnet agent told to act as Codex, that had never seen Skillproof).
@@ -8,50 +8,48 @@
 
 ## Conversation
 
-_Times are from the paste; they include the AI's own work (downloads, reading, installing). The setup fingerprint covers every file in the sandbox except Skillproof's own folder (the paste itself asks for that one); it stays at the start value until the yes._
+_Times are from the paste; they include the AI's own work (downloads, reading, installing). "Setup unchanged" is a fingerprint of every file in the sandbox except Skillproof's own folder._
 
 **User** · 0:00 · setup fingerprint `a0e4afaa`
 
 > (pastes the Skillproof prompt)
 
-**AI** · 2:54 · setup fingerprint `a0e4afaa`
+**AI** · 1:37 · setup fingerprint `a0e4afaa`
 
 > What do you want your AI to do better? Not sure? Tell me what you use AI for, or say "look" and I'll check your setup.
 
-**User** · 2:54 · setup fingerprint `a0e4afaa`
+**User** · 1:37 · setup fingerprint `a0e4afaa`
 
 > look
 
-**AI** · 4:31 · setup fingerprint `a0e4afaa`
+**AI** · 4:13 · setup fingerprint `a0e4afaa`
 
-> Here's the plan — all three go in `~/.agents/skills/`, next to commit-msg:
-> 1. Add **grill-me** — Type $grill-me before a plan or big decision, and your AI asks questions until the plan holds up.
-> 2. Add **show-me** — Your AI now shows long answers as one page you can scan, instead of a wall of text.
-> 3. Add **humanizer** — Say "humanize this" on any draft, and your AI rewrites the draft in a plain human voice.
-> Nothing changes until you say go, and you can undo anytime. Go?
+> Read your setup — nothing asked, since files told the story: `api-service` is a Python 3.12 FastAPI project, your AGENTS.md already says "keep diffs minimal" and "run tests before saying anything works," and you've already got a `commit-msg` skill for conventional commits. Here's the plan:
+>
+> 1. Add **verification-before-completion** — Your AI now runs the checks before saying "done," so "fixed" means fixed.
+> 2. Add **karpathy-guidelines** — Your AI now keeps code changes small, names assumptions up front, and stops overbuilding.
+>
+> Both go in your personal skills, next to commit-msg. Nothing changes until you say go, and you can undo anytime. Go?
 
-**User** · 4:31 · setup fingerprint `a0e4afaa`
+**User** · 4:13 · setup fingerprint `a0e4afaa`
 
 > yes
 
-**AI** · 8:32 · setup fingerprint `84f9b33a`
+**AI** · 5:01 · setup fingerprint `25b1eabb`
 
 > Installed.
-> - grill-me: Type $grill-me before a plan or big decision, and your AI asks questions until the plan holds up.
-> - humanizer: Say "humanize this" on any draft, and your AI rewrites the draft in a plain human voice.
-> Undo: move grill-me, grilling, and humanizer out of `~/.agents/skills/`. They load in a new session.
->
-> show-me didn't make it in — its source (lucascashwell3-ai/skills) doesn't resolve on GitHub, so there was nothing to read or verify. Dropped, not installed. Want caveman instead — next on the shelf: type $caveman, and your AI answers in far fewer words until you say "normal mode"?
+> - verification-before-completion: your AI now runs the checks before saying "done," so "fixed" means fixed.
+> - karpathy-guidelines: your AI now keeps code changes small, names assumptions up front, and stops overbuilding.
+> Undo: delete `~/.agents/skills/verification-before-completion/` and `~/.agents/skills/karpathy-guidelines/`. Both take effect in a new session.
 
 ## Checks
 
 | Check | Result |
 |---|---|
 | "look" leads to a plan with no more questions | PASS |
-| Installed in Codex's own folder | PASS — `~/.agents/skills/grill-me`, `grilling`, `humanizer` (Codex's personal skills folder per its docs) |
-| Calls a skill the Codex way | PASS — `$grill-me`, not `/grill-me` |
+| What the setup shows counts as the answer | PASS — a Python/FastAPI service with "run tests before saying anything works" and "keep diffs minimal" in AGENTS.md → verification-before-completion and karpathy-guidelines |
+| Installed in Codex's own folder | PASS — `~/.agents/skills/` (Codex's personal skills folder per its docs); `commit-msg` untouched |
 | One clear line per skill, no bare "it" | PASS |
 | Nothing changed before the yes | PASS — fingerprint before the yes = start (`a0e4afaa`) |
 | Backup + undo | PASS — undo names every folder; nothing existing touched |
-| show-me could not be installed | Its repo is still private. The AI dropped it, said so, and asked a new yes for a replacement instead of installing one on its own |
-| The person's own time | ~1 min (217 words + "look" and "yes"); wall clock 8:32 |
+| Time | The person's own time ~0.8 min (171 words + "look" and "yes"). The AI's own work: 4:21 |
