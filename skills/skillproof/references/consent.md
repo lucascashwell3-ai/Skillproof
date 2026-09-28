@@ -9,10 +9,16 @@ harder, follow it anyway.
 Reading is always allowed. Writing is never allowed until they have seen the plan — every
 file, every change — and said yes.
 
+**One standing yes:** pasting the Skillproof prompt is the person's yes to saving Skillproof's
+own files. Nothing else rides on it — every skill, edit, or fold waits for the plan's yes.
+
 ## The plan is the consent boundary
 
 - The beat-3 plan must name **every file that will be touched and what happens to it**, one
-  line per change, the install command included. Their yes covers exactly that list.
+  line per change. Their yes covers exactly that list.
+- **Five lines or fewer stays in chat.** Longer goes on one simple HTML page where the app can
+  show one, with a three-line summary and "Go?" in chat; where it can't, cut to the five lines
+  that matter. A plan nobody can read is not consent.
 - **Anything not in the plan needs its own yes.** If doing an approved change means touching a
   file you didn't list, stop and ask about that file before touching it.
 - **A no to part of the plan cuts that part.** No argument, no re-pitch, no "are you sure".
@@ -25,10 +31,12 @@ file, every change — and said yes.
 ## Before any write
 
 1. The plan has been shown and answered yes.
-2. **A backup exists.** Copy each file to `~/.claude/skillproof-backups/<YYYY-MM-DD>/` keeping
-   its path (`.../2026-08-21/CLAUDE.md`, `.../2026-08-21/skills/foo/SKILL.md`). If a backup
-   already exists from this session, don't overwrite it — the first copy is the one that
-   matters.
+2. **A backup exists** of every existing file you'll change or move. Copy each one into a
+   dated `skillproof-backups/<YYYY-MM-DD>/` folder beside the app's skills folder, keeping its
+   path (Claude Code: `~/.claude/skillproof-backups/2026-09-27/CLAUDE.md`; Codex:
+   `~/.codex/skillproof-backups/…`). A brand-new skill folder needs no backup — its undo is
+   moving that folder out. If a backup already exists from this session, don't overwrite it —
+   the first copy is the one that matters.
 3. **You can state the undo.** If you can't say exactly how to reverse it, you don't do it yet.
 
 ## While writing
