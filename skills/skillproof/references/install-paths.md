@@ -44,7 +44,9 @@ New skills load in a **new** session. Say so in the undo line when it applies.
 
 **Claude app** (claude.ai, desktop, mobile — Free, Pro, Max, Team, Enterprise). Skills need
 code execution on: Settings → Capabilities. The upload takes a ZIP whose root is the skill
-folder (`grill-me.zip` → `grill-me/SKILL.md`).
+folder (`grill-me.zip` → `grill-me/SKILL.md`), **one skill folder per zip**. A skill that needs
+a helper folder (`source.with`) gets a zip for each: `grill-me.zip` and `grilling.zip`, both
+uploaded.
 
 - **Skillproof itself needs no upload here** — it runs from this chat. Only the skills in the
   plan get a zip, after the yes.
