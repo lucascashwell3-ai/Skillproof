@@ -47,7 +47,8 @@ at their setup right away:
 > What do you want your AI to do better? Not sure? Tell me what you use AI for, or say "look"
 > and I'll check your setup.
 
-Then take whatever comes. Never ask the opening twice.
+Then take whatever comes. Never ask the opening twice — the pasted Skillproof prompt asks it
+before anything downloads, so if their answer is already in, start from it.
 
 - **A want** ("answers are too long") → one-line readback, "Right?", wait for the yes.
 - **What they use AI for** ("emails and school") → enough. Go to beat 2.
@@ -57,7 +58,10 @@ Then take whatever comes. Never ask the opening twice.
 ### Nothing to say — they still get a result
 
 1. **You can read files** (Claude Code, Codex, Cursor, Gemini CLI, Copilot): read their setup —
-   read-only — and work out what they use AI for from it. Go straight to the plan. Ask nothing.
+   read-only — and work out what they use AI for from it. **What the setup shows is their
+   answer:** a Python service with tests means coding, a folder of drafts means writing. Match
+   that first (beat 2, step 3); all-rounders fill the slots left over. Go straight to the plan.
+   Ask nothing. An empty setup says nothing — then it's the all-rounders.
 2. **You can't** (a chat app): ask one easy question, once:
    > Which is closest? Reply with a number: 1 Writing and email · 2 Learning · 3 Planning and
    > decisions · 4 Coding · 5 A bit of everything
@@ -80,11 +84,12 @@ installed.
    Per entry: `summary` (what it does), `line` (the line to say when it's installed), `calls`
    (`you` = they call it, `auto` = the AI uses it on its own), `for` (`anyone`, `writing`,
    `design`, `coding`), `needs` (`files` = only where the AI can read and write files), and
-   `source` (the repo and folder to install from). Match their want to `summary`,
-   `pain_points` and `for`.
+   `source` (the repo and folder to install from). Match their want — or what their setup
+   shows — to `summary`, `pain_points` and `for`.
 4. **Proven all-rounders.** When their input is thin — or when one would clearly help anyway —
-   add `for: anyone` entries they don't have yet, **in the shelf's own order**. The list is
-   ordered on purpose, most broadly helpful first; install counts are not the order.
+   fill the slots left after step 3 with `for: anyone` entries they don't have yet, **in the
+   shelf's own order**. The list is ordered on purpose, most broadly helpful first; install
+   counts are not the order.
 5. **Pick 1–3 skills. Never a pile.** More skills make answers worse, not better.
 6. **Off the shelf** only when nothing on it fits a clear want: `references/finding.md`. Proven
    only — real usage or a known builder — and never a copy riding a popular name.
@@ -92,8 +97,11 @@ installed.
    weak and a shelf skill clearly beats it, plan a swap and fold their personal lines into the
    new one. Skip anything the app can't run (`needs: files` in a chat app, scripts or tools the
    app lacks). Check their rules for clashes: `references/conflict-patterns.md`.
-8. **Read the source** of everything you'll offer — its SKILL.md and every file it installs —
-   for red flags (`references/security.md`). Unread code never gets installed.
+8. **Open each pick's SKILL.md** before it goes in the plan — one small file, not the whole
+   repo. If it won't open, leave that skill out and take the next one; don't mention it unless
+   they asked for it by name. Shelf skills already passed a malice scan, so the full read of
+   every file a skill installs happens once, at install (beat 5) — never twice. Skills from
+   off the shelf get the full read here, before they're offered (`references/finding.md`).
 
 ## Beat 3 — the plan (one message)
 
@@ -123,11 +131,15 @@ file they already have, add "I back up that file first."
 ## Beat 5 — install, one line each, the undo
 
 1. Back up every existing file you'll touch first (`references/consent.md`).
-2. Install each skill the app's way (`references/install-paths.md`): copy the skill's folder into
+2. Read every file each skill installs, as you fetch it, for red flags (`references/security.md`).
+   A red flag drops that skill: one line saying so, the rest go ahead. Unread code never gets
+   installed.
+3. Install each skill the app's way (`references/install-paths.md`): copy the skill's folder into
    the app's skills folder; in a chat app, build the ready zip and give the one upload step.
-3. Re-read what you wrote. Confirm each folder landed with its SKILL.md.
-4. Reply with `Installed.` as the very first word, then **one line per skill**, then **one undo
-   line**. Nothing before it, nothing after — no "all folders landed", no recap of checks.
+4. Re-read what you wrote. Confirm each folder landed with its SKILL.md.
+5. Reply with `Installed.` as the very first word, then **one line per skill**, then **one undo
+   line**. Nothing before it, nothing after — no "all folders landed", no recap of checks. If a
+   skill was dropped at install, one plain line saying so sits just above the undo line.
 
 **The install line** — the skill's name, a colon, then one line:
 

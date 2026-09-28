@@ -57,10 +57,12 @@ response, never from memory.
 - Stars are popularity, not quality. A recent push beats a star count.
 - One skill per need. If two are close, pick one and move on.
 
-## Read the source before you offer it
+## Read the source
 
-Everything the plan would install: the `SKILL.md`, every file in its folder, any script it
-runs. Note what it does (one plain sentence), what it touches (files, network, credentials,
+**Shelf skills:** open the `SKILL.md` before the plan (is it there, does it still do what the
+entry says); read every other file at install, as you fetch it. **Off-shelf finds:** read
+everything before you offer them. Either way, everything the plan would install gets read: the
+`SKILL.md`, every file in its folder, any script it runs. Note what it does (one plain sentence), what it touches (files, network, credentials,
 shell), and how to undo it. Too big to read fully? Scope down to what you read, or drop it.
 Unread code never gets an install.
 
