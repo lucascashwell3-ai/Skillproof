@@ -41,6 +41,8 @@ REPO = re.compile(r"^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$")
 # The install line names the skill or "your AI" — never a bare "it" (a line
 # like "Your AI uses it on its own" says nothing about what changes).
 BARE_IT = re.compile(r"\bit\b", re.I)
+# A line that only names the skill tells the person nothing about what changes.
+EMPTY_LINE = re.compile(r"(^Type /\S+ to use \S+\.?$|when the task calls for|^Type /\S+\.?$)", re.I)
 # Tier-era fields. Their presence means the nuked verification system is
 # growing back — that is a build-stopping error, not a warning.
 FORBIDDEN = ("status", "grade", "scores", "score_total", "verdict", "review",
@@ -119,6 +121,8 @@ def main():
                 errors.append(f"{tag}: line must be one line, 160 characters at most")
             if BARE_IT.search(line):
                 errors.append(f"{tag}: line uses a bare 'it' — name the skill or 'your AI'")
+            if EMPTY_LINE.search(line) or len(line.split()) < 6:
+                errors.append(f"{tag}: line says nothing about what changes")
         src = s.get("source")
         if isinstance(src, dict):
             if not REPO.match(str(src.get("repo", ""))):

@@ -358,7 +358,8 @@
         "date": "2026-09-27",
         "files_scanned": 2
       },
-      "pushed": "2026-09-27"
+      "pushed": "2026-09-27",
+      "license": "MIT"
     },
     {
       "id": "plain",
@@ -594,7 +595,8 @@
         "date": "2026-09-27",
         "files_scanned": 2
       },
-      "pushed": "2026-09-24"
+      "pushed": "2026-09-24",
+      "license": "Apache-2.0"
     },
     {
       "id": "design-taste-frontend",
@@ -835,7 +837,8 @@
         "date": "2026-09-27",
         "files_scanned": 1
       },
-      "pushed": "2026-04-20"
+      "pushed": "2026-04-20",
+      "license": "MIT"
     },
     {
       "id": "ponytail",

@@ -283,6 +283,15 @@ class TestCheck(Stubbed):
         self.assertEqual(kept, [])
         self.assertEqual(q[0]["skim"]["red_flags"], ["remote-exec pipe"])
 
+    def test_no_clear_line_is_not_admitted(self):
+        c = self.cand("vague", 900_000)
+        c["fm"]["description"] = "Makes it better."
+        seen = {}
+        kept, dropped, _ = feeder.check([c], {"pain_points": PAINS, "skills": []},
+                                        scan_new=False, seen=seen)
+        self.assertEqual(kept, [])
+        self.assertEqual(dropped[0][1], "no clear one-line description")
+
     def test_scan_error_waits(self):
         feeder.rescan = lambda url, paths=None: ("error", None)
         seen = {}
@@ -306,6 +315,26 @@ class TestCheck(Stubbed):
                                env=dict(os.environ, SKILLPROOF_DATA=str(path)),
                                capture_output=True, text=True)
         self.assertEqual(r.returncode, 0, r.stderr)
+
+
+class TestMakeLine(unittest.TestCase):
+    def test_user_called_imperative(self):
+        self.assertEqual(feeder.make_line("triage", "you", "Triage issues by severity."),
+                         "Type /triage to triage issues by severity.")
+
+    def test_auto_third_person(self):
+        self.assertEqual(feeder.make_line("x", "auto", "Makes your AI answer first, then explain."),
+                         "Makes your AI answer first, then explain.")
+        self.assertIsNone(feeder.make_line("x", "auto", "Makes answers short."))  # too thin to say what changes
+        self.assertEqual(feeder.make_line("x", "auto", "A checklist for code reviews."),
+                         "Your AI uses x when needed: A checklist for code reviews.")
+
+    def test_bare_it_means_no_line(self):
+        self.assertIsNone(feeder.make_line("x", "auto", "Rewrites text so it reads well."))
+
+    def test_empty_or_name_only_means_no_line(self):
+        self.assertIsNone(feeder.make_line("x", "you", ""))
+        self.assertIsNone(feeder.make_line("x", "you", "x"))
 
 
 class TestToEntry(unittest.TestCase):

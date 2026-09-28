@@ -58,6 +58,9 @@ class TestGate(unittest.TestCase):
     def test_bare_it_in_an_install_line(self):
         self.assertRejects(self.broken(line="Your AI uses it on its own."), "bare 'it'")
 
+    def test_line_that_only_names_the_skill(self):
+        self.assertRejects(self.broken(line="Type /grill-me to use grill-me."), "says nothing")
+
     def test_install_line_must_be_one_line(self):
         self.assertRejects(self.broken(line="Type /x.\nThen more."), "one line")
 

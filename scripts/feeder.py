@@ -505,12 +505,34 @@ CAT_RULES = [
     (r"\bgit\b|commit|\bpr\b", "git"),
 ]
 CODE_EXT = (".py", ".js", ".mjs", ".cjs", ".ts", ".sh", ".bash", ".rb", ".go", ".ps1")
+THIRD_PERSON = re.compile(
+    r"^(makes|gives|turns|writes|rewrites|builds|keeps|adds|helps|shows|asks|runs|finds|checks|"
+    r"reviews|creates|generates|explains|teaches|scans|cuts|stops|forces|pushes|lets|guides|"
+    r"plans|drafts|tests|fixes|audits|summari[sz]es|compacts|grills)\b", re.I)
+
+
+def make_line(name, calls, summary):
+    """The one line Skillproof shows in the plan and at install, built from the
+    skill's own description. None when no clear line comes out of it (empty,
+    too long, or it would need a bare "it") — such a skill is not admitted."""
+    s = (summary or "").strip().rstrip(".").strip()
+    if not s or s.lower() == name.lower():
+        return None
+    low = s[0].lower() + s[1:]
+    if calls == "you":
+        line = f"Type /{name}: {s}." if THIRD_PERSON.match(s) else f"Type /{name} to {low}."
+    else:
+        line = f"{s}." if THIRD_PERSON.match(s) else f"Your AI uses {name} when needed: {s}."
+    # the same bar validate_index.py holds every line to
+    if re.search(r"\bit\b", line, re.I) or len(line) > 160 or len(line.split()) < 6:
+        return None
+    return line
 
 
 def to_entry(c, installs, pain_ids):
     """A new short-list entry, every field from the source or an API response.
-    The install `line` is generic on purpose — Skillproof writes the person's
-    real line from the source at install time."""
+    `line` is built from the skill's own description (make_line); None means
+    no clear line, and check() leaves the skill out."""
     repo, folder, name = c["repo"], c["folder"], c["name"]
     full, branch = repo["full_name"], repo.get("default_branch") or "main"
     desc = c["fm"].get("description", "")
@@ -522,9 +544,8 @@ def to_entry(c, installs, pain_ids):
     if any(f.endswith(CODE_EXT) for f in c["files"]):
         needs = sorted(set(needs) | {"files", "scripts"})
     calls = "you" if str(c["fm"].get("disable-model-invocation", "")).lower() == "true" else "auto"
-    line = (f"Type /{name} to use {name}." if calls == "you"
-            else f"Your AI now uses {name} on its own when the task calls for {name}.")
     summary = first_sentence(desc) or name
+    line = make_line(name, calls, summary)
     dest = "~/.claude/skills/"
     cmd = (f"d=$(mktemp -d) && git clone --depth 1 -q https://github.com/{full} \"$d\" && "
            f"mkdir -p {dest} && cp -R \"$d/{folder}\" {dest}") if folder else \
@@ -621,6 +642,9 @@ def check(cands, data, scan_new, seen=None):
                     else f"waiting — the list is full ({MAX_LIST})", final=False)
             continue
         entry = to_entry(c, n or None, pain_ids)
+        if not entry["line"]:
+            verdict(c, "no clear one-line description")
+            continue
         if scan_new:
             status, result = rescan(f"https://github.com/{c['repo']['full_name']}", entry_paths(entry))
             if status == "error":
