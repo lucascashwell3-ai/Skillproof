@@ -1,6 +1,6 @@
-# Skillproof feeder — v1 job 2 (automation/PIPELINE_V1.md). Auto-publishes
-# scouted entries to main. No PR, no review stage — the honesty gate and the
-# safety skim are the only gates. Publish is followed by a live-count verify;
+# Skillproof feeder — keeps the short list of proven single skills current.
+# Auto-publishes to main. No PR, no review stage — the one bar, the honesty
+# gate and the malice scan are the gates. Publish is followed by a live-count verify;
 # a mismatch reverts the commit and fails the run loud (GitHub notifies the owner).
 name: feeder
 
@@ -18,6 +18,9 @@ concurrency:
 
 jobs:
   feed:
+    # publishes straight to main, so it only ever runs from main — a manual run
+    # on a branch would otherwise push that branch's list live before merge
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -29,8 +32,8 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Unit test the check-stage filters
-        run: python3 -m unittest scripts/test_feeder.py
+      - name: Unit test the feeder and the honesty gate
+        run: python3 -m unittest scripts/test_feeder.py scripts/test_catalog_gate.py
 
       - name: Run feeder (feed -> check -> publish)
         id: run
@@ -46,11 +49,11 @@ jobs:
         run: |
           git config user.name "skillproof-feeder"
           git config user.email "actions@users.noreply.github.com"
-          if git diff --quiet docs/data/skills.json grading/quarantine.json; then
+          if git diff --quiet docs/data/skills.json grading/quarantine.json grading/feeder_seen.json; then
             echo "no changes — nothing to publish"
             exit 0
           fi
-          git add docs/data/skills.json grading/quarantine.json
+          git add docs/data/skills.json grading/quarantine.json grading/feeder_seen.json
           git commit -m "feeder $(date -u +%Y-%m-%d)"
           echo "PUBLISHED=1" >> "$GITHUB_ENV"
           ok=0

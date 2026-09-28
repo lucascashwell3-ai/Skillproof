@@ -18,16 +18,16 @@
       title: "claude — 96×28",
       lines: [
         { t: "banner", html: '<b>✻</b> Welcome to <b>Claude Code</b>! <span class="dim">/help for help · cwd: ~/projects/app</span>' },
-        { t: "you", type: true, html: "I’m building an app — my frontend looks bad and the answers are always way too long" },
-        { t: "tool", html: 'Skillproof: two pain points, two skills. Searching…' },
-        { t: "sub", html: 'Design → <span class="ok">impeccable</span> <span class="dim">(★ 4.3k, source read — clean)</span> · Long answers → <span class="ok">terse-mode</span> <span class="dim">(★ 1.2k, clean)</span>' },
-        { t: "tool", html: 'Read(<span class="y">CLAUDE.md</span>, <span class="y">~/.claude/skills/</span>)' },
-        { t: "sub", html: 'one clash: your rule <span class="warn">“always explain your reasoning in full”</span> would cancel terse-mode' },
-        { t: "ask", html: 'Install both and soften that rule to “explain when asked”? Backup first<br><span class="opt">❯ 1. Yes</span> &nbsp; 2. Install only, leave the rule &nbsp; 3. No' },
-        { t: "tool", html: 'Edit(CLAUDE.md) <span class="dim">· 1 line</span> &nbsp; <span class="ok">✓</span>' },
-        { t: "tool", html: 'Installed <span class="ok">impeccable</span>, <span class="ok">terse-mode</span> → ~/.claude/skills/ &nbsp; <span class="ok">✓ verified</span>' },
-        { t: "you", type: true, html: "redo the settings page" },
-        { t: "sub", html: 'On it — one screen, real spacing, and I’ll keep the notes short.' }
+        { t: "sub", html: 'What do you want your AI to do better? Not sure? Tell me what you use AI for, or say “look”.' },
+        { t: "you", type: true, html: "not sure honestly — the answers are always way too long" },
+        { t: "tool", html: 'Read(<span class="y">CLAUDE.md</span>, <span class="y">~/.claude/skills/</span>) <span class="dim">· read-only</span>' },
+        { t: "sub", html: '1. Add <span class="ok">caveman</span> — Type /caveman, and your AI answers in far fewer words until you say “normal mode”.' },
+        { t: "sub", html: '2. Add <span class="ok">show-me</span> — Your AI now shows long answers as one page you can scan, instead of a wall of text.' },
+        { t: "ask", html: 'One clash: your rule <span class="warn">“always explain your reasoning in full”</span> would cancel caveman. Soften that rule to “explain when asked”? Backup first<br><span class="opt">❯ 1. Go</span> &nbsp; 2. Skip the rule change &nbsp; 3. No' },
+        { t: "tool", html: 'Edit(CLAUDE.md) <span class="dim">· 1 line, backed up</span> &nbsp; <span class="ok">✓</span>' },
+        { t: "tool", html: 'Installed. <span class="ok">caveman</span> · <span class="ok">show-me</span> → ~/.claude/skills/ <span class="dim">· undo: move both folders out</span>' },
+        { t: "you", type: true, html: "why is my checkout page slow?" },
+        { t: "sub", html: 'Two reasons, biggest first: full-size product images, then a font that blocks the page. Fix the images?' }
       ]
     },
     cli: {
@@ -37,11 +37,11 @@
         { t: "out", html: '<span class="ok">✓</span> SKILL.md · consent.md · conflict-patterns.md · install-paths.md · finding.md · security.md <span class="dim">— 6 files, nothing piped to a shell</span>' },
         { t: "sh", type: true, html: "claude" },
         { t: "banner", html: '<b>✻</b> Welcome to <b>Claude Code</b>! <span class="dim">skill loaded: skillproof</span>' },
-        { t: "you", type: true, html: "make my agent better at frontend design" },
-        { t: "tool", html: 'Skillproof: found <span class="ok">impeccable</span> <span class="dim">(★ 4.3k, source read — clean)</span>' },
-        { t: "sub", html: 'Your setup has an older design skill and a global style rule that would clash' },
-        { t: "ask", html: 'Retire ~/.claude/skills/design-old and relax the style rule? Backups first<br><span class="opt">❯ 1. Yes, both</span> &nbsp; 2. Show me each &nbsp; 3. No' },
-        { t: "tool", html: 'Done <span class="dim">· 2 edits, 2 backups</span> &nbsp; <span class="ok">✓ verified</span> — one design skill loads now, not two fighting' }
+        { t: "you", type: true, html: "make my pages look less generic" },
+        { t: "tool", html: 'Skillproof: <span class="ok">frontend-design</span> fits — your older design skill covers half of what frontend-design does' },
+        { t: "sub", html: 'Plan: swap design-old for frontend-design and keep your two personal lines in the new one' },
+        { t: "ask", html: 'Go? design-old is backed up first<br><span class="opt">❯ 1. Go</span> &nbsp; 2. Show me the lines &nbsp; 3. No' },
+        { t: "tool", html: 'Installed. <span class="ok">frontend-design</span> — Your AI now designs pages with a clear visual direction <span class="dim">· 1 backup</span>' }
       ]
     },
     mcp: {
@@ -50,11 +50,11 @@
         { t: "sh", type: true, html: "claude mcp add skillproof -- node mcp/server.js" },
         { t: "out", html: '<span class="ok">✓</span> skillproof is now a tool in every session' },
         { t: "sh", type: true, html: "claude" },
-        { t: "you", type: true, html: "audit my setup — what’s conflicting?" },
-        { t: "tool", html: 'skillproof.audit() <span class="dim">· read 4 files</span>' },
-        { t: "sub", html: '<span class="warn">2 findings:</span> a duplicated memory rule; a skill your CLAUDE.md quietly overrides' },
-        { t: "ask", html: 'Fix them? I’ll show each edit before touching anything<br><span class="opt">❯ 1. Show me</span> &nbsp; 2. Fix both &nbsp; 3. Not now' },
-        { t: "tool", html: 'Edit 1 of 2 <span class="dim">· merge the duplicate rule into one line</span> &nbsp; <span class="dim">Approve?</span>' }
+        { t: "you", type: true, html: "find me a skill so my emails stop sounding like AI" },
+        { t: "tool", html: 'skillproof.find_resources(<span class="y">“sounds like AI”</span>)' },
+        { t: "sub", html: '<span class="ok">humanizer</span> — Say “humanize this” on any draft, and your AI rewrites the draft in a plain human voice' },
+        { t: "ask", html: 'Install humanizer? I read its files first<br><span class="opt">❯ 1. Yes</span> &nbsp; 2. Show me the source &nbsp; 3. Not now' },
+        { t: "tool", html: 'Installed. <span class="ok">humanizer</span> → ~/.claude/skills/ <span class="dim">· undo: move the folder out</span>' }
       ]
     }
   };

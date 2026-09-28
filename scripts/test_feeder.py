@@ -1,7 +1,14 @@
 #!/usr/bin/env python3
-"""Unit tests for the feeder's check-stage filters. Inline fixtures, no network."""
+"""Unit tests for the feeder — the short-list edition. Inline fixtures, no
+network: `gh`, the skills.sh lookups, SKILL.md reads and the malice scan are
+all stubbed, so every rule is shown rejecting (or admitting) for its stated
+reason."""
+import copy
 import json
+import os
+import subprocess
 import sys
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -9,425 +16,457 @@ ROOT = Path(__file__).resolve().parent
 sys.path.insert(0, str(ROOT))
 import feeder  # noqa: E402
 
+TODAY = feeder.TODAY
+
 
 def repo(**kw):
     base = {
-        "full_name": "acme/skill",
-        "html_url": "https://github.com/acme/skill",
+        "full_name": "acme/skills",
+        "name": "skills",
+        "html_url": "https://github.com/acme/skills",
         "owner": {"login": "acme"},
-        "stargazers_count": 100,
-        "pushed_at": "2026-08-01T00:00:00Z",
-        "created_at": "2024-01-01T00:00:00Z",
+        "stargazers_count": 5000,
+        "forks_count": 50,
+        "pushed_at": "2026-09-01T00:00:00Z",
+        "created_at": "2025-01-01T00:00:00Z",
         "archived": False,
         "fork": False,
         "license": {"spdx_id": "MIT"},
-        "description": "a skill",
+        "description": "skills",
         "topics": [],
-        "forks_count": 5,
-        "name": "skill",
+        "default_branch": "main",
     }
     base.update(kw)
     return base
 
 
-class TestBaseline(unittest.TestCase):
-    def test_ok_repo_passes(self):
-        ok, _ = feeder.passes_baseline(repo(), [])
-        self.assertTrue(ok)
+def tree(*paths):
+    return {"truncated": False, "tree": [{"path": p, "type": "blob"} for p in paths]}
 
-    def test_low_stars_fails_without_named_source(self):
-        ok, reason = feeder.passes_baseline(repo(stargazers_count=10), [])
+
+def skill_md(name, desc="Does a useful thing.", extra=""):
+    return f"---\nname: {name}\ndescription: {desc}\n{extra}---\n\n# {name}\n"
+
+
+PAINS = [{"id": "planning-drift", "label": "x", "keywords": []},
+         {"id": "code-quality", "label": "x", "keywords": []},
+         {"id": "generic-frontend", "label": "x", "keywords": []}]
+
+
+def listed(name="grill-me", repo_="acme/skills", path="skills/grill-me", **kw):
+    e = {"id": name, "name": name,
+         "repo_url": f"https://github.com/{repo_}/tree/main/{path}",
+         "author": "acme", "category": "planning", "summary": "hand-written summary",
+         "line": "Type /grill-me and your AI asks questions until the plan holds up.",
+         "calls": "you", "for": "anyone", "needs": [], "pain_points": [],
+         "source": {"repo": repo_, "branch": "main", "path": path},
+         "signals": {"stars": 1, "forks": 0, "head_sha": "aaa", "checked": "2026-09-01"},
+         "checked": {"date": "2026-09-01", "files_scanned": 1}}
+    e.update(kw)
+    return e
+
+
+class Stubbed(unittest.TestCase):
+    """Swap the feeder's outside world for fixtures; restore after."""
+
+    def setUp(self):
+        self._saved = {k: getattr(feeder, k) for k in ("gh", "read_skill", "rescan", "http_get")}
+        self.gh_map = {}
+        self.skills = {}
+        feeder.gh = lambda path: self.gh_map.get(path.split("?")[0])
+        feeder.read_skill = lambda full, branch, folder: self.skills.get(f"{full}/{folder}")
+        feeder.rescan = lambda url, paths=None: ("clean", {"files_scanned": 2, "reds": {}, "notes": {}})
+        feeder.http_get = lambda url, timeout=30: None
+
+    def tearDown(self):
+        for k, v in self._saved.items():
+            setattr(feeder, k, v)
+
+
+# ------------------------------------------------------------------ parsing
+class TestFrontmatter(unittest.TestCase):
+    def test_folded_description_is_one_line(self):
+        fm = feeder.frontmatter("---\nname: x\ndescription: >\n  first part\n  second part\nlicense: MIT\n---\n")
+        self.assertEqual(fm["description"], "first part second part")
+        self.assertEqual(fm["license"], "MIT")
+
+    def test_user_only_flag(self):
+        fm = feeder.frontmatter(skill_md("x", extra="disable-model-invocation: true\n"))
+        self.assertEqual(fm["disable-model-invocation"], "true")
+
+    def test_no_header(self):
+        self.assertEqual(feeder.frontmatter("# just a readme"), {})
+
+
+class TestSkillFolders(unittest.TestCase):
+    def test_root_nested_and_dot_folders(self):
+        t = tree("SKILL.md", "skills/a/SKILL.md", ".claude/skills/b/SKILL.md", "skills/a/ref.md")
+        self.assertEqual(sorted(feeder.skill_folders(t)), ["", "skills/a"])
+
+    def test_no_tree(self):
+        self.assertEqual(feeder.skill_folders(None), [])
+
+
+# ---------------------------------------------------------------- the bar
+class TestBar(unittest.TestCase):
+    def cand(self, r=None, name="helper", desc="Helps you plan.", **fm):
+        f = {"name": name, "description": desc}
+        f.update(fm)
+        return {"repo": r or repo(), "folder": f"skills/{name}", "name": name, "fm": f, "files": []}
+
+    def test_ok(self):
+        self.assertEqual(feeder.passes_bar(self.cand()), (True, "ok"))
+
+    def test_archived_and_fork_fail(self):
+        self.assertFalse(feeder.passes_bar(self.cand(repo(archived=True)))[0])
+        self.assertFalse(feeder.passes_bar(self.cand(repo(fork=True)))[0])
+
+    def test_no_license_fails_unless_skill_declares_one(self):
+        r = repo(license=None)
+        self.assertEqual(feeder.passes_bar(self.cand(r))[1], "no open license")
+        self.assertTrue(feeder.passes_bar(self.cand(r, license="MIT"))[0])
+
+    def test_stale_fails(self):
+        ok, reason = feeder.passes_bar(self.cand(repo(pushed_at="2024-01-01T00:00:00Z")))
         self.assertFalse(ok)
-        self.assertIn("stars", reason)
+        self.assertIn("12 months", reason)
 
-    def test_low_stars_passes_for_named_source(self):
-        ok, _ = feeder.passes_baseline(repo(stargazers_count=10), ["acme"])
-        self.assertTrue(ok)
-
-    def test_named_source_case_insensitive(self):
-        ok, _ = feeder.passes_baseline(repo(stargazers_count=10), ["ACME"])
-        self.assertTrue(ok)
-
-    def test_archived_fails(self):
-        ok, reason = feeder.passes_baseline(repo(archived=True), [])
+    def test_copy_of_a_popular_skill_fails(self):
+        ok, reason = feeder.passes_bar(self.cand(repo(stargazers_count=40)))
         self.assertFalse(ok)
-        self.assertIn("archived", reason)
+        self.assertIn("not an original", reason)
 
-    def test_fork_fails(self):
-        ok, reason = feeder.passes_baseline(repo(fork=True), [])
+    def test_vendor_tied_skill_fails(self):
+        ok, reason = feeder.passes_bar(self.cand(desc="Deploy your app to Azure in one step."))
         self.assertFalse(ok)
-        self.assertIn("fork", reason)
+        self.assertIn("vendor", reason)
 
-    def test_no_license_fails(self):
-        ok, reason = feeder.passes_baseline(repo(license=None), [])
-        self.assertFalse(ok)
-        self.assertIn("license", reason)
-
-    def test_noassertion_license_fails(self):
-        ok, reason = feeder.passes_baseline(repo(license={"spdx_id": "NOASSERTION"}), [])
-        self.assertFalse(ok)
-        self.assertIn("license", reason)
-
-    def test_stale_push_fails(self):
-        ok, reason = feeder.passes_baseline(repo(pushed_at="2023-01-01T00:00:00Z"), [])
-        self.assertFalse(ok)
-        self.assertIn("months", reason)
-
-    def test_recent_push_passes(self):
-        ok, _ = feeder.passes_baseline(repo(pushed_at="2026-07-01T00:00:00Z"), [])
-        self.assertTrue(ok)
+    def test_tool_named_skill_fails(self):
+        self.assertFalse(feeder.passes_bar(self.cand(name="orca-cli"))[0])
 
 
-class TestSkillEvidence(unittest.TestCase):
-    def test_skill_topic_alone_is_not_evidence(self):
-        # maintainers mis-tag (cherry-studio, nanoclaw): topic without SKILL.md fails
-        orig = feeder.gh
-        feeder.gh = lambda path: {"truncated": False, "tree": [{"path": "README.md"}]}
+class TestUsage(unittest.TestCase):
+    def test_leaderboard_hit_needs_no_lookup(self):
+        u = feeder.Usage({"acme/skills/helper": 250_000}, budget=0)
+        self.assertEqual(u.installs("acme/skills", "helper"), 250_000)
+
+    def test_budget_spent_means_unknown(self):
+        u = feeder.Usage({}, budget=0)
+        self.assertIsNone(u.installs("acme/skills", "helper"))
+
+    def test_leaderboard_parse(self):
+        saved = feeder.http_get
+        feeder.http_get = lambda url, timeout=30: (
+            '[{\\"source\\":\\"acme/skills\\",\\"skillId\\":\\"helper\\",\\"name\\":\\"helper\\",'
+            '\\"installs\\":1234},{\\"source\\":\\"open.example.cn\\",\\"skillId\\":\\"x\\",'
+            '\\"name\\":\\"x\\",\\"installs\\":9}]')
         try:
-            r = repo(topics=["claude-skills"], default_branch="main")
-            ok, reason = feeder.is_skill_evidence(r)
+            self.assertEqual(feeder.fetch_leaderboard(), {"acme/skills/helper": 1234})
         finally:
-            feeder.gh = orig
-        self.assertFalse(ok)
-        self.assertIn("SKILL.md", reason)
+            feeder.http_get = saved
 
-    def test_skill_topic_with_skill_md_passes(self):
-        orig = feeder.gh
-        feeder.gh = lambda path: {"truncated": False, "tree": [{"path": "skills/x/SKILL.md"}]}
-        try:
-            r = repo(topics=["Claude-Code-Plugin"], default_branch="main")
-            ok, _ = feeder.is_skill_evidence(r)
-        finally:
-            feeder.gh = orig
-        self.assertTrue(ok)
 
-    def test_unrelated_topics_fall_through_to_tree_check(self):
-        orig = feeder.gh
-        feeder.gh = lambda path: {"truncated": False, "tree": [
-            {"path": "src/index.js"}, {"path": "SKILL.md"},
-        ]}
-        try:
-            r = repo(topics=["mcp-server"], default_branch="main")
-            ok, reason = feeder.is_skill_evidence(r)
-        finally:
-            feeder.gh = orig
-        self.assertTrue(ok)
-        self.assertEqual(reason, "ok")
+# --------------------------------------------------------------- feed stage
+class TestFeed(Stubbed):
+    def data(self, *entries):
+        return {"pain_points": PAINS, "skills": list(entries)}
 
-    def test_skill_md_under_dot_folder_is_not_evidence(self):
-        # cloudflare/workerd, mattpocock/ts-reset: the repo's own dev skills
-        orig = feeder.gh
-        feeder.gh = lambda path: {"truncated": False, "tree": [
-            {"path": ".opencode/skills/ci-report/SKILL.md"},
-            {"path": ".claude/skills/research/SKILL.md"},
-            {"path": "src/index.ts"},
-        ]}
-        try:
-            ok, reason = feeder.is_skill_evidence(repo(topics=[], default_branch="main"))
-        finally:
-            feeder.gh = orig
-        self.assertFalse(ok)
-        self.assertIn("SKILL.md", reason)
+    def author_world(self, *folders, **repo_kw):
+        r = repo(**repo_kw)
+        self.gh_map["users/acme/repos"] = [r]
+        self.gh_map[f"repos/{r['full_name']}/git/trees/main"] = tree(*[f"{f}/SKILL.md" for f in folders])
+        for f in folders:
+            self.skills[f"{r['full_name']}/{f}"] = skill_md(f.split("/")[-1])
+        return r
 
-    def test_skill_md_in_subdirectory_counts(self):
-        orig = feeder.gh
-        feeder.gh = lambda path: {"truncated": False, "tree": [
-            {"path": "packages/my-skill/SKILL.md"},
-        ]}
-        try:
-            r = repo(topics=[], default_branch="main")
-            ok, _ = feeder.is_skill_evidence(r)
-        finally:
-            feeder.gh = orig
-        self.assertTrue(ok)
+    def feed(self, data, usage, seen=None, q=None, skip=None, baseline=False):
+        return feeder.feed(data, q or {"entries": []}, ["acme"], skip or {}, usage,
+                           seen=seen if seen is not None else {}, baseline=baseline)
 
-    def test_no_topic_no_skill_md_fails(self):
-        orig = feeder.gh
-        feeder.gh = lambda path: {"truncated": False, "tree": [
-            {"path": "README.md"}, {"path": "src/index.js"},
-        ]}
-        try:
-            r = repo(topics=[], default_branch="main")
-            ok, reason = feeder.is_skill_evidence(r)
-        finally:
-            feeder.gh = orig
-        self.assertFalse(ok)
-        self.assertIn("SKILL.md", reason)
+    def test_new_folder_from_proven_author_with_real_use_is_a_candidate(self):
+        self.author_world("skills/helper")
+        cands, _ = self.feed(self.data(), feeder.Usage({"acme/skills/helper": 25_000}, 0))
+        self.assertEqual([c["name"] for c in cands], ["helper"])
 
-    def test_truncated_tree_is_unknown_not_evidence(self):
-        orig = feeder.gh
-        feeder.gh = lambda path: {"truncated": True, "tree": [
-            {"path": "SKILL.md"},  # even present, truncated means "can't trust it"
-        ]}
-        try:
-            r = repo(topics=[], default_branch="main")
-            ok, reason = feeder.is_skill_evidence(r)
-        finally:
-            feeder.gh = orig
-        self.assertFalse(ok)
-        self.assertIn("unknown", reason)
+    def test_not_enough_use_waits_and_is_recorded(self):
+        self.author_world("skills/helper")
+        seen = {}
+        cands, dropped = self.feed(self.data(), feeder.Usage({"acme/skills/helper": 500}, 0), seen)
+        self.assertEqual(cands, [])
+        self.assertEqual(seen[feeder.seen_key("acme/skills/skills/helper")]["verdict"], "waiting")
+        self.assertIn("not enough real use yet", dropped[0][1])
 
-    def test_failed_tree_lookup_is_unknown_not_evidence(self):
-        orig = feeder.gh
-        feeder.gh = lambda path: None
-        try:
-            r = repo(topics=[], default_branch="main")
-            ok, reason = feeder.is_skill_evidence(r)
-        finally:
-            feeder.gh = orig
-        self.assertFalse(ok)
-        self.assertIn("unknown", reason)
+    def test_waiting_folder_closes_after_wait_days(self):
+        self.author_world("skills/helper")
+        seen = {feeder.seen_key("acme/skills/skills/helper"): {"first_seen": "2026-01-01", "verdict": "waiting"}}
+        cands, _ = self.feed(self.data(), feeder.Usage({"acme/skills/helper": 900_000}, 0), seen)
+        self.assertEqual(cands, [])
+        self.assertIn("no real use within", seen[feeder.seen_key("acme/skills/skills/helper")]["verdict"])
 
-    def test_mcp_server_repo_without_skill_md_is_dropped_by_check(self):
-        # Regression: gemini-cli/Scrapling/cherry-studio-style repos that pass
-        # baseline (stars/license/freshness) but are not skills at all.
-        r = repo(topics=["mcp-server"], stargazers_count=50000, default_branch="main")
-        orig = feeder.gh
-        feeder.gh = lambda path: {"truncated": False, "tree": [{"path": "README.md"}]}
-        try:
-            kept, dropped, _ = feeder.check([r], [], skim_new=False)
-        finally:
-            feeder.gh = orig
+    def test_judged_folder_is_never_reconsidered(self):
+        self.author_world("skills/helper")
+        seen = {feeder.seen_key("acme/skills/skills/helper"): {"first_seen": "2026-09-27",
+                                              "verdict": "already there when the list was chosen by hand"}}
+        cands, dropped = self.feed(self.data(), feeder.Usage({"acme/skills/helper": 900_000}, 0), seen)
+        self.assertEqual((cands, dropped), ([], []))
+
+    def test_baseline_records_everything_and_admits_nothing(self):
+        self.author_world("skills/a", "skills/b")
+        seen = {}
+        cands, _ = self.feed(self.data(), feeder.Usage({"acme/skills/a": 900_000}, 0), seen, baseline=True)
+        self.assertEqual(cands, [])
+        self.assertIn(feeder.seen_key("acme/skills/skills/a"), seen)
+        self.assertIn(feeder.seen_key("acme/skills/skills/b"), seen)
+        self.assertIn(feeder.seen_key("acme/skills/a"), seen)   # by name too
+        self.assertFalse(any("acme" in k for k in seen))       # no names in the record
+
+    def test_listed_twin_part_skip_quarantine_and_vendor_are_refused(self):
+        self.author_world("skills/grill-me", "skills/other/grill-me", "skills/grill-me-lite",
+                          "skills/meta", "skills/azure-deploy", "skills/fresh")
+        usage = feeder.Usage({f"acme/skills/{n}": 900_000 for n in
+                              ("grill-me", "grill-me-lite", "meta", "azure-deploy", "fresh")}, 0)
+        data = self.data(listed())
+        q = {"entries": [{"id": "fresh", "source": {"repo": "acme/skills", "path": "skills/fresh"}}]}
+        cands, dropped = self.feed(data, usage, q=q, skip={"acme/skills/meta": "a pack's setup"})
+        self.assertEqual(cands, [])
+        reasons = sorted(r for _, r in dropped)
+        self.assertEqual(reasons, sorted([
+            "a skill with this name is already listed (no twins)",
+            "part of grill-me, which is already listed",
+            "skip list: a pack's setup",
+            "tied to one vendor's product or a paid service",
+            "quarantined"]))
+
+    def test_whole_repo_parked_blocks_its_folders(self):
+        self.author_world("skills/fresh")
+        q = {"entries": [{"id": "acme-skills", "repo_url": "https://github.com/acme/skills"}]}
+        cands, dropped = self.feed(self.data(), feeder.Usage({"acme/skills/fresh": 900_000}, 0), q=q)
+        self.assertEqual(cands, [])
+        self.assertEqual(dropped[0][1], "quarantined")
+
+    def test_low_star_author_repos_are_not_walked(self):
+        self.author_world("skills/helper", stargazers_count=10)
+        cands, dropped = self.feed(self.data(), feeder.Usage({"acme/skills/helper": 900_000}, 0))
+        self.assertEqual((cands, dropped), ([], []))
+
+
+# -------------------------------------------------------------- check stage
+class TestCheck(Stubbed):
+    def cand(self, name, installs, **repo_kw):
+        r = repo(**repo_kw)
+        return {"repo": r, "folder": f"skills/{name}", "name": name, "installs": installs,
+                "fm": {"name": name, "description": "Helps you plan a big change."},
+                "files": [f"skills/{name}/SKILL.md"], "key": f"acme/skills/skills/{name}"}
+
+    def test_one_per_run_most_installed_first(self):
+        data = {"pain_points": PAINS, "skills": []}
+        seen = {}
+        kept, dropped, _ = feeder.check([self.cand("small", 30_000), self.cand("big", 900_000)],
+                                        data, scan_new=False, seen=seen)
+        self.assertEqual([e["name"] for e in kept], ["big"])
+        self.assertIn("slot is taken", dropped[0][1])
+        self.assertEqual(seen[feeder.seen_key("acme/skills/skills/big")]["verdict"], "listed")
+        self.assertEqual(seen[feeder.seen_key("acme/skills/skills/small")]["verdict"], "waiting")
+
+    def test_full_list_admits_nothing(self):
+        data = {"pain_points": PAINS, "skills": [listed(name=f"s{i}", path=f"p{i}")
+                                                  for i in range(feeder.MAX_LIST)]}
+        kept, dropped, _ = feeder.check([self.cand("big", 900_000)], data, scan_new=False)
         self.assertEqual(kept, [])
-        self.assertEqual(len(dropped), 1)
-        self.assertIn("SKILL.md", dropped[0][1])
+        self.assertIn("list is full", dropped[0][1])
+
+    def test_flagged_scan_quarantines(self):
+        feeder.rescan = lambda url, paths=None: ("flagged", {"files_scanned": 3,
+                                                             "reds": {"remote-exec pipe": "x.sh"}, "notes": {}})
+        kept, _, q = feeder.check([self.cand("big", 900_000)],
+                                  {"pain_points": PAINS, "skills": []}, scan_new=True)
+        self.assertEqual(kept, [])
+        self.assertEqual(q[0]["skim"]["red_flags"], ["remote-exec pipe"])
+
+    def test_no_clear_line_is_not_admitted(self):
+        c = self.cand("vague", 900_000)
+        c["fm"]["description"] = "Makes it better."
+        seen = {}
+        kept, dropped, _ = feeder.check([c], {"pain_points": PAINS, "skills": []},
+                                        scan_new=False, seen=seen)
+        self.assertEqual(kept, [])
+        self.assertEqual(dropped[0][1], "no clear one-line description")
+
+    def test_scan_error_waits(self):
+        feeder.rescan = lambda url, paths=None: ("error", None)
+        seen = {}
+        kept, _, q = feeder.check([self.cand("big", 900_000)],
+                                  {"pain_points": PAINS, "skills": []}, scan_new=True, seen=seen)
+        self.assertEqual((kept, q), ([], []))
+        self.assertEqual(seen[feeder.seen_key("acme/skills/skills/big")]["verdict"], "waiting")
+
+    def test_new_entry_passes_the_honesty_gate(self):
+        self.gh_map["repos/acme/skills/commits"] = [{"sha": "b" * 40}]
+        kept, _, _ = feeder.check([self.cand("big", 900_000)],
+                                  {"pain_points": PAINS, "skills": []}, scan_new=True)
+        e = kept[0]
+        self.assertEqual(e["repo_url"], "https://github.com/acme/skills/tree/main/skills/big")
+        self.assertNotRegex(e["line"], r"\bit\b")
+        self.assertEqual(e["signals"]["installs"], 900_000)
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "skills.json"
+            path.write_text(json.dumps({"as_of": TODAY, "pain_points": PAINS, "skills": [e]}))
+            r = subprocess.run([sys.executable, str(ROOT / "validate_index.py")],
+                               env=dict(os.environ, SKILLPROOF_DATA=str(path)),
+                               capture_output=True, text=True)
+        self.assertEqual(r.returncode, 0, r.stderr)
 
 
-class TestFeedDedupe(unittest.TestCase):
-    def test_dedupe_against_existing_and_quarantine(self, tmp_path=None):
-        import tempfile
-        tmp = Path(tempfile.mkdtemp())
-        data_file = tmp / "skills.json"
-        data_file.write_text(json.dumps({
-            "skills": [{"id": "x", "repo_url": "https://github.com/acme/skill"}]
-        }))
-        qfile = tmp / "quarantine.json"
-        qfile.write_text(json.dumps({
-            "entries": [{"id": "y", "repo_url": "https://github.com/acme/bad"}]
-        }))
+class TestMakeLine(unittest.TestCase):
+    def test_user_called_imperative(self):
+        self.assertEqual(feeder.make_line("triage", "you", "Triage issues by severity."),
+                         "Type /triage to triage issues by severity.")
 
-        orig_data, orig_q = feeder.DATA, feeder.load_quarantine
-        try:
-            feeder.DATA = data_file
+    def test_auto_third_person(self):
+        self.assertEqual(feeder.make_line("x", "auto", "Makes your AI answer first, then explain."),
+                         "Makes your AI answer first, then explain.")
+        self.assertIsNone(feeder.make_line("x", "auto", "Makes answers short."))  # too thin to say what changes
+        self.assertEqual(feeder.make_line("x", "auto", "A checklist for code reviews."),
+                         "Your AI uses x when needed: A checklist for code reviews.")
 
-            def fake_load_quarantine():
-                return json.loads(qfile.read_text())
-            feeder.load_quarantine = fake_load_quarantine
+    def test_bare_it_means_no_line(self):
+        self.assertIsNone(feeder.make_line("x", "auto", "Rewrites text so it reads well."))
 
-            def fake_gh(path):
-                if path.startswith("search/repositories"):
-                    return {"items": [
-                        repo(full_name="acme/skill", html_url="https://github.com/acme/skill"),
-                        repo(full_name="acme/bad", html_url="https://github.com/acme/bad"),
-                        repo(full_name="acme/new", html_url="https://github.com/acme/new"),
-                    ]}
-                return None
-            orig_module_gh = feeder.gh
-            feeder.gh = fake_gh
-            try:
-                _, candidates = feeder.feed(cap=50, named_owners=[])
-            finally:
-                feeder.gh = orig_module_gh
-            names = {c["full_name"] for c in candidates}
-            self.assertNotIn("acme/skill", names)   # already in catalog
-            self.assertNotIn("acme/bad", names)      # quarantined
-            self.assertIn("acme/new", names)
-        finally:
-            feeder.DATA = orig_data
-            feeder.load_quarantine = orig_q
-
-    def test_cap_respected(self):
-        def fake_gh(path):
-            if path.startswith("search/repositories"):
-                return {"items": [
-                    repo(full_name=f"acme/skill{i}", html_url=f"https://github.com/acme/skill{i}",
-                         stargazers_count=100 - i)
-                    for i in range(10)
-                ]}
-            return None
-        orig_gh = feeder.gh
-        feeder.gh = fake_gh
-        import tempfile
-        tmp = Path(tempfile.mkdtemp()) / "skills.json"
-        tmp.write_text(json.dumps({"skills": []}))
-        orig_data, orig_q = feeder.DATA, feeder.load_quarantine
-        feeder.load_quarantine = lambda: {"entries": []}
-        try:
-            feeder.DATA = tmp
-            _, candidates = feeder.feed(cap=3, named_owners=[])
-            self.assertEqual(len(candidates), 3)
-        finally:
-            feeder.gh = orig_gh
-            feeder.DATA = orig_data
-            feeder.load_quarantine = orig_q
+    def test_empty_or_name_only_means_no_line(self):
+        self.assertIsNone(feeder.make_line("x", "you", ""))
+        self.assertIsNone(feeder.make_line("x", "you", "x"))
 
 
-class TestRefreshIsGrowthOnly(unittest.TestCase):
-    """The refresh stage may only remove an entry for a red flag in its current
-    code. Every other failure keeps the entry exactly as it was."""
+class TestHelpers(unittest.TestCase):
+    def test_called_sibling_becomes_a_helper(self):
+        text = 'Once they pick one, call the Skill tool with "grilling" to walk it through.'
+        self.assertEqual(feeder.helper_folders(text, "skills/a", ["skills/a", "skills/p/grilling", "skills/b"]),
+                         ["skills/p/grilling"])
 
-    def entry(self, **kw):
-        base = {"id": "acme-skill", "name": "skill", "repo_url": "https://github.com/acme/skill",
-                "author": "acme", "category": "workflow", "summary": "old summary",
-                "pain_points": [], "signals": {"stars": 1, "forks": 0, "head_sha": "aaa"},
-                "checked": {"date": "2026-08-01", "files_scanned": 3}}
-        base.update(kw)
-        return base
+    def test_plain_mention_is_not_a_helper(self):
+        self.assertEqual(feeder.helper_folders("see copy-editing for more", "skills/a",
+                                               ["skills/a", "skills/copy-editing"]), [])
 
-    def run_refresh(self, gh_map, scan_status, scan_result=None, entry=None):
-        data = {"skills": [entry or self.entry()]}
-        orig_gh, orig_rescan = feeder.gh, feeder.rescan
-        feeder.gh = lambda path: gh_map(path)
-        feeder.rescan = lambda url: (scan_status, scan_result)
-        try:
-            out = feeder.refresh_existing(data)
-        finally:
-            feeder.gh, feeder.rescan = orig_gh, orig_rescan
+    def test_helper_installs_with_the_skill(self):
+        c = {"repo": repo(), "folder": "skills/x", "name": "x", "files": [],
+             "helpers": ["skills/p/grilling"],
+             "fm": {"name": "x", "description": "Plans a change with you, step by step."}}
+        e = feeder.to_entry(c, None, set())
+        self.assertEqual(e["source"]["with"], ["skills/p/grilling"])
+        self.assertIn('"$d/skills/p/grilling"', e["install"]["command"])
+
+
+class TestToEntry(unittest.TestCase):
+    def test_user_called_skill(self):
+        c = {"repo": repo(), "folder": "skills/x", "name": "x", "files": [],
+             "fm": {"name": "x", "description": "Grill you about a plan. Use when planning.",
+                    "disable-model-invocation": "true"}}
+        e = feeder.to_entry(c, None, {"planning-drift"})
+        self.assertEqual(e["calls"], "you")
+        self.assertEqual(e["summary"], "Grill you about a plan.")
+        self.assertEqual(e["pain_points"], ["planning-drift"])
+
+    def test_scripts_mean_needs_scripts(self):
+        c = {"repo": repo(), "folder": "skills/x", "name": "x", "files": ["skills/x/run.py"],
+             "fm": {"name": "x", "description": "Refactor code."}}
+        self.assertEqual(feeder.to_entry(c, None, set())["needs"], ["files", "scripts"])
+
+
+# ------------------------------------------------------------ refresh stage
+class TestRefresh(Stubbed):
+    def run_refresh(self, entry=None, usage=None):
+        data = {"skills": [entry or listed()]}
+        out = feeder.refresh_existing(data, usage)
         return data, out
 
     def test_api_down_keeps_entry_untouched(self):
-        data, _ = self.run_refresh(lambda p: None, "clean")
-        self.assertEqual(len(data["skills"]), 1)
-        self.assertEqual(data["skills"][0]["summary"], "old summary")
+        e = listed()
+        data, _ = self.run_refresh(copy.deepcopy(e))
+        self.assertEqual(data["skills"][0], e)
 
-    def test_unchanged_code_is_not_rescanned(self):
+    def test_hand_written_text_is_never_overwritten(self):
+        self.gh_map["repos/acme/skills"] = repo(description="a different description")
+        self.gh_map["repos/acme/skills/commits"] = [{"sha": "aaa"}]
+        data, _ = self.run_refresh(usage=feeder.Usage({"acme/skills/grill-me": 1_300_000}, 0))
+        s = data["skills"][0]
+        self.assertEqual(s["summary"], "hand-written summary")
+        self.assertTrue(s["line"].startswith("Type /grill-me"))
+        self.assertEqual(s["signals"]["installs"], 1_300_000)
+        self.assertEqual(s["signals"]["stars"], 5000)
+
+    def test_unchanged_folder_is_not_rescanned(self):
         calls = []
-        def gh(p):
-            if p.startswith("repos/acme/skill/commits"): return [{"sha": "aaa"}]
-            return repo(description="new summary")
-        orig = feeder.rescan
-        feeder.rescan = lambda url: calls.append(url) or ("clean", {"files_scanned": 1, "reds": {}})
-        try:
-            data = {"skills": [self.entry()]}
-            orig_gh = feeder.gh; feeder.gh = gh
-            try: feeder.refresh_existing(data)
-            finally: feeder.gh = orig_gh
-        finally:
-            feeder.rescan = orig
+        feeder.rescan = lambda url, paths=None: calls.append(paths) or ("clean", {"files_scanned": 1})
+        self.gh_map["repos/acme/skills"] = repo()
+        self.gh_map["repos/acme/skills/commits"] = [{"sha": "aaa"}]
+        self.run_refresh()
         self.assertEqual(calls, [])
-        self.assertEqual(data["skills"][0]["summary"], "new summary")  # summary refreshed anyway
 
-    def test_moved_code_rescanned_clean_updates_checked(self):
-        def gh(p):
-            if "commits" in p: return [{"sha": "bbb"}]
-            return repo()
-        data, (refreshed, rescanned, pulled) = self.run_refresh(gh, "clean", {"files_scanned": 9, "reds": {}})
+    def test_moved_folder_rescans_exactly_its_folders(self):
+        calls = []
+        feeder.rescan = lambda url, paths=None: calls.append(paths) or ("clean", {"files_scanned": 4})
+        self.gh_map["repos/acme/skills"] = repo()
+        self.gh_map["repos/acme/skills/commits"] = [{"sha": "bbb"}]
+        data, (_, rescanned, _) = self.run_refresh(listed(source={
+            "repo": "acme/skills", "branch": "main", "path": "skills/grill-me",
+            "with": ["skills/grilling"]}))
+        self.assertEqual(calls, [["skills/grill-me", "skills/grilling"]])
         self.assertEqual(rescanned, 1)
-        self.assertEqual(data["skills"][0]["checked"]["files_scanned"], 9)
-        self.assertEqual(data["skills"][0]["signals"]["head_sha"], "bbb")
-        self.assertEqual(pulled, [])
+        self.assertEqual(data["skills"][0]["checked"]["date"], TODAY)
 
-    def test_moved_code_flagged_is_pulled_to_quarantine(self):
-        def gh(p):
-            if "commits" in p: return [{"sha": "bbb"}]
-            return repo()
-        data, (_, _, pulled) = self.run_refresh(gh, "flagged", {"files_scanned": 9, "reds": {"remote-exec pipe": "install.sh"}, "notes": {}})
+    def test_moved_folder_flagged_is_pulled(self):
+        feeder.rescan = lambda url, paths=None: ("flagged", {"files_scanned": 2,
+                                                             "reds": {"ssh key read": "a.sh"}, "notes": {}})
+        self.gh_map["repos/acme/skills"] = repo()
+        self.gh_map["repos/acme/skills/commits"] = [{"sha": "bbb"}]
+        data, (_, _, pulled) = self.run_refresh()
         self.assertEqual(data["skills"], [])
-        self.assertEqual(len(pulled), 1)
-        self.assertIn("remote-exec pipe", pulled[0]["skim"]["red_flags"])
+        self.assertEqual(pulled[0]["skim"]["red_flags"], ["ssh key read"])
 
-    def test_moved_code_scan_error_keeps_entry(self):
-        def gh(p):
-            if "commits" in p: return [{"sha": "bbb"}]
-            return repo()
-        data, (_, rescanned, pulled) = self.run_refresh(gh, "error", None)
+    def test_scan_error_keeps_entry(self):
+        feeder.rescan = lambda url, paths=None: ("error", None)
+        self.gh_map["repos/acme/skills"] = repo()
+        self.gh_map["repos/acme/skills/commits"] = [{"sha": "bbb"}]
+        data, _ = self.run_refresh()
         self.assertEqual(len(data["skills"]), 1)
-        self.assertEqual(rescanned, 0)
-        self.assertEqual(pulled, [])
-        self.assertEqual(data["skills"][0]["checked"]["date"], "2026-08-01")  # old record stands
 
     def test_exception_on_one_entry_never_touches_the_others(self):
-        bad = self.entry(id="bad", repo_url="https://github.com/acme/bad", signals=None)  # signals=None -> attribute error inside
-        good = self.entry()
-        def gh(p):
-            if "commits" in p: return [{"sha": "aaa"}]
-            return repo()
+        good = listed(name="good", path="skills/good")
+        bad = listed(name="bad", path="skills/bad")
+        bad["signals"] = None  # makes setdefault blow up
+        self.gh_map["repos/acme/skills"] = repo()
         data = {"skills": [bad, good]}
-        orig_gh = feeder.gh; feeder.gh = gh
-        try: feeder.refresh_existing(data)
-        finally: feeder.gh = orig_gh
-        self.assertEqual([s["id"] for s in data["skills"]], ["bad", "acme-skill"])
+        feeder.refresh_existing(data)
+        self.assertEqual([s["name"] for s in data["skills"]], ["bad", "good"])
 
 
-class TestQuarantineRecheck(unittest.TestCase):
-    def q_entry(self, **kw):
-        base = {"id": "acme-bad", "name": "bad", "repo_url": "https://github.com/acme/bad",
-                "quarantined_on": "2026-07-27", "skim": {"red_flags": ["remote-exec pipe"]}}
-        base.update(kw)
-        return base
-
-    def run_recheck(self, scan_status, scan_result=None, qentry=None, gh_fn=None):
-        q = {"entries": [qentry or self.q_entry()]}
+class TestRecheck(Stubbed):
+    def test_whole_repo_entry_from_the_old_catalog_is_never_readmitted(self):
+        q = {"entries": [{"id": "acme-pack", "repo_url": "https://github.com/acme/pack"}]}
         data = {"skills": []}
-        def gh(p):
-            if "commits" in p: return [{"sha": "ccc"}]
-            if p.startswith("repos/acme/bad/git/trees"): return {"truncated": False, "tree": [{"path": "SKILL.md"}]}
-            return repo(full_name="acme/bad", html_url="https://github.com/acme/bad", name="bad", default_branch="main")
-        orig_gh, orig_rescan = feeder.gh, feeder.rescan
-        feeder.gh = gh_fn or gh
-        feeder.rescan = lambda url: (scan_status, scan_result)
-        try:
-            readmitted = feeder.recheck_quarantine(q, data, [])
-        finally:
-            feeder.gh, feeder.rescan = orig_gh, orig_rescan
-        return q, data, readmitted
+        self.assertEqual(feeder.recheck_quarantine(q, data), [])
+        self.assertEqual(len(q["entries"]), 1)
 
-    def test_clean_on_current_code_is_readmitted_flat(self):
-        q, data, readmitted = self.run_recheck("clean", {"files_scanned": 4, "reds": {}})
+    def test_clean_single_skill_is_readmitted_with_its_fields(self):
+        e = dict(listed(name="fresh", path="skills/fresh"), quarantined_on="2026-09-01",
+                 skim={"red_flags": ["x"]})
+        q = {"entries": [e]}
+        data = {"skills": []}
+        back = feeder.recheck_quarantine(q, data)
+        self.assertEqual([s["name"] for s in back], ["fresh"])
+        self.assertNotIn("skim", data["skills"][0])
         self.assertEqual(q["entries"], [])
-        self.assertEqual(len(data["skills"]), 1)
-        e = data["skills"][0]
-        self.assertEqual(e["checked"]["files_scanned"], 4)
-        for k in ("status", "triage", "skim", "quarantined_on"):
-            self.assertNotIn(k, e)
 
-    def test_still_flagged_stays_with_fresh_record(self):
-        q, data, readmitted = self.run_recheck("flagged", {"files_scanned": 4, "reds": {"ssh key read": "x.py"}, "notes": {}})
-        self.assertEqual(len(q["entries"]), 1)
-        self.assertEqual(q["entries"][0]["skim"]["red_flags"], ["ssh key read"])
-        self.assertEqual(data["skills"], [])
+    def test_hold_is_never_readmitted(self):
+        q = {"entries": [dict(listed(name="fresh", path="skills/fresh"), hold=True)]}
+        self.assertEqual(feeder.recheck_quarantine(q, {"skills": []}), [])
 
-    def test_scan_error_stays_for_next_run(self):
-        q, data, _ = self.run_recheck("error", None)
-        self.assertEqual(len(q["entries"]), 1)
-        self.assertEqual(data["skills"], [])
-
-    def test_human_hold_is_never_readmitted(self):
-        q, data, _ = self.run_recheck("clean", {"files_scanned": 4, "reds": {}}, qentry=self.q_entry(hold=True))
-        self.assertEqual(len(q["entries"]), 1)
-        self.assertEqual(data["skills"], [])
-
-    def test_clean_but_no_skill_md_stays_out(self):
-        def gh(p):
-            if "commits" in p: return [{"sha": "ccc"}]
-            if "git/trees" in p: return {"truncated": False, "tree": [{"path": "README.md"}]}
-            return repo(full_name="acme/bad", html_url="https://github.com/acme/bad", name="bad", default_branch="main")
-        q, data, _ = self.run_recheck("clean", {"files_scanned": 4, "reds": {}}, gh_fn=gh)
-        self.assertEqual(len(q["entries"]), 1)
-        self.assertEqual(data["skills"], [])
-
-
-class TestRefreshBudget(unittest.TestCase):
-    def test_oldest_checked_go_first_and_rest_untouched(self):
-        def mk(i, checked):
-            return {"id": f"s{i}", "name": f"s{i}", "repo_url": f"https://github.com/acme/s{i}",
-                    "summary": "old", "signals": {"stars": 0, "checked": checked, "head_sha": "a"},
-                    "checked": {"date": checked}}
-        data = {"skills": [mk(0, "2026-08-20"), mk(1, "2026-08-01"), mk(2, "2026-08-10")]}
-        def gh(p):
-            if "commits" in p: return [{"sha": "a"}]
-            return repo(description="new")
-        orig = feeder.gh; feeder.gh = gh
-        try:
-            refreshed, _, _ = feeder.refresh_existing(data, budget=2)
-        finally:
-            feeder.gh = orig
-        self.assertEqual(refreshed, 2)
-        by = {s["id"]: s["summary"] for s in data["skills"]}
-        self.assertEqual(by["s1"], "new")   # oldest
-        self.assertEqual(by["s2"], "new")   # second oldest
-        self.assertEqual(by["s0"], "old")   # newest waits for the next run
-        self.assertEqual([s["id"] for s in data["skills"]], ["s0", "s1", "s2"])  # order preserved
+    def test_still_flagged_stays(self):
+        feeder.rescan = lambda url, paths=None: ("flagged", {"files_scanned": 1, "reds": {"a": "b"},
+                                                             "notes": {}})
+        q = {"entries": [listed(name="fresh", path="skills/fresh")]}
+        self.assertEqual(feeder.recheck_quarantine(q, {"skills": []}), [])
+        self.assertEqual(q["entries"][0]["skim"]["red_flags"], ["a"])
 
 
 if __name__ == "__main__":

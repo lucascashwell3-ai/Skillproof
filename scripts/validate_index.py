@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
-"""Honesty gate for docs/data/skills.json — flat-catalog edition (2026-08-21).
+"""Honesty gate for docs/data/skills.json — short-list edition (2026-09-27).
 
-The catalog has ONE class of entry: a real repo that passed the malice scan.
-The gate enforces exactly that, and fails closed if the old tier machinery
-(status / grade / review / triage) ever creeps back in. Exits non-zero on any
-error; the feeder refuses to publish when it does.
+The list has ONE class of entry: a single skill folder on GitHub that passed
+the malice scan, with the one line Skillproof says when it installs it. The
+gate enforces that shape, refuses whole packs (the "library" category is gone),
+refuses a bare "it" in an install line, and fails closed if the old tier
+machinery (status / grade / review / triage) ever creeps back in. Exits
+non-zero on any error; the feeder refuses to publish when it does.
 
 Usage:
     python3 scripts/validate_index.py
@@ -28,9 +30,19 @@ QFILE = ROOT / "grading" / "quarantine.json"
 
 CATEGORIES = {"workflow", "frontend", "testing", "research", "context",
               "security", "docs", "automation", "output-style", "planning",
-              "git", "library"}
+              "git", "writing", "learning"}
 REQUIRED = ("id", "name", "repo_url", "author", "category", "summary",
-            "pain_points", "signals", "checked")
+            "line", "calls", "for", "source", "pain_points", "signals",
+            "checked")
+CALLS = {"you", "auto"}          # who calls it: the person, or the AI on its own
+FOR = {"anyone", "writing", "design", "coding"}
+NEEDS = {"files", "scripts"}
+REPO = re.compile(r"^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$")
+# The install line names the skill or "your AI" — never a bare "it" (a line
+# like "Your AI uses it on its own" says nothing about what changes).
+BARE_IT = re.compile(r"\bit\b", re.I)
+# A line that only names the skill tells the person nothing about what changes.
+EMPTY_LINE = re.compile(r"(^Type /\S+ to use \S+\.?$|when the task calls for|^Type /\S+\.?$)", re.I)
 # Tier-era fields. Their presence means the nuked verification system is
 # growing back — that is a build-stopping error, not a warning.
 FORBIDDEN = ("status", "grade", "scores", "score_total", "verdict", "review",
@@ -96,6 +108,36 @@ def main():
         for p in s.get("pain_points", []):
             if p not in pain_ids:
                 errors.append(f"{tag}: unknown pain_point '{p}'")
+        if s.get("calls") not in CALLS:
+            errors.append(f"{tag}: calls must be one of {sorted(CALLS)}")
+        if s.get("for") not in FOR:
+            errors.append(f"{tag}: for must be one of {sorted(FOR)}")
+        for n in s.get("needs") or []:
+            if n not in NEEDS:
+                errors.append(f"{tag}: unknown need '{n}'")
+        line = s.get("line")
+        if isinstance(line, str):
+            if "\n" in line or len(line) > 160:
+                errors.append(f"{tag}: line must be one line, 160 characters at most")
+            if BARE_IT.search(line):
+                errors.append(f"{tag}: line uses a bare 'it' — name the skill or 'your AI'")
+            if EMPTY_LINE.search(line) or len(line.split()) < 6:
+                errors.append(f"{tag}: line says nothing about what changes")
+        src = s.get("source")
+        if isinstance(src, dict):
+            if not REPO.match(str(src.get("repo", ""))):
+                errors.append(f"{tag}: source.repo is not owner/repo")
+            path = src.get("path")
+            if not isinstance(path, str):
+                errors.append(f"{tag}: source.path missing (use \"\" for a skill at the repo root)")
+            elif url:
+                want = f"https://github.com/{src.get('repo', '')}".lower()
+                if path:
+                    want += f"/tree/{src.get('branch', 'main')}/{path}".lower()
+                if url != want.rstrip("/"):
+                    errors.append(f"{tag}: repo_url must link to the skill's own folder ({want})")
+        elif src is not None:
+            errors.append(f"{tag}: source must be an object")
         chk = s.get("checked")
         if isinstance(chk, dict):
             if not ISO.match(str(chk.get("date", ""))):
@@ -106,6 +148,8 @@ def main():
         if isinstance(sig, dict):
             if not isinstance(sig.get("stars"), int):
                 errors.append(f"{tag}: signals.stars is not an integer")
+            if "installs" in sig and not isinstance(sig["installs"], int):
+                errors.append(f"{tag}: signals.installs is not an integer")
         elif sig is not None:
             errors.append(f"{tag}: signals must be an object")
 
@@ -115,7 +159,7 @@ def main():
         print(f"\nvalidate_index: {len(errors)} error(s) in {len(d['skills'])} entries",
               file=sys.stderr)
         return 1
-    print(f"validate_index: OK — {len(d['skills'])} entries, one flat class, "
+    print(f"validate_index: OK — {len(d['skills'])} single skills, one flat class, "
           f"none quarantined, as_of {d['as_of']}")
     return 0
 

@@ -55,7 +55,11 @@ NOTE = [
 ]
 
 
-def scan_repo(url, workdir):
+def scan_repo(url, workdir, paths=None):
+    """Shallow-clone `url` and scan it. `paths` (folders inside the repo) limits
+    the scan to what actually gets installed — a single skill's folder, not the
+    whole repo it lives in. A listed folder that doesn't exist is a failed scan
+    (None), never a clean one."""
     dest = Path(workdir) / "repo"
     r = subprocess.run(
         ["git", "clone", "--depth", "1", "--quiet", url + ".git", str(dest)],
@@ -63,9 +67,14 @@ def scan_repo(url, workdir):
     )
     if r.returncode != 0:
         return None
+    roots = [dest / p for p in paths if p] if paths else [dest]
+    if not roots:
+        roots = [dest]
+    if any(not root.is_dir() for root in roots):
+        return None
     reds, notes, scanned = {}, {}, 0
     TEST_PART = re.compile(r"^(tests?|spec|__tests__|fixtures)$", re.I)
-    for p in dest.rglob("*"):
+    for p in (f for root in roots for f in root.rglob("*")):
         if scanned >= MAX_FILES:
             break
         if not p.is_file() or p.is_symlink():

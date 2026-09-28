@@ -581,6 +581,8 @@ kbd{font-family:var(--mono);font-size:.71rem;padding:2px 5px;border-radius:5px;b
 .facet[aria-selected="true"]{color:#fff}
 .facet[aria-selected="true"] .cnt{opacity:.82}
 .facet:focus-visible{outline:none;box-shadow:0 0 0 2px #fff, 0 0 0 4px var(--violet)}
+/* five audience filters must hold one line at phone width: the counts go, the labels stay */
+@media (max-width:480px){.facet{padding:0 10px}.facet .cnt{display:none}}
 
 /* rank banner — states the connection between setup and catalog */
 .rankbar{display:flex;align-items:center;gap:8px;margin:0 13px 4px;padding:7px 11px;border-radius:var(--r-sm);

@@ -5,6 +5,10 @@ thinks it's working. These are the six ways that happens, in the order they're w
 
 Everything here is read-only. Finding a conflict never licenses fixing it — that's the plan and its yes (beats 3–5).
 
+Paths below use Claude Code's names. The same places elsewhere: `AGENTS.md` (Codex, Cursor,
+Copilot), `GEMINI.md` (Gemini CLI), `.cursor/rules/`, `.github/copilot-instructions.md`, and each
+app's skills folder (`install-paths.md`).
+
 ---
 
 ## 1. Direct contradiction
