@@ -545,6 +545,10 @@
    "first_seen": "2026-09-27",
    "verdict": "already there when the list was chosen by hand"
   },
+  "0d882fbe9a484b4c": {
+   "first_seen": "2026-09-29",
+   "verdict": "listed"
+  },
   "0da372d4d482ffb5": {
    "first_seen": "2026-09-27",
    "verdict": "already there when the list was chosen by hand"
@@ -718,8 +722,8 @@
    "verdict": "already there when the list was chosen by hand"
   },
   "13733e648f3d584d": {
-   "first_seen": "2026-09-27",
-   "verdict": "already there when the list was chosen by hand"
+   "first_seen": "2026-09-29",
+   "verdict": "waiting"
   },
   "137a6265c4f8cfff": {
    "first_seen": "2026-09-27",
@@ -770,8 +774,8 @@
    "verdict": "already there when the list was chosen by hand"
   },
   "155d4fd8d9c502ff": {
-   "first_seen": "2026-09-27",
-   "verdict": "already there when the list was chosen by hand"
+   "first_seen": "2026-09-29",
+   "verdict": "waiting"
   },
   "1562404cf8255bee": {
    "first_seen": "2026-09-27",
@@ -1817,6 +1821,10 @@
    "first_seen": "2026-09-27",
    "verdict": "already there when the list was chosen by hand"
   },
+  "36a3f1c3ece485a8": {
+   "first_seen": "2026-09-29",
+   "verdict": "waiting"
+  },
   "36a5367c5ebd1ae8": {
    "first_seen": "2026-09-27",
    "verdict": "already there when the list was chosen by hand"
@@ -1986,8 +1994,8 @@
    "verdict": "already there when the list was chosen by hand"
   },
   "3d609838181fac4f": {
-   "first_seen": "2026-09-27",
-   "verdict": "already there when the list was chosen by hand"
+   "first_seen": "2026-09-29",
+   "verdict": "listed"
   },
   "3d642ca6ae796dea": {
    "first_seen": "2026-09-27",
@@ -4773,6 +4781,10 @@
    "first_seen": "2026-09-27",
    "verdict": "already there when the list was chosen by hand"
   },
+  "91076564a3c34b3b": {
+   "first_seen": "2026-09-29",
+   "verdict": "source repo under 1,000 stars (not an original)"
+  },
   "910a2744a13537eb": {
    "first_seen": "2026-09-27",
    "verdict": "already there when the list was chosen by hand"
@@ -5548,6 +5560,10 @@
   "a9e166fede1f88ad": {
    "first_seen": "2026-09-27",
    "verdict": "already there when the list was chosen by hand"
+  },
+  "aa36310580f47aff": {
+   "first_seen": "2026-09-29",
+   "verdict": "source repo under 1,000 stars (not an original)"
   },
   "aa4fbe014a589cdf": {
    "first_seen": "2026-09-27",
@@ -6704,6 +6720,10 @@
   "ca40e8d8d25a81d6": {
    "first_seen": "2026-09-27",
    "verdict": "already there when the list was chosen by hand"
+  },
+  "ca612062a9ea5b40": {
+   "first_seen": "2026-09-29",
+   "verdict": "waiting"
   },
   "ca6a87b705d20675": {
    "first_seen": "2026-09-27",
