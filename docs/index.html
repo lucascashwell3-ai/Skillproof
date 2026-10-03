@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://api.fontshare.com" />
   <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin />
   <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&f[]=jetbrains-mono@400,500,600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/styles.css?v=36" />
+  <link rel="stylesheet" href="assets/styles.css?v=37" />
 </head>
 <body>
 
@@ -85,17 +85,18 @@
       <!-- the living terminal: the one dark object on the page. It is sized to
            hold its longest session whole, and its first frame is in the
            markup, so it is never an empty box if the script never runs. -->
-      <div class="term-col">
-        <div class="term" id="term">
-          <div class="term-bar">
-            <span class="tdot"></span><span class="tdot"></span><span class="tdot"></span>
-            <span class="term-title" id="termTitle">claude &mdash; 96&times;28</span>
-            <span class="term-dots" id="termDots" aria-hidden="true">
-              <span class="mdot on"></span><span class="mdot"></span><span class="mdot"></span>
-            </span>
+      <div class="term-col hero-vid">
+        <figure class="vid" id="heroVid">
+          <div class="vid-frame">
+            <video id="heroVideo" muted loop playsinline preload="none" controls width="1280" height="720"
+              poster="assets/hero-poster.webp"
+              aria-label="33-second demo: copy the Skillproof prompt, paste it into Claude, say what is off, approve the plan, and next time the AI shows your inbox as one page">
+              <source src="assets/hero-loop.mp4" type="video/mp4">
+            </video>
+            <button class="vid-btn" id="heroVidBtn" type="button" hidden></button>
           </div>
-          <div class="term-body" id="termBody" aria-label="Abridged demo of the skill working"><div class="tln banner show"><b>✻</b> Welcome to <b>Claude Code</b>! <span class="dim">/help for help · cwd: ~/projects/app</span></div><div class="tln sub show">What do you want your AI to do better? Not sure? Tell me what you use AI for, or say “look”.</div><div class="tln you show">not sure honestly — the answers are always way too long</div><div class="tln tool show">Read(<span class="y">CLAUDE.md</span>, <span class="y">~/.claude/skills/</span>) <span class="dim">· read-only</span></div></div></div></div>
-        </div>
+          <figcaption class="vid-cap" id="heroVidCap" aria-hidden="true"><span>Copy the prompt</span></figcaption>
+        </figure>
       </div>
 
     </div>
@@ -103,7 +104,7 @@
 
   <!-- Three ways in, one control. The prompt is copied in one click from the
        hero; this sheet is for reading it first, and for the other two ways.
-       The tab + pane markup is unchanged, so it still drives the terminal. -->
+       The hero visual is the demo video now; the tabs only switch panes. -->
   <dialog class="waysheet" id="ways" aria-labelledby="waysH">
     <div class="ways-in">
       <div class="ways-head">
@@ -340,7 +341,6 @@
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-<script src="assets/demo.js?v=9" defer></script>
-<script src="assets/app.js?v=105"></script>
+<script src="assets/app.js?v=106"></script>
 </body>
 </html>
