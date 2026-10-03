@@ -2,7 +2,7 @@
 
 # ✦ Skillproof
 
-**Give your agents the skills they need.**
+**Make AI easier with Skillproof.**
 
 Skills don't work if your setup rejects them. Skillproof finds what you need and fits it
 into the setup you already have — one short conversation, one plan, one yes.
