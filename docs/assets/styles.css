@@ -1165,14 +1165,13 @@ footer{margin-top:10px;padding:42px 0 20px;
 .vid-cap.out{opacity:0}
 @media (prefers-reduced-motion:reduce){.vid-cap{transition:none}}
 
-/* text left, video right, so the whole loop and its caption sit in the first screen on a laptop */
-@media (min-width:1100px){
-  /* the hero owns the first screen; only the dotted line above the catalog peeks at the bottom (Lucas 10-03) */
-  .hero-lead{padding-top:clamp(28px,4vh,56px);min-height:min(calc(100svh - 100px),980px);display:flex;align-items:center}
+/* the words on top, the video under them. The video is sized by screen height, so the
+   video and its caption always sit in the first screen and only the dotted line under the hero peeks. */
+@media (min-width:760px){
+  .hero-lead{padding-top:clamp(18px,3vh,40px);padding-bottom:clamp(12px,2vh,24px);min-height:min(calc(100svh - 100px),980px);display:flex;align-items:center}
   .hero-lead>.hero-stage{width:100%}
-  .hero-stage{flex-direction:row;align-items:center;gap:clamp(28px,3.4vw,60px)}
-  .hero-say{flex:0 0 clamp(20rem,27vw,25rem);max-width:none;text-align:left;margin-bottom:0}
-  .hero h1{font-size:clamp(2rem,3vw,2.6rem)}
-  .hero-do{justify-content:flex-start}
-  .hero-vid{flex:1;min-width:0;max-width:none}
+  .hero-say{margin-bottom:clamp(18px,2.6vh,30px)}
+  .hero-line{margin-bottom:20px}
+  .hero-do{margin-bottom:0}
+  .hero-vid{width:max(520px,min(100%,940px,calc((100svh - 370px) * 16 / 9)))}
 }
