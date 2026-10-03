@@ -1144,3 +1144,34 @@ footer{margin-top:10px;padding:42px 0 20px;
 .faq summary::after{content:"+";color:var(--violet-d);font-weight:500}
 .faq details[open] summary::after{content:"–"}
 .faq p{margin-top:8px;color:var(--ink-2);line-height:1.55;max-width:66ch}
+
+/* ---- hero video (replaced the terminal demo, 10-03): the screen is the video, the caption is page text under it ---- */
+.hero-vid{max-width:940px}
+.vid{margin:0}
+.vid-frame{position:relative;aspect-ratio:16/9;border-radius:1.6% / 2.85%;overflow:hidden;background:#dfe5ee;
+  box-shadow:0 26px 60px -28px rgba(24,34,56,.42),0 0 0 1px rgba(24,34,56,.08)}
+.vid video{display:block;width:100%;height:100%;object-fit:cover}
+.vid-btn{position:absolute;right:2.2%;bottom:3.6%;height:40px;min-width:40px;padding:0 11px;border:0;border-radius:999px;
+  background:rgba(29,34,48,.72);color:#fff;display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  font:600 .9rem/1 var(--font);cursor:pointer;opacity:.5;transition:opacity .14s,background .14s}
+.vid:hover .vid-btn,.vid-btn:focus-visible,.vid.paused .vid-btn{opacity:1}
+.vid-btn:focus-visible{outline:none;box-shadow:0 0 0 2px #F8F4EC,0 0 0 4px var(--violet-d)}
+/* reduced motion, before the first play: one clear button in the middle of the still */
+.vid.fresh .vid-btn{right:50%;bottom:50%;transform:translate(50%,50%);height:52px;padding:0 22px 0 18px;background:var(--violet-d);opacity:1;font-size:1rem}
+.vid-cap{display:flex;align-items:center;justify-content:center;min-height:3.4rem;padding-top:.9rem;text-align:center;
+  font-size:clamp(1.15rem,1.9vw,1.6rem);font-weight:700;letter-spacing:-.025em;line-height:1.15;color:var(--ink);transition:opacity .16s ease}
+.vid-cap.big{font-size:clamp(1.3rem,2.3vw,1.95rem)}
+.vid-cap b{color:var(--violet-d);font-weight:700}
+.vid-cap.out{opacity:0}
+@media (prefers-reduced-motion:reduce){.vid-cap{transition:none}}
+
+/* the words on top, the video under them. The video is sized by screen height, so the
+   video and its caption always sit in the first screen and only the dotted line under the hero peeks. */
+@media (min-width:760px){
+  .hero-lead{padding-top:clamp(18px,3vh,40px);padding-bottom:clamp(12px,2vh,24px);min-height:min(calc(100svh - 100px),980px);display:flex;align-items:center}
+  .hero-lead>.hero-stage{width:100%}
+  .hero-say{margin-bottom:clamp(18px,2.6vh,30px)}
+  .hero-line{margin-bottom:20px}
+  .hero-do{margin-bottom:0}
+  .hero-vid{width:max(520px,min(100%,940px,calc((100svh - 370px) * 16 / 9)))}
+}
