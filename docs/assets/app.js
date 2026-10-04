@@ -1123,11 +1123,33 @@
     });
   });
 
+  /* tabs in the sheet: the terminal demo (demo.js) used to own this switch; the hero is a
+     video now, so it lives here whenever the terminal is not on the page */
+  if (!document.getElementById("termBody")) {
+    var instTabs = Array.prototype.slice.call(document.querySelectorAll(".inst-tab"));
+    var instPanes = Array.prototype.slice.call(document.querySelectorAll(".inst-pane"));
+    var instOrder = ["prompt", "cli", "mcp"], instCur = "prompt";
+    instTabs.forEach(function (t) {
+      t.addEventListener("click", function () {
+        var m = t.dataset.m, fwd = instOrder.indexOf(m) >= instOrder.indexOf(instCur);
+        instCur = m;
+        instTabs.forEach(function (x) { x.setAttribute("aria-selected", String(x.dataset.m === m)); });
+        instPanes.forEach(function (p) {
+          var on = p.dataset.pane === m;
+          p.classList.remove("from-l", "from-r");
+          if (on) p.classList.add(fwd ? "from-r" : "from-l");
+          p.classList.toggle("on", on);
+          if (on) p.removeAttribute("hidden"); else p.setAttribute("hidden", "");
+        });
+      });
+    });
+  }
+
   function open(method) {
     if (!dlg) return;
     if (method) {
       var tab = document.querySelector('.inst-tab[data-m="' + method + '"]');
-      if (tab) tab.click();                            // demo.js owns the switch
+      if (tab) tab.click();                            // the tab handler owns the switch
     }
     if (typeof dlg.showModal === "function" && !dlg.open) dlg.showModal();
     else dlg.setAttribute("open", "");
@@ -1169,4 +1191,30 @@
     more.setAttribute("aria-expanded", String(open));
     more.textContent = open ? "Show less" : "Show the full prompt";
   });
+})();
+
+/* hero video: autoplays muted once the page has loaded (the poster is the first paint);
+   reduced motion = no autoplay, a real play button instead; one pause control for everyone;
+   pauses while scrolled out of view; captions are page text timed to the loop */
+(function(){
+  var v=document.getElementById("heroVideo"),b=document.getElementById("heroVidBtn"),f=document.getElementById("heroVid"),cap=document.getElementById("heroVidCap");
+  if(!v||!b||!f)return;
+  var CUES=[[0,4.13,"Paste the prompt"],[4.3,10.87,"Say what\u2019s off"],[11.03,15.9,"Approve the plan"],[23.4,26.7,'Same AI. Made easier by <b>Skillproof</b>.'],[26.7,28.47,"Copy the prompt"],[28.63,99,"Open your favorite AI"]];
+  var PLAY='<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.4-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></svg>';
+  var PAUSE='<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4.2" height="14" rx="1.2"/><rect x="13.8" y="5" width="4.2" height="14" rx="1.2"/></svg>';
+  v.removeAttribute("controls"); b.hidden=false;
+  var rm=window.matchMedia("(prefers-reduced-motion: reduce)").matches, userPaused=false, shown=cap?cap.textContent:null, swap=0;
+  function set(){var p=v.paused,fresh=rm&&!v.dataset.started;b.innerHTML=p?PLAY+(fresh?"<span>Play the demo</span>":""):PAUSE;b.setAttribute("aria-label",p?"Play the demo":"Pause the demo");f.classList.toggle("paused",p);f.classList.toggle("fresh",fresh);}
+  function cue(){var t=v.currentTime,txt="";for(var i=0;i<CUES.length;i++){if(t>=CUES[i][0]&&t<CUES[i][1]){txt=CUES[i][2];break;}}
+    if(txt===shown)return;shown=txt;clearTimeout(swap);cap.classList.add("out");
+    swap=setTimeout(function(){cap.firstChild.innerHTML=txt;cap.classList.toggle("big",txt.indexOf("Same AI")===0);cap.classList.toggle("out",!txt);},rm?0:160);}
+  function tick(){cue();if(v.requestVideoFrameCallback)v.requestVideoFrameCallback(tick);}
+  if(v.requestVideoFrameCallback)v.requestVideoFrameCallback(tick);else v.addEventListener("timeupdate",cue);
+  function play(){v.preload="auto";var p=v.play();if(p&&p.catch)p.catch(set);}
+  b.addEventListener("click",function(){if(v.paused){userPaused=false;v.dataset.started="1";play();}else{userPaused=true;v.pause();}});
+  v.addEventListener("play",function(){v.dataset.started="1";set();}); v.addEventListener("pause",set); v.addEventListener("seeked",cue);
+  if(!rm){if(document.readyState==="complete")play();else window.addEventListener("load",play);
+    document.addEventListener("visibilitychange",function(){if(!document.hidden&&v.paused&&!userPaused&&!v.dataset.away)play();});}   /* a page opened in a background tab starts once it is seen */
+  if("IntersectionObserver" in window){new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting){if(!v.paused){v.pause();v.dataset.away="1";}}else if(v.dataset.away&&!userPaused){delete v.dataset.away;play();}});},{threshold:.15}).observe(v);}
+  set();
 })();
