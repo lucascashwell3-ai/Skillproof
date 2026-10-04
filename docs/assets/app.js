@@ -1199,7 +1199,7 @@
 (function(){
   var v=document.getElementById("heroVideo"),b=document.getElementById("heroVidBtn"),f=document.getElementById("heroVid"),cap=document.getElementById("heroVidCap");
   if(!v||!b||!f)return;
-  var CUES=[[0,4.13,"Paste the prompt"],[4.3,10.87,"Say what\u2019s off"],[11.03,15.9,"Approve the plan"],[23.4,26.7,'Same AI. Made easier by <b>Skillproof</b>.'],[26.7,28.47,"Copy the prompt"],[28.63,99,"Open your favorite AI"]];
+  var CUES=[[0,1.47,"Copy the prompt"],[1.63,4.73,"Open your favorite AI"],[4.9,8.87,"Paste the prompt"],[9.03,15.6,"Say what\u2019s off"],[15.77,20.63,"Approve the plan"],[28.13,31.43,'Same AI. Made easier by <b>Skillproof</b>.'],[31.43,99,"Copy the prompt"]];
   var PLAY='<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.4-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></svg>';
   var PAUSE='<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4.2" height="14" rx="1.2"/><rect x="13.8" y="5" width="4.2" height="14" rx="1.2"/></svg>';
   v.removeAttribute("controls"); b.hidden=false;
