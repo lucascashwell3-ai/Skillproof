@@ -86,7 +86,7 @@ The skill needs a tool or permission the setup denies.
 exist in the tool they're running at all.
 
 **What it looks like:** a skill that needs Bash in a setup that denies Bash. A skill needing a
-tool the product doesn't have (see install-paths.md — Cursor has no plugin system).
+tool the app doesn't have (`install-paths.md`, "What can't run where").
 
 **Say it first and stop** if the answer is "this can't work here." A command that fails silently
 is worse than "this one isn't for your setup."

@@ -49,6 +49,21 @@ jobs:
           Get-ChildItem $dest | ForEach-Object { "$($_.Name)  $($_.Length)" }
           if (-not (Test-Path "$dest\SKILL.md")) { throw 'grill-me SKILL.md missing' }
           'OK: grill-me SKILL.md saved without git'
+      - name: MCP Windows line from the site (minus the final claude command), Windows PowerShell 5.1
+        shell: powershell
+        run: |
+          $html = Get-Content docs/index.html -Raw
+          $m = [regex]::Match($html, '<div class="cmdbox inst-cmd">(git clone https://github.com/lucascashwell3-ai/Skillproof; [^<]+)</div>')
+          if (-not $m.Success) { throw 'no Windows MCP line on the site' }
+          $line = [System.Net.WebUtility]::HtmlDecode($m.Groups[1].Value)
+          $line
+          $prep = $line.Substring(0, $line.IndexOf('; claude mcp add'))
+          Set-Location $env:RUNNER_TEMP
+          Invoke-Expression $prep
+          $server = "$PWD/server.js"
+          if (-not (Test-Path $server)) { throw "server.js not found at $server" }
+          node --check $server
+          "OK: cloned, npm installed, $server exists"
   windows-git-bash:
     runs-on: windows-latest
     defaults:

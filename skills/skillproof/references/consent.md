@@ -35,7 +35,8 @@ other skill.
 2. **A backup exists** of every existing file you'll change or move. Copy each one into a
    dated `skillproof-backups/<YYYY-MM-DD>/` folder beside the app's skills folder, keeping its
    path (Claude Code: `~/.claude/skillproof-backups/2026-09-27/CLAUDE.md`; Codex:
-   `~/.codex/skillproof-backups/…`; on Windows the same folders under `C:\Users\<them>\`). A brand-new skill folder needs no backup — its undo is
+   `~/.agents/skillproof-backups/…`; Cursor: `~/.cursor/skillproof-backups/…`; on Windows the
+   same folders under `C:\Users\<them>\`). A brand-new skill folder needs no backup — its undo is
    moving that folder out. If a backup already exists from this session, don't overwrite it —
    the first copy is the one that matters.
 3. **You can state the undo.** If you can't say exactly how to reverse it, you don't do it yet.

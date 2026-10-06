@@ -356,6 +356,18 @@ class TestHelpers(unittest.TestCase):
         self.assertIn('"$d/skills/p/grilling"', e["install"]["command"])
 
 
+class TestWholeRepoSkill(unittest.TestCase):
+    def test_copies_only_the_skill_files(self):
+        c = {"repo": repo(), "folder": "", "name": "solo",
+             "files": ["SKILL.md", "LICENSE", "README.md", ".github/workflows/ci.yml", "scripts/check.py"],
+             "fm": {"name": "solo", "description": "Rewrites drafts so they read like a person wrote them."}}
+        cmd = feeder.to_entry(c, None, set())["install"]["command"]
+        self.assertIn('cp "$d/SKILL.md" "$d/LICENSE" ~/.claude/skills/solo/', cmd)
+        self.assertNotIn("skills/solo\"", cmd)
+        for leaked in ("README.md", ".github", "scripts/"):
+            self.assertNotIn(leaked, cmd)
+
+
 class TestToEntry(unittest.TestCase):
     def test_user_called_skill(self):
         c = {"repo": repo(), "folder": "skills/x", "name": "x", "files": [],

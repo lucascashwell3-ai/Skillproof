@@ -154,7 +154,7 @@ file they already have, add "I back up that file first."
   upload: each line says "as a zip you upload"; the menu steps come after the yes; a setting to
   turn on first is a line of its own. A copy-paste version: each line says "copy-paste
   version" and where it goes, and the plan adds "It works where you paste it, but won't start
-  on its own." (`references/install-paths.md`, sections 2–3).
+  on its own." ("They work…" for several; `references/install-paths.md`, sections 2–3).
 - **Keeping Skillproof:** where skills live in a folder and `skillproof` isn't there yet, the
   last numbered line is "Keep **skillproof** in your skills, so you can run it again with
   /skillproof." (call form per app). Its six files come from the links in the pasted prompt.

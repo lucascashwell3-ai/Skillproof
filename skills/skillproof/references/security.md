@@ -62,7 +62,7 @@ their files. "skill for reducing context bloat" is fine. Their CLAUDE.md's wordi
 
 ## 4. Commands (bash or PowerShell)
 
-Guardrail 2 says approved commands only. Additionally, never propose a command that:
+Only commands the plan showed run (`consent.md`). Beyond that, never propose a command that:
 
 - sends data outward — `curl -d`, `-F`, `--upload-file`, POST/PUT of any kind
 - pipes a download into an interpreter — `| sh`, `| bash`, `| python`, `| iex`,
@@ -109,8 +109,9 @@ any form:
 
 ## 5. Backups
 
-Backups land beside the app's skills folder: `~/.claude/skillproof-backups/<date>/` (on Windows
-`C:\Users\<them>\.claude\skillproof-backups\<date>\`). Two duties:
+Backups land beside the app's skills folder (`consent.md`): `~/.claude/skillproof-backups/<date>/`
+for Claude Code, `~/.agents/…` for Codex, `~/.cursor/…` for Cursor; on Windows the same folders
+under `C:\Users\<them>\`. Two duties:
 
 - **Tell the user the folder exists**, in the beat-5 close, with the path. A copy of their config they
   don't know about is a privacy problem of your making.

@@ -560,9 +560,15 @@ def to_entry(c, installs, pain_ids):
     line = make_line(name, calls, summary)
     dest = "~/.claude/skills/"
     copies = " ".join(f'"$d/{p}"' for p in [folder] + list(c.get("helpers") or []))
-    cmd = (f"d=$(mktemp -d) && git clone --depth 1 -q https://github.com/{full} \"$d\" && "
-           f"mkdir -p {dest} && cp -R {copies} {dest}") if folder else \
-          f"git clone --depth 1 -q https://github.com/{full} {dest}{name}"
+    if folder:
+        cmd = (f"d=$(mktemp -d) && git clone --depth 1 -q https://github.com/{full} \"$d\" && "
+               f"mkdir -p {dest} && cp -R {copies} {dest}")
+    else:
+        # A skill that is the whole repo: copy only SKILL.md and its license, never
+        # .git, CI or packaging files (found in a 2026-10-05 dry run).
+        own = ["SKILL.md"] + sorted(f for f in c["files"] if re.match(r"(?i)^licen[cs]e(\.\w+)?$", f))
+        cmd = (f"d=$(mktemp -d) && git clone --depth 1 -q https://github.com/{full} \"$d\" && "
+               f"mkdir -p {dest}{name} && cp " + " ".join(f'"$d/{f}"' for f in own) + f" {dest}{name}/")
     entry = {
         "id": kebab(name),
         "name": name,
