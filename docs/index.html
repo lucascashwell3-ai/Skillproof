@@ -20,7 +20,7 @@
   <link rel="preconnect" href="https://api.fontshare.com" />
   <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin />
   <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&f[]=jetbrains-mono@400,500,600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/styles.css?v=37" />
+  <link rel="stylesheet" href="assets/styles.css?v=38" />
 </head>
 <body>
 
@@ -144,15 +144,16 @@
           <p>For Claude Code. Downloads six files to disk so you can read them &mdash; nothing
           is piped into a shell, and it never edits your setup without showing you the plan
           and getting your yes.</p>
-          <div class="cmdwrap"><div class="cmdbox inst-cmd">for f in SKILL.md references/consent.md references/conflict-patterns.md references/install-paths.md references/finding.md references/security.md; do curl -fsSL --create-dirs https://raw.githubusercontent.com/lucascashwell3-ai/Skillproof/main/skills/skillproof/$f -o ~/.claude/skills/skillproof/$f; done
-          </div><button class="copy" type="button" aria-label="Copy" data-copy="for f in SKILL.md references/consent.md references/conflict-patterns.md references/install-paths.md references/finding.md references/security.md; do curl -fsSL --create-dirs https://raw.githubusercontent.com/lucascashwell3-ai/Skillproof/main/skills/skillproof/$f -o ~/.claude/skills/skillproof/$f; done"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2.5"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button></div>
+          <div class="cmdwrap"><div class="cmdbox inst-cmd">for f in SKILL.md references/consent.md references/conflict-patterns.md references/install-paths.md references/finding.md references/security.md; do curl -fsSL --create-dirs https://raw.githubusercontent.com/lucascashwell3-ai/Skillproof/main/skills/skillproof/$f -o ~/.claude/skills/skillproof/$f; done</div><button class="copy" type="button" aria-label="Copy" data-copy="for f in SKILL.md references/consent.md references/conflict-patterns.md references/install-paths.md references/finding.md references/security.md; do curl -fsSL --create-dirs https://raw.githubusercontent.com/lucascashwell3-ai/Skillproof/main/skills/skillproof/$f -o ~/.claude/skills/skillproof/$f; done"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2.5"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button></div>
         </div>
 
         <div class="inst-pane" id="instPane-mcp" role="tabpanel" data-pane="mcp" aria-labelledby="instTab-mcp" hidden>
           <p>For Cursor, Claude Desktop, and any other MCP-capable agent &mdash; the short list as
           four read-only tools your agent can query mid-task.</p>
-          <div class="cmdwrap"><div class="cmdbox inst-cmd">git clone https://github.com/lucascashwell3-ai/Skillproof &amp;&amp; cd Skillproof/mcp &amp;&amp; npm install
-          </div><button class="copy" type="button" aria-label="Copy" data-copy="git clone https://github.com/lucascashwell3-ai/Skillproof && cd Skillproof/mcp && npm install && claude mcp add skillproof -- node $(pwd)/server.js"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2.5"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button></div>
+          <span class="cmd-lab"><b>Claude Code</b> &mdash; one command</span>
+          <div class="cmdwrap"><div class="cmdbox inst-cmd">git clone https://github.com/lucascashwell3-ai/Skillproof &amp;&amp; cd Skillproof/mcp &amp;&amp; npm install &amp;&amp; claude mcp add skillproof -- node $(pwd)/server.js</div><button class="copy" type="button" aria-label="Copy the Claude Code command" data-copy="git clone https://github.com/lucascashwell3-ai/Skillproof &amp;&amp; cd Skillproof/mcp &amp;&amp; npm install &amp;&amp; claude mcp add skillproof -- node $(pwd)/server.js"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2.5"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button></div>
+          <span class="cmd-lab"><b>Cursor, Claude Desktop</b> &mdash; clone and install as above, then add this under <code>mcpServers</code> in your MCP config (use the full path)</span>
+          <div class="cmdwrap"><div class="cmdbox inst-cmd">"skillproof": { "command": "node", "args": ["/absolute/path/to/Skillproof/mcp/server.js"] }</div><button class="copy" type="button" aria-label="Copy the Cursor and Claude Desktop config" data-copy="&quot;skillproof&quot;: { &quot;command&quot;: &quot;node&quot;, &quot;args&quot;: [&quot;/absolute/path/to/Skillproof/mcp/server.js&quot;] }"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2.5"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button></div>
         </div>
         <div class="inst-foot">
           <a href="https://github.com/lucascashwell3-ai/Skillproof/blob/main/skills/skillproof/SKILL.md" target="_blank" rel="noopener">SKILL.md &#8599;</a>
@@ -200,9 +201,9 @@
         </div>
         <div class="setup-egs" id="setupEgs" aria-label="Examples">
           <span class="eg-lab">Try:</span>
-          <button class="eg" type="button">my writing sounds like AI</button>
-          <button class="eg" type="button">answers are hard to follow</button>
-          <button class="eg" type="button">bug hunts go in circles</button>
+          <button class="eg" type="button" data-areas="ai-sounding">my writing sounds like AI</button>
+          <button class="eg" type="button" data-areas="hard-to-follow">answers are hard to follow</button>
+          <button class="eg" type="button" data-areas="debugging-loops">bug hunts go in circles</button>
         </div>
 
         <div class="setup-sum">
@@ -348,6 +349,6 @@
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-<script src="assets/app.js?v=106"></script>
+<script src="assets/app.js?v=107"></script>
 </body>
 </html>

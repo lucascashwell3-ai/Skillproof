@@ -244,7 +244,7 @@
       .map(function (r) { return r.id; });
   }
 
-  function runSay() {
+  function runSay(areas) {
     var input = $("#painSay");
     var v = input.value.trim();
     if (!v) {
@@ -253,7 +253,9 @@
       input.focus();
       return;
     }
-    var hits = matchPains(v);
+    /* an example chip names the one area it is about; typed words go through the matcher */
+    var hits = (areas || []).filter(function (id) { return PAIN_SHORT[id]; });
+    if (!hits.length) hits = matchPains(v);
     if (!hits.length) {
       // Say what to do next, not just that it failed.
       $("#setupMsg").textContent = "No area matched those words — pick from the list, or try naming the symptom (“tests”, “docs”, “planning”).";
@@ -269,16 +271,30 @@
       "</b> — change anything below, then sort.";
   }
 
-  $("#painSayGo").addEventListener("click", runSay);
+  $("#painSayGo").addEventListener("click", function () { runSay(); });
   $("#painSay").addEventListener("keydown", function (e) {
     if (e.key === "Enter") { e.preventDefault(); runSay(); }
   });
   $$("#setupEgs .eg").forEach(function (b) {
     b.addEventListener("click", function () {
       $("#painSay").value = b.textContent;
-      runSay();
+      runSay((b.getAttribute("data-areas") || "").split(" "));
     });
   });
+
+  /* the long placeholder when it fits the box, a short one when it would be cut */
+  var SAY_LONG = $("#painSay").getAttribute("placeholder"), SAY_SHORT = "Say it your way", sayCtx = null;
+  function fitSayPlaceholder() {
+    var input = $("#painSay");
+    if (!input.clientWidth) return;
+    sayCtx = sayCtx || document.createElement("canvas").getContext("2d");
+    var cs = getComputedStyle(input);
+    sayCtx.font = "500 " + cs.fontSize + " " + cs.fontFamily;
+    input.placeholder = sayCtx.measureText(SAY_LONG).width + 8 <= input.clientWidth ? SAY_LONG : SAY_SHORT;
+  }
+  fitSayPlaceholder();
+  window.addEventListener("resize", fitSayPlaceholder);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitSayPlaceholder);
 
   $("#applySetup").addEventListener("click", function () {
     if (!S.pains.length) return;
@@ -290,6 +306,7 @@
   });
   $("#editSetup").addEventListener("click", function () {
     $("#setup").classList.remove("collapsed");
+    fitSayPlaceholder();
   });
   function renderSummary() {
     $("#sumPills").innerHTML = S.pains.map(function (pid) {
@@ -404,7 +421,8 @@
         : "";
     var open = state.open === it.id;
     return '<div class="row t-' + kind + (inTray ? " in-tray" : "") + (open ? " open" : "") + (i === state.cursor ? " cursor" : "") +
-      '" data-id="' + it.id + '" draggable="true" role="option" aria-selected="' + (i === state.cursor) + '">' +
+      '" data-id="' + it.id + '" draggable="true" role="option" tabindex="0" aria-expanded="' + open +
+      '" aria-selected="' + (i === state.cursor) + '">' +
       '<span class="tico">' + icon(kind) + "</span>" +
       '<div class="row-body">' +
         '<div class="row-top"><span class="row-name">' + hi(it.name, q) + "</span>" + tested + sig + "</div>" +
@@ -459,7 +477,7 @@
 
     if (!res.length) {
       list.innerHTML = '<div class="list-empty"><b>No matches for "' + esc(q) + '"</b>' +
-        'No match here ≠ no tool exists — <a href="#with-you">take the scout with you</a> and search the live ecosystem.</div>';
+        'No match here ≠ no tool exists — <a href="#install">take the scout with you</a> and search the live ecosystem.</div>';
       return;
     }
     list.innerHTML = res.map(function (r, idx) { return rowHTML(r.it, r.ev, q, idx); }).join("");
@@ -558,7 +576,7 @@
       if (it.source) {
         lines.push((i + 1) + ". " + it.name + " — copy the skill folder " + it.repo_url +
           ((it.source.with || []).length ? " (plus " + it.source.with.map(function (w) {
-            return w.split("/").pop(); }).join(", ") + ", the helper folder " + it.name + " needs)" : "") +
+            return w.split("/").pop(); }).join(", ") + (it.source.with.length > 1 ? ", the helper folders " : ", the helper folder ") + it.name + " needs)" : "") +
           " into my skills folder.");
       } else if (it.install && it.install.command) {
         lines.push((i + 1) + ". " + it.name + " — run: " + it.install.command);
@@ -743,6 +761,22 @@
   }
 
   /* ======================= events ======================= */
+  function setRowOpen(row, on) {
+    row.classList.toggle("open", on);
+    row.setAttribute("aria-expanded", String(on));
+  }
+  function toggleRow(row) {
+    var id = row.dataset.id;
+    if (state.open === id) {
+      state.open = null;
+      setRowOpen(row, false);
+    } else {
+      var prev = $("#list").querySelector(".row.open");
+      if (prev) setRowOpen(prev, false);
+      state.open = id;
+      setRowOpen(row, true);
+    }
+  }
   function wireEvents() {
     /* Add button adds; anywhere else on the row toggles the detail popout.
        Links inside the open detail behave as links. */
@@ -753,16 +787,11 @@
       if (e.target.closest(".row-detail")) return;
       var row = e.target.closest(".row");
       if (!row) return;
-      var id = row.dataset.id;
-      if (state.open === id) {
-        state.open = null;
-        row.classList.remove("open");
-      } else {
-        var prev = $("#list").querySelector(".row.open");
-        if (prev) prev.classList.remove("open");
-        state.open = id;
-        row.classList.add("open");
-      }
+      toggleRow(row);
+    });
+    $("#list").addEventListener("keydown", function (e) {
+      if (!e.target.classList.contains("row")) return;     // keys on the Add button or a link are theirs
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggleRow(e.target); }
     });
     $("#trayList").addEventListener("click", function (e) {
       var r = e.target.closest("[data-rm]");
@@ -1151,9 +1180,31 @@
       var tab = document.querySelector('.inst-tab[data-m="' + method + '"]');
       if (tab) tab.click();                            // the tab handler owns the switch
     }
-    if (typeof dlg.showModal === "function" && !dlg.open) dlg.showModal();
-    else dlg.setAttribute("open", "");
+    if (typeof dlg.showModal === "function" && !dlg.open) {
+      dlg.showModal();
+      if (toastEl) dlg.appendChild(toastEl);           // the toast must sit above the sheet's backdrop
+    } else dlg.setAttribute("open", "");
   }
+  if (dlg) dlg.addEventListener("close", function () {
+    if (toastEl && toastEl.parentNode === dlg) document.body.appendChild(toastEl);
+  });
+
+  /* every "Install" link opens the sheet; from another page, index.html#install
+     does the same on arrival */
+  document.addEventListener("click", function (e) {
+    if (e.defaultPrevented || e.button || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    var a = e.target.closest && e.target.closest('a[href="#install"]');
+    if (!a || !dlg) return;
+    e.preventDefault();
+    open("prompt");
+  });
+  function openFromHash() {
+    if (location.hash !== "#install" || !dlg) return;
+    open("prompt");
+    try { history.replaceState(null, "", location.pathname + location.search); } catch (err) {}
+  }
+  window.addEventListener("hashchange", openFromHash);
+  openFromHash();
 
   Array.prototype.forEach.call(document.querySelectorAll("[data-ways]"), function (btn) {
     btn.addEventListener("click", function () { open(btn.getAttribute("data-ways")); });
