@@ -576,7 +576,7 @@
       if (it.source) {
         lines.push((i + 1) + ". " + it.name + " — copy the skill folder " + it.repo_url +
           ((it.source.with || []).length ? " (plus " + it.source.with.map(function (w) {
-            return w.split("/").pop(); }).join(", ") + ", the helper folder " + it.name + " needs)" : "") +
+            return w.split("/").pop(); }).join(", ") + (it.source.with.length > 1 ? ", the helper folders " : ", the helper folder ") + it.name + " needs)" : "") +
           " into my skills folder.");
       } else if (it.install && it.install.command) {
         lines.push((i + 1) + ". " + it.name + " — run: " + it.install.command);
