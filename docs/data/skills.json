@@ -521,6 +521,167 @@
       "license": "MIT"
     },
     {
+      "id": "wait-what",
+      "name": "wait-what",
+      "repo_url": "https://github.com/mattpocock/skills/tree/main/skills/productivity/wait-what",
+      "author": "Matt Pocock (mattpocock)",
+      "category": "output-style",
+      "summary": "Says the last message again in short, plain words, with the background you were missing.",
+      "line": "Type /wait-what when your AI's last message lost you, and your AI repeats the message in short, plain words with the missing background.",
+      "calls": "you",
+      "for": "anyone",
+      "needs": [],
+      "pain_points": [
+        "hard-to-follow"
+      ],
+      "source": {
+        "repo": "mattpocock/skills",
+        "branch": "main",
+        "path": "skills/productivity/wait-what"
+      },
+      "install": {
+        "command": "d=$(mktemp -d) && git clone --depth 1 -q https://github.com/mattpocock/skills \"$d\" && mkdir -p ~/.claude/skills/ && cp -R \"$d/skills/productivity/wait-what\" ~/.claude/skills/",
+        "notes": "Claude Code folder shown. Codex: ~/.agents/skills/ · Cursor: ~/.cursor/skills/ · Gemini CLI: ~/.gemini/skills/ · Copilot: ~/.copilot/skills/. Loads in a new session."
+      },
+      "signals": {
+        "stars": 277118,
+        "forks": 23214,
+        "checked": "2026-10-05",
+        "head_sha": "d80fa0f4ebe0c5714af0adf8670336065233ecc6",
+        "head_checked": "2026-10-05",
+        "installs": 350490,
+        "installs_source": "skills.sh"
+      },
+      "checked": {
+        "date": "2026-10-05",
+        "files_scanned": 2
+      },
+      "pushed": "2026-10-05",
+      "license": "MIT"
+    },
+    {
+      "id": "research",
+      "name": "research",
+      "repo_url": "https://github.com/mattpocock/skills/tree/main/skills/engineering/research",
+      "author": "Matt Pocock (mattpocock)",
+      "category": "planning",
+      "summary": "Sends a background helper to read official sources on your question and saves a note citing each fact.",
+      "line": "Your AI now sends a background helper to read official sources on your question and saves a note that cites each fact.",
+      "calls": "auto",
+      "for": "anyone",
+      "needs": [
+        "files"
+      ],
+      "pain_points": [],
+      "source": {
+        "repo": "mattpocock/skills",
+        "branch": "main",
+        "path": "skills/engineering/research"
+      },
+      "install": {
+        "command": "d=$(mktemp -d) && git clone --depth 1 -q https://github.com/mattpocock/skills \"$d\" && mkdir -p ~/.claude/skills/ && cp -R \"$d/skills/engineering/research\" ~/.claude/skills/",
+        "notes": "Claude Code folder shown. Codex: ~/.agents/skills/ · Cursor: ~/.cursor/skills/ · Gemini CLI: ~/.gemini/skills/ · Copilot: ~/.copilot/skills/. Loads in a new session."
+      },
+      "signals": {
+        "stars": 277118,
+        "forks": 23214,
+        "checked": "2026-10-05",
+        "head_sha": "321658273cb1d20b76026717d027d505790106d4",
+        "head_checked": "2026-10-05",
+        "installs": 608846,
+        "installs_source": "skills.sh"
+      },
+      "checked": {
+        "date": "2026-10-05",
+        "files_scanned": 2
+      },
+      "pushed": "2026-10-05",
+      "license": "MIT"
+    },
+    {
+      "id": "to-questionnaire",
+      "name": "to-questionnaire",
+      "repo_url": "https://github.com/mattpocock/skills/tree/main/skills/productivity/to-questionnaire",
+      "author": "Matt Pocock (mattpocock)",
+      "category": "planning",
+      "summary": "Turns a decision you can't make alone into a list of questions for the right person to answer.",
+      "line": "Type /to-questionnaire when you need someone else's answers, and your AI writes the list of questions to send them.",
+      "calls": "you",
+      "for": "anyone",
+      "needs": [
+        "files"
+      ],
+      "pain_points": [
+        "planning-drift"
+      ],
+      "source": {
+        "repo": "mattpocock/skills",
+        "branch": "main",
+        "path": "skills/productivity/to-questionnaire"
+      },
+      "install": {
+        "command": "d=$(mktemp -d) && git clone --depth 1 -q https://github.com/mattpocock/skills \"$d\" && mkdir -p ~/.claude/skills/ && cp -R \"$d/skills/productivity/to-questionnaire\" ~/.claude/skills/",
+        "notes": "Claude Code folder shown. Codex: ~/.agents/skills/ · Cursor: ~/.cursor/skills/ · Gemini CLI: ~/.gemini/skills/ · Copilot: ~/.copilot/skills/. Loads in a new session."
+      },
+      "signals": {
+        "stars": 277118,
+        "forks": 23214,
+        "checked": "2026-10-05",
+        "head_sha": "321658273cb1d20b76026717d027d505790106d4",
+        "head_checked": "2026-10-05",
+        "installs": 404165,
+        "installs_source": "skills.sh"
+      },
+      "checked": {
+        "date": "2026-10-05",
+        "files_scanned": 2
+      },
+      "pushed": "2026-10-05",
+      "license": "MIT"
+    },
+    {
+      "id": "idea-refine",
+      "name": "idea-refine",
+      "repo_url": "https://github.com/addyosmani/agent-skills/tree/main/skills/idea-refine",
+      "author": "Addy Osmani (addyosmani)",
+      "category": "planning",
+      "summary": "Widens a vague idea into options, narrows to one clear concept, and ends with a one-page plan.",
+      "line": "Your AI now takes a vague idea, stress-tests the idea with hard questions, and can save a one-page plan of what to build and what to skip.",
+      "calls": "auto",
+      "for": "anyone",
+      "needs": [
+        "files",
+        "scripts"
+      ],
+      "pain_points": [
+        "planning-drift"
+      ],
+      "source": {
+        "repo": "addyosmani/agent-skills",
+        "branch": "main",
+        "path": "skills/idea-refine"
+      },
+      "install": {
+        "command": "d=$(mktemp -d) && git clone --depth 1 -q https://github.com/addyosmani/agent-skills \"$d\" && mkdir -p ~/.claude/skills/ && cp -R \"$d/skills/idea-refine\" ~/.claude/skills/",
+        "notes": "Claude Code folder shown. Codex: ~/.agents/skills/ · Cursor: ~/.cursor/skills/ · Gemini CLI: ~/.gemini/skills/ · Copilot: ~/.copilot/skills/. Loads in a new session."
+      },
+      "signals": {
+        "stars": 101553,
+        "forks": 10649,
+        "checked": "2026-10-05",
+        "head_sha": "5aacc3bce933539dc85fa7c78a1807aa396f4801",
+        "head_checked": "2026-10-05",
+        "installs": 44028,
+        "installs_source": "skills.sh"
+      },
+      "checked": {
+        "date": "2026-10-05",
+        "files_scanned": 5
+      },
+      "pushed": "2026-10-03",
+      "license": "MIT"
+    },
+    {
       "id": "copywriting",
       "name": "copywriting",
       "repo_url": "https://github.com/coreyhaines31/marketingskills/tree/main/skills/copywriting",
@@ -558,6 +719,205 @@
       },
       "pushed": "2026-10-03",
       "license": "MIT"
+    },
+    {
+      "id": "copy-editing",
+      "name": "copy-editing",
+      "repo_url": "https://github.com/coreyhaines31/marketingskills/tree/main/skills/copy-editing",
+      "author": "Corey Haines (coreyhaines31)",
+      "category": "writing",
+      "summary": "Edits marketing copy you already have in focused passes, cutting filler and AI-sounding phrases.",
+      "line": "Your AI now edits your existing copy in focused passes, cutting filler and AI-sounding phrases while keeping your message.",
+      "calls": "auto",
+      "for": "writing",
+      "needs": [],
+      "pain_points": [
+        "ai-sounding"
+      ],
+      "source": {
+        "repo": "coreyhaines31/marketingskills",
+        "branch": "main",
+        "path": "skills/copy-editing"
+      },
+      "install": {
+        "command": "d=$(mktemp -d) && git clone --depth 1 -q https://github.com/coreyhaines31/marketingskills \"$d\" && mkdir -p ~/.claude/skills/ && cp -R \"$d/skills/copy-editing\" ~/.claude/skills/",
+        "notes": "Claude Code folder shown. Codex: ~/.agents/skills/ · Cursor: ~/.cursor/skills/ · Gemini CLI: ~/.gemini/skills/ · Copilot: ~/.copilot/skills/. Loads in a new session."
+      },
+      "signals": {
+        "stars": 53372,
+        "forks": 7937,
+        "checked": "2026-10-05",
+        "head_sha": "12188f1e3d3d8538fd32a96c925a8f6d7641827e",
+        "head_checked": "2026-10-05",
+        "installs": 136350,
+        "installs_source": "skills.sh"
+      },
+      "checked": {
+        "date": "2026-10-05",
+        "files_scanned": 5
+      },
+      "pushed": "2026-10-03",
+      "license": "MIT"
+    },
+    {
+      "id": "pptx",
+      "name": "pptx",
+      "repo_url": "https://github.com/anthropics/skills/tree/main/skills/pptx",
+      "author": "Anthropic (anthropics)",
+      "category": "writing",
+      "summary": "Builds, edits and reads PowerPoint decks, with slide thumbnails to check the layout.",
+      "line": "Your AI now builds, edits and reads PowerPoint decks. Needs Node, Python and LibreOffice installed.",
+      "calls": "auto",
+      "for": "writing",
+      "needs": [
+        "files",
+        "scripts"
+      ],
+      "pain_points": [],
+      "source": {
+        "repo": "anthropics/skills",
+        "branch": "main",
+        "path": "skills/pptx"
+      },
+      "install": {
+        "command": "d=$(mktemp -d) && git clone --depth 1 -q https://github.com/anthropics/skills \"$d\" && mkdir -p ~/.claude/skills/ && cp -R \"$d/skills/pptx\" ~/.claude/skills/",
+        "notes": "Claude Code folder shown. Anthropic's terms keep these files for use inside Anthropic's own products, so don't copy them into other tools. Loads in a new session."
+      },
+      "signals": {
+        "stars": 179794,
+        "forks": 21249,
+        "checked": "2026-10-05",
+        "head_sha": "fa0fa64bdc967915dc8399e803be67759e1e62b8",
+        "head_checked": "2026-10-05",
+        "installs": 230546,
+        "installs_source": "skills.sh"
+      },
+      "checked": {
+        "date": "2026-10-05",
+        "files_scanned": 17
+      },
+      "pushed": "2026-10-05",
+      "license": "Proprietary (Anthropic terms; not open source)"
+    },
+    {
+      "id": "pdf",
+      "name": "pdf",
+      "repo_url": "https://github.com/anthropics/skills/tree/main/skills/pdf",
+      "author": "Anthropic (anthropics)",
+      "category": "writing",
+      "summary": "Reads, merges, splits, fills in and creates PDF files, and can read scanned pages with text recognition.",
+      "line": "Your AI now reads, merges, splits, fills in and creates PDF files. Needs Python and a few PDF packages installed.",
+      "calls": "auto",
+      "for": "writing",
+      "needs": [
+        "files",
+        "scripts"
+      ],
+      "pain_points": [],
+      "source": {
+        "repo": "anthropics/skills",
+        "branch": "main",
+        "path": "skills/pdf"
+      },
+      "install": {
+        "command": "d=$(mktemp -d) && git clone --depth 1 -q https://github.com/anthropics/skills \"$d\" && mkdir -p ~/.claude/skills/ && cp -R \"$d/skills/pdf\" ~/.claude/skills/",
+        "notes": "Claude Code folder shown. Anthropic's terms keep these files for use inside Anthropic's own products, so don't copy them into other tools. Loads in a new session."
+      },
+      "signals": {
+        "stars": 179794,
+        "forks": 21249,
+        "checked": "2026-10-05",
+        "head_sha": "1ed29a03dc852d30fa6ef2ca53a67dc2c2c2c563",
+        "head_checked": "2026-10-05",
+        "installs": 205437,
+        "installs_source": "skills.sh"
+      },
+      "checked": {
+        "date": "2026-10-05",
+        "files_scanned": 12
+      },
+      "pushed": "2026-10-05",
+      "license": "Proprietary (Anthropic terms; not open source)"
+    },
+    {
+      "id": "docx",
+      "name": "docx",
+      "repo_url": "https://github.com/anthropics/skills/tree/main/skills/docx",
+      "author": "Anthropic (anthropics)",
+      "category": "writing",
+      "summary": "Creates, edits and reads Word documents, including tables of contents, comments and tracked changes.",
+      "line": "Your AI now builds and edits Word documents with real formatting. Needs Node, Python, LibreOffice and pandoc installed.",
+      "calls": "auto",
+      "for": "writing",
+      "needs": [
+        "files",
+        "scripts"
+      ],
+      "pain_points": [],
+      "source": {
+        "repo": "anthropics/skills",
+        "branch": "main",
+        "path": "skills/docx"
+      },
+      "install": {
+        "command": "d=$(mktemp -d) && git clone --depth 1 -q https://github.com/anthropics/skills \"$d\" && mkdir -p ~/.claude/skills/ && cp -R \"$d/skills/docx\" ~/.claude/skills/",
+        "notes": "Claude Code folder shown. Anthropic's terms keep these files for use inside Anthropic's own products, so don't copy them into other tools. Loads in a new session."
+      },
+      "signals": {
+        "stars": 179794,
+        "forks": 21249,
+        "checked": "2026-10-05",
+        "head_sha": "fa0fa64bdc967915dc8399e803be67759e1e62b8",
+        "head_checked": "2026-10-05",
+        "installs": 196566,
+        "installs_source": "skills.sh"
+      },
+      "checked": {
+        "date": "2026-10-05",
+        "files_scanned": 17
+      },
+      "pushed": "2026-10-05",
+      "license": "Proprietary (Anthropic terms; not open source)"
+    },
+    {
+      "id": "xlsx",
+      "name": "xlsx",
+      "repo_url": "https://github.com/anthropics/skills/tree/main/skills/xlsx",
+      "author": "Anthropic (anthropics)",
+      "category": "writing",
+      "summary": "Builds, cleans and fixes spreadsheets (xlsx, csv) with working formulas that are checked for errors.",
+      "line": "Your AI now builds and fixes spreadsheets with working formulas and checks them for errors. Needs Python and LibreOffice installed.",
+      "calls": "auto",
+      "for": "writing",
+      "needs": [
+        "files",
+        "scripts"
+      ],
+      "pain_points": [],
+      "source": {
+        "repo": "anthropics/skills",
+        "branch": "main",
+        "path": "skills/xlsx"
+      },
+      "install": {
+        "command": "d=$(mktemp -d) && git clone --depth 1 -q https://github.com/anthropics/skills \"$d\" && mkdir -p ~/.claude/skills/ && cp -R \"$d/skills/xlsx\" ~/.claude/skills/",
+        "notes": "Claude Code folder shown. Anthropic's terms keep these files for use inside Anthropic's own products, so don't copy them into other tools. Loads in a new session."
+      },
+      "signals": {
+        "stars": 179794,
+        "forks": 21249,
+        "checked": "2026-10-05",
+        "head_sha": "fa0fa64bdc967915dc8399e803be67759e1e62b8",
+        "head_checked": "2026-10-05",
+        "installs": 177582,
+        "installs_source": "skills.sh"
+      },
+      "checked": {
+        "date": "2026-10-05",
+        "files_scanned": 14
+      },
+      "pushed": "2026-10-05",
+      "license": "Proprietary (Anthropic terms; not open source)"
     },
     {
       "id": "frontend-design",
@@ -675,6 +1035,164 @@
       },
       "pushed": "2026-10-02",
       "license": "MIT"
+    },
+    {
+      "id": "redesign-existing-projects",
+      "name": "redesign-existing-projects",
+      "repo_url": "https://github.com/Leonxlnx/taste-skill/tree/main/skills/redesign-skill",
+      "author": "Leonxlnx",
+      "category": "frontend",
+      "summary": "Audits an existing site, spots generic AI-looking design, and upgrades it without breaking what works.",
+      "line": "Your AI now audits an existing site for generic, AI-looking design and upgrades the design in small steps without breaking what works.",
+      "calls": "auto",
+      "for": "design",
+      "needs": [
+        "files"
+      ],
+      "pain_points": [
+        "generic-frontend"
+      ],
+      "source": {
+        "repo": "Leonxlnx/taste-skill",
+        "branch": "main",
+        "path": "skills/redesign-skill"
+      },
+      "install": {
+        "command": "d=$(mktemp -d) && git clone --depth 1 -q https://github.com/Leonxlnx/taste-skill \"$d\" && mkdir -p ~/.claude/skills/ && cp -R \"$d/skills/redesign-skill\" ~/.claude/skills/redesign-existing-projects",
+        "notes": "Claude Code folder shown. Codex: ~/.agents/skills/ · Cursor: ~/.cursor/skills/ · Gemini CLI: ~/.gemini/skills/ · Copilot: ~/.copilot/skills/. Loads in a new session."
+      },
+      "signals": {
+        "stars": 92859,
+        "forks": 6301,
+        "checked": "2026-10-05",
+        "head_sha": "3206dd44fce91412cbfd5b2dbead29fb29a91bb9",
+        "head_checked": "2026-10-05",
+        "installs": 409400,
+        "installs_source": "skills.sh"
+      },
+      "checked": {
+        "date": "2026-10-05",
+        "files_scanned": 1
+      },
+      "pushed": "2026-09-26",
+      "license": "MIT"
+    },
+    {
+      "id": "animation-vocabulary",
+      "name": "animation-vocabulary",
+      "repo_url": "https://github.com/emilkowalski/skills/tree/main/skills/animation-vocabulary",
+      "author": "Emil Kowalski (emilkowalski)",
+      "category": "frontend",
+      "summary": "Turns a loose description of a motion effect into its exact name, so you can ask for the right one.",
+      "line": "Your AI now names a motion effect from your description (“the bouncy thing when a menu opens” is “Pop in”), so you can ask for the right one.",
+      "calls": "auto",
+      "for": "design",
+      "needs": [],
+      "pain_points": [
+        "generic-frontend"
+      ],
+      "source": {
+        "repo": "emilkowalski/skills",
+        "branch": "main",
+        "path": "skills/animation-vocabulary"
+      },
+      "install": {
+        "command": "d=$(mktemp -d) && git clone --depth 1 -q https://github.com/emilkowalski/skills \"$d\" && mkdir -p ~/.claude/skills/ && cp -R \"$d/skills/animation-vocabulary\" ~/.claude/skills/",
+        "notes": "Claude Code folder shown. Codex: ~/.agents/skills/ · Cursor: ~/.cursor/skills/ · Gemini CLI: ~/.gemini/skills/ · Copilot: ~/.copilot/skills/. Loads in a new session."
+      },
+      "signals": {
+        "stars": 43688,
+        "forks": 2468,
+        "checked": "2026-10-05",
+        "head_sha": "85e8e2363b713506e1d5b6e07a0eb2da66be1bc3",
+        "head_checked": "2026-10-05",
+        "installs": 188743,
+        "installs_source": "skills.sh"
+      },
+      "checked": {
+        "date": "2026-10-05",
+        "files_scanned": 1
+      },
+      "pushed": "2026-10-02",
+      "license": "MIT"
+    },
+    {
+      "id": "theme-factory",
+      "name": "theme-factory",
+      "repo_url": "https://github.com/anthropics/skills/tree/main/skills/theme-factory",
+      "author": "Anthropic (anthropics)",
+      "category": "frontend",
+      "summary": "Gives slides, documents or pages one of 10 ready-made color and font themes, or builds a new one.",
+      "line": "Your AI now shows 10 ready-made color-and-font themes, then applies the one you pick to your slides, documents or pages.",
+      "calls": "auto",
+      "for": "design",
+      "needs": [],
+      "pain_points": [
+        "generic-frontend"
+      ],
+      "source": {
+        "repo": "anthropics/skills",
+        "branch": "main",
+        "path": "skills/theme-factory"
+      },
+      "install": {
+        "command": "d=$(mktemp -d) && git clone --depth 1 -q https://github.com/anthropics/skills \"$d\" && mkdir -p ~/.claude/skills/ && cp -R \"$d/skills/theme-factory\" ~/.claude/skills/",
+        "notes": "Claude Code folder shown. Codex: ~/.agents/skills/ · Cursor: ~/.cursor/skills/ · Gemini CLI: ~/.gemini/skills/ · Copilot: ~/.copilot/skills/. Loads in a new session."
+      },
+      "signals": {
+        "stars": 179794,
+        "forks": 21249,
+        "checked": "2026-10-05",
+        "head_sha": "b9e19e6f44773509fbdd7001d77ff41a49a486c1",
+        "head_checked": "2026-10-05",
+        "installs": 89032,
+        "installs_source": "skills.sh"
+      },
+      "checked": {
+        "date": "2026-10-05",
+        "files_scanned": 12
+      },
+      "pushed": "2026-10-05",
+      "license": "Apache-2.0"
+    },
+    {
+      "id": "canvas-design",
+      "name": "canvas-design",
+      "repo_url": "https://github.com/anthropics/skills/tree/main/skills/canvas-design",
+      "author": "Anthropic (anthropics)",
+      "category": "frontend",
+      "summary": "Makes a poster or one-page visual (PNG or PDF) from a design idea you describe, with fonts included.",
+      "line": "Your AI now makes a poster or one-page visual as a PNG or PDF from a design idea you describe, using the fonts included.",
+      "calls": "auto",
+      "for": "design",
+      "needs": [
+        "files"
+      ],
+      "pain_points": [],
+      "source": {
+        "repo": "anthropics/skills",
+        "branch": "main",
+        "path": "skills/canvas-design"
+      },
+      "install": {
+        "command": "d=$(mktemp -d) && git clone --depth 1 -q https://github.com/anthropics/skills \"$d\" && mkdir -p ~/.claude/skills/ && cp -R \"$d/skills/canvas-design\" ~/.claude/skills/",
+        "notes": "Claude Code folder shown. Codex: ~/.agents/skills/ · Cursor: ~/.cursor/skills/ · Gemini CLI: ~/.gemini/skills/ · Copilot: ~/.copilot/skills/. Loads in a new session."
+      },
+      "signals": {
+        "stars": 179794,
+        "forks": 21249,
+        "checked": "2026-10-05",
+        "head_sha": "b9e19e6f44773509fbdd7001d77ff41a49a486c1",
+        "head_checked": "2026-10-05",
+        "installs": 113627,
+        "installs_source": "skills.sh"
+      },
+      "checked": {
+        "date": "2026-10-05",
+        "files_scanned": 29
+      },
+      "pushed": "2026-10-05",
+      "license": "Apache-2.0 (bundled fonts: SIL Open Font License)"
     },
     {
       "id": "verification-before-completion",
@@ -1009,13 +1527,131 @@
       "license": "MIT"
     },
     {
+      "id": "prototype",
+      "name": "prototype",
+      "repo_url": "https://github.com/mattpocock/skills/tree/main/skills/engineering/prototype",
+      "author": "Matt Pocock (mattpocock)",
+      "category": "planning",
+      "summary": "Builds a quick throwaway demo or a few layouts to flip between, to answer a design question.",
+      "line": "Your AI now builds a quick throwaway demo or a few layout options when you're unsure about a design, before the real build.",
+      "calls": "auto",
+      "for": "coding",
+      "needs": [
+        "files"
+      ],
+      "pain_points": [
+        "planning-drift"
+      ],
+      "source": {
+        "repo": "mattpocock/skills",
+        "branch": "main",
+        "path": "skills/engineering/prototype"
+      },
+      "install": {
+        "command": "d=$(mktemp -d) && git clone --depth 1 -q https://github.com/mattpocock/skills \"$d\" && mkdir -p ~/.claude/skills/ && cp -R \"$d/skills/engineering/prototype\" ~/.claude/skills/",
+        "notes": "Claude Code folder shown. Codex: ~/.agents/skills/ · Cursor: ~/.cursor/skills/ · Gemini CLI: ~/.gemini/skills/ · Copilot: ~/.copilot/skills/. Loads in a new session."
+      },
+      "signals": {
+        "stars": 277118,
+        "forks": 23214,
+        "checked": "2026-10-05",
+        "head_sha": "321658273cb1d20b76026717d027d505790106d4",
+        "head_checked": "2026-10-05",
+        "installs": 884022,
+        "installs_source": "skills.sh"
+      },
+      "checked": {
+        "date": "2026-10-05",
+        "files_scanned": 4
+      },
+      "pushed": "2026-10-05",
+      "license": "MIT"
+    },
+    {
+      "id": "full-output-enforcement",
+      "name": "full-output-enforcement",
+      "repo_url": "https://github.com/Leonxlnx/taste-skill/tree/main/skills/output-skill",
+      "author": "Leonxlnx",
+      "category": "output-style",
+      "summary": "Stops your AI from cutting long answers short with “the rest is the same” or “...” in place of real content.",
+      "line": "Your AI now writes every file and section in full, with no “rest of the code” shortcuts, and pauses cleanly when a reply runs long.",
+      "calls": "auto",
+      "for": "coding",
+      "needs": [],
+      "pain_points": [],
+      "source": {
+        "repo": "Leonxlnx/taste-skill",
+        "branch": "main",
+        "path": "skills/output-skill"
+      },
+      "install": {
+        "command": "d=$(mktemp -d) && git clone --depth 1 -q https://github.com/Leonxlnx/taste-skill \"$d\" && mkdir -p ~/.claude/skills/ && cp -R \"$d/skills/output-skill\" ~/.claude/skills/full-output-enforcement",
+        "notes": "Claude Code folder shown. Codex: ~/.agents/skills/ · Cursor: ~/.cursor/skills/ · Gemini CLI: ~/.gemini/skills/ · Copilot: ~/.copilot/skills/. Loads in a new session."
+      },
+      "signals": {
+        "stars": 92859,
+        "forks": 6301,
+        "checked": "2026-10-05",
+        "head_sha": "3206dd44fce91412cbfd5b2dbead29fb29a91bb9",
+        "head_checked": "2026-10-05",
+        "installs": 362193,
+        "installs_source": "skills.sh"
+      },
+      "checked": {
+        "date": "2026-10-05",
+        "files_scanned": 1
+      },
+      "pushed": "2026-09-26",
+      "license": "MIT"
+    },
+    {
+      "id": "git-guardrails-claude-code",
+      "name": "git-guardrails-claude-code",
+      "repo_url": "https://github.com/mattpocock/skills/tree/main/skills/misc/git-guardrails-claude-code",
+      "author": "Matt Pocock (mattpocock)",
+      "category": "git",
+      "summary": "Adds a Claude Code safety check that blocks git push, hard resets and force-deletes. Needs jq installed.",
+      "line": "Edits your Claude Code settings to add a safety check that stops your AI from running git push, hard resets and force-deletes.",
+      "calls": "auto",
+      "for": "coding",
+      "needs": [
+        "files",
+        "scripts"
+      ],
+      "pain_points": [],
+      "source": {
+        "repo": "mattpocock/skills",
+        "branch": "main",
+        "path": "skills/misc/git-guardrails-claude-code"
+      },
+      "install": {
+        "command": "d=$(mktemp -d) && git clone --depth 1 -q https://github.com/mattpocock/skills \"$d\" && mkdir -p ~/.claude/skills/ && cp -R \"$d/skills/misc/git-guardrails-claude-code\" ~/.claude/skills/",
+        "notes": "Claude Code only: this sets up a Claude Code hook. Claude Code folder shown. Loads in a new session."
+      },
+      "signals": {
+        "stars": 277118,
+        "forks": 23214,
+        "checked": "2026-10-05",
+        "head_sha": "321658273cb1d20b76026717d027d505790106d4",
+        "head_checked": "2026-10-05",
+        "installs": 429832,
+        "installs_source": "skills.sh"
+      },
+      "checked": {
+        "date": "2026-10-05",
+        "files_scanned": 3
+      },
+      "pushed": "2026-10-05",
+      "license": "MIT"
+    },
+    {
       "id": "implement-spec",
       "name": "implement-spec",
       "repo_url": "https://github.com/mattpocock/skills/tree/main/skills/engineering/implement-spec",
       "author": "mattpocock",
       "category": "planning",
-      "summary": "Implement the result of /to-spec and /to-tickets in code.",
-      "line": "Type /implement-spec to implement the result of /to-spec and /to-tickets in code.",
+      "summary": "Builds a written spec ticket by ticket, then reviews the code. Needs the spec and tickets in an issue tracker.",
+      "line": "Type /implement-spec when you have a written spec and its tickets, and your AI builds them all on one branch, then reviews the code.",
       "calls": "you",
       "for": "coding",
       "needs": [
@@ -1059,8 +1695,8 @@
       "repo_url": "https://github.com/mattpocock/skills/tree/main/skills/engineering/retro",
       "author": "mattpocock",
       "category": "workflow",
-      "summary": "Conduct a retrospective on a coding session.",
-      "line": "Type /retro to conduct a retrospective on a coding session.",
+      "summary": "Reviews a coding session and suggests project setup changes so your AI makes fewer mistakes next time.",
+      "line": "Type /retro after a coding session, and your AI reviews how the session went and suggests setup changes for the next one.",
       "calls": "you",
       "for": "coding",
       "needs": [
@@ -1103,8 +1739,8 @@
       "repo_url": "https://github.com/mattpocock/skills/tree/main/skills/engineering/pr",
       "author": "mattpocock",
       "category": "git",
-      "summary": "Use when writing a PR body.",
-      "line": "Your AI uses pr when needed: Use when writing a PR body.",
+      "summary": "Writes pull request descriptions: a diagram of the change, before-and-after proof, and a merge risk note.",
+      "line": "Your AI now writes pull request descriptions with a diagram of the change, before-and-after proof, and a risk note on the merge.",
       "calls": "auto",
       "for": "coding",
       "needs": [
