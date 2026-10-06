@@ -1048,7 +1048,7 @@
       "",
       "1. First, before anything else, ask me exactly this and wait for my answer: \"What do you want your AI to do better? Not sure? Tell me what you use AI for, or say 'look' and I'll check your setup.\"",
       "",
-      "2. Then read Skillproof's SKILL.md below and follow it, picking up after its opening question with my answer. Read its other files when it points to them. Read each file in full, word for word — in a coding app, print it (curl -fsSL <link>) rather than summarizing it. Don't save anything: Skillproof asks before it changes anything, itself included. If a link won't open, don't try another way — tell me in one line.",
+      "2. Then read Skillproof's SKILL.md below and follow it, picking up after its opening question with my answer. Read its other files when it points to them. Read each file in full, word for word (in a coding app, printing it with curl -fsSL <link> keeps every word). Don't save anything: Skillproof asks before it changes anything, itself included. If you can't open the links at all, tell me in one line.",
     ].concat(SKILL_FILES.map(function (f) { return "   " + SKILL_RAW + f; })).concat([
       "",
       "3. If I said I don't know, don't ask me the same question again: follow its \"nothing to say\" path and show me a plan."

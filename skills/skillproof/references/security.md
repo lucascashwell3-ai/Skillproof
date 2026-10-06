@@ -98,7 +98,8 @@ way on your own; anything you offer instead is said plainly and waits for a new 
 any form:
 
 - a second download tool after the first failed — `Invoke-WebRequest`, `certutil`, `bitsadmin`,
-  `Start-BitsTransfer`, `wget`, a browser trick
+  `Start-BitsTransfer`, `wget`, a browser trick. (Reading a page with this app's own web reader
+  is reading, not a download, and is always fine.)
 - turning off a certificate check — `-k`, `--insecure`, `-SkipCertificateCheck`
 - changing execution policy — `Set-ExecutionPolicy`, `-ExecutionPolicy Bypass`, `Unblock-File`
 - touching proxy, firewall, antivirus or security settings, the registry, scheduled tasks, or
