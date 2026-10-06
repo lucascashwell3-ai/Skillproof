@@ -69,6 +69,10 @@ curl.exe -fsSL "<raw url>" -o "$HOME\.claude\skills\<name>\SKILL.md"
 One file per command, each one named in the plan's folder. Nothing runs after it lands —
 a skill's own installer script is never run.
 
+**A skill that is a whole repo** (`source.path` is empty): copy only the skill's own files —
+`SKILL.md`, its license, and the files `SKILL.md` points to. Never `.git`, CI files, packaging
+or test scripts. Clone-and-copy would bring all of that, so fetch the files one by one.
+
 **Moving aside:** `mv` in bash, `Move-Item` in PowerShell. Never `rm`, never `Remove-Item`.
 
 **Personal or one project?** Follow their pattern — someone whose skills all sit in the
