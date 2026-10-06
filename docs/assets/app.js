@@ -4,6 +4,38 @@
    entry is one proven skill's folder that passed the malice scan. Every claim
    on the page derives from a real field in the data — no fabricated commands
    or stats. */
+/* Copy that tells the truth (2026-10-05): resolves true only when the text
+   reached the clipboard. Some browsers and work laptops refuse clipboard
+   writes; then the caller selects the text so the person can copy it. */
+function spCopy(text) {
+  function legacy() {
+    try {
+      var ta = document.createElement("textarea");
+      ta.value = text; ta.setAttribute("readonly", "");
+      ta.style.position = "fixed"; ta.style.top = "-1000px";
+      document.body.appendChild(ta); ta.select();
+      var ok = !!(document.execCommand && document.execCommand("copy"));
+      document.body.removeChild(ta);
+      return ok;
+    } catch (e) { return false; }
+  }
+  try {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      return navigator.clipboard.writeText(text).then(function () { return true; }, function () { return legacy(); });
+    }
+  } catch (e) {}
+  return Promise.resolve(legacy());
+}
+function spSelect(el) {
+  try {
+    if (!el) return;
+    if (el.select) { el.focus(); el.select(); return; }
+    var r = document.createRange(); r.selectNodeContents(el);
+    var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(r);
+  } catch (e) {}
+}
+var SP_COPY_BLOCKED = "Your browser blocked copying — the text is selected, press Ctrl+C (⌘C on a Mac)";
+
 (function () {
   "use strict";
 
@@ -846,22 +878,26 @@
     function copyPlanNow(btn) {
       var txt = $("#cmdbox").dataset.cmd || "";
       if (!txt) { toast("Add something to the tray first"); return; }
-      try { if (navigator.clipboard) navigator.clipboard.writeText(txt); } catch (err) {}
-      toast(state.mode === "agent" ? "Agent prompt copied — paste it at your agent" : "Install plan copied — paste it in your terminal");
-      if (btn) {
-        btn.classList.add("done");
-        setTimeout(function () { btn.classList.remove("done"); }, 1800);
-      }
+      spCopy(txt).then(function (ok) {
+        if (!ok) { spSelect($("#cmdbox")); toast(SP_COPY_BLOCKED); return; }
+        toast(state.mode === "agent" ? "Agent prompt copied — paste it at your agent" : "Install plan copied — paste it in your terminal");
+        if (btn) {
+          btn.classList.add("done");
+          setTimeout(function () { btn.classList.remove("done"); }, 1800);
+        }
+      });
     }
     $("#copyPlan").addEventListener("click", function () { copyPlanNow(null); });
     $("#copy").addEventListener("click", function () { copyPlanNow($("#copy")); });
 
     $$("[data-copy]").forEach(function (btn) {
       btn.addEventListener("click", function () {
-        try { if (navigator.clipboard) navigator.clipboard.writeText(btn.getAttribute("data-copy")); } catch (err) {}
-        btn.classList.add("done");
-        toast("Copied");
-        setTimeout(function () { btn.classList.remove("done"); }, 1600);
+        spCopy(btn.getAttribute("data-copy")).then(function (ok) {
+          if (!ok) { spSelect(btn.parentElement && btn.parentElement.querySelector(".cmdbox")); toast(SP_COPY_BLOCKED); return; }
+          btn.classList.add("done");
+          toast("Copied");
+          setTimeout(function () { btn.classList.remove("done"); }, 1600);
+        });
       });
     });
 
@@ -912,12 +948,12 @@
 
     /* prompt generator: panel is open by default (see boot), just wire copy */
     $("#copyPrompt").addEventListener("click", function () {
-      try {
-        if (navigator.clipboard) navigator.clipboard.writeText($("#promptText").value);
+      spCopy($("#promptText").value).then(function (ok) {
+        if (!ok) { spSelect($("#promptText")); toast(SP_COPY_BLOCKED); return; }
         toast("Copied");
         $("#copyPrompt").classList.add("done");
         setTimeout(function () { $("#copyPrompt").classList.remove("done"); }, 1600);
-      } catch (err) {}
+      });
     });
   }
 
@@ -1149,10 +1185,12 @@
       var src = document.getElementById("promptText");
       var text = src && src.value;
       if (!text) { open("prompt"); return; }          // never a dead button
-      try { if (navigator.clipboard) navigator.clipboard.writeText(text); } catch (err) {}
-      toast("Copied");
-      btn.classList.add("done");
-      setTimeout(function () { btn.classList.remove("done"); }, 1600);
+      spCopy(text).then(function (ok) {
+        if (!ok) { open("prompt"); spSelect(src); toast(SP_COPY_BLOCKED); return; }
+        toast("Copied");
+        btn.classList.add("done");
+        setTimeout(function () { btn.classList.remove("done"); }, 1600);
+      });
     });
   });
 

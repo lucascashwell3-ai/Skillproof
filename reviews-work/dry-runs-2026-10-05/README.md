@@ -35,4 +35,15 @@ ChatGPT's 8,000-character Project box (now: fit the box or leave it out). Each f
 **Can't be proven here:** an upload into the Claude app, Copilot Chat on a real work laptop,
 and Claude Code loading the installed skill — those need a person at the keyboard.
 
+## Three more setups (later the same day, skill at 4fec5b3)
+
+| # | Who | App | Said | Ended with |
+|---|---|---|---|---|
+| 10 | Operations manager, work laptop | Microsoft 365 Copilot with Cowork | "my plans fall apart when people ask questions" | grill-me + grilling as two zips, uploaded through Cowork's Customize → Skills, with the "Don't see that?" fallback line |
+| 11 | Student, free account | Gemini app on a phone | "not sure", then "2" (learning) | teach left out (needs files); grill-me, show-me, humanizer as copy-paste versions for Gems |
+| 12 | Backend developer, work laptop | GitHub Copilot in VS Code, Windows | "look" | Checked all three folders Copilot reads, found humanizer in `~/.claude/skills`, added verification-before-completion, diagnosing-bugs (script named) and grill-me beside it — no twin |
+
+The install commands themselves were also run on real Windows (PowerShell 5.1 and 7, Git
+Bash), macOS and Ubuntu machines, including a skill's subfolders fetched without git.
+
 [Before](before.md) · [After](after.md)
