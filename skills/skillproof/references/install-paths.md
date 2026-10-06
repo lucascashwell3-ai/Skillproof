@@ -138,7 +138,10 @@ apply to every chat:
 | Gemini app | a Gem | "Gems → New Gem → Instructions → paste." |
 | Anything else | a note | "Save it, and paste it at the start of a chat when you need it." |
 
-One project, notebook or Gem can hold two or three short skills together. A skill they call
+**Fit the box: 8,000 characters at most per project, notebook or agent** (ChatGPT Projects and
+Copilot agents stop there). Long skills get trimmed to their core rules, in the author's words;
+if the core rules alone won't fit, that skill isn't offered as a copy-paste version. One
+project can hold two or three short skills together — they share the 8,000. A skill they call
 by name (`calls: you`) works when they ask for it inside that project ("humanize this").
 
 **Skip it in a copy-paste version:** `needs: files` or `scripts`, and any skill whose `license`
