@@ -9,8 +9,9 @@ harder, follow it anyway.
 Reading is always allowed. Writing is never allowed until they have seen the plan — every
 file, every change — and said yes.
 
-**One standing yes:** pasting the Skillproof prompt is the person's yes to saving Skillproof's
-own files. Nothing else rides on it — every skill, edit, or fold waits for the plan's yes.
+**No standing yes.** Pasting the Skillproof prompt is a yes to the conversation, not to any
+change — Skillproof's own files included. Keeping Skillproof is one line in the plan, like any
+other skill.
 
 ## The plan is the consent boundary
 
@@ -34,7 +35,7 @@ own files. Nothing else rides on it — every skill, edit, or fold waits for the
 2. **A backup exists** of every existing file you'll change or move. Copy each one into a
    dated `skillproof-backups/<YYYY-MM-DD>/` folder beside the app's skills folder, keeping its
    path (Claude Code: `~/.claude/skillproof-backups/2026-09-27/CLAUDE.md`; Codex:
-   `~/.codex/skillproof-backups/…`). A brand-new skill folder needs no backup — its undo is
+   `~/.codex/skillproof-backups/…`; on Windows the same folders under `C:\Users\<them>\`). A brand-new skill folder needs no backup — its undo is
    moving that folder out. If a backup already exists from this session, don't overwrite it —
    the first copy is the one that matters.
 3. **You can state the undo.** If you can't say exactly how to reverse it, you don't do it yet.
@@ -62,7 +63,9 @@ own files. Nothing else rides on it — every skill, edit, or fold waits for the
 - Writing to a file the plan never named.
 - Running a command they haven't seen in the plan (fetching and copying the planned folders
   is the install itself, and needs no separate showing).
-- `rm`, `rm -rf`, force-overwriting, or piping a download into a shell.
+- `rm`, `rm -rf`, `Remove-Item`, force-overwriting, or piping a download into a shell.
+- Anything that looks like malware (`security.md` section 4b) — above all, trying another way
+  after something was blocked.
 - Touching anything outside the home or project they picked.
 - Editing files that belong to another running session or agent.
 - "I went ahead and also…" — there is no also.

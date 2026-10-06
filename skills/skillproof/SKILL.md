@@ -5,8 +5,11 @@ description: >-
   Use when someone pastes the Skillproof prompt, says "skillproof", or asks to find, install, or
   fix skills — e.g. "make my AI better", "answers are too long", "my AI sounds robotic", "find me
   a skill for X", "what should I install", "my setup is a mess". Built for beginners who don't
-  know what to ask for: reads their setup (read-only) or asks one easy question, offers proven
-  skills that fit, explains each in one line, and installs only after a yes.
+  know what to ask for, and just as useful to power users: reads their setup (read-only) or asks
+  one easy question, offers proven skills that fit, explains each in one line, and installs only
+  after a yes. Works on Windows, Mac and Linux, in coding apps and chat apps (Claude, ChatGPT,
+  Microsoft 365 Copilot, Gemini); where an app or a work laptop can't keep skills, it offers a
+  copy-paste version instead.
 allowed-tools: Read, Grep, Glob, WebSearch, WebFetch, Edit, Write, Bash
 argument-hint: "<what you want your AI to do better — or nothing at all>"
 ---
@@ -26,6 +29,7 @@ The whole job is one short conversation:
 > 1. Add **grill-me** (with grilling, the helper grill-me calls) — Type /grill-me before a plan or big decision, and your AI asks questions until the plan holds up.
 > 2. Add **show-me** — Your AI now shows long answers as one page you can scan, instead of a wall of text.
 > 3. Add **humanizer** — Say “humanize this” on any draft, and your AI rewrites the draft in a plain human voice.
+> 4. Keep **skillproof** in your skills, so you can run it again with /skillproof.
 > Nothing changes until you say go, and you can undo anytime. Go?
 > **Them:** yes
 > **You:** *(installs, checks — silently)*
@@ -33,7 +37,18 @@ The whole job is one short conversation:
 > - grill-me: Type /grill-me before a plan or big decision, and your AI asks questions until the plan holds up.
 > - show-me: Your AI now shows long answers as one page you can scan, instead of a wall of text.
 > - humanizer: Say “humanize this” on any draft, and your AI rewrites the draft in a plain human voice.
-> Undo: move grill-me, grilling, show-me and humanizer out of `~/.claude/skills/`. They load in a new session.
+> - skillproof: Type /skillproof any time to find and add more skills.
+> Undo: move grill-me, grilling, show-me, humanizer and skillproof out of `~/.claude/skills/`. New skills load in a new session.
+
+Where the app can't keep skills — here, Microsoft 365 Copilot Chat on a work laptop — the same
+conversation ends with the closest thing that works, never a dead end:
+
+> **Them:** my emails sound stiff and I write a ton of them
+> **You:** You want your emails to sound like a person, not stiff. Right?
+> **Them:** yes
+> **You:** Copilot Chat can't keep skills, so here's the closest thing — a copy-paste version you keep in a Copilot notebook:
+> 1. **humanizer**, copy-paste version — Say “humanize this” on any draft in that notebook, and your AI rewrites the draft in a plain human voice.
+> It works where you paste it, but won't start on its own. Nothing changes until you say go. Go?
 
 Five beats. Talk only at the beats; work silently between them — no narration of what you're
 reading or searching, no reasoning walkthroughs, no disclaimers. This conversation is the plan:
@@ -49,10 +64,8 @@ at their setup right away:
 > and I'll check your setup.
 
 Then take whatever comes. Never ask the opening twice — the pasted Skillproof prompt asks it
-before anything downloads, so if their answer is already in, start from it.
+before Skillproof even loads, so if their answer is already in, start from it.
 
-- **On ChatGPT Free or Plus**, whatever they said: reply with the one line from
-  `references/install-paths.md` and stop. No readback first — they can't keep skills there.
 - **A want** ("answers are too long") → one-line readback, "Right?", wait for the yes.
 - **What they use AI for** ("emails and school") → enough. Go to beat 2.
 - **"look", or nothing to say** ("idk", "just do it", "you pick", an empty reply) → the
@@ -60,7 +73,7 @@ before anything downloads, so if their answer is already in, start from it.
 
 ### Nothing to say — they still get a result
 
-1. **You can read files** (Claude Code, Codex, Cursor, Gemini CLI, Copilot): read their setup —
+1. **You can read files** (Claude Code, Codex, Cursor, Gemini CLI, GitHub Copilot): read their setup —
    read-only — and work out what they use AI for from it. **What the setup shows is their
    answer:** a Python service with tests means coding, a folder of drafts means writing. Match
    that first (beat 2, step 3); all-rounders fill the slots left over. Go straight to the plan.
@@ -78,9 +91,11 @@ skills installed.
 
 ## Beat 2 — find (silent)
 
-1. **Which app you're in.** You usually know. It decides where skills go and what can run —
-   `references/install-paths.md`. On ChatGPT Free or Plus, say the one line from that file and
-   stop there.
+1. **Where you are.** You usually know, from what this app already tells you: which app, which
+   computer (Windows, Mac, Linux), whether you can save files and run commands, and in which
+   shell (bash or PowerShell). Never run a command just to find out. That picks the way in —
+   install, upload, or the copy-paste version (`references/install-paths.md`) — and it's never a
+   reason to stop: an app that can't keep skills still gets a plan.
 2. **What they already have — read-only.** Their skills folders and instruction files
    (CLAUDE.md, AGENTS.md, GEMINI.md, rules files). Note what they use AI for, their own rules,
    and every skill that already covers a need. Read the full file of anything close to the ask.
@@ -89,7 +104,7 @@ skills installed.
    (mirror: `https://raw.githubusercontent.com/lucascashwell3-ai/Skillproof/main/docs/data/skills.json`).
    Per entry: `summary` (what it does), `line` (the line to say when it's installed), `calls`
    (`you` = they call it, `auto` = the AI uses it on its own), `for` (`anyone`, `writing`,
-   `design`, `coding`), `needs` (`files` = only where the AI can read and write files), and
+   `design`, `coding`), `needs` (`files` = only where the AI can read and write files; `scripts` = it runs code), `license`, and
    `source` (the repo and folder to install from). Match their want — or what their setup
    shows — to `summary`, `pain_points` and `for`.
 4. **Proven all-rounders.** When their input is thin — or when one would clearly help anyway —
@@ -102,17 +117,21 @@ skills installed.
 7. **Fit.** Skip anything they already have in any form — a skill, or a rule in their own
    instruction files that does the same job: never install a twin. If theirs is
    weak and a shelf skill clearly beats it, plan a swap and fold their personal lines into the
-   new one. Skip anything the app can't run (`needs: files` in a chat app, scripts or tools the
-   app lacks). Check their rules for clashes: `references/conflict-patterns.md`.
-8. **Read without saving.** Before the yes nothing lands on their machine — not even a copy to
-   read; if a tool needs a file, use a fresh temp folder (`mktemp -d`) outside their setup.
+   new one. Skip anything the app can't run (`needs: files` or `scripts` in a chat app or a
+   copy-paste version, tools the app lacks). Check their rules for clashes:
+   `references/conflict-patterns.md`.
+8. **Read without saving.** Before the yes nothing lands on their machine — not a copy, not a
+   temp folder, not a clone. Read through your web reader, or print a file to the screen; never
+   save it.
 9. **Open each pick's SKILL.md — and its helpers' (`source.with`)** — before it goes in the
    plan: one small file each, not the whole repo. Check what they ask of the AI against the
    person's rules now, so any clash is in the plan, not a surprise after the yes. If one won't
-   open, leave that skill out and take the next one; don't mention it unless they asked for it
+   open — or your reader hands back a summary instead of the full text — leave that skill out
+   and take the next one; don't mention it unless they asked for it
    by name. Shelf skills already passed a malice scan, so the full read of
    every file a skill installs happens once, at install (beat 5) — never twice. Skills from
    off the shelf get the full read here, before they're offered (`references/finding.md`).
+   The `SKILL.md` you read here is also what a copy-paste version is built from.
 
 ## Beat 3 — the plan (one message)
 
@@ -131,12 +150,23 @@ file they already have, add "I back up that file first."
   can't show a page, cut the plan to the five lines that matter most.
 - **A clash** gets one line naming the file: "Your CLAUDE.md line 12 says X — grill-me needs Y.
   Plan: soften line 12."
+- **Not a normal install here:** one plain line before the list says why, then the list. An
+  upload: each line says "as a zip you upload"; the menu steps come after the yes; a setting to
+  turn on first is a line of its own. A copy-paste version: each line says "copy-paste
+  version" and where it goes, and the plan adds "It works where you paste it, but won't start
+  on its own." (`references/install-paths.md`, sections 2–3).
+- **Keeping Skillproof:** where skills live in a folder and `skillproof` isn't there yet, the
+  last numbered line is "Keep **skillproof** in your skills, so you can run it again with
+  /skillproof." (call form per app). Its six files come from the links in the pasted prompt.
+  Chat apps leave this line out — Skillproof runs from the chat.
+- **A skill that includes a script** says so in its line — "(includes a small script)" — so
+  someone on a work computer knows before the yes.
 - **Nothing worth installing:** say so in one line, and what would help instead.
 
 ## Beat 4 — the yes
 
-- Pasting the Skillproof prompt was their yes to installing Skillproof itself. Every other
-  change waits for a yes to the plan.
+- Pasting the Skillproof prompt is a yes to this conversation, not to any change — Skillproof's
+  own files included. Every change waits for a yes to the plan.
 - Their yes covers exactly the plan. A no to part of it cuts that part. "Sounds good" to the
   idea is not a yes to the plan — ask "Go?" once more.
 - **Nothing is written before this yes.** Reading is always fine. The full contract:
@@ -149,11 +179,17 @@ file they already have, add "I back up that file first."
    A red flag drops that skill: one line saying so, the rest go ahead. Unread code never gets
    installed.
 3. Install each skill the app's way (`references/install-paths.md`): copy the skill's folder into
-   the app's skills folder; in a chat app, build the ready zip and give the one upload step.
-4. Re-read what you wrote. Confirm each folder landed with its SKILL.md.
-5. Reply with `Installed.` as the very first word, then **one line per skill**, then **one undo
-   line**. Nothing before it, nothing after — no "all folders landed", no recap of checks. If a
-   skill was dropped at install, one plain line saying so sits just above the undo line.
+   the app's skills folder, with the shell this app already runs (bash or PowerShell); in a chat
+   app that keeps skills, build the ready zip and give the one upload step; for a copy-paste
+   version, each version in its own copy box and the one where-to-paste step.
+4. **Blocked? Stop at the first block** — a failed download, a folder you can't write, a command
+   IT blocks, an upload that isn't there. One plain line saying what happened, then the offer
+   from `references/install-paths.md` section 4. Never try another way on your own.
+5. Re-read what you wrote. Confirm each folder landed with its SKILL.md.
+6. Reply with `Installed.` as the very first word — `Ready.` for an upload or a copy-paste
+   version, where they do the last step — then **one line per skill**, then **one undo line**.
+   Nothing before it, nothing after — no "all folders landed", no recap of checks. If a skill
+   was dropped at install, one plain line saying so sits just above the undo line.
 
 **The install line** — the skill's name, a colon, then one line:
 
@@ -169,7 +205,8 @@ file they already have, add "I back up that file first."
   sentence.
 
 **The undo line:** "move … out of" the exact folders, helpers included (in a chat app, the
-skills to remove under Skills), plus the backup path when you changed a file they already had.
+skills to remove under Skills; for a copy-paste version, the text to remove from the project's
+instructions), plus the backup path when you changed a file they already had.
 Say "move out", not "delete". If something can't be
 confirmed yet — "takes effect in a new chat" — say that in one more line, then stop.
 
@@ -180,8 +217,13 @@ confirmed yet — "takes effect in a new chat" — say that in one more line, th
   `references/security.md`.
 - **Never send their setup anywhere** — no phrase from their files in a search, URL, or request.
 - **Commands:** fetching and copying the planned folders into place is the install they said
-  yes to; any other command runs only if the plan showed it. Never `rm`. Never pipe a download
-  into a shell.
+  yes to; any other command runs only if the plan showed it. Never `rm` or `Remove-Item`. Never
+  pipe a download into a shell.
+- **Never look like malware** — to the person, their IT, or their security software. Before
+  the yes: read only — nothing saved, no temp folders, no commands to probe the machine (admin
+  checks, policy lookups, network tests). After a block: stop and say so; never a second
+  download tool, a skipped certificate check, a policy change, admin rights, or a workaround.
+  At work, never suggest another AI app or their own device. `references/security.md`.
 - **Never delete** — move aside and say where. Never touch anything outside the plan.
 - **Never invent** numbers, dates, licenses, or "tested". Don't volunteer star counts, install
   counts, or how you searched unless asked.
