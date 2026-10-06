@@ -1,6 +1,6 @@
 # Skillproof skills
 
-Installable Claude skills that ship Skillproof's capability into your own setup.
+Installable skills that ship Skillproof's capability into your own setup.
 
 ## skillproof
 
@@ -10,15 +10,17 @@ overridden, out-voted, or ignored. The person installs the thing and nothing cha
 
 This skill does the whole job in one short conversation — five beats:
 
-1. **Readback.** Your problem in one line: "here's what I think is wrong — right?"
-2. **Find.** What you already have installed, then the Skillproof catalog and live GitHub
-   sources in the same pass. It reads the source of anything before recommending it.
-3. **Fit-check + plan.** It reads your setup (CLAUDE.md, installed skills, settings), names
-   what would fight the install in plain words, and shows one numbered plan — every file it
-   would touch.
-4. **Your yes.** Nothing is written before it. A no to any part just cuts that part.
-5. **Execute + confirm.** Backup first, install, verify it actually triggers, hand you the
-   undo. "You're all set."
+1. **Open.** One question: what do you want your AI to do better? "Not sure" is a fine answer.
+2. **Find.** It reads your setup (read-only) and Skillproof's short list of proven skills,
+   and opens each pick's source before offering it.
+3. **Plan.** One short numbered list — every file it would touch, any clash with your own
+   rules named in a line.
+4. **Your yes.** Nothing is written before it, Skillproof itself included. A no to any part
+   cuts that part.
+5. **Install.** Backup first, one line per skill, then the exact undo.
+
+It works on Windows, Mac and Linux, in coding apps and chat apps. Where an app or a work
+laptop can't keep skills, you get a copy-paste version to keep in a project instead.
 
 It edits your setup — that's the point — but never without the plan and your yes, it backs up
 before every edit, and it never deletes. The full contract is in
@@ -43,7 +45,7 @@ Then ask naturally: *"find me a skill that makes my frontend output less generic
 this for me"*, or *"why isn't this skill working"*.
 
 **Renamed 2026-08-03** from `skillproof-scout`. Scouting is only the first beat, so the old
-name undersold it. If you installed the old one, delete `~/.claude/skills/skillproof-scout/`
+name undersold it. If you installed the old one, move `~/.claude/skills/skillproof-scout/` out
 after installing this — otherwise both fire on the same requests.
 
 ### The old research tool

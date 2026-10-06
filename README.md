@@ -7,7 +7,7 @@
 Skills don't work if your setup rejects them. Skillproof finds what you need and fits it
 into the setup you already have — one short conversation, one plan, one yes.
 
-`MIT` · a static site + a Claude Code skill + an MCP server · part of the `-proof` family (DATproof · Modelproof)
+`MIT` · a static site + an AI skill (coding and chat apps, Windows, Mac, Linux) + an MCP server · part of the `-proof` family (DATproof · Modelproof)
 
 <img src="docs/assets/readme-preview.png" alt="Skillproof — the short list and pain-point matcher" width="840">
 
@@ -32,6 +32,12 @@ into the setup you already have — one short conversation, one plan, one yes.
 for f in SKILL.md references/consent.md references/conflict-patterns.md references/install-paths.md references/finding.md references/security.md; do curl -fsSL --create-dirs https://raw.githubusercontent.com/lucascashwell3-ai/Skillproof/main/skills/skillproof/$f -o ~/.claude/skills/skillproof/$f; done
 ```
 
+On Windows (PowerShell):
+
+```powershell
+foreach ($f in 'SKILL.md','references/consent.md','references/conflict-patterns.md','references/install-paths.md','references/finding.md','references/security.md') { $p = "$HOME\.claude\skills\skillproof\$f"; New-Item -ItemType Directory -Force (Split-Path $p) | Out-Null; curl.exe -fsSL "https://raw.githubusercontent.com/lucascashwell3-ai/Skillproof/main/skills/skillproof/$f" -o $p }
+```
+
 ## The skill — one short conversation it leads
 
 You don't need to know what to ask for. It opens with one question — *what do you want your AI
@@ -46,8 +52,11 @@ multiple-choice question, then offers a few proven skills that fit. Five beats:
 5. **Install** — one clear line per skill, saying what it does or how to call it, then the undo.
 
 It fits into the setup you have — no twins, no pile — and works in every app that keeps
-skills: Claude Code, the Claude app (free plan too), Codex, Cursor, Gemini, Copilot, and
-ChatGPT Business/Enterprise/Edu.
+skills, on Windows, Mac and Linux: Claude Code, the Claude app (free plan too), Codex, Cursor,
+Gemini, GitHub Copilot, Microsoft 365 Copilot (Cowork), and ChatGPT Business, Enterprise,
+Healthcare and Edu. Where an app or a work account can't keep skills (ChatGPT Free, Go, Plus
+and Pro, Copilot Chat, skills switched off by IT), you get a copy-paste version to keep in a
+project instead.
 
 ## The short list — proven single skills
 
@@ -69,7 +78,7 @@ Skillproof/
 ├── docs/                   # the site (GitHub Pages) — matcher, short list, install
 ├── skills/skillproof/      # the skill (SKILL.md + references/)
 ├── mcp/                    # the MCP server (read-only short-list tools)
-├── automation/             # the feeder job — owner docs
+├── automation/             # the feeder job's docs
 ├── .github/workflows/      # feeder.yml (daily short-list refresh)
 └── scripts/                # feeder + scan pipeline and its tests
 ```

@@ -302,7 +302,7 @@
         "path": ""
       },
       "install": {
-        "command": "git clone --depth 1 -q https://github.com/blader/humanizer ~/.claude/skills/humanizer",
+        "command": "d=$(mktemp -d) && git clone --depth 1 -q https://github.com/blader/humanizer \"$d\" && mkdir -p ~/.claude/skills/humanizer && cp \"$d/SKILL.md\" \"$d/LICENSE\" ~/.claude/skills/humanizer/",
         "notes": "Claude Code folder shown. Codex: ~/.agents/skills/ · Cursor: ~/.cursor/skills/ · Gemini CLI: ~/.gemini/skills/ · Copilot: ~/.copilot/skills/. Loads in a new session."
       },
       "signals": {

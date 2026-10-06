@@ -19,7 +19,7 @@ import path from 'node:path';
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const LOCAL_DATA = path.join(HERE, '..', 'docs', 'data', 'skills.json');
-const DATA_URL = process.env.SKILLPROOF_DATA_URL || null; // set once GitHub Pages is live
+const DATA_URL = process.env.SKILLPROOF_DATA_URL || null; // set it to read the hosted copy
 const REPO = 'https://github.com/lucascashwell3-ai/Skillproof';
 
 // ---- data (local file is the default truth; URL override for the hosted copy; cache ~15min) ----
@@ -89,6 +89,7 @@ const brief = (s) => {
   };
   if (s.install?.command) out.install = s.install.command;
   if (s.install?.notes) out.install_notes = s.install.notes;
+  if (s.install?.command) out.install_windows = 'The install command is for a Mac or Linux shell. On Windows without bash, save each file in source.path' + (s.source?.with?.length ? ' and each helper folder in source.with' : '') + ' from raw.githubusercontent.com with curl.exe into $HOME\\.claude\\skills\\<folder name>\\ — one file per command, nothing run after it lands.';
   if (s.does) out.does = s.does;
   if (s.touches) out.touches = s.touches;
   if (s.undo) out.undo = s.undo;

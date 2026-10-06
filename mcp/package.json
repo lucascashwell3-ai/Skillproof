@@ -1,7 +1,7 @@
 {
   "name": "skillproof-mcp",
-  "version": "0.1.0",
-  "description": "The Skillproof catalog as an MCP server: source-reviewed and tested skills for a described pain point, receipts included, plus an honest methodology for scouting beyond it.",
+  "version": "0.2.0",
+  "description": "The Skillproof catalog as an MCP server: proven single skills for a described pain point, each checked for malicious code, plus an honest methodology for scouting beyond it.",
   "type": "module",
   "bin": { "skillproof-mcp": "server.js" },
   "main": "server.js",

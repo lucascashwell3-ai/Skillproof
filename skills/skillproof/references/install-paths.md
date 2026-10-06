@@ -28,6 +28,10 @@ the plan; never make them work it out.
 | **Gemini CLI** | `~/.gemini/skills/<name>/` | `<project>/.gemini/skills/<name>/` | ask for it by name |
 | **GitHub Copilot** (agent mode, CLI, cloud agent) | `~/.copilot/skills/<name>/` | `<repo>/.github/skills/<name>/` | ask for it by name |
 
+**Some apps read more than one folder** — GitHub Copilot in VS Code also loads `~/.claude/skills/`
+and `~/.agents/skills/`. Check every folder this app reads before adding: the same skill in two
+of them is a twin.
+
 On Windows `~` is the user folder: `C:\Users\<them>\.claude\skills\<name>\`, written
 `$HOME\.claude\skills\<name>` in PowerShell.
 
@@ -44,34 +48,30 @@ Use the shell this app already runs. **Never install a shell, git, or anything e
 there.** Claude Code on Windows runs bash only when Git for Windows is installed and PowerShell
 otherwise; Codex, Cursor and Copilot on Windows usually run PowerShell.
 
-**Mac, Linux, or Windows with bash — and git is there:** clone shallow into a fresh temp folder,
-then copy just the planned folders (the skill plus any `source.with`):
+**The default, everywhere — fetch the files one by one.** No git needed, nothing left in a temp
+folder. The folder's file list is a read: `https://api.github.com/repos/<owner>/<repo>/contents/<source.path>?ref=<branch>`
+(a `dir` entry is a subfolder — list it the same way). Then save each file from
+`https://raw.githubusercontent.com/<owner>/<repo>/<branch>/<path>`, keeping its subfolder:
 
 ```
-d=$(mktemp -d) && git clone --depth 1 -q https://github.com/<owner>/<repo> "$d" && mkdir -p <skills folder> && cp -R "$d/<source.path>" <skills folder>/<name>
-```
-
-**No git, or PowerShell — fetch the files one by one.** The folder's file list is a read:
-`https://api.github.com/repos/<owner>/<repo>/contents/<source.path>?ref=<branch>`. Then save each
-file from `https://raw.githubusercontent.com/<owner>/<repo>/<branch>/<path>`:
-
-```
-# bash
-mkdir -p ~/.claude/skills/<name> && curl -fsSL "<raw url>" -o ~/.claude/skills/<name>/SKILL.md
+# bash — --create-dirs makes any subfolder (agents/, references/) on the way
+curl -fsSL --create-dirs "<raw url>" -o ~/.claude/skills/<name>/<path inside the skill>
 ```
 
 ```
 # PowerShell — type curl.exe, not curl (in Windows PowerShell plain curl is a different command)
-New-Item -ItemType Directory -Force "$HOME\.claude\skills\<name>" | Out-Null
-curl.exe -fsSL "<raw url>" -o "$HOME\.claude\skills\<name>\SKILL.md"
+$f = "$HOME\.claude\skills\<name>\<path inside the skill>"
+New-Item -ItemType Directory -Force (Split-Path $f) | Out-Null; curl.exe -fsSL "<raw url>" -o $f
 ```
 
-One file per command, each one named in the plan's folder. Nothing runs after it lands —
-a skill's own installer script is never run.
+One file per command, each one inside the plan's folder. Nothing runs after it lands — a
+skill's own installer script is never run. A folder with dozens of files, git installed: a
+shallow clone into a fresh temp folder, then copying just the planned folders, is fine too —
+`d=$(mktemp -d) && git clone --depth 1 -q https://github.com/<owner>/<repo> "$d" && cp -R "$d/<source.path>" <skills folder>/<name>`.
 
 **A skill that is a whole repo** (`source.path` is empty): copy only the skill's own files —
 `SKILL.md`, its license, and the files `SKILL.md` points to. Never `.git`, CI files, packaging
-or test scripts. Clone-and-copy would bring all of that, so fetch the files one by one.
+or test scripts.
 
 **Moving aside:** `mv` in bash, `Move-Item` in PowerShell. Never `rm`, never `Remove-Item`.
 
@@ -148,8 +148,8 @@ by name (`calls: you`) works when they ask for it inside that project ("humanize
 isn't an open one (MIT, Apache, BSD and the like) — never copy text you may not share.
 
 **In the plan,** each line says it's the copy-paste version and where it goes, and the plan
-adds one plain line: "These are copy-paste versions: they work where you paste them, but won't
-start on their own."
+adds one plain line: "It works where you paste it, but won't start on its own." ("They work
+where you paste them…" for more than one.)
 
 **After the yes:** each version in its own copy box, then the one where-to-paste step. The undo:
 "Remove the text from the project's instructions."

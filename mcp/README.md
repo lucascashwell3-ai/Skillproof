@@ -33,6 +33,8 @@ node server.js      # speaks MCP over stdio
 claude mcp add skillproof -- node /absolute/path/to/Skillproof/mcp/server.js
 ```
 
+On Windows, the path looks like `C:/Users/you/Skillproof/mcp/server.js`.
+
 ### Add to Claude Desktop
 
 In `claude_desktop_config.json` → `mcpServers`:
@@ -51,12 +53,11 @@ that's expected.
 
 ## Data source
 
-By default the server reads the repo's local `docs/data/skills.json` (works today, even while
-the repo is private). Once GitHub Pages is live, point it at the hosted copy so answers stay
-current without pulling:
+By default the server reads the repo's local `docs/data/skills.json`. To stay current without
+pulling, point it at the hosted copy:
 
 ```bash
-SKILLPROOF_DATA_URL="https://lucascashwell3-ai.github.io/skillproof/data/skills.json" node server.js
+SKILLPROOF_DATA_URL="https://lucascashwell3-ai.github.io/Skillproof/data/skills.json" node server.js
 ```
 
 ## Honesty rules (enforced in code)

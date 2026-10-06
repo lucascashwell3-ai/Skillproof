@@ -4,6 +4,38 @@
    entry is one proven skill's folder that passed the malice scan. Every claim
    on the page derives from a real field in the data — no fabricated commands
    or stats. */
+/* Copy that tells the truth (2026-10-05): resolves true only when the text
+   reached the clipboard. Some browsers and work laptops refuse clipboard
+   writes; then the caller selects the text so the person can copy it. */
+function spCopy(text) {
+  function legacy() {
+    try {
+      var ta = document.createElement("textarea");
+      ta.value = text; ta.setAttribute("readonly", "");
+      ta.style.position = "fixed"; ta.style.top = "-1000px";
+      document.body.appendChild(ta); ta.select();
+      var ok = !!(document.execCommand && document.execCommand("copy"));
+      document.body.removeChild(ta);
+      return ok;
+    } catch (e) { return false; }
+  }
+  try {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      return navigator.clipboard.writeText(text).then(function () { return true; }, function () { return legacy(); });
+    }
+  } catch (e) {}
+  return Promise.resolve(legacy());
+}
+function spSelect(el) {
+  try {
+    if (!el) return;
+    if (el.select) { el.focus(); el.select(); return; }
+    var r = document.createRange(); r.selectNodeContents(el);
+    var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(r);
+  } catch (e) {}
+}
+var SP_COPY_BLOCKED = "Your browser blocked copying — the text is selected, press Ctrl+C (⌘C on a Mac)";
+
 (function () {
   "use strict";
 
@@ -20,7 +52,7 @@
     { k: "coding",  label: "Coding" }
   ];
   var MODES = [
-    { id: "terminal", label: "Terminal" },
+    { id: "terminal", label: "Mac / Linux" },
     { id: "agent",    label: "Ask your agent" }
   ];
   var SORTS = [
@@ -29,7 +61,10 @@
   ];
 
   var S = { pains: [], applied: false };
-  var state = { q: "", facet: "all", tray: [], cursor: -1, mode: "terminal", explain: true, sort: "match", open: null };
+  /* Windows visitors start on "Ask your agent": the terminal plan is Mac/Linux
+     shell commands (2026-10-05). */
+  var IS_WIN = /Win/i.test((navigator.userAgentData && navigator.userAgentData.platform) || navigator.platform || "");
+  var state = { q: "", facet: "all", tray: [], cursor: -1, mode: IS_WIN ? "agent" : "terminal", explain: true, sort: "match", open: null };
   var byId = {};
   var PAIN_LBL = {};   // id -> full label (used in search keywords)
   var PAIN_SHORT = {}; // id -> short chip label
@@ -555,7 +590,7 @@
   /* Terminal: the known command where we have one, the repo to install from
      where we don't. One flat catalog — no tier labels in the plan. */
   function planText() {
-    var lines = ["# skillproof install plan"];
+    var lines = ["# skillproof install plan — Mac or Linux terminal", "# On Windows, switch to \"Ask your agent\" above."];
     state.tray.forEach(function (id, i) {
       var it = byId[id];
       if (it.install && it.install.command) {
@@ -611,6 +646,8 @@
       });
       modeWrap.appendChild(b);
     });
+    $("#explainWrap").hidden = state.mode !== "agent";
+    $("#copyPlanLbl").textContent = state.mode === "agent" ? "Copy agent prompt" : "Copy install plan";
     $("#explainChk").addEventListener("change", function (e) {
       state.explain = e.target.checked;
       renderCmd();
@@ -677,7 +714,7 @@
     var box = $("#cmdbox");
     if (!state.tray.length) {
       box.innerHTML = '<span class="muted">' +
-        (state.mode === "agent" ? "# add items to build your agent prompt" : "# add items to build your install plan") +
+        (state.mode === "agent" ? "# add items to build your agent prompt" : "# add items to build your install plan (Mac or Linux; on Windows, use \"Ask your agent\")") +
         "</span>";
       box.dataset.cmd = "";
       setCopyEnabled(false);
@@ -841,22 +878,26 @@
     function copyPlanNow(btn) {
       var txt = $("#cmdbox").dataset.cmd || "";
       if (!txt) { toast("Add something to the tray first"); return; }
-      try { if (navigator.clipboard) navigator.clipboard.writeText(txt); } catch (err) {}
-      toast(state.mode === "agent" ? "Agent prompt copied — paste it at your agent" : "Install plan copied — paste it in your terminal");
-      if (btn) {
-        btn.classList.add("done");
-        setTimeout(function () { btn.classList.remove("done"); }, 1800);
-      }
+      spCopy(txt).then(function (ok) {
+        if (!ok) { spSelect($("#cmdbox")); toast(SP_COPY_BLOCKED); return; }
+        toast(state.mode === "agent" ? "Agent prompt copied — paste it at your agent" : "Install plan copied — paste it in your terminal");
+        if (btn) {
+          btn.classList.add("done");
+          setTimeout(function () { btn.classList.remove("done"); }, 1800);
+        }
+      });
     }
     $("#copyPlan").addEventListener("click", function () { copyPlanNow(null); });
     $("#copy").addEventListener("click", function () { copyPlanNow($("#copy")); });
 
     $$("[data-copy]").forEach(function (btn) {
       btn.addEventListener("click", function () {
-        try { if (navigator.clipboard) navigator.clipboard.writeText(btn.getAttribute("data-copy")); } catch (err) {}
-        btn.classList.add("done");
-        toast("Copied");
-        setTimeout(function () { btn.classList.remove("done"); }, 1600);
+        spCopy(btn.getAttribute("data-copy")).then(function (ok) {
+          if (!ok) { spSelect(btn.parentElement && btn.parentElement.querySelector(".cmdbox")); toast(SP_COPY_BLOCKED); return; }
+          btn.classList.add("done");
+          toast("Copied");
+          setTimeout(function () { btn.classList.remove("done"); }, 1600);
+        });
       });
     });
 
@@ -907,12 +948,12 @@
 
     /* prompt generator: panel is open by default (see boot), just wire copy */
     $("#copyPrompt").addEventListener("click", function () {
-      try {
-        if (navigator.clipboard) navigator.clipboard.writeText($("#promptText").value);
+      spCopy($("#promptText").value).then(function (ok) {
+        if (!ok) { spSelect($("#promptText")); toast(SP_COPY_BLOCKED); return; }
         toast("Copied");
         $("#copyPrompt").classList.add("done");
         setTimeout(function () { $("#copyPrompt").classList.remove("done"); }, 1600);
-      } catch (err) {}
+      });
     });
   }
 
@@ -1048,7 +1089,7 @@
       "",
       "1. First, before anything else, ask me exactly this and wait for my answer: \"What do you want your AI to do better? Not sure? Tell me what you use AI for, or say 'look' and I'll check your setup.\"",
       "",
-      "2. Then read Skillproof's SKILL.md below and follow it, picking up after its opening question with my answer. Read its other files when it points to them. Read each file in full, word for word (in a coding app, printing it with curl -fsSL <link> keeps every word). Don't save anything: Skillproof asks before it changes anything, itself included. If you can't open the links at all, tell me in one line.",
+      "2. Then read Skillproof's SKILL.md below and follow it, picking up after its opening question with my answer. Read its other files when it points to them. Read each file in full, word for word (in a coding app, printing it with curl -fsSL <link> — curl.exe on Windows — keeps every word). Don't save anything: Skillproof asks before it changes anything, itself included. If you can't open the links at all, tell me in one line.",
     ].concat(SKILL_FILES.map(function (f) { return "   " + SKILL_RAW + f; })).concat([
       "",
       "3. If I said I don't know, don't ask me the same question again: follow its \"nothing to say\" path and show me a plan."
@@ -1144,10 +1185,12 @@
       var src = document.getElementById("promptText");
       var text = src && src.value;
       if (!text) { open("prompt"); return; }          // never a dead button
-      try { if (navigator.clipboard) navigator.clipboard.writeText(text); } catch (err) {}
-      toast("Copied");
-      btn.classList.add("done");
-      setTimeout(function () { btn.classList.remove("done"); }, 1600);
+      spCopy(text).then(function (ok) {
+        if (!ok) { open("prompt"); spSelect(src); toast(SP_COPY_BLOCKED); return; }
+        toast("Copied");
+        btn.classList.add("done");
+        setTimeout(function () { btn.classList.remove("done"); }, 1600);
+      });
     });
   });
 
