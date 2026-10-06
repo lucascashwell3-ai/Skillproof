@@ -38,7 +38,7 @@ The whole job is one short conversation:
 > - show-me: Your AI now shows long answers as one page you can scan, instead of a wall of text.
 > - humanizer: Say “humanize this” on any draft, and your AI rewrites the draft in a plain human voice.
 > - skillproof: Type /skillproof any time to find and add more skills.
-> Undo: move grill-me, grilling, show-me, humanizer and skillproof out of `~/.claude/skills/`. They load in a new session.
+> Undo: move grill-me, grilling, show-me, humanizer and skillproof out of `~/.claude/skills/`. New skills load in a new session.
 
 Where the app can't keep skills — here, Microsoft 365 Copilot Chat on a work laptop — the same
 conversation ends with the closest thing that works, never a dead end:

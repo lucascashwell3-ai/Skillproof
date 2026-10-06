@@ -134,7 +134,7 @@ apply to every chat:
 |---|---|---|
 | ChatGPT (any plan) | a Project | "Projects → New project → Instructions → paste." |
 | Claude app | a Project | "Projects → New project → Project instructions → paste." |
-| Microsoft 365 Copilot Chat | a notebook | "Notebooks → New notebook → Copilot instructions → paste." Or, if their work lets them make agents: "Agents → New agent → Configure → Instructions → paste" (8,000 characters at most). |
+| Microsoft 365 Copilot Chat | a notebook | "Notebooks → New notebook → ••• (top right) → Instructions → paste → Save." Or, if their work lets them make agents: "Agents → New agent → Configure → Instructions → paste" (8,000 characters at most). |
 | Gemini app | a Gem | "Gems → New Gem → Instructions → paste." |
 | Anything else | a note | "Save it, and paste it at the start of a chat when you need it." |
 
