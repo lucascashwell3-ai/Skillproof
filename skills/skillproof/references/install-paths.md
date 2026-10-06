@@ -124,7 +124,8 @@ Don't stop at "can't".
 **What it is:** the skill's own instructions, from the `SKILL.md` you already read in beat 2,
 trimmed to fit: keep the author's words, drop install notes, tool names this app lacks, and
 anything about files or scripts. First line: `<name> — from <repo_url> (<license>)`. Never add
-an instruction the skill didn't have.
+an instruction the skill didn't have. Build it only from the full text, word for word: if your
+web reader gave you a summary, that skill isn't offered — take the next one.
 
 **Where it goes** — somewhere it loads only when they want it, never into instructions that
 apply to every chat:

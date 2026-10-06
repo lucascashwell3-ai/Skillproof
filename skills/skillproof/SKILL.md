@@ -126,7 +126,8 @@ skills installed.
 9. **Open each pick's SKILL.md — and its helpers' (`source.with`)** — before it goes in the
    plan: one small file each, not the whole repo. Check what they ask of the AI against the
    person's rules now, so any clash is in the plan, not a surprise after the yes. If one won't
-   open, leave that skill out and take the next one; don't mention it unless they asked for it
+   open — or your reader hands back a summary instead of the full text — leave that skill out
+   and take the next one; don't mention it unless they asked for it
    by name. Shelf skills already passed a malice scan, so the full read of
    every file a skill installs happens once, at install (beat 5) — never twice. Skills from
    off the shelf get the full read here, before they're offered (`references/finding.md`).
