@@ -32,7 +32,7 @@ Stages:
               malice scan  of exactly the folders it installs. Red flag ->
                            quarantine, never listed.
             At most MAX_NEW admitted per run (most-installed first), never
-            past MAX_LIST entries — a short list, not a pile.
+            past MAX_LIST entries (a backstop against a bad run).
   refresh - every listed entry: stars/forks/pushed from its repo, installs
             from skills.sh, and the folder's latest commit; if the folder
             changed, re-scan it. Flag -> pulled to quarantine. API miss, clone
@@ -94,7 +94,7 @@ MIN_SINGLE_STARS = 5_000      # a repo that is one skill: its stars are that ski
 MIN_REPO_STARS = 1_000        # the source is an original, not a copy of one
 MAX_AGE_MONTHS = 12
 MAX_NEW = 1                   # per run
-MAX_LIST = 30                 # a short list: past this, new skills wait
+MAX_LIST = 100                # a backstop if a run misbehaves, not a size target; MAX_NEW already paces growth
 WAIT_DAYS = 90                # a new skill gets this long to show real use
 USAGE_LOOKUPS = 200           # skills.sh API calls per run, beyond the leaderboard
 
