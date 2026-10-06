@@ -237,8 +237,12 @@ kbd{font-family:var(--mono);font-size:.71rem;padding:2px 5px;border-radius:5px;b
   color:#C9D9EC;margin-bottom:0;padding-right:44px;box-shadow:inset 0 1px 0 rgba(255,255,255,.08);scrollbar-width:thin}
 .inst-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .prompt-status{font-size:.75rem;color:var(--mint-d);font-weight:500}
-.inst-cmd{font-size:.72rem;max-height:120px;overflow-y:auto;scrollbar-width:thin;padding-right:44px}
+.inst-cmd{font-size:.72rem;padding-right:44px}
 .installer .cmdwrap{margin-bottom:9px}
+.cmd-lab{display:block;font-size:.76rem;line-height:1.45;color:var(--ink-2);margin:0 0 5px}
+.cmd-lab b{font-weight:700;color:var(--ink)}
+.cmd-lab code{font-family:var(--mono);font-size:.7rem;background:rgba(24,35,56,.07);padding:1px 5px;border-radius:5px}
+.cmd-lab ~ .cmd-lab{margin-top:12px}
 .inst-fine{font-size:.72rem !important;color:var(--ink-3) !important;margin-top:9px}
 .inst-fine a{color:var(--violet-d)}
 .inst-fine code{font-family:var(--mono);font-size:.68rem;background:rgba(24,35,56,.07);
@@ -612,6 +616,7 @@ kbd{font-family:var(--mono);font-size:.71rem;padding:2px 5px;border-radius:5px;b
 .row:first-child::before{display:none}
 .row:hover{background:rgba(255,255,255,.92);box-shadow:inset 0 0 0 1px rgba(255,255,255,1), 0 6px 18px -10px rgba(46,84,128,.5);transform:translateX(2px)}
 .row:hover::before,.row:hover + .row::before{opacity:0}
+.row:focus-visible{outline:2px solid var(--violet);outline-offset:-2px}
 .row.cursor{background:rgba(255,255,255,.96);box-shadow:inset 0 0 0 1.5px rgba(61,109,166,.45), 0 8px 20px -10px rgba(46,84,128,.55)}
 /* was opacity:.52 — which dropped the row name to 3.4:1 and the blurb to 2.0:1,
    both failing WCAG, and made the rows you just chose the hardest to re-read.
@@ -663,8 +668,9 @@ kbd{font-family:var(--mono);font-size:.71rem;padding:2px 5px;border-radius:5px;b
 
 /* expanded detail — grid-rows spring, staggered receipts */
 .row-detail{display:grid;grid-template-rows:0fr;transition:grid-template-rows var(--d-gentle) var(--sp-gentle)}
-.rd-in{overflow:hidden;min-width:0}
+.rd-in{overflow:hidden;min-width:0;visibility:hidden;transition:visibility 0s linear var(--d-gentle)}
 .row.open .row-detail{grid-template-rows:1fr}
+.row.open .rd-in{visibility:visible;transition-delay:0s}
 .row.open{background:rgba(255,255,255,.94);box-shadow:inset 0 0 0 1px rgba(61,109,166,.3), 0 10px 26px -14px rgba(46,84,128,.55);cursor:default}
 /* the one-line blurb IS the description — it un-truncates when the row opens */
 .row.open .row-blurb{white-space:normal;overflow:visible;text-overflow:clip;max-width:72ch}
@@ -676,6 +682,9 @@ kbd{font-family:var(--mono);font-size:.71rem;padding:2px 5px;border-radius:5px;b
 .rd-v{font-size:.79rem;color:var(--ink-2);line-height:1.45;white-space:normal;overflow-wrap:anywhere}
 .rd-v a{color:var(--violet-d);text-decoration:none;font-weight:500}
 .rd-v a:hover{text-decoration:underline}
+@media (max-width:599px){
+  .rd-row{grid-template-columns:minmax(0,1fr);gap:2px}
+}
 .rd-actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:11px 0 3px}
 .rd-asof{margin-left:auto;font-family:var(--mono);font-size:.68rem;color:var(--ink-3);
   padding:3px 9px;border-radius:var(--r-pill);background:rgba(255,255,255,.7);
@@ -1120,6 +1129,7 @@ footer{margin-top:10px;padding:42px 0 20px;
      which is what keeps the hero morphs and the demo from snapping. */
   .demo-scene{transition-duration:260ms !important;transition-property:opacity !important;transform:none !important}
   #field{transition-duration:190ms !important;transition-property:opacity !important}
+  .rd-in{transition-delay:0s}
 }
 
 /* a disabled copy control must look disabled — it previously rendered as a live
