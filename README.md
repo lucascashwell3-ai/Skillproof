@@ -19,8 +19,8 @@ into the setup you already have — one short conversation, one plan, one yes.
 
 ## Three ways in
 
-1. **Paste a prompt** — one short prompt into any agentic AI installs Skillproof and starts
-   your first session. On the [site](https://lucascashwell3-ai.github.io/Skillproof/), under *Install*.
+1. **Paste a prompt** — one short prompt into any AI app starts your first session. Nothing is
+   saved until you say yes to the plan, Skillproof itself included. On the [site](https://lucascashwell3-ai.github.io/Skillproof/), under *Install*.
 2. **The skill** — six plain files downloaded to disk so you can read them (Claude Code
    shown; any app with a skills folder works the same way).
    Nothing is piped into a shell, and it never edits your setup without showing you the plan
