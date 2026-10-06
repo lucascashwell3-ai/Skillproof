@@ -20,7 +20,7 @@
     { k: "coding",  label: "Coding" }
   ];
   var MODES = [
-    { id: "terminal", label: "Terminal" },
+    { id: "terminal", label: "Mac / Linux" },
     { id: "agent",    label: "Ask your agent" }
   ];
   var SORTS = [
@@ -29,7 +29,10 @@
   ];
 
   var S = { pains: [], applied: false };
-  var state = { q: "", facet: "all", tray: [], cursor: -1, mode: "terminal", explain: true, sort: "match", open: null };
+  /* Windows visitors start on "Ask your agent": the terminal plan is Mac/Linux
+     shell commands (2026-10-05). */
+  var IS_WIN = /Win/i.test((navigator.userAgentData && navigator.userAgentData.platform) || navigator.platform || "");
+  var state = { q: "", facet: "all", tray: [], cursor: -1, mode: IS_WIN ? "agent" : "terminal", explain: true, sort: "match", open: null };
   var byId = {};
   var PAIN_LBL = {};   // id -> full label (used in search keywords)
   var PAIN_SHORT = {}; // id -> short chip label
@@ -555,7 +558,7 @@
   /* Terminal: the known command where we have one, the repo to install from
      where we don't. One flat catalog — no tier labels in the plan. */
   function planText() {
-    var lines = ["# skillproof install plan"];
+    var lines = ["# skillproof install plan — Mac or Linux terminal", "# On Windows, switch to \"Ask your agent\" above."];
     state.tray.forEach(function (id, i) {
       var it = byId[id];
       if (it.install && it.install.command) {
@@ -611,6 +614,8 @@
       });
       modeWrap.appendChild(b);
     });
+    $("#explainWrap").hidden = state.mode !== "agent";
+    $("#copyPlanLbl").textContent = state.mode === "agent" ? "Copy agent prompt" : "Copy install plan";
     $("#explainChk").addEventListener("change", function (e) {
       state.explain = e.target.checked;
       renderCmd();
@@ -677,7 +682,7 @@
     var box = $("#cmdbox");
     if (!state.tray.length) {
       box.innerHTML = '<span class="muted">' +
-        (state.mode === "agent" ? "# add items to build your agent prompt" : "# add items to build your install plan") +
+        (state.mode === "agent" ? "# add items to build your agent prompt" : "# add items to build your install plan (Mac or Linux; on Windows, use \"Ask your agent\")") +
         "</span>";
       box.dataset.cmd = "";
       setCopyEnabled(false);
@@ -1048,7 +1053,7 @@
       "",
       "1. First, before anything else, ask me exactly this and wait for my answer: \"What do you want your AI to do better? Not sure? Tell me what you use AI for, or say 'look' and I'll check your setup.\"",
       "",
-      "2. Then read Skillproof's SKILL.md below and follow it, picking up after its opening question with my answer. Read its other files when it points to them. Read each file in full, word for word (in a coding app, printing it with curl -fsSL <link> keeps every word). Don't save anything: Skillproof asks before it changes anything, itself included. If you can't open the links at all, tell me in one line.",
+      "2. Then read Skillproof's SKILL.md below and follow it, picking up after its opening question with my answer. Read its other files when it points to them. Read each file in full, word for word (in a coding app, printing it with curl -fsSL <link> — curl.exe on Windows — keeps every word). Don't save anything: Skillproof asks before it changes anything, itself included. If you can't open the links at all, tell me in one line.",
     ].concat(SKILL_FILES.map(function (f) { return "   " + SKILL_RAW + f; })).concat([
       "",
       "3. If I said I don't know, don't ask me the same question again: follow its \"nothing to say\" path and show me a plan."

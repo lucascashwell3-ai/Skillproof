@@ -32,6 +32,12 @@ into the setup you already have — one short conversation, one plan, one yes.
 for f in SKILL.md references/consent.md references/conflict-patterns.md references/install-paths.md references/finding.md references/security.md; do curl -fsSL --create-dirs https://raw.githubusercontent.com/lucascashwell3-ai/Skillproof/main/skills/skillproof/$f -o ~/.claude/skills/skillproof/$f; done
 ```
 
+On Windows (PowerShell):
+
+```powershell
+foreach ($f in 'SKILL.md','references/consent.md','references/conflict-patterns.md','references/install-paths.md','references/finding.md','references/security.md') { $p = "$HOME\.claude\skills\skillproof\$f"; New-Item -ItemType Directory -Force (Split-Path $p) | Out-Null; curl.exe -fsSL "https://raw.githubusercontent.com/lucascashwell3-ai/Skillproof/main/skills/skillproof/$f" -o $p }
+```
+
 ## The skill — one short conversation it leads
 
 You don't need to know what to ask for. It opens with one question — *what do you want your AI

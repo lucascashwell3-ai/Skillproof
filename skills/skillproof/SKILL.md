@@ -10,7 +10,7 @@ description: >-
   after a yes. Works on Windows, Mac and Linux, in coding apps and chat apps (Claude, ChatGPT,
   Microsoft 365 Copilot, Gemini); where an app or a work laptop can't keep skills, it offers a
   copy-paste version instead.
-allowed-tools: Read, Grep, Glob, WebSearch, WebFetch, Edit, Write, Bash
+allowed-tools: Read, Grep, Glob, WebSearch, WebFetch, Bash, PowerShell
 argument-hint: "<what you want your AI to do better — or nothing at all>"
 ---
 

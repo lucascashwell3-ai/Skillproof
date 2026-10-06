@@ -89,6 +89,7 @@ const brief = (s) => {
   };
   if (s.install?.command) out.install = s.install.command;
   if (s.install?.notes) out.install_notes = s.install.notes;
+  if (s.install?.command) out.install_windows = 'The install command is for a Mac or Linux shell. On Windows without bash, save each file in source.path from raw.githubusercontent.com with curl.exe into %USERPROFILE%\\.claude\\skills\\' + (s.name || s.id) + '\\ — one file per command, nothing run after it lands.';
   if (s.does) out.does = s.does;
   if (s.touches) out.touches = s.touches;
   if (s.undo) out.undo = s.undo;

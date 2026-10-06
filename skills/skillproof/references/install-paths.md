@@ -28,6 +28,10 @@ the plan; never make them work it out.
 | **Gemini CLI** | `~/.gemini/skills/<name>/` | `<project>/.gemini/skills/<name>/` | ask for it by name |
 | **GitHub Copilot** (agent mode, CLI, cloud agent) | `~/.copilot/skills/<name>/` | `<repo>/.github/skills/<name>/` | ask for it by name |
 
+**Some apps read more than one folder** — GitHub Copilot in VS Code also loads `~/.claude/skills/`
+and `~/.agents/skills/`. Check every folder this app reads before adding: the same skill in two
+of them is a twin.
+
 On Windows `~` is the user folder: `C:\Users\<them>\.claude\skills\<name>\`, written
 `$HOME\.claude\skills\<name>` in PowerShell.
 
