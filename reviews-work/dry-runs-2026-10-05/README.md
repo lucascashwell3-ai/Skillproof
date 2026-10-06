@@ -46,4 +46,4 @@ and Claude Code loading the installed skill — those need a person at the keybo
 The install commands themselves were also run on real Windows (PowerShell 5.1 and 7, Git
 Bash), macOS and Ubuntu machines, including a skill's subfolders fetched without git.
 
-[Before](before.md) · [After](after.md)
+[The test users, keys and other checks](personas.md) · [Before](before.md) · [After](after.md)
