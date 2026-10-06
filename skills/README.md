@@ -30,6 +30,12 @@ before every edit, and it never deletes. The full contract is in
 for f in SKILL.md references/consent.md references/conflict-patterns.md references/install-paths.md references/finding.md references/security.md; do curl -fsSL --create-dirs https://raw.githubusercontent.com/lucascashwell3-ai/Skillproof/main/skills/skillproof/$f -o ~/.claude/skills/skillproof/$f; done
 ```
 
+On Windows (PowerShell):
+
+```powershell
+foreach ($f in 'SKILL.md','references/consent.md','references/conflict-patterns.md','references/install-paths.md','references/finding.md','references/security.md') { $p = "$HOME\.claude\skills\skillproof\$f"; New-Item -ItemType Directory -Force (Split-Path $p) | Out-Null; curl.exe -fsSL "https://raw.githubusercontent.com/lucascashwell3-ai/Skillproof/main/skills/skillproof/$f" -o $p }
+```
+
 Six files to disk, nothing piped into a shell. Or clone this repo and copy `skills/skillproof/`
 into `~/.claude/skills/` (everywhere) or `<project>/.claude/skills/` (one project).
 
@@ -40,10 +46,9 @@ this for me"*, or *"why isn't this skill working"*.
 name undersold it. If you installed the old one, delete `~/.claude/skills/skillproof-scout/`
 after installing this — otherwise both fire on the same requests.
 
-### Relationship to the root SKILL.md
+### The old research tool
 
-The repo root's `SKILL.md` is the deeper **research engine** (YouTube/X mining, sub-agent
-fan-out, findings review gates) that Skillproof itself uses for discovery sessions. This one is
-the user-facing product: your problem in, a working install out.
+The July research skill (YouTube/X mining) that used to sit at the repo root under the same
+name now lives in [`archive/research-engine/`](../archive/research-engine/). Nothing installs it.
 
 MIT · Source: https://github.com/lucascashwell3-ai/Skillproof

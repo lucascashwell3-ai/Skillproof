@@ -1025,34 +1025,33 @@
   }
 
   /* ======================= the pasted prompt =======================
-     Installs the skill, then starts a session. History: this used to BE the
-     method as a wall of text, and an earlier version even described the
-     internal review tiers — a fresh agent read that and told the user to
-     avoid the whole site (2026-08-10). Now it's an installer: six files, read
-     SKILL.md, open with its one short question. The last line exists because
-     a first-time user with nothing to say got nothing back (2026-09-27): the
-     skill never waits on them. Nothing internal leaks into the chat. */
+     Starts a session. History: this used to BE the method as a wall of text,
+     and an earlier version even described the internal review tiers — a fresh
+     agent read that and told the user to avoid the whole site (2026-08-10).
+     Then it was an installer that saved six files before any plan; on a
+     locked-down work laptop that retried blocked downloads and looked like
+     malware (2026-10-05). Now nothing is saved before the plan's yes —
+     Skillproof itself included; keeping it is one line in the plan. The last
+     line exists because a first-time user with nothing to say got nothing
+     back (2026-09-27). Nothing internal leaks into the chat. */
 
   var SKILL_RAW = "https://raw.githubusercontent.com/lucascashwell3-ai/Skillproof/main/skills/skillproof/";
   var SKILL_FILES = ["SKILL.md", "references/finding.md", "references/conflict-patterns.md",
                      "references/consent.md", "references/install-paths.md", "references/security.md"];
 
-  /* The pasted prompt INSTALLS the skill and starts a session — it is not the
-     skill itself (2026-08-21). Nothing internal in here: no catalog
-     mechanics, no pipeline words. An agent that can't write files degrades to
-     reading SKILL.md and following it for the conversation. */
+  /* The pasted prompt starts a session — it is not the skill itself
+     (2026-08-21). Nothing internal in here: no catalog mechanics, no
+     pipeline words. */
   function buildPrompt() {
     return [
-      "Install Skillproof — the skill that fits proven skills into my AI setup — then run it with me.",
-      "",
-      "If you're ChatGPT on the Free or Plus plan, stop here and tell me in one line: those plans can't keep skills, but the free Claude app can (claude.ai → Customize → Skills), and so can ChatGPT Business, Codex, Cursor and Gemini.",
+      "Run Skillproof with me — it finds proven skills that fit my AI setup, and changes nothing until I say yes.",
       "",
       "1. First, before anything else, ask me exactly this and wait for my answer: \"What do you want your AI to do better? Not sure? Tell me what you use AI for, or say 'look' and I'll check your setup.\"",
       "",
-      "2. Then install Skillproof. Save these six files into your skills folder under skillproof/, keeping their paths (Claude Code ~/.claude/skills/ · Codex ~/.agents/skills/ · Cursor ~/.cursor/skills/ · Gemini CLI ~/.gemini/skills/ · Copilot ~/.copilot/skills/). Download each file directly; never pipe anything into a shell. In a chat app that can't save files, don't package Skillproof — just read SKILL.md and follow it here.",
+      "2. Then read Skillproof's SKILL.md below and follow it, picking up after its opening question with my answer. Read its other files when it points to them. Read each file in full, word for word — in a coding app, print it (curl -fsSL <link>) rather than summarizing it. Don't save anything: Skillproof asks before it changes anything, itself included. If a link won't open, don't try another way — tell me in one line.",
     ].concat(SKILL_FILES.map(function (f) { return "   " + SKILL_RAW + f; })).concat([
       "",
-      "3. Read SKILL.md and follow it, picking up after its opening question with my answer. If I said I don't know, don't ask me the same question again: follow its \"nothing to say\" path and show me a plan."
+      "3. If I said I don't know, don't ask me the same question again: follow its \"nothing to say\" path and show me a plan."
     ]).join("\n");
   }
 
