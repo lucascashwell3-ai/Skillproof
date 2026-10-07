@@ -5545,6 +5545,10 @@
    "first_seen": "2026-09-27",
    "verdict": "already there when the list was chosen by hand"
   },
+  "a50507655f22c0fd": {
+   "first_seen": "2026-10-07",
+   "verdict": "tied to one vendor's product or a paid service"
+  },
   "a53183c3ddcd056e": {
    "first_seen": "2026-09-27",
    "verdict": "already there when the list was chosen by hand"
@@ -7620,6 +7624,10 @@
   "df5b295209bc7702": {
    "first_seen": "2026-09-27",
    "verdict": "already there when the list was chosen by hand"
+  },
+  "dfca70d838055e1a": {
+   "first_seen": "2026-10-07",
+   "verdict": "tied to one vendor's product or a paid service"
   },
   "dfd29c1b693c1588": {
    "first_seen": "2026-09-27",
