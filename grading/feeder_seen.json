@@ -573,6 +573,10 @@
    "first_seen": "2026-09-27",
    "verdict": "already there when the list was chosen by hand"
   },
+  "0eb0fa57e63a4d35": {
+   "first_seen": "2026-10-13",
+   "verdict": "waiting"
+  },
   "0ebc6eff64799795": {
    "first_seen": "2026-09-27",
    "verdict": "already there when the list was chosen by hand"
@@ -812,6 +816,10 @@
   "15dafd752c302bac": {
    "first_seen": "2026-09-27",
    "verdict": "already there when the list was chosen by hand"
+  },
+  "15e6d14d8cc32850": {
+   "first_seen": "2026-10-13",
+   "verdict": "tied to one vendor's product or a paid service"
   },
   "1601c5c0f9f15b7a": {
    "first_seen": "2026-10-03",
@@ -2336,6 +2344,10 @@
   "464fb3776fbb0969": {
    "first_seen": "2026-09-27",
    "verdict": "already there when the list was chosen by hand"
+  },
+  "4685012ae9ce5b94": {
+   "first_seen": "2026-10-13",
+   "verdict": "no clear one-line description"
   },
   "46bd1f4efa418173": {
    "first_seen": "2026-09-27",
@@ -3981,6 +3993,10 @@
    "first_seen": "2026-09-27",
    "verdict": "already there when the list was chosen by hand"
   },
+  "75de97fd2a407e31": {
+   "first_seen": "2026-10-13",
+   "verdict": "no clear one-line description"
+  },
   "7603edf874a209da": {
    "first_seen": "2026-09-27",
    "verdict": "already there when the list was chosen by hand"
@@ -4881,6 +4897,10 @@
    "first_seen": "2026-09-27",
    "verdict": "already there when the list was chosen by hand"
   },
+  "9011fc4b3ce840b0": {
+   "first_seen": "2026-10-13",
+   "verdict": "tied to one vendor's product or a paid service"
+  },
   "9028c1c7298b1e4e": {
    "first_seen": "2026-09-27",
    "verdict": "already there when the list was chosen by hand"
@@ -5720,6 +5740,10 @@
   "a9e166fede1f88ad": {
    "first_seen": "2026-09-27",
    "verdict": "already there when the list was chosen by hand"
+  },
+  "a9f2886a59d83669": {
+   "first_seen": "2026-10-13",
+   "verdict": "waiting"
   },
   "aa36310580f47aff": {
    "first_seen": "2026-09-29",
@@ -8440,6 +8464,10 @@
   "f5e07a6fe576a97c": {
    "first_seen": "2026-09-27",
    "verdict": "already there when the list was chosen by hand"
+  },
+  "f61797b0316f0377": {
+   "first_seen": "2026-10-13",
+   "verdict": "tied to one vendor's product or a paid service"
   },
   "f63ea54e79b76e7c": {
    "first_seen": "2026-09-27",
