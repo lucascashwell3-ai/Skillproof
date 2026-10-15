@@ -2777,6 +2777,10 @@
    "first_seen": "2026-09-27",
    "verdict": "already there when the list was chosen by hand"
   },
+  "537f0c50b015e5f6": {
+   "first_seen": "2026-10-15",
+   "verdict": "source repo under 1,000 stars (not an original)"
+  },
   "539ab34a6b4c540a": {
    "first_seen": "2026-09-27",
    "verdict": "already there when the list was chosen by hand"
@@ -8080,6 +8084,10 @@
   "eb400fb905aa57fc": {
    "first_seen": "2026-09-27",
    "verdict": "already there when the list was chosen by hand"
+  },
+  "eb4040cc8315919d": {
+   "first_seen": "2026-10-15",
+   "verdict": "source repo under 1,000 stars (not an original)"
   },
   "eb6e96dbe219c6ce": {
    "first_seen": "2026-09-27",
