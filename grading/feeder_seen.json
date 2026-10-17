@@ -2501,6 +2501,10 @@
    "first_seen": "2026-09-27",
    "verdict": "already there when the list was chosen by hand"
   },
+  "4b0832ad594f803e": {
+   "first_seen": "2026-10-17",
+   "verdict": "waiting"
+  },
   "4b0cf3fccfae42b8": {
    "first_seen": "2026-09-27",
    "verdict": "already there when the list was chosen by hand"
@@ -4698,8 +4702,8 @@
    "verdict": "already there when the list was chosen by hand"
   },
   "8b1444b0a864c1f8": {
-   "first_seen": "2026-09-27",
-   "verdict": "already there when the list was chosen by hand"
+   "first_seen": "2026-10-17",
+   "verdict": "waiting"
   },
   "8b34217af577aeea": {
    "first_seen": "2026-09-27",
@@ -6648,6 +6652,10 @@
   "c27b4157ea0b081f": {
    "first_seen": "2026-09-27",
    "verdict": "already there when the list was chosen by hand"
+  },
+  "c288a10115d4105d": {
+   "first_seen": "2026-10-17",
+   "verdict": "waiting"
   },
   "c2a3fc366e79b86c": {
    "first_seen": "2026-09-27",
@@ -8672,6 +8680,10 @@
   "fbcd2a64c35a83a1": {
    "first_seen": "2026-09-27",
    "verdict": "already there when the list was chosen by hand"
+  },
+  "fbceb69f39c2b244": {
+   "first_seen": "2026-10-17",
+   "verdict": "waiting"
   },
   "fc01237f5db41376": {
    "first_seen": "2026-09-27",
