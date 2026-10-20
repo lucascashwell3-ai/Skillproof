@@ -3609,6 +3609,10 @@
    "first_seen": "2026-09-27",
    "verdict": "already there when the list was chosen by hand"
   },
+  "6a481e9cf7252d4f": {
+   "first_seen": "2026-10-20",
+   "verdict": "waiting"
+  },
   "6a7855cd23dd7301": {
    "first_seen": "2026-09-27",
    "verdict": "already there when the list was chosen by hand"
@@ -3879,7 +3883,7 @@
   },
   "725d5161daaf0bf7": {
    "first_seen": "2026-10-11",
-   "verdict": "waiting"
+   "verdict": "no clear one-line description"
   },
   "725d647ed88709a0": {
    "first_seen": "2026-09-27",
@@ -4244,6 +4248,10 @@
   "7cf5626af7e4daa6": {
    "first_seen": "2026-09-27",
    "verdict": "already there when the list was chosen by hand"
+  },
+  "7cf9b51a350d3fe2": {
+   "first_seen": "2026-10-20",
+   "verdict": "waiting"
   },
   "7d1207f20aa542ac": {
    "first_seen": "2026-09-27",
@@ -5343,7 +5351,7 @@
   },
   "9d3e6e67b179a49a": {
    "first_seen": "2026-10-11",
-   "verdict": "waiting"
+   "verdict": "no clear one-line description"
   },
   "9d626c426b4088ff": {
    "first_seen": "2026-09-27",
