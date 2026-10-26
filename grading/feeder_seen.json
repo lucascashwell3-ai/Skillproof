@@ -617,6 +617,10 @@
    "first_seen": "2026-09-27",
    "verdict": "already there when the list was chosen by hand"
   },
+  "0f7d8def97949fff": {
+   "first_seen": "2026-10-26",
+   "verdict": "tied to one vendor's product or a paid service"
+  },
   "0f976fc2ae1e1e62": {
    "first_seen": "2026-09-27",
    "verdict": "already there when the list was chosen by hand"
@@ -1496,6 +1500,10 @@
   "283d01a1568b8384": {
    "first_seen": "2026-09-27",
    "verdict": "already there when the list was chosen by hand"
+  },
+  "28418a6720fe2ace": {
+   "first_seen": "2026-10-26",
+   "verdict": "tied to one vendor's product or a paid service"
   },
   "28424e2a3c8f9e75": {
    "first_seen": "2026-09-27",
@@ -3921,6 +3929,10 @@
    "first_seen": "2026-09-27",
    "verdict": "already there when the list was chosen by hand"
   },
+  "708839169e94ba4e": {
+   "first_seen": "2026-10-26",
+   "verdict": "tied to one vendor's product or a paid service"
+  },
   "70aeab058812b747": {
    "first_seen": "2026-09-27",
    "verdict": "already there when the list was chosen by hand"
@@ -4873,6 +4885,10 @@
    "first_seen": "2026-09-27",
    "verdict": "already there when the list was chosen by hand"
   },
+  "8c64fe6fd923048a": {
+   "first_seen": "2026-10-26",
+   "verdict": "tied to one vendor's product or a paid service"
+  },
   "8c71ad94f6d2b17a": {
    "first_seen": "2026-09-27",
    "verdict": "already there when the list was chosen by hand"
@@ -5232,6 +5248,10 @@
   "9625818d3076c4cc": {
    "first_seen": "2026-09-27",
    "verdict": "already there when the list was chosen by hand"
+  },
+  "96323c95a9864c9f": {
+   "first_seen": "2026-10-26",
+   "verdict": "tied to one vendor's product or a paid service"
   },
   "9646952f2f9a64ce": {
    "first_seen": "2026-09-27",
@@ -8948,6 +8968,10 @@
   "fd5387dce535dd02": {
    "first_seen": "2026-09-27",
    "verdict": "already there when the list was chosen by hand"
+  },
+  "fd65457baf7e7781": {
+   "first_seen": "2026-10-26",
+   "verdict": "tied to one vendor's product or a paid service"
   },
   "fda368a873b7848f": {
    "first_seen": "2026-09-27",
