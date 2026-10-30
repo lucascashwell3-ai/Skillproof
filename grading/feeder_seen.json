@@ -373,6 +373,10 @@
    "first_seen": "2026-09-27",
    "verdict": "already there when the list was chosen by hand"
   },
+  "091e6960b83975f0": {
+   "first_seen": "2026-10-30",
+   "verdict": "source repo under 1,000 stars (not an original)"
+  },
   "094e6012f99d0ff8": {
    "first_seen": "2026-10-21",
    "verdict": "waiting"
@@ -708,6 +712,10 @@
   "11db8fc496dd44d5": {
    "first_seen": "2026-09-27",
    "verdict": "already there when the list was chosen by hand"
+  },
+  "11f6d87a4f763b81": {
+   "first_seen": "2026-10-30",
+   "verdict": "waiting"
   },
   "12036fb834814d2d": {
    "first_seen": "2026-09-27",
@@ -1805,6 +1813,10 @@
    "first_seen": "2026-09-27",
    "verdict": "already there when the list was chosen by hand"
   },
+  "330319177f04fb62": {
+   "first_seen": "2026-10-30",
+   "verdict": "waiting"
+  },
   "33078996afe17e70": {
    "first_seen": "2026-09-27",
    "verdict": "already there when the list was chosen by hand"
@@ -2436,6 +2448,10 @@
   "4685012ae9ce5b94": {
    "first_seen": "2026-10-13",
    "verdict": "no clear one-line description"
+  },
+  "46a2463325d871b6": {
+   "first_seen": "2026-10-30",
+   "verdict": "waiting"
   },
   "46bd1f4efa418173": {
    "first_seen": "2026-09-27",
@@ -3569,6 +3585,10 @@
    "first_seen": "2026-09-27",
    "verdict": "already there when the list was chosen by hand"
   },
+  "663c436290552ae4": {
+   "first_seen": "2026-10-30",
+   "verdict": "waiting"
+  },
   "665367e3b5bb0b8f": {
    "first_seen": "2026-09-27",
    "verdict": "already there when the list was chosen by hand"
@@ -3821,6 +3841,10 @@
    "first_seen": "2026-09-27",
    "verdict": "already there when the list was chosen by hand"
   },
+  "6d20410170956a77": {
+   "first_seen": "2026-10-30",
+   "verdict": "waiting"
+  },
   "6d2967fadddb31a7": {
    "first_seen": "2026-09-27",
    "verdict": "already there when the list was chosen by hand"
@@ -4056,6 +4080,10 @@
   "734495ebb721286d": {
    "first_seen": "2026-09-27",
    "verdict": "already there when the list was chosen by hand"
+  },
+  "734602263e27ecf5": {
+   "first_seen": "2026-10-30",
+   "verdict": "source repo under 1,000 stars (not an original)"
   },
   "73598771b98fc494": {
    "first_seen": "2026-09-27",
@@ -5213,6 +5241,10 @@
    "first_seen": "2026-09-27",
    "verdict": "already there when the list was chosen by hand"
   },
+  "944c9ea696a7eea4": {
+   "first_seen": "2026-10-30",
+   "verdict": "waiting"
+  },
   "94874ad6468febc3": {
    "first_seen": "2026-09-27",
    "verdict": "already there when the list was chosen by hand"
@@ -5349,6 +5381,10 @@
    "first_seen": "2026-09-27",
    "verdict": "already there when the list was chosen by hand"
   },
+  "97f6024a44fd309f": {
+   "first_seen": "2026-10-30",
+   "verdict": "tied to one vendor's product or a paid service"
+  },
   "97ffef55c93123df": {
    "first_seen": "2026-09-27",
    "verdict": "already there when the list was chosen by hand"
@@ -5392,6 +5428,10 @@
   "996e12b48942d2e1": {
    "first_seen": "2026-09-27",
    "verdict": "already there when the list was chosen by hand"
+  },
+  "9977f7ba366b9771": {
+   "first_seen": "2026-10-30",
+   "verdict": "waiting"
   },
   "99877b28d6fb43c6": {
    "first_seen": "2026-09-27",
@@ -5488,6 +5528,10 @@
   "9c73b37d3b9b0ab2": {
    "first_seen": "2026-09-27",
    "verdict": "already there when the list was chosen by hand"
+  },
+  "9cbfa595cf9f2cd0": {
+   "first_seen": "2026-10-30",
+   "verdict": "waiting"
   },
   "9cdfc200daabce0a": {
    "first_seen": "2026-09-27",
@@ -6381,6 +6425,10 @@
    "first_seen": "2026-09-27",
    "verdict": "already there when the list was chosen by hand"
   },
+  "b6a0db6ee501db93": {
+   "first_seen": "2026-10-30",
+   "verdict": "tied to one vendor's product or a paid service"
+  },
   "b6a289066931c999": {
    "first_seen": "2026-09-27",
    "verdict": "already there when the list was chosen by hand"
@@ -6845,6 +6893,10 @@
    "first_seen": "2026-09-27",
    "verdict": "already there when the list was chosen by hand"
   },
+  "c21528a50ee70135": {
+   "first_seen": "2026-10-30",
+   "verdict": "waiting"
+  },
   "c2375ada92d12c0f": {
    "first_seen": "2026-09-27",
    "verdict": "already there when the list was chosen by hand"
@@ -6900,6 +6952,10 @@
   "c338220adba25bef": {
    "first_seen": "2026-09-27",
    "verdict": "already there when the list was chosen by hand"
+  },
+  "c33b26bf68ebdf9f": {
+   "first_seen": "2026-10-30",
+   "verdict": "waiting"
   },
   "c3585ee30b042cc1": {
    "first_seen": "2026-09-27",
@@ -8713,6 +8769,10 @@
    "first_seen": "2026-09-27",
    "verdict": "already there when the list was chosen by hand"
   },
+  "f502a0c5ae51c95b": {
+   "first_seen": "2026-10-30",
+   "verdict": "waiting"
+  },
   "f518239b22386910": {
    "first_seen": "2026-09-27",
    "verdict": "already there when the list was chosen by hand"
@@ -9068,6 +9128,10 @@
   "fe9d1c22e0c7c69b": {
    "first_seen": "2026-09-27",
    "verdict": "already there when the list was chosen by hand"
+  },
+  "feb18085049436da": {
+   "first_seen": "2026-10-30",
+   "verdict": "waiting"
   },
   "fec15159f920baa0": {
    "first_seen": "2026-09-27",
