@@ -57,6 +57,10 @@
    "first_seen": "2026-09-27",
    "verdict": "already there when the list was chosen by hand"
   },
+  "016111ba6e635942": {
+   "first_seen": "2026-10-31",
+   "verdict": "waiting"
+  },
   "01a1071140eff87e": {
    "first_seen": "2026-09-27",
    "verdict": "already there when the list was chosen by hand"
@@ -980,6 +984,10 @@
   "193fce655177cb56": {
    "first_seen": "2026-09-27",
    "verdict": "already there when the list was chosen by hand"
+  },
+  "1941016712d49201": {
+   "first_seen": "2026-10-31",
+   "verdict": "waiting"
   },
   "196f549ee21403d7": {
    "first_seen": "2026-09-27",
@@ -3177,6 +3185,10 @@
    "first_seen": "2026-09-27",
    "verdict": "already there when the list was chosen by hand"
   },
+  "5b689b00ddfffd96": {
+   "first_seen": "2026-10-31",
+   "verdict": "waiting"
+  },
   "5b712b83a0963aa3": {
    "first_seen": "2026-09-27",
    "verdict": "already there when the list was chosen by hand"
@@ -4388,6 +4400,10 @@
   "7bd4e08b0f9832f7": {
    "first_seen": "2026-10-01",
    "verdict": "tied to one vendor's product or a paid service"
+  },
+  "7c1deaf8c70746e8": {
+   "first_seen": "2026-10-31",
+   "verdict": "waiting"
   },
   "7c4c57413a23d7fb": {
    "first_seen": "2026-09-27",
@@ -5688,6 +5704,10 @@
   "a170b6c0e80cdcc9": {
    "first_seen": "2026-09-27",
    "verdict": "already there when the list was chosen by hand"
+  },
+  "a1cae52f9d5c7197": {
+   "first_seen": "2026-10-31",
+   "verdict": "tied to one vendor's product or a paid service"
   },
   "a1d5b27891e06c98": {
    "first_seen": "2026-09-27",
