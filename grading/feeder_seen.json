@@ -2065,6 +2065,10 @@
    "first_seen": "2026-09-27",
    "verdict": "already there when the list was chosen by hand"
   },
+  "3a7856fd1b19fee5": {
+   "first_seen": "2026-11-05",
+   "verdict": "waiting"
+  },
   "3a80ccd6da14416b": {
    "first_seen": "2026-10-04",
    "verdict": "tied to one vendor's product or a paid service"
@@ -4704,6 +4708,10 @@
   "839e51d48ceddf98": {
    "first_seen": "2026-10-05",
    "verdict": "tied to one vendor's product or a paid service"
+  },
+  "83e1737ccae5e29a": {
+   "first_seen": "2026-11-05",
+   "verdict": "waiting"
   },
   "8407ca3c8e4f703c": {
    "first_seen": "2026-09-27",
