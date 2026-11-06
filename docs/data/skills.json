@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-11-05",
+  "as_of": "2026-11-06",
   "notes": "A short list of proven single skills. Every entry is one skill folder on GitHub with real use (install counts or stars) or a builder with a record, useful to a normal AI user, and checked for malicious code (piped-shell installs, credential reads, obfuscated code) in the files it installs; re-checked whenever those files change. `checked.date` is the latest scan. Provided as-is - read anything before you run it.",
   "pain_points": [
     {
@@ -229,12 +229,12 @@
         "notes": "Claude Code folder shown. Codex: ~/.agents/skills/ · Cursor: ~/.cursor/skills/ · Gemini CLI: ~/.gemini/skills/ · Copilot: ~/.copilot/skills/. Loads in a new session."
       },
       "signals": {
-        "stars": 314954,
-        "forks": 26377,
-        "checked": "2026-11-05",
+        "stars": 316511,
+        "forks": 26477,
+        "checked": "2026-11-06",
         "head_sha": "fcf0071560d32913c9d4f820e0d7ca467c881619",
-        "head_checked": "2026-11-05",
-        "installs": 1502671,
+        "head_checked": "2026-11-06",
+        "installs": 1508200,
         "installs_source": "skills.sh"
       },
       "checked": {
@@ -271,9 +271,9 @@
       "signals": {
         "stars": 0,
         "forks": 0,
-        "checked": "2026-11-05",
+        "checked": "2026-11-06",
         "head_sha": "e9c636ca2160a84e52cef31dc6672a207d5acdd5",
-        "head_checked": "2026-11-05"
+        "head_checked": "2026-11-06"
       },
       "checked": {
         "date": "2026-10-03",
@@ -306,12 +306,12 @@
         "notes": "Claude Code folder shown. Codex: ~/.agents/skills/ · Cursor: ~/.cursor/skills/ · Gemini CLI: ~/.gemini/skills/ · Copilot: ~/.copilot/skills/. Loads in a new session."
       },
       "signals": {
-        "stars": 65205,
-        "forks": 5154,
-        "checked": "2026-11-05",
+        "stars": 65587,
+        "forks": 5186,
+        "checked": "2026-11-06",
         "head_sha": "0ef9fe5bc3572734fd3ae6c448fe00a30cd5dcf0",
-        "head_checked": "2026-11-05",
-        "installs": 11974,
+        "head_checked": "2026-11-06",
+        "installs": 12073,
         "installs_source": "skills.sh"
       },
       "checked": {
@@ -346,19 +346,19 @@
         "notes": "Claude Code folder shown. Codex: ~/.agents/skills/ · Cursor: ~/.cursor/skills/ · Gemini CLI: ~/.gemini/skills/ · Copilot: ~/.copilot/skills/. Loads in a new session."
       },
       "signals": {
-        "stars": 117730,
-        "forks": 6840,
-        "checked": "2026-11-05",
+        "stars": 117981,
+        "forks": 6860,
+        "checked": "2026-11-06",
         "head_sha": "7d76b13b00c620599a840dcc131ad43f0eeb2e6b",
-        "head_checked": "2026-11-05",
-        "installs": 612014,
+        "head_checked": "2026-11-06",
+        "installs": 613807,
         "installs_source": "skills.sh"
       },
       "checked": {
         "date": "2026-10-08",
         "files_scanned": 2
       },
-      "pushed": "2026-11-05",
+      "pushed": "2026-11-06",
       "license": "MIT"
     },
     {
@@ -388,9 +388,9 @@
       "signals": {
         "stars": 0,
         "forks": 0,
-        "checked": "2026-11-05",
+        "checked": "2026-11-06",
         "head_sha": "b0de2e18889974806691c91b8ba8c8373a41f9b8",
-        "head_checked": "2026-11-05"
+        "head_checked": "2026-11-06"
       },
       "checked": {
         "date": "2026-09-27",
@@ -423,12 +423,12 @@
         "notes": "Claude Code folder shown. Codex: ~/.agents/skills/ · Cursor: ~/.cursor/skills/ · Gemini CLI: ~/.gemini/skills/ · Copilot: ~/.copilot/skills/. Loads in a new session."
       },
       "signals": {
-        "stars": 60205,
-        "forks": 3505,
-        "checked": "2026-11-05",
+        "stars": 60332,
+        "forks": 3519,
+        "checked": "2026-11-06",
         "head_sha": "5a9244e0c9e69d966243a6104d4c69ac736c9396",
-        "head_checked": "2026-11-05",
-        "installs": 31858,
+        "head_checked": "2026-11-06",
+        "installs": 32080,
         "installs_source": "skills.sh"
       },
       "checked": {
@@ -464,12 +464,12 @@
         "notes": "Claude Code folder shown. Codex: ~/.agents/skills/ · Cursor: ~/.cursor/skills/ · Gemini CLI: ~/.gemini/skills/ · Copilot: ~/.copilot/skills/. Loads in a new session."
       },
       "signals": {
-        "stars": 314954,
-        "forks": 26377,
-        "checked": "2026-11-05",
+        "stars": 316511,
+        "forks": 26477,
+        "checked": "2026-11-06",
         "head_sha": "0f5e033ebc47b142f5ffa56a582ede6d9d9bada3",
-        "head_checked": "2026-11-05",
-        "installs": 1101330,
+        "head_checked": "2026-11-06",
+        "installs": 1105740,
         "installs_source": "skills.sh"
       },
       "checked": {
@@ -505,12 +505,12 @@
         "notes": "Claude Code folder shown. Codex: ~/.agents/skills/ · Cursor: ~/.cursor/skills/ · Gemini CLI: ~/.gemini/skills/ · Copilot: ~/.copilot/skills/. Loads in a new session."
       },
       "signals": {
-        "stars": 314954,
-        "forks": 26377,
-        "checked": "2026-11-05",
+        "stars": 316511,
+        "forks": 26477,
+        "checked": "2026-11-06",
         "head_sha": "ad5400b930b297b0c0cb231ff1ffe42a7da666aa",
-        "head_checked": "2026-11-05",
-        "installs": 917862,
+        "head_checked": "2026-11-06",
+        "installs": 921907,
         "installs_source": "skills.sh"
       },
       "checked": {
@@ -544,12 +544,12 @@
         "notes": "Claude Code folder shown. Codex: ~/.agents/skills/ · Cursor: ~/.cursor/skills/ · Gemini CLI: ~/.gemini/skills/ · Copilot: ~/.copilot/skills/. Loads in a new session."
       },
       "signals": {
-        "stars": 314954,
-        "forks": 26377,
-        "checked": "2026-11-05",
+        "stars": 316511,
+        "forks": 26477,
+        "checked": "2026-11-06",
         "head_sha": "d80fa0f4ebe0c5714af0adf8670336065233ecc6",
-        "head_checked": "2026-11-05",
-        "installs": 499714,
+        "head_checked": "2026-11-06",
+        "installs": 503536,
         "installs_source": "skills.sh"
       },
       "checked": {
@@ -583,12 +583,12 @@
         "notes": "Claude Code folder shown. Codex: ~/.agents/skills/ · Cursor: ~/.cursor/skills/ · Gemini CLI: ~/.gemini/skills/ · Copilot: ~/.copilot/skills/. Loads in a new session."
       },
       "signals": {
-        "stars": 314955,
-        "forks": 26377,
-        "checked": "2026-11-05",
+        "stars": 316511,
+        "forks": 26477,
+        "checked": "2026-11-06",
         "head_sha": "7739eaed7f8f3915437a8def198a6d0d7206dbc7",
-        "head_checked": "2026-11-05",
-        "installs": 770598,
+        "head_checked": "2026-11-06",
+        "installs": 774824,
         "installs_source": "skills.sh"
       },
       "checked": {
@@ -624,12 +624,12 @@
         "notes": "Claude Code folder shown. Codex: ~/.agents/skills/ · Cursor: ~/.cursor/skills/ · Gemini CLI: ~/.gemini/skills/ · Copilot: ~/.copilot/skills/. Loads in a new session."
       },
       "signals": {
-        "stars": 314955,
-        "forks": 26377,
-        "checked": "2026-11-05",
+        "stars": 316511,
+        "forks": 26477,
+        "checked": "2026-11-06",
         "head_sha": "321658273cb1d20b76026717d027d505790106d4",
-        "head_checked": "2026-11-05",
-        "installs": 548600,
+        "head_checked": "2026-11-06",
+        "installs": 552414,
         "installs_source": "skills.sh"
       },
       "checked": {
@@ -666,12 +666,12 @@
         "notes": "Claude Code folder shown. Codex: ~/.agents/skills/ · Cursor: ~/.cursor/skills/ · Gemini CLI: ~/.gemini/skills/ · Copilot: ~/.copilot/skills/. Loads in a new session."
       },
       "signals": {
-        "stars": 113473,
-        "forks": 11862,
-        "checked": "2026-11-05",
+        "stars": 113704,
+        "forks": 11885,
+        "checked": "2026-11-06",
         "head_sha": "24596abf8689b895737c5681a642682c66f58058",
-        "head_checked": "2026-11-05",
-        "installs": 66243,
+        "head_checked": "2026-11-06",
+        "installs": 66743,
         "installs_source": "skills.sh"
       },
       "checked": {
@@ -705,19 +705,19 @@
         "notes": "Claude Code folder shown. Codex: ~/.agents/skills/ · Cursor: ~/.cursor/skills/ · Gemini CLI: ~/.gemini/skills/ · Copilot: ~/.copilot/skills/. Loads in a new session."
       },
       "signals": {
-        "stars": 58705,
-        "forks": 8594,
-        "checked": "2026-11-05",
+        "stars": 58882,
+        "forks": 8611,
+        "checked": "2026-11-06",
         "head_sha": "15b38b5388dfdd17f4ab424e986ccd32c24d5b22",
-        "head_checked": "2026-11-05",
-        "installs": 246682,
+        "head_checked": "2026-11-06",
+        "installs": 247556,
         "installs_source": "skills.sh"
       },
       "checked": {
         "date": "2026-10-28",
         "files_scanned": 5
       },
-      "pushed": "2026-11-04",
+      "pushed": "2026-11-06",
       "license": "MIT"
     },
     {
@@ -744,19 +744,19 @@
         "notes": "Claude Code folder shown. Codex: ~/.agents/skills/ · Cursor: ~/.cursor/skills/ · Gemini CLI: ~/.gemini/skills/ · Copilot: ~/.copilot/skills/. Loads in a new session."
       },
       "signals": {
-        "stars": 58705,
-        "forks": 8594,
-        "checked": "2026-11-05",
+        "stars": 58882,
+        "forks": 8611,
+        "checked": "2026-11-06",
         "head_sha": "15b38b5388dfdd17f4ab424e986ccd32c24d5b22",
-        "head_checked": "2026-11-05",
-        "installs": 156718,
+        "head_checked": "2026-11-06",
+        "installs": 157275,
         "installs_source": "skills.sh"
       },
       "checked": {
         "date": "2026-10-28",
         "files_scanned": 5
       },
-      "pushed": "2026-11-04",
+      "pushed": "2026-11-06",
       "license": "MIT"
     },
     {
@@ -784,12 +784,12 @@
         "notes": "Claude Code folder shown. Anthropic's terms keep these files for use inside Anthropic's own products, so don't copy them into other tools. Loads in a new session."
       },
       "signals": {
-        "stars": 187706,
-        "forks": 22148,
-        "checked": "2026-11-05",
+        "stars": 188115,
+        "forks": 22190,
+        "checked": "2026-11-06",
         "head_sha": "fa0fa64bdc967915dc8399e803be67759e1e62b8",
-        "head_checked": "2026-11-05",
-        "installs": 249481,
+        "head_checked": "2026-11-06",
+        "installs": 250038,
         "installs_source": "skills.sh"
       },
       "checked": {
@@ -824,12 +824,12 @@
         "notes": "Claude Code folder shown. Anthropic's terms keep these files for use inside Anthropic's own products, so don't copy them into other tools. Loads in a new session."
       },
       "signals": {
-        "stars": 187706,
-        "forks": 22148,
-        "checked": "2026-11-05",
+        "stars": 188115,
+        "forks": 22190,
+        "checked": "2026-11-06",
         "head_sha": "1ed29a03dc852d30fa6ef2ca53a67dc2c2c2c563",
-        "head_checked": "2026-11-05",
-        "installs": 223676,
+        "head_checked": "2026-11-06",
+        "installs": 224252,
         "installs_source": "skills.sh"
       },
       "checked": {
@@ -864,12 +864,12 @@
         "notes": "Claude Code folder shown. Anthropic's terms keep these files for use inside Anthropic's own products, so don't copy them into other tools. Loads in a new session."
       },
       "signals": {
-        "stars": 187706,
-        "forks": 22148,
-        "checked": "2026-11-05",
+        "stars": 188115,
+        "forks": 22190,
+        "checked": "2026-11-06",
         "head_sha": "fa0fa64bdc967915dc8399e803be67759e1e62b8",
-        "head_checked": "2026-11-05",
-        "installs": 213464,
+        "head_checked": "2026-11-06",
+        "installs": 213947,
         "installs_source": "skills.sh"
       },
       "checked": {
@@ -904,12 +904,12 @@
         "notes": "Claude Code folder shown. Anthropic's terms keep these files for use inside Anthropic's own products, so don't copy them into other tools. Loads in a new session."
       },
       "signals": {
-        "stars": 187706,
-        "forks": 22148,
-        "checked": "2026-11-05",
+        "stars": 188115,
+        "forks": 22190,
+        "checked": "2026-11-06",
         "head_sha": "fa0fa64bdc967915dc8399e803be67759e1e62b8",
-        "head_checked": "2026-11-05",
-        "installs": 193893,
+        "head_checked": "2026-11-06",
+        "installs": 194358,
         "installs_source": "skills.sh"
       },
       "checked": {
@@ -943,12 +943,12 @@
         "notes": "Claude Code folder shown. Codex: ~/.agents/skills/ · Cursor: ~/.cursor/skills/ · Gemini CLI: ~/.gemini/skills/ · Copilot: ~/.copilot/skills/. Loads in a new session."
       },
       "signals": {
-        "stars": 187706,
-        "forks": 22148,
-        "checked": "2026-11-05",
+        "stars": 188115,
+        "forks": 22190,
+        "checked": "2026-11-06",
         "head_sha": "41bbe19d1a1a7eaab5e7bb9050a417e5c6cffc8f",
-        "head_checked": "2026-11-05",
-        "installs": 1080479,
+        "head_checked": "2026-11-06",
+        "installs": 1084617,
         "installs_source": "skills.sh"
       },
       "checked": {
@@ -982,12 +982,12 @@
         "notes": "Claude Code folder shown. Codex: ~/.agents/skills/ · Cursor: ~/.cursor/skills/ · Gemini CLI: ~/.gemini/skills/ · Copilot: ~/.copilot/skills/. Loads in a new session."
       },
       "signals": {
-        "stars": 110561,
-        "forks": 7429,
-        "checked": "2026-11-05",
+        "stars": 111166,
+        "forks": 7467,
+        "checked": "2026-11-06",
         "head_sha": "f578e23218be09ffd5b70debbfdec9fe8286d310",
-        "head_checked": "2026-11-05",
-        "installs": 737113,
+        "head_checked": "2026-11-06",
+        "installs": 741385,
         "installs_source": "skills.sh"
       },
       "checked": {
@@ -1021,12 +1021,12 @@
         "notes": "Claude Code folder shown. Codex: ~/.agents/skills/ · Cursor: ~/.cursor/skills/ · Gemini CLI: ~/.gemini/skills/ · Copilot: ~/.copilot/skills/. Loads in a new session."
       },
       "signals": {
-        "stars": 53809,
-        "forks": 3136,
-        "checked": "2026-11-05",
+        "stars": 54093,
+        "forks": 3152,
+        "checked": "2026-11-06",
         "head_sha": "f1090bec277140d02ed202440185ad9d02ac1490",
-        "head_checked": "2026-11-05",
-        "installs": 420919,
+        "head_checked": "2026-11-06",
+        "installs": 423610,
         "installs_source": "skills.sh"
       },
       "checked": {
@@ -1062,12 +1062,12 @@
         "notes": "Claude Code folder shown. Codex: ~/.agents/skills/ · Cursor: ~/.cursor/skills/ · Gemini CLI: ~/.gemini/skills/ · Copilot: ~/.copilot/skills/. Loads in a new session."
       },
       "signals": {
-        "stars": 110561,
-        "forks": 7429,
-        "checked": "2026-11-05",
+        "stars": 111166,
+        "forks": 7467,
+        "checked": "2026-11-06",
         "head_sha": "825e306497883c421c541b167e106b243e0ca2e7",
-        "head_checked": "2026-11-05",
-        "installs": 458745,
+        "head_checked": "2026-11-06",
+        "installs": 458748,
         "installs_source": "skills.sh"
       },
       "checked": {
@@ -1101,12 +1101,12 @@
         "notes": "Claude Code folder shown. Codex: ~/.agents/skills/ · Cursor: ~/.cursor/skills/ · Gemini CLI: ~/.gemini/skills/ · Copilot: ~/.copilot/skills/. Loads in a new session."
       },
       "signals": {
-        "stars": 53809,
-        "forks": 3136,
-        "checked": "2026-11-05",
+        "stars": 54093,
+        "forks": 3152,
+        "checked": "2026-11-06",
         "head_sha": "85e8e2363b713506e1d5b6e07a0eb2da66be1bc3",
-        "head_checked": "2026-11-05",
-        "installs": 264841,
+        "head_checked": "2026-11-06",
+        "installs": 266895,
         "installs_source": "skills.sh"
       },
       "checked": {
@@ -1140,12 +1140,12 @@
         "notes": "Claude Code folder shown. Codex: ~/.agents/skills/ · Cursor: ~/.cursor/skills/ · Gemini CLI: ~/.gemini/skills/ · Copilot: ~/.copilot/skills/. Loads in a new session."
       },
       "signals": {
-        "stars": 187706,
-        "forks": 22148,
-        "checked": "2026-11-05",
+        "stars": 188115,
+        "forks": 22190,
+        "checked": "2026-11-06",
         "head_sha": "b9e19e6f44773509fbdd7001d77ff41a49a486c1",
-        "head_checked": "2026-11-05",
-        "installs": 99265,
+        "head_checked": "2026-11-06",
+        "installs": 99550,
         "installs_source": "skills.sh"
       },
       "checked": {
@@ -1179,12 +1179,12 @@
         "notes": "Claude Code folder shown. Codex: ~/.agents/skills/ · Cursor: ~/.cursor/skills/ · Gemini CLI: ~/.gemini/skills/ · Copilot: ~/.copilot/skills/. Loads in a new session."
       },
       "signals": {
-        "stars": 187706,
-        "forks": 22148,
-        "checked": "2026-11-05",
+        "stars": 188115,
+        "forks": 22190,
+        "checked": "2026-11-06",
         "head_sha": "b9e19e6f44773509fbdd7001d77ff41a49a486c1",
-        "head_checked": "2026-11-05",
-        "installs": 127732,
+        "head_checked": "2026-11-06",
+        "installs": 128182,
         "installs_source": "skills.sh"
       },
       "checked": {
@@ -1220,12 +1220,12 @@
         "notes": "Claude Code folder shown. Codex: ~/.agents/skills/ · Cursor: ~/.cursor/skills/ · Gemini CLI: ~/.gemini/skills/ · Copilot: ~/.copilot/skills/. Loads in a new session."
       },
       "signals": {
-        "stars": 312937,
-        "forks": 27844,
-        "checked": "2026-11-05",
+        "stars": 313517,
+        "forks": 27892,
+        "checked": "2026-11-06",
         "head_sha": "3be5aad3dd2400ef23b15680969f4bcd3b6d7b8b",
-        "head_checked": "2026-11-05",
-        "installs": 265532,
+        "head_checked": "2026-11-06",
+        "installs": 266618,
         "installs_source": "skills.sh"
       },
       "checked": {
@@ -1264,12 +1264,12 @@
         "notes": "Claude Code folder shown. Codex: ~/.agents/skills/ · Cursor: ~/.cursor/skills/ · Gemini CLI: ~/.gemini/skills/ · Copilot: ~/.copilot/skills/. Loads in a new session."
       },
       "signals": {
-        "stars": 314955,
-        "forks": 26377,
-        "checked": "2026-11-05",
+        "stars": 316511,
+        "forks": 26477,
+        "checked": "2026-11-06",
         "head_sha": "3f599139104dfceabc7754eeb91319802f85e042",
-        "head_checked": "2026-11-05",
-        "installs": 1203174,
+        "head_checked": "2026-11-06",
+        "installs": 1207695,
         "installs_source": "skills.sh"
       },
       "checked": {
@@ -1305,12 +1305,12 @@
         "notes": "Claude Code folder shown. Codex: ~/.agents/skills/ · Cursor: ~/.cursor/skills/ · Gemini CLI: ~/.gemini/skills/ · Copilot: ~/.copilot/skills/. Loads in a new session."
       },
       "signals": {
-        "stars": 314955,
-        "forks": 26377,
-        "checked": "2026-11-05",
+        "stars": 316511,
+        "forks": 26477,
+        "checked": "2026-11-06",
         "head_sha": "f3fc5632f401156837ee3872f14fe33ccf1024ea",
-        "head_checked": "2026-11-05",
-        "installs": 895996,
+        "head_checked": "2026-11-06",
+        "installs": 900453,
         "installs_source": "skills.sh"
       },
       "checked": {
@@ -1346,12 +1346,12 @@
         "notes": "Claude Code folder shown. Codex: ~/.agents/skills/ · Cursor: ~/.cursor/skills/ · Gemini CLI: ~/.gemini/skills/ · Copilot: ~/.copilot/skills/. Loads in a new session."
       },
       "signals": {
-        "stars": 229836,
-        "forks": 22881,
-        "checked": "2026-11-05",
+        "stars": 230227,
+        "forks": 22913,
+        "checked": "2026-11-06",
         "head_sha": "64723a49ea6117894304eb491f0d32a60570bf45",
-        "head_checked": "2026-11-05",
-        "installs": 44721,
+        "head_checked": "2026-11-06",
+        "installs": 45020,
         "installs_source": "skills.sh"
       },
       "checked": {
@@ -1387,12 +1387,12 @@
         "notes": "Claude Code folder shown. Codex: ~/.agents/skills/ · Cursor: ~/.cursor/skills/ · Gemini CLI: ~/.gemini/skills/ · Copilot: ~/.copilot/skills/. Loads in a new session."
       },
       "signals": {
-        "stars": 185155,
-        "forks": 10241,
-        "checked": "2026-11-05",
+        "stars": 185772,
+        "forks": 10280,
+        "checked": "2026-11-06",
         "head_sha": "df9e89941d50419fd5bcf1de41e28097f1db49b2",
-        "head_checked": "2026-11-05",
-        "installs": 120134,
+        "head_checked": "2026-11-06",
+        "installs": 121150,
         "installs_source": "skills.sh"
       },
       "checked": {
@@ -1433,12 +1433,12 @@
         "notes": "Claude Code folder shown. Codex: ~/.agents/skills/ · Cursor: ~/.cursor/skills/ · Gemini CLI: ~/.gemini/skills/ · Copilot: ~/.copilot/skills/. Loads in a new session."
       },
       "signals": {
-        "stars": 314955,
-        "forks": 26377,
-        "checked": "2026-11-05",
+        "stars": 316511,
+        "forks": 26477,
+        "checked": "2026-11-06",
         "head_sha": "7739eaed7f8f3915437a8def198a6d0d7206dbc7",
-        "head_checked": "2026-11-05",
-        "installs": 1230276,
+        "head_checked": "2026-11-06",
+        "installs": 1234823,
         "installs_source": "skills.sh"
       },
       "checked": {
@@ -1476,9 +1476,9 @@
       "signals": {
         "stars": 0,
         "forks": 0,
-        "checked": "2026-11-05",
+        "checked": "2026-11-06",
         "head_sha": "b0de2e18889974806691c91b8ba8c8373a41f9b8",
-        "head_checked": "2026-11-05"
+        "head_checked": "2026-11-06"
       },
       "checked": {
         "date": "2026-09-27",
@@ -1515,9 +1515,9 @@
       "signals": {
         "stars": 0,
         "forks": 0,
-        "checked": "2026-11-05",
+        "checked": "2026-11-06",
         "head_sha": "b0de2e18889974806691c91b8ba8c8373a41f9b8",
-        "head_checked": "2026-11-05"
+        "head_checked": "2026-11-06"
       },
       "checked": {
         "date": "2026-09-27",
@@ -1552,12 +1552,12 @@
         "notes": "Claude Code folder shown. Codex: ~/.agents/skills/ · Cursor: ~/.cursor/skills/ · Gemini CLI: ~/.gemini/skills/ · Copilot: ~/.copilot/skills/. Loads in a new session."
       },
       "signals": {
-        "stars": 314955,
-        "forks": 26377,
-        "checked": "2026-11-05",
+        "stars": 316511,
+        "forks": 26477,
+        "checked": "2026-11-06",
         "head_sha": "321658273cb1d20b76026717d027d505790106d4",
-        "head_checked": "2026-11-05",
-        "installs": 1044288,
+        "head_checked": "2026-11-06",
+        "installs": 1048501,
         "installs_source": "skills.sh"
       },
       "checked": {
@@ -1589,12 +1589,12 @@
         "notes": "Claude Code folder shown. Codex: ~/.agents/skills/ · Cursor: ~/.cursor/skills/ · Gemini CLI: ~/.gemini/skills/ · Copilot: ~/.copilot/skills/. Loads in a new session."
       },
       "signals": {
-        "stars": 110561,
-        "forks": 7429,
-        "checked": "2026-11-05",
+        "stars": 111166,
+        "forks": 7467,
+        "checked": "2026-11-06",
         "head_sha": "f6831c5df8ad546c2567535442f1691a823868e3",
-        "head_checked": "2026-11-05",
-        "installs": 401080,
+        "head_checked": "2026-11-06",
+        "installs": 401082,
         "installs_source": "skills.sh"
       },
       "checked": {
@@ -1629,12 +1629,12 @@
         "notes": "Claude Code only: this sets up a Claude Code hook. Claude Code folder shown. Loads in a new session."
       },
       "signals": {
-        "stars": 314955,
-        "forks": 26377,
-        "checked": "2026-11-05",
+        "stars": 316511,
+        "forks": 26477,
+        "checked": "2026-11-06",
         "head_sha": "321658273cb1d20b76026717d027d505790106d4",
-        "head_checked": "2026-11-05",
-        "installs": 537643,
+        "head_checked": "2026-11-06",
+        "installs": 540566,
         "installs_source": "skills.sh"
       },
       "checked": {
@@ -1674,13 +1674,13 @@
         "notes": "Claude Code folder shown. Codex: ~/.agents/skills/ · Cursor: ~/.cursor/skills/ · Gemini CLI: ~/.gemini/skills/ · Copilot: ~/.copilot/skills/. Loads in a new session."
       },
       "signals": {
-        "stars": 314955,
-        "forks": 26377,
-        "checked": "2026-11-05",
-        "installs": 335964,
+        "stars": 316511,
+        "forks": 26477,
+        "checked": "2026-11-06",
+        "installs": 339761,
         "installs_source": "skills.sh",
         "head_sha": "a496f5513d4a4cf889bc48e189e579f4b0bdf6aa",
-        "head_checked": "2026-11-05"
+        "head_checked": "2026-11-06"
       },
       "pushed": "2026-11-05",
       "license": "MIT",
@@ -1718,13 +1718,13 @@
         "notes": "Claude Code folder shown. Codex: ~/.agents/skills/ · Cursor: ~/.cursor/skills/ · Gemini CLI: ~/.gemini/skills/ · Copilot: ~/.copilot/skills/. Loads in a new session."
       },
       "signals": {
-        "stars": 314955,
-        "forks": 26377,
-        "checked": "2026-11-05",
-        "installs": 328186,
+        "stars": 316511,
+        "forks": 26477,
+        "checked": "2026-11-06",
+        "installs": 332142,
         "installs_source": "skills.sh",
         "head_sha": "a7d038f6bf7f01b516408e95e2fb56e0b338fa6f",
-        "head_checked": "2026-11-05"
+        "head_checked": "2026-11-06"
       },
       "pushed": "2026-11-05",
       "license": "MIT",
@@ -1757,13 +1757,13 @@
         "notes": "Claude Code folder shown. Codex: ~/.agents/skills/ · Cursor: ~/.cursor/skills/ · Gemini CLI: ~/.gemini/skills/ · Copilot: ~/.copilot/skills/. Loads in a new session."
       },
       "signals": {
-        "stars": 314955,
-        "forks": 26377,
-        "checked": "2026-11-05",
-        "installs": 219429,
+        "stars": 316511,
+        "forks": 26477,
+        "checked": "2026-11-06",
+        "installs": 223274,
         "installs_source": "skills.sh",
         "head_sha": "e484a8095543718ced436b9b49a8160ed4554000",
-        "head_checked": "2026-11-05"
+        "head_checked": "2026-11-06"
       },
       "pushed": "2026-11-05",
       "license": "MIT",
@@ -1798,13 +1798,13 @@
         "notes": "Claude Code folder shown. Codex: ~/.agents/skills/ · Cursor: ~/.cursor/skills/ · Gemini CLI: ~/.gemini/skills/ · Copilot: ~/.copilot/skills/. Loads in a new session."
       },
       "signals": {
-        "stars": 314955,
-        "forks": 26377,
-        "checked": "2026-11-05",
-        "installs": 111176,
+        "stars": 316511,
+        "forks": 26477,
+        "checked": "2026-11-06",
+        "installs": 114083,
         "installs_source": "skills.sh",
         "head_sha": "5ae481693d13b37d4d2c2c92d0b66d299c93e695",
-        "head_checked": "2026-11-05"
+        "head_checked": "2026-11-06"
       },
       "pushed": "2026-11-05",
       "license": "MIT",
