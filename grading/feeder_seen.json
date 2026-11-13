@@ -1137,6 +1137,10 @@
    "first_seen": "2026-11-12",
    "verdict": "waiting"
   },
+  "1d978d051629e994": {
+   "first_seen": "2026-11-13",
+   "verdict": "tied to one vendor's product or a paid service"
+  },
   "1da9c67b81ba9100": {
    "first_seen": "2026-09-27",
    "verdict": "already there when the list was chosen by hand"
@@ -3892,6 +3896,10 @@
   "6a481e9cf7252d4f": {
    "first_seen": "2026-10-20",
    "verdict": "waiting"
+  },
+  "6a48b180af0aded0": {
+   "first_seen": "2026-11-13",
+   "verdict": "tied to one vendor's product or a paid service"
   },
   "6a7855cd23dd7301": {
    "first_seen": "2026-09-27",
@@ -7133,6 +7141,10 @@
    "first_seen": "2026-09-27",
    "verdict": "already there when the list was chosen by hand"
   },
+  "c18d0fba5866a438": {
+   "first_seen": "2026-11-13",
+   "verdict": "quarantined"
+  },
   "c19e189290f7da12": {
    "first_seen": "2026-09-27",
    "verdict": "already there when the list was chosen by hand"
@@ -9380,6 +9392,10 @@
   "fce3b4ec7abdedf0": {
    "first_seen": "2026-09-27",
    "verdict": "already there when the list was chosen by hand"
+  },
+  "fcef1d9c4e6f76ed": {
+   "first_seen": "2026-11-13",
+   "verdict": "quarantined"
   },
   "fcef6e0f220f0225": {
    "first_seen": "2026-09-27",
