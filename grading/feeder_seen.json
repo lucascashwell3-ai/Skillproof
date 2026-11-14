@@ -8509,6 +8509,10 @@
    "first_seen": "2026-09-27",
    "verdict": "already there when the list was chosen by hand"
   },
+  "e5bdb84113690481": {
+   "first_seen": "2026-11-14",
+   "verdict": "waiting"
+  },
   "e5d201342c7d8100": {
    "first_seen": "2026-09-27",
    "verdict": "already there when the list was chosen by hand"
@@ -9471,6 +9475,10 @@
   },
   "feb18085049436da": {
    "first_seen": "2026-10-30",
+   "verdict": "waiting"
+  },
+  "febeb6d3193d4987": {
+   "first_seen": "2026-11-14",
    "verdict": "waiting"
   },
   "fec15159f920baa0": {
