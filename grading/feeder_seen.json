@@ -1985,6 +1985,10 @@
    "first_seen": "2026-09-27",
    "verdict": "already there when the list was chosen by hand"
   },
+  "35279f4f72c992d8": {
+   "first_seen": "2026-11-17",
+   "verdict": "waiting"
+  },
   "353cb5678f3e07a7": {
    "first_seen": "2026-09-27",
    "verdict": "already there when the list was chosen by hand"
@@ -4797,6 +4801,10 @@
    "first_seen": "2026-10-19",
    "verdict": "waiting"
   },
+  "81a6f049ea3c246d": {
+   "first_seen": "2026-11-17",
+   "verdict": "waiting"
+  },
   "81b763417a2f7ceb": {
    "first_seen": "2026-09-27",
    "verdict": "already there when the list was chosen by hand"
@@ -5020,6 +5028,10 @@
   "892d0afad39f66fa": {
    "first_seen": "2026-09-27",
    "verdict": "already there when the list was chosen by hand"
+  },
+  "89418cd0c3c7feaa": {
+   "first_seen": "2026-11-17",
+   "verdict": "tied to one vendor's product or a paid service"
   },
   "895369880d348259": {
    "first_seen": "2026-10-05",
@@ -6648,6 +6660,10 @@
   "b516b21666679c29": {
    "first_seen": "2026-09-27",
    "verdict": "already there when the list was chosen by hand"
+  },
+  "b53a26120d19682d": {
+   "first_seen": "2026-11-17",
+   "verdict": "tied to one vendor's product or a paid service"
   },
   "b54ae4097c8d899e": {
    "first_seen": "2026-09-27",
