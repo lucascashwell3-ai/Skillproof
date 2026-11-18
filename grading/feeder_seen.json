@@ -1713,6 +1713,10 @@
    "first_seen": "2026-09-27",
    "verdict": "already there when the list was chosen by hand"
   },
+  "2d265a6e298d0230": {
+   "first_seen": "2026-11-18",
+   "verdict": "waiting"
+  },
   "2d844be13752c0ab": {
    "first_seen": "2026-09-27",
    "verdict": "already there when the list was chosen by hand"
@@ -5148,6 +5152,10 @@
   "8bd66873caf02404": {
    "first_seen": "2026-09-27",
    "verdict": "already there when the list was chosen by hand"
+  },
+  "8bef105fe7c73a8d": {
+   "first_seen": "2026-11-18",
+   "verdict": "waiting"
   },
   "8c2d6cf38c8831cf": {
    "first_seen": "2026-09-27",
