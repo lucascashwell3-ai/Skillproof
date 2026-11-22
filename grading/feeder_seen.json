@@ -2853,6 +2853,10 @@
    "first_seen": "2026-09-27",
    "verdict": "already there when the list was chosen by hand"
   },
+  "4ea9e44e6345cdcf": {
+   "first_seen": "2026-11-22",
+   "verdict": "no open license"
+  },
   "4eb80df7137493fc": {
    "first_seen": "2026-10-29",
    "verdict": "tied to one vendor's product or a paid service"
@@ -8092,6 +8096,10 @@
   "d8f314e97c045e7a": {
    "first_seen": "2026-11-12",
    "verdict": "waiting"
+  },
+  "d90a47f384143289": {
+   "first_seen": "2026-11-22",
+   "verdict": "no open license"
   },
   "d9305c29328b8a89": {
    "first_seen": "2026-09-27",
